@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>qianxunslimg</title>
+  <title>TOLLM</title>
   
   <subtitle>TOLLM</subtitle>
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-02T10:46:16.777Z</updated>
+  <updated>2021-12-02T11:43:32.785Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,18 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Leetcode-retag</title>
-    <link href="http://example.com/2021/12/02/leetcode-gao-pin/"/>
-    <id>http://example.com/2021/12/02/leetcode-gao-pin/</id>
-    <published>2021-12-02T10:39:40.000Z</published>
-    <updated>2021-12-02T10:46:16.777Z</updated>
+    <title>QT编写串口助手</title>
+    <link href="http://example.com/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/"/>
+    <id>http://example.com/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/</id>
+    <published>2021-12-02T11:43:04.000Z</published>
+    <updated>2021-12-02T11:43:32.785Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Leetcode-retag&quot;&gt;&lt;a href=&quot;#Leetcode-retag&quot; class=&quot;headerlink&quot; title=&quot;Leetcode-retag&quot;&gt;&lt;/a&gt;Leetcode-retag&lt;/h1&gt;&lt;p&gt;重新分类 Leetcode 高频题</summary>
+    <summary type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;.pro文件中&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;QT += serialport&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;serial.h:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
         
       
     
@@ -38,15 +41,434 @@
   </entry>
   
   <entry>
-    <title>我的第一篇文章</title>
-    <link href="http://example.com/2021/12/02/wo-de-di-yi-pian-wen-zhang/"/>
-    <id>http://example.com/2021/12/02/wo-de-di-yi-pian-wen-zhang/</id>
-    <published>2021-12-02T01:50:36.000Z</published>
-    <updated>2021-12-02T01:50:36.493Z</updated>
+    <title>串口发送问题</title>
+    <link href="http://example.com/2021/12/02/chuan-kou-fa-song-wen-ti/"/>
+    <id>http://example.com/2021/12/02/chuan-kou-fa-song-wen-ti/</id>
+    <published>2021-12-02T11:42:17.000Z</published>
+    <updated>2021-12-02T11:42:38.707Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;　串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位&lt;/p&gt;
+&lt;p&gt;　　10进制int型数据转16进制，并取高低位：&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
+        
+      
     
     
     
     
+  </entry>
+  
+  <entry>
+    <title>The difference between join and detach</title>
+    <link href="http://example.com/2021/12/02/the-difference-between-join-and-detach/"/>
+    <id>http://example.com/2021/12/02/the-difference-between-join-and-detach/</id>
+    <published>2021-12-02T11:41:34.000Z</published>
+    <updated>2021-12-02T11:41:46.860Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;A C++ &lt;code&gt;thread&lt;/code&gt; object generally (but not always) represents a thread of execution, which is an OS or platform</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QT文件操作-遍历</title>
+    <link href="http://example.com/2021/12/02/qt-wen-jian-cao-zuo-bian-li/"/>
+    <id>http://example.com/2021/12/02/qt-wen-jian-cao-zuo-bian-li/</id>
+    <published>2021-12-02T11:40:46.000Z</published>
+    <updated>2021-12-02T11:41:12.129Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;QT的路径格式使用 / 或 \&lt;/p&gt;
+&lt;p&gt;读写文本&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>备份程序-遍历</title>
+    <link href="http://example.com/2021/12/02/bei-fen-cheng-xu-bian-li/"/>
+    <id>http://example.com/2021/12/02/bei-fen-cheng-xu-bian-li/</id>
+    <published>2021-12-02T11:40:01.000Z</published>
+    <updated>2021-12-02T11:40:12.870Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>垃圾文件助手</title>
+    <link href="http://example.com/2021/12/02/la-ji-wen-jian-zhu-shou/"/>
+    <id>http://example.com/2021/12/02/la-ji-wen-jian-zhu-shou/</id>
+    <published>2021-12-02T11:39:22.000Z</published>
+    <updated>2021-12-02T11:39:28.041Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;没看程序，白天搞的雕刻机（呕~~）&lt;/p&gt;
+&lt;p&gt;强行凑每日一篇，上传一个自己写的拉吉文件助手&lt;/p&gt;
+&lt;p&gt;可以实现目标文件下的文件名搜寻，并进行删除和复制整理到新文件夹（拉吉如我）&lt;/p&gt;
+&lt;p&gt;博客园竟然还有文件上传限制。。。github链接：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ui文件和Qt代码的关系(转载自大神Mike江)</title>
+    <link href="http://example.com/2021/12/02/ui-wen-jian-he-qt-dai-ma-de-guan-xi-zhuan-zai-zi-da-shen-mike-jiang/"/>
+    <id>http://example.com/2021/12/02/ui-wen-jian-he-qt-dai-ma-de-guan-xi-zhuan-zai-zi-da-shen-mike-jiang/</id>
+    <published>2021-12-02T11:38:48.000Z</published>
+    <updated>2021-12-02T11:38:59.034Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vs程序 copy 到Qt的若干错误</title>
+    <link href="http://example.com/2021/12/02/vs-cheng-xu-copy-dao-qt-de-ruo-gan-cuo-wu/"/>
+    <id>http://example.com/2021/12/02/vs-cheng-xu-copy-dao-qt-de-ruo-gan-cuo-wu/</id>
+    <published>2021-12-02T11:37:11.000Z</published>
+    <updated>2021-12-02T11:38:06.988Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;vs程序-copy-到Qt的若干错误&quot;&gt;&lt;a href=&quot;#vs程序-copy-到Qt的若干错误&quot; class=&quot;headerlink&quot; title=&quot;vs程序 copy 到Qt的若干错误&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Qt Windows.h 后台按键监测</title>
+    <link href="http://example.com/2021/12/02/qt-windows-h-hou-tai-an-jian-jian-ce/"/>
+    <id>http://example.com/2021/12/02/qt-windows-h-hou-tai-an-jian-jian-ce/</id>
+    <published>2021-12-02T11:36:20.000Z</published>
+    <updated>2021-12-02T11:36:40.105Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;首先 pro：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows API关闭exe</title>
+    <link href="http://example.com/2021/12/02/windows-api-guan-bi-exe/"/>
+    <id>http://example.com/2021/12/02/windows-api-guan-bi-exe/</id>
+    <published>2021-12-02T11:34:56.000Z</published>
+    <updated>2021-12-02T11:35:53.946Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;windows-API关闭exe&quot;&gt;&lt;a href=&quot;#windows-API关闭exe&quot; class=&quot;headerlink&quot; title=&quot;windows API关闭exe&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vector clear() 方法 内存释放问题</title>
+    <link href="http://example.com/2021/12/02/vector-clear-fang-fa-nei-cun-shi-fang-wen-ti/"/>
+    <id>http://example.com/2021/12/02/vector-clear-fang-fa-nei-cun-shi-fang-wen-ti/</id>
+    <published>2021-12-02T11:32:31.000Z</published>
+    <updated>2021-12-02T11:33:11.725Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;com-markdown-collpase-main&quot;&gt;
+&lt;div class=&quot;rno-markdown J-articleContent&quot;&gt;
+&lt;pre class=&quot;prism-token token </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++ 自然排序-window文件排序</title>
+    <link href="http://example.com/2021/12/02/c-zi-ran-pai-xu-window-wen-jian-pai-xu/"/>
+    <id>http://example.com/2021/12/02/c-zi-ran-pai-xu-window-wen-jian-pai-xu/</id>
+    <published>2021-12-02T11:29:51.000Z</published>
+    <updated>2021-12-02T11:31:27.408Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>最小堆make_heap(), pop_heap()和push_heap()</title>
+    <link href="http://example.com/2021/12/02/zui-xiao-dui-make-heap-pop-heap-he-push-heap/"/>
+    <id>http://example.com/2021/12/02/zui-xiao-dui-make-heap-pop-heap-he-push-heap/</id>
+    <published>2021-12-02T11:28:59.000Z</published>
+    <updated>2021-12-02T11:29:30.027Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>组合数 防溢出</title>
+    <link href="http://example.com/2021/12/02/zu-he-shu-fang-yi-chu/"/>
+    <id>http://example.com/2021/12/02/zu-he-shu-fang-yi-chu/</id>
+    <published>2021-12-02T11:27:19.000Z</published>
+    <updated>2021-12-02T11:28:03.235Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;span style=&quot;color: #008080;&quot;&gt;1&lt;/span&gt;  
+&lt;span style=&quot;color: #008080;&quot;&gt;2&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;long&lt;/span&gt; &lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vector&lt;pair&gt;或者有序map</title>
+    <link href="http://example.com/2021/12/02/vector-pair-huo-zhe-you-xu-map/"/>
+    <id>http://example.com/2021/12/02/vector-pair-huo-zhe-you-xu-map/</id>
+    <published>2021-12-02T11:26:18.000Z</published>
+    <updated>2021-12-02T11:26:47.723Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;功能相同&lt;/p&gt;
+&lt;div class=&quot;cnblogs_code&quot;&gt;
+&lt;pre&gt;&lt;span style=&quot;color: #008080;&quot;&gt; 1&lt;/span&gt;   &lt;span style=&quot;color: #0000ff;&quot;&gt;static&lt;/span&gt; &lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1920. 基于排列构建数组</title>
+    <link href="http://example.com/2021/12/02/1920-ji-yu-pai-lie-gou-jian-shu-zu/"/>
+    <id>http://example.com/2021/12/02/1920-ji-yu-pai-lie-gou-jian-shu-zu/</id>
+    <published>2021-12-02T11:23:40.000Z</published>
+    <updated>2021-12-02T11:25:02.292Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原地修改&lt;/p&gt;
+&lt;p&gt;class Solution {&lt;br&gt;public:&lt;br&gt;    vector&amp;lt;int&amp;gt; buildArray(vector&amp;lt;int&amp;gt;&amp;amp; nums) {&lt;br&gt;        int n =</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>priority_queue和tuple</title>
+    <link href="http://example.com/2021/12/02/priority-queue-tuple-he-lamda/"/>
+    <id>http://example.com/2021/12/02/priority-queue-tuple-he-lamda/</id>
+    <published>2021-12-02T11:19:04.000Z</published>
+    <updated>2021-12-02T11:23:00.116Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img2020.cnblogs.com/blog/2092994/202111/2092994-20211115202419249-1916870940.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QT打包程序</title>
+    <link href="http://example.com/2021/12/02/qt-da-bao-cheng-xu/"/>
+    <id>http://example.com/2021/12/02/qt-da-bao-cheng-xu/</id>
+    <published>2021-12-02T11:17:36.000Z</published>
+    <updated>2021-12-02T11:17:56.156Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-发布release版本的QT程序&quot;&gt;&lt;a href=&quot;#1-发布release版本的QT程序&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>QString截断（string截断）</title>
+    <link href="http://example.com/2021/12/02/qstring-jie-duan-string-jie-duan/"/>
+    <id>http://example.com/2021/12/02/qstring-jie-duan-string-jie-duan/</id>
+    <published>2021-12-02T11:16:42.000Z</published>
+    <updated>2021-12-02T11:17:12.004Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：&quot;&gt;&lt;a href=&quot;#最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>简单的滑动窗口 643. 子数组最大平均数 I</title>
+    <link href="http://example.com/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/"/>
+    <id>http://example.com/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/</id>
+    <published>2021-12-02T11:13:48.000Z</published>
+    <updated>2021-12-02T11:14:21.387Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;给你一个由 n 个元素组成的整数数组 nums 和一个整数 k 。&lt;/p&gt;
+&lt;p&gt;请你找出平均数最大且 长度为 k 的连续子数组，并输出该最大平均数。&lt;/p&gt;
+&lt;p&gt;任何误差小于 10-5 的答案都将被视为正确答案。&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;示例</summary>
+        
+      
+    
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
     
   </entry>
   
