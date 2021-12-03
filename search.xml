@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>VMware打开ubantu黑屏无反应</title>
+      <link href="/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/"/>
+      <url>/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/</url>
+      
+        <content type="html"><![CDATA[<p>设置VMware编辑–&gt;首选项–&gt;设备–&gt;启用虚拟打印机 即可</p><p><img src="/.com//1.png"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>QT编写串口助手</title>
       <link href="/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/"/>
       <url>/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/</url>
@@ -332,19 +345,6 @@
             <tag> 计算机网络 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>VMware打开ubantu黑屏无反应</title>
-      <link href="/2021/12/02/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/"/>
-      <url>/2021/12/02/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/</url>
-      
-        <content type="html"><![CDATA[<p>设置VMware编辑–&gt;首选项–&gt;设备–&gt;启用虚拟打印机 即可</p><p><img src="https://img2020.cnblogs.com/blog/2092994/202008/2092994-20200809232354984-1413171796.png"></p>]]></content>
-      
-      
       
     </entry>
     

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-12-02T11:43:32.785Z</updated>
+  <updated>2021-12-03T12:01:14.579Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VMware打开ubantu黑屏无反应</title>
+    <link href="http://example.com/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/"/>
+    <id>http://example.com/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/</id>
+    <published>2021-12-03T11:57:14.000Z</published>
+    <updated>2021-12-03T12:01:14.579Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;设置VMware编辑–&amp;gt;首选项–&amp;gt;设备–&amp;gt;启用虚拟打印机 即可&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>QT编写串口助手</title>
@@ -442,33 +464,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>简单的滑动窗口 643. 子数组最大平均数 I</title>
-    <link href="http://example.com/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/"/>
-    <id>http://example.com/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/</id>
-    <published>2021-12-02T11:13:48.000Z</published>
-    <updated>2021-12-02T11:14:21.387Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;给你一个由 n 个元素组成的整数数组 nums 和一个整数 k 。&lt;/p&gt;
-&lt;p&gt;请你找出平均数最大且 长度为 k 的连续子数组，并输出该最大平均数。&lt;/p&gt;
-&lt;p&gt;任何误差小于 10-5 的答案都将被视为正确答案。&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;示例</summary>
-        
-      
-    
-    
-    
-    
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
     
   </entry>
   
