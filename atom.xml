@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-15T12:01:31.030Z</updated>
+  <updated>2022-03-15T12:05:47.329Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>链表</title>
+    <link href="http://example.com/2022/03/15/lian-biao/"/>
+    <id>http://example.com/2022/03/15/lian-biao/</id>
+    <published>2022-03-15T12:05:08.000Z</published>
+    <updated>2022-03-15T12:05:47.329Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;链表&quot;&gt;&lt;a href=&quot;#链表&quot; class=&quot;headerlink&quot; title=&quot;链表&quot;&gt;&lt;/a&gt;链表&lt;/h1&gt;&lt;h2 id=&quot;单链表解题套路&quot;&gt;&lt;a href=&quot;#单链表解题套路&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>回溯算法</title>
@@ -433,32 +456,6 @@
         
     <summary type="html">&lt;p&gt;原地修改&lt;/p&gt;
 &lt;p&gt;class Solution {&lt;br&gt;public:&lt;br&gt;    vector&amp;lt;int&amp;gt; buildArray(vector&amp;lt;int&amp;gt;&amp;amp; nums) {&lt;br&gt;        int n =</summary>
-        
-      
-    
-    
-    
-    
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>priority_queue和tuple</title>
-    <link href="http://example.com/2021/12/02/priority-queue-tuple-he-lamda/"/>
-    <id>http://example.com/2021/12/02/priority-queue-tuple-he-lamda/</id>
-    <published>2021-12-02T11:19:04.000Z</published>
-    <updated>2021-12-02T11:23:00.116Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://img2020.cnblogs.com/blog/2092994/202111/2092994-20211115202419249-1916870940.png&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-&lt;h1</summary>
         
       
     
