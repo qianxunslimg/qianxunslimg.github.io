@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>二分查找 | TOLLM</title><meta name="keywords" content="算法总结"><meta name="author" content="qianxunslimg"><meta name="copyright" content="qianxunslimg"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二分查找算法一、二分查找的框架123456789101112131415int binarySearch(int[] nums, int target) {   int left &#x3D; 0, right &#x3D; ...;while(...) {     int mid &#x3D; (right + left) &#x2F; 2;     if (nums[mid] &#x3D;&#x3D; target) {       ...     }">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分查找">
+<meta property="og:url" content="http://example.com/2022/03/15/er-fen-cha-zhao-suan-fa/index.html">
+<meta property="og:site_name" content="TOLLM">
+<meta property="og:description" content="二分查找算法一、二分查找的框架123456789101112131415int binarySearch(int[] nums, int target) {   int left &#x3D; 0, right &#x3D; ...;while(...) {     int mid &#x3D; (right + left) &#x2F; 2;     if (nums[mid] &#x3D;&#x3D; target) {       ...     }">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-03-15T12:17:49.000Z">
+<meta property="article:modified_time" content="2022-03-15T12:16:52.590Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/03/15/er-fen-cha-zhao-suan-fa/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二分查找',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-15 20:16:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="TOLLM" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://api.ixiaowai.cn/api/api.php" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">TOLLM</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">二分查找</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-15T12:17:49.000Z" title="发表于 2022-03-15 20:17:49">2022-03-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-15T12:16:52.590Z" title="更新于 2022-03-15 20:16:52">2022-03-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="二分查找"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="二分查找算法"><a href="#二分查找算法" class="headerlink" title="二分查找算法"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kyoner/p/11080078.html">二分查找算法</a></h1><h2 id="一、二分查找的框架"><a href="#一、二分查找的框架" class="headerlink" title="一、二分查找的框架"></a><strong>一、二分查找的框架</strong></h2><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">   <span class="keyword">int</span> left = <span class="number">0</span>, right = ...;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(...) {</span><br><span class="line">     <span class="keyword">int</span> mid = (right + left) / <span class="number">2</span>;</span><br><span class="line">     <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">       ...</span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">       left = ...</span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">       right = ...</span><br><span class="line">     }</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">return</span> ...;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>分析二分查找的一个技巧是：不要出现 else，而是把所有情况用 else if 写清楚，这样可以清楚地展现所有细节</strong>。本文都会使用 else if，旨在讲清楚，读者理解后可自行简化。</p>
+<p>其中…标记的部分，就是可能出现细节问题的地方，当你见到一个二分查找的代码时，首先注意这几个地方。后文用实例分析这些地方能有什么样的变化。</p>
+<p>另外声明一下，计算 mid 时需要技巧防止溢出，建议写成: **<code>mid = left + (right - left) / 2</code>**，本文暂时忽略这个问题。</p>
+<h2 id="二、寻找一个数（基本的二分搜索）"><a href="#二、寻找一个数（基本的二分搜索）" class="headerlink" title="二、寻找一个数（基本的二分搜索）"></a><strong>二、寻找一个数（基本的二分搜索）</strong></h2><p>这个场景是最简单的，可能也是大家最熟悉的，即搜索一个数，如果存在，返回其索引，否则返回 -1。</p>
+<p><code>左闭右闭的模板</code></p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">   <span class="keyword">int</span> left = <span class="number">0</span>; </span><br><span class="line">   <span class="keyword">int</span> right = nums.length - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(left &lt;= right) { <span class="comment">// 注意</span></span><br><span class="line">     <span class="keyword">int</span> mid = (right + left) / <span class="number">2</span>;</span><br><span class="line">     <span class="keyword">if</span>(nums[mid] == target)</span><br><span class="line">       <span class="keyword">return</span> mid; </span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)</span><br><span class="line">       left = mid + <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)</span><br><span class="line">       right = mid - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">     }</span><br><span class="line">   <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><p>为什么 while 循环的条件中是 &lt;=，而不是 &lt; ？</p>
+<ul>
+<li>答：因为初始化 right 的赋值是 nums.length - 1，即最后一个元素的索引，而不是 nums.length。</li>
+<li>这二者可能出现在不同功能的二分查找中，区别是：前者相当于两端都闭区间 <code>[left, right]</code>，后者相当于左闭右开区间 <code>[left, right)</code>，因为索引大小为 nums.length 是越界的。</li>
+<li>我们这个算法中使用的是 [left, right] 两端都闭的区间。**这个区间就是<code>每次进行搜索</code>的区间，我们不妨称为「搜索区间」(search space)**。</li>
+<li>什么时候应该停止搜索呢？当然，找到了目标值的时候可以终止</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(nums[mid] == target)</span><br><span class="line">  <span class="keyword">return</span> mid; </span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>但如果没找到，就需要 while 循环终止，然后返回 -1。那 while 循环什么时候应该终止？<strong>搜索区间为空的时候应该终止</strong>，意味着你没得找了，就等于没找到嘛。</li>
+<li><code>while(left &lt;= right)的终止条件是 left == right + 1</code>，写成区间的形式就是 <code>[right + 1, right]</code>，或者带个具体的数字进去 [3, 2]，可见<strong>这时候搜索区间为空</strong>，因为没有数字既大于等于 3 又小于等于 2 的吧。所以这时候 while 循环终止是正确的，直接返回 -1 即可。</li>
+<li>while(left &lt; right)的终止条件是 left == right，写成区间的形式就是 [right, right]，或者带个具体的数字进去 [2, 2]，<strong>这时候搜索区间非空</strong>，还有一个数 2，但此时 while 循环终止了。也就是说这区间 [2, 2] 被漏掉了，索引 2 没有被搜索，如果这时候直接返回 -1 就可能出现错误。</li>
+<li>当然，如果你非要用 while(left &lt; right) 也可以，我们已经知道了出错的原因，就打个补丁好了：</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line"> <span class="keyword">while</span>(left &lt; right) {</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line"> }</span><br><span class="line"> <span class="keyword">return</span> nums[left] == target ? left : <span class="number">-1</span>; <span class="comment">//注意 如果是插入位置 需要先判段left是否越界</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>为什么 left = mid + 1，right = mid - 1？我看有的代码是 right = mid 或者 left = mid，没有这些加加减减，到底怎么回事，怎么判断？</p>
+<ul>
+<li>答：这也是二分查找的一个难点，不过只要你能理解前面的内容，就能够很容易判断。</li>
+<li>刚才明确了「搜索区间」这个概念，而且本算法的搜索区间是两端都闭的，即 [left, right]。那么当我们发现索引 mid 不是要找的 target 时，如何<code>确定下一步的搜索区间</code>呢？</li>
+<li>当然是去搜索 [left, mid - 1] 或者 [mid + 1, right] 对不对？因为 mid 已经搜索过，应该从搜索区间中去除。</li>
+</ul>
+</li>
+<li><p>此算法有什么缺陷？</p>
+<ul>
+<li>答：至此，你应该已经掌握了该算法的所有细节，以及这样处理的原因。但是，这个算法存在局限性。</li>
+<li>比如说给你有序数组 nums = [1,2,2,2,3]，target = 2，此算法返回的索引是 2，没错。但是如果我想得到 target 的左侧边界，即索引 1，或者我想得到 target 的右侧边界，即索引 3，这样的话此算法是无法处理的。</li>
+<li>这样的需求很常见。你也许会说，找到一个 target 索引，然后向左或向右线性搜索不行吗？可以，但是不好，因为这样难以保证二分查找对数级的时间复杂度了。</li>
+<li>我们后续的算法就来讨论这两种二分查找的算法。（==左闭右开==的 ==插入位置==的 ==刚好大于==的 二分方法）</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、寻找左侧边界的二分搜索"><a href="#三、寻找左侧边界的二分搜索" class="headerlink" title="三、寻找左侧边界的二分搜索"></a>三、寻找左侧边界的二分搜索</h2><p> ==//搜索&gt;=target的第一个位置==</p>
+<p>直接看代码，其中的标记是需要注意的细节： //正常二分法左闭右开的模板</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left_bound</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">   <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">   <span class="keyword">int</span> right = nums.length; <span class="comment">// 注意</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (left &lt; right) { <span class="comment">// 注意</span></span><br><span class="line">     <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">     <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">       right = mid;</span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">       left = mid + <span class="number">1</span>;</span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">       right = mid; <span class="comment">// 注意</span></span><br><span class="line">     }</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">return</span> left;</span><br><span class="line"> }</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><p>为什么 while(left &lt; right) 而不是 &lt;= ?    //==注意 仅仅是因为right的初始化 两种模板没有差别 都可以使用==</p>
+<ul>
+<li>答：用相同的方法分析，因为初始化 right = nums.length 而不是 nums.length - 1 。因此每次循环的「搜索区间」是 [left, right) 左闭右开。</li>
+<li>while(left &lt; right) 终止的条件是 <code>left == right</code>，此时搜索区间 <code>[left, left) 恰巧为空</code>，所以可以正确终止。</li>
+</ul>
+</li>
+<li><p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
+<ul>
+<li><p>答：因为要一步一步来，先理解一下这个「左侧边界」有什么特殊含义：</p>
+<blockquote>
+<p>​     target = 2</p>
+<p>pos:            left                        mid      mid+1     right</p>
+<p>nums:          1             2             2            4</p>
+<p>index:          0             1             2            3             4</p>
+</blockquote>
+</li>
+<li><p>对于这个数组，算法会返回 1。这个 1 的含义可以这样解读：nums 中<code>小于</code> 2 的<code>元素有 1 个</code>。</p>
+</li>
+<li><p>比如对于有序数组 nums = [2,3,5,7], target = 1，算法会返回 0，含义是：nums 中小于 1 的元素有 0 个。如果 target = 8，算法会返回 4，含义是：nums 中小于 8 的元素有 4 个。</p>
+</li>
+<li><p>综上可以看出，函数的返回值（即 left 变量的值）取值区间是闭区间 [0, nums.length]，所以我们简单添加两行代码就能在正确的时候 return -1：</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">   <span class="comment">//...</span></span><br><span class="line"> }</span><br><span class="line"> <span class="comment">// target 比所有数都大</span></span><br><span class="line"> <span class="keyword">if</span> (left == nums.length) <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//[1,2,2,4]搜索8返回left 4，越界</span></span><br><span class="line"> <span class="comment">// 类似之前算法的处理方式</span></span><br><span class="line"> <span class="keyword">return</span> nums[left] == target ? left : <span class="number">-1</span>;</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>为什么 left = mid + 1，right = mid ？和之前的算法不一样？</p>
+</li>
+</ol>
+<ul>
+<li>答：这个很好解释，因为我们的「搜索区间」是 [left, right) 左闭右开，所以当 nums[mid] 被检测之后，下一步的搜索区间应该去掉 mid 分割成两个区间，即 <code>[left, mid) 或 [mid + 1, right)</code>。(mid已被被搜索判断)</li>
+</ul>
+<ol start="4">
+<li><p>为什么该算法能够搜索左侧边界？</p>
+<ul>
+<li>答：关键在于对于 nums[mid] == target 这种情况的处理：</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">     right = mid;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>可见，<u>找到 target 时<code>不要立即返回</code>，而是<code>缩小「搜索区间」的上界 right</code>，在区间 [left, mid) 中<code>继续搜索</code>，即<code>不断向左收缩</code>，达到<code>锁定左侧边界</code>的目的</u>。</li>
+</ul>
+</li>
+<li><p>为什么返回 left 而不是 right？</p>
+<ul>
+<li>答：返回left和right都是一样的，因为 while 终止的条件是 left == right。</li>
+</ul>
+</li>
+<li><p>经测试， 两种写法返回值完全一致</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二分法细节 &lt;写法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left_bound</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> right = nums.<span class="built_in">size</span>(); <span class="comment">// 注意</span></span><br><span class="line">   </span><br><span class="line">  <span class="keyword">while</span> (left &lt; right) { <span class="comment">// 注意</span></span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">      right = mid;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">      left = mid + <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">      right = mid; <span class="comment">// 注意</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// return left;    //返回&gt;=target的左边界位置 [0,nums.size()]</span></span><br><span class="line">   </span><br><span class="line">  <span class="comment">// 返回第一个target的位置 没有则返回-1；</span></span><br><span class="line">  {</span><br><span class="line">    <span class="keyword">if</span> (left == nums.<span class="built_in">size</span>())</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//[1,2,2,4]搜索8返回left 4，越界</span></span><br><span class="line">                 <span class="comment">// 类似之前算法的处理方式</span></span><br><span class="line">    <span class="keyword">return</span> nums[left] == target ? left : <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">   </span><br><span class="line"><span class="comment">//&lt;= 写法 完全一致</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">left_bound2</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> right = nums.<span class="built_in">size</span>() - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">   </span><br><span class="line">  <span class="keyword">while</span> (left &lt;= right) { <span class="comment">// 注意</span></span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">      right = mid - <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">      left = mid + <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">      right = mid - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// return left; //返回&gt;=target的左边界位置 [0,nums.size()]</span></span><br><span class="line">   </span><br><span class="line">  <span class="comment">// 返回第一个target的位置 没有则返回-1；</span></span><br><span class="line">  {</span><br><span class="line">    <span class="keyword">if</span> (left == nums.<span class="built_in">size</span>())</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//[1,2,2,4]搜索8返回left 4，越界</span></span><br><span class="line">                 <span class="comment">// 类似之前算法的处理方式</span></span><br><span class="line">    <span class="keyword">return</span> nums[left] == target ? left : <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="四、寻找右侧边界的二分查找"><a href="#四、寻找右侧边界的二分查找" class="headerlink" title="**四、寻找右侧边界的二分查找 **"></a>**四、寻找右侧边界的二分查找 **</h2><p>==//所有=target的最后一个位置  &gt; target的第一个位置==</p>
+<p>寻找右侧边界和寻找左侧边界的代码差不多，只有两处不同，已标注：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right_bound</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">   <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">     <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">     <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">       left = mid + <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">       left = mid + <span class="number">1</span>;</span><br><span class="line">     } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">       right = mid;</span><br><span class="line">     }</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">return</span> left - <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li><p>为什么这个算法能够找到右侧边界？</p>
+<ul>
+<li>答：类似地，关键点还是这里：</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">    left = mid + <span class="number">1</span>;     <span class="comment">//与模板对应一致</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>当 nums[mid] == target 时，不要立即返回，而是增大「搜索区间」的下界 left，使得区间不断向右收缩，达到锁定右侧边界的目的。</li>
+</ul>
+</li>
+<li><p>为什么最后返回 ==left - 1== 而不像左侧边界的函数，返回 left？而且我觉得这里既然是搜索右侧边界，应该返回 right 才对。</p>
+<ul>
+<li><p>答：首先，while 循环的终止条件是 left == right，所以 left 和 right 是一样的，你非要体现右侧的特点，返回 right - 1 好了。  </p>
+<blockquote>
+<p>  target = 2</p>
+<p>pos:            left                        mid      mid+1     right</p>
+<p>nums:          1             2             2            4</p>
+<p>index:          0             1             2            3             4</p>
+</blockquote>
+</li>
+<li><p>==至于为什么要减一，这是搜索右侧边界的一个特殊点，关键在这个条件判断==：</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">     left = mid + <span class="number">1</span>;</span><br><span class="line">     <span class="comment">// 这样想: mid = left - 1</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>因为我们对 left 的更新必须是 left = mid + 1，就是说 while 循环结束时，nums[left] <strong>==一定不等于==</strong> target 了，而 nums[left - 1]<strong>可能是</strong>target。</li>
+<li>至于为什么 left 的更新必须是 left = mid + 1，同左侧边界搜索，就不再赘述。</li>
+</ul>
+</li>
+<li><p>为什么没有返回 -1 的操作？如果 nums 中不存在 target 这个值，怎么办？</p>
+<ul>
+<li>答：类似之前的左侧边界搜索，因为 while 的终止条件是 left == right，就是说 left 的取值范围是 [0, nums.length]，所以可以添加两行代码，正确地返回 -1：</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span> (left == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">//这个例子搜索0 就是返回left 0</span></span><br><span class="line"><span class="keyword">return</span> nums[left<span class="number">-1</span>] == target ? (left<span class="number">-1</span>) : <span class="number">-1</span>;</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>经测试， 两种写法返回值完全一致</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二分法细节 查找右边界</span></span><br><span class="line"><span class="comment">//&lt;写法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right_bound</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>();</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">      left = mid + <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">      left = mid + <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">      right = mid;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// return left - 1; //返回&gt;=target的右边界位置 [0,nums.size()]</span></span><br><span class="line">   </span><br><span class="line">  <span class="comment">// 返回最后一个target的位置 没有则返回-1；</span></span><br><span class="line">  {</span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//这个例子搜索0 就是返回left 0</span></span><br><span class="line">    <span class="keyword">return</span> nums[left - <span class="number">1</span>] == target ? (left - <span class="number">1</span>) : <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">   </span><br><span class="line"><span class="comment">//&lt;=写法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">right_bound2</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> target)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (nums.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">   </span><br><span class="line">  <span class="keyword">while</span> (left &lt;= right) {</span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums[mid] == target) {</span><br><span class="line">      left = mid + <span class="number">1</span>; <span class="comment">// 注意</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) {</span><br><span class="line">      left = mid + <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) {</span><br><span class="line">      right = mid - <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// return left - 1; //返回&gt;=target的右边界位置 [0,nums.size()]</span></span><br><span class="line">   </span><br><span class="line">  <span class="comment">// 返回最后一个target的位置 没有则返回-1；</span></span><br><span class="line">  {</span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//这个例子搜索0 就是返回left 0</span></span><br><span class="line">    <span class="keyword">return</span> nums[left - <span class="number">1</span>] == target ? (left - <span class="number">1</span>) : <span class="number">-1</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="五、最后总结"><a href="#五、最后总结" class="headerlink" title="五、最后总结"></a><strong>五、最后总结</strong></h2><p>先来梳理一下这些细节差异的因果逻辑：</p>
+<ol>
+<li><p>第一个，最基本的二分查找算法：</p>
+<blockquote>
+<p>因为我们初始化 right = nums.length - 1<br>所以决定了我们的「搜索区间」是 [left, right]<br>所以决定了 while (left &lt;= right)<br>同时也决定了 left = mid+1 和 right = mid-1</p>
+<p>因为我们只需找到一个 target 的索引即可<br>所以当 nums[mid] == target 时可以立即返回</p>
+</blockquote>
+</li>
+<li><p>第二个，寻找左侧边界的二分查找：</p>
+<blockquote>
+<p>因为我们初始化 right = nums.length<br>所以决定了我们的「搜索区间」是 [left, right)<br>所以决定了 while (left &lt; right)<br>同时也决定了 left = mid+1 和 right = mid</p>
+<p>因为我们需找到 target 的最左侧索引<br>所以当 nums[mid] == target 时不要立即返回<br>而要收紧右侧边界以锁定左侧边界</p>
+</blockquote>
+</li>
+</ol>
+<ol start="3">
+<li><p>第三个，寻找右侧边界的二分查找：</p>
+<blockquote>
+<p>因为我们初始化 right = nums.length<br>所以决定了我们的「搜索区间」是 [left, right)<br>所以决定了 while (left &lt; right)<br>同时也决定了 left = mid+1 和 right = mid</p>
+<p>因为我们需找到 target 的最右侧索引<br>所以当 nums[mid] == target 时不要立即返回<br>而要收紧左侧边界以锁定右侧边界</p>
+<p>又因为收紧左侧边界时必须 left = mid + 1<br>所以最后无论返回 left 还是 right，必须减一</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>分析二分查找代码时，不要出现 else，全部展开成 else if 方便理解。</li>
+</ul>
+<ul>
+<li>注意「搜索区间」和 while 的终止条件，如果存在漏掉的元素，记得在最后检查。</li>
+<li>如需要搜索左右边界，只要在 nums[mid] == target 时做修改即可。搜索右侧时需要减一。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qianxunslimg</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/03/15/er-fen-cha-zhao-suan-fa/">http://example.com/2022/03/15/er-fen-cha-zhao-suan-fa/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">TOLLM</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">算法总结</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/03/15/pai-xu-suan-fa/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">排序算法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/15/hui-su/" title="回溯"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">回溯</div></div></a></div><div><a href="/2022/03/15/lian-biao/" title="链表"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">链表</div></div></a></div><div><a href="/2022/03/15/hua-dong-chuang-kou/" title="滑动窗口"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">滑动窗口</div></div></a></div><div><a href="/2022/03/15/cong-bian-li-shu-ju-chong-jian-er-cha-shu/" title="二叉树"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">二叉树</div></div></a></div><div><a href="/2022/03/15/dp/" title="dp"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">dp</div></div></a></div><div><a href="/2022/03/15/xiao-suan-fa/" title="前缀和/差分"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-15</div><div class="title">前缀和/差分</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://api.ixiaowai.cn/api/api.php" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianxunslimg</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://gitee.com/qianxunslimg"><i class="fab fa-github"></i><span>My Gitee</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">编程菜鸟,多多指教~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">二分查找算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、二分查找的框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AF%BB%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%EF%BC%88%E5%9F%BA%E6%9C%AC%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">二、寻找一个数（基本的二分搜索）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AF%BB%E6%89%BE%E5%B7%A6%E4%BE%A7%E8%BE%B9%E7%95%8C%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2"><span class="toc-number">1.3.</span> <span class="toc-text">三、寻找左侧边界的二分搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AF%BB%E6%89%BE%E5%8F%B3%E4%BE%A7%E8%BE%B9%E7%95%8C%E7%9A%84%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">1.4.</span> <span class="toc-text">**四、寻找右侧边界的二分查找 **</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9C%80%E5%90%8E%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">五、最后总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/er-fen-cha-zhao-suan-fa/" title="二分查找"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="二分查找"/></a><div class="content"><a class="title" href="/2022/03/15/er-fen-cha-zhao-suan-fa/" title="二分查找">二分查找</a><time datetime="2022-03-15T12:17:49.000Z" title="发表于 2022-03-15 20:17:49">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/pai-xu-suan-fa/" title="排序算法"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序算法"/></a><div class="content"><a class="title" href="/2022/03/15/pai-xu-suan-fa/" title="排序算法">排序算法</a><time datetime="2022-03-15T12:16:49.000Z" title="发表于 2022-03-15 20:16:49">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/dp/" title="dp"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dp"/></a><div class="content"><a class="title" href="/2022/03/15/dp/" title="dp">dp</a><time datetime="2022-03-15T12:15:49.000Z" title="发表于 2022-03-15 20:15:49">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/xiao-suan-fa/" title="前缀和/差分"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前缀和/差分"/></a><div class="content"><a class="title" href="/2022/03/15/xiao-suan-fa/" title="前缀和/差分">前缀和/差分</a><time datetime="2022-03-15T12:13:49.000Z" title="发表于 2022-03-15 20:13:49">2022-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/15/tu-lun/" title="图论"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图论"/></a><div class="content"><a class="title" href="/2022/03/15/tu-lun/" title="图论">图论</a><time datetime="2022-03-15T12:12:49.000Z" title="发表于 2022-03-15 20:12:49">2022-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By qianxunslimg</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
