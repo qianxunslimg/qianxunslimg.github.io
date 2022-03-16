@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-15T18:27:44.600Z</updated>
+  <updated>2022-03-16T11:29:03.602Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>指针数组赋值越界引发的bug</title>
+    <link href="http://example.com/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/"/>
+    <id>http://example.com/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/</id>
+    <published>2022-03-16T11:28:00.000Z</published>
+    <updated>2022-03-16T11:29:03.602Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="http://example.com/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>二分查找</title>
@@ -447,29 +470,6 @@
         
         
     <summary type="html">&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    <content src="https://www.hlapi.cn/api/ecy3" type="image"/>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>vs程序 copy 到Qt的若干错误</title>
-    <link href="http://example.com/2021/12/02/vs-cheng-xu-copy-dao-qt-de-ruo-gan-cuo-wu/"/>
-    <id>http://example.com/2021/12/02/vs-cheng-xu-copy-dao-qt-de-ruo-gan-cuo-wu/</id>
-    <published>2021-12-02T11:37:11.000Z</published>
-    <updated>2022-03-15T16:17:55.685Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;vs程序-copy-到Qt的若干错误&quot;&gt;&lt;a href=&quot;#vs程序-copy-到Qt的若干错误&quot; class=&quot;headerlink&quot; title=&quot;vs程序 copy 到Qt的若干错误&quot;&gt;&lt;/a&gt;&lt;a</summary>
         
       
     
