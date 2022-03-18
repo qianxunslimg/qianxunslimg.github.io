@@ -28,7 +28,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;框架&quot;&gt;&lt;a href=&quot;#框架&quot; class=&quot;headerlink&quot; title=&quot;框架&quot;&gt;&lt;/a&gt;框架&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
@@ -51,7 +51,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;指针数组赋值越界引发的bug&quot;&gt;&lt;a href=&quot;#指针数组赋值越界引发的bug&quot; class=&quot;headerlink&quot; title=&quot;指针数组赋值越界引发的bug&quot;&gt;&lt;/a&gt;指针数组赋值越界引发的bug&lt;/h2&gt;&lt;h3 id=&quot;问题描述&quot;&gt;&lt;a</summary>
         
       
     
@@ -74,7 +74,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;二分查找算法&quot;&gt;&lt;a href=&quot;#二分查找算法&quot; class=&quot;headerlink&quot; title=&quot;二分查找算法&quot;&gt;&lt;/a&gt;&lt;a</summary>
         
       
     
@@ -97,7 +97,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;排序算法&quot;&gt;&lt;a href=&quot;#排序算法&quot; class=&quot;headerlink&quot; title=&quot;排序算法&quot;&gt;&lt;/a&gt;排序算法&lt;/h1&gt;&lt;h2 id=&quot;桶排序&quot;&gt;&lt;a href=&quot;#桶排序&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -120,7 +120,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;前缀和数组&quot;&gt;&lt;a href=&quot;#前缀和数组&quot; class=&quot;headerlink&quot; title=&quot;前缀和数组&quot;&gt;&lt;/a&gt;前缀和数组&lt;/h1&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
@@ -143,7 +143,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;图论&quot;&gt;&lt;a href=&quot;#图论&quot; class=&quot;headerlink&quot; title=&quot;图论&quot;&gt;&lt;/a&gt;图论&lt;/h1&gt;&lt;h3 id=&quot;797-所有可能的路径&quot;&gt;&lt;a href=&quot;#797-所有可能的路径&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -166,7 +166,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;二叉树&quot;&gt;&lt;a href=&quot;#二叉树&quot; class=&quot;headerlink&quot; title=&quot;二叉树&quot;&gt;&lt;/a&gt;二叉树&lt;/h1&gt;&lt;h2 id=&quot;1-从遍历数据重建二叉树&quot;&gt;&lt;a href=&quot;#1-从遍历数据重建二叉树&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -189,30 +189,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>回溯</title>
-    <link href="http://example.com/2022/03/15/hui-su/"/>
-    <id>http://example.com/2022/03/15/hui-su/</id>
-    <published>2022-03-15T11:49:49.000Z</published>
-    <updated>2022-03-17T18:29:19.729Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;链表&quot;&gt;&lt;a href=&quot;#链表&quot; class=&quot;headerlink&quot; title=&quot;链表&quot;&gt;&lt;/a&gt;链表&lt;/h1&gt;&lt;h2 id=&quot;单链表解题套路&quot;&gt;&lt;a href=&quot;#单链表解题套路&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -235,7 +212,31 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;滑动窗口&quot;&gt;&lt;a href=&quot;#滑动窗口&quot; class=&quot;headerlink&quot; title=&quot;滑动窗口&quot;&gt;&lt;/a&gt;滑动窗口&lt;/h1&gt;&lt;p&gt;框架&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>回溯</title>
+    <link href="http://example.com/2022/03/15/hui-su/"/>
+    <id>http://example.com/2022/03/15/hui-su/</id>
+    <published>2022-03-15T11:49:49.000Z</published>
+    <updated>2022-03-17T18:29:19.729Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;回溯&quot;&gt;&lt;a href=&quot;#回溯&quot; class=&quot;headerlink&quot; title=&quot;回溯&quot;&gt;&lt;/a&gt;回溯&lt;/h1&gt;&lt;h3 id=&quot;回溯模板&quot;&gt;&lt;a href=&quot;#回溯模板&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -258,7 +259,7 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;Leetcode-retag&quot;&gt;&lt;a href=&quot;#Leetcode-retag&quot; class=&quot;headerlink&quot; title=&quot;Leetcode-retag&quot;&gt;&lt;/a&gt;Leetcode-retag&lt;/h1&gt;&lt;p&gt;重新分类 Leetcode 高频题</summary>
         
       
     
@@ -305,7 +306,10 @@
       
         
         
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+    <summary type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;.pro文件中&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;QT += serialport&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;serial.h:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight</summary>
         
       
     
