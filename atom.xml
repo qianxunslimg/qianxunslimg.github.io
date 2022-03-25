@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-14T08:41:45.135Z</updated>
+  <updated>2022-03-24T16:03:40.096Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://example.com/2022/03/25/stl/"/>
-    <id>http://example.com/2022/03/25/stl/</id>
-    <published>2022-03-24T18:49:20.135Z</published>
-    <updated>2022-03-14T08:41:45.135Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;1、什么是STL？&quot;&gt;&lt;a href=&quot;#1、什么是STL？&quot; class=&quot;headerlink&quot; title=&quot;1、什么是STL？&quot;&gt;&lt;/a&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>leetcode常用库函数</title>
@@ -443,6 +422,29 @@
     <summary type="html">&lt;p&gt;　串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位&lt;/p&gt;
 &lt;p&gt;　　10进制int型数据转16进制，并取高低位：&lt;/p&gt;
 &lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    <content src="https://www.hlapi.cn/api/ecy3" type="image"/>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>The difference between join and detach</title>
+    <link href="http://example.com/2021/12/02/the-difference-between-join-and-detach/"/>
+    <id>http://example.com/2021/12/02/the-difference-between-join-and-detach/</id>
+    <published>2021-12-02T11:41:34.000Z</published>
+    <updated>2022-03-15T16:16:53.399Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;A C++ &lt;code&gt;thread&lt;/code&gt; object generally (but not always) represents a thread of execution, which is an OS or platform</summary>
         
       
     
