@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-29T18:20:04.124Z</updated>
+  <updated>2022-03-30T17:37:02.122Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单调栈</title>
+    <link href="http://example.com/2022/03/30/dan-diao-zhan/"/>
+    <id>http://example.com/2022/03/30/dan-diao-zhan/</id>
+    <published>2022-03-30T02:42:00.000Z</published>
+    <updated>2022-03-30T17:37:02.122Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;u&gt;&lt;strong&gt;通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了&lt;/strong&gt;。&lt;/u&gt;&lt;/p&gt;
+&lt;p&gt;时间复杂度为$O(n)$。&lt;/p&gt;
+&lt;p&gt;例如本题其实就是找找到一个元素右边第一个比自己大的元素。</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>c++STL</title>
@@ -412,30 +437,6 @@
     
     
     <content src="https://www.hlapi.cn/api/ecy3" type="image"/>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>QT编写串口助手</title>
-    <link href="http://example.com/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/"/>
-    <id>http://example.com/2021/12/02/qt-bian-xie-chuan-kou-zhu-shou/</id>
-    <published>2021-12-02T11:43:04.000Z</published>
-    <updated>2022-03-15T17:52:04.757Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;.pro文件中&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;QT += serialport&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;serial.h:&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight</summary>
-        
-      
-    
     
     
     
