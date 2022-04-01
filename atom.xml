@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-30T17:37:02.122Z</updated>
+  <updated>2022-04-01T15:41:49.781Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模拟加减乘除</title>
+    <link href="http://example.com/2022/04/01/mo-ni-yun-suan/"/>
+    <id>http://example.com/2022/04/01/mo-ni-yun-suan/</id>
+    <published>2022-04-01T02:42:00.000Z</published>
+    <updated>2022-04-01T15:41:49.781Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;剑指-Offer-II-002-二进制加法&quot;&gt;&lt;a href=&quot;#剑指-Offer-II-002-二进制加法&quot; class=&quot;headerlink&quot; title=&quot;剑指 Offer II 002. 二进制加法&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>单调栈</title>
@@ -377,7 +400,7 @@
     <link href="http://example.com/2022/03/15/hui-su/"/>
     <id>http://example.com/2022/03/15/hui-su/</id>
     <published>2022-03-15T11:49:49.000Z</published>
-    <updated>2022-03-17T18:29:19.729Z</updated>
+    <updated>2022-04-01T12:23:56.080Z</updated>
     
     
       
@@ -396,49 +419,25 @@
   </entry>
   
   <entry>
-    <title>Leetcode高频</title>
-    <link href="http://example.com/2022/03/14/leetcode-gao-pin/"/>
-    <id>http://example.com/2022/03/14/leetcode-gao-pin/</id>
-    <published>2022-03-14T10:39:40.000Z</published>
-    <updated>2022-03-15T17:48:03.660Z</updated>
+    <title>位运算</title>
+    <link href="http://example.com/2022/03/15/wei-yun-suan/"/>
+    <id>http://example.com/2022/03/15/wei-yun-suan/</id>
+    <published>2022-03-15T11:49:49.000Z</published>
+    <updated>2022-04-01T14:44:02.070Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Leetcode-retag&quot;&gt;&lt;a href=&quot;#Leetcode-retag&quot; class=&quot;headerlink&quot; title=&quot;Leetcode-retag&quot;&gt;&lt;/a&gt;Leetcode-retag&lt;/h1&gt;&lt;p&gt;重新分类 Leetcode 高频题</summary>
+    <summary type="html">&lt;h2 id=&quot;位操作技巧&quot;&gt;&lt;a href=&quot;#位操作技巧&quot; class=&quot;headerlink&quot; title=&quot;位操作技巧&quot;&gt;&lt;/a&gt;位操作技巧&lt;/h2&gt;&lt;h3 id=&quot;位运算概览&quot;&gt;&lt;a href=&quot;#位运算概览&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
     
-    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VMware打开ubantu黑屏无反应</title>
-    <link href="http://example.com/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/"/>
-    <id>http://example.com/2021/12/03/vmware-da-kai-ubantu-hei-ping-wu-fan-ying/</id>
-    <published>2021-12-03T11:57:14.000Z</published>
-    <updated>2022-03-15T16:16:26.962Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;设置VMware编辑–&amp;gt;首选项–&amp;gt;设备–&amp;gt;启用虚拟打印机 即可&lt;/p&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    <content src="https://www.hlapi.cn/api/ecy3" type="image"/>
-    
-    
+    <category term="算法总结" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
