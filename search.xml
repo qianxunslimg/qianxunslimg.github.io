@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>window下添加右键操作</title>
+      <link href="/2022/04/02/window-xia-tian-jia-you-jian-cao-zuo/"/>
+      <url>/2022/04/02/window-xia-tian-jia-you-jian-cao-zuo/</url>
+      
+        <content type="html"><![CDATA[<h3 id="以sublime为例"><a href="#以sublime为例" class="headerlink" title="以sublime为例"></a>以sublime为例</h3><h4 id="右键打开文件"><a href="#右键打开文件" class="headerlink" title="右键打开文件"></a>右键打开文件</h4><ol><li>Win + R，输入regedit,打开注册表</li><li>找到如图路径，做成我的目录结构就可以了</li></ol><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220402160540332.png" style="zoom: 67%;"><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220402160516575.png" alt="image-20220402160516575" style="zoom: 67%;"><h4 id="右键打开文件夹"><a href="#右键打开文件夹" class="headerlink" title="右键打开文件夹"></a>右键打开文件夹</h4><h5 id="和上面差不多-做成类似如图的目录结构-简简单单"><a href="#和上面差不多-做成类似如图的目录结构-简简单单" class="headerlink" title="和上面差不多 做成类似如图的目录结构 简简单单"></a>和上面差不多 做成类似如图的目录结构 简简单单</h5><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220402160806130.png" alt="image-20220402160806130" style="zoom: 67%;"><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220402160823636.png" alt="image-20220402160823636" style="zoom: 67%;">]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 开发随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>模拟加减乘除</title>
       <link href="/2022/04/01/mo-ni-yun-suan/"/>
       <url>/2022/04/01/mo-ni-yun-suan/</url>
