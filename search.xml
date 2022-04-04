@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>window开机内存占用高</title>
+      <link href="/2022/04/04/window-kai-ji-nei-cun-zhan-yong-gao/"/>
+      <url>/2022/04/04/window-kai-ji-nei-cun-zhan-yong-gao/</url>
+      
+        <content type="html"><![CDATA[<p>16g的内存，开机动不动就飙过50%</p><p>尤其是之前发现但从未去解决的 Lenovo.Modern.ImController.exe 服务 不断跑内存的情况 下定决心处理一下</p><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><ol><li><p>win + r  msconfig</p><p>服务-&gt;隐藏所有Microsoft服务  然后剩余的服务 感觉用不到的该关关 </p><p>不建议全部禁用 影响一些自己设置的开机启动项，个人就是lenovo全部禁用 解决了Lenovo.Modern.ImController.exe的问题</p><p>其他的 也多多少少禁用下 很多没用的服务</p></li></ol><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220404164932465.png" alt="image-20220404164932465" style="zoom: 67%;"><ol start="2"><li><p>任务管理器的 启动项 该关关</p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220404165413230.png" alt="image-20220404165413230" style="zoom: 67%;"></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 开发随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>双指针</title>
       <link href="/2022/04/03/shuang-zhi-zhen/"/>
       <url>/2022/04/03/shuang-zhi-zhen/</url>
