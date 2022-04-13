@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-04-11T07:03:31.921Z</updated>
+  <updated>2022-04-13T17:53:00.664Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,53 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dp</title>
+    <link href="https://qianxunslimg.github.io/2022/04/14/dp/"/>
+    <id>https://qianxunslimg.github.io/2022/04/14/dp/</id>
+    <published>2022-04-13T17:52:49.000Z</published>
+    <updated>2022-04-13T17:53:00.664Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;框架&quot;&gt;&lt;a href=&quot;#框架&quot; class=&quot;headerlink&quot; title=&quot;框架&quot;&gt;&lt;/a&gt;框架&lt;/h1&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>贪心</title>
+    <link href="https://qianxunslimg.github.io/2022/04/13/tan-xin/"/>
+    <id>https://qianxunslimg.github.io/2022/04/13/tan-xin/</id>
+    <published>2022-04-13T02:42:00.000Z</published>
+    <updated>2022-04-13T17:52:25.489Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;暂时懒得整理了 指个路&lt;/p&gt;
+&lt;h1 id=&quot;代码随想录-programmercarl-com&quot;&gt;&lt;a href=&quot;#代码随想录-programmercarl-com&quot; class=&quot;headerlink&quot; title=&quot;代码随想录</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>树</title>
@@ -182,6 +229,30 @@
   </entry>
   
   <entry>
+    <title>栈</title>
+    <link href="https://qianxunslimg.github.io/2022/03/30/zhan/"/>
+    <id>https://qianxunslimg.github.io/2022/03/30/zhan/</id>
+    <published>2022-03-30T02:42:00.000Z</published>
+    <updated>2022-04-13T03:18:20.280Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;u&gt;&lt;strong&gt;通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了&lt;/strong&gt;。&lt;/u&gt;&lt;/p&gt;
+&lt;h1 id=&quot;普通栈&quot;&gt;&lt;a href=&quot;#普通栈&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>c++STL</title>
     <link href="https://qianxunslimg.github.io/2022/03/30/c-stl-duan/"/>
     <id>https://qianxunslimg.github.io/2022/03/30/c-stl-duan/</id>
@@ -239,29 +310,6 @@
   </entry>
   
   <entry>
-    <title>dp</title>
-    <link href="https://qianxunslimg.github.io/2022/03/18/dp/"/>
-    <id>https://qianxunslimg.github.io/2022/03/18/dp/</id>
-    <published>2022-03-18T13:51:49.000Z</published>
-    <updated>2022-03-29T18:17:46.308Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;框架&quot;&gt;&lt;a href=&quot;#框架&quot; class=&quot;headerlink&quot; title=&quot;框架&quot;&gt;&lt;/a&gt;框架&lt;/h2&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
     <title>指针数组赋值越界引发的bug</title>
     <link href="https://qianxunslimg.github.io/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/"/>
     <id>https://qianxunslimg.github.io/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/</id>
@@ -289,7 +337,7 @@
     <link href="https://qianxunslimg.github.io/2022/03/16/ji-suan-ji-wang-luo-ba-gu/"/>
     <id>https://qianxunslimg.github.io/2022/03/16/ji-suan-ji-wang-luo-ba-gu/</id>
     <published>2022-03-16T01:47:00.000Z</published>
-    <updated>2022-04-12T13:12:00.455Z</updated>
+    <updated>2022-04-13T12:09:22.014Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -357,7 +405,7 @@
     <link href="https://qianxunslimg.github.io/2022/03/15/er-fen-cha-zhao-suan-fa/"/>
     <id>https://qianxunslimg.github.io/2022/03/15/er-fen-cha-zhao-suan-fa/</id>
     <published>2022-03-15T12:17:49.000Z</published>
-    <updated>2022-03-29T18:17:05.627Z</updated>
+    <updated>2022-04-13T12:04:07.770Z</updated>
     
     
       
@@ -388,52 +436,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;排序算法&quot;&gt;&lt;a href=&quot;#排序算法&quot; class=&quot;headerlink&quot; title=&quot;排序算法&quot;&gt;&lt;/a&gt;排序算法&lt;/h1&gt;&lt;h2 id=&quot;桶排序&quot;&gt;&lt;a href=&quot;#桶排序&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前缀和/差分/字典树</title>
-    <link href="https://qianxunslimg.github.io/2022/03/15/xiao-suan-fa/"/>
-    <id>https://qianxunslimg.github.io/2022/03/15/xiao-suan-fa/</id>
-    <published>2022-03-15T12:13:49.000Z</published>
-    <updated>2022-04-03T17:58:12.900Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前缀和数组&quot;&gt;&lt;a href=&quot;#前缀和数组&quot; class=&quot;headerlink&quot; title=&quot;前缀和数组&quot;&gt;&lt;/a&gt;前缀和数组&lt;/h1&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图论</title>
-    <link href="https://qianxunslimg.github.io/2022/03/15/tu-lun/"/>
-    <id>https://qianxunslimg.github.io/2022/03/15/tu-lun/</id>
-    <published>2022-03-15T12:12:49.000Z</published>
-    <updated>2022-04-06T08:13:32.131Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;图论&quot;&gt;&lt;a href=&quot;#图论&quot; class=&quot;headerlink&quot; title=&quot;图论&quot;&gt;&lt;/a&gt;图论&lt;/h1&gt;&lt;h3 id=&quot;797-所有可能的路径&quot;&gt;&lt;a href=&quot;#797-所有可能的路径&quot; class=&quot;headerlink&quot;</summary>
         
       
     
