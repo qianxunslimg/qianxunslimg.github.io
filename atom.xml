@@ -45,6 +45,33 @@
   </entry>
   
   <entry>
+    <title>bat实现hexo一键部署</title>
+    <link href="https://qianxunslimg.github.io/2022/04/18/bat-shi-xian-hexo-yi-jian-bu-shu/"/>
+    <id>https://qianxunslimg.github.io/2022/04/18/bat-shi-xian-hexo-yi-jian-bu-shu/</id>
+    <published>2022-04-18T11:28:00.000Z</published>
+    <updated>2022-04-19T07:24:06.832Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;个人有每天凌晨更新所有博客的习惯，流程繁琐如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从多个文件夹中拷贝所有markdown到指定的文件夹&lt;/li&gt;
+&lt;li&gt;该目录下运行cmd&lt;/li&gt;
+&lt;li&gt;执行hexo g生成html 然后漫长的等待 执行完成后 hexo d部署到远端</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>bfs</title>
     <link href="https://qianxunslimg.github.io/2022/04/18/bfs/"/>
     <id>https://qianxunslimg.github.io/2022/04/18/bfs/</id>
@@ -438,29 +465,6 @@
     
     
     <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>指针数组赋值越界引发的bug</title>
-    <link href="https://qianxunslimg.github.io/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/"/>
-    <id>https://qianxunslimg.github.io/2022/03/16/zhi-zhen-shu-zu-fu-zhi-yue-jie-yin-fa-de-bug/</id>
-    <published>2022-03-16T11:28:00.000Z</published>
-    <updated>2022-03-26T15:12:28.824Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;指针数组赋值越界引发的bug&quot;&gt;&lt;a href=&quot;#指针数组赋值越界引发的bug&quot; class=&quot;headerlink&quot; title=&quot;指针数组赋值越界引发的bug&quot;&gt;&lt;/a&gt;指针数组赋值越界引发的bug&lt;/h2&gt;&lt;h3 id=&quot;问题描述&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
