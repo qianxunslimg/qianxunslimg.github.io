@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-04-20T11:26:56.597Z</updated>
+  <updated>2022-04-22T02:46:24.221Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客园代码拷贝问题</title>
+    <link href="https://qianxunslimg.github.io/2022/04/22/bo-ke-yuan-kao-bei-dai-ma-de-yi-ge-keng/"/>
+    <id>https://qianxunslimg.github.io/2022/04/22/bo-ke-yuan-kao-bei-dai-ma-de-yi-ge-keng/</id>
+    <published>2022-04-22T02:28:00.000Z</published>
+    <updated>2022-04-22T02:46:24.221Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;博客园拷贝代码 到 vs2015运行 竟然还能出现格式问题。。。&lt;/p&gt;
+&lt;h4 id=&quot;问题如下&quot;&gt;&lt;a href=&quot;#问题如下&quot; class=&quot;headerlink&quot; title=&quot;问题如下&quot;&gt;&lt;/a&gt;问题如下&lt;/h4&gt;&lt;p&gt;这样，博客园的复制</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式</title>
+    <link href="https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/"/>
+    <id>https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/</id>
+    <published>2022-04-22T01:46:00.000Z</published>
+    <updated>2022-04-22T02:46:37.611Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/chengjundu/p/8473564.html&quot;&gt;C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1、工厂模式&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>顶堆</title>
@@ -427,47 +475,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>栈</title>
-    <link href="https://qianxunslimg.github.io/2022/03/30/zhan/"/>
-    <id>https://qianxunslimg.github.io/2022/03/30/zhan/</id>
-    <published>2022-03-30T02:42:00.000Z</published>
-    <updated>2022-04-13T03:18:20.280Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;u&gt;&lt;strong&gt;通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了&lt;/strong&gt;。&lt;/u&gt;&lt;/p&gt;
-&lt;h1 id=&quot;普通栈&quot;&gt;&lt;a href=&quot;#普通栈&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++STL</title>
-    <link href="https://qianxunslimg.github.io/2022/03/30/c-stl-duan/"/>
-    <id>https://qianxunslimg.github.io/2022/03/30/c-stl-duan/</id>
-    <published>2022-03-29T18:19:00.000Z</published>
-    <updated>2022-03-29T18:20:04.124Z</updated>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
