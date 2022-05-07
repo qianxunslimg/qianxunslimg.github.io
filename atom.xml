@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-05-02T15:44:26.088Z</updated>
+  <updated>2022-05-04T16:23:49.982Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>人名算法</title>
+    <link href="https://qianxunslimg.github.io/2022/05/04/ren-ming-suan-fa/"/>
+    <id>https://qianxunslimg.github.io/2022/05/04/ren-ming-suan-fa/</id>
+    <published>2022-05-04T12:13:49.000Z</published>
+    <updated>2022-05-04T16:23:49.982Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;约瑟夫环&quot;&gt;&lt;a href=&quot;#约瑟夫环&quot; class=&quot;headerlink&quot; title=&quot;约瑟夫环&quot;&gt;&lt;/a&gt;约瑟夫环&lt;/h2&gt;&lt;h3 id=&quot;1823-找出游戏的获胜者&quot;&gt;&lt;a href=&quot;#1823-找出游戏的获胜者&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构</title>
@@ -339,7 +362,7 @@
     <link href="https://qianxunslimg.github.io/2022/04/14/dp/"/>
     <id>https://qianxunslimg.github.io/2022/04/14/dp/</id>
     <published>2022-04-13T17:52:49.000Z</published>
-    <updated>2022-05-03T15:26:21.766Z</updated>
+    <updated>2022-05-05T01:51:06.951Z</updated>
     
     
       
@@ -449,29 +472,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>window下添加右键操作</title>
-    <link href="https://qianxunslimg.github.io/2022/04/02/window-xia-tian-jia-you-jian-cao-zuo/"/>
-    <id>https://qianxunslimg.github.io/2022/04/02/window-xia-tian-jia-you-jian-cao-zuo/</id>
-    <published>2022-04-02T11:28:00.000Z</published>
-    <updated>2022-04-02T08:09:01.304Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;以sublime为例&quot;&gt;&lt;a href=&quot;#以sublime为例&quot; class=&quot;headerlink&quot; title=&quot;以sublime为例&quot;&gt;&lt;/a&gt;以sublime为例&lt;/h3&gt;&lt;h4 id=&quot;右键打开文件&quot;&gt;&lt;a href=&quot;#右键打开文件&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
