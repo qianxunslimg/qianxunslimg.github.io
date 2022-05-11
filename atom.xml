@@ -275,15 +275,15 @@
     <link href="https://qianxunslimg.github.io/2022/04/18/bfs/"/>
     <id>https://qianxunslimg.github.io/2022/04/18/bfs/</id>
     <published>2022-04-18T07:53:49.000Z</published>
-    <updated>2022-05-09T08:54:18.450Z</updated>
+    <updated>2022-05-11T16:59:29.813Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs&lt;/p&gt;
-&lt;h4 id=&quot;dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似&quot;&gt;&lt;a href=&quot;#dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似&quot;</summary>
+    <summary type="html">&lt;h3 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h3&gt;&lt;p&gt;之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs&lt;/p&gt;
+&lt;h4</summary>
         
       
     
