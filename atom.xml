@@ -397,6 +397,31 @@
   </entry>
   
   <entry>
+    <title>-nan</title>
+    <link href="https://qianxunslimg.github.io/2022/04/14/nan/"/>
+    <id>https://qianxunslimg.github.io/2022/04/14/nan/</id>
+    <published>2022-04-14T11:28:00.000Z</published>
+    <updated>2022-05-15T08:11:27.666Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;-nan&lt;/p&gt;
+&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;在做题时发现了一个问题，三目运算符和max得出的结果不一致，max结果正确而三目运算符结果有问题&lt;/p&gt;
+&lt;h4</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>dp</title>
     <link href="https://qianxunslimg.github.io/2022/04/14/dp/"/>
     <id>https://qianxunslimg.github.io/2022/04/14/dp/</id>
@@ -440,31 +465,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>window开机内存占用高</title>
-    <link href="https://qianxunslimg.github.io/2022/04/04/window-kai-ji-nei-cun-zhan-yong-gao/"/>
-    <id>https://qianxunslimg.github.io/2022/04/04/window-kai-ji-nei-cun-zhan-yong-gao/</id>
-    <published>2022-04-04T11:28:00.000Z</published>
-    <updated>2022-04-04T08:54:49.593Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;16g的内存，开机动不动就飙过50%&lt;/p&gt;
-&lt;p&gt;尤其是之前发现但从未去解决的 Lenovo.Modern.ImController.exe 服务 不断跑内存的情况 下定决心处理一下&lt;/p&gt;
-&lt;h3 id=&quot;流程&quot;&gt;&lt;a href=&quot;#流程&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
