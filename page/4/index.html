@@ -170,6 +170,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2022/03/16/c-ba-gu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qianxunslimg">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qianxunslimgのblog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/16/c-ba-gu/" class="post-title-link" itemprop="url">c++面试</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-16 09:46:00" itemprop="dateCreated datePublished" datetime="2022-03-16T09:46:00+08:00">2022-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-19 15:07:30" itemprop="dateModified" datetime="2022-05-19T15:07:30+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">基础知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          Here's something encrypted, password is required to continue reading.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/16/c-ba-gu/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2022/03/16/cao-zuo-xi-tong-ba-gu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3191,90 +3272,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2021/12/02/the-difference-between-join-and-detach/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="qianxunslimg">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qianxunslimgのblog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/02/the-difference-between-join-and-detach/" class="post-title-link" itemprop="url">The difference between join and detach</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-02 19:41:34" itemprop="dateCreated datePublished" datetime="2021-12-02T19:41:34+08:00">2021-12-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-16 00:16:53" itemprop="dateModified" datetime="2022-03-16T00:16:53+08:00">2022-03-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>A C++ <code>thread</code> object generally (but not always) represents a thread of execution, which is an OS or platform concept.</p>
-<p>When <code>thread::join()</code> is called, the calling thread will block until the thread of execution has completed. Basically, this is one mechanism that can be used to know when a thread has finished. When <code>thread::join()</code> returns, the OS thread of execution has completed and the C++ <code>thread</code> object can be destroyed.</p>
-<p>The <code>thread::detach()</code> is called, the thread of execution is “detached” from the <code>thread</code> object and is no longer represented by a <code>thread</code> object - they are two independent things. The C++ <code>thread</code> object can be destroyed and the OS thread of execution can continue on. If the program needs to know when that thread of execution has completed, some other mechanism needs to be used. <code>join()</code> cannot be called on that <code>thread</code> object any more, since it is no longer associated with a thread of execution.</p>
-<p>It is considered an error to destroy a C++ <code>thread</code> object while it is still “joinable”. That is, in order to destroy a C++ <code>thread</code> object either <code>join()</code> needs to be called (and completed) or <code>detach()</code> must be called. If a C++ <code>thread</code> object is still joinable when it’s destroyed, an exception will be thrown.</p>
-<p>Some other ways that a C++ <code>thread</code> object will not represent a thread of execution (ie., can be unjoinable):</p>
-<ul>
-<li>A default constructed <code>thread</code> object does not represent a thread of execution, so is not joinable.</li>
-<li>A thread that has been moved from will no longer represent a thread of execution, so is not joinable.</li>
-</ul>
-<p><code>join()</code> doesn’t kill the thread. Actually it waits until thread main function returns. So if your thread main function looks like this:</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) {</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>join()</code> is going to wait forever.</p>
-<p><code>detatch()</code> doesn’t kill thread either. Actually it tells <code>std::thread</code> that this thread should continue to run even when <code>std::thread</code> object is destroyed. C++ checks in std::thread destructor that thread is either joined or detached and terminates program if this check fails.</p>
-<p>So if you uncomment first line in <code>main</code> function of the following code it will crash. If you uncomment second or third line it will work ok.</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>{</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fail1</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(func)</span></span>;</span><br><span class="line">    <span class="comment">// will fail when we try to destroy t since it is not joined or detached</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">works1</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(func)</span></span>;</span><br><span class="line">    t.<span class="built_in">join</span>();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">works2</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="function">std::thread <span class="title">t</span><span class="params">(func)</span></span>;</span><br><span class="line">    t.<span class="built_in">detach</span>();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// fail1();</span></span><br><span class="line">    <span class="comment">// works1();</span></span><br><span class="line">    <span class="comment">// works2();</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -3339,7 +3340,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

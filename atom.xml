@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-05-24T07:26:48.261Z</updated>
+  <updated>2022-05-24T11:49:58.151Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo搭建博客的几个问题</title>
+    <link href="https://qianxunslimg.github.io/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/"/>
+    <id>https://qianxunslimg.github.io/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/</id>
+    <published>2022-05-24T11:28:00.000Z</published>
+    <updated>2022-05-24T11:49:58.151Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>以往项目</title>
@@ -433,29 +456,6 @@
     
     
     <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>char</title>
-    <link href="https://qianxunslimg.github.io/2022/04/14/char/"/>
-    <id>https://qianxunslimg.github.io/2022/04/14/char/</id>
-    <published>2022-04-14T11:28:00.000Z</published>
-    <updated>2022-05-01T17:00:00.922Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;const char * arr =</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
