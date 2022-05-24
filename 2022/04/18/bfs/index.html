@@ -1,42 +1,287 @@
+
+
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
-     <link rel="shortcut icon" href= https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png >
-    <title>
-        qianxunslimgのblog
-    </title>
-    <meta name="description" content= 欢迎访问我的博客， >
-    <meta name="keywords" content= qianxunslimg,blog,job,面试,找工作 >
-    
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bfs">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/18/bfs/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg">
+<meta property="article:published_time" content="2022-04-18T07:53:49.000Z">
+<meta property="article:modified_time" content="2022-05-24T08:29:33.591Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
+  
+  
+  
+  <title>bfs - qianxunslimgのblog</title>
 
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-home
- replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            bfs
-        </p>
-        <hr>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="post-content">
-        <h2 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs</p>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="bfs"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-18 15:53" pubdate>
+          2022年4月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          undefined 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          NaN 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">bfs</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs</p>
 <h4 id="dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似"><a href="#dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似" class="headerlink" title="dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似"></a>dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似</h4><h4 id="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"><a href="#bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤" class="headerlink" title="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"></a>bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤</h4><p>二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别</p>
 <p>二维矩阵 或者说 图 的bfs从岛屿问题感受下</p>
 <h3 id="引入-200-岛屿数量"><a href="#引入-200-岛屿数量" class="headerlink" title="引入 200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">引入 200. 岛屿数量</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=200">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/#">思路</a></p>
@@ -64,7 +309,7 @@
 </ul>
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> land_num = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;grid.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){</span><br><span class="line">            <span class="built_in">bfs</span>(grid, i, j);</span><br><span class="line">            land_num++;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> land_num;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j));</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; node = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        i = node.first;</span><br><span class="line">        j = node.second;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=grid.<span class="built_in">size</span>()||j&lt;<span class="number">0</span>||j&gt;=grid[<span class="number">0</span>].<span class="built_in">size</span>()||grid[i][j]!=<span class="string">'1'</span>)</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        grid[i][j] = <span class="string">'0'</span>;</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i + <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i - <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j + <span class="number">1</span>));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j - <span class="number">1</span>));</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历"><a href="#从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历" class="headerlink" title="从上题可以看出， bfs是接住了一个队列 和 while循环 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历"></a>从上题可以看出， bfs是接住了一个<u>队列 和 while循环</u> 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历</h4><h4 id="最短路径属于dp问题-可以考虑使用bfs"><a href="#最短路径属于dp问题-可以考虑使用bfs" class="headerlink" title="最短路径属于dp问题 可以考虑使用bfs"></a>最短路径属于dp问题 可以考虑使用bfs</h4><h3 id="对称飞行器"><a href="#对称飞行器" class="headerlink" title="对称飞行器"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">对称飞行器</a></h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png" alt="image-20220418163802022"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历"><a href="#从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历" class="headerlink" title="从上题可以看出， bfs是接住了一个队列 和 while循环 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历"></a>从上题可以看出， bfs是接住了一个<u>队列 和 while循环</u> 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历</h4><h4 id="最短路径属于dp问题-可以考虑使用bfs"><a href="#最短路径属于dp问题-可以考虑使用bfs" class="headerlink" title="最短路径属于dp问题 可以考虑使用bfs"></a>最短路径属于dp问题 可以考虑使用bfs</h4><h3 id="对称飞行器"><a href="#对称飞行器" class="headerlink" title="对称飞行器"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">对称飞行器</a></h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png" srcset="/img/loading.gif" lazyload alt="image-20220418163802022"></p>
 <p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion</a><br>来源：牛客网</p>
 <h5 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一行两个空格分隔的正整数 n,m\mathit n,mn,m ，分别代表迷宫的行数和列数。</span><br><span class="line">接下来 n\mathit nn 行 每行一个长度为 m\mathit mm 的字符串来描述这个迷宫。</span><br><span class="line">其中</span><br><span class="line">. 代表通路。</span><br><span class="line"> 代表障碍。</span><br><span class="line">S 代表起点。</span><br><span class="line">E 代表终点。</span><br><span class="line">保证只有一个 S 和 一个 E 。</span><br></pre></td></tr></tbody></table></figure>
 
@@ -86,18 +331,18 @@
 <p>给定一个由 <code>0</code> 和 <code>1</code> 组成的矩阵 <code>mat</code> ，请输出一个大小相同的矩阵，其中每一个格子是 <code>mat</code> 中对应位置元素到最近的 <code>0</code> 的距离。</p>
 <p>两个相邻元素间的距离为 <code>1</code> 。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[0,0,0]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[0,0,0]]</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[1,1,1]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[1,2,1]]</span><br></pre></td></tr></tbody></table></figure>
 
 
 
 <h4 id="解法-bfs"><a href="#解法-bfs" class="headerlink" title="解法 bfs"></a>解法 bfs</h4><p>将所有0的位置压入队列，然后进行bfs</p>
 <p>按下图走，四周有1是 1变0 坐标入队列 ans位置 = ans pre位置++</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png" alt="image-20220509155601268" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png" srcset="/img/loading.gif" lazyload alt="image-20220509155601268" style="zoom:50%;">
 
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dirs = {{<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}};</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat) {</span><br><span class="line">        <span class="keyword">int</span> n = mat.<span class="built_in">size</span>(), m = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(n, vector&lt;<span class="keyword">int</span>&gt;(m, <span class="number">0</span>));</span><br><span class="line">        queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) {</span><br><span class="line">                <span class="keyword">if</span> (!mat[i][j]) {</span><br><span class="line">                    que.<span class="built_in">push</span>({i, j});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">            <span class="keyword">auto</span> f = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d: dirs) {</span><br><span class="line">                <span class="keyword">int</span> x = f.first + d[<span class="number">0</span>], y = f.second + d[<span class="number">1</span>];</span><br><span class="line">                <span class="comment">//周围为1的方向时</span></span><br><span class="line">                <span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; x &lt; n &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; m &amp;&amp; mat[x][y]) {</span><br><span class="line">                    ans[x][y] = ans[f.first][f.second] + <span class="number">1</span>;</span><br><span class="line">                    mat[x][y] = <span class="number">0</span>;</span><br><span class="line">                    que.<span class="built_in">push</span>({x, y});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -148,7 +393,7 @@
 <p>给定一个二叉树（具有根结点 <code>root</code>）， 一个目标结点 <code>target</code> ，和一个整数值 <code>k</code> 。</p>
 <p>返回到目标结点 <code>target</code> 距离为 <code>k</code> 的所有结点的值的列表。 答案可以以 <strong>任何顺序</strong> 返回。</p>
 <p><strong>示例 1：</strong></p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png" alt="img" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
 
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, k = 2</span><br><span class="line">输出：[7,4,1]</span><br><span class="line">解释：所求结点为与目标结点（值为 5）距离为 2 的结点，值分别为 7，4，以及 1</span><br></pre></td></tr></tbody></table></figure>
 
@@ -170,7 +415,7 @@
 <p>你将从 <code>(0, 0)</code> 点开始工作，返回你砍完所有树需要走的最小步数。 如果你无法砍完所有的树，返回 <code>-1</code> 。</p>
 <p>可以保证的是，没有两棵树的高度是相同的，并且你至少需要砍倒一棵树。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：forest = [[1,2,3],[0,0,4],[7,6,5]]</span><br><span class="line">输出：6</span><br><span class="line">解释：沿着上面的路径，你可以用 6 步，按从最矮到最高的顺序砍掉这些树。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法-bfs-1"><a href="#解法-bfs-1" class="headerlink" title="解法 bfs"></a>解法 bfs</h4><p>路径是固定的， 所以只需要查找每一步到下一步的最短路径 然后相加即可</p>
@@ -184,7 +429,7 @@
 <p>给定一个 <code>m x n</code> 整数矩阵 <code>matrix</code> ，找出其中 <strong>最长递增路径</strong> 的长度。</p>
 <p>对于每个单元格，你可以往上，下，左，右四个方向移动。 <strong>不能</strong> 在 <strong>对角线</strong> 方向上移动或移动到 <strong>边界外</strong>（即不允许环绕）。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[9,9,4],[6,6,8],[2,1,1]]</span><br><span class="line">输出：4 </span><br><span class="line">解释：最长递增路径为 [1, 2, 6, 9]。</span><br></pre></td></tr></tbody></table></figure>
 
 <p>解法 记忆化dfs</p>
@@ -196,66 +441,384 @@
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> dxy[<span class="number">4</span>][<span class="number">2</span>]={{<span class="number">-1</span>,<span class="number">0</span>},{<span class="number">1</span>,<span class="number">0</span>},{<span class="number">0</span>,<span class="number">-1</span>},{<span class="number">0</span>,<span class="number">1</span>}};</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> m=matrix.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> n=matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> maxstep=<span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">length</span>(m,vector&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++){</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++){</span><br><span class="line">                <span class="keyword">int</span> step=<span class="built_in">dfs</span>(matrix,i,j,length);</span><br><span class="line">                maxstep=<span class="built_in">max</span>(step,maxstep);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> maxstep;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix,<span class="keyword">int</span> i,<span class="keyword">int</span> j,vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; length)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(length[i][j]!=<span class="number">0</span>){</span><br><span class="line">            <span class="keyword">return</span> length[i][j];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> step=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++){</span><br><span class="line">            <span class="keyword">int</span> dx=i+dxy[k][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> dy=j+dxy[k][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(dx&gt;=<span class="number">0</span>&amp;&amp;dx&lt;matrix.<span class="built_in">size</span>()&amp;&amp;dy&gt;=<span class="number">0</span>&amp;&amp;dy&lt;matrix[<span class="number">0</span>].<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(matrix[dx][dy]&gt;matrix[i][j]){</span><br><span class="line">                    <span class="keyword">int</span> path=<span class="built_in">dfs</span>(matrix,dx,dy,length);</span><br><span class="line">                    step=<span class="built_in">max</span>(step,path+<span class="number">1</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        length[i][j]=step;</span><br><span class="line">        <span class="keyword">return</span> step;;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>bfs</div>
+      <div>https://qianxunslimg.github.io/2022/04/18/bfs/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月18日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/18/ha-xi-zi-ding-yi-key/" title="哈希 自定义key">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">哈希 自定义key</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/18/mian-jing-ti-mu-men/" title="面经题目们">
+                        <span class="hidden-mobile">面经题目们</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
-        <hr class="fhr">
-        <div id="vcomments"></div>
-    
-</div>
-    <div class="footer" id="footer">
-    <p><h4>版权所有 © 2020 | 作者: qianxunslimg | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
-        <span class="post-meta-divider">|</span>
-        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
-    
-    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
-        <input type="checkbox" name="switch" id="update_style">
-        <span class="el-switch-style"></span>
-    </label>
-
-    <!--         <script type="text/javascript">
-    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-    </script> -->
-</p>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="">
-<input type="hidden" id="valine_appKey" value="">
-
-<script src="/libs/jquery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+  </aside>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
 
-<script src="/js/js.js"></script>
+    </div>
+  </div>
+</div>
 
-<style type="text/css">
-.v * {
-color: #698fca;
-}
-.v .vlist .vcard .vhead .vsys {
-color: #3a3e4a;
-}
-.v .vlist .vcard .vh .vmeta .vat {
-color: #638fd5;
-}
-.v .vlist .vcard .vhead .vnick {
-color: #6ba1ff;
-}
-.v a {
-color: #8696b1;
-}
-.v .vlist .vcard .vhead .vnick:hover {
-color: #669bfc;
-}
-</style>
-    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

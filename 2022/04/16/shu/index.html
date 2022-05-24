@@ -1,46 +1,307 @@
+
+
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
-     <link rel="shortcut icon" href= https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png >
-    <title>
-        qianxunslimgのblog
-    </title>
-    <meta name="description" content= 欢迎访问我的博客， >
-    <meta name="keywords" content= qianxunslimg,blog,job,面试,找工作 >
-    
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="二叉树二叉树的遍历1. 概念树是连通的无环图，最常利用的有二叉树，即一个节点最多只有两个子节点，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。 二叉排序树又叫二叉查找树或者二叉搜索树：1）若左子树不空，则左子树上所有结点的值均小于它的根节点的值； 2）若右子树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/16/shu/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="二叉树二叉树的遍历1. 概念树是连通的无环图，最常利用的有二叉树，即一个节点最多只有两个子节点，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。 二叉排序树又叫二叉查找树或者二叉搜索树：1）若左子树不空，则左子树上所有结点的值均小于它的根节点的值； 2）若右子树">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2.jpeg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/6.jpeg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png">
+<meta property="article:published_time" content="2022-04-16T12:09:49.000Z">
+<meta property="article:modified_time" content="2022-05-24T13:21:27.649Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png">
+  
+  
+  
+  <title>树 - qianxunslimgのblog</title>
 
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-    
-<link rel="stylesheet" href="/css/style.css">
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-home
- replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            树
-        </p>
-        <hr>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
     </div>
-    <div class="post-content">
-        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><p>树是连通的无环图，最常利用的有二叉树，即一个节点最多只有两个子节点，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。</p>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-16 20:09" pubdate>
+          2022年4月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          undefined 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          NaN 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">树</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><p>树是连通的无环图，最常利用的有二叉树，即一个节点最多只有两个子节点，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。</p>
 <h4 id="二叉排序树又叫二叉查找树或者二叉搜索树："><a href="#二叉排序树又叫二叉查找树或者二叉搜索树：" class="headerlink" title="二叉排序树又叫二叉查找树或者二叉搜索树："></a>二叉排序树又叫二叉查找树或者二叉搜索树：</h4><p>1）若左子树不空，则左子树上所有结点的值均小于它的根节点的值；</p>
 <p>2）若右子树不空，则右子树上所有结点的值均大于它的根结点的值；</p>
 <p>3）左、右子树也分别为二叉排序树；4）没有键值相等的节点</p>
-<h3 id="2-树的各种DFS遍历"><a href="#2-树的各种DFS遍历" class="headerlink" title="2. 树的各种DFS遍历"></a>2. 树的各种DFS遍历</h3><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png" alt="img" style="zoom: 80%;">
+<h3 id="2-树的各种DFS遍历"><a href="#2-树的各种DFS遍历" class="headerlink" title="2. 树的各种DFS遍历"></a>2. 树的各种DFS遍历</h3><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 80%;">
 
 <p>前序遍历，根–&gt;左子树–&gt;右子树</p>
 <p>中序遍历，左子树–&gt;根–&gt;右子树</p>
@@ -64,11 +325,11 @@
 <p>计算从根节点到叶节点生成的 <strong>所有数字之和</strong> 。</p>
 <p><strong>叶节点</strong> 是指没有子节点的节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：25</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 1-&gt;2 代表数字 12</span><br><span class="line">从根到叶子节点路径 1-&gt;3 代表数字 13</span><br><span class="line">因此，数字总和 = 12 + 13 = 25</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,9,0,5,1]</span><br><span class="line">输出：1026</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;5 代表数字 495</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;1 代表数字 491</span><br><span class="line">从根到叶子节点路径 4-&gt;0 代表数字 40</span><br><span class="line">因此，数字总和 = 495 + 491 + 40 = 1026</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
@@ -93,7 +354,7 @@
 <p>给定一个二叉树的根节点 <code>root</code> ，和一个整数 <code>targetSum</code> ，求该二叉树里节点值之和等于 <code>targetSum</code> 的 <strong>路径</strong> 的数目。</p>
 <p><strong>路径</strong> 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8</span><br><span class="line">输出：3</span><br><span class="line">解释：和等于 8 的路径有 3 条，如图所示。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><h5 id="首先实现一个dfs回溯求和函数-这个函数有如下要求"><a href="#首先实现一个dfs回溯求和函数-这个函数有如下要求" class="headerlink" title="首先实现一个dfs回溯求和函数 这个函数有如下要求"></a>首先实现一个dfs回溯求和函数 这个函数有如下要求</h5><ol>
@@ -114,7 +375,7 @@
 <p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 <p><strong>提示:</strong> 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/faq/#binary-tree">LeetCode 序列化二叉树的格式</a>。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg" alt="img"></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3,null,null,4,5]</span><br><span class="line">输出：[1,2,3,null,null,4,5]</span><br></pre></td></tr></tbody></table></figure>
 
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function">string <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">nullptr</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">        }</span><br><span class="line">      	<span class="comment">//前序遍历</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">to_string</span>(root-&gt;val) + <span class="string">' '</span> + <span class="built_in">serialize</span>(root-&gt;left) + <span class="string">' '</span> + <span class="built_in">serialize</span>(root-&gt;right);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">mydeserialize</span><span class="params">(istringstream &amp;ss)</span></span>{</span><br><span class="line">        string tmp;</span><br><span class="line">        ss&gt;&gt;tmp;</span><br><span class="line">        <span class="keyword">if</span>(tmp==<span class="string">"#"</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        }</span><br><span class="line">        TreeNode* node = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="built_in">stoi</span>(tmp));</span><br><span class="line">        node-&gt;left = <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">        node-&gt;right = <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(string data)</span> </span>{</span><br><span class="line">        <span class="function">istringstream <span class="title">ss</span><span class="params">(data)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -123,11 +384,11 @@
 <p>给定一棵二叉搜索树和其中的一个节点 <code>p</code> ，找到该节点在树中的中序后继。如果节点没有中序后继，请返回 <code>null</code> 。</p>
 <p>节点 <code>p</code> 的后继是值比 <code>p.val</code> 大的节点中键值最小的节点，即按中序遍历的顺序节点 <code>p</code> 的下一个节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [2,1,3], p = 1</span><br><span class="line">输出：2</span><br><span class="line">解释：这里 1 的中序后继是 2。请注意 p 和返回值都应是 TreeNode 类型。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [5,3,6,2,4,null,null,1], p = 6</span><br><span class="line">输出：null</span><br><span class="line">解释：因为给出的节点没有中序后继，所以答案就返回 null 了。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法1-中序dfs"><a href="#解法1-中序dfs" class="headerlink" title="解法1 中序dfs"></a>解法1 中序dfs</h4><p>二叉搜索树的中序遍历是递增的 所以搜索到该节点的 后一个就是结果</p>
@@ -154,11 +415,11 @@
 <p><strong>路径和</strong> 是路径中各节点值的总和。</p>
 <p>给你一个二叉树的根节点 <code>root</code> ，返回其 <strong>最大路径和</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：6</span><br><span class="line">解释：最优路径是 2 -&gt; 1 -&gt; 3 ，路径和为 2 + 1 + 3 = 6</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [-10,9,20,null,null,15,7]</span><br><span class="line">输出：42</span><br><span class="line">解释：最优路径是 15 -&gt; 20 -&gt; 7 ，路径和为 15 + 20 + 7 = 42</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
@@ -179,7 +440,7 @@
 <li><code>CBTInserter.get_root()</code> 将返回树的头节点。</li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">["CBTInserter", "insert", "insert", "get_root"]</span><br><span class="line">[[[1, 2]], [3], [4], []]</span><br><span class="line">输出</span><br><span class="line">[null, 1, 2, [1, 2, 3, 4]]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">CBTInserter cBTInserter = new CBTInserter([1, 2]);</span><br><span class="line">cBTInserter.insert(3);  // 返回 1</span><br><span class="line">cBTInserter.insert(4);  // 返回 2</span><br><span class="line">cBTInserter.get_root(); // 返回 [1, 2, 3, 4]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>使用层序遍历 从左右子树不满的节点开始存 后续在push的子节点就是左右子树都不存在的了</p>
@@ -196,7 +457,7 @@
 <p><strong>示例：</strong></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：7</span><br><span class="line">输出：[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]</span><br><span class="line">解释：</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png" alt="image-20220417231809203"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png" srcset="/img/loading.gif" lazyload alt="image-20220417231809203"></p>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>首先<code>偶数是不能构成满二叉树</code>的。 思路是把总node数分别左边，根，右边进行递归，如7个node可以分成1,1,5；3,1,5；5,1,1（左,根,右）。 5个node又可以分为1,1,3和3,1,1。 3个node又可以分为1,1,1。 1个node直接返回。</p>
 <h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, vector&lt;TreeNode*&gt;&gt; memo;</span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">allPossibleFBT</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        vector&lt;TreeNode*&gt; ans;</span><br><span class="line">        <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n)) <span class="keyword">return</span> memo[n];</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) ans.<span class="built_in">push_back</span>(<span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;n; i+=<span class="number">2</span>){</span><br><span class="line">                <span class="comment">// 获得所有可行的左子树集合</span></span><br><span class="line">                vector&lt;TreeNode*&gt; left = <span class="built_in">allPossibleFBT</span>(i);</span><br><span class="line">                <span class="comment">// 获得所有可行的右子树集合</span></span><br><span class="line">                vector&lt;TreeNode*&gt; right = <span class="built_in">allPossibleFBT</span>(n - i - <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 相当于 左右子树随机组合 从而得到多种情况 </span></span><br><span class="line">                <span class="comment">// 从左子树集合中选出一棵左子树，从右子树集合中选出一棵右子树，拼接到根节点上</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> l : left){</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">auto</span> r : right){</span><br><span class="line">                        TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="number">0</span>);</span><br><span class="line">                        root-&gt;left = l;</span><br><span class="line">                        root-&gt;right = r;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(root);</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        memo[n] = ans;</span><br><span class="line">        <span class="comment">//cout&lt;&lt;ans.size()&lt;&lt;" ";</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -204,10 +465,10 @@
 <p>难度中等1703</p>
 <p>给你一个整数 <code>n</code> ，求恰由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的 <strong>二叉搜索树</strong> 有多少种？返回满足题意的二叉搜索树的种数。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：5</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png" alt="image-20220417233328660" style="zoom: 50%;">
+<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png" srcset="/img/loading.gif" lazyload alt="image-20220417233328660" style="zoom: 50%;">
 
 <h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">      dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=n; i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j&lt;=i; j++)</span><br><span class="line">          dp[i]+=dp[j<span class="number">-1</span>]*dp[i-j];</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> dp[n];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -221,7 +482,7 @@
 <p>难度中等1187</p>
 <p>给你一个整数 <code>n</code> ，请你生成并返回所有由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的不同 <strong>二叉搜索树</strong> 。可以按 <strong>任意顺序</strong> 返回答案。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>对于连续整数序列<code>[left, right]</code>中的一点<code>i</code>，若要生成以<code>i</code>为根节点的BST，则有如下规律：</p>
@@ -239,9 +500,9 @@
 <li><p>重建方式 递归</p>
 </li>
 <li><p>三种遍历的数组分布</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2.jpeg" alt="img" style="zoom:67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2.jpeg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;">
 
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/6.jpeg" alt="img" style="zoom:67%;"></li>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/6.jpeg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:67%;"></li>
 </ul>
 <h3 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  	<span class="comment">// 又臭又长的就 不看了</span></span><br><span class="line">    <span class="comment">// TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {</span></span><br><span class="line">    <span class="comment">//   if(preorder.size() == 0) return nullptr;</span></span><br><span class="line">    <span class="comment">//   int rootVal = preorder[0];</span></span><br><span class="line">    <span class="comment">//   int inorder_rootPos = find(inorder.begin(), inorder.end(), rootVal) - inorder.begin();</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//   //前序左右子树</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; preorderL = vector&lt;int&gt;(preorder.begin()+1, preorder.begin()+1+inorder_rootPos);</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; preorderR =vector&lt;int&gt;(preorder.begin()+1+inorder_rootPos, preorder.end());</span></span><br><span class="line">    <span class="comment">//   //中序左右子树</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; inorderL = vector&lt;int&gt;(inorder.begin(), inorder.begin()+inorder_rootPos);</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; inorderR = vector&lt;int&gt;(inorder.begin() + inorder_rootPos + 1, inorder.end());</span></span><br><span class="line">    <span class="comment">//   //cout&lt;&lt;inorder_rootPos;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//   TreeNode* root = new TreeNode(rootVal);</span></span><br><span class="line">    <span class="comment">//   root-&gt;left = buildTree(preorderL, inorderL);</span></span><br><span class="line">    <span class="comment">//   root-&gt;right = buildTree(preorderR, inorderR);</span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//   return root;</span></span><br><span class="line">    <span class="comment">// }</span></span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>{</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">build</span>(preorder, <span class="number">0</span> ,preorder.<span class="built_in">size</span>()<span class="number">-1</span>, inorder, <span class="number">0</span>, inorder.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="keyword">int</span> preS, <span class="keyword">int</span> preE, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> inS, <span class="keyword">int</span> inE)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(preS&gt;preE) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">int</span> rootVal = preorder[preS];</span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = inS; i&lt;=inE; i++){   <span class="comment">//注意这里是小于等于</span></span><br><span class="line">        <span class="keyword">if</span>(inorder[i] == rootVal){</span><br><span class="line">          index = i;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">int</span> leftSize = index - inS;</span><br><span class="line">      TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(rootVal);</span><br><span class="line">      root-&gt;left = <span class="built_in">build</span>(preorder,preS + <span class="number">1</span>, preS + leftSize, inorder, inS, index<span class="number">-1</span>);</span><br><span class="line">      root-&gt;right = <span class="built_in">build</span>(preorder, preS + <span class="number">1</span> + leftSize, preE, inorder, index+ <span class="number">1</span>, inE);</span><br><span class="line">      <span class="keyword">return</span> root;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -273,7 +534,7 @@
 <p>而 Trie 的结点是这样的(假设只包含’a’~’z’中的字符)：</p>
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TrieNode</span> {</span></span><br><span class="line">    <span class="keyword">bool</span> isEnd; <span class="comment">//该结点是否是一个串的结束</span></span><br><span class="line">    vector&lt;TrieNode*&gt; next; <span class="comment">//字母映射表 26 or 其他</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="包含三个单词-“sea”-”sells”-”she”-的-Trie"><a href="#包含三个单词-“sea”-”sells”-”she”-的-Trie" class="headerlink" title="包含三个单词 “sea”,”sells”,”she” 的 Trie"></a>包含三个单词 “sea”,”sells”,”she” 的 Trie</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png" alt="image-20220405131024751" style="zoom:50%;">
+<h4 id="包含三个单词-“sea”-”sells”-”she”-的-Trie"><a href="#包含三个单词-“sea”-”sells”-”she”-的-Trie" class="headerlink" title="包含三个单词 “sea”,”sells”,”she” 的 Trie"></a>包含三个单词 “sea”,”sells”,”she” 的 Trie</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png" srcset="/img/loading.gif" lazyload alt="image-20220405131024751" style="zoom:50%;">
 
 <h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>{</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;Trie*&gt; next;</span><br><span class="line">    <span class="keyword">bool</span> isEnd;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Trie</span>(): <span class="built_in">next</span>(<span class="number">26</span>), <span class="built_in">isEnd</span>(<span class="number">0</span>){}</span><br><span class="line"></span><br><span class="line">    <span class="comment">//树中插入单词</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next[c - <span class="string">'a'</span>] == <span class="literal">nullptr</span>)</span><br><span class="line">                node-&gt;next[c - <span class="string">'a'</span>] = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">        }</span><br><span class="line">        node-&gt;isEnd = <span class="number">1</span>;  <span class="comment">//最后不要忘了 置为1</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查找树中是否包含单词word</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contianWord</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">            <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> node-&gt;isEnd;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查找树中是否包含以word为前缀的单词</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containWordStartsWith</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">            <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在树中查找word的最短前缀 没有则返回为空</span></span><br><span class="line">    <span class="function">string <span class="title">shortestPrefixOf</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span>  </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        string res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : word){</span><br><span class="line">            <span class="keyword">if</span> (node-&gt;isEnd || node-&gt;next[ch - <span class="string">'a'</span>] == <span class="literal">nullptr</span>) <span class="keyword">break</span>;</span><br><span class="line">            res += ch;</span><br><span class="line">            node = node-&gt;next[ch - <span class="string">'a'</span>];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> node-&gt;isEnd ? res : <span class="string">""</span>;         <span class="comment">//有前缀返回前缀，没有则返回空字符串</span></span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//带通配符.的匹配 例如 a.c 匹配 abc</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasKeyWithPattern</span><span class="params">(<span class="keyword">const</span> string&amp; word, <span class="keyword">int</span> index)</span></span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="comment">//字符串到头 检测树枝是否到头</span></span><br><span class="line">        <span class="keyword">if</span>(index &gt;= word.<span class="built_in">size</span>()) <span class="keyword">return</span> node-&gt;isEnd == <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span> ch = word[index];</span><br><span class="line">        <span class="comment">//没有遇到通配符</span></span><br><span class="line">        <span class="keyword">if</span>(ch != <span class="string">'.'</span> )</span><br><span class="line">            <span class="keyword">return</span> node-&gt;next[ch - <span class="string">'a'</span>] != <span class="literal">nullptr</span> &amp;&amp; node-&gt;next[ch -  <span class="string">'a'</span>]-&gt;<span class="built_in">hasKeyWithPattern</span>(word, index+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遇到通配符</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">26</span>; i++){</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next[i] != <span class="literal">nullptr</span> &amp;&amp; node-&gt;next[i]-&gt;<span class="built_in">hasKeyWithPattern</span>(word, index+<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//没有找到</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -389,12 +650,12 @@
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：words = ["t"]</span><br><span class="line">输出：2</span><br><span class="line">解释：一组有效编码为 s = "t#" 和 indices = [0] 。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>单词倒序插入字典树</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png" alt="image-20220422181126201" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png" srcset="/img/loading.gif" lazyload alt="image-20220422181126201" style="zoom:50%;">
 
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> {</span> <span class="comment">//创建前缀树</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  vector&lt;Trie *&gt; next;</span><br><span class="line">  <span class="built_in">Trie</span>() : <span class="built_in">next</span>(<span class="number">26</span>) {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">insertReverse</span><span class="params">(<span class="keyword">const</span> string &amp;word)</span> </span>{ <span class="comment">//向树中倒序插入字符串</span></span><br><span class="line">    Trie *node = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = word.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">      <span class="keyword">if</span> (node-&gt;next[word[i] - <span class="string">'a'</span>] == <span class="literal">nullptr</span>)</span><br><span class="line">        node-&gt;next[word[i] - <span class="string">'a'</span>] = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">      node = node-&gt;next[word[i] - <span class="string">'a'</span>];</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">containWordStartsWithReverse</span><span class="params">(<span class="keyword">const</span> string word)</span> </span>{ <span class="comment">//判断字符串倒序后是否为字典树的前缀</span></span><br><span class="line">    Trie *node = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = word.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">      node = node-&gt;next[word[i] - <span class="string">'a'</span>];</span><br><span class="line">      <span class="keyword">if</span> (node == <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">minimumLengthEncoding</span><span class="params">(vector&lt;string&gt; &amp;words)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>; <span class="comment">//结果</span></span><br><span class="line">    Trie *node = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">    <span class="built_in">sort</span>(words.<span class="built_in">begin</span>(), words.<span class="built_in">end</span>(), [](string&amp; str1, string&amp; str2) {</span><br><span class="line">      <span class="keyword">return</span> str1.<span class="built_in">size</span>() &gt; str2.<span class="built_in">size</span>();</span><br><span class="line">    }); <span class="comment">//将字符串按长度从大到小排序</span></span><br><span class="line">    <span class="keyword">for</span> (string str : words) {</span><br><span class="line">      <span class="keyword">if</span> (!node-&gt;<span class="built_in">containWordStartsWithReverse</span>(str)){</span><br><span class="line">        res += (str.<span class="built_in">size</span>() + <span class="number">1</span>); <span class="comment">//若其不是前缀树的前缀，则结果+=字符串长度+1</span></span><br><span class="line">      	node-&gt;<span class="built_in">insertReverse</span>(str); <span class="comment">//并将字符串插入到前缀树中     </span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>哈希 检查互为后缀</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png" alt="image-20220422181047635" style="zoom: 50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png" srcset="/img/loading.gif" lazyload alt="image-20220422181047635" style="zoom: 50%;">
 
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumLengthEncoding</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>{</span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(words.begin(), words.end())</span></span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span> word : words){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;word.<span class="built_in">size</span>(); i++){</span><br><span class="line">          <span class="keyword">if</span>(sett.<span class="built_in">find</span>(word.<span class="built_in">substr</span>(i)) != sett.<span class="built_in">end</span>())</span><br><span class="line">            sett.<span class="built_in">erase</span>(word.<span class="built_in">substr</span>(i));</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span> word : sett)</span><br><span class="line">        ans += word.<span class="built_in">size</span>() + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -419,9 +680,9 @@
 
 <h1 id="线段树和树状数组"><a href="#线段树和树状数组" class="headerlink" title="线段树和树状数组"></a><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/seg/">线段树</a>和树状数组</h1><h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>线段树是算法竞赛中常用的用来维护 <strong>区间信息</strong> 的数据结构。</p>
 <p>线段树可以在Ologn 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png" alt="image-20220405022002717"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png" srcset="/img/loading.gif" lazyload alt="image-20220405022002717"></p>
 <h3 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h3><p>树状数组和线段树具有相似的功能，但他俩毕竟还有一些区别：树状数组能有的操作，线段树一定有；线段树有的操作，树状数组不一定有。但是树状数组的代码要比线段树短，思维更清晰，速度也更快，在解决一些单点修改的问题时，树状数组是不二之选。</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png" alt="image-20220405024155141"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png" srcset="/img/loading.gif" lazyload alt="image-20220405024155141"></p>
 <h3 id="307-区域和检索-数组可修改"><a href="#307-区域和检索-数组可修改" class="headerlink" title="307. 区域和检索 - 数组可修改"></a><u><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-mutable/">307. 区域和检索 - 数组可修改</a></u></h3><p>难度中等470英文版讨论区</p>
 <p>给你一个数组 <code>nums</code> ，请你完成两类查询。</p>
 <ol>
@@ -472,79 +733,397 @@
 <blockquote>
 <p>输入：<code>root = [1,null,2,null,3,null,4,null,5], ops = [[1,2,4],[1,1,3],[0,3,5]]</code></p>
 <p>输出：<code>2</code></p>
-<p>解释：<br>第 0 次操作，将值为 2、3、4 的节点染红；<br>第 1 次操作，将值为 1、2、3 的节点染红；<br>第 2 次操作，将值为 3、4、5 的节点染蓝；<br>因此，最终值为 1、2 的节点为红色节点，返回数量 2<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png" alt="image.png" style="zoom:25%;"></p>
+<p>解释：<br>第 0 次操作，将值为 2、3、4 的节点染红；<br>第 1 次操作，将值为 1、2、3 的节点染红；<br>第 2 次操作，将值为 3、4、5 的节点染蓝；<br>因此，最终值为 1、2 的节点为红色节点，返回数量 2<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom:25%;"></p>
 </blockquote>
 <p><strong>示例 2：</strong></p>
 <blockquote>
 <p>输入：<code>root = [4,2,7,1,null,5,null,null,null,null,6]</code><br><code>ops = [[0,2,2],[1,1,5],[0,4,5],[1,5,7]]</code></p>
 <p>输出：<code>5</code></p>
-<p>解释：<br>第 0 次操作，将值为 2 的节点染蓝；<br>第 1 次操作，将值为 1、2、4、5 的节点染红；<br>第 2 次操作，将值为 4、5 的节点染蓝；<br>第 3 次操作，将值为 5、6、7 的节点染红；<br>因此，最终值为 1、2、5、6、7 的节点为红色节点，返回数量 5<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png" alt="image.png" style="zoom: 50%;"></p>
+<p>解释：<br>第 0 次操作，将值为 2 的节点染蓝；<br>第 1 次操作，将值为 1、2、4、5 的节点染红；<br>第 2 次操作，将值为 4、5 的节点染蓝；<br>第 3 次操作，将值为 5、6、7 的节点染红；<br>因此，最终值为 1、2、5、6、7 的节点为红色节点，返回数量 5<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom: 50%;"></p>
 </blockquote>
 <h4 id="解法-暴力"><a href="#解法-暴力" class="headerlink" title="解法 暴力"></a>解法 暴力</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNumber</span><span class="params">(TreeNode* root, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ops)</span> </span>{</span><br><span class="line">      unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mapp;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;ops.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">int</span> val = ops[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> begin = ops[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> end = ops[i][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">while</span>(begin &lt;= end){</span><br><span class="line">          mapp[begin++] = val;</span><br><span class="line">          <span class="comment">//cout&lt;&lt;val&lt;&lt;" ";</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      ans = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(root, mapp);</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp; mapp)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(!node) <span class="keyword">return</span>;</span><br><span class="line">        node-&gt;val = mapp[node-&gt;val];</span><br><span class="line">        ans+=node-&gt;val;</span><br><span class="line">        <span class="built_in">dfs</span>(node-&gt;left, mapp);</span><br><span class="line">        <span class="built_in">dfs</span>(node-&gt;right, mapp);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="set二分"><a href="#set二分" class="headerlink" title="set二分"></a>set二分</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    set&lt;<span class="keyword">int</span>&gt; sett;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(!node) <span class="keyword">return</span>;</span><br><span class="line">      sett.<span class="built_in">insert</span>(node-&gt;val);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right);</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNumber</span><span class="params">(TreeNode* root, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ops)</span> </span>{</span><br><span class="line">      <span class="built_in">dfs</span>(root);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = ops.<span class="built_in">size</span>() - <span class="number">1</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>){</span><br><span class="line">          <span class="keyword">auto</span> it = sett.<span class="built_in">lower_bound</span>(ops[i][<span class="number">1</span>]);</span><br><span class="line">          <span class="keyword">if</span>(it == sett.<span class="built_in">end</span>() || (*it) &gt; ops[i][<span class="number">2</span>])</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          sett.<span class="built_in">erase</span>(it);</span><br><span class="line">          <span class="keyword">if</span>(ops[i][<span class="number">0</span>]) ans++;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树</div>
+      <div>https://qianxunslimg.github.io/2022/04/16/shu/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月16日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/17/pai-xu-suan-fa/" title="排序算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/16/bi-shi-mian-shi-suan-fa-ti-mu/" title="笔试面试算法题目">
+                        <span class="hidden-mobile">笔试面试算法题目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-    
-        <hr class="fhr">
-        <div id="vcomments"></div>
-    
-</div>
-    <div class="footer" id="footer">
-    <p><h4>版权所有 © 2020 | 作者: qianxunslimg | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
-        <span class="post-meta-divider">|</span>
-        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
-    
-    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
-        <input type="checkbox" name="switch" id="update_style">
-        <span class="el-switch-style"></span>
-    </label>
-
-    <!--         <script type="text/javascript">
-    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-    </script> -->
-</p>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="">
-<input type="hidden" id="valine_appKey" value="">
-
-<script src="/libs/jquery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+  </aside>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
 
-<script src="/js/js.js"></script>
+    </div>
+  </div>
+</div>
 
-<style type="text/css">
-.v * {
-color: #698fca;
-}
-.v .vlist .vcard .vhead .vsys {
-color: #3a3e4a;
-}
-.v .vlist .vcard .vh .vmeta .vat {
-color: #638fd5;
-}
-.v .vlist .vcard .vhead .vnick {
-color: #6ba1ff;
-}
-.v a {
-color: #8696b1;
-}
-.v .vlist .vcard .vhead .vnick:hover {
-color: #669bfc;
-}
-</style>
-    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
