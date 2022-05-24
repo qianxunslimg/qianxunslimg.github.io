@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="滑动窗口模板框架 12345678910111213141516171819202122232425262728293031&#x2F;* 滑动窗口算法框架 *&#x2F;void slidingWindow(string s, string t) {    unordered_map&lt;char, int&gt; need, window;    for (char c : t) need[c]++;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滑动窗口">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/03/15/hua-dong-chuang-kou/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="滑动窗口模板框架 12345678910111213141516171819202122232425262728293031&#x2F;* 滑动窗口算法框架 *&#x2F;void slidingWindow(string s, string t) {    unordered_map&lt;char, int&gt; need, window;    for (char c : t) need[c]++;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
+<meta property="article:modified_time" content="2022-04-25T16:38:09.486Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://qianxunslimg.github.io/2022/03/15/hua-dong-chuang-kou/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>滑动窗口 | qianxunslimgのblog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qianxunslimgのblog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">TOLLM</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fas fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-友链">
+
+    <a href="/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fas fa-heart fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2022/03/15/hua-dong-chuang-kou/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qianxunslimg">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qianxunslimgのblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          滑动窗口
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-15 19:49:49" itemprop="dateCreated datePublished" datetime="2022-03-15T19:49:49+08:00">2022-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-26 00:38:09" itemprop="dateModified" datetime="2022-04-26T00:38:09+08:00">2022-04-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="滑动窗口模板"><a href="#滑动窗口模板" class="headerlink" title="滑动窗口模板"></a>滑动窗口模板</h2><p>框架</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 滑动窗口算法框架 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">slidingWindow</span><span class="params">(string s, string t)</span> </span>{</span><br><span class="line">    unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : t) need[c]++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> valid = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">while</span> (right &lt; s.<span class="built_in">size</span>()) {</span><br><span class="line">        <span class="comment">// c 是将移入窗口的字符</span></span><br><span class="line">        <span class="keyword">char</span> c = s[right];</span><br><span class="line">        <span class="comment">// 右移窗口</span></span><br><span class="line">        right++;</span><br><span class="line">        <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*** debug 输出的位置 ***/</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"window: [%d, %d)\n"</span>, left, right);</span><br><span class="line">        <span class="comment">/********************/</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 判断左侧窗口是否要收缩</span></span><br><span class="line">        <span class="keyword">while</span> (window needs shrink) {</span><br><span class="line">            <span class="comment">// d 是将移出窗口的字符</span></span><br><span class="line">            <span class="keyword">char</span> d = s[left];</span><br><span class="line">            <span class="comment">// 左移窗口</span></span><br><span class="line">            left++;</span><br><span class="line">            <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">            ...</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><h3 id="76-最小覆盖子串-困难-滑滑滑"><a href="#76-最小覆盖子串-困难-滑滑滑" class="headerlink" title="76. 最小覆盖子串 困难 滑滑滑"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-window-substring/">76. 最小覆盖子串</a> 困难 滑滑滑</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">string <span class="title">minWindow</span><span class="params">(string s, string t)</span> </span>{</span><br><span class="line">    unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> c : t)</span><br><span class="line">      need[c]++;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> valid = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//记录最小覆盖字串的其实索引和长度</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, len = INT_MAX;</span><br><span class="line">    <span class="keyword">while</span> (right &lt; s.<span class="built_in">size</span>()) {</span><br><span class="line">      <span class="comment">// c是移入窗口的字符</span></span><br><span class="line">      <span class="keyword">char</span> c = s[right];</span><br><span class="line">      right++;</span><br><span class="line">      <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">      <span class="keyword">if</span> (need.<span class="built_in">count</span>(c)) {</span><br><span class="line">        window[c]++;</span><br><span class="line">        <span class="keyword">if</span> (window[c] == need[c])</span><br><span class="line">          valid++;</span><br><span class="line">      }</span><br><span class="line">      <span class="comment">//判断左窗口是否需要收缩</span></span><br><span class="line">      <span class="keyword">while</span> (valid == need.<span class="built_in">size</span>()) { <span class="comment">//窗口满足条件</span></span><br><span class="line">                                     <span class="comment">// 在这里更新最小覆盖子串</span></span><br><span class="line">        <span class="keyword">if</span> (right - left &lt; len) {</span><br><span class="line">          start = left;</span><br><span class="line">          len = right - left;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// d 是将移出窗口的字符</span></span><br><span class="line">        <span class="keyword">char</span> d = s[left];</span><br><span class="line">        <span class="comment">// 左移窗口</span></span><br><span class="line">        left++;</span><br><span class="line">        <span class="comment">// 进行窗口内数据的一系列更新</span></span><br><span class="line">        <span class="keyword">if</span> (need.<span class="built_in">count</span>(d)) {</span><br><span class="line">          <span class="keyword">if</span> (window[d] == need[d]) {</span><br><span class="line">            valid--;</span><br><span class="line">          }</span><br><span class="line">          window[d]--;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> len == INT_MAX ? <span class="string">""</span> : s.<span class="built_in">substr</span>(start, len);</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="567-字符串的排列-中等-滑滑滑"><a href="#567-字符串的排列-中等-滑滑滑" class="headerlink" title="567. 字符串的排列 中等 滑滑滑"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutation-in-string/">567. 字符串的排列</a> 中等 滑滑滑</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkInclusion</span><span class="params">(string t, string s)</span> </span>{</span><br><span class="line">      unordered_map&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; window, need;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">char</span> c : t) need[c]++;</span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> valid = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(right &lt; s.<span class="built_in">size</span>()){</span><br><span class="line">        <span class="comment">//扩大 知道满足 window = need</span></span><br><span class="line">        <span class="keyword">char</span> c = s[right];</span><br><span class="line">        right++;</span><br><span class="line">        <span class="keyword">if</span>(need.<span class="built_in">count</span>(c)){</span><br><span class="line">          window[c]++;</span><br><span class="line">          <span class="keyword">if</span>(window[c] == need[c])</span><br><span class="line">            valid++;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//个数满足</span></span><br><span class="line">        <span class="keyword">while</span>(right-left&gt;=t.<span class="built_in">size</span>()){  <span class="comment">//缩减窗口到t的长度</span></span><br><span class="line">          <span class="keyword">if</span>(valid == need.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">          <span class="keyword">char</span> d = s[left];</span><br><span class="line">          left++;</span><br><span class="line">          <span class="keyword">if</span>(need.<span class="built_in">count</span>(d)){</span><br><span class="line">            <span class="keyword">if</span>(window[d] == need[d])</span><br><span class="line">              valid--;</span><br><span class="line">            window[d]--;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="438-找到字符串中所有字母异位词-中等-滑滑滑-接着滑"><a href="#438-找到字符串中所有字母异位词-中等-滑滑滑-接着滑" class="headerlink" title="438. 找到字符串中所有字母异位词 中等 滑滑滑 接着滑"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/">438. 找到字符串中所有字母异位词</a> 中等 滑滑滑 接着滑</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// class Solution {</span></span><br><span class="line"><span class="comment">// public:</span></span><br><span class="line"><span class="comment">//     map&lt;char, int&gt; checkAna;</span></span><br><span class="line"><span class="comment">//     map&lt;char, int&gt; checkAnb;</span></span><br><span class="line"><span class="comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span></span><br><span class="line"><span class="comment">//         vector&lt;int&gt; res;</span></span><br><span class="line"><span class="comment">//         int n = s.size(); </span></span><br><span class="line"><span class="comment">//         int nn = p.size();</span></span><br><span class="line"><span class="comment">//         if(isAnagrams("abc", "bca")){</span></span><br><span class="line"><span class="comment">//             cout&lt;&lt;"check"&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         for(int i = 0; i&lt;n-nn+1; i++){</span></span><br><span class="line"><span class="comment">//             cout&lt;&lt;s.substr(i, nn) &lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//             if(isAnagrams(s.substr(i, nn), p))</span></span><br><span class="line"><span class="comment">//                 res.push_back(i);</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         return res;</span></span><br><span class="line"><span class="comment">//     }</span></span><br><span class="line"><span class="comment">//     bool isAnagrams(string a, string b){</span></span><br><span class="line"><span class="comment">//         checkAna.clear();</span></span><br><span class="line"><span class="comment">//         checkAnb.clear();</span></span><br><span class="line"><span class="comment">//         for(int i = 0; i&lt;a.size(); i++){</span></span><br><span class="line"><span class="comment">//             checkAna[a[i]]++;</span></span><br><span class="line"><span class="comment">//             checkAnb[b[i]]++;</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         for(auto it = checkAna.begin(); it !=checkAna.end(); it++){</span></span><br><span class="line"><span class="comment">//             if(it-&gt;second != checkAnb[it-&gt;first])</span></span><br><span class="line"><span class="comment">//                 return 0;</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         return 1;</span></span><br><span class="line"><span class="comment">//     }</span></span><br><span class="line"><span class="comment">// };</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// class Solution {</span></span><br><span class="line"><span class="comment">// public:</span></span><br><span class="line"><span class="comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span></span><br><span class="line"><span class="comment">//         vector&lt;int&gt; res;</span></span><br><span class="line"><span class="comment">//         int n = s.size(); </span></span><br><span class="line"><span class="comment">//         int nn = p.size();</span></span><br><span class="line"><span class="comment">//         if(n&lt;nn) return vector&lt;int&gt;();</span></span><br><span class="line"><span class="comment">//         vector&lt;int&gt; ss(26);</span></span><br><span class="line"><span class="comment">//         vector&lt;int&gt; pp(26);</span></span><br><span class="line"><span class="comment">//         //初始化保证窗口初始移动</span></span><br><span class="line"><span class="comment">//         for(int i = 0; i&lt;nn; i++){</span></span><br><span class="line"><span class="comment">//             ss[s[i]-'a']++;</span></span><br><span class="line"><span class="comment">//             pp[p[i]-'a']++;</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         if(ss == pp) res.push_back(0);</span></span><br><span class="line"><span class="comment">//         for(int i = 0; i&lt;n-nn; i++){</span></span><br><span class="line"><span class="comment">//             ss[s[i]-'a']--;</span></span><br><span class="line"><span class="comment">//             ss[s[i+nn]-'a']++;</span></span><br><span class="line"><span class="comment">//             if(ss == pp) res.push_back(i+1);</span></span><br><span class="line"><span class="comment">//         }</span></span><br><span class="line"><span class="comment">//         return res;</span></span><br><span class="line"><span class="comment">//     }</span></span><br><span class="line"><span class="comment">// };</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">findAnagrams</span><span class="params">(string s, string p)</span> </span>{</span><br><span class="line">      vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">      unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">char</span> c : p) need[c]++;</span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, valid = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(right&lt;s.<span class="built_in">size</span>()){</span><br><span class="line">        <span class="keyword">char</span> c = s[right];</span><br><span class="line">        right++;</span><br><span class="line">        <span class="keyword">if</span>(need.<span class="built_in">count</span>(c)){</span><br><span class="line">          window[c]++;</span><br><span class="line">          <span class="keyword">if</span>(window[c] == need[c])</span><br><span class="line">            valid++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span>(right-left &gt;= p.<span class="built_in">size</span>()){</span><br><span class="line">          <span class="keyword">if</span>(valid == need.<span class="built_in">size</span>()) ans.<span class="built_in">push_back</span>(left);</span><br><span class="line">          <span class="keyword">char</span> d = s[left];</span><br><span class="line">          left++;</span><br><span class="line">          <span class="keyword">if</span>(need.<span class="built_in">count</span>(d)){</span><br><span class="line">            <span class="keyword">if</span>(need[d] == window[d])</span><br><span class="line">              valid--;</span><br><span class="line">            window[d]--;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">    unordered_map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; window;</span><br><span class="line">    <span class="keyword">while</span> (right &lt; s.<span class="built_in">size</span>()) {</span><br><span class="line">      <span class="keyword">char</span> c = s[right];</span><br><span class="line">      right++;</span><br><span class="line">      window[c]++;</span><br><span class="line">      <span class="keyword">while</span> (window[c] &gt; <span class="number">1</span>) { <span class="comment">//有重复就要从left++ 直到消除当前重复</span></span><br><span class="line">        <span class="keyword">char</span> d = s[left];</span><br><span class="line">        left++;</span><br><span class="line">        window[d]--;</span><br><span class="line">      }</span><br><span class="line">      ans = <span class="built_in">max</span>(ans, right - left);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"><span class="comment">// class Solution {</span></span><br><span class="line"><span class="comment">// public:</span></span><br><span class="line"><span class="comment">//   int lengthOfLongestSubstring(string s) {</span></span><br><span class="line"><span class="comment">//     if (s.size() == 0)</span></span><br><span class="line"><span class="comment">//       return 0;</span></span><br><span class="line"><span class="comment">//     unordered_set&lt;char&gt; lookup;</span></span><br><span class="line"><span class="comment">//     int maxStr = 0;</span></span><br><span class="line"><span class="comment">//     int left = 0;</span></span><br><span class="line"><span class="comment">//     for (int i = 0; i &lt; s.size(); i++) {</span></span><br><span class="line"><span class="comment">//       while (lookup.find(s[i]) != lookup.end()) {</span></span><br><span class="line"><span class="comment">//         lookup.erase(s[left]);</span></span><br><span class="line"><span class="comment">//         left++;</span></span><br><span class="line"><span class="comment">//       }</span></span><br><span class="line"><span class="comment">//       maxStr = max(maxStr, i - left + 1);</span></span><br><span class="line"><span class="comment">//       lookup.insert(s[i]);</span></span><br><span class="line"><span class="comment">//     }</span></span><br><span class="line"><span class="comment">//     return maxStr;</span></span><br><span class="line"><span class="comment">//   }</span></span><br><span class="line"><span class="comment">// };</span></span><br><span class="line">  <span class="comment">//int lengthOfLongestSubstring(string s) {</span></span><br><span class="line">  <span class="comment">//  if (s.size() == 0) {</span></span><br><span class="line">  <span class="comment">//    return 0;</span></span><br><span class="line">  <span class="comment">//  }</span></span><br><span class="line">  <span class="comment">//  vector&lt;string&gt; ss;</span></span><br><span class="line">  <span class="comment">//  for (int i = 0; i &lt; s.size(); i++) {</span></span><br><span class="line">  <span class="comment">//    unordered_map&lt;char, int&gt; temp_map;</span></span><br><span class="line">  <span class="comment">//    for (int j = i; j &lt; s.size(); j++) {</span></span><br><span class="line">  <span class="comment">//      ++temp_map[s[j]];</span></span><br><span class="line">  <span class="comment">//      if (temp_map[s[j]] &gt; 1) {</span></span><br><span class="line">  <span class="comment">//        string sss = s.substr(i, j - i);</span></span><br><span class="line">  <span class="comment">//        ss.push_back(sss);</span></span><br><span class="line">  <span class="comment">//        break;</span></span><br><span class="line">  <span class="comment">//      }</span></span><br><span class="line">  <span class="comment">//      if (j == s.size() - 1) {</span></span><br><span class="line">  <span class="comment">//        string sss = s.substr(i, s.size() - i);</span></span><br><span class="line">  <span class="comment">//        ss.push_back(sss);</span></span><br><span class="line">  <span class="comment">//      }</span></span><br><span class="line">  <span class="comment">//    }</span></span><br><span class="line">  <span class="comment">//  }</span></span><br><span class="line">  <span class="comment">//  if (ss.size() == 0) {</span></span><br><span class="line">  <span class="comment">//    return s.size();</span></span><br><span class="line">  <span class="comment">//  }</span></span><br><span class="line">  <span class="comment">//  sort(ss.begin(), ss.end(),</span></span><br><span class="line">  <span class="comment">//       [](string &amp;a, string &amp;b) { return a.size() &gt; b.size(); });</span></span><br><span class="line">  <span class="comment">//  return ss[0].size();</span></span><br><span class="line">  <span class="comment">//}</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2024-考试的最大困扰度"><a href="#2024-考试的最大困扰度" class="headerlink" title="2024. 考试的最大困扰度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/">2024. 考试的最大困扰度</a></h3><p>一位老师正在出一场由 <code>n</code> 道判断题构成的考试，每道题的答案为 true （用 <code>'T'</code> 表示）或者 false （用 <code>'F'</code> 表示）。老师想增加学生对自己做出答案的不确定性，方法是 <strong>最大化</strong> 有 <strong>连续相同</strong> 结果的题数。（也就是连续出现 true 或者连续出现 false）。</p>
+<p>给你一个字符串 <code>answerKey</code> ，其中 <code>answerKey[i]</code> 是第 <code>i</code> 个问题的正确结果。除此以外，还给你一个整数 <code>k</code> ，表示你能进行以下操作的最多次数：</p>
+<ul>
+<li>每次操作中，将问题的正确答案改为 <code>'T'</code> 或者 <code>'F'</code> （也就是将 <code>answerKey[i]</code> 改为 <code>'T'</code> 或者 <code>'F'</code> ）。</li>
+</ul>
+<p>请你返回在不超过 <code>k</code> 次操作的情况下，<strong>最大</strong> 连续 <code>'T'</code> 或者 <code>'F'</code> 的数目。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：answerKey = "TTFF", k = 2</span><br><span class="line">输出：4</span><br><span class="line">解释：我们可以将两个 'F' 都变为 'T' ，得到 answerKey = "TTTT" 。</span><br><span class="line">总共有四个连续的 'T' 。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：answerKey = "TFFT", k = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：我们可以将最前面的 'T' 换成 'F' ，得到 answerKey = "FFFT" 。</span><br><span class="line">或者，我们可以将第二个 'T' 换成 'F' ，得到 answerKey = "TFFF" 。</span><br><span class="line">两种情况下，都有三个连续的 'F' 。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>用框架 但需要使用额外的 On   90ms 10mb</li>
+<li>官方题解 有点类似分治的思想 以T和F都当作最大值基准算一遍 取结果最大值  30ms 10mb</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>框架  90ms 10mb</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//滑动窗口 框架</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxConsecutiveAnswers</span><span class="params">(string answerKey, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = answerKey.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; window;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right&lt;n){</span><br><span class="line">            <span class="keyword">char</span> c = answerKey[right];</span><br><span class="line">            right++;</span><br><span class="line">            window[c]++;</span><br><span class="line">            <span class="comment">//窗口缩小</span></span><br><span class="line">            <span class="keyword">while</span>(window[<span class="string">'F'</span>]&gt; k &amp;&amp; window[<span class="string">'T'</span>]&gt;k){</span><br><span class="line">                <span class="keyword">char</span> d = answerKey[left];</span><br><span class="line">                left++;</span><br><span class="line">                window[d]--;</span><br><span class="line">            }</span><br><span class="line">            ans = <span class="built_in">max</span>(window[<span class="string">'F'</span>]+window[<span class="string">'T'</span>], ans);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>官方 30ms 10mb</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//ch 假设的最大值字母</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxConsecutiveChar</span><span class="params">(string&amp; answerKey, <span class="keyword">int</span> k, <span class="keyword">char</span> ch)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = answerKey.<span class="built_in">length</span>();</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//sum 为另一种 杂质字母的数量</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>, sum = <span class="number">0</span>; right &lt; n; right++) {</span><br><span class="line">            sum += answerKey[right] != ch;</span><br><span class="line">            <span class="keyword">while</span> (sum &gt; k) {</span><br><span class="line">                <span class="comment">//不断left++ 减小另一个字母数量</span></span><br><span class="line">                sum -= answerKey[left++] != ch;</span><br><span class="line">            }</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, right - left + <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxConsecutiveAnswers</span><span class="params">(string answerKey, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(<span class="built_in">maxConsecutiveChar</span>(answerKey, k, <span class="string">'T'</span>),</span><br><span class="line">                   <span class="built_in">maxConsecutiveChar</span>(answerKey, k, <span class="string">'F'</span>));</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="1004-最大连续1的个数-III"><a href="#1004-最大连续1的个数-III" class="headerlink" title="1004. 最大连续1的个数 III"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-consecutive-ones-iii/">1004. 最大连续1的个数 III</a></h3><p>难度中等393</p>
+<p>给定一个二进制数组 <code>nums</code> 和一个整数 <code>k</code>，如果可以翻转最多 <code>k</code> 个 <code>0</code> ，则返回 <em>数组中连续 <code>1</code> 的最大个数</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,1,1,0,0,0,1,1,1,1,0], K = 2</span><br><span class="line">输出：6</span><br><span class="line">解释：[1,1,1,0,0,1,1,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 6。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], K = 3</span><br><span class="line">输出：10</span><br><span class="line">解释：[0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]</span><br><span class="line">粗体数字从 0 翻转到 1，最长的子数组长度为 10。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>思路</p>
+<p>滑动窗口是一个思想 重点在于窗口指针的移动 </p>
+<p>所以 哈希只是通用性比较强 在有的情况下是可以替换乃至省去的</p>
+<p>代码</p>
+<p>模板</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestOnes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; window;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right&lt;n){</span><br><span class="line">            <span class="keyword">int</span> c = nums[right];</span><br><span class="line">            window[c]++;</span><br><span class="line">            right++;</span><br><span class="line">            <span class="keyword">while</span>(window[<span class="number">0</span>]&gt;k){</span><br><span class="line">                <span class="keyword">int</span> d = nums[left];</span><br><span class="line">                left++;</span><br><span class="line">                window[d]--;</span><br><span class="line">            }</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, window[<span class="number">1</span>] + window[<span class="number">0</span>]);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>空间优化版本：只需要维护0的个数就可以了</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestOnes</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> K)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>, zeros = <span class="number">0</span>, left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> right = <span class="number">0</span>; right &lt; A.<span class="built_in">size</span>(); ++right) {</span><br><span class="line">            <span class="keyword">if</span> (A[right] == <span class="number">0</span>) ++zeros;</span><br><span class="line">            <span class="keyword">while</span> (zeros &gt; K) {</span><br><span class="line">                <span class="keyword">if</span> (A[left++] == <span class="number">0</span>) --zeros;</span><br><span class="line">            }</span><br><span class="line">            res = <span class="built_in">max</span>(res, right - left + <span class="number">1</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="424-替换后的最长重复字符"><a href="#424-替换后的最长重复字符" class="headerlink" title="424. 替换后的最长重复字符"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-repeating-character-replacement/">424. 替换后的最长重复字符</a></h3><p>难度中等576</p>
+<p>给你一个字符串 <code>s</code> 和一个整数 <code>k</code> 。你可以选择字符串中的任一字符，并将其更改为任何其他大写英文字符。该操作最多可执行 <code>k</code> 次。</p>
+<p>在执行上述操作后，返回包含相同字母的最长子字符串的长度。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "ABAB", k = 2</span><br><span class="line">输出：4</span><br><span class="line">解释：用两个'A'替换为两个'B',反之亦然。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：s = "AABABBA", k = 1</span><br><span class="line">输出：4</span><br><span class="line">解释：</span><br><span class="line">将中间的一个'A'替换为'B',字符串变为 "AABBBBA"。</span><br><span class="line">子串 "BBBB" 有最长重复字母, 答案为 4。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>思路</p>
+<p>滑动窗口融会贯通，比如这个题 就没想到怎么用map滑</p>
+<p>代码</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">characterReplacement</span><span class="params">(string s, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">num</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">length</span>();</span><br><span class="line">        <span class="keyword">int</span> maxn = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; n) {</span><br><span class="line">            num[s[right] - <span class="string">'A'</span>]++;</span><br><span class="line">            <span class="comment">//maxn维护窗口最多元素的个数 以进行非最多元素个数的统计判断</span></span><br><span class="line">            maxn = <span class="built_in">max</span>(maxn, num[s[right] - <span class="string">'A'</span>]);</span><br><span class="line">            <span class="keyword">if</span> (right - left + <span class="number">1</span> - maxn &gt; k) {</span><br><span class="line">                num[s[left] - <span class="string">'A'</span>]--;</span><br><span class="line">                left++;</span><br><span class="line">            }</span><br><span class="line">            right++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> right - left;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-008-和大于等于-target-的最短子数组"><a href="#剑指-Offer-II-008-和大于等于-target-的最短子数组" class="headerlink" title="剑指 Offer II 008. 和大于等于 target 的最短子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/2VG8Kg/">剑指 Offer II 008. 和大于等于 target 的最短子数组</a></h3><p>难度中等53</p>
+<p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong></p>
+<p>找出该数组中满足其和 <code>≥ target</code> 的长度最小的 <strong>连续子数组</strong> <code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度<strong>。</strong>如果不存在符合条件的子数组，返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 7, nums = [2,3,1,2,4,3]</span><br><span class="line">输出：2</span><br><span class="line">解释：子数组 [4,3] 是该条件下的长度最小的子数组。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 4, nums = [1,4,4]</span><br><span class="line">输出：1</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 11, nums = [1,1,1,1,1,1,1,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>滑动窗口 模板大概还是那个模板 两个while比较好理解</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minSubArrayLen</span><span class="params">(<span class="keyword">int</span> target, vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">        <span class="keyword">while</span>(right&lt;n){</span><br><span class="line">            sum += nums[right];</span><br><span class="line">            right++;</span><br><span class="line">            <span class="keyword">while</span>(sum&gt;=target) {</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, right - left);</span><br><span class="line">                sum -= nums[left];</span><br><span class="line">                left++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans == INT_MAX ? <span class="number">0</span> : ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-009-乘积小于-K-的子数组"><a href="#剑指-Offer-II-009-乘积小于-K-的子数组" class="headerlink" title="剑指 Offer II 009. 乘积小于 K 的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ZVAVXX/">剑指 Offer II 009. 乘积小于 K 的子数组</a></h3><p>难度中等63</p>
+<p>给定一个正整数数组 <code>nums</code>和整数 <code>k</code> ，请找出该数组内乘积小于 <code>k</code> 的连续的子数组的个数。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [10,5,2,6], k = 100</span><br><span class="line">输出: 8</span><br><span class="line">解释: 8 个乘积小于 100 的子数组分别为: [10], [5], [2], [6], [10,5], [5,2], [2,6], [5,2,6]。</span><br><span class="line">需要注意的是 [10,5,2] 并不是乘积小于100的子数组。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1,2,3], k = 0</span><br><span class="line">输出: 0</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li><p>这道题 正确解法 应该是滑动窗口</p>
+<blockquote>
+<p><code>重点 right - left + 1</code></p>
+<p>比如某次遍历符合题意的子数组为 ABCX，那么在该条件下符合条件的有X，CX，BCX，ABCX共四个（可以进行多个例子，发现个数符合right-left+1）</p>
+</blockquote>
+</li>
+<li><p>但是 做这道题的过程中 感觉这个 不跳步的回溯 挺有意思 外层循环backtrack </p>
+<p>其实 好像相当于两层for循环了 卧槽 我真是垃圾</p>
+<p><u><code>其实 也好像有点类似n叉树 有向图的遍历吧？</code></u><a href="https://qianxunslimg.github.io/2022/03/15/tu-lun/">图论 | qianxunslimgのblog</a></p>
+</li>
+</ol>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>正确的滑动窗口解法</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> multi = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(k &lt;= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right &lt; n){</span><br><span class="line">            multi*=nums[right];</span><br><span class="line">            <span class="keyword">while</span>(multi&gt;=k){</span><br><span class="line">                multi/=nums[left];</span><br><span class="line">                left++;</span><br><span class="line">            }</span><br><span class="line">            ans += (right - left + <span class="number">1</span>); <span class="comment">//注意 每次+的是窗口的长度</span></span><br><span class="line">            right++;  <span class="comment">//这个写在前面也是可以的 只是right - left 不加1</span></span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>回溯（假）</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> ans;</span><br><span class="line">    <span class="comment">//vector&lt;vector&lt;int&gt;&gt; all;</span></span><br><span class="line">    <span class="comment">//vector&lt;int&gt; path;</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">            <span class="built_in">backtrack</span>(nums, i, <span class="number">1</span>, k);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// cout&lt;&lt;all.size()&lt;&lt;endl;</span></span><br><span class="line">        <span class="comment">// for(int i = 0; i&lt;all.size(); i++){</span></span><br><span class="line">        <span class="comment">//     for(int j = 0; j&lt;all[i].size(); j++){</span></span><br><span class="line">        <span class="comment">//         cout&lt;&lt;all[i][j]&lt;&lt;" ";</span></span><br><span class="line">        <span class="comment">//     }</span></span><br><span class="line">        <span class="comment">//     cout&lt;&lt;endl;</span></span><br><span class="line">        <span class="comment">// }</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> startIndex, <span class="keyword">int</span> preK, <span class="keyword">int</span> k)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(startIndex&gt;=nums.<span class="built_in">size</span>() || preK&gt;=k) <span class="keyword">return</span>;</span><br><span class="line">        preK*=nums[startIndex];</span><br><span class="line">        <span class="comment">//path.push_back(nums[startIndex]);</span></span><br><span class="line">        <span class="keyword">if</span>(preK&lt;k){</span><br><span class="line">          ans++;  </span><br><span class="line">          <span class="comment">//all.push_back(path);</span></span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">backtrack</span>(nums, startIndex+<span class="number">1</span>, preK, k);</span><br><span class="line">        preK /= nums[startIndex];</span><br><span class="line">        <span class="comment">//path.pop_back();</span></span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-057-值和下标之差都在给定的范围内"><a href="#剑指-Offer-II-057-值和下标之差都在给定的范围内" class="headerlink" title="剑指 Offer II 057. 值和下标之差都在给定的范围内"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/7WqeDu/">剑指 Offer II 057. 值和下标之差都在给定的范围内</a></h3><p>难度中等35</p>
+<p>给你一个整数数组 <code>nums</code> 和两个整数 <code>k</code> 和 <code>t</code> 。请你判断是否存在 <strong>两个不同下标</strong> <code>i</code> 和 <code>j</code>，使得 <code>abs(nums[i] - nums[j]) &lt;= t</code> ，同时又满足 <code>abs(i - j) &lt;= k</code> 。</p>
+<p>如果存在则返回 <code>true</code>，不存在返回 <code>false</code>。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,1], k = 3, t = 0</span><br><span class="line">输出：true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,0,1,1], k = 1, t = 2</span><br><span class="line">输出：true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,5,9,1,5,9], k = 2, t = 3</span><br><span class="line">输出：false</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p>滑动窗口 用set进行排序 查找满足条件的最小元素</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>{</span><br><span class="line">      set&lt;<span class="keyword">int</span>&gt; window;</span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(right &lt; nums.<span class="built_in">size</span>()){</span><br><span class="line">        <span class="keyword">int</span> num = nums[right];</span><br><span class="line">        right++;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//查找set内落在 [num -t, num + t]的元素 也就是&gt;=num-t的第一个元素</span></span><br><span class="line">        <span class="keyword">auto</span> iter = window.<span class="built_in">lower_bound</span>(<span class="built_in">max</span>(num, INT_MIN + t) - t);</span><br><span class="line">        <span class="keyword">if</span> (iter != window.<span class="built_in">end</span>() &amp;&amp; *iter &lt;= <span class="built_in">min</span>(num, INT_MAX - t) + t) </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        window.<span class="built_in">insert</span>(num);</span><br><span class="line">        <span class="keyword">if</span>(window.<span class="built_in">size</span>() &gt; k){</span><br><span class="line">          window.<span class="built_in">erase</span>(nums[left]);</span><br><span class="line">          left++;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p><code>桶排序</code>我们可以把输入的元素按桶的个数，假设位t的间隔进行划分。<br>划分成：<br>第一个桶，存放[0…t]的数,<br>第二个桶，存放[t+1…2t],<br>…,<br>最后一个桶[(n-1)t…nt]。</p>
+<p>举个例子:<br>若输入t = 3,nums = [1,5,9,1,5,8]，我们按照上面的思路，进行划分，因为0 &lt; nums[0] = 1 &lt; t，于是我们放入第一个桶，t + 1 = 4 &lt; nums[1] = 5 &lt; 2t = 6，于是放入第二个桶，其它同理，最后我们得到分布了数据的三个桶</p>
+<p>因为我们是按大小为t来划分每一个桶的，所以如果两个数据落在了一个桶，我们就能够断言其绝对值之差是在t以内。</p>
+<p>有一个问题，如果元素分布在两个桶中，那么它们的绝对值之差一定大于t吗？<br>显然，不是的。</p>
+<p>若其中一个为上边界，另一个为下边界。如|7 - 6| = 1 &lt;t∣7−6∣=1&lt;t，可见分布在相邻桶的元素也可能会存在绝对值之差小于t的情况。</p>
+<p>因此，综合上面的解释我们可以确定两种情况下：</p>
+<p>任意两个元素落在了一个桶<br>分布在相邻桶的元素绝对值之差有可能小于t<br>于是乎(借助官方题解的代码)</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种情况，分布在同一个桶</span></span><br><span class="line"><span class="keyword">if</span> (mp.<span class="built_in">count</span>(id)) {</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 第二种情况</span></span><br><span class="line"><span class="comment">// 判断相邻桶是否已经有元素</span></span><br><span class="line"><span class="comment">// 若有则判断是否绝对值之差在t内</span></span><br><span class="line"><span class="keyword">if</span> (mp.<span class="built_in">count</span>(id - <span class="number">1</span>) &amp;&amp; <span class="built_in">abs</span>(x - mp[id - <span class="number">1</span>]) &lt;= t) {</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">if</span> (mp.<span class="built_in">count</span>(id + <span class="number">1</span>) &amp;&amp; <span class="built_in">abs</span>(x - mp[id + <span class="number">1</span>]) &lt;= t) {</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag"># 算法总结</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/15/hui-su/" rel="prev" title="回溯">
+      <i class="fa fa-chevron-left"></i> 回溯
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/15/wei-yun-suan/" rel="next" title="位运算">
+      位运算 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">滑动窗口模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">相关题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2-%E5%9B%B0%E9%9A%BE-%E6%BB%91%E6%BB%91%E6%BB%91"><span class="nav-number">2.1.</span> <span class="nav-text">76. 最小覆盖子串 困难 滑滑滑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#567-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97-%E4%B8%AD%E7%AD%89-%E6%BB%91%E6%BB%91%E6%BB%91"><span class="nav-number">2.2.</span> <span class="nav-text">567. 字符串的排列 中等 滑滑滑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#438-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D-%E4%B8%AD%E7%AD%89-%E6%BB%91%E6%BB%91%E6%BB%91-%E6%8E%A5%E7%9D%80%E6%BB%91"><span class="nav-number">2.3.</span> <span class="nav-text">438. 找到字符串中所有字母异位词 中等 滑滑滑 接着滑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="nav-number">2.4.</span> <span class="nav-text">3. 无重复字符的最长子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2024-%E8%80%83%E8%AF%95%E7%9A%84%E6%9C%80%E5%A4%A7%E5%9B%B0%E6%89%B0%E5%BA%A6"><span class="nav-number">2.5.</span> <span class="nav-text">2024. 考试的最大困扰度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">2.5.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1004-%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD1%E7%9A%84%E4%B8%AA%E6%95%B0-III"><span class="nav-number">2.6.</span> <span class="nav-text">1004. 最大连续1的个数 III</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#424-%E6%9B%BF%E6%8D%A2%E5%90%8E%E7%9A%84%E6%9C%80%E9%95%BF%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6"><span class="nav-number">2.7.</span> <span class="nav-text">424. 替换后的最长重复字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-008-%E5%92%8C%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E-target-%E7%9A%84%E6%9C%80%E7%9F%AD%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">2.8.</span> <span class="nav-text">剑指 Offer II 008. 和大于等于 target 的最短子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.8.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="nav-number">2.8.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-009-%E4%B9%98%E7%A7%AF%E5%B0%8F%E4%BA%8E-K-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">2.9.</span> <span class="nav-text">剑指 Offer II 009. 乘积小于 K 的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">2.9.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="nav-number">2.9.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-057-%E5%80%BC%E5%92%8C%E4%B8%8B%E6%A0%87%E4%B9%8B%E5%B7%AE%E9%83%BD%E5%9C%A8%E7%BB%99%E5%AE%9A%E7%9A%84%E8%8C%83%E5%9B%B4%E5%86%85"><span class="nav-number">2.10.</span> <span class="nav-text">剑指 Offer II 057. 值和下标之差都在给定的范围内</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%951"><span class="nav-number">2.10.1.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%952"><span class="nav-number">2.10.2.</span> <span class="nav-text">方法2</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">qianxunslimg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianxunslimg" title="Github → https:&#x2F;&#x2F;github.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/qianxunslimg" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-brands fa-github-alt fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2511167079llm@gmail.com" title="Email → mailto:2511167079llm@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/qianxunslimg" title="CnBlog → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-solid fa-poo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianxunslimg</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

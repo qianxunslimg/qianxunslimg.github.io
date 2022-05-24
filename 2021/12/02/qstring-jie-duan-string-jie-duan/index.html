@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：123456789std::string pur &#x3D; purposelist[i].toStdString();&#x2F;&#x2F;都转换为string&#x2F;&#x2F; qDebug()&lt;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QString截断（string截断）">
+<meta property="og:url" content="https://qianxunslimg.github.io/2021/12/02/qstring-jie-duan-string-jie-duan/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：123456789std::string pur &#x3D; purposelist[i].toStdString();&#x2F;&#x2F;都转换为string&#x2F;&#x2F; qDebug()&lt;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-02T11:16:42.000Z">
+<meta property="article:modified_time" content="2022-04-22T16:20:48.759Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="开发随笔">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://qianxunslimg.github.io/2021/12/02/qstring-jie-duan-string-jie-duan/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>QString截断（string截断） | qianxunslimgのblog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qianxunslimgのblog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">TOLLM</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fas fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-友链">
+
+    <a href="/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fas fa-heart fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2021/12/02/qstring-jie-duan-string-jie-duan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qianxunslimg">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qianxunslimgのblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QString截断（string截断）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-02 19:16:42" itemprop="dateCreated datePublished" datetime="2021-12-02T19:16:42+08:00">2021-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-23 00:20:48" itemprop="dateModified" datetime="2022-04-23T00:20:48+08:00">2022-04-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法："><a href="#最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：" class="headerlink" title="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法："></a>最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：</h4><h3 id="方法一：由于对QString没有深入了解，所以采用的QString–-gt-string–-gt-QString，代码如下："><a href="#方法一：由于对QString没有深入了解，所以采用的QString–-gt-string–-gt-QString，代码如下：" class="headerlink" title="方法一：由于对QString没有深入了解，所以采用的QString–>string–>QString，代码如下："></a>方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">std::string pur = purposelist[i].<span class="built_in">toStdString</span>();<span class="comment">//都转换为string</span></span><br><span class="line"><span class="comment">// qDebug()&lt;&lt;pur&lt;&lt;endl;</span></span><br><span class="line">std::string sdir = dstpath.<span class="built_in">toStdString</span>();</span><br><span class="line"><span class="keyword">int</span> pos = pur.<span class="built_in">find_last_of</span>(<span class="string">'/'</span>); <span class="comment">//找到最后/</span></span><br><span class="line"><span class="function">std::string <span class="title">s</span><span class="params">(pur.substr(pos + <span class="number">1</span>))</span></span>;</span><br><span class="line">sdir.<span class="built_in">append</span>(<span class="string">"/"</span>);</span><br><span class="line">sdir.<span class="built_in">append</span>(s);</span><br><span class="line">QString qsdir = <span class="built_in">QString</span>(QString::<span class="built_in">fromLocal8Bit</span>(sdir.<span class="built_in">c_str</span>()));</span><br><span class="line"><span class="built_in">qDebug</span>() &lt;&lt; qsdir &lt;&lt; endl;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="用这种方法出现的问题是，string中的中文字符转到QString会乱码…"><a href="#用这种方法出现的问题是，string中的中文字符转到QString会乱码…" class="headerlink" title="用这种方法出现的问题是，string中的中文字符转到QString会乱码…"></a>用这种方法出现的问题是，string中的中文字符转到QString会乱码…</h3><p>&amp;nbsp;</p>
+<h3 id="方法二：QString直接进行截断拼接"><a href="#方法二：QString直接进行截断拼接" class="headerlink" title="方法二：QString直接进行截断拼接"></a>方法二：QString直接进行截断拼接</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//QString截断学习</span></span><br><span class="line"><span class="function">QString <span class="title">src</span><span class="params">(<span class="string">"E:/qq接收文件/MobileFile/thumb/碎裂收据.jpg"</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"original path: "</span>&lt;&lt;src&lt;&lt;endl;</span><br><span class="line"><span class="function">QString <span class="title">dir</span><span class="params">(<span class="string">"E:/目标文件夹"</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"the last string '/' pos is "</span>&lt;&lt;src.<span class="built_in">lastIndexOf</span>(<span class="string">'/'</span>)&lt;&lt;endl;</span><br><span class="line">QString filename = src.<span class="built_in">right</span>(src.<span class="built_in">size</span>() - (src.<span class="built_in">lastIndexOf</span>(<span class="string">"/"</span>)+<span class="number">1</span>));</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"the true filename is "</span>&lt;&lt;filename&lt;&lt;endl;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复盘，刚接触qt的自己好蠢，事实上-qstring可能是c-下最好用的string了"><a href="#复盘，刚接触qt的自己好蠢，事实上-qstring可能是c-下最好用的string了" class="headerlink" title="复盘，刚接触qt的自己好蠢，事实上 qstring可能是c++下最好用的string了"></a>复盘，刚接触qt的自己好蠢，事实上 qstring可能是c++下最好用的string了</h3><p>QString存储字符串采用的是Unicode码,每一个字符是一个十六位的QChar, 而不是八位的char, 所以处理中文字符没有问题, 而且一个汉字是一个字符。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p><strong>1、append()和prepend()</strong></p>
+<p>append()在字符串后面添加字符串,prepend()在字符串前面添加字符串。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QString str1="卖", str2 = "拐";</span><br><span class="line">str1 = str1.append(str2);	//"卖拐"</span><br><span class="line">str2 = str2.prepend(str1);	//"拐卖"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、toUpper()和toLower()</strong></p>
+<p>toUpper()是将字符串中的字母全部转化为大写字母,toLower()是将所有的字母全部转化为小写字母。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = "Hello World", str2;</span><br><span class="line">str2 = str1.toUpper();	//"HELLO WORLD"</span><br><span class="line">str2 = str1.toLower();	//"hello world"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、cont()、size()和length()</strong></p>
+<p>count()、size()和length()这三个函数都是返回字符串的个数的,这3个函数是相同的。注意：一个汉字算是一个字符</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QString str = "NI 好";</span><br><span class="line">N = str.count();	//N == 3</span><br><span class="line">N = str.size();		//N == 3</span><br><span class="line">N = str.length();	//N == 3</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>4、trimmed()和simplified()</strong></p>
+<p>trimmed()是去掉字符串首尾的空格,simplified()不仅去掉首尾的空格,中间连续的空格也能用一个空格替换。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = " Are    you  ok?   ";</span><br><span class="line">str2 = str1.trimmed();		//"Are    you  ok?"</span><br><span class="line">str2 = str1.simplified()	//"Are you ok?"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>5、indexOf()和lastIndexOf()</strong></p>
+<p>查找字符串的位置</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = "G:\Qt5Book\Qt5.9Study\qw.cpp";</span><br><span class="line">N = str1.indexOf("5.9");			//N == 13</span><br><span class="line">N = str1.lastIndexOf("\\");			//N == 21</span><br><span class="line">注意："\"是转义字符,如果要查找"\",需要输入"\\"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>6、isNull()和isEmpty()</strong></p>
+<p>这两个函数都用来判断字符串是否为空,但是稍微有差别。如果一个空字符串,只有”\0”,isNull()返回false,而isEmpty()返回true;只有未赋值的字符串,isNull()才返回true。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QString str1, str2="";</span><br><span class="line">N = str1.isNull();	//true	未赋值字符串变量</span><br><span class="line">N = str2.isNull();	//false	只有"\0"的字符串,也不是Null</span><br><span class="line">N = str1.isEmpty(); //true</span><br><span class="line">N = str2.isEmpty(); //true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>7、contains()</strong></p>
+<p>判断字符串内是否包含某个字符,可指定是否区分大小写。</p>
+<p>如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>;</span><br><span class="line">N = str1.<span class="built_in">contains</span>(<span class="string">".cpp"</span>, Qt::CaseInsensitive);		<span class="comment">//true 不区分大小写	</span></span><br><span class="line">N = str1.<span class="built_in">contains</span>(<span class="string">".CPP"</span>, Qt::CaseSensitive);		<span class="comment">//false 区分大小写</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>8、endsWith()和startsWith()</strong></p>
+<p>startsWith()判断是否以某个字符串开头,endsWith()表示是否以某个字符串结尾。</p>
+<p>如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>;</span><br><span class="line">N = str1.<span class="built_in">endsWith</span>(<span class="string">".cpp"</span>, Qt::CaseInsensitive);		<span class="comment">//true 不区分大小写	</span></span><br><span class="line">N = str1.<span class="built_in">endsWith</span>(<span class="string">".CPP"</span>, Qt::CaseSensitive);		<span class="comment">//false 区分大小写</span></span><br><span class="line">N = str.<span class="built_in">startsWith</span>(<span class="string">"g:"</span>);							<span class="comment">//true 缺省为不区分大小写</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>9、left()和right()</strong></p>
+<p>left()表示取一个字符串左边多少个字符,right()表示取一个字符串右边多少个字符。注意：一个汉字被当作一个字符;</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QString str2, str1=<span class="string">"学生姓名, 男, 1984-3-4, 汉族, 山东"</span>;</span><br><span class="line">N = str1.<span class="built_in">indexOf</span>(<span class="string">","</span>);					<span class="comment">//N == 4,第一个","出现的位置</span></span><br><span class="line">str2 = str1.<span class="built_in">left</span>(N);					<span class="comment">//str2 == "学生姓名"</span></span><br><span class="line">N = str1.<span class="built_in">lastIndexOf</span>(<span class="string">","</span>);				<span class="comment">//N ==18,最后一个逗号出现的位置</span></span><br><span class="line">str2 = str1.<span class="built_in">right</span>(str1.<span class="built_in">size</span>()-N<span class="number">-1</span>);		<span class="comment">//str2 = "山东",提取最后一个逗号之间的字符串</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>10、section()</strong></p>
+<p>从字符串中提取以se为分隔符,从start到end的字符串。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>, str2;</span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">0</span>,<span class="number">0</span>);	<span class="comment">//str2 == "学生姓名"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">1</span>,<span class="number">1</span>);	<span class="comment">//str2 == "男"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">0</span>,<span class="number">1</span>);	<span class="comment">//str2 == "学生姓名,男"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">4</span>,<span class="number">4</span>);	<span class="comment">//str2 == "山东"</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/" rel="tag"># 开发随笔</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/" rel="prev" title="简单的滑动窗口 643. 子数组最大平均数 I">
+      <i class="fa fa-chevron-left"></i> 简单的滑动窗口 643. 子数组最大平均数 I
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/02/qt-da-bao-cheng-xu/" rel="next" title="QT打包程序">
+      QT打包程序 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E5%86%99%E4%B8%80%E4%B8%AAQt%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%94%A8%E5%88%B0%E4%BA%86QString%E7%9A%84%E6%88%AA%E6%96%AD%EF%BC%8C%E5%9C%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E4%B8%AD%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%8D%E5%AD%97%EF%BC%8C%E5%86%8D%E6%8B%BC%E6%8E%A5%E5%88%B0%E6%96%B0%E8%B7%AF%E5%BE%84%E4%B8%AD%EF%BC%8C%E7%94%A8%E5%88%B0%E4%BA%86%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%94%B1%E4%BA%8E%E5%AF%B9QString%E6%B2%A1%E6%9C%89%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3%EF%BC%8C%E6%89%80%E4%BB%A5%E9%87%87%E7%94%A8%E7%9A%84QString%E2%80%93-gt-string%E2%80%93-gt-QString%EF%BC%8C%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E8%BF%99%E7%A7%8D%E6%96%B9%E6%B3%95%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%EF%BC%8Cstring%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E8%BD%AC%E5%88%B0QString%E4%BC%9A%E4%B9%B1%E7%A0%81%E2%80%A6"><span class="nav-number"></span> <span class="nav-text">用这种方法出现的问题是，string中的中文字符转到QString会乱码…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9AQString%E7%9B%B4%E6%8E%A5%E8%BF%9B%E8%A1%8C%E6%88%AA%E6%96%AD%E6%8B%BC%E6%8E%A5"><span class="nav-number"></span> <span class="nav-text">方法二：QString直接进行截断拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E7%9B%98%EF%BC%8C%E5%88%9A%E6%8E%A5%E8%A7%A6qt%E7%9A%84%E8%87%AA%E5%B7%B1%E5%A5%BD%E8%A0%A2%EF%BC%8C%E4%BA%8B%E5%AE%9E%E4%B8%8A-qstring%E5%8F%AF%E8%83%BD%E6%98%AFc-%E4%B8%8B%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84string%E4%BA%86"><span class="nav-number"></span> <span class="nav-text">复盘，刚接触qt的自己好蠢，事实上 qstring可能是c++下最好用的string了</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">qianxunslimg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianxunslimg" title="Github → https:&#x2F;&#x2F;github.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/qianxunslimg" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-brands fa-github-alt fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2511167079llm@gmail.com" title="Email → mailto:2511167079llm@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/qianxunslimg" title="CnBlog → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-solid fa-poo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianxunslimg</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

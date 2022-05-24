@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bfs">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/18/bfs/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg">
+<meta property="article:published_time" content="2022-04-18T07:53:49.000Z">
+<meta property="article:modified_time" content="2022-05-24T08:29:33.591Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
+
+<link rel="canonical" href="https://qianxunslimg.github.io/2022/04/18/bfs/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>bfs | qianxunslimgのblog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">qianxunslimgのblog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">TOLLM</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-时间轴">
+
+    <a href="/archives/" rel="section"><i class="fas fa-archive fa-fw"></i>时间轴</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-友链">
+
+    <a href="/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fas fa-heart fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qianxunslimg.github.io/2022/04/18/bfs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="qianxunslimg">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qianxunslimgのblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bfs
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-18 15:53:49" itemprop="dateCreated datePublished" datetime="2022-04-18T15:53:49+08:00">2022-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-24 16:29:33" itemprop="dateModified" datetime="2022-05-24T16:29:33+08:00">2022-05-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs</p>
+<h4 id="dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似"><a href="#dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似" class="headerlink" title="dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似"></a>dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似</h4><h4 id="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"><a href="#bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤" class="headerlink" title="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"></a>bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤</h4><p>二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别</p>
+<p>二维矩阵 或者说 图 的bfs从岛屿问题感受下</p>
+<h3 id="引入-200-岛屿数量"><a href="#引入-200-岛屿数量" class="headerlink" title="引入 200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">引入 200. 岛屿数量</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=200">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/#">思路</a></p>
+<p>难度中等1672</p>
+<p>给你一个由 <code>'1'</code>（陆地）和 <code>'0'</code>（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [</span><br><span class="line">  ["1","1","1","1","0"],</span><br><span class="line">  ["1","1","0","1","0"],</span><br><span class="line">  ["1","1","0","0","0"],</span><br><span class="line">  ["0","0","0","0","0"]</span><br><span class="line">]</span><br><span class="line">输出：1</span><br></pre></td></tr></tbody></table></figure>
+
+<p>dfs很熟悉了 类似的岛屿问题之前我都是用dfs做的 直接给出代码</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> land_num = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;grid.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){</span><br><span class="line">            <span class="built_in">dfs</span>(grid, i, j);</span><br><span class="line">            land_num++;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> land_num;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=grid.<span class="built_in">size</span>()||j&lt;<span class="number">0</span>||j&gt;=grid[<span class="number">0</span>].<span class="built_in">size</span>()||grid[i][j]!=<span class="string">'1'</span>) <span class="keyword">return</span>;</span><br><span class="line">      grid[i][j] = <span class="string">'2'</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i+<span class="number">1</span>,j);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i,j+<span class="number">1</span>);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i<span class="number">-1</span>,j);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i,j<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="下面看一下bfs的写法"><a href="#下面看一下bfs的写法" class="headerlink" title="下面看一下bfs的写法"></a>下面看一下bfs的写法</h4><ul>
+<li>主循环和思路一类似，不同点是在于搜索某岛屿边界的方法不同。</li>
+<li>bfs 方法：<ul>
+<li>借用一个队列 queue，判断队列首部节点 (i, j) 是否未越界且为 1：<ul>
+<li>若是则置零（删除岛屿节点），并将此节点上下左右节点 (i+1,j),(i-1,j),(i,j+1),(i,j-1) 加入队列；</li>
+<li>若不是则跳过此节点；</li>
+</ul>
+</li>
+<li>循环 pop 队列首节点，直到整个队列为空，此时已经遍历完此岛屿</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> land_num = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;grid.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){</span><br><span class="line">            <span class="built_in">bfs</span>(grid, i, j);</span><br><span class="line">            land_num++;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> land_num;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j));</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; node = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        i = node.first;</span><br><span class="line">        j = node.second;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=grid.<span class="built_in">size</span>()||j&lt;<span class="number">0</span>||j&gt;=grid[<span class="number">0</span>].<span class="built_in">size</span>()||grid[i][j]!=<span class="string">'1'</span>)</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        grid[i][j] = <span class="string">'0'</span>;</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i + <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i - <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j + <span class="number">1</span>));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j - <span class="number">1</span>));</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历"><a href="#从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历" class="headerlink" title="从上题可以看出， bfs是接住了一个队列 和 while循环 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历"></a>从上题可以看出， bfs是接住了一个<u>队列 和 while循环</u> 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历</h4><h4 id="最短路径属于dp问题-可以考虑使用bfs"><a href="#最短路径属于dp问题-可以考虑使用bfs" class="headerlink" title="最短路径属于dp问题 可以考虑使用bfs"></a>最短路径属于dp问题 可以考虑使用bfs</h4><h3 id="对称飞行器"><a href="#对称飞行器" class="headerlink" title="对称飞行器"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">对称飞行器</a></h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png" alt="image-20220418163802022"></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion</a><br>来源：牛客网</p>
+<h5 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一行两个空格分隔的正整数 n,m\mathit n,mn,m ，分别代表迷宫的行数和列数。</span><br><span class="line">接下来 n\mathit nn 行 每行一个长度为 m\mathit mm 的字符串来描述这个迷宫。</span><br><span class="line">其中</span><br><span class="line">. 代表通路。</span><br><span class="line"> 代表障碍。</span><br><span class="line">S 代表起点。</span><br><span class="line">E 代表终点。</span><br><span class="line">保证只有一个 S 和 一个 E 。</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">仅一行一个整数表示从起点最小花费多少时间单位到达终点。</span><br><span class="line">如果无法到达终点，输出 -1</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 4</span><br><span class="line">#S..</span><br><span class="line">E#..</span><br><span class="line">#...</span><br><span class="line">....</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一种可行的路径是用对称飞行器到达 (4,3) 再向上走一步，再向右走一步，然后使用一次对称飞行器到达终点。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>最短路径属于dp问题 优先考虑使用bfs dfs复杂会更高 代码也复杂</li>
+<li></li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NodeAli4</span> {</span></span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  <span class="keyword">int</span> y;</span><br><span class="line">  <span class="keyword">int</span> lastFly;</span><br><span class="line">  <span class="keyword">int</span> nowStep;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dirX[<span class="number">4</span>] = {<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>};</span><br><span class="line"><span class="keyword">int</span> dirY[<span class="number">4</span>] = {<span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">checkAli4</span><span class="params">(NodeAli4 &amp;node, <span class="keyword">int</span> n, <span class="keyword">int</span> m, vector&lt;string&gt; &amp;all,</span></span></span><br><span class="line"><span class="params"><span class="function">               vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;visited)</span> </span>{</span><br><span class="line">  <span class="keyword">return</span> node.x &gt;= <span class="number">0</span> &amp;&amp; node.x &lt; n &amp;&amp; node.y &gt;= <span class="number">0</span> &amp;&amp; node.y &lt; m &amp;&amp;</span><br><span class="line">         visited[node.x][node.y] == <span class="number">0</span> &amp;&amp; all[node.x][node.y] != <span class="string">'#'</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfsAli4</span><span class="params">(NodeAli4 &amp;node, vector&lt;string&gt; &amp;all, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;visited,</span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>{</span><br><span class="line">  queue&lt;NodeAli4&gt; que;</span><br><span class="line">  que.<span class="built_in">push</span>(node);</span><br><span class="line">  <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">    NodeAli4 tempNode = que.<span class="built_in">front</span>();</span><br><span class="line">    que.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">int</span> x = tempNode.x;</span><br><span class="line">    <span class="keyword">int</span> y = tempNode.y;</span><br><span class="line">    <span class="keyword">if</span> (all[x][y] == <span class="string">'E'</span>)</span><br><span class="line">      <span class="keyword">return</span> tempNode.nowStep;</span><br><span class="line">    <span class="comment">//相当于五叉树的层序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) {</span><br><span class="line">      NodeAli4 nextNode;</span><br><span class="line">      <span class="keyword">if</span> (i == <span class="number">4</span>) {</span><br><span class="line">        <span class="keyword">if</span> (tempNode.lastFly &gt; <span class="number">0</span>) {</span><br><span class="line">          nextNode.x = n - <span class="number">1</span> - x;</span><br><span class="line">          nextNode.y = m - <span class="number">1</span> - y;</span><br><span class="line">          nextNode.lastFly = tempNode.lastFly - <span class="number">1</span>;</span><br><span class="line">          nextNode.nowStep = tempNode.nowStep + <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        nextNode.x = x + dirX[i];</span><br><span class="line">        nextNode.y = y + dirY[i];</span><br><span class="line">        nextNode.lastFly = tempNode.lastFly;</span><br><span class="line">        nextNode.nowStep = tempNode.nowStep + <span class="number">1</span>;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">checkAli4</span>(nextNode, n, m, all, visited)) {</span><br><span class="line">        que.<span class="built_in">push</span>(nextNode);</span><br><span class="line">        visited[nextNode.x][nextNode.y] = <span class="number">1</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ali4</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> n, m;</span><br><span class="line">  cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">  string temp;</span><br><span class="line">  <span class="function">vector&lt;string&gt; <span class="title">all</span><span class="params">(n)</span></span>;</span><br><span class="line">  vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">visited</span>(n, vector&lt;<span class="keyword">int</span>&gt;(m));</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    cin &gt;&gt; all[i];</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) {</span><br><span class="line">      <span class="keyword">if</span> (all[i][j] == <span class="string">'S'</span>) {</span><br><span class="line">        visited[i][j] = <span class="number">1</span>;</span><br><span class="line">        NodeAli4 node = {i, j, <span class="number">5</span>, <span class="number">0</span>};</span><br><span class="line">        cout &lt;&lt; <span class="built_in">bfsAli4</span>(node, all, visited, n, m);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="built_in">ali4</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-107-矩阵中的距离"><a href="#剑指-Offer-II-107-矩阵中的距离" class="headerlink" title="剑指 Offer II 107. 矩阵中的距离"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/2bCMpM/">剑指 Offer II 107. 矩阵中的距离</a></h3><p>难度中等22收藏分享切换为英文接收动态反馈</p>
+<p>给定一个由 <code>0</code> 和 <code>1</code> 组成的矩阵 <code>mat</code> ，请输出一个大小相同的矩阵，其中每一个格子是 <code>mat</code> 中对应位置元素到最近的 <code>0</code> 的距离。</p>
+<p>两个相邻元素间的距离为 <code>1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[0,0,0]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[0,0,0]]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[1,1,1]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[1,2,1]]</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="解法-bfs"><a href="#解法-bfs" class="headerlink" title="解法 bfs"></a>解法 bfs</h4><p>将所有0的位置压入队列，然后进行bfs</p>
+<p>按下图走，四周有1是 1变0 坐标入队列 ans位置 = ans pre位置++</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png" alt="image-20220509155601268" style="zoom:50%;">
+
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dirs = {{<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}};</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat) {</span><br><span class="line">        <span class="keyword">int</span> n = mat.<span class="built_in">size</span>(), m = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(n, vector&lt;<span class="keyword">int</span>&gt;(m, <span class="number">0</span>));</span><br><span class="line">        queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) {</span><br><span class="line">                <span class="keyword">if</span> (!mat[i][j]) {</span><br><span class="line">                    que.<span class="built_in">push</span>({i, j});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">            <span class="keyword">auto</span> f = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d: dirs) {</span><br><span class="line">                <span class="keyword">int</span> x = f.first + d[<span class="number">0</span>], y = f.second + d[<span class="number">1</span>];</span><br><span class="line">                <span class="comment">//周围为1的方向时</span></span><br><span class="line">                <span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; x &lt; n &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; m &amp;&amp; mat[x][y]) {</span><br><span class="line">                    ans[x][y] = ans[f.first][f.second] + <span class="number">1</span>;</span><br><span class="line">                    mat[x][y] = <span class="number">0</span>;</span><br><span class="line">                    que.<span class="built_in">push</span>({x, y});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法-按1暴力bfs"><a href="#解法-按1暴力bfs" class="headerlink" title="解法 按1暴力bfs"></a>解法 按1暴力bfs</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dir{{<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">-1</span>, <span class="number">0</span>}};</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat) {</span><br><span class="line">      vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(mat.<span class="built_in">size</span>(), vector&lt;<span class="keyword">int</span>&gt;(mat[<span class="number">0</span>].<span class="built_in">size</span>()));</span><br><span class="line">      vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; used;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;mat.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;mat[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(mat[i][j] == <span class="number">1</span>){</span><br><span class="line">            <span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line">            used.<span class="built_in">clear</span>(); <span class="comment">//注意 重置内部元素的话 必须先clear</span></span><br><span class="line">            <span class="comment">// size相等的话 并不会执行resize内部的构造</span></span><br><span class="line">            used.<span class="built_in">resize</span>(mat.<span class="built_in">size</span>(), vector&lt;<span class="keyword">bool</span>&gt;(mat[<span class="number">0</span>].<span class="built_in">size</span>(), <span class="number">0</span>));</span><br><span class="line">            <span class="built_in">bfs</span>(mat, i, j, depth, used);</span><br><span class="line">            ans[i][j] = depth;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span>&amp; depth, vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt;&amp; used)</span></span>{</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(x, y));</span><br><span class="line">      used[x][y] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        depth++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">            pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">int</span> i = node.first;</span><br><span class="line">            <span class="keyword">int</span> j = node.second;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> ii = <span class="number">0</span>; ii&lt;<span class="number">4</span>; ii++){</span><br><span class="line">                <span class="keyword">int</span> newI = i + dir[ii][<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">int</span> newJ = j + dir[ii][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(newI&lt;<span class="number">0</span>||newI&gt;=mat.<span class="built_in">size</span>()||newJ&lt;<span class="number">0</span>||newJ&gt;=mat[<span class="number">0</span>].<span class="built_in">size</span>() || used[newI][newJ])</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(mat[newI][newJ] == <span class="number">0</span>)        </span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(newI, newJ));</span><br><span class="line">                used[newI][newJ] = <span class="number">1</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="剑指-Offer-II-109-开密码锁"><a href="#剑指-Offer-II-109-开密码锁" class="headerlink" title="剑指 Offer II 109. 开密码锁"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/zlDJc7/">剑指 Offer II 109. 开密码锁</a></h3><p>难度中等15收藏分享切换为英文接收动态反馈</p>
+<p>一个密码锁由 4 个环形拨轮组成，每个拨轮都有 10 个数字： <code>'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'</code> 。每个拨轮可以自由旋转：例如把 <code>'9'</code> 变为 <code>'0'</code>，<code>'0'</code> 变为 <code>'9'</code> 。每次旋转都只能旋转一个拨轮的一位数字。</p>
+<p>锁的初始数字为 <code>'0000'</code> ，一个代表四个拨轮的数字的字符串。</p>
+<p>列表 <code>deadends</code> 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。</p>
+<p>字符串 <code>target</code> 代表可以解锁的数字，请给出解锁需要的最小旋转次数，如果无论如何不能解锁，返回 <code>-1</code> 。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：deadends = ["0201","0101","0102","1212","2002"], target = "0202"</span><br><span class="line">输出：6</span><br><span class="line">解释：</span><br><span class="line">可能的移动序列为 "0000" -&gt; "1000" -&gt; "1100" -&gt; "1200" -&gt; "1201" -&gt; "1202" -&gt; "0202"。</span><br><span class="line">注意 "0000" -&gt; "0001" -&gt; "0002" -&gt; "0102" -&gt; "0202" 这样的序列是不能解锁的，因为当拨动到 "0102" 时这个锁就会被锁定。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: deadends = ["8888"], target = "0009"</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">把最后一位反向旋转一次即可 "0000" -&gt; "0009"。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"], target = "8888"</span><br><span class="line">输出：-1</span><br><span class="line">解释：</span><br><span class="line">无法旋转到目标数字且不被锁定。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法-bfs求最优路径"><a href="#解法-bfs求最优路径" class="headerlink" title="解法 bfs求最优路径"></a>解法 bfs求最优路径</h4><p>枚举每次旋转的所有可能情况</p>
+<p>符合要求的压入栈中</p>
+<p>一轮一轮的波 先把所有位置都播一边 次数 = 0， 压所有情况入队列</p>
+<p>然后 拨动所有次数 = 1的 压所有情况到队列之后</p>
+<p>依次 直到最后</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">openLock</span><span class="params">(vector&lt;string&gt;&amp; deadends, string target)</span> </span>{</span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(deadends.begin(), deadends.end())</span></span>;</span><br><span class="line">      <span class="keyword">if</span>(target == <span class="string">"0000"</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(sett.<span class="built_in">count</span>(target) || sett.<span class="built_in">count</span>(<span class="string">"0000"</span>)) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> num_prev = [](<span class="keyword">char</span> x)-&gt;<span class="keyword">char</span>{</span><br><span class="line">        <span class="built_in"><span class="keyword">return</span></span> (x == <span class="string">'0'</span> ? <span class="string">'9'</span> : x<span class="number">-1</span>);</span><br><span class="line">      };</span><br><span class="line">      <span class="keyword">auto</span> num_next = [](<span class="keyword">char</span> x)-&gt;<span class="keyword">char</span>{</span><br><span class="line">        <span class="built_in"><span class="keyword">return</span></span> (x == <span class="string">'9'</span> ? <span class="string">'0'</span> : x+<span class="number">1</span>);</span><br><span class="line">      };</span><br><span class="line"></span><br><span class="line">      <span class="comment">//枚举status通过一次旋转得到的数字</span></span><br><span class="line">      <span class="keyword">auto</span> get = [&amp;](string&amp; status)-&gt;vector&lt;string&gt;{</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</span><br><span class="line">          <span class="keyword">char</span> num = status[i];</span><br><span class="line">          status[i] = <span class="built_in">num_prev</span>(num);</span><br><span class="line">          res.<span class="built_in">push_back</span>(status);</span><br><span class="line">          status[i] = <span class="built_in">num_next</span>(num);</span><br><span class="line">          res.<span class="built_in">push_back</span>(status);</span><br><span class="line">          status[i] = num;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">      };</span><br><span class="line"></span><br><span class="line">      queue&lt;pair&lt;string, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;string, <span class="keyword">int</span>&gt;(<span class="string">"0000"</span>, <span class="number">0</span>));</span><br><span class="line">      unordered_set&lt;string&gt; seen = {<span class="string">"0000"</span>};</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">auto</span> [status, step] = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; next_status : <span class="built_in">get</span>(status)){</span><br><span class="line">          <span class="keyword">if</span>(!seen.<span class="built_in">count</span>(next_status) &amp;&amp; !sett.<span class="built_in">count</span>(next_status)){</span><br><span class="line">            <span class="keyword">if</span>(next_status == target) <span class="keyword">return</span> step+<span class="number">1</span>;</span><br><span class="line">            que.<span class="built_in">push</span>(pair&lt;string, <span class="keyword">int</span>&gt;(next_status, step+<span class="number">1</span>));</span><br><span class="line">            seen.<span class="built_in">insert</span>(next_status);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>起始可以写成常规的bfs 记录好每层的节点数</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;string&gt; que;</span><br><span class="line">que.<span class="built_in">push</span>(<span class="string">"0000"</span>);</span><br><span class="line">unordered_set&lt;string&gt; seen = {<span class="string">"0000"</span>};</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">  ans++;</span><br><span class="line">  <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">  <span class="keyword">while</span>(n--){</span><br><span class="line">    string status= que.<span class="built_in">front</span>();</span><br><span class="line">    que.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; next_status : <span class="built_in">get</span>(status)){</span><br><span class="line">      <span class="keyword">if</span>(!seen.<span class="built_in">count</span>(next_status) &amp;&amp; !sett.<span class="built_in">count</span>(next_status)){</span><br><span class="line">        <span class="keyword">if</span>(next_status == target) <span class="keyword">return</span> ans;</span><br><span class="line">        que.<span class="built_in">push</span>(next_status);</span><br><span class="line">        seen.<span class="built_in">insert</span>(next_status);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-108-单词演变"><a href="#剑指-Offer-II-108-单词演变" class="headerlink" title="剑指 Offer II 108. 单词演变"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/om3reC/">剑指 Offer II 108. 单词演变</a></h3><p>难度困难11</p>
+<p>在字典（单词列表） <code>wordList</code> 中，从单词 <code>beginWord</code> 和 <code>endWord</code> 的 <strong>转换序列</strong> 是一个按下述规格形成的序列：</p>
+<ul>
+<li>序列中第一个单词是 <code>beginWord</code> 。</li>
+<li>序列中最后一个单词是 <code>endWord</code> 。</li>
+<li>每次转换只能改变一个字母。</li>
+<li>转换过程中的中间单词必须是字典 <code>wordList</code> 中的单词。</li>
+</ul>
+<p>给定两个长度相同但内容不同的单词 <code>beginWord</code> 和 <code>endWord</code> 和一个字典 <code>wordList</code> ，找到从 <code>beginWord</code> 到 <code>endWord</code> 的 <strong>最短转换序列</strong> 中的 <strong>单词数目</strong> 。如果不存在这样的转换序列，返回 0。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]</span><br><span class="line">输出：5</span><br><span class="line">解释：一个最短转换序列是 "hit" -&gt; "hot" -&gt; "dot" -&gt; "dog" -&gt; "cog", 返回它的长度 5。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="bfs-密码锁"><a href="#bfs-密码锁" class="headerlink" title="bfs 密码锁"></a>bfs 密码锁</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>{</span><br><span class="line">      <span class="comment">//return 0;</span></span><br><span class="line"></span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(wordList.begin(), wordList.end())</span></span>;</span><br><span class="line">      <span class="keyword">auto</span> get = [&amp;](string str)-&gt;vector&lt;string&gt;{</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;str.<span class="built_in">size</span>(); i++){</span><br><span class="line">          string temp = str;</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;<span class="number">26</span>; j++){</span><br><span class="line">            <span class="keyword">char</span> ch = <span class="string">'a'</span> + j;</span><br><span class="line">            temp[i] = ch;</span><br><span class="line">            <span class="keyword">if</span>(temp != str &amp;&amp; sett.<span class="built_in">count</span>(temp))</span><br><span class="line">              res.<span class="built_in">push_back</span>(temp);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">      };</span><br><span class="line">      <span class="keyword">if</span>(!sett.<span class="built_in">count</span>(endWord)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      unordered_set&lt;string&gt; seen;</span><br><span class="line">      queue&lt;string&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(beginWord);</span><br><span class="line">      seen.<span class="built_in">insert</span>(beginWord);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">1</span>;  <span class="comment">//转换序列的长度 所以初值是1</span></span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">          string str = que.<span class="built_in">front</span>();</span><br><span class="line">          que.<span class="built_in">pop</span>();</span><br><span class="line">          <span class="keyword">for</span>(string s: <span class="built_in">get</span>(str)){</span><br><span class="line">            <span class="comment">// cout&lt;&lt;s&lt;&lt;" ";</span></span><br><span class="line">            <span class="keyword">if</span>(seen.<span class="built_in">count</span>(s))</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(s == endWord) <span class="keyword">return</span> ans;</span><br><span class="line">            que.<span class="built_in">push</span>(s);</span><br><span class="line">            seen.<span class="built_in">insert</span>(s);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="863-二叉树中所有距离为-K-的结点"><a href="#863-二叉树中所有距离为-K-的结点" class="headerlink" title="863. 二叉树中所有距离为 K 的结点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-nodes-distance-k-in-binary-tree/">863. <code>二叉树中所有距离为 K 的结点</code></a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-nodes-distance-k-in-binary-tree/#">思路</a></p>
+<p>难度中等536</p>
+<p>给定一个二叉树（具有根结点 <code>root</code>）， 一个目标结点 <code>target</code> ，和一个整数值 <code>k</code> 。</p>
+<p>返回到目标结点 <code>target</code> 距离为 <code>k</code> 的所有结点的值的列表。 答案可以以 <strong>任何顺序</strong> 返回。</p>
+<p><strong>示例 1：</strong></p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png" alt="img" style="zoom:50%;">
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, k = 2</span><br><span class="line">输出：[7,4,1]</span><br><span class="line">解释：所求结点为与目标结点（值为 5）距离为 2 的结点，值分别为 7，4，以及 1</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>构建parent 是怎么跨过根节点的？</p>
+<blockquote>
+<p>起始仔细想想并不需要通过根节点的parent跨过，而是通过左右子树节点跨过，在根节点上 就是一个二叉树而非三叉</p>
+</blockquote>
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode {</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span></span><br><span class="line"><span class="comment"> * };</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, TreeNode*&gt; parent;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">distanceK</span><span class="params">(TreeNode* root, TreeNode* target, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> vector&lt;<span class="keyword">int</span>&gt;{};</span><br><span class="line">        <span class="built_in">dfs</span>(root, <span class="literal">nullptr</span>);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        unordered_set&lt;TreeNode*&gt; visited;</span><br><span class="line">        visited.<span class="built_in">insert</span>(target);</span><br><span class="line">        que.<span class="built_in">push</span>(target);</span><br><span class="line">        <span class="keyword">int</span> diss = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">          <span class="keyword">int</span> n = que.<span class="built_in">size</span>(); </span><br><span class="line">          <span class="keyword">while</span>(n--){</span><br><span class="line">            TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(diss == k){</span><br><span class="line">              ans.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            TreeNode* par = parent[node-&gt;val];</span><br><span class="line">            <span class="keyword">if</span>(par &amp;&amp; !visited.<span class="built_in">count</span>(par)){</span><br><span class="line">              que.<span class="built_in">push</span>(par);</span><br><span class="line">              visited.<span class="built_in">insert</span>(par);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left &amp;&amp; !visited.<span class="built_in">count</span>(node-&gt;left)) {</span><br><span class="line">              que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">              visited.<span class="built_in">insert</span>(node-&gt;left);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right &amp;&amp; !visited.<span class="built_in">count</span>(node-&gt;right)) {</span><br><span class="line">              que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">              visited.<span class="built_in">insert</span>(node-&gt;right);</span><br><span class="line">            }</span><br><span class="line">          }</span><br><span class="line">          diss++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, TreeNode* parentNode)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">      parent[node-&gt;val] = parentNode;</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left, node);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right, node);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="675-为高尔夫比赛砍树"><a href="#675-为高尔夫比赛砍树" class="headerlink" title="675. 为高尔夫比赛砍树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cut-off-trees-for-golf-event/">675. 为高尔夫比赛砍树</a></h3><p>难度困难188</p>
+<p>你被请来给一个要举办高尔夫比赛的树林砍树。树林由一个 <code>m x n</code> 的矩阵表示， 在这个矩阵中：</p>
+<ul>
+<li><code>0</code> 表示障碍，无法触碰</li>
+<li><code>1</code> 表示地面，可以行走</li>
+<li><code>比 1 大的数</code> 表示有树的单元格，可以行走，数值表示树的高度</li>
+</ul>
+<p>每一步，你都可以向上、下、左、右四个方向之一移动一个单位，如果你站的地方有一棵树，那么你可以决定是否要砍倒它。</p>
+<p>你需要按照树的高度从低向高砍掉所有的树，每砍过一颗树，该单元格的值变为 <code>1</code>（即变为地面）。</p>
+<p>你将从 <code>(0, 0)</code> 点开始工作，返回你砍完所有树需要走的最小步数。 如果你无法砍完所有的树，返回 <code>-1</code> 。</p>
+<p>可以保证的是，没有两棵树的高度是相同的，并且你至少需要砍倒一棵树。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：forest = [[1,2,3],[0,0,4],[7,6,5]]</span><br><span class="line">输出：6</span><br><span class="line">解释：沿着上面的路径，你可以用 6 步，按从最矮到最高的顺序砍掉这些树。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法-bfs-1"><a href="#解法-bfs-1" class="headerlink" title="解法 bfs"></a>解法 bfs</h4><p>路径是固定的， 所以只需要查找每一步到下一步的最短路径 然后相加即可</p>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; backup;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dir{{<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">1</span>, <span class="number">0</span>}};</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cutOffTree</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; forest)</span> </span>{</span><br><span class="line">      backup = forest;</span><br><span class="line">      vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; allTree;</span><br><span class="line">      <span class="comment">// 存储所有要砍的树</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;forest.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;forest[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(forest[i][j] &gt; <span class="number">1</span>)</span><br><span class="line">            allTree.<span class="built_in">push_back</span>(pair&lt;<span class="keyword">int</span> ,<span class="keyword">int</span> &gt;(i, j));</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">			<span class="comment">//对树按高度排序 确认要砍的路径</span></span><br><span class="line">      <span class="keyword">auto</span> cmp = [&amp;](pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; a, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; b){</span><br><span class="line">        <span class="keyword">return</span> forest[a.first][a.second] &lt; forest[b.first][b.second];</span><br><span class="line">      };</span><br><span class="line">      <span class="built_in">sort</span>(allTree.<span class="built_in">begin</span>(), allTree.<span class="built_in">end</span>(), cmp);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="function">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="title">pre</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">      <span class="comment">//砍路径上相邻的两棵树</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;allTree.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="built_in">bfs</span>(forest, pre, allTree[i]);</span><br><span class="line">        <span class="keyword">if</span>(temp == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        ans += temp;</span><br><span class="line">        pre = allTree[i];</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">		</span><br><span class="line">  	<span class="comment">//查找两棵树间的最短路径</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; forest, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; now, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; next)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(now == next)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(now);</span><br><span class="line">      forest[now.first][now.second] = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">          pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; nowT = que.<span class="built_in">front</span>();</span><br><span class="line">          <span class="keyword">int</span> nowI = nowT.first;</span><br><span class="line">          <span class="keyword">int</span> nowJ = nowT.second;</span><br><span class="line">          que.<span class="built_in">pop</span>();</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</span><br><span class="line">            <span class="keyword">int</span> nextI = nowI + dir[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> nextJ = nowJ + dir[i][<span class="number">1</span>];</span><br><span class="line">            <span class="function">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="title">nextT</span><span class="params">(nextI, nextJ)</span></span>;</span><br><span class="line">            <span class="keyword">if</span>(nextJ &lt; <span class="number">0</span> || nextI &lt; <span class="number">0</span> || nextI&gt;=forest.<span class="built_in">size</span>() || nextJ&gt;=forest[<span class="number">0</span>].<span class="built_in">size</span>() || forest[nextI][nextJ] == <span class="number">0</span>)</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(nextT == next) {</span><br><span class="line">              forest = backup;</span><br><span class="line">              <span class="keyword">return</span> ans;</span><br><span class="line">            }</span><br><span class="line">            forest[nextI][nextJ] = <span class="number">0</span>;</span><br><span class="line">            que.<span class="built_in">push</span>(nextT);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h2 id="记忆化dfs"><a href="#记忆化dfs" class="headerlink" title="记忆化dfs"></a>记忆化dfs</h2><h3 id="剑指-Offer-II-112-最长递增路径"><a href="#剑指-Offer-II-112-最长递增路径" class="headerlink" title="剑指 Offer II 112. 最长递增路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fpTFWP/">剑指 Offer II 112. 最长递增路径</a></h3><p>难度困难17</p>
+<p>给定一个 <code>m x n</code> 整数矩阵 <code>matrix</code> ，找出其中 <strong>最长递增路径</strong> 的长度。</p>
+<p>对于每个单元格，你可以往上，下，左，右四个方向移动。 <strong>不能</strong> 在 <strong>对角线</strong> 方向上移动或移动到 <strong>边界外</strong>（即不允许环绕）。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[9,9,4],[6,6,8],[2,1,1]]</span><br><span class="line">输出：4 </span><br><span class="line">解释：最长递增路径为 [1, 2, 6, 9]。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>解法 记忆化dfs</p>
+<ol>
+<li>普通dfs过于暴力 无法通过</li>
+<li>学习以下带返回值的dfs写法吧</li>
+<li>记忆化dfs就是在dfs开始的时候 先查找是否存在 不存在再继续搜索 最后返回时对记忆化赋值</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> dxy[<span class="number">4</span>][<span class="number">2</span>]={{<span class="number">-1</span>,<span class="number">0</span>},{<span class="number">1</span>,<span class="number">0</span>},{<span class="number">0</span>,<span class="number">-1</span>},{<span class="number">0</span>,<span class="number">1</span>}};</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> m=matrix.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> n=matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> maxstep=<span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">length</span>(m,vector&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++){</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++){</span><br><span class="line">                <span class="keyword">int</span> step=<span class="built_in">dfs</span>(matrix,i,j,length);</span><br><span class="line">                maxstep=<span class="built_in">max</span>(step,maxstep);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> maxstep;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix,<span class="keyword">int</span> i,<span class="keyword">int</span> j,vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; length)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(length[i][j]!=<span class="number">0</span>){</span><br><span class="line">            <span class="keyword">return</span> length[i][j];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> step=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++){</span><br><span class="line">            <span class="keyword">int</span> dx=i+dxy[k][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> dy=j+dxy[k][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(dx&gt;=<span class="number">0</span>&amp;&amp;dx&lt;matrix.<span class="built_in">size</span>()&amp;&amp;dy&gt;=<span class="number">0</span>&amp;&amp;dy&lt;matrix[<span class="number">0</span>].<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(matrix[dx][dy]&gt;matrix[i][j]){</span><br><span class="line">                    <span class="keyword">int</span> path=<span class="built_in">dfs</span>(matrix,dx,dy,length);</span><br><span class="line">                    step=<span class="built_in">max</span>(step,path+<span class="number">1</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        length[i][j]=step;</span><br><span class="line">        <span class="keyword">return</span> step;;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" rel="tag"># 算法总结</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/18/mian-jing-ti-mu-men/" rel="prev" title="面经题目们">
+      <i class="fa fa-chevron-left"></i> 面经题目们
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/18/ha-xi-zi-ding-yi-key/" rel="next" title="哈希 自定义key">
+      哈希 自定义key <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bfs"><span class="nav-number">1.</span> <span class="nav-text">bfs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dfs%E6%98%AF%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%8C%E4%B8%80%E7%9B%B4%E5%BE%80%E6%B7%B1%E5%B1%82%E9%81%8D%E5%8E%86-%E6%80%9D%E8%B7%AF%E5%92%8C%E5%9B%9E%E6%BA%AF%E6%9C%89%E5%BE%88%E5%A4%A7%E7%9A%84%E7%9B%B8%E4%BC%BC"><span class="nav-number">1.1.1.</span> <span class="nav-text">dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bfs%E6%98%AF%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%8C%E5%9C%A8%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9%E5%85%88%E9%81%8D%E5%8E%86%E5%91%A8%E5%9B%B4%EF%BC%8C%E9%81%8D%E5%8E%86%E5%AE%8C%E8%87%AA%E5%B7%B1%E8%BF%99%E5%B1%82%E5%90%8E%EF%BC%8C%E5%9C%A8%E5%AD%90%E8%8A%82%E7%82%B9%E9%87%8D%E5%A4%8D%E8%BF%99%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.2.</span> <span class="nav-text">bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5-200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F"><span class="nav-number">1.2.</span> <span class="nav-text">引入 200. 岛屿数量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9C%8B%E4%B8%80%E4%B8%8Bbfs%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">下面看一下bfs的写法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8E%E4%B8%8A%E9%A2%98%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C-bfs%E6%98%AF%E6%8E%A5%E4%BD%8F%E4%BA%86%E4%B8%80%E4%B8%AA%E9%98%9F%E5%88%97-%E5%92%8C-while%E5%BE%AA%E7%8E%AF-%E7%B1%BB%E4%BC%BC%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E9%81%8D%E5%8E%86-%E5%AF%B9%E5%9B%9B%E5%91%A8%E6%89%80%E4%BB%A5%E6%8E%A5%E8%A7%A6%E7%9A%84%E8%8A%82%E7%82%B9%E8%BF%9B%E8%A1%8C%E4%B8%80%E5%B1%82%E4%B8%80%E5%B1%82%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">从上题可以看出， bfs是接住了一个队列 和 while循环 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E5%B1%9E%E4%BA%8Edp%E9%97%AE%E9%A2%98-%E5%8F%AF%E4%BB%A5%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8bfs"><span class="nav-number">1.3.2.</span> <span class="nav-text">最短路径属于dp问题 可以考虑使用bfs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E9%A3%9E%E8%A1%8C%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">对称飞行器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">输入描述:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">输出描述:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="nav-number">1.4.1.</span> <span class="nav-text">示例1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.4.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.4.3.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-107-%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">1.5.</span> <span class="nav-text">剑指 Offer II 107. 矩阵中的距离</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-bfs"><span class="nav-number">1.5.1.</span> <span class="nav-text">解法 bfs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-%E6%8C%891%E6%9A%B4%E5%8A%9Bbfs"><span class="nav-number">1.5.2.</span> <span class="nav-text">解法 按1暴力bfs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-109-%E5%BC%80%E5%AF%86%E7%A0%81%E9%94%81"><span class="nav-number">1.6.</span> <span class="nav-text">剑指 Offer II 109. 开密码锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-bfs%E6%B1%82%E6%9C%80%E4%BC%98%E8%B7%AF%E5%BE%84"><span class="nav-number">1.6.1.</span> <span class="nav-text">解法 bfs求最优路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-108-%E5%8D%95%E8%AF%8D%E6%BC%94%E5%8F%98"><span class="nav-number">1.7.</span> <span class="nav-text">剑指 Offer II 108. 单词演变</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bfs-%E5%AF%86%E7%A0%81%E9%94%81"><span class="nav-number">1.7.1.</span> <span class="nav-text">bfs 密码锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#863-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%89%80%E6%9C%89%E8%B7%9D%E7%A6%BB%E4%B8%BA-K-%E7%9A%84%E7%BB%93%E7%82%B9"><span class="nav-number">1.8.</span> <span class="nav-text">863. 二叉树中所有距离为 K 的结点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">1.8.1.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95"><span class="nav-number">1.8.2.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#675-%E4%B8%BA%E9%AB%98%E5%B0%94%E5%A4%AB%E6%AF%94%E8%B5%9B%E7%A0%8D%E6%A0%91"><span class="nav-number">1.9.</span> <span class="nav-text">675. 为高尔夫比赛砍树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-bfs-1"><span class="nav-number">1.9.1.</span> <span class="nav-text">解法 bfs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0%E5%BF%86%E5%8C%96dfs"><span class="nav-number">2.</span> <span class="nav-text">记忆化dfs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%91%E6%8C%87-Offer-II-112-%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.</span> <span class="nav-text">剑指 Offer II 112. 最长递增路径</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">qianxunslimg</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qianxunslimg" title="Github → https:&#x2F;&#x2F;github.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/qianxunslimg" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-brands fa-github-alt fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2511167079llm@gmail.com" title="Email → mailto:2511167079llm@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.cnblogs.com/qianxunslimg" title="CnBlog → https:&#x2F;&#x2F;www.cnblogs.com&#x2F;qianxunslimg" rel="noopener" target="_blank"><i class="fa-solid fa-poo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">qianxunslimg</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
