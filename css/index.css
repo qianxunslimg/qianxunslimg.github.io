@@ -614,7 +614,7 @@ template {
     opacity: 0;
   }
   100% {
-    opacity: 0.6;
+    opacity: '';
   }
 }
 @-webkit-keyframes ribbon_to_show {
@@ -622,7 +622,7 @@ template {
     opacity: 0;
   }
   100% {
-    opacity: 0.6;
+    opacity: '';
   }
 }
 @-o-keyframes ribbon_to_show {
@@ -630,7 +630,7 @@ template {
     opacity: 0;
   }
   100% {
-    opacity: 0.6;
+    opacity: '';
   }
 }
 @keyframes ribbon_to_show {
@@ -638,7 +638,7 @@ template {
     opacity: 0;
   }
   100% {
-    opacity: 0.6;
+    opacity: '';
   }
 }
 @-moz-keyframes avatar_turn_around {
