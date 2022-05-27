@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
-  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,7 +24,7 @@
 <meta property="og:description" content="滑动窗口模板框架 &#x2F;* 滑动窗口算法框架 *&#x2F; void slidingWindow(string s, string t) {     unordered_map&lt;char, int&gt; need, window;     for (char c : t) need[c]++;          int left &#x3D; 0, right &#x3D; 0;     int valid &#x3D; 0;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-05-27T02:59:06.263Z">
+<meta property="article:modified_time" content="2022-05-27T03:22:28.736Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -941,8 +941,7 @@
 - 对第二个元素执行<span class="hljs-number"> 4 </span>次递增操作，此时 nums = [1,8,8,13] 。8 是数组中最高频元素，频数是<span class="hljs-number"> 2 </span>。
 - 对第三个元素执行<span class="hljs-number"> 5 </span>次递增操作，此时 nums = [1,4,13,13] 。13 是数组中最高频元素，频数是<span class="hljs-number"> 2 </span>。</code></pre></div>
 
-<p>解法 不动脑子的滑动窗口</p>
-<p>使用一个滑窗，看窗口内的k够不够用把所有元素变成同一个值，这个值肯定是窗口中元素的最大值 所以先对nums进行排序，每次变成最右侧的值就可以了</p>
+<h4 id="解法-不动脑子的滑动窗口"><a href="#解法-不动脑子的滑动窗口" class="headerlink" title="解法 不动脑子的滑动窗口"></a>解法 不动脑子的滑动窗口</h4><p>使用一个滑窗，看窗口内的k够不够用把所有元素变成同一个值，这个值肯定是窗口中元素的最大值 所以先对nums进行排序，每次变成最右侧的值就可以了</p>
 <p>首先是我的蠢比解法，每次去检验k够不够用，对窗口进行遍历 </p>
 <p>超时！</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
@@ -973,8 +972,7 @@
     }
 };</code></pre></div>
 
-<p>解法 滑窗 直接统计差值</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="解法-滑窗-直接统计差值"><a href="#解法-滑窗-直接统计差值" class="headerlink" title="解法 滑窗 直接统计差值"></a>解法 滑窗 直接统计差值</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxFrequency</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
       <span class="hljs-comment">//先排序， 这样每次窗口最右就是要变成的数</span>
