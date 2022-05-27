@@ -16,15 +16,15 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="滑动窗口模板框架 123456789101112131415161718192021222324252627282930&#x2F;* 滑动窗口算法框架 *&#x2F;void slidingWindow(string s, string t) {    unordered_map&lt;char, int&gt; need, window;    for (char c : t) need[c]++;">
+    <meta name="description" content="滑动窗口模板框架 &#x2F;* 滑动窗口算法框架 *&#x2F; void slidingWindow(string s, string t) {     unordered_map&lt;char, int&gt; need, window;     for (char c : t) need[c]++;          int left &#x3D; 0, right &#x3D; 0;     int valid &#x3D; 0;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="滑动窗口">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/03/15/hua-dong-chuang-kou/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="滑动窗口模板框架 123456789101112131415161718192021222324252627282930&#x2F;* 滑动窗口算法框架 *&#x2F;void slidingWindow(string s, string t) {    unordered_map&lt;char, int&gt; need, window;    for (char c : t) need[c]++;">
+<meta property="og:description" content="滑动窗口模板框架 &#x2F;* 滑动窗口算法框架 *&#x2F; void slidingWindow(string s, string t) {     unordered_map&lt;char, int&gt; need, window;     for (char c : t) need[c]++;          int left &#x3D; 0, right &#x3D; 0;     int valid &#x3D; 0;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-05-26T09:24:52.210Z">
+<meta property="article:modified_time" content="2022-05-27T02:59:06.263Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -268,7 +268,36 @@
             <div class="markdown-body">
               
               <h2 id="滑动窗口模板"><a href="#滑动窗口模板" class="headerlink" title="滑动窗口模板"></a>滑动窗口模板</h2><p>框架</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/* 滑动窗口算法框架 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">slidingWindow</span><span class="hljs-params">(string s, string t)</span> </span>{<br>    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : t) need[c]++;<br>    <br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>; <br>    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {<br>        <span class="hljs-comment">// c 是将移入窗口的字符</span><br>        <span class="hljs-keyword">char</span> c = s[right];<br>        <span class="hljs-comment">// 右移窗口</span><br>        right++;<br>        <span class="hljs-comment">// 进行窗口内数据的一系列更新</span><br>        ...<br><br>        <span class="hljs-comment">/*** debug 输出的位置 ***/</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"window: [%d, %d)\n"</span>, left, right);<br>        <span class="hljs-comment">/********************/</span><br>        <br>        <span class="hljs-comment">// 判断左侧窗口是否要收缩</span><br>        <span class="hljs-keyword">while</span> (window needs shrink) {<br>            <span class="hljs-comment">// d 是将移出窗口的字符</span><br>            <span class="hljs-keyword">char</span> d = s[left];<br>            <span class="hljs-comment">// 左移窗口</span><br>            left++;<br>            <span class="hljs-comment">// 进行窗口内数据的一系列更新</span><br>            ...<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/* 滑动窗口算法框架 */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">slidingWindow</span><span class="hljs-params">(string s, string t)</span> </span>{
+    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : t) need[c]++;
+    
+    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>; 
+    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {
+        <span class="hljs-comment">// c 是将移入窗口的字符</span>
+        <span class="hljs-keyword">char</span> c = s[right];
+        <span class="hljs-comment">// 右移窗口</span>
+        right++;
+        <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+        ...
+
+        <span class="hljs-comment">/*** debug 输出的位置 ***/</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"window: [%d, %d)\n"</span>, left, right);
+        <span class="hljs-comment">/********************/</span>
+        
+        <span class="hljs-comment">// 判断左侧窗口是否要收缩</span>
+        <span class="hljs-keyword">while</span> (window needs shrink) {
+            <span class="hljs-comment">// d 是将移出窗口的字符</span>
+            <span class="hljs-keyword">char</span> d = s[left];
+            <span class="hljs-comment">// 左移窗口</span>
+            left++;
+            <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+            ...
+        }
+    }
+}</code></pre></div>
 
 <h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><h3 id="76-最小覆盖子串-困难"><a href="#76-最小覆盖子串-困难" class="headerlink" title="76. 最小覆盖子串 困难"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-window-substring/">76. 最小覆盖子串</a> 困难</h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=76">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-window-substring/#">思路</a></p>
 <p>难度困难1896</p>
@@ -279,35 +308,271 @@
 <li>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"ADOBECODEBANC"</span>, <span class="hljs-attr">t</span> = <span class="hljs-string">"ABC"</span><br>输出：<span class="hljs-string">"BANC"</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"ADOBECODEBANC"</span>, <span class="hljs-attr">t</span> = <span class="hljs-string">"ABC"</span>
+输出：<span class="hljs-string">"BANC"</span></code></pre></div>
 
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function">string <span class="hljs-title">minWindow</span><span class="hljs-params">(string s, string t)</span> </span>{<br>    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : t)<br>      need[c]++;<br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//记录最小覆盖字串的其实索引和长度</span><br>    <span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>, len = INT_MAX;<br>    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {<br>      <span class="hljs-comment">// c是移入窗口的字符</span><br>      <span class="hljs-keyword">char</span> c = s[right];<br>      right++;<br>      <span class="hljs-comment">// 进行窗口内数据的一系列更新</span><br>      <span class="hljs-keyword">if</span> (need.<span class="hljs-built_in">count</span>(c)) {<br>        window[c]++;<br>        <span class="hljs-keyword">if</span> (window[c] == need[c])<br>          valid++;<br>      }<br>      <span class="hljs-comment">//判断左窗口是否需要收缩</span><br>      <span class="hljs-keyword">while</span> (valid == need.<span class="hljs-built_in">size</span>()) { <span class="hljs-comment">//窗口满足条件</span><br>                                     <span class="hljs-comment">// 在这里更新最小覆盖子串</span><br>        <span class="hljs-keyword">if</span> (right - left &lt; len) {<br>          start = left;<br>          len = right - left;<br>        }<br>        <span class="hljs-comment">// d 是将移出窗口的字符</span><br>        <span class="hljs-keyword">char</span> d = s[left];<br>        <span class="hljs-comment">// 左移窗口</span><br>        left++;<br>        <span class="hljs-comment">// 进行窗口内数据的一系列更新</span><br>        <span class="hljs-keyword">if</span> (need.<span class="hljs-built_in">count</span>(d)) {<br>          <span class="hljs-keyword">if</span> (window[d] == need[d]) {<br>            valid--;<br>          }<br>          window[d]--;<br>        }<br>      }<br>    }<br>    <span class="hljs-keyword">return</span> len == INT_MAX ? <span class="hljs-string">""</span> : s.<span class="hljs-built_in">substr</span>(start, len);<br>  }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">string <span class="hljs-title">minWindow</span><span class="hljs-params">(string s, string t)</span> </span>{
+    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : t)
+      need[c]++;
+    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">//记录最小覆盖字串的其实索引和长度</span>
+    <span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>, len = INT_MAX;
+    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {
+      <span class="hljs-comment">// c是移入窗口的字符</span>
+      <span class="hljs-keyword">char</span> c = s[right];
+      right++;
+      <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+      <span class="hljs-keyword">if</span> (need.<span class="hljs-built_in">count</span>(c)) {
+        window[c]++;
+        <span class="hljs-keyword">if</span> (window[c] == need[c])
+          valid++;
+      }
+      <span class="hljs-comment">//判断左窗口是否需要收缩</span>
+      <span class="hljs-keyword">while</span> (valid == need.<span class="hljs-built_in">size</span>()) { <span class="hljs-comment">//窗口满足条件</span>
+                                     <span class="hljs-comment">// 在这里更新最小覆盖子串</span>
+        <span class="hljs-keyword">if</span> (right - left &lt; len) {
+          start = left;
+          len = right - left;
+        }
+        <span class="hljs-comment">// d 是将移出窗口的字符</span>
+        <span class="hljs-keyword">char</span> d = s[left];
+        <span class="hljs-comment">// 左移窗口</span>
+        left++;
+        <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+        <span class="hljs-keyword">if</span> (need.<span class="hljs-built_in">count</span>(d)) {
+          <span class="hljs-keyword">if</span> (window[d] == need[d]) {
+            valid--;
+          }
+          window[d]--;
+        }
+      }
+    }
+    <span class="hljs-keyword">return</span> len == INT_MAX ? <span class="hljs-string">""</span> : s.<span class="hljs-built_in">substr</span>(start, len);
+  }
+};</code></pre></div>
 
 <h3 id="567-字符串的排列-中等"><a href="#567-字符串的排列-中等" class="headerlink" title="567. 字符串的排列 中等"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutation-in-string/">567. 字符串的排列</a> 中等</h3><p>难度中等685</p>
 <p>给你两个字符串 <code>s1</code> 和 <code>s2</code> ，写一个函数来判断 <code>s2</code> 是否包含 <code>s1</code> 的排列。如果是，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
 <p>换句话说，<code>s1</code> 的排列之一是 <code>s2</code> 的 <strong>子串</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight armasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">输入：<span class="hljs-built_in">s1</span> = <span class="hljs-string">"ab"</span> <span class="hljs-built_in">s2</span> = <span class="hljs-string">"eidbaooo"</span><br>输出：true<br>解释：<span class="hljs-built_in">s2</span> 包含 <span class="hljs-built_in">s1</span> 的排列之一 (<span class="hljs-string">"ba"</span>).<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs armasm">输入：<span class="hljs-built_in">s1</span> = <span class="hljs-string">"ab"</span> <span class="hljs-built_in">s2</span> = <span class="hljs-string">"eidbaooo"</span>
+输出：true
+解释：<span class="hljs-built_in">s2</span> 包含 <span class="hljs-built_in">s1</span> 的排列之一 (<span class="hljs-string">"ba"</span>).</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">s1=</span> <span class="hljs-string">"ab"</span> <span class="hljs-attr">s2</span> = <span class="hljs-string">"eidboaoo"</span><br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s1=</span> <span class="hljs-string">"ab"</span> <span class="hljs-attr">s2</span> = <span class="hljs-string">"eidboaoo"</span>
+输出：<span class="hljs-literal">false</span></code></pre></div>
 
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">checkInclusion</span><span class="hljs-params">(string t, string s)</span> </span>{<br>      unordered_map&lt;<span class="hljs-keyword">char</span>,<span class="hljs-keyword">int</span>&gt; window, need;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : t) need[c]++;<br>      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">while</span>(right &lt; s.<span class="hljs-built_in">size</span>()){<br>        <span class="hljs-comment">//扩大 知道满足 window = need</span><br>        <span class="hljs-keyword">char</span> c = s[right];<br>        right++;<br>        <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(c)){<br>          window[c]++;<br>          <span class="hljs-keyword">if</span>(window[c] == need[c])<br>            valid++;<br>        }<br>        <span class="hljs-comment">//个数满足</span><br>        <span class="hljs-keyword">while</span>(right-left&gt;=t.<span class="hljs-built_in">size</span>()){  <span class="hljs-comment">//缩减窗口到t的长度</span><br>          <span class="hljs-keyword">if</span>(valid == need.<span class="hljs-built_in">size</span>())<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>          <span class="hljs-keyword">char</span> d = s[left];<br>          left++;<br>          <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(d)){<br>            <span class="hljs-keyword">if</span>(window[d] == need[d])<br>              valid--;<br>            window[d]--;<br>          }<br>        }<br>      }<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    }<br>};<br><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">checkInclusion</span><span class="hljs-params">(string t, string s)</span> </span>{
+      unordered_map&lt;<span class="hljs-keyword">char</span>,<span class="hljs-keyword">int</span>&gt; window, need;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : t) need[c]++;
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> valid = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(right &lt; s.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-comment">//扩大 知道满足 window = need</span>
+        <span class="hljs-keyword">char</span> c = s[right];
+        right++;
+        <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(c)){
+          window[c]++;
+          <span class="hljs-keyword">if</span>(window[c] == need[c])
+            valid++;
+        }
+        <span class="hljs-comment">//个数满足</span>
+        <span class="hljs-keyword">while</span>(right-left&gt;=t.<span class="hljs-built_in">size</span>()){  <span class="hljs-comment">//缩减窗口到t的长度</span>
+          <span class="hljs-keyword">if</span>(valid == need.<span class="hljs-built_in">size</span>())
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+          <span class="hljs-keyword">char</span> d = s[left];
+          left++;
+          <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(d)){
+            <span class="hljs-keyword">if</span>(window[d] == need[d])
+              valid--;
+            window[d]--;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+};
+</code></pre></div>
 
 <h3 id="438-找到字符串中所有字母异位词"><a href="#438-找到字符串中所有字母异位词" class="headerlink" title="438. 找到字符串中所有字母异位词"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/">438. 找到字符串中所有字母异位词</a></h3><p>难度中等898收藏分享切换为英文接收动态反馈</p>
 <p>给定两个字符串 <code>s</code> 和 <code>p</code>，找到 <code>s</code> 中所有 <code>p</code> 的 <strong>异位词</strong> 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
 <p><strong>异位词</strong> 指由相同字母重排列形成的字符串（包括相同的字符串）。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><code class="hljs c++"><br><span class="hljs-comment">// class Solution {</span><br><span class="hljs-comment">// public:</span><br><span class="hljs-comment">//     map&lt;char, int&gt; checkAna;</span><br><span class="hljs-comment">//     map&lt;char, int&gt; checkAnb;</span><br><span class="hljs-comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span><br><span class="hljs-comment">//         vector&lt;int&gt; res;</span><br><span class="hljs-comment">//         int n = s.size(); </span><br><span class="hljs-comment">//         int nn = p.size();</span><br><span class="hljs-comment">//         if(isAnagrams("abc", "bca")){</span><br><span class="hljs-comment">//             cout&lt;&lt;"check"&lt;&lt;endl;</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         for(int i = 0; i&lt;n-nn+1; i++){</span><br><span class="hljs-comment">//             cout&lt;&lt;s.substr(i, nn) &lt;&lt;endl;</span><br><span class="hljs-comment">//             if(isAnagrams(s.substr(i, nn), p))</span><br><span class="hljs-comment">//                 res.push_back(i);</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         return res;</span><br><span class="hljs-comment">//     }</span><br><span class="hljs-comment">//     bool isAnagrams(string a, string b){</span><br><span class="hljs-comment">//         checkAna.clear();</span><br><span class="hljs-comment">//         checkAnb.clear();</span><br><span class="hljs-comment">//         for(int i = 0; i&lt;a.size(); i++){</span><br><span class="hljs-comment">//             checkAna[a[i]]++;</span><br><span class="hljs-comment">//             checkAnb[b[i]]++;</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         for(auto it = checkAna.begin(); it !=checkAna.end(); it++){</span><br><span class="hljs-comment">//             if(it-&gt;second != checkAnb[it-&gt;first])</span><br><span class="hljs-comment">//                 return 0;</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         return 1;</span><br><span class="hljs-comment">//     }</span><br><span class="hljs-comment">// };</span><br><br><span class="hljs-comment">// class Solution {</span><br><span class="hljs-comment">// public:</span><br><span class="hljs-comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span><br><span class="hljs-comment">//         vector&lt;int&gt; res;</span><br><span class="hljs-comment">//         int n = s.size(); </span><br><span class="hljs-comment">//         int nn = p.size();</span><br><span class="hljs-comment">//         if(n&lt;nn) return vector&lt;int&gt;();</span><br><span class="hljs-comment">//         vector&lt;int&gt; ss(26);</span><br><span class="hljs-comment">//         vector&lt;int&gt; pp(26);</span><br><span class="hljs-comment">//         //初始化保证窗口初始移动</span><br><span class="hljs-comment">//         for(int i = 0; i&lt;nn; i++){</span><br><span class="hljs-comment">//             ss[s[i]-'a']++;</span><br><span class="hljs-comment">//             pp[p[i]-'a']++;</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         if(ss == pp) res.push_back(0);</span><br><span class="hljs-comment">//         for(int i = 0; i&lt;n-nn; i++){</span><br><span class="hljs-comment">//             ss[s[i]-'a']--;</span><br><span class="hljs-comment">//             ss[s[i+nn]-'a']++;</span><br><span class="hljs-comment">//             if(ss == pp) res.push_back(i+1);</span><br><span class="hljs-comment">//         }</span><br><span class="hljs-comment">//         return res;</span><br><span class="hljs-comment">//     }</span><br><span class="hljs-comment">// };</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findAnagrams</span><span class="hljs-params">(string s, string p)</span> </span>{<br>      vector&lt;<span class="hljs-keyword">int</span>&gt; ans;<br>      unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : p) need[c]++;<br>      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>, valid = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">while</span>(right&lt;s.<span class="hljs-built_in">size</span>()){<br>        <span class="hljs-keyword">char</span> c = s[right];<br>        right++;<br>        <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(c)){<br>          window[c]++;<br>          <span class="hljs-keyword">if</span>(window[c] == need[c])<br>            valid++;<br>        }<br>        <span class="hljs-keyword">while</span>(right-left &gt;= p.<span class="hljs-built_in">size</span>()){<br>          <span class="hljs-keyword">if</span>(valid == need.<span class="hljs-built_in">size</span>()) ans.<span class="hljs-built_in">push_back</span>(left);<br>          <span class="hljs-keyword">char</span> d = s[left];<br>          left++;<br>          <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(d)){<br>            <span class="hljs-keyword">if</span>(need[d] == window[d])<br>              valid--;<br>            window[d]--;<br>          }<br>        }<br>      }<br>      <span class="hljs-keyword">return</span> ans;<br>    }<br>};<br><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">
+<span class="hljs-comment">// class Solution {</span>
+<span class="hljs-comment">// public:</span>
+<span class="hljs-comment">//     map&lt;char, int&gt; checkAna;</span>
+<span class="hljs-comment">//     map&lt;char, int&gt; checkAnb;</span>
+<span class="hljs-comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span>
+<span class="hljs-comment">//         vector&lt;int&gt; res;</span>
+<span class="hljs-comment">//         int n = s.size(); </span>
+<span class="hljs-comment">//         int nn = p.size();</span>
+<span class="hljs-comment">//         if(isAnagrams("abc", "bca")){</span>
+<span class="hljs-comment">//             cout&lt;&lt;"check"&lt;&lt;endl;</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         for(int i = 0; i&lt;n-nn+1; i++){</span>
+<span class="hljs-comment">//             cout&lt;&lt;s.substr(i, nn) &lt;&lt;endl;</span>
+<span class="hljs-comment">//             if(isAnagrams(s.substr(i, nn), p))</span>
+<span class="hljs-comment">//                 res.push_back(i);</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         return res;</span>
+<span class="hljs-comment">//     }</span>
+<span class="hljs-comment">//     bool isAnagrams(string a, string b){</span>
+<span class="hljs-comment">//         checkAna.clear();</span>
+<span class="hljs-comment">//         checkAnb.clear();</span>
+<span class="hljs-comment">//         for(int i = 0; i&lt;a.size(); i++){</span>
+<span class="hljs-comment">//             checkAna[a[i]]++;</span>
+<span class="hljs-comment">//             checkAnb[b[i]]++;</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         for(auto it = checkAna.begin(); it !=checkAna.end(); it++){</span>
+<span class="hljs-comment">//             if(it-&gt;second != checkAnb[it-&gt;first])</span>
+<span class="hljs-comment">//                 return 0;</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         return 1;</span>
+<span class="hljs-comment">//     }</span>
+<span class="hljs-comment">// };</span>
+
+<span class="hljs-comment">// class Solution {</span>
+<span class="hljs-comment">// public:</span>
+<span class="hljs-comment">//     vector&lt;int&gt; findAnagrams(string s, string p) {</span>
+<span class="hljs-comment">//         vector&lt;int&gt; res;</span>
+<span class="hljs-comment">//         int n = s.size(); </span>
+<span class="hljs-comment">//         int nn = p.size();</span>
+<span class="hljs-comment">//         if(n&lt;nn) return vector&lt;int&gt;();</span>
+<span class="hljs-comment">//         vector&lt;int&gt; ss(26);</span>
+<span class="hljs-comment">//         vector&lt;int&gt; pp(26);</span>
+<span class="hljs-comment">//         //初始化保证窗口初始移动</span>
+<span class="hljs-comment">//         for(int i = 0; i&lt;nn; i++){</span>
+<span class="hljs-comment">//             ss[s[i]-'a']++;</span>
+<span class="hljs-comment">//             pp[p[i]-'a']++;</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         if(ss == pp) res.push_back(0);</span>
+<span class="hljs-comment">//         for(int i = 0; i&lt;n-nn; i++){</span>
+<span class="hljs-comment">//             ss[s[i]-'a']--;</span>
+<span class="hljs-comment">//             ss[s[i+nn]-'a']++;</span>
+<span class="hljs-comment">//             if(ss == pp) res.push_back(i+1);</span>
+<span class="hljs-comment">//         }</span>
+<span class="hljs-comment">//         return res;</span>
+<span class="hljs-comment">//     }</span>
+<span class="hljs-comment">// };</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findAnagrams</span><span class="hljs-params">(string s, string p)</span> </span>{
+      vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+      unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; need, window;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : p) need[c]++;
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>, valid = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(right&lt;s.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-keyword">char</span> c = s[right];
+        right++;
+        <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(c)){
+          window[c]++;
+          <span class="hljs-keyword">if</span>(window[c] == need[c])
+            valid++;
+        }
+        <span class="hljs-keyword">while</span>(right-left &gt;= p.<span class="hljs-built_in">size</span>()){
+          <span class="hljs-keyword">if</span>(valid == need.<span class="hljs-built_in">size</span>()) ans.<span class="hljs-built_in">push_back</span>(left);
+          <span class="hljs-keyword">char</span> d = s[left];
+          left++;
+          <span class="hljs-keyword">if</span>(need.<span class="hljs-built_in">count</span>(d)){
+            <span class="hljs-keyword">if</span>(need[d] == window[d])
+              valid--;
+            window[d]--;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};
+</code></pre></div>
 
 <h3 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a></h3><p>难度中等7633</p>
 <p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight makefile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = "abcabcbb"</span><br><span class="hljs-section">输出: 3 </span><br><span class="hljs-section">解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = "abcabcbb"</span>
+<span class="hljs-section">输出: 3 </span>
+<span class="hljs-section">解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。</span></code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight makefile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = "bbbbb"</span><br><span class="hljs-section">输出: 1</span><br><span class="hljs-section">解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: s = "bbbbb"</span>
+<span class="hljs-section">输出: 1</span>
+<span class="hljs-section">解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。</span></code></pre></div>
 
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs c++"><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(string s)</span> </span>{<br>    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; window;<br>    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {<br>      <span class="hljs-keyword">char</span> c = s[right];<br>      right++;<br>      window[c]++;<br>      <span class="hljs-keyword">while</span> (window[c] &gt; <span class="hljs-number">1</span>) { <span class="hljs-comment">//有重复就要从left++ 直到消除当前重复</span><br>        <span class="hljs-keyword">char</span> d = s[left];<br>        left++;<br>        window[d]--;<br>      }<br>      ans = <span class="hljs-built_in">max</span>(ans, right - left);<br>    }<br>    <span class="hljs-keyword">return</span> ans;<br>  }<br>};<br><span class="hljs-comment">// class Solution {</span><br><span class="hljs-comment">// public:</span><br><span class="hljs-comment">//   int lengthOfLongestSubstring(string s) {</span><br><span class="hljs-comment">//     if (s.size() == 0)</span><br><span class="hljs-comment">//       return 0;</span><br><span class="hljs-comment">//     unordered_set&lt;char&gt; lookup;</span><br><span class="hljs-comment">//     int maxStr = 0;</span><br><span class="hljs-comment">//     int left = 0;</span><br><span class="hljs-comment">//     for (int i = 0; i &lt; s.size(); i++) {</span><br><span class="hljs-comment">//       while (lookup.find(s[i]) != lookup.end()) {</span><br><span class="hljs-comment">//         lookup.erase(s[left]);</span><br><span class="hljs-comment">//         left++;</span><br><span class="hljs-comment">//       }</span><br><span class="hljs-comment">//       maxStr = max(maxStr, i - left + 1);</span><br><span class="hljs-comment">//       lookup.insert(s[i]);</span><br><span class="hljs-comment">//     }</span><br><span class="hljs-comment">//     return maxStr;</span><br><span class="hljs-comment">//   }</span><br><span class="hljs-comment">// };</span><br>  <span class="hljs-comment">//int lengthOfLongestSubstring(string s) {</span><br>  <span class="hljs-comment">//  if (s.size() == 0) {</span><br>  <span class="hljs-comment">//    return 0;</span><br>  <span class="hljs-comment">//  }</span><br>  <span class="hljs-comment">//  vector&lt;string&gt; ss;</span><br>  <span class="hljs-comment">//  for (int i = 0; i &lt; s.size(); i++) {</span><br>  <span class="hljs-comment">//    unordered_map&lt;char, int&gt; temp_map;</span><br>  <span class="hljs-comment">//    for (int j = i; j &lt; s.size(); j++) {</span><br>  <span class="hljs-comment">//      ++temp_map[s[j]];</span><br>  <span class="hljs-comment">//      if (temp_map[s[j]] &gt; 1) {</span><br>  <span class="hljs-comment">//        string sss = s.substr(i, j - i);</span><br>  <span class="hljs-comment">//        ss.push_back(sss);</span><br>  <span class="hljs-comment">//        break;</span><br>  <span class="hljs-comment">//      }</span><br>  <span class="hljs-comment">//      if (j == s.size() - 1) {</span><br>  <span class="hljs-comment">//        string sss = s.substr(i, s.size() - i);</span><br>  <span class="hljs-comment">//        ss.push_back(sss);</span><br>  <span class="hljs-comment">//      }</span><br>  <span class="hljs-comment">//    }</span><br>  <span class="hljs-comment">//  }</span><br>  <span class="hljs-comment">//  if (ss.size() == 0) {</span><br>  <span class="hljs-comment">//    return s.size();</span><br>  <span class="hljs-comment">//  }</span><br>  <span class="hljs-comment">//  sort(ss.begin(), ss.end(),</span><br>  <span class="hljs-comment">//       [](string &amp;a, string &amp;b) { return a.size() &gt; b.size(); });</span><br>  <span class="hljs-comment">//  return ss[0].size();</span><br>  <span class="hljs-comment">//}</span><br><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(string s)</span> </span>{
+    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; window;
+    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {
+      <span class="hljs-keyword">char</span> c = s[right];
+      right++;
+      window[c]++;
+      <span class="hljs-keyword">while</span> (window[c] &gt; <span class="hljs-number">1</span>) { <span class="hljs-comment">//有重复就要从left++ 直到消除当前重复</span>
+        <span class="hljs-keyword">char</span> d = s[left];
+        left++;
+        window[d]--;
+      }
+      ans = <span class="hljs-built_in">max</span>(ans, right - left);
+    }
+    <span class="hljs-keyword">return</span> ans;
+  }
+};
+<span class="hljs-comment">// class Solution {</span>
+<span class="hljs-comment">// public:</span>
+<span class="hljs-comment">//   int lengthOfLongestSubstring(string s) {</span>
+<span class="hljs-comment">//     if (s.size() == 0)</span>
+<span class="hljs-comment">//       return 0;</span>
+<span class="hljs-comment">//     unordered_set&lt;char&gt; lookup;</span>
+<span class="hljs-comment">//     int maxStr = 0;</span>
+<span class="hljs-comment">//     int left = 0;</span>
+<span class="hljs-comment">//     for (int i = 0; i &lt; s.size(); i++) {</span>
+<span class="hljs-comment">//       while (lookup.find(s[i]) != lookup.end()) {</span>
+<span class="hljs-comment">//         lookup.erase(s[left]);</span>
+<span class="hljs-comment">//         left++;</span>
+<span class="hljs-comment">//       }</span>
+<span class="hljs-comment">//       maxStr = max(maxStr, i - left + 1);</span>
+<span class="hljs-comment">//       lookup.insert(s[i]);</span>
+<span class="hljs-comment">//     }</span>
+<span class="hljs-comment">//     return maxStr;</span>
+<span class="hljs-comment">//   }</span>
+<span class="hljs-comment">// };</span>
+  <span class="hljs-comment">//int lengthOfLongestSubstring(string s) {</span>
+  <span class="hljs-comment">//  if (s.size() == 0) {</span>
+  <span class="hljs-comment">//    return 0;</span>
+  <span class="hljs-comment">//  }</span>
+  <span class="hljs-comment">//  vector&lt;string&gt; ss;</span>
+  <span class="hljs-comment">//  for (int i = 0; i &lt; s.size(); i++) {</span>
+  <span class="hljs-comment">//    unordered_map&lt;char, int&gt; temp_map;</span>
+  <span class="hljs-comment">//    for (int j = i; j &lt; s.size(); j++) {</span>
+  <span class="hljs-comment">//      ++temp_map[s[j]];</span>
+  <span class="hljs-comment">//      if (temp_map[s[j]] &gt; 1) {</span>
+  <span class="hljs-comment">//        string sss = s.substr(i, j - i);</span>
+  <span class="hljs-comment">//        ss.push_back(sss);</span>
+  <span class="hljs-comment">//        break;</span>
+  <span class="hljs-comment">//      }</span>
+  <span class="hljs-comment">//      if (j == s.size() - 1) {</span>
+  <span class="hljs-comment">//        string sss = s.substr(i, s.size() - i);</span>
+  <span class="hljs-comment">//        ss.push_back(sss);</span>
+  <span class="hljs-comment">//      }</span>
+  <span class="hljs-comment">//    }</span>
+  <span class="hljs-comment">//  }</span>
+  <span class="hljs-comment">//  if (ss.size() == 0) {</span>
+  <span class="hljs-comment">//    return s.size();</span>
+  <span class="hljs-comment">//  }</span>
+  <span class="hljs-comment">//  sort(ss.begin(), ss.end(),</span>
+  <span class="hljs-comment">//       [](string &amp;a, string &amp;b) { return a.size() &gt; b.size(); });</span>
+  <span class="hljs-comment">//  return ss[0].size();</span>
+  <span class="hljs-comment">//}</span>
+</code></pre></div>
 
 <h3 id="2024-考试的最大困扰度"><a href="#2024-考试的最大困扰度" class="headerlink" title="2024. 考试的最大困扰度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/">2024. 考试的最大困扰度</a></h3><p>一位老师正在出一场由 <code>n</code> 道判断题构成的考试，每道题的答案为 true （用 <code>'T'</code> 表示）或者 false （用 <code>'F'</code> 表示）。老师想增加学生对自己做出答案的不确定性，方法是 <strong>最大化</strong> 有 <strong>连续相同</strong> 结果的题数。（也就是连续出现 true 或者连续出现 false）。</p>
 <p>给你一个字符串 <code>answerKey</code> ，其中 <code>answerKey[i]</code> 是第 <code>i</code> 个问题的正确结果。除此以外，还给你一个整数 <code>k</code> ，表示你能进行以下操作的最多次数：</p>
@@ -316,75 +581,217 @@
 </ul>
 <p>请你返回在不超过 <code>k</code> 次操作的情况下，<strong>最大</strong> 连续 <code>'T'</code> 或者 <code>'F'</code> 的数目。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight 1c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：answerKey = <span class="hljs-string">"TTFF"</span>, k = <span class="hljs-number">2</span><br>输出：<span class="hljs-number">4</span><br>解释：我们可以将两个 'F' 都变为 'T' ，得到 answerKey = <span class="hljs-string">"TTTT"</span> 。<br>总共有四个连续的 'T' 。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：answerKey = <span class="hljs-string">"TTFF"</span>, k = <span class="hljs-number">2</span>
+输出：<span class="hljs-number">4</span>
+解释：我们可以将两个 'F' 都变为 'T' ，得到 answerKey = <span class="hljs-string">"TTTT"</span> 。
+总共有四个连续的 'T' 。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight 1c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：answerKey = <span class="hljs-string">"TFFT"</span>, k = <span class="hljs-number">1</span><br>输出：<span class="hljs-number">3</span><br>解释：我们可以将最前面的 'T' 换成 'F' ，得到 answerKey = <span class="hljs-string">"FFFT"</span> 。<br>或者，我们可以将第二个 'T' 换成 'F' ，得到 answerKey = <span class="hljs-string">"TFFF"</span> 。<br>两种情况下，都有三个连续的 'F' 。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：answerKey = <span class="hljs-string">"TFFT"</span>, k = <span class="hljs-number">1</span>
+输出：<span class="hljs-number">3</span>
+解释：我们可以将最前面的 'T' 换成 'F' ，得到 answerKey = <span class="hljs-string">"FFFT"</span> 。
+或者，我们可以将第二个 'T' 换成 'F' ，得到 answerKey = <span class="hljs-string">"TFFF"</span> 。
+两种情况下，都有三个连续的 'F' 。</code></pre></div>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>用框架 但需要使用额外的 On   90ms 10mb</li>
 <li>官方题解 有点类似分治的思想 以T和F都当作最大值基准算一遍 取结果最大值  30ms 10mb</li>
 </ol>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>框架  90ms 10mb</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//滑动窗口 框架</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveAnswers</span><span class="hljs-params">(string answerKey, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        <span class="hljs-keyword">int</span> n = answerKey.<span class="hljs-built_in">size</span>();<br>        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; window;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(right&lt;n){<br>            <span class="hljs-keyword">char</span> c = answerKey[right];<br>            right++;<br>            window[c]++;<br>            <span class="hljs-comment">//窗口缩小</span><br>            <span class="hljs-keyword">while</span>(window[<span class="hljs-string">'F'</span>]&gt; k &amp;&amp; window[<span class="hljs-string">'T'</span>]&gt;k){<br>                <span class="hljs-keyword">char</span> d = answerKey[left];<br>                left++;<br>                window[d]--;<br>            }<br>            ans = <span class="hljs-built_in">max</span>(window[<span class="hljs-string">'F'</span>]+window[<span class="hljs-string">'T'</span>], ans);<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//滑动窗口 框架</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveAnswers</span><span class="hljs-params">(string answerKey, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">int</span> n = answerKey.<span class="hljs-built_in">size</span>();
+        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; window;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(right&lt;n){
+            <span class="hljs-keyword">char</span> c = answerKey[right];
+            right++;
+            window[c]++;
+            <span class="hljs-comment">//窗口缩小</span>
+            <span class="hljs-keyword">while</span>(window[<span class="hljs-string">'F'</span>]&gt; k &amp;&amp; window[<span class="hljs-string">'T'</span>]&gt;k){
+                <span class="hljs-keyword">char</span> d = answerKey[left];
+                left++;
+                window[d]--;
+            }
+            ans = <span class="hljs-built_in">max</span>(window[<span class="hljs-string">'F'</span>]+window[<span class="hljs-string">'T'</span>], ans);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <p>官方 30ms 10mb</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//ch 假设的最大值字母</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveChar</span><span class="hljs-params">(string&amp; answerKey, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">char</span> ch)</span> </span>{<br>        <span class="hljs-keyword">int</span> n = answerKey.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//sum 为另一种 杂质字母的数量</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>; right &lt; n; right++) {<br>            sum += answerKey[right] != ch;<br>            <span class="hljs-keyword">while</span> (sum &gt; k) {<br>                <span class="hljs-comment">//不断left++ 减小另一个字母数量</span><br>                sum -= answerKey[left++] != ch;<br>            }<br>            ans = <span class="hljs-built_in">max</span>(ans, right - left + <span class="hljs-number">1</span>);<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveAnswers</span><span class="hljs-params">(string answerKey, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">maxConsecutiveChar</span>(answerKey, k, <span class="hljs-string">'T'</span>),<br>                   <span class="hljs-built_in">maxConsecutiveChar</span>(answerKey, k, <span class="hljs-string">'F'</span>));<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//ch 假设的最大值字母</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveChar</span><span class="hljs-params">(string&amp; answerKey, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">char</span> ch)</span> </span>{
+        <span class="hljs-keyword">int</span> n = answerKey.<span class="hljs-built_in">length</span>();
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-comment">//sum 为另一种 杂质字母的数量</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>; right &lt; n; right++) {
+            sum += answerKey[right] != ch;
+            <span class="hljs-keyword">while</span> (sum &gt; k) {
+                <span class="hljs-comment">//不断left++ 减小另一个字母数量</span>
+                sum -= answerKey[left++] != ch;
+            }
+            ans = <span class="hljs-built_in">max</span>(ans, right - left + <span class="hljs-number">1</span>);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxConsecutiveAnswers</span><span class="hljs-params">(string answerKey, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">maxConsecutiveChar</span>(answerKey, k, <span class="hljs-string">'T'</span>),
+                   <span class="hljs-built_in">maxConsecutiveChar</span>(answerKey, k, <span class="hljs-string">'F'</span>));
+    }
+};</code></pre></div>
 
 <h3 id="1004-最大连续1的个数-III"><a href="#1004-最大连续1的个数-III" class="headerlink" title="1004. 最大连续1的个数 III"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-consecutive-ones-iii/">1004. 最大连续1的个数 III</a></h3><p>难度中等393</p>
 <p>给定一个二进制数组 <code>nums</code> 和一个整数 <code>k</code>，如果可以翻转最多 <code>k</code> 个 <code>0</code> ，则返回 <em>数组中连续 <code>1</code> 的最大个数</em> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight dns"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">1,1,1,0</span>,<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>], K = <span class="hljs-number">2</span><br>输出：<span class="hljs-number">6</span><br>解释：[<span class="hljs-number">1,1,1,0</span>,<span class="hljs-number">0,1,1,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>粗体数字从 <span class="hljs-number">0</span> 翻转到 <span class="hljs-number">1</span>，最长的子数组长度为 <span class="hljs-number">6</span>。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">1,1,1,0</span>,<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>], K = <span class="hljs-number">2</span>
+输出：<span class="hljs-number">6</span>
+解释：[<span class="hljs-number">1,1,1,0</span>,<span class="hljs-number">0,1,1,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+粗体数字从 <span class="hljs-number">0</span> 翻转到 <span class="hljs-number">1</span>，最长的子数组长度为 <span class="hljs-number">6</span>。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight dns"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1,0,1,1</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], K = <span class="hljs-number">3</span><br>输出：<span class="hljs-number">10</span><br>解释：[<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>粗体数字从 <span class="hljs-number">0</span> 翻转到 <span class="hljs-number">1</span>，最长的子数组长度为 <span class="hljs-number">10</span>。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1,0,1,1</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], K = <span class="hljs-number">3</span>
+输出：<span class="hljs-number">10</span>
+解释：[<span class="hljs-number">0,0,1,1</span>,<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+粗体数字从 <span class="hljs-number">0</span> 翻转到 <span class="hljs-number">1</span>，最长的子数组长度为 <span class="hljs-number">10</span>。</code></pre></div>
 
 <p>思路</p>
 <p>滑动窗口是一个思想 重点在于窗口指针的移动 </p>
 <p>所以 哈希只是通用性比较强 在有的情况下是可以替换乃至省去的</p>
 <p>代码</p>
 <p>模板</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; window;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(right&lt;n){<br>            <span class="hljs-keyword">int</span> c = nums[right];<br>            window[c]++;<br>            right++;<br>            <span class="hljs-keyword">while</span>(window[<span class="hljs-number">0</span>]&gt;k){<br>                <span class="hljs-keyword">int</span> d = nums[left];<br>                left++;<br>                window[d]--;<br>            }<br>            ans = <span class="hljs-built_in">max</span>(ans, window[<span class="hljs-number">1</span>] + window[<span class="hljs-number">0</span>]);<br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; window;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(right&lt;n){
+            <span class="hljs-keyword">int</span> c = nums[right];
+            window[c]++;
+            right++;
+            <span class="hljs-keyword">while</span>(window[<span class="hljs-number">0</span>]&gt;k){
+                <span class="hljs-keyword">int</span> d = nums[left];
+                left++;
+                window[d]--;
+            }
+            ans = <span class="hljs-built_in">max</span>(ans, window[<span class="hljs-number">1</span>] + window[<span class="hljs-number">0</span>]);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <p>空间优化版本：只需要维护0的个数就可以了</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> K)</span> </span>{<br>        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>, zeros = <span class="hljs-number">0</span>, left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> right = <span class="hljs-number">0</span>; right &lt; A.<span class="hljs-built_in">size</span>(); ++right) {<br>            <span class="hljs-keyword">if</span> (A[right] == <span class="hljs-number">0</span>) ++zeros;<br>            <span class="hljs-keyword">while</span> (zeros &gt; K) {<br>                <span class="hljs-keyword">if</span> (A[left++] == <span class="hljs-number">0</span>) --zeros;<br>            }<br>            res = <span class="hljs-built_in">max</span>(res, right - left + <span class="hljs-number">1</span>);<br>        }<br>        <span class="hljs-keyword">return</span> res;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> K)</span> </span>{
+        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>, zeros = <span class="hljs-number">0</span>, left = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> right = <span class="hljs-number">0</span>; right &lt; A.<span class="hljs-built_in">size</span>(); ++right) {
+            <span class="hljs-keyword">if</span> (A[right] == <span class="hljs-number">0</span>) ++zeros;
+            <span class="hljs-keyword">while</span> (zeros &gt; K) {
+                <span class="hljs-keyword">if</span> (A[left++] == <span class="hljs-number">0</span>) --zeros;
+            }
+            res = <span class="hljs-built_in">max</span>(res, right - left + <span class="hljs-number">1</span>);
+        }
+        <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre></div>
 
 <h3 id="424-替换后的最长重复字符"><a href="#424-替换后的最长重复字符" class="headerlink" title="424. 替换后的最长重复字符"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-repeating-character-replacement/">424. 替换后的最长重复字符</a></h3><p>难度中等576</p>
 <p>给你一个字符串 <code>s</code> 和一个整数 <code>k</code> 。你可以选择字符串中的任一字符，并将其更改为任何其他大写英文字符。该操作最多可执行 <code>k</code> 次。</p>
 <p>在执行上述操作后，返回包含相同字母的最长子字符串的长度。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight 1c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"ABAB"</span>, k = <span class="hljs-number">2</span><br>输出：<span class="hljs-number">4</span><br>解释：用两个'A'替换为两个'B',反之亦然。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"ABAB"</span>, k = <span class="hljs-number">2</span>
+输出：<span class="hljs-number">4</span>
+解释：用两个'A'替换为两个'B',反之亦然。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight 1c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"AABABBA"</span>, k = <span class="hljs-number">1</span><br>输出：<span class="hljs-number">4</span><br>解释：<br>将中间的一个'A'替换为'B',字符串变为 <span class="hljs-string">"AABBBBA"</span>。<br>子串 <span class="hljs-string">"BBBB"</span> 有最长重复字母, 答案为 <span class="hljs-number">4</span>。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"AABABBA"</span>, k = <span class="hljs-number">1</span>
+输出：<span class="hljs-number">4</span>
+解释：
+将中间的一个'A'替换为'B',字符串变为 <span class="hljs-string">"AABBBBA"</span>。
+子串 <span class="hljs-string">"BBBB"</span> 有最长重复字母, 答案为 <span class="hljs-number">4</span>。</code></pre></div>
 
 <p>思路</p>
 <p>滑动窗口融会贯通，比如这个题 就没想到怎么用map滑</p>
 <p>代码</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">characterReplacement</span><span class="hljs-params">(string s, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">num</span><span class="hljs-params">(<span class="hljs-number">26</span>)</span></span>;<br>        <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">length</span>();<br>        <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (right &lt; n) {<br>            num[s[right] - <span class="hljs-string">'A'</span>]++;<br>            <span class="hljs-comment">//maxn维护窗口最多元素的个数 以进行非最多元素个数的统计判断</span><br>            maxn = <span class="hljs-built_in">max</span>(maxn, num[s[right] - <span class="hljs-string">'A'</span>]);<br>            <span class="hljs-keyword">if</span> (right - left + <span class="hljs-number">1</span> - maxn &gt; k) {<br>                num[s[left] - <span class="hljs-string">'A'</span>]--;<br>                left++;<br>            }<br>            right++;<br>        }<br>        <span class="hljs-keyword">return</span> right - left;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">characterReplacement</span><span class="hljs-params">(string s, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">num</span><span class="hljs-params">(<span class="hljs-number">26</span>)</span></span>;
+        <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">length</span>();
+        <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (right &lt; n) {
+            num[s[right] - <span class="hljs-string">'A'</span>]++;
+            <span class="hljs-comment">//maxn维护窗口最多元素的个数 以进行非最多元素个数的统计判断</span>
+            maxn = <span class="hljs-built_in">max</span>(maxn, num[s[right] - <span class="hljs-string">'A'</span>]);
+            <span class="hljs-keyword">if</span> (right - left + <span class="hljs-number">1</span> - maxn &gt; k) {
+                num[s[left] - <span class="hljs-string">'A'</span>]--;
+                left++;
+            }
+            right++;
+        }
+        <span class="hljs-keyword">return</span> right - left;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-008-和大于等于-target-的最短子数组"><a href="#剑指-Offer-II-008-和大于等于-target-的最短子数组" class="headerlink" title="剑指 Offer II 008. 和大于等于 target 的最短子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/2VG8Kg/">剑指 Offer II 008. 和大于等于 target 的最短子数组</a></h3><p>难度中等53</p>
 <p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong></p>
 <p>找出该数组中满足其和 <code>≥ target</code> 的长度最小的 <strong>连续子数组</strong> <code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度<strong>。</strong>如果不存在符合条件的子数组，返回 <code>0</code> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight inform7"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：target = 7, nums = <span class="hljs-comment">[2,3,1,2,4,3]</span><br>输出：2<br>解释：子数组 <span class="hljs-comment">[4,3]</span> 是该条件下的长度最小的子数组。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：target = 7, nums = <span class="hljs-comment">[2,3,1,2,4,3]</span>
+输出：2
+解释：子数组 <span class="hljs-comment">[4,3]</span> 是该条件下的长度最小的子数组。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">target</span> = <span class="hljs-number">4</span>, <span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>]<br>输出：<span class="hljs-number">1</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">target</span> = <span class="hljs-number">4</span>, <span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>]
+输出：<span class="hljs-number">1</span></code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight dns"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：target = <span class="hljs-number">11</span>, nums = [<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,1</span>]<br>输出：<span class="hljs-number">0</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：target = <span class="hljs-number">11</span>, nums = [<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,1</span>]
+输出：<span class="hljs-number">0</span></code></pre></div>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>滑动窗口 模板大概还是那个模板 两个while比较好理解</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minSubArrayLen</span><span class="hljs-params">(<span class="hljs-keyword">int</span> target, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>; <br>        <span class="hljs-keyword">int</span> right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>; <br>        <span class="hljs-keyword">int</span> ans = INT_MAX;<br>        <span class="hljs-keyword">while</span>(right&lt;n){<br>            sum += nums[right];<br>            right++;<br>            <span class="hljs-keyword">while</span>(sum&gt;=target) {<br>                ans = <span class="hljs-built_in">min</span>(ans, right - left);<br>                sum -= nums[left];<br>                left++;<br>            }<br>        }<br>        <span class="hljs-keyword">return</span> ans == INT_MAX ? <span class="hljs-number">0</span> : ans;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minSubArrayLen</span><span class="hljs-params">(<span class="hljs-keyword">int</span> target, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>; 
+        <span class="hljs-keyword">int</span> right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>; 
+        <span class="hljs-keyword">int</span> ans = INT_MAX;
+        <span class="hljs-keyword">while</span>(right&lt;n){
+            sum += nums[right];
+            right++;
+            <span class="hljs-keyword">while</span>(sum&gt;=target) {
+                ans = <span class="hljs-built_in">min</span>(ans, right - left);
+                sum -= nums[left];
+                left++;
+            }
+        }
+        <span class="hljs-keyword">return</span> ans == INT_MAX ? <span class="hljs-number">0</span> : ans;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-009-乘积小于-K-的子数组"><a href="#剑指-Offer-II-009-乘积小于-K-的子数组" class="headerlink" title="剑指 Offer II 009. 乘积小于 K 的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/ZVAVXX/">剑指 Offer II 009. 乘积小于 K 的子数组</a></h3><p>难度中等63</p>
 <p>给定一个正整数数组 <code>nums</code>和整数 <code>k</code> ，请找出该数组内乘积小于 <code>k</code> 的连续的子数组的个数。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight inform7"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入: nums = <span class="hljs-comment">[10,5,2,6]</span>, k = 100<br>输出: 8<br>解释: 8 个乘积小于 100 的子数组分别为: <span class="hljs-comment">[10]</span>, <span class="hljs-comment">[5]</span>, <span class="hljs-comment">[2]</span>, <span class="hljs-comment">[6]</span>, <span class="hljs-comment">[10,5]</span>, <span class="hljs-comment">[5,2]</span>, <span class="hljs-comment">[2,6]</span>, <span class="hljs-comment">[5,2,6]</span>。<br>需要注意的是 <span class="hljs-comment">[10,5,2]</span> 并不是乘积小于100的子数组。<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入: nums = <span class="hljs-comment">[10,5,2,6]</span>, k = 100
+输出: 8
+解释: 8 个乘积小于 100 的子数组分别为: <span class="hljs-comment">[10]</span>, <span class="hljs-comment">[5]</span>, <span class="hljs-comment">[2]</span>, <span class="hljs-comment">[6]</span>, <span class="hljs-comment">[10,5]</span>, <span class="hljs-comment">[5,2]</span>, <span class="hljs-comment">[2,6]</span>, <span class="hljs-comment">[5,2,6]</span>。
+需要注意的是 <span class="hljs-comment">[10,5,2]</span> 并不是乘积小于100的子数组。</code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight makefile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">输入: nums = [1,2,3], k = 0</span><br><span class="hljs-section">输出: 0</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: nums = [1,2,3], k = 0</span>
+<span class="hljs-section">输出: 0</span></code></pre></div>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
 <li><p>这道题 正确解法 应该是滑动窗口</p>
@@ -399,25 +806,101 @@
 </li>
 </ol>
 <h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>正确的滑动窗口解法</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        <span class="hljs-keyword">int</span> multi = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">if</span>(k &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(right &lt; n){<br>            multi*=nums[right];<br>            <span class="hljs-keyword">while</span>(multi&gt;=k){<br>                multi/=nums[left];<br>                left++;<br>            }<br>            ans += (right - left + <span class="hljs-number">1</span>); <span class="hljs-comment">//注意 每次+的是窗口的长度</span><br>            right++;  <span class="hljs-comment">//这个写在前面也是可以的 只是right - left 不加1</span><br>        }<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">int</span> multi = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">if</span>(k &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(right &lt; n){
+            multi*=nums[right];
+            <span class="hljs-keyword">while</span>(multi&gt;=k){
+                multi/=nums[left];
+                left++;
+            }
+            ans += (right - left + <span class="hljs-number">1</span>); <span class="hljs-comment">//注意 每次+的是窗口的长度</span>
+            right++;  <span class="hljs-comment">//这个写在前面也是可以的 只是right - left 不加1</span>
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <p>回溯（假）</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">int</span> ans;<br>    <span class="hljs-comment">//vector&lt;vector&lt;int&gt;&gt; all;</span><br>    <span class="hljs-comment">//vector&lt;int&gt; path;</span><br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{<br>        ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){<br>            <span class="hljs-built_in">backtrack</span>(nums, i, <span class="hljs-number">1</span>, k);<br>        }<br>        <span class="hljs-comment">// cout&lt;&lt;all.size()&lt;&lt;endl;</span><br>        <span class="hljs-comment">// for(int i = 0; i&lt;all.size(); i++){</span><br>        <span class="hljs-comment">//     for(int j = 0; j&lt;all[i].size(); j++){</span><br>        <span class="hljs-comment">//         cout&lt;&lt;all[i][j]&lt;&lt;" ";</span><br>        <span class="hljs-comment">//     }</span><br>        <span class="hljs-comment">//     cout&lt;&lt;endl;</span><br>        <span class="hljs-comment">// }</span><br>        <span class="hljs-keyword">return</span> ans;<br>    }<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> startIndex, <span class="hljs-keyword">int</span> preK, <span class="hljs-keyword">int</span> k)</span></span>{<br>        <span class="hljs-keyword">if</span>(startIndex&gt;=nums.<span class="hljs-built_in">size</span>() || preK&gt;=k) <span class="hljs-keyword">return</span>;<br>        preK*=nums[startIndex];<br>        <span class="hljs-comment">//path.push_back(nums[startIndex]);</span><br>        <span class="hljs-keyword">if</span>(preK&lt;k){<br>          ans++;  <br>          <span class="hljs-comment">//all.push_back(path);</span><br>        }<br>        <span class="hljs-built_in">backtrack</span>(nums, startIndex+<span class="hljs-number">1</span>, preK, k);<br>        preK /= nums[startIndex];<br>        <span class="hljs-comment">//path.pop_back();</span><br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> ans;
+    <span class="hljs-comment">//vector&lt;vector&lt;int&gt;&gt; all;</span>
+    <span class="hljs-comment">//vector&lt;int&gt; path;</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numSubarrayProductLessThanK</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+        ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+            <span class="hljs-built_in">backtrack</span>(nums, i, <span class="hljs-number">1</span>, k);
+        }
+        <span class="hljs-comment">// cout&lt;&lt;all.size()&lt;&lt;endl;</span>
+        <span class="hljs-comment">// for(int i = 0; i&lt;all.size(); i++){</span>
+        <span class="hljs-comment">//     for(int j = 0; j&lt;all[i].size(); j++){</span>
+        <span class="hljs-comment">//         cout&lt;&lt;all[i][j]&lt;&lt;" ";</span>
+        <span class="hljs-comment">//     }</span>
+        <span class="hljs-comment">//     cout&lt;&lt;endl;</span>
+        <span class="hljs-comment">// }</span>
+        <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> startIndex, <span class="hljs-keyword">int</span> preK, <span class="hljs-keyword">int</span> k)</span></span>{
+        <span class="hljs-keyword">if</span>(startIndex&gt;=nums.<span class="hljs-built_in">size</span>() || preK&gt;=k) <span class="hljs-keyword">return</span>;
+        preK*=nums[startIndex];
+        <span class="hljs-comment">//path.push_back(nums[startIndex]);</span>
+        <span class="hljs-keyword">if</span>(preK&lt;k){
+          ans++;  
+          <span class="hljs-comment">//all.push_back(path);</span>
+        }
+        <span class="hljs-built_in">backtrack</span>(nums, startIndex+<span class="hljs-number">1</span>, preK, k);
+        preK /= nums[startIndex];
+        <span class="hljs-comment">//path.pop_back();</span>
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-057-值和下标之差都在给定的范围内"><a href="#剑指-Offer-II-057-值和下标之差都在给定的范围内" class="headerlink" title="剑指 Offer II 057. 值和下标之差都在给定的范围内"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/7WqeDu/">剑指 Offer II 057. 值和下标之差都在给定的范围内</a></h3><p>难度中等35</p>
 <p>给你一个整数数组 <code>nums</code> 和两个整数 <code>k</code> 和 <code>t</code> 。请你判断是否存在 <strong>两个不同下标</strong> <code>i</code> 和 <code>j</code>，使得 <code>abs(nums[i] - nums[j]) &lt;= t</code> ，同时又满足 <code>abs(i - j) &lt;= k</code> 。</p>
 <p>如果存在则返回 <code>true</code>，不存在返回 <code>false</code>。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">3</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">0</span><br>输出：<span class="hljs-literal">true</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">3</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">0</span>
+输出：<span class="hljs-literal">true</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">1</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">2</span><br>输出：<span class="hljs-literal">true</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">1</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">2</span>
+输出：<span class="hljs-literal">true</span></code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight nix"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">2</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">3</span><br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">2</span>, <span class="hljs-attr">t</span> = <span class="hljs-number">3</span>
+输出：<span class="hljs-literal">false</span></code></pre></div>
 
 <h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p>滑动窗口 用set进行排序 查找满足条件的最小元素</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">containsNearbyAlmostDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> t)</span> </span>{<br>      set&lt;<span class="hljs-keyword">int</span>&gt; window;<br>      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">while</span>(right &lt; nums.<span class="hljs-built_in">size</span>()){<br>        <span class="hljs-keyword">int</span> num = nums[right];<br>        right++;<br>        <br>        <span class="hljs-comment">//查找set内落在 [num -t, num + t]的元素 也就是&gt;=num-t的第一个元素</span><br>        <span class="hljs-keyword">auto</span> iter = window.<span class="hljs-built_in">lower_bound</span>(<span class="hljs-built_in">max</span>(num, INT_MIN + t) - t);<br>        <span class="hljs-keyword">if</span> (iter != window.<span class="hljs-built_in">end</span>() &amp;&amp; *iter &lt;= <span class="hljs-built_in">min</span>(num, INT_MAX - t) + t) <br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>        window.<span class="hljs-built_in">insert</span>(num);<br>        <span class="hljs-keyword">if</span>(window.<span class="hljs-built_in">size</span>() &gt; k){<br>          window.<span class="hljs-built_in">erase</span>(nums[left]);<br>          left++;<br>        }<br>      }<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    }<br>};<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">containsNearbyAlmostDuplicate</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> t)</span> </span>{
+      set&lt;<span class="hljs-keyword">int</span>&gt; window;
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(right &lt; nums.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-keyword">int</span> num = nums[right];
+        right++;
+        
+        <span class="hljs-comment">//查找set内落在 [num -t, num + t]的元素 也就是&gt;=num-t的第一个元素</span>
+        <span class="hljs-keyword">auto</span> iter = window.<span class="hljs-built_in">lower_bound</span>(<span class="hljs-built_in">max</span>(num, INT_MIN + t) - t);
+        <span class="hljs-keyword">if</span> (iter != window.<span class="hljs-built_in">end</span>() &amp;&amp; *iter &lt;= <span class="hljs-built_in">min</span>(num, INT_MAX - t) + t) 
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+
+        window.<span class="hljs-built_in">insert</span>(num);
+        <span class="hljs-keyword">if</span>(window.<span class="hljs-built_in">size</span>() &gt; k){
+          window.<span class="hljs-built_in">erase</span>(nums[left]);
+          left++;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
 
 <h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p><code>桶排序</code>我们可以把输入的元素按桶的个数，假设位t的间隔进行划分。<br>划分成：<br>第一个桶，存放[0…t]的数,<br>第二个桶，存放[t+1…2t],<br>…,<br>最后一个桶[(n-1)t…nt]。</p>
 <p>举个例子:<br>若输入t = 3,nums = [1,5,9,1,5,8]，我们按照上面的思路，进行划分，因为0 &lt; nums[0] = 1 &lt; t，于是我们放入第一个桶，t + 1 = 4 &lt; nums[1] = 5 &lt; 2t = 6，于是放入第二个桶，其它同理，最后我们得到分布了数据的三个桶</p>
@@ -426,7 +909,93 @@
 <p>若其中一个为上边界，另一个为下边界。如|7 - 6| = 1 &lt;t∣7−6∣=1&lt;t，可见分布在相邻桶的元素也可能会存在绝对值之差小于t的情况。</p>
 <p>因此，综合上面的解释我们可以确定两种情况下：</p>
 <p>任意两个元素落在了一个桶<br>分布在相邻桶的元素绝对值之差有可能小于t<br>于是乎(借助官方题解的代码)</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 第一种情况，分布在同一个桶</span><br><span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id)) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>}<br><span class="hljs-comment">// 第二种情况</span><br><span class="hljs-comment">// 判断相邻桶是否已经有元素</span><br><span class="hljs-comment">// 若有则判断是否绝对值之差在t内</span><br><span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id - <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">abs</span>(x - mp[id - <span class="hljs-number">1</span>]) &lt;= t) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>}<br><span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id + <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">abs</span>(x - mp[id + <span class="hljs-number">1</span>]) &lt;= t) {<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 第一种情况，分布在同一个桶</span>
+<span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id)) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+<span class="hljs-comment">// 第二种情况</span>
+<span class="hljs-comment">// 判断相邻桶是否已经有元素</span>
+<span class="hljs-comment">// 若有则判断是否绝对值之差在t内</span>
+<span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id - <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">abs</span>(x - mp[id - <span class="hljs-number">1</span>]) &lt;= t) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+<span class="hljs-keyword">if</span> (mp.<span class="hljs-built_in">count</span>(id + <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">abs</span>(x - mp[id + <span class="hljs-number">1</span>]) &lt;= t) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}</code></pre></div>
+
+<h3 id="1838-最高频元素的频数"><a href="#1838-最高频元素的频数" class="headerlink" title="1838. 最高频元素的频数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/frequency-of-the-most-frequent-element/">1838. 最高频元素的频数</a></h3><p>难度中等222</p>
+<p>元素的 <strong>频数</strong> 是该元素在一个数组中出现的次数。</p>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。在一步操作中，你可以选择 <code>nums</code> 的一个下标，并将该下标对应元素的值增加 <code>1</code> 。</p>
+<p>执行最多 <code>k</code> 次操作后，返回数组中最高频元素的 <strong>最大可能频数</strong> <em>。</em></p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">5</span>
+输出：<span class="hljs-number">3</span>
+解释：对第一个元素执行 <span class="hljs-number">3</span> 次递增操作，对第二个元素执 <span class="hljs-number">2</span> 次递增操作，此时 <span class="hljs-attr">nums</span> = [<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>] 。
+<span class="hljs-number">4</span> 是数组中最高频元素，频数是 <span class="hljs-number">3</span> 。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs tap">输入：nums = [1,4,8,13], k = 5
+输出：2
+解释：存在多种最优解决方案：
+- 对第一个元素执行<span class="hljs-number"> 3 </span>次递增操作，此时 nums = [4,4,8,13] 。4 是数组中最高频元素，频数是<span class="hljs-number"> 2 </span>。
+- 对第二个元素执行<span class="hljs-number"> 4 </span>次递增操作，此时 nums = [1,8,8,13] 。8 是数组中最高频元素，频数是<span class="hljs-number"> 2 </span>。
+- 对第三个元素执行<span class="hljs-number"> 5 </span>次递增操作，此时 nums = [1,4,13,13] 。13 是数组中最高频元素，频数是<span class="hljs-number"> 2 </span>。</code></pre></div>
+
+<p>解法 不动脑子的滑动窗口</p>
+<p>使用一个滑窗，看窗口内的k够不够用把所有元素变成同一个值，这个值肯定是窗口中元素的最大值 所以先对nums进行排序，每次变成最右侧的值就可以了</p>
+<p>首先是我的蠢比解法，每次去检验k够不够用，对窗口进行遍历 </p>
+<p>超时！</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxFrequency</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-comment">//先排序， 这样每次窗口最右就是要变成的数</span>
+      <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(right &lt; n){
+        <span class="hljs-keyword">int</span> numR = nums[right];
+        <span class="hljs-keyword">while</span>(<span class="hljs-built_in">lastK</span>(nums, left, right, k) &lt; <span class="hljs-number">0</span>){
+          left++;
+        }
+        ans = <span class="hljs-built_in">max</span>(ans, right - left + <span class="hljs-number">1</span>);
+        right++;
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+    <span class="hljs-comment">//表示填充全部窗口元素到相同值 k剩余多少</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lastK</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> k)</span></span>{
+      <span class="hljs-keyword">int</span> dst = nums[right];
+      <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = left; i&lt;right; i++){
+        res += (dst - nums[i]);
+      }
+      <span class="hljs-keyword">return</span> k - res;
+    }
+};</code></pre></div>
+
+<p>解法 滑窗 直接统计差值</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxFrequency</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-comment">//先排序， 这样每次窗口最右就是要变成的数</span>
+      <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">1</span>, ans = <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">long</span> sum = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(right &lt; n){
+        <span class="hljs-comment">//窗口右移，元素变大后所有元素与最大值 新增的差值</span>
+        sum += (<span class="hljs-keyword">long</span>)(nums[right] - nums[right<span class="hljs-number">-1</span>])*(right - left);
+        <span class="hljs-keyword">while</span>(sum &gt; k){
+          sum -= nums[right] - nums[left];
+          left++;
+        }
+        ans = <span class="hljs-built_in">max</span>(ans, right - left + <span class="hljs-number">1</span>);
+        right++;
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
 
               
             </div>
