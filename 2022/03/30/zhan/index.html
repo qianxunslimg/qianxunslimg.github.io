@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20210223155303971.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220331164646464.png">
 <meta property="article:published_time" content="2022-03-30T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-05-03T15:35:48.046Z">
+<meta property="article:modified_time" content="2022-05-28T15:31:39.512Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -279,25 +279,91 @@
 <p>对于数组中的每一个元素，其绝对值表示小行星的大小，正负表示小行星的移动方向（正表示向右移动，负表示向左移动）。每一颗小行星以相同的速度移动。</p>
 <p>找出碰撞后剩下的所有小行星。碰撞规则：两个行星相互碰撞，较小的行星会爆炸。如果两颗行星大小相同，则两颗行星都会爆炸。两颗移动方向相同的行星，永远不会发生碰撞。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：asteroids = [5,10,-5]</span><br><span class="line">输出：[5,10]</span><br><span class="line">解释：10 和 -5 碰撞后只剩下 10 。 5 和 10 永远不会发生碰撞。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs tap">输入：asteroids = [5,10,-5]
+输出：[5,10]
+解释：10 和 -5 碰撞后只剩下<span class="hljs-number"> 10 </span>。<span class="hljs-number"> 5 </span>和<span class="hljs-number"> 10 </span>永远不会发生碰撞。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：asteroids = [8,-8]</span><br><span class="line">输出：[]</span><br><span class="line">解释：8 和 -8 碰撞后，两者都发生爆炸。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：asteroids = <span class="hljs-comment">[8,-8]</span>
+输出：<span class="hljs-comment">[]</span>
+解释：8 和 -8 碰撞后，两者都发生爆炸。</code></pre></div>
 
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>情况讨论如下：</p>
 <p>直接压入栈的情况：</p>
-<pre><code> a. 栈空；
+<div class="code-wrapper"><pre><code class="hljs"> a. 栈空；
  b. 栈顶是负数（向左运动的行星）；
  c. 栈顶与asteroids[i]符号相同（当前行星运动方向一致）
-</code></pre>
+</code></pre></div>
 <p>栈顶是正数</p>
-<pre><code> a.如果asteroids[i]的绝对值小于栈顶，++i；
+<div class="code-wrapper"><pre><code class="hljs"> a.如果asteroids[i]的绝对值小于栈顶，++i；
  b.如果相等，则弹出栈顶元素并 ++i；
  c.如果大于，则弹出栈顶元素，asteroids[i]继续进行一轮判断
      （因为每次循环都有++i操作，故进行--i操作）
-</code></pre>
+</code></pre></div>
 <p>最初开始用栈实现，其实用vector就可以实现</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">asteroidCollision</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">            <span class="keyword">if</span>(ans.<span class="built_in">empty</span>() || ans.<span class="built_in">back</span>()&lt;<span class="number">0</span> || ans.<span class="built_in">back</span>()*nums[i]&gt;<span class="number">0</span>)</span><br><span class="line">                ans.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(ans.<span class="built_in">back</span>() + nums[i] &lt;= <span class="number">0</span>){</span><br><span class="line">                <span class="keyword">if</span>(ans.<span class="built_in">back</span>() + nums[i] &lt; <span class="number">0</span>) --i;</span><br><span class="line">                ans.<span class="built_in">pop_back</span>();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的笨比解法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">asteroidCollision</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>{</span><br><span class="line">		vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">		stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">		<span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">			<span class="keyword">if</span> (stk.<span class="built_in">empty</span>()) {</span><br><span class="line">				stk.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			}</span><br><span class="line">			<span class="comment">//判断是否需要跳过当前for</span></span><br><span class="line">			<span class="comment">//撞出0 跳过当前</span></span><br><span class="line">			<span class="keyword">bool</span> jump = <span class="number">0</span>;</span><br><span class="line">			<span class="comment">//之前向右 当前向左 会撞</span></span><br><span class="line">			<span class="keyword">if</span> (stk.<span class="built_in">top</span>() &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt; <span class="number">0</span>) {</span><br><span class="line">				<span class="keyword">int</span> temp = nums[i];</span><br><span class="line">				<span class="keyword">while</span> (!stk.<span class="built_in">empty</span>() &amp;&amp; stk.<span class="built_in">top</span>() &gt; <span class="number">0</span> &amp;&amp; temp &lt; <span class="number">0</span>) {</span><br><span class="line">					<span class="keyword">int</span> flag = temp + stk.<span class="built_in">top</span>();</span><br><span class="line">					<span class="comment">//撞出0 出栈并跳过当前</span></span><br><span class="line">					<span class="keyword">if</span> (flag == <span class="number">0</span>) {</span><br><span class="line">						stk.<span class="built_in">pop</span>();</span><br><span class="line">						jump = <span class="number">1</span>;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					}</span><br><span class="line">					<span class="comment">//更新未进栈的行星 并出栈top</span></span><br><span class="line">					temp = <span class="built_in">max</span>(<span class="built_in">abs</span>(stk.<span class="built_in">top</span>()), <span class="built_in">abs</span>(temp)) * flag / <span class="built_in">abs</span>(flag);</span><br><span class="line">					stk.<span class="built_in">pop</span>();</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (jump) {</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				}</span><br><span class="line">				<span class="comment">//撞剩下的行星入栈</span></span><br><span class="line">				stk.<span class="built_in">push</span>(temp);</span><br><span class="line">			}</span><br><span class="line">			<span class="keyword">else</span> {</span><br><span class="line">				stk.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">while</span> (!stk.<span class="built_in">empty</span>()) {</span><br><span class="line">			ans.<span class="built_in">push_back</span>(stk.<span class="built_in">top</span>());</span><br><span class="line">			stk.<span class="built_in">pop</span>();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span>{ ans.<span class="built_in">rbegin</span>(), ans.<span class="built_in">rend</span>() };</span><br><span class="line">	}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">asteroidCollision</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+            <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">empty</span>() || ans.<span class="hljs-built_in">back</span>()&lt;<span class="hljs-number">0</span> || ans.<span class="hljs-built_in">back</span>()*nums[i]&gt;<span class="hljs-number">0</span>)
+                ans.<span class="hljs-built_in">push_back</span>(nums[i]);
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">back</span>() + nums[i] &lt;= <span class="hljs-number">0</span>){
+                <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">back</span>() + nums[i] &lt; <span class="hljs-number">0</span>) --i;
+                ans.<span class="hljs-built_in">pop_back</span>();
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+
+<span class="hljs-comment">//我的笨比解法</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">asteroidCollision</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
+		vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+		stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+		<span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+			<span class="hljs-keyword">if</span> (stk.<span class="hljs-built_in">empty</span>()) {
+				stk.<span class="hljs-built_in">push</span>(nums[i]);
+				<span class="hljs-keyword">continue</span>;
+			}
+			<span class="hljs-comment">//判断是否需要跳过当前for</span>
+			<span class="hljs-comment">//撞出0 跳过当前</span>
+			<span class="hljs-keyword">bool</span> jump = <span class="hljs-number">0</span>;
+			<span class="hljs-comment">//之前向右 当前向左 会撞</span>
+			<span class="hljs-keyword">if</span> (stk.<span class="hljs-built_in">top</span>() &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] &lt; <span class="hljs-number">0</span>) {
+				<span class="hljs-keyword">int</span> temp = nums[i];
+				<span class="hljs-keyword">while</span> (!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; stk.<span class="hljs-built_in">top</span>() &gt; <span class="hljs-number">0</span> &amp;&amp; temp &lt; <span class="hljs-number">0</span>) {
+					<span class="hljs-keyword">int</span> flag = temp + stk.<span class="hljs-built_in">top</span>();
+					<span class="hljs-comment">//撞出0 出栈并跳过当前</span>
+					<span class="hljs-keyword">if</span> (flag == <span class="hljs-number">0</span>) {
+						stk.<span class="hljs-built_in">pop</span>();
+						jump = <span class="hljs-number">1</span>;
+						<span class="hljs-keyword">break</span>;
+					}
+					<span class="hljs-comment">//更新未进栈的行星 并出栈top</span>
+					temp = <span class="hljs-built_in">max</span>(<span class="hljs-built_in">abs</span>(stk.<span class="hljs-built_in">top</span>()), <span class="hljs-built_in">abs</span>(temp)) * flag / <span class="hljs-built_in">abs</span>(flag);
+					stk.<span class="hljs-built_in">pop</span>();
+				}
+				<span class="hljs-keyword">if</span> (jump) {
+					<span class="hljs-keyword">continue</span>;
+				}
+				<span class="hljs-comment">//撞剩下的行星入栈</span>
+				stk.<span class="hljs-built_in">push</span>(temp);
+			}
+			<span class="hljs-keyword">else</span> {
+				stk.<span class="hljs-built_in">push</span>(nums[i]);
+			}
+		}
+		<span class="hljs-keyword">while</span> (!stk.<span class="hljs-built_in">empty</span>()) {
+			ans.<span class="hljs-built_in">push_back</span>(stk.<span class="hljs-built_in">top</span>());
+			stk.<span class="hljs-built_in">pop</span>();
+		}
+		<span class="hljs-keyword">return</span>{ ans.<span class="hljs-built_in">rbegin</span>(), ans.<span class="hljs-built_in">rend</span>() };
+	}
+};</code></pre></div>
 
 <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><p><strong>通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了</strong>。</p>
 <p>时间复杂度为$O(n)$。</p>
@@ -326,16 +392,45 @@
 <p>难度中等1081收藏分享切换为英文接收动态反馈</p>
 <p>给定一个整数数组 <code>temperatures</code> ，表示每天的温度，返回一个数组 <code>answer</code> ，其中 <code>answer[i]</code> 是指在第 <code>i</code> 天之后，才会有更高的温度。如果气温在这之后都不会升高，请在该位置用 <code>0</code> 来代替。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [73,74,75,71,69,72,76,73]</span><br><span class="line">输出: [1,1,4,2,1,1,0,0]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入: temperatures = [<span class="hljs-number">73,74,75,71</span>,<span class="hljs-number">69,72,76,73</span>]
+输出: [<span class="hljs-number">1,1,4,2</span>,<span class="hljs-number">1,1,0,0</span>]</code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [30,40,50,60]</span><br><span class="line">输出: [1,1,1,0]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入: temperatures = [<span class="hljs-number">30,40,50,60</span>]
+输出: [<span class="hljs-number">1,1,1,0</span>]</code></pre></div>
 
 <p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [30,60,90]</span><br><span class="line">输出: [1,1,0]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入: temperatures = <span class="hljs-comment">[30,60,90]</span>
+输出: <span class="hljs-comment">[1,1,0]</span></code></pre></div>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a><a target="_blank" rel="noopener" href="https://programmercarl.com/0739.%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6.html#%E6%80%9D%E8%B7%AF">思路</a></h4><p>递增单调栈  （元素&lt;=栈顶元素时 入栈）</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dailyTemperatures</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="comment">//0特判</span></span><br><span class="line">            <span class="keyword">if</span>(stk.<span class="built_in">empty</span>()){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">//元素&lt;=栈顶元素时 入栈</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i]&lt;=nums[stk.<span class="built_in">top</span>()]){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; nums[stk.<span class="built_in">top</span>()]&lt;nums[i]){</span><br><span class="line">                    <span class="keyword">int</span> now = stk.<span class="built_in">top</span>();</span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                    ans[now] = (i - now);                    </span><br><span class="line">                }</span><br><span class="line">                stk.<span class="built_in">push</span>(i); <span class="comment">// 不要忘了入栈</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">dailyTemperatures</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-comment">//0特判</span>
+            <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+                stk.<span class="hljs-built_in">push</span>(i);
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-comment">//元素&lt;=栈顶元素时 入栈</span>
+            <span class="hljs-keyword">if</span>(nums[i]&lt;=nums[stk.<span class="hljs-built_in">top</span>()]){
+                stk.<span class="hljs-built_in">push</span>(i);
+            }<span class="hljs-keyword">else</span>{
+                <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; nums[stk.<span class="hljs-built_in">top</span>()]&lt;nums[i]){
+                    <span class="hljs-keyword">int</span> now = stk.<span class="hljs-built_in">top</span>();
+                    stk.<span class="hljs-built_in">pop</span>();
+                    ans[now] = (i - now);                    
+                }
+                stk.<span class="hljs-built_in">push</span>(i); <span class="hljs-comment">// 不要忘了入栈</span>
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=496">labuladong 题解</a></p>
 <p>难度简单676英文版讨论区</p>
@@ -344,66 +439,238 @@
 <p>对于每个 <code>0 &lt;= i &lt; nums1.length</code> ，找出满足 <code>nums1[i] == nums2[j]</code> 的下标 <code>j</code> ，并且在 <code>nums2</code> 确定 <code>nums2[j]</code> 的 <strong>下一个更大元素</strong> 。如果不存在下一个更大元素，那么本次查询的答案是 <code>-1</code> 。</p>
 <p>返回一个长度为 <code>nums1.length</code> 的数组 <code>ans</code> 作为答案，满足 <code>ans[i]</code> 是如上所述的 <strong>下一个更大元素</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [4,1,2], nums2 = [1,3,4,2].</span><br><span class="line">输出：[-1,3,-1]</span><br><span class="line">解释：nums1 中每个值的下一个更大元素如下所述：</span><br><span class="line">- 4 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。</span><br><span class="line">- 1 ，用加粗斜体标识，nums2 = [1,3,4,2]。下一个更大元素是 3 。</span><br><span class="line">- 2 ，用加粗斜体标识，nums2 = [1,3,4,2]。不存在下一个更大元素，所以答案是 -1 。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：nums1 = [<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>].
+输出：[<span class="hljs-number">-1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>]
+解释：nums1 中每个值的下一个更大元素如下所述：
+- <span class="hljs-number">4</span> ，用加粗斜体标识，nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>]。不存在下一个更大元素，所以答案是 <span class="hljs-number">-1</span> 。
+- <span class="hljs-number">1</span> ，用加粗斜体标识，nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>]。下一个更大元素是 <span class="hljs-number">3</span> 。
+- <span class="hljs-number">2</span> ，用加粗斜体标识，nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">2</span>]。不存在下一个更大元素，所以答案是 <span class="hljs-number">-1</span> 。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = [2,4], nums2 = [1,2,3,4].</span><br><span class="line">输出：[3,-1]</span><br><span class="line">解释：nums1 中每个值的下一个更大元素如下所述：</span><br><span class="line">- 2 ，用加粗斜体标识，nums2 = [1,2,3,4]。下一个更大元素是 3 。</span><br><span class="line">- 4 ，用加粗斜体标识，nums2 = [1,2,3,4]。不存在下一个更大元素，所以答案是 -1 。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：nums1 = [<span class="hljs-number">2</span>,<span class="hljs-number">4</span>], nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>].
+输出：[<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>]
+解释：nums1 中每个值的下一个更大元素如下所述：
+- <span class="hljs-number">2</span> ，用加粗斜体标识，nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]。下一个更大元素是 <span class="hljs-number">3</span> 。
+- <span class="hljs-number">4</span> ，用加粗斜体标识，nums2 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]。不存在下一个更大元素，所以答案是 <span class="hljs-number">-1</span> 。</code></pre></div>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>这道题虽然是简单题 但是难度比每日温度大</li>
 <li>用一个哈希记录nums1，再对nums2使用单调栈</li>
 </ol>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="keyword">int</span>&gt;&amp; nums2)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> m = nums1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mapp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;m; i++)</span><br><span class="line">            mapp[nums1[i]] = i;</span><br><span class="line">        <span class="keyword">int</span> n = nums2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">if</span>(stk.<span class="built_in">empty</span>()){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(nums2[stk.<span class="built_in">top</span>()]&gt;= nums2[i])</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">else</span>{</span><br><span class="line">                <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; nums2[stk.<span class="built_in">top</span>()] &lt; nums2[i]){</span><br><span class="line">                    <span class="keyword">int</span> nowI = stk.<span class="built_in">top</span>();</span><br><span class="line">                    <span class="comment">//判断是否是nums1中的元素</span></span><br><span class="line">                    <span class="keyword">if</span>(mapp.<span class="built_in">count</span>(nums2[nowI])){</span><br><span class="line">                        <span class="keyword">int</span> index = mapp[nums2[nowI]];</span><br><span class="line">                        ans[index] = nums2[i];</span><br><span class="line">                    }</span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                }</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">nextGreaterElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums2)</span> </span>{
+        <span class="hljs-keyword">int</span> m = nums1.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(m, <span class="hljs-number">-1</span>)</span></span>;
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; mapp;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;m; i++)
+            mapp[nums1[i]] = i;
+        <span class="hljs-keyword">int</span> n = nums2.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+                stk.<span class="hljs-built_in">push</span>(i);
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">if</span>(nums2[stk.<span class="hljs-built_in">top</span>()]&gt;= nums2[i])
+                stk.<span class="hljs-built_in">push</span>(i);
+            <span class="hljs-keyword">else</span>{
+                <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; nums2[stk.<span class="hljs-built_in">top</span>()] &lt; nums2[i]){
+                    <span class="hljs-keyword">int</span> nowI = stk.<span class="hljs-built_in">top</span>();
+                    <span class="hljs-comment">//判断是否是nums1中的元素</span>
+                    <span class="hljs-keyword">if</span>(mapp.<span class="hljs-built_in">count</span>(nums2[nowI])){
+                        <span class="hljs-keyword">int</span> index = mapp[nums2[nowI]];
+                        ans[index] = nums2[i];
+                    }
+                    stk.<span class="hljs-built_in">pop</span>();
+                }
+                stk.<span class="hljs-built_in">push</span>(i);
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=503">labuladong 题解</a></p>
 <p>难度中等586英文版讨论区</p>
 <p>给定一个循环数组 <code>nums</code> （ <code>nums[nums.length - 1]</code> 的下一个元素是 <code>nums[0]</code> ），返回 <em><code>nums</code> 中每个元素的 <strong>下一个更大元素</strong></em> 。</p>
 <p>数字 <code>x</code> 的 <strong>下一个更大的元素</strong> 是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 <code>-1</code> 。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1,2,1]</span><br><span class="line">输出: [2,-1,2]</span><br><span class="line">解释: 第一个 1 的下一个更大的数是 2；</span><br><span class="line">数字 2 找不到下一个更大的数； </span><br><span class="line">第二个 1 的下一个最大的数需要循环搜索，结果也是 2。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: nums = [1,2,1]</span>
+<span class="hljs-section">输出: [2,-1,2]</span>
+<span class="hljs-section">解释: 第一个 1 的下一个更大的数是 2；</span>
+数字 2 找不到下一个更大的数； 
+第二个 1 的下一个最大的数需要循环搜索，结果也是 2。</code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1,2,3,4,3]</span><br><span class="line">输出: [2,3,4,-1,4]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入: nums = <span class="hljs-string">[1,2,3,4,3]</span>
+输出: <span class="hljs-string">[2,3,4,-1,4]</span></code></pre></div>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>再拼接一个数组 对二倍长度的数组进行统计 最后将结果resize为原大小</li>
 <li>循环起来，遍历的时候遍历二倍大小 用%n来进行循环</li>
 </ol>
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><h5 id="二倍数组拼接"><a href="#二倍数组拼接" class="headerlink" title="二倍数组拼接"></a>二倍数组拼接</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        n*=<span class="number">2</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nums1</span><span class="params">(nums.begin(), nums.end())</span></span>;</span><br><span class="line">        nums.<span class="built_in">insert</span>(nums.<span class="built_in">end</span>(), nums1.<span class="built_in">begin</span>(), nums1.<span class="built_in">end</span>());</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">if</span>(stk.<span class="built_in">empty</span>()){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(nums[stk.<span class="built_in">top</span>()]&gt;=nums[i]){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; nums[stk.<span class="built_in">top</span>()]&lt;nums[i]){</span><br><span class="line">                    ans[stk.<span class="built_in">top</span>()] = nums[i];</span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                }</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        ans.<span class="built_in">resize</span>(n/<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><h5 id="二倍数组拼接"><a href="#二倍数组拼接" class="headerlink" title="二倍数组拼接"></a>二倍数组拼接</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">nextGreaterElements</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        n*=<span class="hljs-number">2</span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">nums1</span><span class="hljs-params">(nums.begin(), nums.end())</span></span>;
+        nums.<span class="hljs-built_in">insert</span>(nums.<span class="hljs-built_in">end</span>(), nums1.<span class="hljs-built_in">begin</span>(), nums1.<span class="hljs-built_in">end</span>());
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n, <span class="hljs-number">-1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+                stk.<span class="hljs-built_in">push</span>(i);
+                <span class="hljs-keyword">continue</span>;
+            }
 
-<h5 id="二倍循环-n"><a href="#二倍循环-n" class="headerlink" title="二倍循环%n"></a>二倍循环%n</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">nextGreaterElements</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(n, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n*<span class="number">2</span>; i++){</span><br><span class="line">            <span class="keyword">if</span>(stk.<span class="built_in">empty</span>()){</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; nums[stk.<span class="built_in">top</span>()]&lt;nums[i%n]){</span><br><span class="line">                ans[stk.<span class="built_in">top</span>()] = nums[i%n];</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">            }</span><br><span class="line">            stk.<span class="built_in">push</span>(i%n);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+            <span class="hljs-keyword">if</span>(nums[stk.<span class="hljs-built_in">top</span>()]&gt;=nums[i]){
+                stk.<span class="hljs-built_in">push</span>(i);
+            }<span class="hljs-keyword">else</span>{
+                <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; nums[stk.<span class="hljs-built_in">top</span>()]&lt;nums[i]){
+                    ans[stk.<span class="hljs-built_in">top</span>()] = nums[i];
+                    stk.<span class="hljs-built_in">pop</span>();
+                }
+                stk.<span class="hljs-built_in">push</span>(i);
+            }
+        }
+        ans.<span class="hljs-built_in">resize</span>(n/<span class="hljs-number">2</span>);
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h5 id="二倍循环-n"><a href="#二倍循环-n" class="headerlink" title="二倍循环%n"></a>二倍循环%n</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">nextGreaterElements</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n, <span class="hljs-number">-1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n*<span class="hljs-number">2</span>; i++){
+            <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+                stk.<span class="hljs-built_in">push</span>(i);
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; nums[stk.<span class="hljs-built_in">top</span>()]&lt;nums[i%n]){
+                ans[stk.<span class="hljs-built_in">top</span>()] = nums[i%n];
+                stk.<span class="hljs-built_in">pop</span>();
+            }
+            stk.<span class="hljs-built_in">push</span>(i%n);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=42">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/#">思路</a></p>
 <p>难度困难3289英文版讨论区</p>
 <p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rainwatertrap.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：height = [<span class="hljs-number">0,1,0,2</span>,<span class="hljs-number">1,0,1,3</span>,<span class="hljs-number">2,1,2,1</span>]
+输出：<span class="hljs-number">6</span>
+解释：上面是由数组 [<span class="hljs-number">0,1,0,2</span>,<span class="hljs-number">1,0,1,3</span>,<span class="hljs-number">2,1,2,1</span>] 表示的高度图，在这种情况下，可以接 <span class="hljs-number">6</span> 个单位的雨水（蓝色部分表示雨水）。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入：height = <span class="hljs-string">[4,2,0,3,2,5]</span>
+输出：<span class="hljs-number">9</span></code></pre></div>
 
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>On2暴力 </li>
 <li>dp 多次遍历 保存最值</li>
 <li>最小栈</li>
 </ol>
-<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><h5 id="On2暴力"><a href="#On2暴力" class="headerlink" title="On2暴力"></a>On2暴力</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//暴力超时</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = height.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span> || i == n<span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> rHeight = height[i];</span><br><span class="line">            <span class="keyword">int</span> lHeight = height[i];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> r = i+<span class="number">1</span>; r&lt;n; r++){</span><br><span class="line">                <span class="keyword">if</span>(height[r]&gt;rHeight) rHeight = height[r];</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> l = i<span class="number">-1</span>; l&gt;=<span class="number">0</span>; l--){</span><br><span class="line">                <span class="keyword">if</span>(height[l]&gt;lHeight) lHeight = height[l];</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">int</span> h = <span class="built_in">min</span>(lHeight, rHeight) - height[i];</span><br><span class="line">            <span class="keyword">if</span>(h&gt;<span class="number">0</span>) sum+=h;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><h5 id="On2暴力"><a href="#On2暴力" class="headerlink" title="On2暴力"></a>On2暴力</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//暴力超时</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trap</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; height)</span> </span>{
+        <span class="hljs-keyword">int</span> n = height.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span> || i == n<span class="hljs-number">-1</span>) <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">int</span> rHeight = height[i];
+            <span class="hljs-keyword">int</span> lHeight = height[i];
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> r = i+<span class="hljs-number">1</span>; r&lt;n; r++){
+                <span class="hljs-keyword">if</span>(height[r]&gt;rHeight) rHeight = height[r];
+            }
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l = i<span class="hljs-number">-1</span>; l&gt;=<span class="hljs-number">0</span>; l--){
+                <span class="hljs-keyword">if</span>(height[l]&gt;lHeight) lHeight = height[l];
+            }
+            <span class="hljs-keyword">int</span> h = <span class="hljs-built_in">min</span>(lHeight, rHeight) - height[i];
+            <span class="hljs-keyword">if</span>(h&gt;<span class="hljs-number">0</span>) sum+=h;
+        }
+        <span class="hljs-keyword">return</span> sum;
+    }
+};</code></pre></div>
 
-<h5 id="dp-多次遍历-保存最值"><a href="#dp-多次遍历-保存最值" class="headerlink" title="dp 多次遍历 保存最值"></a>dp 多次遍历 保存最值</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dp解法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = height.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">leftH</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">rightH</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        leftH[<span class="number">0</span>] = height[<span class="number">0</span>];</span><br><span class="line">        rightH[n<span class="number">-1</span>] = height[n<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;n; i++){</span><br><span class="line">            leftH[i] = <span class="built_in">max</span>(height[i], leftH[i<span class="number">-1</span>]);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-2</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">            rightH[i] = <span class="built_in">max</span>(height[i], rightH[i+<span class="number">1</span>]);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">int</span> h = <span class="built_in">min</span>(leftH[i], rightH[i]) - height[i];</span><br><span class="line">            <span class="keyword">if</span>(h&gt;<span class="number">0</span>) sum+=h;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="dp-多次遍历-保存最值"><a href="#dp-多次遍历-保存最值" class="headerlink" title="dp 多次遍历 保存最值"></a>dp 多次遍历 保存最值</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// dp解法</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trap</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; height)</span> </span>{
+        <span class="hljs-keyword">int</span> n = height.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">leftH</span><span class="hljs-params">(n, <span class="hljs-number">0</span>)</span></span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">rightH</span><span class="hljs-params">(n, <span class="hljs-number">0</span>)</span></span>;
+        leftH[<span class="hljs-number">0</span>] = height[<span class="hljs-number">0</span>];
+        rightH[n<span class="hljs-number">-1</span>] = height[n<span class="hljs-number">-1</span>];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;n; i++){
+            leftH[i] = <span class="hljs-built_in">max</span>(height[i], leftH[i<span class="hljs-number">-1</span>]);
+        }
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = n<span class="hljs-number">-2</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+            rightH[i] = <span class="hljs-built_in">max</span>(height[i], rightH[i+<span class="hljs-number">1</span>]);
+        }
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">int</span> h = <span class="hljs-built_in">min</span>(leftH[i], rightH[i]) - height[i];
+            <span class="hljs-keyword">if</span>(h&gt;<span class="hljs-number">0</span>) sum+=h;
+        }
+        <span class="hljs-keyword">return</span> sum;
+    }
+};</code></pre></div>
 
-<h5 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最小栈</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = height.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        stk.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">if</span>(height[i]&lt;height[stk.<span class="built_in">top</span>()])</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(height[i] == height[stk.<span class="built_in">top</span>()]){</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                <span class="comment">//每个坑坑洼洼的地方计算一次</span></span><br><span class="line">                <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; height[i]&gt;height[stk.<span class="built_in">top</span>()]){</span><br><span class="line">                    <span class="keyword">int</span> mid = stk.<span class="built_in">top</span>();</span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">if</span>(!stk.<span class="built_in">empty</span>()){</span><br><span class="line">                        <span class="keyword">int</span> h = <span class="built_in">min</span>(height[stk.<span class="built_in">top</span>()], height[i]) - height[mid];</span><br><span class="line">                        <span class="keyword">int</span> w = i - stk.<span class="built_in">top</span>() - <span class="number">1</span>;</span><br><span class="line">                        sum += h*w;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//最小栈</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">trap</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; height)</span> </span>{
+        <span class="hljs-keyword">int</span> n = height.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        stk.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;n; i++){
+            <span class="hljs-keyword">if</span>(height[i]&lt;height[stk.<span class="hljs-built_in">top</span>()])
+                stk.<span class="hljs-built_in">push</span>(i);
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(height[i] == height[stk.<span class="hljs-built_in">top</span>()]){
+                stk.<span class="hljs-built_in">pop</span>();
+                stk.<span class="hljs-built_in">push</span>(i);
+            }<span class="hljs-keyword">else</span>{
+                <span class="hljs-comment">//每个坑坑洼洼的地方计算一次</span>
+                <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; height[i]&gt;height[stk.<span class="hljs-built_in">top</span>()]){
+                    <span class="hljs-keyword">int</span> mid = stk.<span class="hljs-built_in">top</span>();
+                    stk.<span class="hljs-built_in">pop</span>();
+                    <span class="hljs-keyword">if</span>(!stk.<span class="hljs-built_in">empty</span>()){
+                        <span class="hljs-keyword">int</span> h = <span class="hljs-built_in">min</span>(height[stk.<span class="hljs-built_in">top</span>()], height[i]) - height[mid];
+                        <span class="hljs-keyword">int</span> w = i - stk.<span class="hljs-built_in">top</span>() - <span class="hljs-number">1</span>;
+                        sum += h*w;
+                    }
+                }
+                stk.<span class="hljs-built_in">push</span>(i);
+            }
+        }
+        <span class="hljs-keyword">return</span> sum;
+    }
+};</code></pre></div>
 
 <h3 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h3><p>难度困难1849</p>
 <p>给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。</p>
 <p>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
 <p><strong>示例 1:</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/histogram.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：heights = [2,1,5,6,2,3]</span><br><span class="line">输出：10</span><br><span class="line">解释：最大的矩形为图中红色区域，面积为 10</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入：heights = <span class="hljs-string">[2,1,5,6,2,3]</span>
+输出：<span class="hljs-number">10</span>
+解释：最大的矩形为图中红色区域，面积为 <span class="hljs-number">10</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/histogram-1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： heights = [2,4]</span><br><span class="line">输出： 4</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs fix"><span class="hljs-attr">输入： heights </span>=<span class="hljs-string"> [2,4]</span>
+<span class="hljs-string">输出： 4</span></code></pre></div>
 
 <h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><ol>
 <li><p>动态规划</p>
@@ -433,9 +700,71 @@
 </ol>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220331164646464.png" srcset="/img/loading.gif" lazyload alt="image-20220331164646464" style="zoom: 67%;">
 
-<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><h5 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h5><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">minLeftIndex</span><span class="params">(heights.size())</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">minRightIndex</span><span class="params">(heights.size())</span></span>;</span><br><span class="line">        <span class="keyword">int</span> size = heights.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 记录每个柱子 左边第一个小于该柱子的下标</span></span><br><span class="line">        minLeftIndex[<span class="number">0</span>] = <span class="number">-1</span>; <span class="comment">// 注意这里初始化，防止下面while死循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++) {</span><br><span class="line">            <span class="keyword">int</span> t = i - <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 这里不是用if，而是不断向左寻找的过程</span></span><br><span class="line">            <span class="keyword">while</span> (t &gt;= <span class="number">0</span> &amp;&amp; heights[t] &gt;= heights[i]) t = minLeftIndex[t];</span><br><span class="line">            minLeftIndex[i] = t;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 记录每个柱子 右边第一个小于该柱子的下标</span></span><br><span class="line">        minRightIndex[size - <span class="number">1</span>] = size; <span class="comment">// 注意这里初始化，防止下面while死循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">            <span class="keyword">int</span> t = i + <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 这里不是用if，而是不断向右寻找的过程</span></span><br><span class="line">            <span class="keyword">while</span> (t &lt; size &amp;&amp; heights[t] &gt;= heights[i]) t = minRightIndex[t];</span><br><span class="line">            minRightIndex[i] = t;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 求和</span></span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) {</span><br><span class="line">            <span class="keyword">int</span> sum = heights[i] * (minRightIndex[i] - minLeftIndex[i] - <span class="number">1</span>);</span><br><span class="line">            result = <span class="built_in">max</span>(sum, result);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><h5 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h5><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">largestRectangleArea</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; heights)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">minLeftIndex</span><span class="hljs-params">(heights.size())</span></span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">minRightIndex</span><span class="hljs-params">(heights.size())</span></span>;
+        <span class="hljs-keyword">int</span> size = heights.<span class="hljs-built_in">size</span>();
 
-<h5 id="单调栈-略微背一下吧"><a href="#单调栈-略微背一下吧" class="headerlink" title="单调栈  略微背一下吧"></a>单调栈  略微背一下吧</h5><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; heights)</span> </span>{</span><br><span class="line">        stack&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        heights.<span class="built_in">insert</span>(heights.<span class="built_in">begin</span>(), <span class="number">0</span>);</span><br><span class="line">        heights.<span class="built_in">push_back</span>(<span class="number">0</span>);</span><br><span class="line">        stk.<span class="built_in">push</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;heights.<span class="built_in">size</span>(); i++){</span><br><span class="line">            <span class="keyword">if</span>(heights[i]&gt;heights[stk.<span class="built_in">top</span>()])</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(heights[i] == heights[stk.<span class="built_in">top</span>()]){</span><br><span class="line">                stk.<span class="built_in">pop</span>();</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                <span class="keyword">while</span>(heights[i] &lt; heights[stk.<span class="built_in">top</span>()]){</span><br><span class="line">                    <span class="keyword">int</span> mid = stk.<span class="built_in">top</span>(); <span class="comment">//当前矩形高的位置</span></span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                    <span class="keyword">int</span> left = stk.<span class="built_in">top</span>();</span><br><span class="line">                    <span class="keyword">int</span> right = i;  <span class="comment">//记录当前值以计算宽</span></span><br><span class="line">                    <span class="keyword">int</span> w = right - <span class="number">1</span> - left;</span><br><span class="line">                    <span class="keyword">int</span> h = heights[mid];</span><br><span class="line">                    <span class="comment">//right - 1为右边界 i-1</span></span><br><span class="line">                    <span class="comment">//left为左边界 当前栈顶index</span></span><br><span class="line">                    ans = <span class="built_in">max</span>(ans, w*h);</span><br><span class="line">                }</span><br><span class="line">                stk.<span class="built_in">push</span>(i);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+        <span class="hljs-comment">// 记录每个柱子 左边第一个小于该柱子的下标</span>
+        minLeftIndex[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>; <span class="hljs-comment">// 注意这里初始化，防止下面while死循环</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; size; i++) {
+            <span class="hljs-keyword">int</span> t = i - <span class="hljs-number">1</span>;
+            <span class="hljs-comment">// 这里不是用if，而是不断向左寻找的过程</span>
+            <span class="hljs-keyword">while</span> (t &gt;= <span class="hljs-number">0</span> &amp;&amp; heights[t] &gt;= heights[i]) t = minLeftIndex[t];
+            minLeftIndex[i] = t;
+        }
+        <span class="hljs-comment">// 记录每个柱子 右边第一个小于该柱子的下标</span>
+        minRightIndex[size - <span class="hljs-number">1</span>] = size; <span class="hljs-comment">// 注意这里初始化，防止下面while死循环</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = size - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+            <span class="hljs-keyword">int</span> t = i + <span class="hljs-number">1</span>;
+            <span class="hljs-comment">// 这里不是用if，而是不断向右寻找的过程</span>
+            <span class="hljs-keyword">while</span> (t &lt; size &amp;&amp; heights[t] &gt;= heights[i]) t = minRightIndex[t];
+            minRightIndex[i] = t;
+        }
+        <span class="hljs-comment">// 求和</span>
+        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) {
+            <span class="hljs-keyword">int</span> sum = heights[i] * (minRightIndex[i] - minLeftIndex[i] - <span class="hljs-number">1</span>);
+            result = <span class="hljs-built_in">max</span>(sum, result);
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+};</code></pre></div>
+
+<h5 id="单调栈-略微背一下吧"><a href="#单调栈-略微背一下吧" class="headerlink" title="单调栈  略微背一下吧"></a>单调栈  略微背一下吧</h5><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">largestRectangleArea</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; heights)</span> </span>{
+        stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+        heights.<span class="hljs-built_in">insert</span>(heights.<span class="hljs-built_in">begin</span>(), <span class="hljs-number">0</span>);
+        heights.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>);
+        stk.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;heights.<span class="hljs-built_in">size</span>(); i++){
+            <span class="hljs-keyword">if</span>(heights[i]&gt;heights[stk.<span class="hljs-built_in">top</span>()])
+                stk.<span class="hljs-built_in">push</span>(i);
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(heights[i] == heights[stk.<span class="hljs-built_in">top</span>()]){
+                stk.<span class="hljs-built_in">pop</span>();
+                stk.<span class="hljs-built_in">push</span>(i);
+            }<span class="hljs-keyword">else</span>{
+                <span class="hljs-keyword">while</span>(heights[i] &lt; heights[stk.<span class="hljs-built_in">top</span>()]){
+                    <span class="hljs-keyword">int</span> mid = stk.<span class="hljs-built_in">top</span>(); <span class="hljs-comment">//当前矩形高的位置</span>
+                    stk.<span class="hljs-built_in">pop</span>();
+                    <span class="hljs-keyword">int</span> left = stk.<span class="hljs-built_in">top</span>();
+                    <span class="hljs-keyword">int</span> right = i;  <span class="hljs-comment">//记录当前值以计算宽</span>
+                    <span class="hljs-keyword">int</span> w = right - <span class="hljs-number">1</span> - left;
+                    <span class="hljs-keyword">int</span> h = heights[mid];
+                    <span class="hljs-comment">//right - 1为右边界 i-1</span>
+                    <span class="hljs-comment">//left为左边界 当前栈顶index</span>
+                    ans = <span class="hljs-built_in">max</span>(ans, w*h);
+                }
+                stk.<span class="hljs-built_in">push</span>(i);
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 
               
@@ -443,6 +772,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

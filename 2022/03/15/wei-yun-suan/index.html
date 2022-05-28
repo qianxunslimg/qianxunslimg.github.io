@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220401104149833.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1610104070-NuLVQi-05.01.gif">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-04-30T15:55:13.354Z">
+<meta property="article:modified_time" content="2022-05-28T15:31:34.161Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -312,37 +312,52 @@
 <h3 id="有趣的位操作"><a href="#有趣的位操作" class="headerlink" title="有趣的位操作"></a>有趣的位操作</h3><ol>
 <li><strong>利用或操作 <code>|</code> 和空格将英文字符转换为小写</strong></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">'a'</span> | <span class="string">' '</span>) = <span class="string">'a'</span></span><br><span class="line">(<span class="string">'A'</span> | <span class="string">' '</span>) = <span class="string">'a'</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">(<span class="hljs-string">'a'</span> | <span class="hljs-string">' '</span>) = <span class="hljs-string">'a'</span>
+(<span class="hljs-string">'A'</span> | <span class="hljs-string">' '</span>) = <span class="hljs-string">'a'</span></code></pre></div>
 
 <ol start="2">
 <li><strong>利用与操作 <code>&amp;</code> 和下划线将英文字符转换为大写</strong></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">'b'</span> &amp; <span class="string">'_'</span>) = <span class="string">'B'</span></span><br><span class="line">(<span class="string">'B'</span> &amp; <span class="string">'_'</span>) = <span class="string">'B'</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">(<span class="hljs-string">'b'</span> &amp; <span class="hljs-string">'_'</span>) = <span class="hljs-string">'B'</span>
+(<span class="hljs-string">'B'</span> &amp; <span class="hljs-string">'_'</span>) = <span class="hljs-string">'B'</span></code></pre></div>
 
 <ol start="3">
 <li><u><strong>利用异或操作 <code>^</code> 和空格进行英文字符大小写互换</strong></u></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">'d'</span> ^ <span class="string">' '</span>) = <span class="string">'D'</span></span><br><span class="line">(<span class="string">'D'</span> ^ <span class="string">' '</span>) = <span class="string">'d'</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">(<span class="hljs-string">'d'</span> ^ <span class="hljs-string">' '</span>) = <span class="hljs-string">'D'</span>
+(<span class="hljs-string">'D'</span> ^ <span class="hljs-string">' '</span>) = <span class="hljs-string">'d'</span></code></pre></div>
 
 <ol start="4">
 <li><u><strong>判断两个数是否异号</strong></u></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">-1</span>, y = <span class="number">2</span>;</span><br><span class="line">boolean f = ((x ^ y) &lt; <span class="number">0</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> x = <span class="number">3</span>, y = <span class="number">2</span>;</span><br><span class="line">boolean f = ((x ^ y) &lt; <span class="number">0</span>); <span class="comment">// false</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> x = <span class="hljs-number">-1</span>, y = <span class="hljs-number">2</span>;
+boolean f = ((x ^ y) &lt; <span class="hljs-number">0</span>); <span class="hljs-comment">// true</span>
+
+<span class="hljs-keyword">int</span> x = <span class="hljs-number">3</span>, y = <span class="hljs-number">2</span>;
+boolean f = ((x ^ y) &lt; <span class="hljs-number">0</span>); <span class="hljs-comment">// false</span></code></pre></div>
 
 <ol start="5">
 <li><strong>不用临时变量交换两个数</strong></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</span><br><span class="line">a ^= b;</span><br><span class="line">b ^= a;</span><br><span class="line">a ^= b;</span><br><span class="line"><span class="comment">// 现在 a = 2, b = 1</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>;
+a ^= b;
+b ^= a;
+a ^= b;
+<span class="hljs-comment">// 现在 a = 2, b = 1</span></code></pre></div>
 
 <ol start="6">
 <li><strong>加一</strong></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line">n = -~n;</span><br><span class="line"><span class="comment">// 现在 n = 2</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> n = <span class="hljs-number">1</span>;
+n = -~n;
+<span class="hljs-comment">// 现在 n = 2</span></code></pre></div>
 
 <ol start="7">
 <li><strong>减一</strong></li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">2</span>;</span><br><span class="line">n = ~-n;</span><br><span class="line"><span class="comment">// 现在 n = 1</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> n = <span class="hljs-number">2</span>;
+n = ~-n;
+<span class="hljs-comment">// 现在 n = 1</span></code></pre></div>
 
 <h3 id="n-amp-n-1-的运用"><a href="#n-amp-n-1-的运用" class="headerlink" title="n &amp; (n-1) 的运用"></a><code>n &amp; (n-1)</code> 的运用</h3><p><strong><code>n &amp; (n-1)</code> 这个操作是算法中常见的，作用是消除数字 <code>n</code> 的二进制表示中的最后一个 1</strong>。</p>
 <p>看个图就很容易理解了：</p>
@@ -360,23 +375,46 @@
 <li>在 Java 中，编译器使用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%A1%A5%E7%A0%81/5295284">二进制补码</a>记法来表示有符号整数。因此，在上面的 <strong>示例 3</strong> 中，输入表示有符号整数 <code>-3</code>。</li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：00000000000000000000000000001011</span><br><span class="line">输出：3</span><br><span class="line">解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 '1'。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：<span class="hljs-number">00000000000000000000000000001011</span>
+输出：<span class="hljs-number">3</span>
+解释：输入的二进制串 <span class="hljs-number">00000000000000000000000000001011</span> 中，共有三位为 '1'。</code></pre></div>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>n&amp;(n-1)的应用</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n){</span><br><span class="line">            n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">            ans++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hammingWeight</span><span class="hljs-params">(<span class="hljs-keyword">uint32_t</span> n)</span> </span>{
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(n){
+            n = n &amp; (n<span class="hljs-number">-1</span>);
+            ans++;
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h4 id="231-2-的幂"><a href="#231-2-的幂" class="headerlink" title="231. 2 的幂"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/power-of-two/">231. 2 的幂</a></h4><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=231">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/power-of-two/#">思路</a></p>
 <p>难度简单481收藏分享切换为英文接收动态反馈</p>
 <p>给你一个整数 <code>n</code>，请你判断该整数是否是 2 的幂次方。如果是，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
 <p>如果存在一个整数 <code>x</code> 使得 <code>n == 2x</code> ，则认为 <code>n</code> 是 2 的幂次方。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：true</span><br><span class="line">解释：20 = 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">n</span> = <span class="hljs-number">1</span>
+输出：<span class="hljs-literal">true</span>
+解释：<span class="hljs-number">20</span> = <span class="hljs-number">1</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 16</span><br><span class="line">输出：true</span><br><span class="line">解释：24 = 16</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">n</span> = <span class="hljs-number">16</span>
+输出：<span class="hljs-literal">true</span>
+解释：<span class="hljs-number">24</span> = <span class="hljs-number">16</span></code></pre></div>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>2的幂表示为二进制 只有一个1</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//2的幂在二进制中只有一个1</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (n&amp;(n<span class="number">-1</span>)) == <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//2的幂在二进制中只有一个1</span>
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPowerOfTwo</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">if</span>(n&lt;=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> (n&amp;(n<span class="hljs-number">-1</span>)) == <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
 
 <h3 id="136-只出现一次的数字"><a href="#136-只出现一次的数字" class="headerlink" title="136. 只出现一次的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-number/">136. 只出现一次的数字</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=136">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-number/#">思路</a></p>
 <p>难度简单2344英文版讨论区</p>
@@ -384,30 +422,56 @@
 <p><strong>说明：</strong></p>
 <p>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,2,1]</span><br><span class="line">输出: 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: [2,2,1]</span>
+<span class="hljs-section">输出: 1</span></code></pre></div>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><p>利用异或的性质a ^ a = 0, a ^ 0 = a 全部异或即可得到唯一的值</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> num : nums)</span><br><span class="line">        ans ^= num;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num : nums)
+        ans ^= num;
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="268-丢失的数字"><a href="#268-丢失的数字" class="headerlink" title="268. 丢失的数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/missing-number/">268. 丢失的数字</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.gitee.io/article/?qno=268">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/missing-number/#">思路</a></p>
 <p>难度简单584收藏分享切换为英文接收动态反馈</p>
 <p>给定一个包含 <code>[0, n]</code> 中 <code>n</code> 个数的数组 <code>nums</code> ，找出 <code>[0, n]</code> 这个范围内没有出现在数组中的那个数。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,0,1]</span><br><span class="line">输出：2</span><br><span class="line">解释：n = 3，因为有 3 个数字，所以所有的数字都在范围 [0,3] 内。2 是丢失的数字，因为它没有出现在 nums 中。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[3,0,1]</span>
+输出：2
+解释：n = 3，因为有 3 个数字，所以所有的数字都在范围 <span class="hljs-comment">[0,3]</span> 内。2 是丢失的数字，因为它没有出现在 nums 中。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1]</span><br><span class="line">输出：2</span><br><span class="line">解释：n = 2，因为有 2 个数字，所以所有的数字都在范围 [0,2] 内。2 是丢失的数字，因为它没有出现在 nums 中。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[0,1]</span>
+输出：2
+解释：n = 2，因为有 2 个数字，所以所有的数字都在范围 <span class="hljs-comment">[0,2]</span> 内。2 是丢失的数字，因为它没有出现在 nums 中。</code></pre></div>
 
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>异或一下即可</p>
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">            ans^=i;</span><br><span class="line">            ans^=nums[i];</span><br><span class="line">        }</span><br><span class="line">        ans^=nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">missingNumber</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+            ans^=i;
+            ans^=nums[i];
+        }
+        ans^=nums.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-56-I-数组中数字出现的次数"><a href="#剑指-Offer-56-I-数组中数字出现的次数" class="headerlink" title="剑指 Offer 56 - I. 数组中数字出现的次数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/">剑指 Offer 56 - I. 数组中数字出现的次数</a></h3><p>难度中等597收藏分享切换为英文接收动态反馈英文版讨论区</p>
 <p>一个整型数组 <code>nums</code> 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [4,1,4,6]</span><br><span class="line">输出：[1,6] 或 [6,1]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[4,1,4,6]</span>
+输出：<span class="hljs-comment">[1,6]</span> 或 <span class="hljs-comment">[6,1]</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,10,4,1,4,3,3]</span><br><span class="line">输出：[2,10] 或 [10,2]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：nums = <span class="hljs-comment">[1,2,10,4,1,4,3,3]</span>
+输出：<span class="hljs-comment">[2,10]</span> 或 <span class="hljs-comment">[10,2]</span></code></pre></div>
 
 <h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/solution/shua-bao-leetcode-yi-huo-yun-suan-xiao-b-cc5a/"><strong>我就知道总有人能给我讲明白，nb</strong></a></p>
 <ul>
@@ -415,15 +479,40 @@
 <li>我们对n进行分析，因为n是n1和n2异或得来的，所以n的二进制中第一次出现1的地方就是n1和n2二进制表示中第一次出现不同的情况，我们可以以此作为区分</li>
 <li>将数组中的数分成第bit位为1和bit为0的两组</li>
 </ul>
-<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">singleNumbers</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> find = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums){</span><br><span class="line">            find^=num;</span><br><span class="line">        }<span class="comment">//所有异或 最终是两个不同数的异或结果</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> bit = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//注意这里的优先级 先1&lt;&lt;bit 在find&amp;</span></span><br><span class="line">        <span class="keyword">while</span>((find&amp; <span class="number">1</span>&lt;&lt; bit) == <span class="number">0</span>){  <span class="comment">//找到第一个1</span></span><br><span class="line">            bit++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">1</span>&lt;&lt;bit;  <span class="comment">//移到两个数bit不同的位置</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:nums){</span><br><span class="line">            <span class="keyword">if</span>(num&amp;temp) <span class="comment">//包含第bit位为1的数</span></span><br><span class="line">                ans[<span class="number">0</span>]^=num;</span><br><span class="line">            <span class="keyword">else</span>             <span class="comment">//包含第bit位不为1的数</span></span><br><span class="line">                ans[<span class="number">1</span>]^=num;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">singleNumbers</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> find = <span class="hljs-number">0</span>;
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num : nums){
+            find^=num;
+        }<span class="hljs-comment">//所有异或 最终是两个不同数的异或结果</span>
+        
+        <span class="hljs-keyword">int</span> bit = <span class="hljs-number">0</span>;
+        <span class="hljs-comment">//注意这里的优先级 先1&lt;&lt;bit 在find&amp;</span>
+        <span class="hljs-keyword">while</span>((find&amp; <span class="hljs-number">1</span>&lt;&lt; bit) == <span class="hljs-number">0</span>){  <span class="hljs-comment">//找到第一个1</span>
+            bit++;
+        }
+        <span class="hljs-keyword">int</span> temp = <span class="hljs-number">1</span>&lt;&lt;bit;  <span class="hljs-comment">//移到两个数bit不同的位置</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num:nums){
+            <span class="hljs-keyword">if</span>(num&amp;temp) <span class="hljs-comment">//包含第bit位为1的数</span>
+                ans[<span class="hljs-number">0</span>]^=num;
+            <span class="hljs-keyword">else</span>             <span class="hljs-comment">//包含第bit位不为1的数</span>
+                ans[<span class="hljs-number">1</span>]^=num;
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-56-II-数组中数字出现的次数-II"><a href="#剑指-Offer-56-II-数组中数字出现的次数-II" class="headerlink" title="剑指 Offer 56 - II. 数组中数字出现的次数 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/">剑指 Offer 56 - II. 数组中数字出现的次数 II</a></h3><p>难度中等316收藏分享切换为英文接收动态反馈英文版讨论区</p>
 <p>在一个数组 <code>nums</code> 中除<code>一个数字只出现一次</code>之外，<code>其他数字都出现了三次</code>。请找出那个只出现一次的数字。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,4,3,3]</span><br><span class="line">输出：4</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">3,4,3,3</span>]
+输出：<span class="hljs-number">4</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [9,1,7,9,7,9,7]</span><br><span class="line">输出：1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入：nums = <span class="hljs-string">[9,1,7,9,7,9,7]</span>
+输出：<span class="hljs-number">1</span></code></pre></div>
 
 <p><strong>限制：</strong></p>
 <ul>
@@ -432,37 +521,152 @@
 </ul>
 <h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>题目限制32位int遍历每一位 将所有数字的该位 0/1 相加 如果目标数字该位为1，则该位相加不为3的倍数 </p>
 <p>利用这个特征可以将数字还原</p>
-<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">32</span>; i++){</span><br><span class="line">            <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> num: nums)</span><br><span class="line">                <span class="comment">//右移&amp;1得到每一位</span></span><br><span class="line">                total+= (num&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(total%<span class="number">3</span>)</span><br><span class="line">                <span class="comment">//还原这个数 左移回相应的位数 或取回该值</span></span><br><span class="line">                ans |= (<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">singleNumber</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">32</span>; i++){
+            <span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num: nums)
+                <span class="hljs-comment">//右移&amp;1得到每一位</span>
+                total+= (num&gt;&gt;i)&amp;<span class="hljs-number">1</span>;
+            <span class="hljs-keyword">if</span>(total%<span class="hljs-number">3</span>)
+                <span class="hljs-comment">//还原这个数 左移回相应的位数 或取回该值</span>
+                ans |= (<span class="hljs-number">1</span>&lt;&lt;i);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-003-前-n-个数字二进制中-1-的个数"><a href="#剑指-Offer-II-003-前-n-个数字二进制中-1-的个数" class="headerlink" title="剑指 Offer II 003. 前 n 个数字二进制中 1 的个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/w3tCBm/">剑指 Offer II 003. 前 n 个数字二进制中 1 的个数</a></h3><p>难度简单54</p>
 <p>给定一个非负整数 <code>n</code> ，请计算 <code>0</code> 到 <code>n</code> 之间的每个数字的二进制表示中 1 的个数，并输出一个数组。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 2</span><br><span class="line">输出: [0,1,1]</span><br><span class="line">解释: </span><br><span class="line">0 --&gt; 0</span><br><span class="line">1 --&gt; 1</span><br><span class="line">2 --&gt; 10</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs ada">输入: n = <span class="hljs-number">2</span>
+输出: [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+解释: 
+<span class="hljs-number">0</span> <span class="hljs-comment">--&gt; 0</span>
+<span class="hljs-number">1</span> <span class="hljs-comment">--&gt; 1</span>
+<span class="hljs-number">2</span> <span class="hljs-comment">--&gt; 10</span></code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 5</span><br><span class="line">输出: [0,1,1,2,1,2]</span><br><span class="line">解释:</span><br><span class="line">0 --&gt; 0</span><br><span class="line">1 --&gt; 1</span><br><span class="line">2 --&gt; 10</span><br><span class="line">3 --&gt; 11</span><br><span class="line">4 --&gt; 100</span><br><span class="line">5 --&gt; 101</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs ada">输入: n = <span class="hljs-number">5</span>
+输出: [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]
+解释:
+<span class="hljs-number">0</span> <span class="hljs-comment">--&gt; 0</span>
+<span class="hljs-number">1</span> <span class="hljs-comment">--&gt; 1</span>
+<span class="hljs-number">2</span> <span class="hljs-comment">--&gt; 10</span>
+<span class="hljs-number">3</span> <span class="hljs-comment">--&gt; 11</span>
+<span class="hljs-number">4</span> <span class="hljs-comment">--&gt; 100</span>
+<span class="hljs-number">5</span> <span class="hljs-comment">--&gt; 101</span></code></pre></div>
 
 <h4 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>笨方法 遍历每个都数</li>
 <li>dp 奇数是/2偶数1的个数+1 偶数是/2偶数的个数</li>
 </ol>
 <h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><p>笨比遍历</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">countBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;=n; i++){</span><br><span class="line">            ans[i] = <span class="built_in">countOne</span>(i);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countOne</span><span class="params">(<span class="keyword">int</span> num)</span></span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(num){</span><br><span class="line">            ans++;</span><br><span class="line">            num &amp;= (num<span class="number">-1</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">countBits</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;=n; i++){
+            ans[i] = <span class="hljs-built_in">countOne</span>(i);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countOne</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span></span>{
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(num){
+            ans++;
+            num &amp;= (num<span class="hljs-number">-1</span>);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <p>奇偶关系dp</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">countBits</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=n; i++){</span><br><span class="line">            <span class="keyword">if</span>((i&amp;<span class="number">1</span>) == <span class="number">1</span>) <span class="comment">//奇数</span></span><br><span class="line">                ans[i] = ans[i&gt;&gt;<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                ans[i] = ans[i&gt;&gt;<span class="number">1</span>];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">countBits</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;=n; i++){
+            <span class="hljs-keyword">if</span>((i&amp;<span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) <span class="hljs-comment">//奇数</span>
+                ans[i] = ans[i&gt;&gt;<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">else</span>
+                ans[i] = ans[i&gt;&gt;<span class="hljs-number">1</span>];
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-005-单词长度的最大乘积"><a href="#剑指-Offer-II-005-单词长度的最大乘积" class="headerlink" title="剑指 Offer II 005. 单词长度的最大乘积"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/aseY1I/"><code>剑指 Offer II 005. 单词长度的最大乘积</code></a></h3><p>难度中等58</p>
 <p>给定一个字符串数组 <code>words</code>，请计算当两个字符串 <code>words[i]</code> 和 <code>words[j]</code> 不包含相同字符时，它们长度的乘积的最大值。假设字符串中只包含英语的小写字母。如果没有不包含相同字符的一对字符串，返回 0。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: words = ["abcw","baz","foo","bar","fxyz","abcdef"]</span><br><span class="line">输出: 16 </span><br><span class="line">解释: 这两个单词为 "abcw", "fxyz"。它们不包含相同字符，且长度的乘积最大。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs applescript">输入: <span class="hljs-built_in">words</span> = [<span class="hljs-string">"abcw"</span>,<span class="hljs-string">"baz"</span>,<span class="hljs-string">"foo"</span>,<span class="hljs-string">"bar"</span>,<span class="hljs-string">"fxyz"</span>,<span class="hljs-string">"abcdef"</span>]
+输出: <span class="hljs-number">16</span> 
+解释: 这两个单词为 <span class="hljs-string">"abcw"</span>, <span class="hljs-string">"fxyz"</span>。它们不包含相同字符，且长度的乘积最大。</code></pre></div>
 
 <h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>用一个32位int记录一个单词中出现了哪些字母</p>
 <p>相&amp;为0， 说明没有重复的字母</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = words.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">masks</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> ch : words[i]){</span><br><span class="line">                <span class="comment">//用二进制中的最多26位，记录每个字母是否存在</span></span><br><span class="line">                masks[i] |= <span class="number">1</span>&lt;&lt;(ch - <span class="string">'a'</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j&lt;n; j++){</span><br><span class="line">                <span class="comment">//不存在相同数字</span></span><br><span class="line">                <span class="keyword">if</span>((masks[i] &amp; masks[j]) == <span class="number">0</span>){</span><br><span class="line">                    ans = <span class="built_in">max</span>(<span class="built_in"><span class="keyword">int</span></span>(words[i].<span class="built_in">size</span>()*words[j].<span class="built_in">size</span>()), ans);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxProduct</span><span class="hljs-params">(vector&lt;string&gt;&amp; words)</span> </span>{
+        <span class="hljs-keyword">int</span> n = words.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">masks</span><span class="hljs-params">(n)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> ch : words[i]){
+                <span class="hljs-comment">//用二进制中的最多26位，记录每个字母是否存在</span>
+                masks[i] |= <span class="hljs-number">1</span>&lt;&lt;(ch - <span class="hljs-string">'a'</span>);
+            }
+        }
+        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j&lt;n; j++){
+                <span class="hljs-comment">//不存在相同数字</span>
+                <span class="hljs-keyword">if</span>((masks[i] &amp; masks[j]) == <span class="hljs-number">0</span>){
+                    ans = <span class="hljs-built_in">max</span>(<span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(words[i].<span class="hljs-built_in">size</span>()*words[j].<span class="hljs-built_in">size</span>()), ans);
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <p>位运算优化，因为met 和 meet的int是相同的，所以我们只需要记录meet 及其长度 就可以了，</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>{</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; map;</span><br><span class="line">        <span class="keyword">int</span> length = words.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) {</span><br><span class="line">            <span class="keyword">int</span> mask = <span class="number">0</span>;</span><br><span class="line">            string word = words[i];</span><br><span class="line">            <span class="keyword">int</span> wordLength = word.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; wordLength; j++) {</span><br><span class="line">                mask |= <span class="number">1</span> &lt;&lt; (word[j] - <span class="string">'a'</span>);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(map.<span class="built_in">count</span>(mask)) {</span><br><span class="line">                <span class="keyword">if</span> (wordLength &gt; map[mask]) {</span><br><span class="line">                    map[mask] = wordLength;</span><br><span class="line">                }</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                map[mask] = wordLength;</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> maxProd = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> [mask1, _] : map) {</span><br><span class="line">            <span class="keyword">int</span> wordLength1 = map[mask1];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> [mask2, _] : map) {</span><br><span class="line">                <span class="keyword">if</span> ((mask1 &amp; mask2) == <span class="number">0</span>) {</span><br><span class="line">                    <span class="keyword">int</span> wordLength2 = map[mask2];</span><br><span class="line">                    maxProd = <span class="built_in">max</span>(maxProd, wordLength1 * wordLength2);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> maxProd;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxProduct</span><span class="hljs-params">(vector&lt;string&gt;&amp; words)</span> </span>{
+        unordered_map&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; map;
+        <span class="hljs-keyword">int</span> length = words.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+            <span class="hljs-keyword">int</span> mask = <span class="hljs-number">0</span>;
+            string word = words[i];
+            <span class="hljs-keyword">int</span> wordLength = word.<span class="hljs-built_in">size</span>();
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; wordLength; j++) {
+                mask |= <span class="hljs-number">1</span> &lt;&lt; (word[j] - <span class="hljs-string">'a'</span>);
+            }
+            <span class="hljs-keyword">if</span>(map.<span class="hljs-built_in">count</span>(mask)) {
+                <span class="hljs-keyword">if</span> (wordLength &gt; map[mask]) {
+                    map[mask] = wordLength;
+                }
+            } <span class="hljs-keyword">else</span> {
+                map[mask] = wordLength;
+            }
+            
+        }
+        <span class="hljs-keyword">int</span> maxProd = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [mask1, _] : map) {
+            <span class="hljs-keyword">int</span> wordLength1 = map[mask1];
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [mask2, _] : map) {
+                <span class="hljs-keyword">if</span> ((mask1 &amp; mask2) == <span class="hljs-number">0</span>) {
+                    <span class="hljs-keyword">int</span> wordLength2 = map[mask2];
+                    maxProd = <span class="hljs-built_in">max</span>(maxProd, wordLength1 * wordLength2);
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> maxProd;
+    }
+};</code></pre></div>
 
 <h3 id="面试题-05-01-插入"><a href="#面试题-05-01-插入" class="headerlink" title="面试题 05.01. 插入"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/insert-into-bits-lcci/">面试题 05.01. 插入</a></h3><p>难度简单54收藏分享切换为英文接收动态反馈</p>
 <p>给定两个整型数字 <code>N</code> 与 <code>M</code>，以及表示比特位置的 <code>i</code> 与 <code>j</code>（<code>i &lt;= j</code>，且从 0 位开始计算）。</p>
@@ -470,13 +674,29 @@
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1610104070-NuLVQi-05.01.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>题目保证从 <code>i</code> 位到 <code>j</code> 位足以容纳 <code>M</code>， 例如： <code>M = 10011</code>，则 <code>i～j</code> 区域至少可容纳 5 位。</p>
 <p><strong>示例1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：N = 1024(10000000000), M = 19(10011), i = 2, j = 6</span><br><span class="line">输出：N = 1100(10001001100)</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">N</span> = <span class="hljs-number">1024</span>(<span class="hljs-number">10000000000</span>), <span class="hljs-attr">M</span> = <span class="hljs-number">19</span>(<span class="hljs-number">10011</span>), <span class="hljs-attr">i</span> = <span class="hljs-number">2</span>, <span class="hljs-attr">j</span> = <span class="hljs-number">6</span>
+输出：<span class="hljs-attr">N</span> = <span class="hljs-number">1100</span>(<span class="hljs-number">10001001100</span>)</code></pre></div>
 
 <p><strong>示例2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： N = 0, M = 31(11111), i = 0, j = 4</span><br><span class="line">输出：N = 31(11111)</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入： <span class="hljs-attr">N</span> = <span class="hljs-number">0</span>, <span class="hljs-attr">M</span> = <span class="hljs-number">31</span>(<span class="hljs-number">11111</span>), <span class="hljs-attr">i</span> = <span class="hljs-number">0</span>, <span class="hljs-attr">j</span> = <span class="hljs-number">4</span>
+输出：<span class="hljs-attr">N</span> = <span class="hljs-number">31</span>(<span class="hljs-number">11111</span>)</code></pre></div>
 
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>按注释的步骤</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insertBits</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span> M, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>{</span><br><span class="line">        <span class="comment">// 1.把N的i到j位置为0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt;= j; k++) {</span><br><span class="line">            <span class="keyword">if</span> (N &amp; (<span class="number">1</span> &lt;&lt; k)) {</span><br><span class="line">                N ^= (<span class="number">1</span> &lt;&lt; k); <span class="comment">//将N的第k位置为0</span></span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 2.把M的数值左移i位</span></span><br><span class="line">        M &lt;&lt;= i;</span><br><span class="line">        <span class="comment">// 3.将N的i到j位加上M</span></span><br><span class="line">        <span class="keyword">return</span> N + M;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">insertBits</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N, <span class="hljs-keyword">int</span> M, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span> </span>{
+        <span class="hljs-comment">// 1.把N的i到j位置为0</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = i; k &lt;= j; k++) {
+            <span class="hljs-keyword">if</span> (N &amp; (<span class="hljs-number">1</span> &lt;&lt; k)) {
+                N ^= (<span class="hljs-number">1</span> &lt;&lt; k); <span class="hljs-comment">//将N的第k位置为0</span>
+            }
+        }
+        <span class="hljs-comment">// 2.把M的数值左移i位</span>
+        M &lt;&lt;= i;
+        <span class="hljs-comment">// 3.将N的i到j位加上M</span>
+        <span class="hljs-keyword">return</span> N + M;
+    }
+};</code></pre></div>
 
 
               
@@ -484,6 +704,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

@@ -16,17 +16,17 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="剑指 Offer II 002. 二进制加法难度简单27 给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。 输入为 非空 字符串且只包含数字 1 和 0。 示例 1: 12输入: a &#x3D; &quot;11&quot;, b &#x3D; &quot;10&quot;输出: &quot;101&quot;  示例 2: 12输入: a &#x3D; &quot;1010&quot;, b &#x3D; &quot;1011&quot;输出: &quot;10101&quot;  思路 模拟相加 注意下写法 位运算">
+    <meta name="description" content="剑指 Offer II 002. 二进制加法难度简单27 给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。 输入为 非空 字符串且只包含数字 1 和 0。 示例 1: 输入: a &#x3D; &quot;11&quot;, b &#x3D; &quot;10&quot; 输出: &quot;101&quot;  示例 2: 输入: a &#x3D; &quot;1010&quot;, b &#x3D; &quot;1011&quot; 输出: &quot;10101&quot;  思路 模拟相加 注意下写法 位运算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟加减乘除">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/04/01/mo-ni-yun-suan/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="剑指 Offer II 002. 二进制加法难度简单27 给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。 输入为 非空 字符串且只包含数字 1 和 0。 示例 1: 12输入: a &#x3D; &quot;11&quot;, b &#x3D; &quot;10&quot;输出: &quot;101&quot;  示例 2: 12输入: a &#x3D; &quot;1010&quot;, b &#x3D; &quot;1011&quot;输出: &quot;10101&quot;  思路 模拟相加 注意下写法 位运算">
+<meta property="og:description" content="剑指 Offer II 002. 二进制加法难度简单27 给定两个 01 字符串 a 和 b ，请计算它们的和，并以二进制字符串的形式输出。 输入为 非空 字符串且只包含数字 1 和 0。 示例 1: 输入: a &#x3D; &quot;11&quot;, b &#x3D; &quot;10&quot; 输出: &quot;101&quot;  示例 2: 输入: a &#x3D; &quot;1010&quot;, b &#x3D; &quot;1011&quot; 输出: &quot;10101&quot;  思路 模拟相加 注意下写法 位运算">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/addtwonumber1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626420025-fZfzMX-image.png">
 <meta property="article:published_time" content="2022-04-01T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-04-08T02:58:10.165Z">
+<meta property="article:modified_time" content="2022-05-28T15:32:11.987Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -274,17 +274,38 @@
 <p>给定两个 01 字符串 <code>a</code> 和 <code>b</code> ，请计算它们的和，并以二进制字符串的形式输出。</p>
 <p>输入为 <strong>非空</strong> 字符串且只包含数字 <code>1</code> 和 <code>0</code>。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = "11", b = "10"</span><br><span class="line">输出: "101"</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">a</span> = <span class="hljs-string">"11"</span>, <span class="hljs-attr">b</span> = <span class="hljs-string">"10"</span>
+输出: <span class="hljs-string">"101"</span></code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: a = "1010", b = "1011"</span><br><span class="line">输出: "10101"</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">a</span> = <span class="hljs-string">"1010"</span>, <span class="hljs-attr">b</span> = <span class="hljs-string">"1011"</span>
+输出: <span class="hljs-string">"10101"</span></code></pre></div>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>模拟相加 注意下写法</li>
 <li>位运算</li>
 </ol>
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>模拟</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">addBinary</span><span class="params">(string a, string b)</span> </span>{</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="built_in">reverse</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">reverse</span>(b.<span class="built_in">begin</span>(), b.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> n = <span class="built_in">max</span>(a.<span class="built_in">size</span>(), b.<span class="built_in">size</span>()), carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">            carry+= i&lt;a.<span class="built_in">size</span>()?a[i] ==<span class="string">'1'</span>:<span class="number">0</span>;</span><br><span class="line">            carry+= i&lt;b.<span class="built_in">size</span>()?b[i] ==<span class="string">'1'</span>:<span class="number">0</span>;</span><br><span class="line">            ans += <span class="built_in">to_string</span>(carry%<span class="number">2</span>);</span><br><span class="line">            carry/=<span class="number">2</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> (carry) {</span><br><span class="line">            ans.<span class="built_in">push_back</span>(<span class="string">'1'</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">reverse</span>(ans.<span class="built_in">begin</span>(), ans.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">addBinary</span><span class="hljs-params">(string a, string b)</span> </span>{
+        string ans;
+        <span class="hljs-built_in">reverse</span>(a.<span class="hljs-built_in">begin</span>(), a.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">reverse</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">int</span> n = <span class="hljs-built_in">max</span>(a.<span class="hljs-built_in">size</span>(), b.<span class="hljs-built_in">size</span>()), carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+            carry+= i&lt;a.<span class="hljs-built_in">size</span>()?a[i] ==<span class="hljs-string">'1'</span>:<span class="hljs-number">0</span>;
+            carry+= i&lt;b.<span class="hljs-built_in">size</span>()?b[i] ==<span class="hljs-string">'1'</span>:<span class="hljs-number">0</span>;
+            ans += <span class="hljs-built_in">to_string</span>(carry%<span class="hljs-number">2</span>);
+            carry/=<span class="hljs-number">2</span>;
+        }
+        <span class="hljs-keyword">if</span> (carry) {
+            ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">'1'</span>);
+        }
+        <span class="hljs-built_in">reverse</span>(ans.<span class="hljs-built_in">begin</span>(), ans.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="989-数组形式的整数加法"><a href="#989-数组形式的整数加法" class="headerlink" title="989. 数组形式的整数加法"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-to-array-form-of-integer/">989. 数组形式的整数加法</a></h3><p>难度简单191</p>
 <p>整数的 <strong>数组形式</strong> <code>num</code> 是按照从左到右的顺序表示其数字的数组。</p>
@@ -293,39 +314,130 @@
 </ul>
 <p>给定 <code>num</code> ，整数的 <strong>数组形式</strong> ，和整数 <code>k</code> ，返回 <em>整数 <code>num + k</code> 的 <strong>数组形式</strong></em> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：num = [1,2,0,0], k = 34</span><br><span class="line">输出：[1,2,3,4]</span><br><span class="line">解释：1200 + 34 = 1234</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：num = [<span class="hljs-number">1,2,0,0</span>], k = <span class="hljs-number">34</span>
+输出：[<span class="hljs-number">1,2,3,4</span>]
+解释：<span class="hljs-number">1200</span> + <span class="hljs-number">34</span> = <span class="hljs-number">1234</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：num = [2,7,4], k = 181</span><br><span class="line">输出：[4,5,5]</span><br><span class="line">解释：274 + 181 = 455</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：num = <span class="hljs-comment">[2,7,4]</span>, k = 181
+输出：<span class="hljs-comment">[4,5,5]</span>
+解释：274 + 181 = 455</code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：num = [2,1,5], k = 806</span><br><span class="line">输出：[1,0,2,1]</span><br><span class="line">解释：215 + 806 = 1021</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：num = <span class="hljs-comment">[2,1,5]</span>, k = 806
+输出：<span class="hljs-comment">[1,0,2,1]</span>
+解释：215 + 806 = 1021</code></pre></div>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>k转为vector 按位相加</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">addToArrayForm</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; num, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; num2;</span><br><span class="line">        <span class="keyword">while</span>(k){</span><br><span class="line">            <span class="keyword">int</span> temp = k%<span class="number">10</span>;</span><br><span class="line">            k/=<span class="number">10</span>;</span><br><span class="line">            num2.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">reverse</span>(num.<span class="built_in">begin</span>(), num.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> maxSize = <span class="built_in">max</span>(num.<span class="built_in">size</span>(), num2.<span class="built_in">size</span>());</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;maxSize; i++){</span><br><span class="line">            carry+=i&lt;num.<span class="built_in">size</span>()?num[i]:<span class="number">0</span>;</span><br><span class="line">            carry+=i&lt;num2.<span class="built_in">size</span>()?num2[i]:<span class="number">0</span>;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(carry%<span class="number">10</span>);</span><br><span class="line">            carry/=<span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(carry) ans.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">reverse</span>(ans.<span class="built_in">begin</span>(), ans.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">addToArrayForm</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; num, <span class="hljs-keyword">int</span> k)</span> </span>{
+        vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        vector&lt;<span class="hljs-keyword">int</span>&gt; num2;
+        <span class="hljs-keyword">while</span>(k){
+            <span class="hljs-keyword">int</span> temp = k%<span class="hljs-number">10</span>;
+            k/=<span class="hljs-number">10</span>;
+            num2.<span class="hljs-built_in">push_back</span>(temp);
+        }
+        <span class="hljs-built_in">reverse</span>(num.<span class="hljs-built_in">begin</span>(), num.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">int</span> maxSize = <span class="hljs-built_in">max</span>(num.<span class="hljs-built_in">size</span>(), num2.<span class="hljs-built_in">size</span>());
+        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;maxSize; i++){
+            carry+=i&lt;num.<span class="hljs-built_in">size</span>()?num[i]:<span class="hljs-number">0</span>;
+            carry+=i&lt;num2.<span class="hljs-built_in">size</span>()?num2[i]:<span class="hljs-number">0</span>;
+            ans.<span class="hljs-built_in">push_back</span>(carry%<span class="hljs-number">10</span>);
+            carry/=<span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">if</span>(carry) ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-built_in">reverse</span>(ans.<span class="hljs-built_in">begin</span>(), ans.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="66-加一"><a href="#66-加一" class="headerlink" title="66. 加一"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/plus-one/">66. 加一</a></h3><p>难度简单972</p>
 <p>给定一个由 <strong>整数</strong> 组成的 <strong>非空</strong> 数组所表示的非负整数，在该数的基础上加一。</p>
 <p>最高位数字存放在数组的首位， 数组中每个元素只存储<strong>单个</strong>数字。</p>
 <p>你可以假设除了整数 0 之外，这个整数不会以零开头。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：digits = [1,2,3]</span><br><span class="line">输出：[1,2,4]</span><br><span class="line">解释：输入数组表示数字 123。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：digits = <span class="hljs-comment">[1,2,3]</span>
+输出：<span class="hljs-comment">[1,2,4]</span>
+解释：输入数组表示数字 123。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：digits = [4,3,2,1]</span><br><span class="line">输出：[4,3,2,2]</span><br><span class="line">解释：输入数组表示数字 4321。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：digits = [<span class="hljs-number">4,3,2,1</span>]
+输出：[<span class="hljs-number">4,3,2,2</span>]
+解释：输入数组表示数字 <span class="hljs-number">4321</span>。</code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：digits = [0]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：digits = <span class="hljs-comment">[0]</span>
+输出：<span class="hljs-comment">[1]</span></code></pre></div>
 
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//统一写法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">plusOne</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; digits)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">ans</span><span class="params">(digits.size())</span></span>;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.<span class="built_in">size</span>()<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">            <span class="keyword">if</span>(i == digits.<span class="built_in">size</span>()<span class="number">-1</span>){</span><br><span class="line">                carry++;</span><br><span class="line">            }</span><br><span class="line">            carry+=digits[i];</span><br><span class="line">            ans[i] = (carry%<span class="number">10</span>);</span><br><span class="line">            carry/=<span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(carry) ans.<span class="built_in">insert</span>(ans.<span class="built_in">begin</span>(), <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//原地修改</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">plusOne</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; digits)</span> </span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.<span class="built_in">size</span>()<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">            <span class="keyword">if</span> (digits[i] == <span class="number">9</span>){</span><br><span class="line">                digits[i] = <span class="number">0</span>;</span><br><span class="line">            }<span class="keyword">else</span>{</span><br><span class="line">                digits[i]++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(digits[<span class="number">0</span>] == <span class="number">0</span>){</span><br><span class="line">            digits[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            digits.<span class="built_in">push_back</span>(<span class="number">0</span>); </span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> digits;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//统一写法</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">plusOne</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; digits)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(digits.size())</span></span>;
+        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = digits.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+            <span class="hljs-keyword">if</span>(i == digits.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>){
+                carry++;
+            }
+            carry+=digits[i];
+            ans[i] = (carry%<span class="hljs-number">10</span>);
+            carry/=<span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">if</span>(carry) ans.<span class="hljs-built_in">insert</span>(ans.<span class="hljs-built_in">begin</span>(), <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+
+<span class="hljs-comment">//原地修改</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">plusOne</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; digits)</span> </span>{
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = digits.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+            <span class="hljs-keyword">if</span> (digits[i] == <span class="hljs-number">9</span>){
+                digits[i] = <span class="hljs-number">0</span>;
+            }<span class="hljs-keyword">else</span>{
+                digits[i]++;
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+
+        <span class="hljs-keyword">if</span>(digits[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>){
+            digits[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+            digits.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">0</span>); 
+        }
+        <span class="hljs-keyword">return</span> digits;
+    }
+};</code></pre></div>
 
 <h3 id="415-字符串相加"><a href="#415-字符串相加" class="headerlink" title="415. 字符串相加"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-strings/">415. 字符串相加</a></h3><p>难度简单534</p>
 <p>给定两个字符串形式的非负整数 <code>num1</code> 和<code>num2</code> ，计算它们的和并同样以字符串形式返回。</p>
 <p>你不能使用任何內建的用于处理大整数的库（比如 <code>BigInteger</code>）， 也不能直接将输入的字符串转换为整数形式。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：num1 = "11", num2 = "123"</span><br><span class="line">输出："134"</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs gcode">输入：<span class="hljs-symbol">num1</span> = <span class="hljs-string">"11"</span>, <span class="hljs-symbol">num2</span> = <span class="hljs-string">"123"</span>
+输出：<span class="hljs-string">"134"</span></code></pre></div>
 
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">addStrings</span><span class="params">(string num1, string num2)</span> </span>{</span><br><span class="line">        string ans = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> maxSize = <span class="built_in">max</span>(num1.<span class="built_in">size</span>(), num2.<span class="built_in">size</span>());</span><br><span class="line">        <span class="built_in">reverse</span>(num1.<span class="built_in">begin</span>(), num1.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">reverse</span>(num2.<span class="built_in">begin</span>(), num2.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;maxSize; i++){</span><br><span class="line">            carry+=i&lt;num1.<span class="built_in">size</span>()?(num1[i] - <span class="string">'0'</span>):<span class="number">0</span>;</span><br><span class="line">            carry+=i&lt;num2.<span class="built_in">size</span>()?(num2[i] - <span class="string">'0'</span>):<span class="number">0</span>;</span><br><span class="line">            ans+=<span class="built_in">to_string</span>(carry%<span class="number">10</span>);a</span><br><span class="line">            carry/=<span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(carry) ans+=<span class="string">"1"</span>;</span><br><span class="line">        <span class="built_in">reverse</span>(ans.<span class="built_in">begin</span>(), ans.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">addStrings</span><span class="hljs-params">(string num1, string num2)</span> </span>{
+        string ans = <span class="hljs-string">""</span>;
+        <span class="hljs-keyword">int</span> maxSize = <span class="hljs-built_in">max</span>(num1.<span class="hljs-built_in">size</span>(), num2.<span class="hljs-built_in">size</span>());
+        <span class="hljs-built_in">reverse</span>(num1.<span class="hljs-built_in">begin</span>(), num1.<span class="hljs-built_in">end</span>());
+        <span class="hljs-built_in">reverse</span>(num2.<span class="hljs-built_in">begin</span>(), num2.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;maxSize; i++){
+            carry+=i&lt;num1.<span class="hljs-built_in">size</span>()?(num1[i] - <span class="hljs-string">'0'</span>):<span class="hljs-number">0</span>;
+            carry+=i&lt;num2.<span class="hljs-built_in">size</span>()?(num2[i] - <span class="hljs-string">'0'</span>):<span class="hljs-number">0</span>;
+            ans+=<span class="hljs-built_in">to_string</span>(carry%<span class="hljs-number">10</span>);a
+            carry/=<span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">if</span>(carry) ans+=<span class="hljs-string">"1"</span>;
+        <span class="hljs-built_in">reverse</span>(ans.<span class="hljs-built_in">begin</span>(), ans.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
 <h3 id="2-两数相加-链表"><a href="#2-两数相加-链表" class="headerlink" title="2. 两数相加 链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a> 链表</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/#">思路</a></p>
 <p>难度中等7812</p>
@@ -334,29 +446,84 @@
 <p>你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/addtwonumber1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [2,4,3], l2 = [5,6,4]</span><br><span class="line">输出：[7,0,8]</span><br><span class="line">解释：342 + 465 = 807.</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[2,4,3]</span>, l2 = <span class="hljs-comment">[5,6,4]</span>
+输出：<span class="hljs-comment">[7,0,8]</span>
+解释：342 + 465 = 807.</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [0], l2 = [0]</span><br><span class="line">输出：[0]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[0]</span>, l2 = <span class="hljs-comment">[0]</span>
+输出：<span class="hljs-comment">[0]</span></code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]</span><br><span class="line">输出：[8,9,9,9,0,0,0,1]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：l1 = [<span class="hljs-number">9,9,9,9</span>,<span class="hljs-number">9</span>,<span class="hljs-number">9</span>,<span class="hljs-number">9</span>], l2 = [<span class="hljs-number">9,9,9,9</span>]
+输出：[<span class="hljs-number">8,9,9,9</span>,<span class="hljs-number">0,0,0,1</span>]</code></pre></div>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><p>就模拟吗</p>
-<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>{</span><br><span class="line">        ListNode* ans = <span class="keyword">new</span> <span class="built_in">ListNode</span>();</span><br><span class="line">        ListNode* temp = ans;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1 || l2){</span><br><span class="line">            carry+= l1?l1-&gt;val:<span class="number">0</span>;</span><br><span class="line">            carry+= l2?l2-&gt;val:<span class="number">0</span>;</span><br><span class="line">            l1 = l1?l1-&gt;next:l1;</span><br><span class="line">            l2 = l2?l2-&gt;next:l2;</span><br><span class="line">            temp-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(carry%<span class="number">10</span>);</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">            carry/=<span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(carry) temp-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans-&gt;next;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">addTwoNumbers</span><span class="hljs-params">(ListNode* l1, ListNode* l2)</span> </span>{
+        ListNode* ans = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();
+        ListNode* temp = ans;
+        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(l1 || l2){
+            carry+= l1?l1-&gt;val:<span class="hljs-number">0</span>;
+            carry+= l2?l2-&gt;val:<span class="hljs-number">0</span>;
+            l1 = l1?l1-&gt;next:l1;
+            l2 = l2?l2-&gt;next:l2;
+            temp-&gt;next = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(carry%<span class="hljs-number">10</span>);
+            temp = temp-&gt;next;
+            carry/=<span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">if</span>(carry) temp-&gt;next = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> ans-&gt;next;
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-025-链表中的两数相加"><a href="#剑指-Offer-II-025-链表中的两数相加" class="headerlink" title="剑指 Offer II 025. 链表中的两数相加"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lMSNwu/">剑指 Offer II 025. 链表中的两数相加</a></h3><p>难度中等42</p>
 <p>给定两个 <strong>非空链表</strong> <code>l1</code>和 <code>l2</code> 来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。</p>
 <p>可以假设除了数字 0 之外，这两个数字都不会以零开头。</p>
 <p><strong>示例1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626420025-fZfzMX-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [7,2,4,3], l2 = [5,6,4]</span><br><span class="line">输出：[7,8,0,7]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[7,2,4,3]</span>, l2 = <span class="hljs-comment">[5,6,4]</span>
+输出：<span class="hljs-comment">[7,8,0,7]</span></code></pre></div>
 
 <p><strong>示例2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [2,4,3], l2 = [5,6,4]</span><br><span class="line">输出：[8,0,7]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：l1 = <span class="hljs-comment">[2,4,3]</span>, l2 = <span class="hljs-comment">[5,6,4]</span>
+输出：<span class="hljs-comment">[8,0,7]</span></code></pre></div>
 
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>反转 套上面 再反转</p>
-<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* last = <span class="built_in">reverseList</span>(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>{</span><br><span class="line">        ListNode* L1 = <span class="built_in">reverseList</span>(l1);</span><br><span class="line">        ListNode* L2 = <span class="built_in">reverseList</span>(l2);</span><br><span class="line">        <span class="comment">//这样写 不存在内存泄漏 同时 又有了一个可以直接移动的指针</span></span><br><span class="line">        ListNode dumpyHead;  </span><br><span class="line">        ListNode* pre = &amp;dumpyHead;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(L1 || L2){</span><br><span class="line">            carry += L1?L1-&gt;val:<span class="number">0</span>;</span><br><span class="line">            carry += L2?L2-&gt;val:<span class="number">0</span>;</span><br><span class="line">            pre-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(carry%<span class="number">10</span>);</span><br><span class="line">            carry /= <span class="number">10</span>;         </span><br><span class="line">            pre = pre-&gt;next;</span><br><span class="line">            L1 = L1?L1-&gt;next:L1;</span><br><span class="line">            L2 = L2?L2-&gt;next:L2;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//md又忘了</span></span><br><span class="line">        <span class="keyword">if</span>(carry) pre-&gt;next = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">reverseList</span>(dumpyHead.next);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">reverseList</span><span class="hljs-params">(ListNode* head)</span></span>{
+        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>)
+            <span class="hljs-keyword">return</span> head;
+        ListNode* last = <span class="hljs-built_in">reverseList</span>(head-&gt;next);
+        head-&gt;next-&gt;next = head;
+        head-&gt;next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">return</span> last;
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">addTwoNumbers</span><span class="hljs-params">(ListNode* l1, ListNode* l2)</span> </span>{
+        ListNode* L1 = <span class="hljs-built_in">reverseList</span>(l1);
+        ListNode* L2 = <span class="hljs-built_in">reverseList</span>(l2);
+        <span class="hljs-comment">//这样写 不存在内存泄漏 同时 又有了一个可以直接移动的指针</span>
+        ListNode dumpyHead;  
+        ListNode* pre = &amp;dumpyHead;
+        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(L1 || L2){
+            carry += L1?L1-&gt;val:<span class="hljs-number">0</span>;
+            carry += L2?L2-&gt;val:<span class="hljs-number">0</span>;
+            pre-&gt;next = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(carry%<span class="hljs-number">10</span>);
+            carry /= <span class="hljs-number">10</span>;         
+            pre = pre-&gt;next;
+            L1 = L1?L1-&gt;next:L1;
+            L2 = L2?L2-&gt;next:L2;
+        }
+        <span class="hljs-comment">//md又忘了</span>
+        <span class="hljs-keyword">if</span>(carry) pre-&gt;next = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">reverseList</span>(dumpyHead.next);
+    }
+};</code></pre></div>
 
 
               
@@ -364,6 +531,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

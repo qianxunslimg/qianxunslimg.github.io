@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg">
 <meta property="article:published_time" content="2022-04-18T07:53:49.000Z">
-<meta property="article:modified_time" content="2022-05-24T08:29:33.591Z">
+<meta property="article:modified_time" content="2022-05-28T15:32:43.995Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -284,10 +284,39 @@
 <p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
 <p>此外，你可以假设该网格的四条边均被水包围。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [</span><br><span class="line">  ["1","1","1","1","0"],</span><br><span class="line">  ["1","1","0","1","0"],</span><br><span class="line">  ["1","1","0","0","0"],</span><br><span class="line">  ["0","0","0","0","0"]</span><br><span class="line">]</span><br><span class="line">输出：1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：grid = [
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>]
+]
+输出：<span class="hljs-number">1</span></code></pre></div>
 
 <p>dfs很熟悉了 类似的岛屿问题之前我都是用dfs做的 直接给出代码</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> land_num = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;grid.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){</span><br><span class="line">            <span class="built_in">dfs</span>(grid, i, j);</span><br><span class="line">            land_num++;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> land_num;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=grid.<span class="built_in">size</span>()||j&lt;<span class="number">0</span>||j&gt;=grid[<span class="number">0</span>].<span class="built_in">size</span>()||grid[i][j]!=<span class="string">'1'</span>) <span class="keyword">return</span>;</span><br><span class="line">      grid[i][j] = <span class="string">'2'</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i+<span class="number">1</span>,j);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i,j+<span class="number">1</span>);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i<span class="number">-1</span>,j);</span><br><span class="line">      <span class="built_in">dfs</span>(grid, i,j<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{
+      <span class="hljs-keyword">int</span> land_num = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;grid.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-string">'1'</span>){
+            <span class="hljs-built_in">dfs</span>(grid, i, j);
+            land_num++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> land_num;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>{
+      <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">0</span>||i&gt;=grid.<span class="hljs-built_in">size</span>()||j&lt;<span class="hljs-number">0</span>||j&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()||grid[i][j]!=<span class="hljs-string">'1'</span>) <span class="hljs-keyword">return</span>;
+      grid[i][j] = <span class="hljs-string">'2'</span>;
+      <span class="hljs-built_in">dfs</span>(grid, i+<span class="hljs-number">1</span>,j);
+      <span class="hljs-built_in">dfs</span>(grid, i,j+<span class="hljs-number">1</span>);
+      <span class="hljs-built_in">dfs</span>(grid, i<span class="hljs-number">-1</span>,j);
+      <span class="hljs-built_in">dfs</span>(grid, i,j<span class="hljs-number">-1</span>);
+    }
+};</code></pre></div>
 
 <h4 id="下面看一下bfs的写法"><a href="#下面看一下bfs的写法" class="headerlink" title="下面看一下bfs的写法"></a>下面看一下bfs的写法</h4><ul>
 <li>主循环和思路一类似，不同点是在于搜索某岛屿边界的方法不同。</li>
@@ -301,36 +330,163 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> land_num = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;grid.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;grid[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>){</span><br><span class="line">            <span class="built_in">bfs</span>(grid, i, j);</span><br><span class="line">            land_num++;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> land_num;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">char</span>&gt;&gt;&amp; grid, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>{</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j));</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; node = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        i = node.first;</span><br><span class="line">        j = node.second;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span>||i&gt;=grid.<span class="built_in">size</span>()||j&lt;<span class="number">0</span>||j&gt;=grid[<span class="number">0</span>].<span class="built_in">size</span>()||grid[i][j]!=<span class="string">'1'</span>)</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        grid[i][j] = <span class="string">'0'</span>;</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i + <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i - <span class="number">1</span>, j));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j + <span class="number">1</span>));</span><br><span class="line">        que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(i, j - <span class="number">1</span>));</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{
+      <span class="hljs-keyword">int</span> land_num = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;grid.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-string">'1'</span>){
+            <span class="hljs-built_in">bfs</span>(grid, i, j);
+            land_num++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> land_num;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j)</span></span>{
+      queue&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; que;
+      que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(i, j));
+      <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+        pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; node = que.<span class="hljs-built_in">front</span>();
+        que.<span class="hljs-built_in">pop</span>();
+        i = node.first;
+        j = node.second;
+        <span class="hljs-keyword">if</span>(i&lt;<span class="hljs-number">0</span>||i&gt;=grid.<span class="hljs-built_in">size</span>()||j&lt;<span class="hljs-number">0</span>||j&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()||grid[i][j]!=<span class="hljs-string">'1'</span>)
+          <span class="hljs-keyword">continue</span>;
+        grid[i][j] = <span class="hljs-string">'0'</span>;
+        que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(i + <span class="hljs-number">1</span>, j));
+        que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(i - <span class="hljs-number">1</span>, j));
+        que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(i, j + <span class="hljs-number">1</span>));
+        que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(i, j - <span class="hljs-number">1</span>));
+      }
+    }
+};</code></pre></div>
 
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><h4 id="从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历"><a href="#从上题可以看出，-bfs是接住了一个队列-和-while循环-类似二叉树的程序遍历-对四周所以接触的节点进行一层一层的遍历" class="headerlink" title="从上题可以看出， bfs是接住了一个队列 和 while循环 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历"></a>从上题可以看出， bfs是接住了一个<u>队列 和 while循环</u> 类似二叉树的程序遍历 对四周所以接触的节点进行一层一层的遍历</h4><h4 id="最短路径属于dp问题-可以考虑使用bfs"><a href="#最短路径属于dp问题-可以考虑使用bfs" class="headerlink" title="最短路径属于dp问题 可以考虑使用bfs"></a>最短路径属于dp问题 可以考虑使用bfs</h4><h3 id="对称飞行器"><a href="#对称飞行器" class="headerlink" title="对称飞行器"></a><a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">对称飞行器</a></h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png" srcset="/img/loading.gif" lazyload alt="image-20220418163802022"></p>
 <p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion">https://www.nowcoder.com/questionTerminal/ef231526f822489d879949226b4bed65?answerType=1&amp;f=discussion</a><br>来源：牛客网</p>
-<h5 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一行两个空格分隔的正整数 n,m\mathit n,mn,m ，分别代表迷宫的行数和列数。</span><br><span class="line">接下来 n\mathit nn 行 每行一个长度为 m\mathit mm 的字符串来描述这个迷宫。</span><br><span class="line">其中</span><br><span class="line">. 代表通路。</span><br><span class="line"> 代表障碍。</span><br><span class="line">S 代表起点。</span><br><span class="line">E 代表终点。</span><br><span class="line">保证只有一个 S 和 一个 E 。</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h5><div class="code-wrapper"><pre><code class="hljs excel">第一行两个空格分隔的正整数 <span class="hljs-built_in">n</span>,m\mathit <span class="hljs-built_in">n</span>,mn,m ，分别代表迷宫的行数和列数。
+接下来 <span class="hljs-built_in">n</span>\mathit nn 行 每行一个长度为 m\mathit mm 的字符串来描述这个迷宫。
+其中
+. 代表通路。
+ 代表障碍。
+S 代表起点。
+E 代表终点。
+保证只有一个 S 和 一个 E 。</code></pre></div>
 
-<h5 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">仅一行一个整数表示从起点最小花费多少时间单位到达终点。</span><br><span class="line">如果无法到达终点，输出 -1</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a><strong>输出描述:</strong></h5><div class="code-wrapper"><pre><code class="hljs subunit">仅一行一个整数表示从起点最小花费多少时间单位到达终点。
+如果无法到达终点，输出 <span class="hljs-string">-1</span></code></pre></div>
 
-<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 4</span><br><span class="line">#S..</span><br><span class="line">E#..</span><br><span class="line">#...</span><br><span class="line">....</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><div class="code-wrapper"><pre><code class="hljs erlang"><span class="hljs-number">4</span> <span class="hljs-number">4</span>
+#S..
+E#..
+#...
+....</code></pre></div>
 
-<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><div class="code-wrapper"><pre><code class="hljs">4</code></pre></div>
 
-<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一种可行的路径是用对称飞行器到达 (4,3) 再向上走一步，再向右走一步，然后使用一次对称飞行器到达终点。</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><div class="code-wrapper"><pre><code class="hljs gcode">一种可行的路径是用对称飞行器到达 <span class="hljs-comment">(4,3)</span> 再向上走一步，再向右走一步，然后使用一次对称飞行器到达终点。</code></pre></div>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>最短路径属于dp问题 优先考虑使用bfs dfs复杂会更高 代码也复杂</li>
 <li></li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NodeAli4</span> {</span></span><br><span class="line">  <span class="keyword">int</span> x;</span><br><span class="line">  <span class="keyword">int</span> y;</span><br><span class="line">  <span class="keyword">int</span> lastFly;</span><br><span class="line">  <span class="keyword">int</span> nowStep;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dirX[<span class="number">4</span>] = {<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>};</span><br><span class="line"><span class="keyword">int</span> dirY[<span class="number">4</span>] = {<span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">checkAli4</span><span class="params">(NodeAli4 &amp;node, <span class="keyword">int</span> n, <span class="keyword">int</span> m, vector&lt;string&gt; &amp;all,</span></span></span><br><span class="line"><span class="params"><span class="function">               vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;visited)</span> </span>{</span><br><span class="line">  <span class="keyword">return</span> node.x &gt;= <span class="number">0</span> &amp;&amp; node.x &lt; n &amp;&amp; node.y &gt;= <span class="number">0</span> &amp;&amp; node.y &lt; m &amp;&amp;</span><br><span class="line">         visited[node.x][node.y] == <span class="number">0</span> &amp;&amp; all[node.x][node.y] != <span class="string">'#'</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfsAli4</span><span class="params">(NodeAli4 &amp;node, vector&lt;string&gt; &amp;all, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;visited,</span></span></span><br><span class="line"><span class="params"><span class="function">            <span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>{</span><br><span class="line">  queue&lt;NodeAli4&gt; que;</span><br><span class="line">  que.<span class="built_in">push</span>(node);</span><br><span class="line">  <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">    NodeAli4 tempNode = que.<span class="built_in">front</span>();</span><br><span class="line">    que.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">int</span> x = tempNode.x;</span><br><span class="line">    <span class="keyword">int</span> y = tempNode.y;</span><br><span class="line">    <span class="keyword">if</span> (all[x][y] == <span class="string">'E'</span>)</span><br><span class="line">      <span class="keyword">return</span> tempNode.nowStep;</span><br><span class="line">    <span class="comment">//相当于五叉树的层序</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) {</span><br><span class="line">      NodeAli4 nextNode;</span><br><span class="line">      <span class="keyword">if</span> (i == <span class="number">4</span>) {</span><br><span class="line">        <span class="keyword">if</span> (tempNode.lastFly &gt; <span class="number">0</span>) {</span><br><span class="line">          nextNode.x = n - <span class="number">1</span> - x;</span><br><span class="line">          nextNode.y = m - <span class="number">1</span> - y;</span><br><span class="line">          nextNode.lastFly = tempNode.lastFly - <span class="number">1</span>;</span><br><span class="line">          nextNode.nowStep = tempNode.nowStep + <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        nextNode.x = x + dirX[i];</span><br><span class="line">        nextNode.y = y + dirY[i];</span><br><span class="line">        nextNode.lastFly = tempNode.lastFly;</span><br><span class="line">        nextNode.nowStep = tempNode.nowStep + <span class="number">1</span>;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">checkAli4</span>(nextNode, n, m, all, visited)) {</span><br><span class="line">        que.<span class="built_in">push</span>(nextNode);</span><br><span class="line">        visited[nextNode.x][nextNode.y] = <span class="number">1</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ali4</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> n, m;</span><br><span class="line">  cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">  string temp;</span><br><span class="line">  <span class="function">vector&lt;string&gt; <span class="title">all</span><span class="params">(n)</span></span>;</span><br><span class="line">  vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">visited</span>(n, vector&lt;<span class="keyword">int</span>&gt;(m));</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    cin &gt;&gt; all[i];</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) {</span><br><span class="line">      <span class="keyword">if</span> (all[i][j] == <span class="string">'S'</span>) {</span><br><span class="line">        visited[i][j] = <span class="number">1</span>;</span><br><span class="line">        NodeAli4 node = {i, j, <span class="number">5</span>, <span class="number">0</span>};</span><br><span class="line">        cout &lt;&lt; <span class="built_in">bfsAli4</span>(node, all, visited, n, m);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="built_in">ali4</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">NodeAli4</span> {</span>
+  <span class="hljs-keyword">int</span> x;
+  <span class="hljs-keyword">int</span> y;
+  <span class="hljs-keyword">int</span> lastFly;
+  <span class="hljs-keyword">int</span> nowStep;
+};
+
+<span class="hljs-keyword">int</span> dirX[<span class="hljs-number">4</span>] = {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>};
+<span class="hljs-keyword">int</span> dirY[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>};
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">checkAli4</span><span class="hljs-params">(NodeAli4 &amp;node, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m, vector&lt;string&gt; &amp;all,</span></span>
+<span class="hljs-params"><span class="hljs-function">               vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;visited)</span> </span>{
+  <span class="hljs-keyword">return</span> node.x &gt;= <span class="hljs-number">0</span> &amp;&amp; node.x &lt; n &amp;&amp; node.y &gt;= <span class="hljs-number">0</span> &amp;&amp; node.y &lt; m &amp;&amp;
+         visited[node.x][node.y] == <span class="hljs-number">0</span> &amp;&amp; all[node.x][node.y] != <span class="hljs-string">'#'</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bfsAli4</span><span class="hljs-params">(NodeAli4 &amp;node, vector&lt;string&gt; &amp;all, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;visited,</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> m)</span> </span>{
+  queue&lt;NodeAli4&gt; que;
+  que.<span class="hljs-built_in">push</span>(node);
+  <span class="hljs-keyword">while</span> (!que.<span class="hljs-built_in">empty</span>()) {
+    NodeAli4 tempNode = que.<span class="hljs-built_in">front</span>();
+    que.<span class="hljs-built_in">pop</span>();
+    <span class="hljs-keyword">int</span> x = tempNode.x;
+    <span class="hljs-keyword">int</span> y = tempNode.y;
+    <span class="hljs-keyword">if</span> (all[x][y] == <span class="hljs-string">'E'</span>)
+      <span class="hljs-keyword">return</span> tempNode.nowStep;
+    <span class="hljs-comment">//相当于五叉树的层序</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+      NodeAli4 nextNode;
+      <span class="hljs-keyword">if</span> (i == <span class="hljs-number">4</span>) {
+        <span class="hljs-keyword">if</span> (tempNode.lastFly &gt; <span class="hljs-number">0</span>) {
+          nextNode.x = n - <span class="hljs-number">1</span> - x;
+          nextNode.y = m - <span class="hljs-number">1</span> - y;
+          nextNode.lastFly = tempNode.lastFly - <span class="hljs-number">1</span>;
+          nextNode.nowStep = tempNode.nowStep + <span class="hljs-number">1</span>;
+        }
+      } <span class="hljs-keyword">else</span> {
+        nextNode.x = x + dirX[i];
+        nextNode.y = y + dirY[i];
+        nextNode.lastFly = tempNode.lastFly;
+        nextNode.nowStep = tempNode.nowStep + <span class="hljs-number">1</span>;
+      }
+
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">checkAli4</span>(nextNode, n, m, all, visited)) {
+        que.<span class="hljs-built_in">push</span>(nextNode);
+        visited[nextNode.x][nextNode.y] = <span class="hljs-number">1</span>;
+      }
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ali4</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">int</span> n, m;
+  cin &gt;&gt; n &gt;&gt; m;
+  string temp;
+  <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">all</span><span class="hljs-params">(n)</span></span>;
+  vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">visited</span>(n, vector&lt;<span class="hljs-keyword">int</span>&gt;(m));
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+    cin &gt;&gt; all[i];
+  }
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) {
+      <span class="hljs-keyword">if</span> (all[i][j] == <span class="hljs-string">'S'</span>) {
+        visited[i][j] = <span class="hljs-number">1</span>;
+        NodeAli4 node = {i, j, <span class="hljs-number">5</span>, <span class="hljs-number">0</span>};
+        cout &lt;&lt; <span class="hljs-built_in">bfsAli4</span>(node, all, visited, n, m);
+        <span class="hljs-keyword">return</span>;
+      }
+    }
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-built_in">ali4</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <h3 id="剑指-Offer-II-107-矩阵中的距离"><a href="#剑指-Offer-II-107-矩阵中的距离" class="headerlink" title="剑指 Offer II 107. 矩阵中的距离"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/2bCMpM/">剑指 Offer II 107. 矩阵中的距离</a></h3><p>难度中等22收藏分享切换为英文接收动态反馈</p>
 <p>给定一个由 <code>0</code> 和 <code>1</code> 组成的矩阵 <code>mat</code> ，请输出一个大小相同的矩阵，其中每一个格子是 <code>mat</code> 中对应位置元素到最近的 <code>0</code> 的距离。</p>
 <p>两个相邻元素间的距离为 <code>1</code> 。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[0,0,0]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[0,0,0]]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs lua">输入：mat = <span class="hljs-string">[[0,0,0],[0,1,0],[0,0,0]]</span>
+输出：<span class="hljs-string">[[0,0,0],[0,1,0],[0,0,0]]</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[0,0,0],[0,1,0],[1,1,1]]</span><br><span class="line">输出：[[0,0,0],[0,1,0],[1,2,1]]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs lua">输入：mat = <span class="hljs-string">[[0,0,0],[0,1,0],[1,1,1]]</span>
+输出：<span class="hljs-string">[[0,0,0],[0,1,0],[1,2,1]]</span></code></pre></div>
 
 
 
@@ -338,9 +494,84 @@
 <p>按下图走，四周有1是 1变0 坐标入队列 ans位置 = ans pre位置++</p>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220509155601268.png" srcset="/img/loading.gif" lazyload alt="image-20220509155601268" style="zoom:50%;">
 
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dirs = {{<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}};</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat) {</span><br><span class="line">        <span class="keyword">int</span> n = mat.<span class="built_in">size</span>(), m = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(n, vector&lt;<span class="keyword">int</span>&gt;(m, <span class="number">0</span>));</span><br><span class="line">        queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) {</span><br><span class="line">                <span class="keyword">if</span> (!mat[i][j]) {</span><br><span class="line">                    que.<span class="built_in">push</span>({i, j});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">            <span class="keyword">auto</span> f = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; d: dirs) {</span><br><span class="line">                <span class="keyword">int</span> x = f.first + d[<span class="number">0</span>], y = f.second + d[<span class="number">1</span>];</span><br><span class="line">                <span class="comment">//周围为1的方向时</span></span><br><span class="line">                <span class="keyword">if</span> (x &gt;= <span class="number">0</span> &amp;&amp; x &lt; n &amp;&amp; y &gt;= <span class="number">0</span> &amp;&amp; y &lt; m &amp;&amp; mat[x][y]) {</span><br><span class="line">                    ans[x][y] = ans[f.first][f.second] + <span class="number">1</span>;</span><br><span class="line">                    mat[x][y] = <span class="number">0</span>;</span><br><span class="line">                    que.<span class="built_in">push</span>({x, y});</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dirs = {{<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}};
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; mat) {
+        <span class="hljs-keyword">int</span> n = mat.<span class="hljs-built_in">size</span>(), m = mat[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">ans</span>(n, vector&lt;<span class="hljs-keyword">int</span>&gt;(m, <span class="hljs-number">0</span>));
+        queue&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; que;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) {
+                <span class="hljs-keyword">if</span> (!mat[i][j]) {
+                    que.<span class="hljs-built_in">push</span>({i, j});
+                }
+            }
+        }
+        <span class="hljs-keyword">while</span> (!que.<span class="hljs-built_in">empty</span>()) {
+            <span class="hljs-keyword">auto</span> f = que.<span class="hljs-built_in">front</span>();
+            que.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; d: dirs) {
+                <span class="hljs-keyword">int</span> x = f.first + d[<span class="hljs-number">0</span>], y = f.second + d[<span class="hljs-number">1</span>];
+                <span class="hljs-comment">//周围为1的方向时</span>
+                <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span> &amp;&amp; x &lt; n &amp;&amp; y &gt;= <span class="hljs-number">0</span> &amp;&amp; y &lt; m &amp;&amp; mat[x][y]) {
+                    ans[x][y] = ans[f.first][f.second] + <span class="hljs-number">1</span>;
+                    mat[x][y] = <span class="hljs-number">0</span>;
+                    que.<span class="hljs-built_in">push</span>({x, y});
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
 
-<h4 id="解法-按1暴力bfs"><a href="#解法-按1暴力bfs" class="headerlink" title="解法 按1暴力bfs"></a>解法 按1暴力bfs</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dir{{<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">-1</span>, <span class="number">0</span>}};</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat) {</span><br><span class="line">      vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(mat.<span class="built_in">size</span>(), vector&lt;<span class="keyword">int</span>&gt;(mat[<span class="number">0</span>].<span class="built_in">size</span>()));</span><br><span class="line">      vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt; used;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;mat.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;mat[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(mat[i][j] == <span class="number">1</span>){</span><br><span class="line">            <span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line">            used.<span class="built_in">clear</span>(); <span class="comment">//注意 重置内部元素的话 必须先clear</span></span><br><span class="line">            <span class="comment">// size相等的话 并不会执行resize内部的构造</span></span><br><span class="line">            used.<span class="built_in">resize</span>(mat.<span class="built_in">size</span>(), vector&lt;<span class="keyword">bool</span>&gt;(mat[<span class="number">0</span>].<span class="built_in">size</span>(), <span class="number">0</span>));</span><br><span class="line">            <span class="built_in">bfs</span>(mat, i, j, depth, used);</span><br><span class="line">            ans[i][j] = depth;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; mat, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span>&amp; depth, vector&lt;vector&lt;<span class="keyword">bool</span>&gt;&gt;&amp; used)</span></span>{</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(x, y));</span><br><span class="line">      used[x][y] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        depth++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">            pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">int</span> i = node.first;</span><br><span class="line">            <span class="keyword">int</span> j = node.second;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> ii = <span class="number">0</span>; ii&lt;<span class="number">4</span>; ii++){</span><br><span class="line">                <span class="keyword">int</span> newI = i + dir[ii][<span class="number">0</span>];</span><br><span class="line">                <span class="keyword">int</span> newJ = j + dir[ii][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(newI&lt;<span class="number">0</span>||newI&gt;=mat.<span class="built_in">size</span>()||newJ&lt;<span class="number">0</span>||newJ&gt;=mat[<span class="number">0</span>].<span class="built_in">size</span>() || used[newI][newJ])</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(mat[newI][newJ] == <span class="number">0</span>)        </span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                que.<span class="built_in">push</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(newI, newJ));</span><br><span class="line">                used[newI][newJ] = <span class="number">1</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="解法-按1暴力bfs"><a href="#解法-按1暴力bfs" class="headerlink" title="解法 按1暴力bfs"></a>解法 按1暴力bfs</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir{{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}, {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}};
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">updateMatrix</span>(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; mat) {
+      vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">ans</span>(mat.<span class="hljs-built_in">size</span>(), vector&lt;<span class="hljs-keyword">int</span>&gt;(mat[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()));
+      vector&lt;vector&lt;<span class="hljs-keyword">bool</span>&gt;&gt; used;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;mat.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;mat[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">if</span>(mat[i][j] == <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">int</span> depth = <span class="hljs-number">0</span>;
+            used.<span class="hljs-built_in">clear</span>(); <span class="hljs-comment">//注意 重置内部元素的话 必须先clear</span>
+            <span class="hljs-comment">// size相等的话 并不会执行resize内部的构造</span>
+            used.<span class="hljs-built_in">resize</span>(mat.<span class="hljs-built_in">size</span>(), vector&lt;<span class="hljs-keyword">bool</span>&gt;(mat[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(), <span class="hljs-number">0</span>));
+            <span class="hljs-built_in">bfs</span>(mat, i, j, depth, used);
+            ans[i][j] = depth;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; mat, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span>&amp; depth, vector&lt;vector&lt;<span class="hljs-keyword">bool</span>&gt;&gt;&amp; used)</span></span>{
+      queue&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; que;
+      que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(x, y));
+      used[x][y] = <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+        <span class="hljs-keyword">int</span> n = que.<span class="hljs-built_in">size</span>();
+        depth++;
+        <span class="hljs-keyword">while</span>(n--){
+            pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; node = que.<span class="hljs-built_in">front</span>();
+            que.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">int</span> i = node.first;
+            <span class="hljs-keyword">int</span> j = node.second;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> ii = <span class="hljs-number">0</span>; ii&lt;<span class="hljs-number">4</span>; ii++){
+                <span class="hljs-keyword">int</span> newI = i + dir[ii][<span class="hljs-number">0</span>];
+                <span class="hljs-keyword">int</span> newJ = j + dir[ii][<span class="hljs-number">1</span>];
+                <span class="hljs-keyword">if</span>(newI&lt;<span class="hljs-number">0</span>||newI&gt;=mat.<span class="hljs-built_in">size</span>()||newJ&lt;<span class="hljs-number">0</span>||newJ&gt;=mat[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>() || used[newI][newJ])
+                    <span class="hljs-keyword">continue</span>;
+                <span class="hljs-keyword">if</span>(mat[newI][newJ] == <span class="hljs-number">0</span>)        
+                    <span class="hljs-keyword">return</span>;
+                que.<span class="hljs-built_in">push</span>(pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;(newI, newJ));
+                used[newI][newJ] = <span class="hljs-number">1</span>;
+            }
+        }
+      }
+    }
+};</code></pre></div>
 
 
 
@@ -350,23 +581,96 @@
 <p>列表 <code>deadends</code> 包含了一组死亡数字，一旦拨轮的数字和列表里的任何一个元素相同，这个锁将会被永久锁定，无法再被旋转。</p>
 <p>字符串 <code>target</code> 代表可以解锁的数字，请给出解锁需要的最小旋转次数，如果无论如何不能解锁，返回 <code>-1</code> 。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：deadends = ["0201","0101","0102","1212","2002"], target = "0202"</span><br><span class="line">输出：6</span><br><span class="line">解释：</span><br><span class="line">可能的移动序列为 "0000" -&gt; "1000" -&gt; "1100" -&gt; "1200" -&gt; "1201" -&gt; "1202" -&gt; "0202"。</span><br><span class="line">注意 "0000" -&gt; "0001" -&gt; "0002" -&gt; "0102" -&gt; "0202" 这样的序列是不能解锁的，因为当拨动到 "0102" 时这个锁就会被锁定。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">输入：deadends = [<span class="hljs-string">"0201"</span>,<span class="hljs-string">"0101"</span>,<span class="hljs-string">"0102"</span>,<span class="hljs-string">"1212"</span>,<span class="hljs-string">"2002"</span>], target = <span class="hljs-string">"0202"</span>
+输出：<span class="hljs-number">6</span>
+解释：
+可能的移动序列为 <span class="hljs-string">"0000"</span> -&gt; <span class="hljs-string">"1000"</span> -&gt; <span class="hljs-string">"1100"</span> -&gt; <span class="hljs-string">"1200"</span> -&gt; <span class="hljs-string">"1201"</span> -&gt; <span class="hljs-string">"1202"</span> -&gt; <span class="hljs-string">"0202"</span>。
+注意 <span class="hljs-string">"0000"</span> -&gt; <span class="hljs-string">"0001"</span> -&gt; <span class="hljs-string">"0002"</span> -&gt; <span class="hljs-string">"0102"</span> -&gt; <span class="hljs-string">"0202"</span> 这样的序列是不能解锁的，因为当拨动到 <span class="hljs-string">"0102"</span> 时这个锁就会被锁定。</code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: deadends = ["8888"], target = "0009"</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">把最后一位反向旋转一次即可 "0000" -&gt; "0009"。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">deadends</span> = [<span class="hljs-string">"8888"</span>], <span class="hljs-attr">target</span> = <span class="hljs-string">"0009"</span>
+输出：<span class="hljs-number">1</span>
+解释：
+把最后一位反向旋转一次即可 <span class="hljs-string">"0000"</span> -&gt; <span class="hljs-string">"0009"</span>。</code></pre></div>
 
 <p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: deadends = ["8887","8889","8878","8898","8788","8988","7888","9888"], target = "8888"</span><br><span class="line">输出：-1</span><br><span class="line">解释：</span><br><span class="line">无法旋转到目标数字且不被锁定。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">deadends</span> = [<span class="hljs-string">"8887"</span>,<span class="hljs-string">"8889"</span>,<span class="hljs-string">"8878"</span>,<span class="hljs-string">"8898"</span>,<span class="hljs-string">"8788"</span>,<span class="hljs-string">"8988"</span>,<span class="hljs-string">"7888"</span>,<span class="hljs-string">"9888"</span>], <span class="hljs-attr">target</span> = <span class="hljs-string">"8888"</span>
+输出：-<span class="hljs-number">1</span>
+解释：
+无法旋转到目标数字且不被锁定。</code></pre></div>
 
 <h4 id="解法-bfs求最优路径"><a href="#解法-bfs求最优路径" class="headerlink" title="解法 bfs求最优路径"></a>解法 bfs求最优路径</h4><p>枚举每次旋转的所有可能情况</p>
 <p>符合要求的压入栈中</p>
 <p>一轮一轮的波 先把所有位置都播一边 次数 = 0， 压所有情况入队列</p>
 <p>然后 拨动所有次数 = 1的 压所有情况到队列之后</p>
 <p>依次 直到最后</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">openLock</span><span class="params">(vector&lt;string&gt;&amp; deadends, string target)</span> </span>{</span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(deadends.begin(), deadends.end())</span></span>;</span><br><span class="line">      <span class="keyword">if</span>(target == <span class="string">"0000"</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(sett.<span class="built_in">count</span>(target) || sett.<span class="built_in">count</span>(<span class="string">"0000"</span>)) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">auto</span> num_prev = [](<span class="keyword">char</span> x)-&gt;<span class="keyword">char</span>{</span><br><span class="line">        <span class="built_in"><span class="keyword">return</span></span> (x == <span class="string">'0'</span> ? <span class="string">'9'</span> : x<span class="number">-1</span>);</span><br><span class="line">      };</span><br><span class="line">      <span class="keyword">auto</span> num_next = [](<span class="keyword">char</span> x)-&gt;<span class="keyword">char</span>{</span><br><span class="line">        <span class="built_in"><span class="keyword">return</span></span> (x == <span class="string">'9'</span> ? <span class="string">'0'</span> : x+<span class="number">1</span>);</span><br><span class="line">      };</span><br><span class="line"></span><br><span class="line">      <span class="comment">//枚举status通过一次旋转得到的数字</span></span><br><span class="line">      <span class="keyword">auto</span> get = [&amp;](string&amp; status)-&gt;vector&lt;string&gt;{</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</span><br><span class="line">          <span class="keyword">char</span> num = status[i];</span><br><span class="line">          status[i] = <span class="built_in">num_prev</span>(num);</span><br><span class="line">          res.<span class="built_in">push_back</span>(status);</span><br><span class="line">          status[i] = <span class="built_in">num_next</span>(num);</span><br><span class="line">          res.<span class="built_in">push_back</span>(status);</span><br><span class="line">          status[i] = num;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">      };</span><br><span class="line"></span><br><span class="line">      queue&lt;pair&lt;string, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(pair&lt;string, <span class="keyword">int</span>&gt;(<span class="string">"0000"</span>, <span class="number">0</span>));</span><br><span class="line">      unordered_set&lt;string&gt; seen = {<span class="string">"0000"</span>};</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">auto</span> [status, step] = que.<span class="built_in">front</span>();</span><br><span class="line">        que.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; next_status : <span class="built_in">get</span>(status)){</span><br><span class="line">          <span class="keyword">if</span>(!seen.<span class="built_in">count</span>(next_status) &amp;&amp; !sett.<span class="built_in">count</span>(next_status)){</span><br><span class="line">            <span class="keyword">if</span>(next_status == target) <span class="keyword">return</span> step+<span class="number">1</span>;</span><br><span class="line">            que.<span class="built_in">push</span>(pair&lt;string, <span class="keyword">int</span>&gt;(next_status, step+<span class="number">1</span>));</span><br><span class="line">            seen.<span class="built_in">insert</span>(next_status);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">openLock</span><span class="hljs-params">(vector&lt;string&gt;&amp; deadends, string target)</span> </span>{
+      <span class="hljs-function">unordered_set&lt;string&gt; <span class="hljs-title">sett</span><span class="hljs-params">(deadends.begin(), deadends.end())</span></span>;
+      <span class="hljs-keyword">if</span>(target == <span class="hljs-string">"0000"</span> ) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">if</span>(sett.<span class="hljs-built_in">count</span>(target) || sett.<span class="hljs-built_in">count</span>(<span class="hljs-string">"0000"</span>)) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+
+      <span class="hljs-keyword">auto</span> num_prev = [](<span class="hljs-keyword">char</span> x)-&gt;<span class="hljs-keyword">char</span>{
+        <span class="hljs-built_in"><span class="hljs-keyword">return</span></span> (x == <span class="hljs-string">'0'</span> ? <span class="hljs-string">'9'</span> : x<span class="hljs-number">-1</span>);
+      };
+      <span class="hljs-keyword">auto</span> num_next = [](<span class="hljs-keyword">char</span> x)-&gt;<span class="hljs-keyword">char</span>{
+        <span class="hljs-built_in"><span class="hljs-keyword">return</span></span> (x == <span class="hljs-string">'9'</span> ? <span class="hljs-string">'0'</span> : x+<span class="hljs-number">1</span>);
+      };
+
+      <span class="hljs-comment">//枚举status通过一次旋转得到的数字</span>
+      <span class="hljs-keyword">auto</span> get = [&amp;](string&amp; status)-&gt;vector&lt;string&gt;{
+        vector&lt;string&gt; res;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+          <span class="hljs-keyword">char</span> num = status[i];
+          status[i] = <span class="hljs-built_in">num_prev</span>(num);
+          res.<span class="hljs-built_in">push_back</span>(status);
+          status[i] = <span class="hljs-built_in">num_next</span>(num);
+          res.<span class="hljs-built_in">push_back</span>(status);
+          status[i] = num;
+        }
+        <span class="hljs-keyword">return</span> res;
+      };
+
+      queue&lt;pair&lt;string, <span class="hljs-keyword">int</span>&gt;&gt; que;
+      que.<span class="hljs-built_in">push</span>(pair&lt;string, <span class="hljs-keyword">int</span>&gt;(<span class="hljs-string">"0000"</span>, <span class="hljs-number">0</span>));
+      unordered_set&lt;string&gt; seen = {<span class="hljs-string">"0000"</span>};
+      <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+        <span class="hljs-keyword">auto</span> [status, step] = que.<span class="hljs-built_in">front</span>();
+        que.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; next_status : <span class="hljs-built_in">get</span>(status)){
+          <span class="hljs-keyword">if</span>(!seen.<span class="hljs-built_in">count</span>(next_status) &amp;&amp; !sett.<span class="hljs-built_in">count</span>(next_status)){
+            <span class="hljs-keyword">if</span>(next_status == target) <span class="hljs-keyword">return</span> step+<span class="hljs-number">1</span>;
+            que.<span class="hljs-built_in">push</span>(pair&lt;string, <span class="hljs-keyword">int</span>&gt;(next_status, step+<span class="hljs-number">1</span>));
+            seen.<span class="hljs-built_in">insert</span>(next_status);
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+};</code></pre></div>
 
 <p>起始可以写成常规的bfs 记录好每层的节点数</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;string&gt; que;</span><br><span class="line">que.<span class="built_in">push</span>(<span class="string">"0000"</span>);</span><br><span class="line">unordered_set&lt;string&gt; seen = {<span class="string">"0000"</span>};</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">  ans++;</span><br><span class="line">  <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">  <span class="keyword">while</span>(n--){</span><br><span class="line">    string status= que.<span class="built_in">front</span>();</span><br><span class="line">    que.<span class="built_in">pop</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; next_status : <span class="built_in">get</span>(status)){</span><br><span class="line">      <span class="keyword">if</span>(!seen.<span class="built_in">count</span>(next_status) &amp;&amp; !sett.<span class="built_in">count</span>(next_status)){</span><br><span class="line">        <span class="keyword">if</span>(next_status == target) <span class="keyword">return</span> ans;</span><br><span class="line">        que.<span class="built_in">push</span>(next_status);</span><br><span class="line">        seen.<span class="built_in">insert</span>(next_status);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">return</span> <span class="number">-1</span>;</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">queue&lt;string&gt; que;
+que.<span class="hljs-built_in">push</span>(<span class="hljs-string">"0000"</span>);
+unordered_set&lt;string&gt; seen = {<span class="hljs-string">"0000"</span>};
+<span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+  ans++;
+  <span class="hljs-keyword">int</span> n = que.<span class="hljs-built_in">size</span>();
+  <span class="hljs-keyword">while</span>(n--){
+    string status= que.<span class="hljs-built_in">front</span>();
+    que.<span class="hljs-built_in">pop</span>();
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; next_status : <span class="hljs-built_in">get</span>(status)){
+      <span class="hljs-keyword">if</span>(!seen.<span class="hljs-built_in">count</span>(next_status) &amp;&amp; !sett.<span class="hljs-built_in">count</span>(next_status)){
+        <span class="hljs-keyword">if</span>(next_status == target) <span class="hljs-keyword">return</span> ans;
+        que.<span class="hljs-built_in">push</span>(next_status);
+        seen.<span class="hljs-built_in">insert</span>(next_status);
+      }
+    }
+  }
+}
+<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;</code></pre></div>
 
 <h3 id="剑指-Offer-II-108-单词演变"><a href="#剑指-Offer-II-108-单词演变" class="headerlink" title="剑指 Offer II 108. 单词演变"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/om3reC/">剑指 Offer II 108. 单词演变</a></h3><p>难度困难11</p>
 <p>在字典（单词列表） <code>wordList</code> 中，从单词 <code>beginWord</code> 和 <code>endWord</code> 的 <strong>转换序列</strong> 是一个按下述规格形成的序列：</p>
@@ -378,9 +682,54 @@
 </ul>
 <p>给定两个长度相同但内容不同的单词 <code>beginWord</code> 和 <code>endWord</code> 和一个字典 <code>wordList</code> ，找到从 <code>beginWord</code> 到 <code>endWord</code> 的 <strong>最短转换序列</strong> 中的 <strong>单词数目</strong> 。如果不存在这样的转换序列，返回 0。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]</span><br><span class="line">输出：5</span><br><span class="line">解释：一个最短转换序列是 "hit" -&gt; "hot" -&gt; "dot" -&gt; "dog" -&gt; "cog", 返回它的长度 5。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">输入：beginWord = <span class="hljs-string">"hit"</span>, endWord = <span class="hljs-string">"cog"</span>, wordList = [<span class="hljs-string">"hot"</span>,<span class="hljs-string">"dot"</span>,<span class="hljs-string">"dog"</span>,<span class="hljs-string">"lot"</span>,<span class="hljs-string">"log"</span>,<span class="hljs-string">"cog"</span>]
+输出：<span class="hljs-number">5</span>
+解释：一个最短转换序列是 <span class="hljs-string">"hit"</span> -&gt; <span class="hljs-string">"hot"</span> -&gt; <span class="hljs-string">"dot"</span> -&gt; <span class="hljs-string">"dog"</span> -&gt; <span class="hljs-string">"cog"</span>, 返回它的长度 <span class="hljs-number">5</span>。</code></pre></div>
 
-<h4 id="bfs-密码锁"><a href="#bfs-密码锁" class="headerlink" title="bfs 密码锁"></a>bfs 密码锁</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">ladderLength</span><span class="params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>{</span><br><span class="line">      <span class="comment">//return 0;</span></span><br><span class="line"></span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(wordList.begin(), wordList.end())</span></span>;</span><br><span class="line">      <span class="keyword">auto</span> get = [&amp;](string str)-&gt;vector&lt;string&gt;{</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;str.<span class="built_in">size</span>(); i++){</span><br><span class="line">          string temp = str;</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;<span class="number">26</span>; j++){</span><br><span class="line">            <span class="keyword">char</span> ch = <span class="string">'a'</span> + j;</span><br><span class="line">            temp[i] = ch;</span><br><span class="line">            <span class="keyword">if</span>(temp != str &amp;&amp; sett.<span class="built_in">count</span>(temp))</span><br><span class="line">              res.<span class="built_in">push_back</span>(temp);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">      };</span><br><span class="line">      <span class="keyword">if</span>(!sett.<span class="built_in">count</span>(endWord)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      unordered_set&lt;string&gt; seen;</span><br><span class="line">      queue&lt;string&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(beginWord);</span><br><span class="line">      seen.<span class="built_in">insert</span>(beginWord);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">1</span>;  <span class="comment">//转换序列的长度 所以初值是1</span></span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">          string str = que.<span class="built_in">front</span>();</span><br><span class="line">          que.<span class="built_in">pop</span>();</span><br><span class="line">          <span class="keyword">for</span>(string s: <span class="built_in">get</span>(str)){</span><br><span class="line">            <span class="comment">// cout&lt;&lt;s&lt;&lt;" ";</span></span><br><span class="line">            <span class="keyword">if</span>(seen.<span class="built_in">count</span>(s))</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(s == endWord) <span class="keyword">return</span> ans;</span><br><span class="line">            que.<span class="built_in">push</span>(s);</span><br><span class="line">            seen.<span class="built_in">insert</span>(s);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="bfs-密码锁"><a href="#bfs-密码锁" class="headerlink" title="bfs 密码锁"></a>bfs 密码锁</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ladderLength</span><span class="hljs-params">(string beginWord, string endWord, vector&lt;string&gt;&amp; wordList)</span> </span>{
+      <span class="hljs-comment">//return 0;</span>
+
+      <span class="hljs-function">unordered_set&lt;string&gt; <span class="hljs-title">sett</span><span class="hljs-params">(wordList.begin(), wordList.end())</span></span>;
+      <span class="hljs-keyword">auto</span> get = [&amp;](string str)-&gt;vector&lt;string&gt;{
+        vector&lt;string&gt; res;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;str.<span class="hljs-built_in">size</span>(); i++){
+          string temp = str;
+          <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;<span class="hljs-number">26</span>; j++){
+            <span class="hljs-keyword">char</span> ch = <span class="hljs-string">'a'</span> + j;
+            temp[i] = ch;
+            <span class="hljs-keyword">if</span>(temp != str &amp;&amp; sett.<span class="hljs-built_in">count</span>(temp))
+              res.<span class="hljs-built_in">push_back</span>(temp);
+          }
+        }
+        <span class="hljs-keyword">return</span> res;
+      };
+      <span class="hljs-keyword">if</span>(!sett.<span class="hljs-built_in">count</span>(endWord)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      unordered_set&lt;string&gt; seen;
+      queue&lt;string&gt; que;
+      que.<span class="hljs-built_in">push</span>(beginWord);
+      seen.<span class="hljs-built_in">insert</span>(beginWord);
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">1</span>;  <span class="hljs-comment">//转换序列的长度 所以初值是1</span>
+      <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+        <span class="hljs-keyword">int</span> n = que.<span class="hljs-built_in">size</span>();
+        ans++;
+        <span class="hljs-keyword">while</span>(n--){
+          string str = que.<span class="hljs-built_in">front</span>();
+          que.<span class="hljs-built_in">pop</span>();
+          <span class="hljs-keyword">for</span>(string s: <span class="hljs-built_in">get</span>(str)){
+            <span class="hljs-comment">// cout&lt;&lt;s&lt;&lt;" ";</span>
+            <span class="hljs-keyword">if</span>(seen.<span class="hljs-built_in">count</span>(s))
+              <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">if</span>(s == endWord) <span class="hljs-keyword">return</span> ans;
+            que.<span class="hljs-built_in">push</span>(s);
+            seen.<span class="hljs-built_in">insert</span>(s);
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
 
 <h3 id="863-二叉树中所有距离为-K-的结点"><a href="#863-二叉树中所有距离为-K-的结点" class="headerlink" title="863. 二叉树中所有距离为 K 的结点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-nodes-distance-k-in-binary-tree/">863. <code>二叉树中所有距离为 K 的结点</code></a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/all-nodes-distance-k-in-binary-tree/#">思路</a></p>
 <p>难度中等536</p>
@@ -389,13 +738,69 @@
 <p><strong>示例 1：</strong></p>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sketch0.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
 
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, k = 2</span><br><span class="line">输出：[7,4,1]</span><br><span class="line">解释：所求结点为与目标结点（值为 5）距离为 2 的结点，值分别为 7，4，以及 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">8</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>,<span class="hljs-number">4</span>], <span class="hljs-attr">target</span> = <span class="hljs-number">5</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">2</span>
+输出：[<span class="hljs-number">7</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>]
+解释：所求结点为与目标结点（值为 <span class="hljs-number">5</span>）距离为 <span class="hljs-number">2</span> 的结点，值分别为 <span class="hljs-number">7</span>，<span class="hljs-number">4</span>，以及 <span class="hljs-number">1</span></code></pre></div>
 
 <h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>构建parent 是怎么跨过根节点的？</p>
 <blockquote>
 <p>起始仔细想想并不需要通过根节点的parent跨过，而是通过左右子树节点跨过，在根节点上 就是一个二叉树而非三叉</p>
 </blockquote>
-<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode {</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span></span><br><span class="line"><span class="comment"> * };</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, TreeNode*&gt; parent;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">distanceK</span><span class="params">(TreeNode* root, TreeNode* target, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> vector&lt;<span class="keyword">int</span>&gt;{};</span><br><span class="line">        <span class="built_in">dfs</span>(root, <span class="literal">nullptr</span>);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        unordered_set&lt;TreeNode*&gt; visited;</span><br><span class="line">        visited.<span class="built_in">insert</span>(target);</span><br><span class="line">        que.<span class="built_in">push</span>(target);</span><br><span class="line">        <span class="keyword">int</span> diss = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">          <span class="keyword">int</span> n = que.<span class="built_in">size</span>(); </span><br><span class="line">          <span class="keyword">while</span>(n--){</span><br><span class="line">            TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(diss == k){</span><br><span class="line">              ans.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line">            TreeNode* par = parent[node-&gt;val];</span><br><span class="line">            <span class="keyword">if</span>(par &amp;&amp; !visited.<span class="built_in">count</span>(par)){</span><br><span class="line">              que.<span class="built_in">push</span>(par);</span><br><span class="line">              visited.<span class="built_in">insert</span>(par);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left &amp;&amp; !visited.<span class="built_in">count</span>(node-&gt;left)) {</span><br><span class="line">              que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">              visited.<span class="built_in">insert</span>(node-&gt;left);</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right &amp;&amp; !visited.<span class="built_in">count</span>(node-&gt;right)) {</span><br><span class="line">              que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">              visited.<span class="built_in">insert</span>(node-&gt;right);</span><br><span class="line">            }</span><br><span class="line">          }</span><br><span class="line">          diss++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, TreeNode* parentNode)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">      parent[node-&gt;val] = parentNode;</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left, node);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right, node);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Definition for a binary tree node.</span>
+<span class="hljs-comment"> * struct TreeNode {</span>
+<span class="hljs-comment"> *     int val;</span>
+<span class="hljs-comment"> *     TreeNode *left;</span>
+<span class="hljs-comment"> *     TreeNode *right;</span>
+<span class="hljs-comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}</span>
+<span class="hljs-comment"> * };</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">int</span>, TreeNode*&gt; parent;
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">distanceK</span><span class="hljs-params">(TreeNode* root, TreeNode* target, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> vector&lt;<span class="hljs-keyword">int</span>&gt;{};
+        <span class="hljs-built_in">dfs</span>(root, <span class="hljs-literal">nullptr</span>);
+        vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        queue&lt;TreeNode*&gt; que;
+        unordered_set&lt;TreeNode*&gt; visited;
+        visited.<span class="hljs-built_in">insert</span>(target);
+        que.<span class="hljs-built_in">push</span>(target);
+        <span class="hljs-keyword">int</span> diss = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+          <span class="hljs-keyword">int</span> n = que.<span class="hljs-built_in">size</span>(); 
+          <span class="hljs-keyword">while</span>(n--){
+            TreeNode* node = que.<span class="hljs-built_in">front</span>();
+            que.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">if</span>(diss == k){
+              ans.<span class="hljs-built_in">push_back</span>(node-&gt;val);
+              <span class="hljs-keyword">continue</span>;
+            }
+            TreeNode* par = parent[node-&gt;val];
+            <span class="hljs-keyword">if</span>(par &amp;&amp; !visited.<span class="hljs-built_in">count</span>(par)){
+              que.<span class="hljs-built_in">push</span>(par);
+              visited.<span class="hljs-built_in">insert</span>(par);
+            }
+            <span class="hljs-keyword">if</span>(node-&gt;left &amp;&amp; !visited.<span class="hljs-built_in">count</span>(node-&gt;left)) {
+              que.<span class="hljs-built_in">push</span>(node-&gt;left);
+              visited.<span class="hljs-built_in">insert</span>(node-&gt;left);
+            }
+            <span class="hljs-keyword">if</span>(node-&gt;right &amp;&amp; !visited.<span class="hljs-built_in">count</span>(node-&gt;right)) {
+              que.<span class="hljs-built_in">push</span>(node-&gt;right);
+              visited.<span class="hljs-built_in">insert</span>(node-&gt;right);
+            }
+          }
+          diss++;
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* node, TreeNode* parentNode)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;
+      parent[node-&gt;val] = parentNode;
+      <span class="hljs-built_in">dfs</span>(node-&gt;left, node);
+      <span class="hljs-built_in">dfs</span>(node-&gt;right, node);
+    }
+};</code></pre></div>
 
 <h3 id="675-为高尔夫比赛砍树"><a href="#675-为高尔夫比赛砍树" class="headerlink" title="675. 为高尔夫比赛砍树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cut-off-trees-for-golf-event/">675. 为高尔夫比赛砍树</a></h3><p>难度困难188</p>
 <p>你被请来给一个要举办高尔夫比赛的树林砍树。树林由一个 <code>m x n</code> 的矩阵表示， 在这个矩阵中：</p>
@@ -410,10 +815,76 @@
 <p>可以保证的是，没有两棵树的高度是相同的，并且你至少需要砍倒一棵树。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：forest = [[1,2,3],[0,0,4],[7,6,5]]</span><br><span class="line">输出：6</span><br><span class="line">解释：沿着上面的路径，你可以用 6 步，按从最矮到最高的顺序砍掉这些树。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs lua">输入：forest = <span class="hljs-string">[[1,2,3],[0,0,4],[7,6,5]]</span>
+输出：<span class="hljs-number">6</span>
+解释：沿着上面的路径，你可以用 <span class="hljs-number">6</span> 步，按从最矮到最高的顺序砍掉这些树。</code></pre></div>
 
 <h4 id="解法-bfs-1"><a href="#解法-bfs-1" class="headerlink" title="解法 bfs"></a>解法 bfs</h4><p>路径是固定的， 所以只需要查找每一步到下一步的最短路径 然后相加即可</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; backup;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; dir{{<span class="number">0</span>, <span class="number">1</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">1</span>, <span class="number">0</span>}};</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cutOffTree</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; forest)</span> </span>{</span><br><span class="line">      backup = forest;</span><br><span class="line">      vector&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; allTree;</span><br><span class="line">      <span class="comment">// 存储所有要砍的树</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;forest.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;forest[<span class="number">0</span>].<span class="built_in">size</span>(); j++){</span><br><span class="line">          <span class="keyword">if</span>(forest[i][j] &gt; <span class="number">1</span>)</span><br><span class="line">            allTree.<span class="built_in">push_back</span>(pair&lt;<span class="keyword">int</span> ,<span class="keyword">int</span> &gt;(i, j));</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">			<span class="comment">//对树按高度排序 确认要砍的路径</span></span><br><span class="line">      <span class="keyword">auto</span> cmp = [&amp;](pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; a, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; b){</span><br><span class="line">        <span class="keyword">return</span> forest[a.first][a.second] &lt; forest[b.first][b.second];</span><br><span class="line">      };</span><br><span class="line">      <span class="built_in">sort</span>(allTree.<span class="built_in">begin</span>(), allTree.<span class="built_in">end</span>(), cmp);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="function">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="title">pre</span><span class="params">(<span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">      <span class="comment">//砍路径上相邻的两棵树</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;allTree.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="built_in">bfs</span>(forest, pre, allTree[i]);</span><br><span class="line">        <span class="keyword">if</span>(temp == <span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        ans += temp;</span><br><span class="line">        pre = allTree[i];</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">		</span><br><span class="line">  	<span class="comment">//查找两棵树间的最短路径</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; forest, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; now, pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; next)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(now == next)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; que;</span><br><span class="line">      que.<span class="built_in">push</span>(now);</span><br><span class="line">      forest[now.first][now.second] = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(!que.<span class="built_in">empty</span>()){</span><br><span class="line">        <span class="keyword">int</span> n = que.<span class="built_in">size</span>();</span><br><span class="line">        ans++;</span><br><span class="line">        <span class="keyword">while</span>(n--){</span><br><span class="line">          pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; nowT = que.<span class="built_in">front</span>();</span><br><span class="line">          <span class="keyword">int</span> nowI = nowT.first;</span><br><span class="line">          <span class="keyword">int</span> nowJ = nowT.second;</span><br><span class="line">          que.<span class="built_in">pop</span>();</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">4</span>; i++){</span><br><span class="line">            <span class="keyword">int</span> nextI = nowI + dir[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> nextJ = nowJ + dir[i][<span class="number">1</span>];</span><br><span class="line">            <span class="function">pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="title">nextT</span><span class="params">(nextI, nextJ)</span></span>;</span><br><span class="line">            <span class="keyword">if</span>(nextJ &lt; <span class="number">0</span> || nextI &lt; <span class="number">0</span> || nextI&gt;=forest.<span class="built_in">size</span>() || nextJ&gt;=forest[<span class="number">0</span>].<span class="built_in">size</span>() || forest[nextI][nextJ] == <span class="number">0</span>)</span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(nextT == next) {</span><br><span class="line">              forest = backup;</span><br><span class="line">              <span class="keyword">return</span> ans;</span><br><span class="line">            }</span><br><span class="line">            forest[nextI][nextJ] = <span class="number">0</span>;</span><br><span class="line">            que.<span class="built_in">push</span>(nextT);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; backup;
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir{{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cutOffTree</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; forest)</span> </span>{
+      backup = forest;
+      vector&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; allTree;
+      <span class="hljs-comment">// 存储所有要砍的树</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;forest.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;forest[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">if</span>(forest[i][j] &gt; <span class="hljs-number">1</span>)
+            allTree.<span class="hljs-built_in">push_back</span>(pair&lt;<span class="hljs-keyword">int</span> ,<span class="hljs-keyword">int</span> &gt;(i, j));
+        }
+      }
+			<span class="hljs-comment">//对树按高度排序 确认要砍的路径</span>
+      <span class="hljs-keyword">auto</span> cmp = [&amp;](pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; a, pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; b){
+        <span class="hljs-keyword">return</span> forest[a.first][a.second] &lt; forest[b.first][b.second];
+      };
+      <span class="hljs-built_in">sort</span>(allTree.<span class="hljs-built_in">begin</span>(), allTree.<span class="hljs-built_in">end</span>(), cmp);
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-function">pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; <span class="hljs-title">pre</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span></span>;
+      <span class="hljs-comment">//砍路径上相邻的两棵树</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;allTree.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">int</span> temp = <span class="hljs-built_in">bfs</span>(forest, pre, allTree[i]);
+        <span class="hljs-keyword">if</span>(temp == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        ans += temp;
+        pre = allTree[i];
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+		
+  	<span class="hljs-comment">//查找两棵树间的最短路径</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">bfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; forest, pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; now, pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; next)</span></span>{
+      <span class="hljs-keyword">if</span>(now == next)
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      queue&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt; que;
+      que.<span class="hljs-built_in">push</span>(now);
+      forest[now.first][now.second] = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span>(!que.<span class="hljs-built_in">empty</span>()){
+        <span class="hljs-keyword">int</span> n = que.<span class="hljs-built_in">size</span>();
+        ans++;
+        <span class="hljs-keyword">while</span>(n--){
+          pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; nowT = que.<span class="hljs-built_in">front</span>();
+          <span class="hljs-keyword">int</span> nowI = nowT.first;
+          <span class="hljs-keyword">int</span> nowJ = nowT.second;
+          que.<span class="hljs-built_in">pop</span>();
+          <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+            <span class="hljs-keyword">int</span> nextI = nowI + dir[i][<span class="hljs-number">0</span>];
+            <span class="hljs-keyword">int</span> nextJ = nowJ + dir[i][<span class="hljs-number">1</span>];
+            <span class="hljs-function">pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; <span class="hljs-title">nextT</span><span class="hljs-params">(nextI, nextJ)</span></span>;
+            <span class="hljs-keyword">if</span>(nextJ &lt; <span class="hljs-number">0</span> || nextI &lt; <span class="hljs-number">0</span> || nextI&gt;=forest.<span class="hljs-built_in">size</span>() || nextJ&gt;=forest[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>() || forest[nextI][nextJ] == <span class="hljs-number">0</span>)
+              <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">if</span>(nextT == next) {
+              forest = backup;
+              <span class="hljs-keyword">return</span> ans;
+            }
+            forest[nextI][nextJ] = <span class="hljs-number">0</span>;
+            que.<span class="hljs-built_in">push</span>(nextT);
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+};</code></pre></div>
 
 
 
@@ -424,7 +895,9 @@
 <p>对于每个单元格，你可以往上，下，左，右四个方向移动。 <strong>不能</strong> 在 <strong>对角线</strong> 方向上移动或移动到 <strong>边界外</strong>（即不允许环绕）。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[9,9,4],[6,6,8],[2,1,1]]</span><br><span class="line">输出：4 </span><br><span class="line">解释：最长递增路径为 [1, 2, 6, 9]。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：matrix = <span class="hljs-comment">[<span class="hljs-comment">[9,9,4]</span>,<span class="hljs-comment">[6,6,8]</span>,<span class="hljs-comment">[2,1,1]</span>]</span>
+输出：4 
+解释：最长递增路径为 <span class="hljs-comment">[1, 2, 6, 9]</span>。</code></pre></div>
 
 <p>解法 记忆化dfs</p>
 <ol>
@@ -432,7 +905,41 @@
 <li>学习以下带返回值的dfs写法吧</li>
 <li>记忆化dfs就是在dfs开始的时候 先查找是否存在 不存在再继续搜索 最后返回时对记忆化赋值</li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> dxy[<span class="number">4</span>][<span class="number">2</span>]={{<span class="number">-1</span>,<span class="number">0</span>},{<span class="number">1</span>,<span class="number">0</span>},{<span class="number">0</span>,<span class="number">-1</span>},{<span class="number">0</span>,<span class="number">1</span>}};</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> m=matrix.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> n=matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> maxstep=<span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">length</span>(m,vector&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++){</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++){</span><br><span class="line">                <span class="keyword">int</span> step=<span class="built_in">dfs</span>(matrix,i,j,length);</span><br><span class="line">                maxstep=<span class="built_in">max</span>(step,maxstep);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> maxstep;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix,<span class="keyword">int</span> i,<span class="keyword">int</span> j,vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; length)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(length[i][j]!=<span class="number">0</span>){</span><br><span class="line">            <span class="keyword">return</span> length[i][j];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> step=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">4</span>;k++){</span><br><span class="line">            <span class="keyword">int</span> dx=i+dxy[k][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> dy=j+dxy[k][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span>(dx&gt;=<span class="number">0</span>&amp;&amp;dx&lt;matrix.<span class="built_in">size</span>()&amp;&amp;dy&gt;=<span class="number">0</span>&amp;&amp;dy&lt;matrix[<span class="number">0</span>].<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(matrix[dx][dy]&gt;matrix[i][j]){</span><br><span class="line">                    <span class="keyword">int</span> path=<span class="built_in">dfs</span>(matrix,dx,dy,length);</span><br><span class="line">                    step=<span class="built_in">max</span>(step,path+<span class="number">1</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        length[i][j]=step;</span><br><span class="line">        <span class="keyword">return</span> step;;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> dxy[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>]={{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">1</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestIncreasingPath</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>{
+        <span class="hljs-keyword">int</span> m=matrix.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> n=matrix[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> maxstep=<span class="hljs-number">0</span>;
+        vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">length</span>(m,vector&lt;<span class="hljs-keyword">int</span>&gt;(n));
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++){
+                <span class="hljs-keyword">int</span> step=<span class="hljs-built_in">dfs</span>(matrix,i,j,length);
+                maxstep=<span class="hljs-built_in">max</span>(step,maxstep);
+            }
+        }
+        <span class="hljs-keyword">return</span> maxstep;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; matrix,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j,vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; length)</span></span>{
+        <span class="hljs-keyword">if</span>(length[i][j]!=<span class="hljs-number">0</span>){
+            <span class="hljs-keyword">return</span> length[i][j];
+        }
+        <span class="hljs-keyword">int</span> step=<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;<span class="hljs-number">4</span>;k++){
+            <span class="hljs-keyword">int</span> dx=i+dxy[k][<span class="hljs-number">0</span>];
+            <span class="hljs-keyword">int</span> dy=j+dxy[k][<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span>(dx&gt;=<span class="hljs-number">0</span>&amp;&amp;dx&lt;matrix.<span class="hljs-built_in">size</span>()&amp;&amp;dy&gt;=<span class="hljs-number">0</span>&amp;&amp;dy&lt;matrix[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()){
+                <span class="hljs-keyword">if</span>(matrix[dx][dy]&gt;matrix[i][j]){
+                    <span class="hljs-keyword">int</span> path=<span class="hljs-built_in">dfs</span>(matrix,dx,dy,length);
+                    step=<span class="hljs-built_in">max</span>(step,path+<span class="hljs-number">1</span>);
+                }
+            }
+        }
+        length[i][j]=step;
+        <span class="hljs-keyword">return</span> step;;
+    }
+};</code></pre></div>
 
 
               
@@ -440,6 +947,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
