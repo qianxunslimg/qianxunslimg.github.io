@@ -272,17 +272,30 @@
 <h3 id="509-斐波那契数"><a href="#509-斐波那契数" class="headerlink" title="509. 斐波那契数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/">509. 斐波那契数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=509">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/#">思路</a></p>
 <p>难度简单462收藏分享切换为英文接收动态反馈</p>
 <p><strong>斐波那契数</strong> （通常用 <code>F(n)</code> 表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由 <code>0</code> 和 <code>1</code> 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(0) = 0，F(1) = 1</span><br><span class="line">F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-constructor">F(0)</span> = <span class="hljs-number">0</span>，<span class="hljs-constructor">F(1)</span> = <span class="hljs-number">1</span>
+<span class="hljs-constructor">F(<span class="hljs-params">n</span>)</span> = <span class="hljs-constructor">F(<span class="hljs-params">n</span> - 1)</span> + <span class="hljs-constructor">F(<span class="hljs-params">n</span> - 2)</span>，其中 n &gt; <span class="hljs-number">1</span></code></pre></div>
 
 <p>给定 <code>n</code> ，请计算 <code>F(n)</code> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：1</span><br><span class="line">解释：F(2) = F(1) + F(0) = 1 + 0 = 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs isbl">输入：<span class="hljs-variable">n</span> = <span class="hljs-number">2</span>
+输出：<span class="hljs-number">1</span>
+解释：<span class="hljs-function"><span class="hljs-title">F</span>(<span class="hljs-number">2</span>) = <span class="hljs-title">F</span>(<span class="hljs-number">1</span>) + <span class="hljs-title">F</span>(<span class="hljs-number">0</span>) = <span class="hljs-number">1</span> + <span class="hljs-number">0</span> = <span class="hljs-number">1</span></span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：2</span><br><span class="line">解释：F(3) = F(2) + F(1) = 1 + 1 = 2</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs isbl">输入：<span class="hljs-variable">n</span> = <span class="hljs-number">3</span>
+输出：<span class="hljs-number">2</span>
+解释：<span class="hljs-function"><span class="hljs-title">F</span>(<span class="hljs-number">3</span>) = <span class="hljs-title">F</span>(<span class="hljs-number">2</span>) + <span class="hljs-title">F</span>(<span class="hljs-number">1</span>) = <span class="hljs-number">1</span> + <span class="hljs-number">1</span> = <span class="hljs-number">2</span></span></code></pre></div>
 
 <h4 id="记忆化搜索-1"><a href="#记忆化搜索-1" class="headerlink" title="记忆化搜索"></a><code>记忆化搜索</code></h4><p>是因为函数压栈 所以用时高吗</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n)) <span class="keyword">return</span> memo[n];</span><br><span class="line">      <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">fib</span>(n<span class="number">-1</span>) + <span class="built_in">fib</span>(n<span class="number">-2</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; memo;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+      <span class="hljs-keyword">if</span>(memo.<span class="hljs-built_in">count</span>(n)) <span class="hljs-keyword">return</span> memo[n];
+      <span class="hljs-keyword">if</span>(n&lt;=<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">fib</span>(n<span class="hljs-number">-1</span>) + <span class="hljs-built_in">fib</span>(n<span class="hljs-number">-2</span>);
+    }
+};</code></pre></div>
 
 <h4 id="动态规划-略"><a href="#动态规划-略" class="headerlink" title="动态规划 略"></a>动态规划 略</h4><h3 id="397-整数替换"><a href="#397-整数替换" class="headerlink" title="397. 整数替换"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-replacement/">397. 整数替换</a></h3><p>难度中等235收藏分享切换为英文接收动态反馈</p>
 <p>给定一个正整数 <code>n</code> ，你可以做如下操作：</p>
@@ -292,18 +305,70 @@
 </ol>
 <p>返回 <code>n</code> 变为 <code>1</code> 所需的 <em>最小替换次数</em> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 8</span><br><span class="line">输出：3</span><br><span class="line">解释：8 -&gt; 4 -&gt; 2 -&gt; 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">输入：n = <span class="hljs-number">8</span>
+输出：<span class="hljs-number">3</span>
+解释：<span class="hljs-number">8</span> -&gt; <span class="hljs-number">4</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">1</span></code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 7</span><br><span class="line">输出：4</span><br><span class="line">解释：7 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1</span><br><span class="line">或 7 -&gt; 6 -&gt; 3 -&gt; 2 -&gt; 1</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">输入：n = <span class="hljs-number">7</span>
+输出：<span class="hljs-number">4</span>
+解释：<span class="hljs-number">7</span> -&gt; <span class="hljs-number">8</span> -&gt; <span class="hljs-number">4</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">1</span>
+或 <span class="hljs-number">7</span> -&gt; <span class="hljs-number">6</span> -&gt; <span class="hljs-number">3</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">1</span></code></pre></div>
 
 <h4 id="最优-贪心"><a href="#最优-贪心" class="headerlink" title="最优 贪心"></a>最优 贪心</h4><p>局部最优的情况肯定是 不能被2整除的情况下下向4靠拢 比如 9 - 8 - 4 - 2 - 1    9 - 10 - 5 - 6 - 3 - 4 - 2 - 1</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">long</span> nn = n;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (nn != <span class="number">1</span>) {</span><br><span class="line">      <span class="keyword">if</span> (nn == <span class="number">3</span>) {</span><br><span class="line">        res += <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> (nn % <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">if</span> (!((nn + <span class="number">1</span>) % <span class="number">4</span>)) {</span><br><span class="line">          nn = nn + <span class="number">1</span>;</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          nn = nn - <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        nn /= <span class="number">2</span>;</span><br><span class="line">      }</span><br><span class="line">      res++;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">integerReplacement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+    <span class="hljs-keyword">long</span> nn = n;
+    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (nn != <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">if</span> (nn == <span class="hljs-number">3</span>) {
+        res += <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">break</span>;
+      }
+      <span class="hljs-keyword">if</span> (nn % <span class="hljs-number">2</span>) {
+        <span class="hljs-keyword">if</span> (!((nn + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>)) {
+          nn = nn + <span class="hljs-number">1</span>;
+        } <span class="hljs-keyword">else</span> {
+          nn = nn - <span class="hljs-number">1</span>;
+        }
+      } <span class="hljs-keyword">else</span> {
+        nn /= <span class="hljs-number">2</span>;
+      }
+      res++;
+    }
+    <span class="hljs-keyword">return</span> res;
+  }
+};</code></pre></div>
 
 <h4 id="记忆化搜索-2"><a href="#记忆化搜索-2" class="headerlink" title="记忆化搜索"></a>记忆化搜索</h4><p>递归思想 恶心的是 有个INT_MAX会导致溢出</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(n == INT_MAX) <span class="keyword">return</span> <span class="number">32</span>;  <span class="comment">//溢出的特殊情况直接返回</span></span><br><span class="line">      <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n))</span><br><span class="line">        <span class="keyword">return</span> memo[n];</span><br><span class="line">      <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(n%<span class="number">2</span>){</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">min</span>(<span class="built_in">integerReplacement</span>(n+<span class="number">1</span>), <span class="built_in">integerReplacement</span>(n<span class="number">-1</span>));</span><br><span class="line">      }<span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">integerReplacement</span>(n/<span class="number">2</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; memo;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">integerReplacement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+      <span class="hljs-keyword">if</span>(n == INT_MAX) <span class="hljs-keyword">return</span> <span class="hljs-number">32</span>;  <span class="hljs-comment">//溢出的特殊情况直接返回</span>
+      <span class="hljs-keyword">if</span>(memo.<span class="hljs-built_in">count</span>(n))
+        <span class="hljs-keyword">return</span> memo[n];
+      <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span>){
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">min</span>(<span class="hljs-built_in">integerReplacement</span>(n+<span class="hljs-number">1</span>), <span class="hljs-built_in">integerReplacement</span>(n<span class="hljs-number">-1</span>));
+      }<span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">integerReplacement</span>(n/<span class="hljs-number">2</span>);
+    }
+};</code></pre></div>
 
-<h4 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">integerReplacement</span>(n / <span class="number">2</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> + <span class="built_in">min</span>(<span class="built_in">integerReplacement</span>(n / <span class="number">2</span>), <span class="built_in">integerReplacement</span>(n / <span class="number">2</span> + <span class="number">1</span>));</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">integerReplacement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">integerReplacement</span>(n / <span class="hljs-number">2</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> + <span class="hljs-built_in">min</span>(<span class="hljs-built_in">integerReplacement</span>(n / <span class="hljs-number">2</span>), <span class="hljs-built_in">integerReplacement</span>(n / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>));
+    }
+};</code></pre></div>
 
 <h3 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/can-i-win/">464. 我能赢吗</a></h3><p>难度中等424收藏分享切换为英文接收动态反馈</p>
 <p>在 “100 game” 这个游戏中，两名玩家轮流选择从 <code>1</code> 到 <code>10</code> 的任意整数，累计整数和，先使得累计整数和 <strong>达到或超过</strong> 100 的玩家，即为胜者。</p>
@@ -311,27 +376,102 @@
 <p>例如，两个玩家可以轮流从公共整数池中抽取从 1 到 15 的整数（不放回），直到累计整数和 &gt;= 100。</p>
 <p>给定两个整数 <code>maxChoosableInteger</code> （整数池中可选择的最大数）和 <code>desiredTotal</code>（累计和），若先出手的玩家是否能稳赢则返回 <code>true</code> ，否则返回 <code>false</code> 。假设两位玩家游戏时都表现 <strong>最佳</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：maxChoosableInteger = 10, desiredTotal = 11</span><br><span class="line">输出：false</span><br><span class="line">解释：</span><br><span class="line">无论第一个玩家选择哪个整数，他都会失败。</span><br><span class="line">第一个玩家可以选择从 1 到 10 的整数。</span><br><span class="line">如果第一个玩家选择 1，那么第二个玩家只能选择从 2 到 10 的整数。</span><br><span class="line">第二个玩家可以通过选择整数 10（那么累积和为 11 &gt;= desiredTotal），从而取得胜利.</span><br><span class="line">同样地，第一个玩家选择任意其他整数，第二个玩家都会赢。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs tap">输入：maxChoosableInteger = 10, desiredTotal = 11
+输出：false
+解释：
+无论第一个玩家选择哪个整数，他都会失败。
+第一个玩家可以选择从<span class="hljs-number"> 1 </span>到<span class="hljs-number"> 10 </span>的整数。
+如果第一个玩家选择 1，那么第二个玩家只能选择从<span class="hljs-number"> 2 </span>到<span class="hljs-number"> 10 </span>的整数。
+第二个玩家可以通过选择整数 10（那么累积和为<span class="hljs-number"> 11 </span>&gt;= desiredTotal），从而取得胜利.
+同样地，第一个玩家选择任意其他整数，第二个玩家都会赢。</code></pre></div>
 
 
 
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/can-i-win/solution/by-fuxuemingzhu-g16c/">【负雪明烛】图解算法：递归，步步优化，弄清每个细节 - 我能赢吗 - 力扣（LeetCode）</a></p>
-<h4 id="详细但超时的解法-有基本的思路"><a href="#详细但超时的解法-有基本的思路" class="headerlink" title="详细但超时的解法 有基本的思路"></a>详细但超时的解法 有基本的思路</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canIWin</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="comment">// 候选集，「公共整数池」</span></span><br><span class="line">        unordered_set&lt;<span class="keyword">int</span>&gt; choosable;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= maxChoosableInteger; ++i) {</span><br><span class="line">            choosable.<span class="built_in">insert</span>(i);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 判断当前做选择的玩家（先手），是否一定赢</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(choosable, <span class="number">0</span>, maxChoosableInteger, desiredTotal);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 当前做选择的玩家是否一定赢</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(unordered_set&lt;<span class="keyword">int</span>&gt;&amp; choosable, <span class="keyword">int</span> sum, <span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="comment">// 遍历可选择的公共整数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x : choosable) {</span><br><span class="line">            <span class="comment">// 如果选择了 x 以后，大于等于了 desiredTotal，当前玩家赢</span></span><br><span class="line">            <span class="keyword">if</span> (sum + x &gt;= desiredTotal) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 改变「公共整数池」</span></span><br><span class="line">            <span class="comment">// 为了避免影响当前的 choosable，因此复制了一份并擦出掉 x，传给对手</span></span><br><span class="line">            unordered_set&lt;<span class="keyword">int</span>&gt; choosable_copy = choosable;</span><br><span class="line">            choosable_copy.<span class="built_in">erase</span>(x);</span><br><span class="line">            <span class="comment">// 当前玩家选择了 x 以后，判断对方玩家一定输吗？</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">dfs</span>(choosable_copy, sum + x, maxChoosableInteger, desiredTotal)) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="详细但超时的解法-有基本的思路"><a href="#详细但超时的解法-有基本的思路" class="headerlink" title="详细但超时的解法 有基本的思路"></a>详细但超时的解法 有基本的思路</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canIWin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxChoosableInteger, <span class="hljs-keyword">int</span> desiredTotal)</span> </span>{
+        <span class="hljs-comment">// 候选集，「公共整数池」</span>
+        unordered_set&lt;<span class="hljs-keyword">int</span>&gt; choosable;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= maxChoosableInteger; ++i) {
+            choosable.<span class="hljs-built_in">insert</span>(i);
+        }
+        <span class="hljs-comment">// 判断当前做选择的玩家（先手），是否一定赢</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(choosable, <span class="hljs-number">0</span>, maxChoosableInteger, desiredTotal);
+    }
+    
+    <span class="hljs-comment">// 当前做选择的玩家是否一定赢</span>
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(unordered_set&lt;<span class="hljs-keyword">int</span>&gt;&amp; choosable, <span class="hljs-keyword">int</span> sum, <span class="hljs-keyword">int</span> maxChoosableInteger, <span class="hljs-keyword">int</span> desiredTotal)</span> </span>{
+        <span class="hljs-comment">// 遍历可选择的公共整数</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x : choosable) {
+            <span class="hljs-comment">// 如果选择了 x 以后，大于等于了 desiredTotal，当前玩家赢</span>
+            <span class="hljs-keyword">if</span> (sum + x &gt;= desiredTotal) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }
+            <span class="hljs-comment">// 改变「公共整数池」</span>
+            <span class="hljs-comment">// 为了避免影响当前的 choosable，因此复制了一份并擦出掉 x，传给对手</span>
+            unordered_set&lt;<span class="hljs-keyword">int</span>&gt; choosable_copy = choosable;
+            choosable_copy.<span class="hljs-built_in">erase</span>(x);
+            <span class="hljs-comment">// 当前玩家选择了 x 以后，判断对方玩家一定输吗？</span>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">dfs</span>(choosable_copy, sum + x, maxChoosableInteger, desiredTotal)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    
+};</code></pre></div>
 
-<h4 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">bool</span>&gt; memo;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canIWin</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> ((<span class="number">1</span> + maxChoosableInteger) * (maxChoosableInteger) / <span class="number">2</span> &lt; desiredTotal) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(maxChoosableInteger, <span class="number">0</span>, desiredTotal, <span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> usedNumbers, <span class="keyword">int</span> desiredTotal, <span class="keyword">int</span> currentTotal)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (!memo.<span class="built_in">count</span>(usedNumbers)) {</span><br><span class="line">            <span class="keyword">bool</span> res = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxChoosableInteger; i++) {</span><br><span class="line">                <span class="keyword">if</span> (((usedNumbers &gt;&gt; i) &amp; <span class="number">1</span>) == <span class="number">0</span>) {</span><br><span class="line">                    <span class="keyword">if</span> (i + <span class="number">1</span> + currentTotal &gt;= desiredTotal) {</span><br><span class="line">                        res = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">if</span> (!<span class="built_in">dfs</span>(maxChoosableInteger, usedNumbers | (<span class="number">1</span> &lt;&lt; i), desiredTotal, currentTotal + i + <span class="number">1</span>)) {</span><br><span class="line">                        res = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            memo[usedNumbers] = res;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> memo[usedNumbers];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">bool</span>&gt; memo;
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canIWin</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxChoosableInteger, <span class="hljs-keyword">int</span> desiredTotal)</span> </span>{
+        <span class="hljs-keyword">if</span> ((<span class="hljs-number">1</span> + maxChoosableInteger) * (maxChoosableInteger) / <span class="hljs-number">2</span> &lt; desiredTotal) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(maxChoosableInteger, <span class="hljs-number">0</span>, desiredTotal, <span class="hljs-number">0</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> maxChoosableInteger, <span class="hljs-keyword">int</span> usedNumbers, <span class="hljs-keyword">int</span> desiredTotal, <span class="hljs-keyword">int</span> currentTotal)</span> </span>{
+        <span class="hljs-keyword">if</span> (!memo.<span class="hljs-built_in">count</span>(usedNumbers)) {
+            <span class="hljs-keyword">bool</span> res = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; maxChoosableInteger; i++) {
+                <span class="hljs-keyword">if</span> (((usedNumbers &gt;&gt; i) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) {
+                    <span class="hljs-keyword">if</span> (i + <span class="hljs-number">1</span> + currentTotal &gt;= desiredTotal) {
+                        res = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">break</span>;
+                    }
+                    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">dfs</span>(maxChoosableInteger, usedNumbers | (<span class="hljs-number">1</span> &lt;&lt; i), desiredTotal, currentTotal + i + <span class="hljs-number">1</span>)) {
+                        res = <span class="hljs-literal">true</span>;
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+            memo[usedNumbers] = res;
+        }
+        <span class="hljs-keyword">return</span> memo[usedNumbers];
+    }
+};</code></pre></div>
 
 <h3 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139. 单词拆分"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/">139. 单词拆分</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/#">思路</a></p>
 <p>难度中等1619收藏分享切换为英文接收动态反馈</p>
 <p>给你一个字符串 <code>s</code> 和一个字符串列表 <code>wordDict</code> 作为字典。请你判断是否可以利用字典中出现的单词拼接出 <code>s</code> 。</p>
 <p><strong>注意：</strong>不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "leetcode", wordDict = ["leet", "code"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "leetcode" 可以由 "leet" 和 "code" 拼接成。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">s</span> = <span class="hljs-string">"leetcode"</span>, <span class="hljs-attr">wordDict</span> = [<span class="hljs-string">"leet"</span>, <span class="hljs-string">"code"</span>]
+输出: <span class="hljs-literal">true</span>
+解释: 返回 <span class="hljs-literal">true</span> 因为 <span class="hljs-string">"leetcode"</span> 可以由 <span class="hljs-string">"leet"</span> 和 <span class="hljs-string">"code"</span> 拼接成。</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "applepenapple", wordDict = ["apple", "pen"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "applepenapple" 可以由 "apple" "pen" "apple" 拼接成。</span><br><span class="line">     注意，你可以重复使用字典中的单词。</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">s</span> = <span class="hljs-string">"applepenapple"</span>, <span class="hljs-attr">wordDict</span> = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"pen"</span>]
+输出: <span class="hljs-literal">true</span>
+解释: 返回 <span class="hljs-literal">true</span> 因为 <span class="hljs-string">"applepenapple"</span> 可以由 <span class="hljs-string">"apple"</span> <span class="hljs-string">"pen"</span> <span class="hljs-string">"apple"</span> 拼接成。
+     注意，你可以重复使用字典中的单词。</code></pre></div>
 
 <p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]</span><br><span class="line">输出: false</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">s</span> = <span class="hljs-string">"catsandog"</span>, <span class="hljs-attr">wordDict</span> = [<span class="hljs-string">"cats"</span>, <span class="hljs-string">"dog"</span>, <span class="hljs-string">"sand"</span>, <span class="hljs-string">"and"</span>, <span class="hljs-string">"cat"</span>]
+输出: <span class="hljs-literal">false</span></code></pre></div>
 
 
               
