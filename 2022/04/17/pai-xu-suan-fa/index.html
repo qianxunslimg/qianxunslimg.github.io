@@ -30,13 +30,16 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/mergeSort.gif">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sort_list_1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sort_list_2.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528163039606.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528163054052.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528172918710.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/selectionSort.gif">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/insertionSort.gif">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-8fa032e195365f77fb6b980a4ed71958_r.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-05-20T14:30:34.986Z">
+<meta property="article:modified_time" content="2022-05-28T09:29:29.300Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -357,9 +360,96 @@
 <p>然后，元素在每个桶中排序：</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/Bucket_sort_2.svg_.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>代码：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> BUCKET_NUM = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> {</span></span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">ListNode</span><span class="params">(<span class="keyword">int</span> i = <span class="number">0</span>)</span> : mData(i), mNext(NULL) {</span>}</span><br><span class="line">	ListNode *mNext;</span><br><span class="line">	<span class="keyword">int</span> mData;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//有序链表插入val</span></span><br><span class="line"><span class="function">ListNode *<span class="title">insert</span><span class="params">(ListNode *head, <span class="keyword">int</span> val)</span> </span>{</span><br><span class="line">	ListNode dummyNode;</span><br><span class="line">	ListNode *newNode = <span class="keyword">new</span> <span class="built_in">ListNode</span>(val);</span><br><span class="line">	ListNode *pre, *curr;</span><br><span class="line">	dummyNode.mNext = head;</span><br><span class="line">	pre = &amp;dummyNode;</span><br><span class="line">	curr = head;</span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">NULL</span> != curr &amp;&amp; curr-&gt;mData &lt;= val) {</span><br><span class="line">		pre = curr;</span><br><span class="line">		curr = curr-&gt;mNext;</span><br><span class="line">	}                      <span class="comment">// 找到第一个大于val的node curr</span></span><br><span class="line">	newNode-&gt;mNext = curr; <span class="comment">//插入val</span></span><br><span class="line">	pre-&gt;mNext = newNode;  <span class="comment">//拼接</span></span><br><span class="line">	<span class="keyword">return</span> dummyNode.mNext;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//合并两个有序链表</span></span><br><span class="line"><span class="function">ListNode *<span class="title">Merge</span><span class="params">(ListNode *head1, ListNode *head2)</span> </span>{</span><br><span class="line">	ListNode dummyNode;</span><br><span class="line">	ListNode *dummy = &amp;dummyNode;</span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">NULL</span> != head1 &amp;&amp; <span class="literal">NULL</span> != head2) {</span><br><span class="line">		<span class="keyword">if</span> (head1-&gt;mData &lt;= head2-&gt;mData) {</span><br><span class="line">			dummy-&gt;mNext = head1;</span><br><span class="line">			head1 = head1-&gt;mNext;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span> {</span><br><span class="line">			dummy-&gt;mNext = head2;</span><br><span class="line">			head2 = head2-&gt;mNext;</span><br><span class="line">		}</span><br><span class="line">		dummy = dummy-&gt;mNext;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> != head1)</span><br><span class="line">		dummy-&gt;mNext = head1;</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> != head2)</span><br><span class="line">		dummy-&gt;mNext = head2;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dummyNode.mNext;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BucketSort</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> arr[])</span> </span>{</span><br><span class="line">	<span class="function">vector&lt;ListNode *&gt; <span class="title">buckets</span><span class="params">(BUCKET_NUM, (ListNode *)(<span class="number">0</span>))</span></span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) {</span><br><span class="line">		<span class="keyword">int</span> index = arr[i] / BUCKET_NUM;</span><br><span class="line">		ListNode *head = buckets.<span class="built_in">at</span>(index);</span><br><span class="line">		buckets.<span class="built_in">at</span>(index) = <span class="built_in">insert</span>(head, arr[i]);</span><br><span class="line">	}</span><br><span class="line">	ListNode *head = buckets.<span class="built_in">at</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; BUCKET_NUM; ++i) {</span><br><span class="line">		head = <span class="built_in">Merge</span>(head, buckets.<span class="built_in">at</span>(i));</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) {</span><br><span class="line">		arr[i] = head-&gt;mData;</span><br><span class="line">		head = head-&gt;mNext;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++">
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iterator&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> BUCKET_NUM = <span class="hljs-number">10</span>;
 
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//桶排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bucketsort</span><span class="params">(<span class="keyword">int</span>* A, <span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">	vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">bucket</span>(<span class="number">10</span>);   <span class="comment">//分配10个桶（0~9、10~19...）</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) {    <span class="comment">//每个桶初始化</span></span><br><span class="line">		vector&lt;<span class="keyword">int</span>&gt; x = { <span class="number">0</span> };</span><br><span class="line">		bucket.<span class="built_in">push_back</span>(x);</span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//把待排序列放入桶中</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">		bucket[A[i] / <span class="number">10</span>].<span class="built_in">push_back</span>(A[i]); <span class="comment">//10 桶大小</span></span><br><span class="line">	}</span><br><span class="line">	<span class="comment">//把每个桶内的数据填充回到原序列中</span></span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) {   </span><br><span class="line">		<span class="built_in">sort</span>(bucket[i].<span class="built_in">begin</span>(), bucket[i].<span class="built_in">end</span>());  <span class="comment">//桶内排序</span></span><br><span class="line">		<span class="keyword">for</span> (vector&lt;<span class="keyword">int</span>&gt;::iterator it = bucket[i].<span class="built_in">begin</span>(); it != bucket[i].<span class="built_in">end</span>(); it++)</span><br><span class="line">			A[k++] = *it;	</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ListNode</span> {</span>
+	<span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ListNode</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>)</span> : mData(i), mNext(NULL) {</span>}
+	ListNode *mNext;
+	<span class="hljs-keyword">int</span> mData;
+};
+
+<span class="hljs-comment">//有序链表插入val</span>
+<span class="hljs-function">ListNode *<span class="hljs-title">insert</span><span class="hljs-params">(ListNode *head, <span class="hljs-keyword">int</span> val)</span> </span>{
+	ListNode dummyNode;
+	ListNode *newNode = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>(val);
+	ListNode *pre, *curr;
+	dummyNode.mNext = head;
+	pre = &amp;dummyNode;
+	curr = head;
+	<span class="hljs-keyword">while</span> (<span class="hljs-literal">NULL</span> != curr &amp;&amp; curr-&gt;mData &lt;= val) {
+		pre = curr;
+		curr = curr-&gt;mNext;
+	}                      <span class="hljs-comment">// 找到第一个大于val的node curr</span>
+	newNode-&gt;mNext = curr; <span class="hljs-comment">//插入val</span>
+	pre-&gt;mNext = newNode;  <span class="hljs-comment">//拼接</span>
+	<span class="hljs-keyword">return</span> dummyNode.mNext;
+}
+
+<span class="hljs-comment">//合并两个有序链表</span>
+<span class="hljs-function">ListNode *<span class="hljs-title">Merge</span><span class="hljs-params">(ListNode *head1, ListNode *head2)</span> </span>{
+	ListNode dummyNode;
+	ListNode *dummy = &amp;dummyNode;
+	<span class="hljs-keyword">while</span> (<span class="hljs-literal">NULL</span> != head1 &amp;&amp; <span class="hljs-literal">NULL</span> != head2) {
+		<span class="hljs-keyword">if</span> (head1-&gt;mData &lt;= head2-&gt;mData) {
+			dummy-&gt;mNext = head1;
+			head1 = head1-&gt;mNext;
+		}
+		<span class="hljs-keyword">else</span> {
+			dummy-&gt;mNext = head2;
+			head2 = head2-&gt;mNext;
+		}
+		dummy = dummy-&gt;mNext;
+	}
+	<span class="hljs-keyword">if</span> (<span class="hljs-literal">NULL</span> != head1)
+		dummy-&gt;mNext = head1;
+	<span class="hljs-keyword">if</span> (<span class="hljs-literal">NULL</span> != head2)
+		dummy-&gt;mNext = head2;
+
+	<span class="hljs-keyword">return</span> dummyNode.mNext;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BucketSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> arr[])</span> </span>{
+	<span class="hljs-function">vector&lt;ListNode *&gt; <span class="hljs-title">buckets</span><span class="hljs-params">(BUCKET_NUM, (ListNode *)(<span class="hljs-number">0</span>))</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) {
+		<span class="hljs-keyword">int</span> index = arr[i] / BUCKET_NUM;
+		ListNode *head = buckets.<span class="hljs-built_in">at</span>(index);
+		buckets.<span class="hljs-built_in">at</span>(index) = <span class="hljs-built_in">insert</span>(head, arr[i]);
+	}
+	ListNode *head = buckets.<span class="hljs-built_in">at</span>(<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; BUCKET_NUM; ++i) {
+		head = <span class="hljs-built_in">Merge</span>(head, buckets.<span class="hljs-built_in">at</span>(i));
+	}
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) {
+		arr[i] = head-&gt;mData;
+		head = head-&gt;mNext;
+	}
+}
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//桶排序</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bucketsort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* A, <span class="hljs-keyword">int</span> n)</span> </span>{
+	vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">bucket</span>(<span class="hljs-number">10</span>);   <span class="hljs-comment">//分配10个桶（0~9、10~19...）</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {    <span class="hljs-comment">//每个桶初始化</span>
+		vector&lt;<span class="hljs-keyword">int</span>&gt; x = { <span class="hljs-number">0</span> };
+		bucket.<span class="hljs-built_in">push_back</span>(x);
+	}
+	<span class="hljs-comment">//把待排序列放入桶中</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+		bucket[A[i] / <span class="hljs-number">10</span>].<span class="hljs-built_in">push_back</span>(A[i]); <span class="hljs-comment">//10 桶大小</span>
+	}
+	<span class="hljs-comment">//把每个桶内的数据填充回到原序列中</span>
+	<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {   
+		<span class="hljs-built_in">sort</span>(bucket[i].<span class="hljs-built_in">begin</span>(), bucket[i].<span class="hljs-built_in">end</span>());  <span class="hljs-comment">//桶内排序</span>
+		<span class="hljs-keyword">for</span> (vector&lt;<span class="hljs-keyword">int</span>&gt;::iterator it = bucket[i].<span class="hljs-built_in">begin</span>(); it != bucket[i].<span class="hljs-built_in">end</span>(); it++)
+			A[k++] = *it;	
+	}
+}</code></pre></div>
 
 
 
@@ -374,9 +464,45 @@
 <p>每次遍历都会把极大值固定在最右侧，所以不需要完整的两个for</p>
 <h3 id="3-什么时候最快"><a href="#3-什么时候最快" class="headerlink" title="3. 什么时候最快"></a>3. 什么时候最快</h3><p>当输入的数据已经是正序时（都已经是正序了，我还要你冒泡排序有何用啊）。</p>
 <h3 id="4-什么时候最慢"><a href="#4-什么时候最慢" class="headerlink" title="4. 什么时候最慢"></a>4. 什么时候最慢</h3><p>当输入的数据是反序时（写一个 for 循环反序输出数据不就行了，干嘛要用你冒泡排序呢，我是闲的吗）。</p>
-<h3 id="5-代码"><a href="#5-代码" class="headerlink" title="5. 代码"></a>5. 代码</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="comment">//整数或浮点数皆可使用,若要使用类(class)或结构体(struct)时必须重载大于(&gt;)运算符</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble_sort</span><span class="params">(T arr[], <span class="keyword">int</span> len)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> i, j;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)</span><br><span class="line">                <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++)</span><br><span class="line">                        <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">                                <span class="built_in">swap</span>(arr[j], arr[j + <span class="number">1</span>]);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> arr[] = { <span class="number">61</span>, <span class="number">17</span>, <span class="number">29</span>, <span class="number">22</span>, <span class="number">34</span>, <span class="number">60</span>, <span class="number">72</span>, <span class="number">21</span>, <span class="number">50</span>, <span class="number">1</span>, <span class="number">62</span> };</span><br><span class="line">        <span class="keyword">int</span> len = (<span class="keyword">int</span>) <span class="built_in"><span class="keyword">sizeof</span></span>(arr) / <span class="built_in"><span class="keyword">sizeof</span></span>(*arr);</span><br><span class="line">        <span class="built_in">bubble_sort</span>(arr, len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">                cout &lt;&lt; arr[i] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">float</span> arrf[] = { <span class="number">17.5</span>, <span class="number">19.1</span>, <span class="number">0.6</span>, <span class="number">1.9</span>, <span class="number">10.5</span>, <span class="number">12.4</span>, <span class="number">3.8</span>, <span class="number">19.7</span>, <span class="number">1.5</span>, <span class="number">25.4</span>, <span class="number">28.6</span>, <span class="number">4.4</span>, <span class="number">23.8</span>, <span class="number">5.4</span> };</span><br><span class="line">        len = (<span class="keyword">float</span>) <span class="built_in"><span class="keyword">sizeof</span></span>(arrf) / <span class="built_in"><span class="keyword">sizeof</span></span>(*arrf);</span><br><span class="line">        <span class="built_in">bubble_sort</span>(arrf, len);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">                cout &lt;&lt; arrf[i] &lt;&lt; <span class="string">' '</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="5-代码"><a href="#5-代码" class="headerlink" title="5. 代码"></a>5. 代码</h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-comment">//整数或浮点数皆可使用,若要使用类(class)或结构体(struct)时必须重载大于(&gt;)运算符</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bubble_sort</span><span class="hljs-params">(T arr[], <span class="hljs-keyword">int</span> len)</span> </span>{
+        <span class="hljs-keyword">int</span> i, j;
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len - <span class="hljs-number">1</span>; i++)
+                <span class="hljs-keyword">for</span> (j = <span class="hljs-number">0</span>; j &lt; len - <span class="hljs-number">1</span> - i; j++)
+                        <span class="hljs-keyword">if</span> (arr[j] &gt; arr[j + <span class="hljs-number">1</span>])
+                                <span class="hljs-built_in">swap</span>(arr[j], arr[j + <span class="hljs-number">1</span>]);
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> arr[] = { <span class="hljs-number">61</span>, <span class="hljs-number">17</span>, <span class="hljs-number">29</span>, <span class="hljs-number">22</span>, <span class="hljs-number">34</span>, <span class="hljs-number">60</span>, <span class="hljs-number">72</span>, <span class="hljs-number">21</span>, <span class="hljs-number">50</span>, <span class="hljs-number">1</span>, <span class="hljs-number">62</span> };
+        <span class="hljs-keyword">int</span> len = (<span class="hljs-keyword">int</span>) <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(arr) / <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(*arr);
+        <span class="hljs-built_in">bubble_sort</span>(arr, len);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)
+                cout &lt;&lt; arr[i] &lt;&lt; <span class="hljs-string">' '</span>;
+        cout &lt;&lt; endl;
+        <span class="hljs-keyword">float</span> arrf[] = { <span class="hljs-number">17.5</span>, <span class="hljs-number">19.1</span>, <span class="hljs-number">0.6</span>, <span class="hljs-number">1.9</span>, <span class="hljs-number">10.5</span>, <span class="hljs-number">12.4</span>, <span class="hljs-number">3.8</span>, <span class="hljs-number">19.7</span>, <span class="hljs-number">1.5</span>, <span class="hljs-number">25.4</span>, <span class="hljs-number">28.6</span>, <span class="hljs-number">4.4</span>, <span class="hljs-number">23.8</span>, <span class="hljs-number">5.4</span> };
+        len = (<span class="hljs-keyword">float</span>) <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(arrf) / <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(*arrf);
+        <span class="hljs-built_in">bubble_sort</span>(arrf, len);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)
+                cout &lt;&lt; arrf[i] &lt;&lt; <span class="hljs-string">' '</span>&lt;&lt;endl;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
-<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://visualgo.net/en/sorting">可视化</a></h4><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">  <span class="keyword">bool</span> swapped;</span><br><span class="line">  <span class="keyword">do</span> {</span><br><span class="line">    swapped = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) {</span><br><span class="line">      <span class="keyword">if</span> (nums[i] &gt; nums[i + <span class="number">1</span>]) {</span><br><span class="line">        <span class="built_in">swap</span>(nums[i], nums[i + <span class="number">1</span>]);</span><br><span class="line">        swapped = <span class="number">1</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  } <span class="keyword">while</span> (swapped);</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h4 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a><a target="_blank" rel="noopener" href="https://visualgo.net/en/sorting">可视化</a></h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
+  <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+  <span class="hljs-keyword">bool</span> swapped;
+  <span class="hljs-keyword">do</span> {
+    swapped = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) {
+      <span class="hljs-keyword">if</span> (nums[i] &gt; nums[i + <span class="hljs-number">1</span>]) {
+        <span class="hljs-built_in">swap</span>(nums[i], nums[i + <span class="hljs-number">1</span>]);
+        swapped = <span class="hljs-number">1</span>;
+      }
+    }
+  } <span class="hljs-keyword">while</span> (swapped);
+}
+</code></pre></div>
 
 
 
@@ -386,10 +512,55 @@
 <li>递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序；</li>
 </ol>
 <h3 id="2-动图演示-1"><a href="#2-动图演示-1" class="headerlink" title="2. 动图演示"></a>2. <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1at411T75o">动图演示</a></h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/quickSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="3-代码-（二叉树的前序遍历）"><a href="#3-代码-（二叉树的前序遍历）" class="headerlink" title="3. 代码 （二叉树的前序遍历）"></a>3. 代码 （二叉树的前序遍历）</h3><figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分割函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">paritition</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>{</span><br><span class="line">    <span class="keyword">int</span> pivotValue = A[low];</span><br><span class="line">    <span class="keyword">while</span>(low&lt;high){</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[high] &gt;= pivotValue)</span><br><span class="line">            --high;  <span class="comment">//从右向左查找到第一个小于pivot的坐标</span></span><br><span class="line">        A[low] = A[high];</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[low] &lt;= pivotValue)</span><br><span class="line">            ++low;   <span class="comment">//从左向右查找到第一个大于pivot的坐标</span></span><br><span class="line">        A[high] = A[low];</span><br><span class="line">    }</span><br><span class="line">    A[low] = pivotValue; <span class="comment">//拿走的值返还 放到排序的位置</span></span><br><span class="line">    <span class="keyword">return</span> low;   <span class="comment">//返回的是一个位置</span></span><br><span class="line">    </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 洗牌算法，将输入的数组随机打乱 避免极端情况</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span></span>{</span><br><span class="line">    <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>)); <span class="comment">//随机数种子是必须有的? 因为一次shuffle函数调用 多次rand</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">int</span> r = i + <span class="built_in">rand</span>()%(nums.<span class="built_in">size</span>() - i)</span><br><span class="line">        <span class="built_in">swap</span>(nums[i], nums[r]);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//快排母函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(low&lt;high){</span><br><span class="line">        <span class="keyword">int</span> pivotIndex = <span class="built_in">paritition</span>(A, low, high);</span><br><span class="line">        <span class="built_in">quickSort</span>(A, low, pivotIndex<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">quickSort</span>(A, pivotIndex+<span class="number">1</span>, high);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="3-代码-（二叉树的前序遍历）"><a href="#3-代码-（二叉树的前序遍历）" class="headerlink" title="3. 代码 （二叉树的前序遍历）"></a>3. 代码 （二叉树的前序遍历）</h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//分割函数</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">paritition</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-keyword">int</span> pivotValue = A[low];
+    <span class="hljs-keyword">while</span>(low&lt;high){
+        <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[high] &gt;= pivotValue)
+            --high;  <span class="hljs-comment">//从右向左查找到第一个小于pivot的坐标</span>
+        A[low] = A[high];
+        <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[low] &lt;= pivotValue)
+            ++low;   <span class="hljs-comment">//从左向右查找到第一个大于pivot的坐标</span>
+        A[high] = A[low];
+    }
+    A[low] = pivotValue; <span class="hljs-comment">//拿走的值返还 放到排序的位置</span>
+    <span class="hljs-keyword">return</span> low;   <span class="hljs-comment">//返回的是一个位置</span>
+    
+}
+
+<span class="hljs-comment">// 洗牌算法，将输入的数组随机打乱 避免极端情况</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shuffle</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span></span>{
+    <span class="hljs-built_in">srand</span>(<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">//随机数种子是必须有的? 因为一次shuffle函数调用 多次rand</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">int</span> r = i + <span class="hljs-built_in">rand</span>()%(nums.<span class="hljs-built_in">size</span>() - i)
+        <span class="hljs-built_in">swap</span>(nums[i], nums[r]);
+    }
+}
+
+<span class="hljs-comment">//快排母函数</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-keyword">if</span>(low&lt;high){
+        <span class="hljs-keyword">int</span> pivotIndex = <span class="hljs-built_in">paritition</span>(A, low, high);
+        <span class="hljs-built_in">quickSort</span>(A, low, pivotIndex<span class="hljs-number">-1</span>);
+        <span class="hljs-built_in">quickSort</span>(A, pivotIndex+<span class="hljs-number">1</span>, high);
+    }
+}</code></pre></div>
 
 <p>从大到小排序修改</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分割函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Paritition</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>{</span><br><span class="line">    <span class="keyword">int</span> pivot = A[low];</span><br><span class="line">    <span class="keyword">while</span>(low&lt;high){</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[high] &lt;= pivot) <span class="comment">//&lt;=</span></span><br><span class="line">            --high;</span><br><span class="line">        A[low] = A[high];</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[low] &gt;= pivot)  <span class="comment">//&gt;=</span></span><br><span class="line">            ++low;</span><br><span class="line">        A[high] = A[low];</span><br><span class="line">    }</span><br><span class="line">    A[low] = pivot;  <span class="comment">//拿走的值返还 放到排序的位置</span></span><br><span class="line">    <span class="keyword">return</span> low;  <span class="comment">//返回的是一个位置</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//分割函数</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Paritition</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span></span>{
+    <span class="hljs-keyword">int</span> pivot = A[low];
+    <span class="hljs-keyword">while</span>(low&lt;high){
+        <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[high] &lt;= pivot) <span class="hljs-comment">//&lt;=</span>
+            --high;
+        A[low] = A[high];
+        <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[low] &gt;= pivot)  <span class="hljs-comment">//&gt;=</span>
+            ++low;
+        A[high] = A[low];
+    }
+    A[low] = pivot;  <span class="hljs-comment">//拿走的值返还 放到排序的位置</span>
+    <span class="hljs-keyword">return</span> low;  <span class="hljs-comment">//返回的是一个位置</span>
+}</code></pre></div>
 
 
 
@@ -398,10 +569,12 @@
 <p>给定整数数组 <code>nums</code> 和整数 <code>k</code>，请返回数组中第 <code>**k**</code> 个最大的元素。</p>
 <p>请注意，你需要找的是数组排序后的第 <code>k</code> 个最大的元素，而不是第 <code>k</code> 个不同的元素。</p>
 <p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,1,5,6,4] 和 k = 2</span><br><span class="line">输出: 5</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: [3,2,1,5,6,4] 和 k = 2</span>
+<span class="hljs-section">输出: 5</span></code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,3,1,2,4,5,5,6] 和 k = 4</span><br><span class="line">输出: 4</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入: [<span class="hljs-number">3,2,3,1</span>,<span class="hljs-number">2,4,5,5</span>,<span class="hljs-number">6</span>] 和 k = <span class="hljs-number">4</span>
+输出: <span class="hljs-number">4</span></code></pre></div>
 
 <p><strong>提示：</strong></p>
 <ul>
@@ -413,10 +586,101 @@
 <li>快速排序  洗牌算法打乱原数组</li>
 <li>明确排序区间 分治 以及 及时返回</li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速排序</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//分割函数</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Paritition</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>{</span><br><span class="line">        <span class="keyword">int</span> pivot = A[low];</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high){</span><br><span class="line">            <span class="keyword">while</span>(low&lt;high &amp;&amp; A[high] &gt;= pivot)</span><br><span class="line">                --high;</span><br><span class="line">            A[low] = A[high];</span><br><span class="line">            <span class="keyword">while</span>(low&lt;high &amp;&amp; A[low] &lt;= pivot)</span><br><span class="line">                ++low;</span><br><span class="line">            A[high] = A[low];</span><br><span class="line">        }</span><br><span class="line">        A[low] = pivot;  <span class="comment">//拿走的值返还 放到排序的位置</span></span><br><span class="line">        <span class="keyword">return</span> low;  <span class="comment">//返回的是一个位置</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; A, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(low&lt;high){</span><br><span class="line">            <span class="keyword">int</span> pivot = <span class="built_in">Paritition</span>(A, low, high);</span><br><span class="line">            <span class="comment">//注意 每一次快排都会确定一个位置，位置满足时，直接返回</span></span><br><span class="line">            <span class="keyword">if</span>(pivot == A.<span class="built_in">size</span>()-k) </span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//优化排序区间 有点类似于二分查找了</span></span><br><span class="line">            <span class="keyword">if</span>(pivot&gt;= A.<span class="built_in">size</span>() - k)</span><br><span class="line">                <span class="built_in">quickSort</span>(A, low, pivot<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">quickSort</span>(A, pivot+<span class="number">1</span>, high);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>-&gt;k = k;</span><br><span class="line">        <span class="built_in">shuffle</span>(nums);</span><br><span class="line">        <span class="built_in">quickSort</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.<span class="built_in">size</span>()-k];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 洗牌算法，将输入的数组随机打乱 避免极端情况</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span></span>{</span><br><span class="line">        <span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">            <span class="keyword">int</span> r = i + <span class="built_in">rand</span>()%(nums.<span class="built_in">size</span>() - i);</span><br><span class="line">            <span class="built_in">swap</span>(nums[i], nums[r]);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//快速排序</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//分割函数</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Paritition</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span></span>{
+        <span class="hljs-keyword">int</span> pivot = A[low];
+        <span class="hljs-keyword">while</span>(low&lt;high){
+            <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[high] &gt;= pivot)
+                --high;
+            A[low] = A[high];
+            <span class="hljs-keyword">while</span>(low&lt;high &amp;&amp; A[low] &lt;= pivot)
+                ++low;
+            A[high] = A[low];
+        }
+        A[low] = pivot;  <span class="hljs-comment">//拿走的值返还 放到排序的位置</span>
+        <span class="hljs-keyword">return</span> low;  <span class="hljs-comment">//返回的是一个位置</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; A, <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high)</span></span>{
+        <span class="hljs-keyword">if</span>(low&lt;high){
+            <span class="hljs-keyword">int</span> pivot = <span class="hljs-built_in">Paritition</span>(A, low, high);
+            <span class="hljs-comment">//注意 每一次快排都会确定一个位置，位置满足时，直接返回</span>
+            <span class="hljs-keyword">if</span>(pivot == A.<span class="hljs-built_in">size</span>()-k) 
+                <span class="hljs-keyword">return</span>;
+
+            <span class="hljs-comment">//优化排序区间 有点类似于二分查找了</span>
+            <span class="hljs-keyword">if</span>(pivot&gt;= A.<span class="hljs-built_in">size</span>() - k)
+                <span class="hljs-built_in">quickSort</span>(A, low, pivot<span class="hljs-number">-1</span>);
+            <span class="hljs-keyword">else</span> <span class="hljs-built_in">quickSort</span>(A, pivot+<span class="hljs-number">1</span>, high);
+        }
+    }
+    <span class="hljs-keyword">int</span> k;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;k = k;
+        <span class="hljs-built_in">shuffle</span>(nums);
+        <span class="hljs-built_in">quickSort</span>(nums, <span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> nums[nums.<span class="hljs-built_in">size</span>()-k];
+    }
+
+    <span class="hljs-comment">// 洗牌算法，将输入的数组随机打乱 避免极端情况</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shuffle</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span></span>{
+        <span class="hljs-built_in">srand</span>(<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>));
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+            <span class="hljs-keyword">int</span> r = i + <span class="hljs-built_in">rand</span>()%(nums.<span class="hljs-built_in">size</span>() - i);
+            <span class="hljs-built_in">swap</span>(nums[i], nums[r]);
+        }
+    }
+};</code></pre></div>
 
 <p>从大到小</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">      <span class="built_in">shuffel</span>(nums);</span><br><span class="line">      <span class="built_in">quickSort</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>() - <span class="number">1</span>, k);</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) cout&lt;&lt;num&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">      <span class="keyword">return</span> nums[k - <span class="number">1</span>];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> k)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(left &lt; right){</span><br><span class="line">        <span class="keyword">int</span> pivotIndex = <span class="built_in">paritation</span>(nums, left, right);</span><br><span class="line">        <span class="keyword">if</span>(pivotIndex &gt; k - <span class="number">1</span>)</span><br><span class="line">          <span class="built_in">quickSort</span>(nums, left, pivotIndex - <span class="number">1</span>, k);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(pivotIndex &lt; k - <span class="number">1</span>)</span><br><span class="line">          <span class="built_in">quickSort</span>(nums, pivotIndex + <span class="number">1</span>, right, k);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span>;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">paritation</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">int</span> pivotVal = nums[left];</span><br><span class="line">      <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[right] &lt;= pivotVal){</span><br><span class="line">          right--;</span><br><span class="line">        }</span><br><span class="line">        nums[left] = nums[right];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(left &lt; right &amp;&amp; nums[left] &gt;= pivotVal){</span><br><span class="line">          left++;</span><br><span class="line">        }</span><br><span class="line">        nums[right] = nums[left];</span><br><span class="line">      }</span><br><span class="line">      nums[left] = pivotVal;</span><br><span class="line">      <span class="keyword">return</span> left;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shuffel</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span></span>{</span><br><span class="line">      <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">        <span class="keyword">int</span> j = i + <span class="built_in">rand</span>()%(n - i);</span><br><span class="line">        <span class="built_in">swap</span>(nums[i], nums[j]);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-built_in">shuffel</span>(nums);
+      <span class="hljs-built_in">quickSort</span>(nums, <span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, k);
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> num : nums) cout&lt;&lt;num&lt;&lt;<span class="hljs-string">" "</span>;
+      <span class="hljs-keyword">return</span> nums[k - <span class="hljs-number">1</span>];
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, <span class="hljs-keyword">int</span> k)</span></span>{
+      <span class="hljs-keyword">if</span>(left &lt; right){
+        <span class="hljs-keyword">int</span> pivotIndex = <span class="hljs-built_in">paritation</span>(nums, left, right);
+        <span class="hljs-keyword">if</span>(pivotIndex &gt; k - <span class="hljs-number">1</span>)
+          <span class="hljs-built_in">quickSort</span>(nums, left, pivotIndex - <span class="hljs-number">1</span>, k);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pivotIndex &lt; k - <span class="hljs-number">1</span>)
+          <span class="hljs-built_in">quickSort</span>(nums, pivotIndex + <span class="hljs-number">1</span>, right, k);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span>;
+      }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">paritation</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+      <span class="hljs-keyword">int</span> pivotVal = nums[left];
+      <span class="hljs-keyword">while</span>(left &lt; right){
+        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[right] &lt;= pivotVal){
+          right--;
+        }
+        nums[left] = nums[right];
+
+        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[left] &gt;= pivotVal){
+          left++;
+        }
+        nums[right] = nums[left];
+      }
+      nums[left] = pivotVal;
+      <span class="hljs-keyword">return</span> left;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shuffel</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span></span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+        <span class="hljs-keyword">int</span> j = i + <span class="hljs-built_in">rand</span>()%(n - i);
+        <span class="hljs-built_in">swap</span>(nums[i], nums[j]);
+      }
+    }
+};</code></pre></div>
 
 
 
@@ -442,40 +706,415 @@
 </ol>
 <h3 id="2-动图演示-2"><a href="#2-动图演示-2" class="headerlink" title="2. 动图演示"></a>2. 动图演示</h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/mergeSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="3-代码-（二叉树的后序遍历）"><a href="#3-代码-（二叉树的后序遍历）" class="headerlink" title="3. 代码 （二叉树的后序遍历）"></a>3. 代码 （二叉树的后序遍历）</h3><p>迭代：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="comment">// 整數或浮點數皆可使用,若要使用物件(class)時必須設定"小於"(&lt;)的運算子功能</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge_sort</span><span class="params">(T arr[], <span class="keyword">int</span> len)</span> </span>{</span><br><span class="line">    T *a = arr;</span><br><span class="line">    T *b = <span class="keyword">new</span> T[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> seg = <span class="number">1</span>; seg &lt; len; seg += seg) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> start = <span class="number">0</span>; start &lt; len; start += seg + seg) {</span><br><span class="line">            <span class="keyword">int</span> low = start, mid = <span class="built_in">min</span>(start + seg, len), high = <span class="built_in">min</span>(start + seg + seg, len);</span><br><span class="line">            <span class="keyword">int</span> k = low;</span><br><span class="line">            <span class="keyword">int</span> start1 = low, end1 = mid;</span><br><span class="line">            <span class="keyword">int</span> start2 = mid, end2 = high;</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1 &amp;&amp; start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start1] &lt; a[start2] ? a[start1++] : a[start2++];</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1)</span><br><span class="line">                b[k++] = a[start1++];</span><br><span class="line">            <span class="keyword">while</span> (start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start2++];</span><br><span class="line">        }</span><br><span class="line">        T *temp = a;</span><br><span class="line">        a = b;</span><br><span class="line">        b = temp;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (a != arr) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">            b[i] = a[i];</span><br><span class="line">        b = a;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">delete</span>[] b;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-comment">// 整數或浮點數皆可使用,若要使用物件(class)時必須設定"小於"(&lt;)的運算子功能</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_sort</span><span class="hljs-params">(T arr[], <span class="hljs-keyword">int</span> len)</span> </span>{
+    T *a = arr;
+    T *b = <span class="hljs-keyword">new</span> T[len];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> seg = <span class="hljs-number">1</span>; seg &lt; len; seg += seg) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>; start &lt; len; start += seg + seg) {
+            <span class="hljs-keyword">int</span> low = start, mid = <span class="hljs-built_in">min</span>(start + seg, len), high = <span class="hljs-built_in">min</span>(start + seg + seg, len);
+            <span class="hljs-keyword">int</span> k = low;
+            <span class="hljs-keyword">int</span> start1 = low, end1 = mid;
+            <span class="hljs-keyword">int</span> start2 = mid, end2 = high;
+            <span class="hljs-keyword">while</span> (start1 &lt; end1 &amp;&amp; start2 &lt; end2)
+                b[k++] = a[start1] &lt; a[start2] ? a[start1++] : a[start2++];
+            <span class="hljs-keyword">while</span> (start1 &lt; end1)
+                b[k++] = a[start1++];
+            <span class="hljs-keyword">while</span> (start2 &lt; end2)
+                b[k++] = a[start2++];
+        }
+        T *temp = a;
+        a = b;
+        b = temp;
+    }
+    <span class="hljs-keyword">if</span> (a != arr) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)
+            b[i] = a[i];
+        b = a;
+    }
+    <span class="hljs-keyword">delete</span>[] b;
+}</code></pre></div>
 
 <p>递归：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; tmp;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">mergeSort</span>(nums, l, mid);</span><br><span class="line">        <span class="built_in">mergeSort</span>(nums, mid + <span class="number">1</span>, r);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//后序遍历的代码位置</span></span><br><span class="line">        <span class="keyword">int</span> i = l, j = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r) {</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt;= nums[j]) {</span><br><span class="line">                tmp[cnt++] = nums[i++];</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">else</span> {</span><br><span class="line">                tmp[cnt++] = nums[j++];</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid) {</span><br><span class="line">            tmp[cnt++] = nums[i++];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= r) {</span><br><span class="line">            tmp[cnt++] = nums[j++];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; r - l + <span class="number">1</span>; ++i) {</span><br><span class="line">            nums[i + l] = tmp[i];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        tmp.<span class="built_in">resize</span>((<span class="keyword">int</span>)nums.<span class="built_in">size</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="built_in">mergeSort</span>(nums, <span class="number">0</span>, (<span class="keyword">int</span>)nums.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    vector&lt;<span class="hljs-keyword">int</span>&gt; tmp;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r)</span> </span>{
+        <span class="hljs-keyword">if</span> (l &gt;= r) <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">int</span> mid = (l + r) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-built_in">mergeSort</span>(nums, l, mid);
+        <span class="hljs-built_in">mergeSort</span>(nums, mid + <span class="hljs-number">1</span>, r);
+        
+        <span class="hljs-comment">//后序遍历的代码位置</span>
+        <span class="hljs-keyword">int</span> i = l, j = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r) {
+            <span class="hljs-keyword">if</span> (nums[i] &lt;= nums[j]) {
+                tmp[cnt++] = nums[i++];
+            }
+            <span class="hljs-keyword">else</span> {
+                tmp[cnt++] = nums[j++];
+            }
+        }
+        <span class="hljs-keyword">while</span> (i &lt;= mid) {
+            tmp[cnt++] = nums[i++];
+        }
+        <span class="hljs-keyword">while</span> (j &lt;= r) {
+            tmp[cnt++] = nums[j++];
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; r - l + <span class="hljs-number">1</span>; ++i) {
+            nums[i + l] = tmp[i];
+        }
+    }
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">sortArray</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        tmp.<span class="hljs-built_in">resize</span>((<span class="hljs-keyword">int</span>)nums.<span class="hljs-built_in">size</span>(), <span class="hljs-number">0</span>);
+        <span class="hljs-built_in">mergeSort</span>(nums, <span class="hljs-number">0</span>, (<span class="hljs-keyword">int</span>)nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span> nums;
+    }
+};</code></pre></div>
 
 <p><code>更好理解的一个写法</code> 记这个吧 反正都是需要开辟新的空间</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right)</span> </span>{</span><br><span class="line">	<span class="comment">// preconditions:</span></span><br><span class="line">	<span class="comment">// nums[left, mid] is sorted</span></span><br><span class="line">	<span class="comment">// nums[mid + 1, right] is sorted</span></span><br><span class="line">	<span class="comment">// Copy nums[left ... mid] to LeftSubNums</span></span><br><span class="line">	<span class="comment">// Copy nums[mid+1 ... end] to RightSubNums</span></span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">LeftSubNums</span><span class="params">(nums.begin() + left, nums.begin() + mid + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">RightSubNums</span><span class="params">(nums.begin() + mid + <span class="number">1</span>, nums.begin() + right + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">int</span> indexLeft = <span class="number">0</span>, indexRight = <span class="number">0</span>;</span><br><span class="line">	LeftSubNums.<span class="built_in">insert</span>(LeftSubNums.<span class="built_in">end</span>(), INT_MAX);</span><br><span class="line">	RightSubNums.<span class="built_in">insert</span>(RightSubNums.<span class="built_in">end</span>(), INT_MAX);</span><br><span class="line">	<span class="comment">// Pick min of LeftSubnums[idxLeft] and RightSubnums[idxRight], and put into nums[i]</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt;= right; i++) {</span><br><span class="line">		<span class="keyword">if</span> (LeftSubNums[indexLeft] &lt; RightSubNums[indexRight]) {</span><br><span class="line">			nums[i] = LeftSubNums[indexLeft];</span><br><span class="line">			indexLeft++;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span> {</span><br><span class="line">			nums[i] = RightSubNums[indexRight];</span><br><span class="line">			indexRight++;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>{</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">mergeSort</span>(nums, left, mid);</span><br><span class="line">	<span class="built_in">mergeSort</span>(nums, mid + <span class="number">1</span>, right);</span><br><span class="line">	<span class="built_in">merge</span>(nums, left, mid, right);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> mid, <span class="hljs-keyword">int</span> right)</span> </span>{
+	<span class="hljs-comment">// preconditions:</span>
+	<span class="hljs-comment">// nums[left, mid] is sorted</span>
+	<span class="hljs-comment">// nums[mid + 1, right] is sorted</span>
+	<span class="hljs-comment">// Copy nums[left ... mid] to LeftSubNums</span>
+	<span class="hljs-comment">// Copy nums[mid+1 ... end] to RightSubNums</span>
+	<span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">LeftSubNums</span><span class="hljs-params">(nums.begin() + left, nums.begin() + mid + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">RightSubNums</span><span class="hljs-params">(nums.begin() + mid + <span class="hljs-number">1</span>, nums.begin() + right + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">int</span> indexLeft = <span class="hljs-number">0</span>, indexRight = <span class="hljs-number">0</span>;
+	LeftSubNums.<span class="hljs-built_in">insert</span>(LeftSubNums.<span class="hljs-built_in">end</span>(), INT_MAX);
+	RightSubNums.<span class="hljs-built_in">insert</span>(RightSubNums.<span class="hljs-built_in">end</span>(), INT_MAX);
+	<span class="hljs-comment">// Pick min of LeftSubnums[idxLeft] and RightSubnums[idxRight], and put into nums[i]</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = left; i &lt;= right; i++) {
+		<span class="hljs-keyword">if</span> (LeftSubNums[indexLeft] &lt; RightSubNums[indexRight]) {
+			nums[i] = LeftSubNums[indexLeft];
+			indexLeft++;
+		}
+		<span class="hljs-keyword">else</span> {
+			nums[i] = RightSubNums[indexRight];
+			indexRight++;
+		}
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>{
+	<span class="hljs-keyword">if</span> (left &gt;= right)
+		<span class="hljs-keyword">return</span>;
+	<span class="hljs-keyword">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;
+	<span class="hljs-built_in">mergeSort</span>(nums, left, mid);
+	<span class="hljs-built_in">mergeSort</span>(nums, mid + <span class="hljs-number">1</span>, right);
+	<span class="hljs-built_in">merge</span>(nums, left, mid, right);
+}</code></pre></div>
+
+<p>更更好理解的一个 <code>记这个</code></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;tmp)</span> </span>{
+  <span class="hljs-comment">// 终止条件</span>
+  <span class="hljs-keyword">if</span> (l &gt;= r)
+    <span class="hljs-keyword">return</span>;
+  <span class="hljs-comment">// 递归划分</span>
+  <span class="hljs-keyword">int</span> m = (l + r) / <span class="hljs-number">2</span>;
+  <span class="hljs-built_in">merge</span>(l, m, nums, tmp);
+  <span class="hljs-built_in">merge</span>(m + <span class="hljs-number">1</span>, r, nums, tmp);
+  <span class="hljs-comment">// 合并阶段</span>
+  <span class="hljs-keyword">int</span> i = l, j = m + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++)
+    tmp[k] = nums[k];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++) {
+    <span class="hljs-keyword">if</span> (i == m + <span class="hljs-number">1</span>) <span class="hljs-comment">//i == mid+ 1表示左侧排完 只能排右边了</span>
+      nums[k] = tmp[j++];
+    <span class="hljs-comment">//j == r+1表示右边排完 只能排左边</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j == r + <span class="hljs-number">1</span> || tmp[i] &lt;= tmp[j])
+      nums[k] = tmp[i++];
+    <span class="hljs-keyword">else</span> <span class="hljs-comment">//都没排完，且temp[i]&gt;temp[j]</span>
+      nums[k] = tmp[j++];
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
+  <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">tmp</span><span class="hljs-params">(nums.size())</span></span>;
+  <span class="hljs-built_in">merge</span>(<span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, nums, tmp);
+}
+</code></pre></div>
+
+
 
 <h3 id="剑指-Offer-II-077-链表排序"><a href="#剑指-Offer-II-077-链表排序" class="headerlink" title="剑指 Offer II 077. 链表排序"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/7WHec2/">剑指 Offer II 077. 链表排序</a></h3><p>难度中等53</p>
 <p>给定链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
 <p><strong>示例 1：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sort_list_1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [4,2,1,3]</span><br><span class="line">输出：[1,2,3,4]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：head = [<span class="hljs-number">4,2,1,3</span>]
+输出：[<span class="hljs-number">1,2,3,4</span>]</code></pre></div>
 
 <p><strong>示例 2：</strong></p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sort_list_2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [-1,5,3,4,0]</span><br><span class="line">输出：[-1,0,3,4,5]</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：head = [-<span class="hljs-number">1,5,3,4</span>,<span class="hljs-number">0</span>]
+输出：[-<span class="hljs-number">1,0,3,4</span>,<span class="hljs-number">5</span>]</code></pre></div>
 
 <p><strong>进阶：</strong>你可以在 <code>O(n log n)</code> 时间复杂度和常数级空间复杂度下，对链表进行排序吗？</p>
 <p>进阶的话就是归并排序实现了，数组的归并排序需要用到额外的空间 而链表的归并则不需要</p>
 <h4 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h4><p>自上而下的进行归并排序</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwo</span><span class="params">(ListNode* head1, ListNode* head2)</span></span>{</span><br><span class="line">      ListNode dumpyNode;</span><br><span class="line">      ListNode* dumpy = &amp;dumpyNode;</span><br><span class="line">      <span class="keyword">while</span>(head1 != <span class="literal">nullptr</span> &amp;&amp; head2 != <span class="literal">nullptr</span>){</span><br><span class="line">        <span class="keyword">if</span>(head1-&gt;val &lt;head2-&gt;val){</span><br><span class="line">          dumpy-&gt;next = head1;</span><br><span class="line">          head1 = head1-&gt;next;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">          dumpy-&gt;next = head2;</span><br><span class="line">          head2 = head2-&gt;next;</span><br><span class="line">        } </span><br><span class="line">        dumpy = dumpy-&gt;next;</span><br><span class="line">      }</span><br><span class="line">      dumpy-&gt;next = head1?head1:head2;</span><br><span class="line">      <span class="keyword">return</span> dumpyNode.next;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head, ListNode* tail)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line">      <span class="keyword">if</span>(head-&gt;next == tail){</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">      }</span><br><span class="line">      ListNode* slow = head, *fast = head;</span><br><span class="line">      <span class="keyword">while</span>(fast!= tail &amp;&amp; fast-&gt;next != tail){</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">      }</span><br><span class="line">      ListNode* mid = slow;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">mergeTwo</span>(<span class="built_in">sortList</span>(head, mid), <span class="built_in">sortList</span>(mid, tail));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>{</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">sortList</span>(head, <span class="literal">nullptr</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeTwo</span><span class="hljs-params">(ListNode* head1, ListNode* head2)</span></span>{
+      ListNode dumpyNode;
+      ListNode* dumpy = &amp;dumpyNode;
+      <span class="hljs-keyword">while</span>(head1 != <span class="hljs-literal">nullptr</span> &amp;&amp; head2 != <span class="hljs-literal">nullptr</span>){
+        <span class="hljs-keyword">if</span>(head1-&gt;val &lt;head2-&gt;val){
+          dumpy-&gt;next = head1;
+          head1 = head1-&gt;next;
+        }<span class="hljs-keyword">else</span>{
+          dumpy-&gt;next = head2;
+          head2 = head2-&gt;next;
+        } 
+        dumpy = dumpy-&gt;next;
+      }
+      dumpy-&gt;next = head1?head1:head2;
+      <span class="hljs-keyword">return</span> dumpyNode.next;
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">sortList</span><span class="hljs-params">(ListNode* head, ListNode* tail)</span></span>{
+      <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> head;
+      <span class="hljs-keyword">if</span>(head-&gt;next == tail){
+        head-&gt;next = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">return</span> head;
+      }
+      ListNode* slow = head, *fast = head;
+      <span class="hljs-keyword">while</span>(fast!= tail &amp;&amp; fast-&gt;next != tail){
+        fast = fast-&gt;next-&gt;next;
+        slow = slow-&gt;next;
+      }
+      ListNode* mid = slow;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">mergeTwo</span>(<span class="hljs-built_in">sortList</span>(head, mid), <span class="hljs-built_in">sortList</span>(mid, tail));
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">sortList</span><span class="hljs-params">(ListNode* head)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">sortList</span>(head, <span class="hljs-literal">nullptr</span>);
+    }
+};</code></pre></div>
 
 <h3 id="剑指-Offer-II-078-合并排序链表"><a href="#剑指-Offer-II-078-合并排序链表" class="headerlink" title="剑指 Offer II 078. 合并排序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/vvXgSW/">剑指 Offer II 078. 合并排序链表</a></h3><p>难度困难37</p>
 <p>给定一个链表数组，每个链表都已经按升序排列。</p>
 <p>请将所有链表合并到一个升序链表中，返回合并后的链表。</p>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：lists = [[1,4,5],[1,3,4],[2,6]]</span><br><span class="line">输出：[1,1,2,3,4,4,5,6]</span><br><span class="line">解释：链表数组如下：</span><br><span class="line">[</span><br><span class="line">  1-&gt;4-&gt;5,</span><br><span class="line">  1-&gt;3-&gt;4,</span><br><span class="line">  2-&gt;6</span><br><span class="line">]</span><br><span class="line">将它们合并到一个有序链表中得到。</span><br><span class="line">1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs clean">输入：lists = [[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">2</span>,<span class="hljs-number">6</span>]]
+输出：[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]
+解释：链表数组如下：
+[
+  <span class="hljs-number">1</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">5</span>,
+  <span class="hljs-number">1</span>-&gt;<span class="hljs-number">3</span>-&gt;<span class="hljs-number">4</span>,
+  <span class="hljs-number">2</span>-&gt;<span class="hljs-number">6</span>
+]
+将它们合并到一个有序链表中得到。
+<span class="hljs-number">1</span>-&gt;<span class="hljs-number">1</span>-&gt;<span class="hljs-number">2</span>-&gt;<span class="hljs-number">3</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">4</span>-&gt;<span class="hljs-number">5</span>-&gt;<span class="hljs-number">6</span></code></pre></div>
 
 <h4 id="方法1-1"><a href="#方法1-1" class="headerlink" title="方法1"></a>方法1</h4><p>暴力merge2</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwo</span><span class="params">(ListNode* head1, ListNode* head2)</span></span>{</span><br><span class="line">      ListNode dumpy;</span><br><span class="line">      ListNode* dumpyNode = &amp;dumpy;</span><br><span class="line">      <span class="keyword">while</span>(head1 &amp;&amp; head2){</span><br><span class="line">        <span class="keyword">if</span>(head1-&gt;val &lt;= head2-&gt;val){</span><br><span class="line">          dumpyNode-&gt;next = head1;</span><br><span class="line">          head1 = head1-&gt;next;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">          dumpyNode-&gt;next = head2;</span><br><span class="line">          head2 = head2-&gt;next;</span><br><span class="line">        }</span><br><span class="line">        dumpyNode = dumpyNode-&gt;next;</span><br><span class="line">      }</span><br><span class="line">      dumpyNode-&gt;next = head1?head1:head2;</span><br><span class="line">      <span class="keyword">return</span> dumpy.next;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(lists.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      ListNode dumpy;</span><br><span class="line">      dumpy.next = lists[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;lists.<span class="built_in">size</span>(); i++){</span><br><span class="line">        dumpy.next = <span class="built_in">mergeTwo</span>(lists[i], dumpy.next);</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> dumpy.next;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeTwo</span><span class="hljs-params">(ListNode* head1, ListNode* head2)</span></span>{
+      ListNode dumpy;
+      ListNode* dumpyNode = &amp;dumpy;
+      <span class="hljs-keyword">while</span>(head1 &amp;&amp; head2){
+        <span class="hljs-keyword">if</span>(head1-&gt;val &lt;= head2-&gt;val){
+          dumpyNode-&gt;next = head1;
+          head1 = head1-&gt;next;
+        }<span class="hljs-keyword">else</span>{
+          dumpyNode-&gt;next = head2;
+          head2 = head2-&gt;next;
+        }
+        dumpyNode = dumpyNode-&gt;next;
+      }
+      dumpyNode-&gt;next = head1?head1:head2;
+      <span class="hljs-keyword">return</span> dumpy.next;
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>{
+      <span class="hljs-keyword">if</span>(lists.<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      ListNode dumpy;
+      dumpy.next = lists[<span class="hljs-number">0</span>];
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;lists.<span class="hljs-built_in">size</span>(); i++){
+        dumpy.next = <span class="hljs-built_in">mergeTwo</span>(lists[i], dumpy.next);
+      }
+      <span class="hljs-keyword">return</span> dumpy.next;
+    }
+};</code></pre></div>
 
 <h4 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h4><p>多路归并</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwo</span><span class="params">(ListNode* head1, ListNode* head2)</span></span>{</span><br><span class="line">      ListNode dumpy;</span><br><span class="line">      ListNode* dumpyNode = &amp;dumpy;</span><br><span class="line">      <span class="keyword">while</span>(head1 &amp;&amp; head2){</span><br><span class="line">        <span class="keyword">if</span>(head1-&gt;val &lt;= head2-&gt;val){</span><br><span class="line">          dumpyNode-&gt;next = head1;</span><br><span class="line">          head1 = head1-&gt;next;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">          dumpyNode-&gt;next = head2;</span><br><span class="line">          head2 = head2-&gt;next;</span><br><span class="line">        }</span><br><span class="line">        dumpyNode = dumpyNode-&gt;next;</span><br><span class="line">      }</span><br><span class="line">      dumpyNode-&gt;next = head1?head1:head2;</span><br><span class="line">      <span class="keyword">return</span> dumpy.next;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(lists.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">mergeK</span>(lists, <span class="number">0</span>, lists.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeK</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(left == right) <span class="keyword">return</span> lists[left];</span><br><span class="line">      <span class="keyword">if</span>(left &gt; right) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">      ListNode* l1 = <span class="built_in">mergeK</span>(lists, left, mid);</span><br><span class="line">      ListNode* l2 = <span class="built_in">mergeK</span>(lists, mid + <span class="number">1</span>, right);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">mergeTwo</span>(l1, l2);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeTwo</span><span class="hljs-params">(ListNode* head1, ListNode* head2)</span></span>{
+      ListNode dumpy;
+      ListNode* dumpyNode = &amp;dumpy;
+      <span class="hljs-keyword">while</span>(head1 &amp;&amp; head2){
+        <span class="hljs-keyword">if</span>(head1-&gt;val &lt;= head2-&gt;val){
+          dumpyNode-&gt;next = head1;
+          head1 = head1-&gt;next;
+        }<span class="hljs-keyword">else</span>{
+          dumpyNode-&gt;next = head2;
+          head2 = head2-&gt;next;
+        }
+        dumpyNode = dumpyNode-&gt;next;
+      }
+      dumpyNode-&gt;next = head1?head1:head2;
+      <span class="hljs-keyword">return</span> dumpy.next;
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>{
+      <span class="hljs-keyword">if</span>(lists.<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">mergeK</span>(lists, <span class="hljs-number">0</span>, lists.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-function">ListNode* <span class="hljs-title">mergeK</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+      <span class="hljs-keyword">if</span>(left == right) <span class="hljs-keyword">return</span> lists[left];
+      <span class="hljs-keyword">if</span>(left &gt; right) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;
+      ListNode* l1 = <span class="hljs-built_in">mergeK</span>(lists, left, mid);
+      ListNode* l2 = <span class="hljs-built_in">mergeK</span>(lists, mid + <span class="hljs-number">1</span>, right);
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">mergeTwo</span>(l1, l2);
+    }
+};</code></pre></div>
+
+<h3 id="剑指-Offer-51-数组中的逆序对"><a href="#剑指-Offer-51-数组中的逆序对" class="headerlink" title="剑指 Offer 51. 数组中的逆序对"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">剑指 Offer 51. 数组中的逆序对</a></h3><p>难度困难748</p>
+<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: [7,5,6,4]</span>
+<span class="hljs-section">输出: 5</span></code></pre></div>
+
+<h4 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h4><p><strong>我们在使用 <code>merge</code> 函数合并两个有序数组的时候，其实是可以知道一个元素 <code>nums[i]</code> 后边有多少个元素比 <code>nums[i]</code> 小的</strong>。</p>
+<p>具体来说，比如这个场景：</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528163039606.png" srcset="/img/loading.gif" lazyload alt="image-20220528163039606" style="zoom:50%;">
+
+<p>这时候我们应该把 <code>temp[i]</code> 放到 <code>nums[p]</code> 上，因为 <code>temp[i] &lt; temp[j]</code>。</p>
+<p>但就在这个场景下，我们还可以知道一个信息：5 后面比 5 小的元素个数就是 左闭右开区间 <code>[mid + 1, j)</code> 中的元素个数，即 2 和 4 这两个元素：</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528163054052.png" srcset="/img/loading.gif" lazyload alt="image-20220528163054052" style="zoom:50%;">
+
+<p>**换句话说，在对 <code>nuns[lo..hi]</code> 合并的过程中，每当执行 <code>nums[p] = temp[i]</code> 时，就可以确定 <code>temp[i]</code> 这个元素后面比它小的元素个数为 <code>j - mid - 1</code>**。</p>
+<p>当然，<code>nums[lo..hi]</code> 本身也只是一个子数组，这个子数组之后还会被执行 <code>merge</code>，其中元素的位置还是会改变。但这是其他递归节点需要考虑的问题，我们只要在 <code>merge</code> 函数中做一些手脚，叠加每次 <code>merge</code> 时记录的结果即可。</p>
+<p>发现了这个规律后，我们只要在 <code>merge</code> 中添加两行代码即可解决这个问题，看解法代码：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">reversePairs</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">tmp</span><span class="hljs-params">(nums.size())</span></span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">mergeSort</span>(<span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, nums, tmp);
+    }
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mergeSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; tmp)</span> </span>{
+        <span class="hljs-comment">// 终止条件</span>
+        <span class="hljs-keyword">if</span> (l &gt;= r) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-comment">// 递归划分</span>
+        <span class="hljs-keyword">int</span> m = (l + r) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> res = <span class="hljs-built_in">mergeSort</span>(l, m, nums, tmp) + <span class="hljs-built_in">mergeSort</span>(m + <span class="hljs-number">1</span>, r, nums, tmp);
+        <span class="hljs-comment">// 合并阶段</span>
+        <span class="hljs-keyword">int</span> i = l, j = m + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++)
+            tmp[k] = nums[k];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++) {
+            <span class="hljs-keyword">if</span> (i == m + <span class="hljs-number">1</span>)
+                nums[k] = tmp[j++];
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j == r + <span class="hljs-number">1</span> || tmp[i] &lt;= tmp[j])
+                nums[k] = tmp[i++];
+            <span class="hljs-keyword">else</span> {
+                nums[k] = tmp[j++];
+                res += m - i + <span class="hljs-number">1</span>; <span class="hljs-comment">// 统计逆序对</span>
+            }
+        }
+        <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre></div>
+
+<h3 id="327-区间和的个数"><a href="#327-区间和的个数" class="headerlink" title="327. 区间和的个数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-range-sum/">327. 区间和的个数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=327">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-of-range-sum/#">思路</a></p>
+<p>难度困难440</p>
+<p>给你一个整数数组 <code>nums</code> 以及两个整数 <code>lower</code> 和 <code>upper</code> 。求数组中，值位于范围 <code>[lower, upper]</code> （包含 <code>lower</code> 和 <code>upper</code>）之内的 <strong>区间和的个数</strong> 。</p>
+<p><strong>区间和</strong> <code>S(i, j)</code> 表示在 <code>nums</code> 中，位置从 <code>i</code> 到 <code>j</code> 的元素之和，包含 <code>i</code> 和 <code>j</code> (<code>i</code> ≤ <code>j</code>)。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs subunit">输入：nums = [<span class="hljs-string">-2</span>,5,<span class="hljs-string">-1</span>], lower = <span class="hljs-string">-2</span>, upper = 2
+输出：3
+解释：存在三个区间：[0,0]、[2,2] 和 [0,2] ，对应的区间和分别是：<span class="hljs-string">-2</span> 、<span class="hljs-string">-1</span> 、2 。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">0</span>], <span class="hljs-attr">lower</span> = <span class="hljs-number">0</span>, <span class="hljs-attr">upper</span> = <span class="hljs-number">0</span>
+输出：<span class="hljs-number">1</span></code></pre></div>
+
+<h4 id="前缀和暴力-超时"><a href="#前缀和暴力-超时" class="headerlink" title="前缀和暴力 超时"></a>前缀和暴力 超时</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countRangeSum</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> lower, <span class="hljs-keyword">int</span> upper)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">long</span>&gt; <span class="hljs-title">preSum</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;=n; i++)
+        preSum[i] = preSum[i<span class="hljs-number">-1</span>] + nums[i<span class="hljs-number">-1</span>];
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;=nums.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j&lt;=nums.<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">long</span> temp = preSum[j] - preSum[i];
+          <span class="hljs-keyword">if</span>(temp &lt;= upper &amp;&amp; temp &gt;= lower)
+            ans++;
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h4 id="归并-1"><a href="#归并-1" class="headerlink" title="归并"></a>归并</h4><p>滑窗示意图</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528172918710.png" srcset="/img/loading.gif" lazyload alt="image-20220528172918710" style="zoom:50%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> upper;
+    <span class="hljs-keyword">int</span> lower;
+    <span class="hljs-keyword">int</span> ans;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countRangeSum</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> lower, <span class="hljs-keyword">int</span> upper)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">this</span>-&gt;upper = upper;
+      <span class="hljs-keyword">this</span>-&gt;lower = lower;
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">long</span>&gt; <span class="hljs-title">preSum</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;=n; i++)
+        preSum[i] = preSum[i<span class="hljs-number">-1</span>] + nums[i<span class="hljs-number">-1</span>];
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">long</span>&gt; <span class="hljs-title">temp</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+      <span class="hljs-built_in">merge</span>(preSum, <span class="hljs-number">0</span>, n, temp);
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">long</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, vector&lt;<span class="hljs-keyword">long</span>&gt;&amp; temp)</span></span>{
+      <span class="hljs-keyword">if</span>(left&gt;=right) <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">int</span> mid = left + (right-left) /<span class="hljs-number">2</span>;
+      <span class="hljs-built_in">merge</span>(nums, left, mid, temp);
+      <span class="hljs-built_in">merge</span>(nums, mid+<span class="hljs-number">1</span>, right, temp);
+
+      <span class="hljs-comment">// //暴力枚举 超时？</span>
+      <span class="hljs-comment">// for(int i = left; i&lt;=mid; i++){</span>
+      <span class="hljs-comment">//   for(int j = mid + 1; j&lt;=right; j++){</span>
+      <span class="hljs-comment">//     long delta = nums[j] - nums[i];</span>
+      <span class="hljs-comment">//     if(delta&lt;=upper &amp;&amp; delta&gt;=lower)</span>
+      <span class="hljs-comment">//       ans++;</span>
+      <span class="hljs-comment">//   }</span>
+      <span class="hljs-comment">// }</span>
+			
+      <span class="hljs-comment">//累死滑窗</span>
+      <span class="hljs-keyword">int</span> start = mid + <span class="hljs-number">1</span>, end = mid + <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = left; k&lt;=mid; k++){
+        <span class="hljs-keyword">while</span>(start &lt;= right &amp;&amp; nums[start] - nums[k] &lt;lower)
+          start++;
+        <span class="hljs-keyword">while</span>(end &lt;= right &amp;&amp; nums[end] - nums[k] &lt;= upper)
+          end++;
+        ans += end -start;
+      }
+
+      <span class="hljs-comment">//归并</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = left; k&lt;=right; k++)
+        temp[k] = nums[k];
+      <span class="hljs-keyword">int</span> i = left;
+      <span class="hljs-keyword">int</span> j = mid + <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = left; k&lt;=right; k++){
+        <span class="hljs-keyword">if</span>(i == mid+<span class="hljs-number">1</span>)
+          nums[k] = temp[j++];
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j == right+<span class="hljs-number">1</span> || temp[i] &lt;= temp[j])
+          nums[k] = temp[i++];
+        <span class="hljs-keyword">else</span>
+          nums[k] = temp[j++];
+      }
+    }
+};</code></pre></div>
 
 
 
@@ -484,14 +1123,35 @@
 <p>再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。</p>
 <p>重复第二步，直到所有元素均排序完毕。</p>
 <h3 id="2-动图演示-3"><a href="#2-动图演示-3" class="headerlink" title="2. 动图演示"></a>2. 动图演示</h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/selectionSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="comment">//整數或浮點數皆可使用，若要使用物件（class）時必須設定大於（&gt;）的運算子功能</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selection_sort</span><span class="params">(std::vector&lt;T&gt;&amp; arr)</span> </span>{</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.<span class="built_in">size</span>() - <span class="number">1</span>; i++) {</span><br><span class="line">    <span class="keyword">int</span> minIndex = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; arr.<span class="built_in">size</span>(); j++)</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[minIndex])</span><br><span class="line">        minIndex = j;  <span class="comment">//找到其他元素中的最小值对应的index</span></span><br><span class="line">    std::<span class="built_in">swap</span>(arr[i], arr[minIndex]);  <span class="comment">//交换</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-comment">//整數或浮點數皆可使用，若要使用物件（class）時必須設定大於（&gt;）的運算子功能</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">selection_sort</span><span class="hljs-params">(std::vector&lt;T&gt;&amp; arr)</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i++) {
+    <span class="hljs-keyword">int</span> minIndex = i;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; arr.<span class="hljs-built_in">size</span>(); j++)
+      <span class="hljs-keyword">if</span> (arr[j] &lt; arr[minIndex])
+        minIndex = j;  <span class="hljs-comment">//找到其他元素中的最小值对应的index</span>
+    std::<span class="hljs-built_in">swap</span>(arr[i], arr[minIndex]);  <span class="hljs-comment">//交换</span>
+  }
+}</code></pre></div>
 
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。插入排序是一种最简单直观的排序算法，它的工作原理是通过构建有序序列，对于未排序数据，<u>在已排序序列中从后向前扫描，找到相应位置并插入</u>。</p>
 <p>插入排序和冒泡排序一样，也有一种优化算法，叫做拆半插入。</p>
 <h3 id="1-算法步骤-4"><a href="#1-算法步骤-4" class="headerlink" title="1. 算法步骤"></a>1. 算法步骤</h3><p>将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列。</p>
 <p>从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。）</p>
 <h3 id="2-动图演示-4"><a href="#2-动图演示-4" class="headerlink" title="2. 动图演示"></a>2. 动图演示</h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/insertionSort.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertion_sort</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;nums)</span> </span>{</span><br><span class="line">  <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">    <span class="keyword">int</span> key = nums[i]; <span class="comment">//拿出来比较的元素</span></span><br><span class="line">    <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//在排序好的元素中找第一个小于当前值的index</span></span><br><span class="line">    <span class="keyword">while</span> ((j &gt;= <span class="number">0</span>) &amp;&amp; (key &lt; nums[j])) {</span><br><span class="line">      nums[j + <span class="number">1</span>] = nums[j];</span><br><span class="line">      j--;</span><br><span class="line">    }</span><br><span class="line">    nums[j + <span class="number">1</span>] = key;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertion_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
+  <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+    <span class="hljs-keyword">int</span> key = nums[i]; <span class="hljs-comment">//拿出来比较的元素</span>
+    <span class="hljs-keyword">int</span> j = i - <span class="hljs-number">1</span>;
+    <span class="hljs-comment">//在排序好的元素中找第一个小于当前值的index</span>
+    <span class="hljs-keyword">while</span> ((j &gt;= <span class="hljs-number">0</span>) &amp;&amp; (key &lt; nums[j])) {
+      nums[j + <span class="hljs-number">1</span>] = nums[j];
+      j--;
+    }
+    nums[j + <span class="hljs-number">1</span>] = key;
+  }
+}</code></pre></div>
 
 <h1 id="STL里sort算法用的是什么排序算法？"><a href="#STL里sort算法用的是什么排序算法？" class="headerlink" title="STL里sort算法用的是什么排序算法？"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36274119">STL里sort算法用的是什么排序算法？</a></h1><h3 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h3><p><strong>毫无疑问是用到了快速排序，但不仅仅只用了快速排序，还结合了插入排序和堆排序。</strong></p>
 <h3 id="并非所有容器都使用sort算法"><a href="#并非所有容器都使用sort算法" class="headerlink" title="并非所有容器都使用sort算法"></a>并非所有容器都使用sort算法</h3><p>既然问的是STL的sort算法实现，那么先确认一个问题，<code>哪些STL容器需要用到sort算法？</code></p>
@@ -505,16 +1165,89 @@
 
 <p>结合<code>快速排序-插入排序-堆排序</code> 三种排序算法。</p>
 <h3 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h3><p>源文件：<code>/usr/include/c++/4.2.1/bits/stl_algo.h</code></p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _RandomAccessIterator&gt;</span></span><br><span class="line"><span class="function">    <span class="keyword">inline</span> <span class="keyword">void</span></span></span><br><span class="line"><span class="function">    <span class="title">sort</span><span class="params">(_RandomAccessIterator __first, _RandomAccessIterator __last)</span></span></span><br><span class="line"><span class="function">    </span>{</span><br><span class="line">      <span class="keyword">typedef</span> <span class="keyword">typename</span> iterator_traits&lt;_RandomAccessIterator&gt;::value_type</span><br><span class="line">        _ValueType;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// concept requirements</span></span><br><span class="line">      __glibcxx_function_requires(_Mutable_RandomAccessIteratorConcept&lt;</span><br><span class="line">            _RandomAccessIterator&gt;)</span><br><span class="line">      __glibcxx_function_requires(_LessThanComparableConcept&lt;_ValueType&gt;)</span><br><span class="line">      __glibcxx_requires_valid_range(__first, __last);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (__first != __last)</span><br><span class="line">        {</span><br><span class="line">        <span class="comment">//快速排序+插入排序</span></span><br><span class="line">          std::__introsort_loop(__first, __last,</span><br><span class="line">                                std::__lg(__last - __first) * <span class="number">2</span>);</span><br><span class="line">        <span class="comment">//插入排序</span></span><br><span class="line">          std::__final_insertion_sort(__first, __last);</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _RandomAccessIterator&gt;</span>
+<span class="hljs-function">    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span></span>
+<span class="hljs-function">    <span class="hljs-title">sort</span><span class="hljs-params">(_RandomAccessIterator __first, _RandomAccessIterator __last)</span></span>
+<span class="hljs-function">    </span>{
+      <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;_RandomAccessIterator&gt;::value_type
+        _ValueType;
+
+      <span class="hljs-comment">// concept requirements</span>
+      __glibcxx_function_requires(_Mutable_RandomAccessIteratorConcept&lt;
+            _RandomAccessIterator&gt;)
+      __glibcxx_function_requires(_LessThanComparableConcept&lt;_ValueType&gt;)
+      __glibcxx_requires_valid_range(__first, __last);
+
+      <span class="hljs-keyword">if</span> (__first != __last)
+        {
+        <span class="hljs-comment">//快速排序+插入排序</span>
+          std::__introsort_loop(__first, __last,
+                                std::__lg(__last - __first) * <span class="hljs-number">2</span>);
+        <span class="hljs-comment">//插入排序</span>
+          std::__final_insertion_sort(__first, __last);
+        }
+    }</code></pre></div>
 
 <p>其中<code>__lg</code>函数是计算递归深度，用来控制分割恶化，当递归深度达到该值改用堆排序，因为堆排序是时间复杂度恒定为nlogn：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Size&gt;</span><br><span class="line">    <span class="keyword">inline</span> _Size</span><br><span class="line">    __lg(_Size __n)</span><br><span class="line">    {</span><br><span class="line">      _Size __k;</span><br><span class="line">      <span class="keyword">for</span> (__k = <span class="number">0</span>; __n != <span class="number">1</span>; __n &gt;&gt;= <span class="number">1</span>)</span><br><span class="line">        ++__k;</span><br><span class="line">      <span class="keyword">return</span> __k;</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _Size&gt;
+    <span class="hljs-keyword">inline</span> _Size
+    __lg(_Size __n)
+    {
+      _Size __k;
+      <span class="hljs-keyword">for</span> (__k = <span class="hljs-number">0</span>; __n != <span class="hljs-number">1</span>; __n &gt;&gt;= <span class="hljs-number">1</span>)
+        ++__k;
+      <span class="hljs-keyword">return</span> __k;
+    }</code></pre></div>
 
 <p>先来看，<code>__introsort_loop</code> 快排实现部分：对于区间小于<code>16</code>的采用快速排序，如果递归深度恶化改用<code>堆排序</code>。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _RandomAccessIterator, <span class="keyword">typename</span> _Size&gt;</span><br><span class="line">    <span class="keyword">void</span></span><br><span class="line">    __introsort_loop(_RandomAccessIterator __first,</span><br><span class="line">                     _RandomAccessIterator __last,</span><br><span class="line">                     _Size __depth_limit)</span><br><span class="line">    {</span><br><span class="line">      <span class="keyword">typedef</span> <span class="keyword">typename</span> iterator_traits&lt;_RandomAccessIterator&gt;::value_type</span><br><span class="line">        _ValueType;</span><br><span class="line">    <span class="comment">//_S_threshold=16，每个区间必须大于16才递归</span></span><br><span class="line">      <span class="keyword">while</span> (__last - __first &gt; <span class="built_in"><span class="keyword">int</span></span>(_S_threshold))</span><br><span class="line">        {</span><br><span class="line">        <span class="comment">//达到指定递归深度，改用堆排序</span></span><br><span class="line">          <span class="keyword">if</span> (__depth_limit == <span class="number">0</span>)</span><br><span class="line">            {</span><br><span class="line">              std::<span class="built_in">partial_sort</span>(__first, __last, __last);</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">            }</span><br><span class="line">          --__depth_limit;</span><br><span class="line">          _RandomAccessIterator __cut =</span><br><span class="line">            std::__unguarded_partition(__first, __last,</span><br><span class="line">                                       _ValueType(std::__median(*__first,</span><br><span class="line">                                                                *(__first</span><br><span class="line">                                                                  + (__last</span><br><span class="line">                                                                     - __first)</span><br><span class="line">                                                                  / <span class="number">2</span>),</span><br><span class="line">                                                                *(__last</span><br><span class="line">                                                                  - <span class="number">1</span>))));</span><br><span class="line">          std::__introsort_loop(__cut, __last, __depth_limit);</span><br><span class="line">          __last = __cut;</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _RandomAccessIterator, <span class="hljs-keyword">typename</span> _Size&gt;
+    <span class="hljs-keyword">void</span>
+    __introsort_loop(_RandomAccessIterator __first,
+                     _RandomAccessIterator __last,
+                     _Size __depth_limit)
+    {
+      <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> iterator_traits&lt;_RandomAccessIterator&gt;::value_type
+        _ValueType;
+    <span class="hljs-comment">//_S_threshold=16，每个区间必须大于16才递归</span>
+      <span class="hljs-keyword">while</span> (__last - __first &gt; <span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(_S_threshold))
+        {
+        <span class="hljs-comment">//达到指定递归深度，改用堆排序</span>
+          <span class="hljs-keyword">if</span> (__depth_limit == <span class="hljs-number">0</span>)
+            {
+              std::<span class="hljs-built_in">partial_sort</span>(__first, __last, __last);
+              <span class="hljs-keyword">return</span>;
+            }
+          --__depth_limit;
+          _RandomAccessIterator __cut =
+            std::__unguarded_partition(__first, __last,
+                                       _ValueType(std::__median(*__first,
+                                                                *(__first
+                                                                  + (__last
+                                                                     - __first)
+                                                                  / <span class="hljs-number">2</span>),
+                                                                *(__last
+                                                                  - <span class="hljs-number">1</span>))));
+          std::__introsort_loop(__cut, __last, __depth_limit);
+          __last = __cut;
+        }
+    }</code></pre></div>
 
 <p>再来看<code>插入排序</code>部分：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _RandomAccessIterator&gt;</span><br><span class="line">    <span class="keyword">void</span></span><br><span class="line">    __final_insertion_sort(_RandomAccessIterator __first,</span><br><span class="line">                           _RandomAccessIterator __last)</span><br><span class="line">    {</span><br><span class="line">      <span class="keyword">if</span> (__last - __first &gt; <span class="built_in"><span class="keyword">int</span></span>(_S_threshold))</span><br><span class="line">        {</span><br><span class="line">        <span class="comment">//先排前16个</span></span><br><span class="line">          std::__insertion_sort(__first, __first + <span class="built_in"><span class="keyword">int</span></span>(_S_threshold));</span><br><span class="line">        <span class="comment">//后面元素遍历插入到前面有序的正确位置 </span></span><br><span class="line">         std::__unguarded_insertion_sort(__first + <span class="built_in"><span class="keyword">int</span></span>(_S_threshold), __last);</span><br><span class="line">        }</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        std::__insertion_sort(__first, __last);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> _RandomAccessIterator&gt;
+    <span class="hljs-keyword">void</span>
+    __final_insertion_sort(_RandomAccessIterator __first,
+                           _RandomAccessIterator __last)
+    {
+      <span class="hljs-keyword">if</span> (__last - __first &gt; <span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(_S_threshold))
+        {
+        <span class="hljs-comment">//先排前16个</span>
+          std::__insertion_sort(__first, __first + <span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(_S_threshold));
+        <span class="hljs-comment">//后面元素遍历插入到前面有序的正确位置 </span>
+         std::__unguarded_insertion_sort(__first + <span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(_S_threshold), __last);
+        }
+      <span class="hljs-keyword">else</span>
+        std::__insertion_sort(__first, __last);
+    }</code></pre></div>
 
 <p>为什么用插入排序？因为插入排序在面对“几近排序”的序列时，表现更好。</p>
 <h1 id="稳定排序和不稳定排序"><a href="#稳定排序和不稳定排序" class="headerlink" title="稳定排序和不稳定排序"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/codingmylife/archive/2012/10/21/2732980.html">稳定排序和不稳定排序</a></h1><p>   首先，排序算法的稳定性大家应该都知道，通俗地讲就是能保证排序<code>前2个相等的数其在序列的前后位置顺序和排序后它们两个的前后位置顺序相同</code>。在简单形式化一下，如果Ai = Aj，Ai原来在位置前，排序后Ai还是要在Aj位置前。</p>
