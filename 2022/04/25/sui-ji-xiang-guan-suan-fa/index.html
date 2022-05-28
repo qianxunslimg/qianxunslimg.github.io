@@ -1,0 +1,906 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="382. 链表随机节点labuladong 题解思路 难度中等270 给你一个单链表，随机选择链表的一个节点，并返回相应的节点值。每个节点 被选中的概率一样 。 实现 Solution 类：  Solution(ListNode head) 使用整数数组初始化对象。 int getRandom() 从链表中随机选择一个节点并返回该节点的值。链表中所有节点被选中的概率相等。  示例：  输入 [&quot;S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机算法">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/25/sui-ji-xiang-guan-suan-fa/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="382. 链表随机节点labuladong 题解思路 难度中等270 给你一个单链表，随机选择链表的一个节点，并返回相应的节点值。每个节点 被选中的概率一样 。 实现 Solution 类：  Solution(ListNode head) 使用整数数组初始化对象。 int getRandom() 从链表中随机选择一个节点并返回该节点的值。链表中所有节点被选中的概率相等。  示例：  输入 [&quot;S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/getrand-linked-list.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220425010136581.png">
+<meta property="article:published_time" content="2022-04-25T12:12:49.000Z">
+<meta property="article:modified_time" content="2022-04-25T03:22:39.202Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/getrand-linked-list.jpg">
+  
+  
+  
+  <title>随机算法 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="随机算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-25 20:12" pubdate>
+          2022年4月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">随机算法</h1>
+            
+            <div class="markdown-body">
+              
+              <h3 id="382-链表随机节点"><a href="#382-链表随机节点" class="headerlink" title="382. 链表随机节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-random-node/">382. 链表随机节点</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=382">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-random-node/#">思路</a></p>
+<p>难度中等270</p>
+<p>给你一个单链表，随机选择链表的一个节点，并返回相应的节点值。每个节点 <strong>被选中的概率一样</strong> 。</p>
+<p>实现 <code>Solution</code> 类：</p>
+<ul>
+<li><code>Solution(ListNode head)</code> 使用整数数组初始化对象。</li>
+<li><code>int getRandom()</code> 从链表中随机选择一个节点并返回该节点的值。链表中所有节点被选中的概率相等。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/getrand-linked-list.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入
+[<span class="hljs-string">"Solution"</span>, <span class="hljs-string">"getRandom"</span>, <span class="hljs-string">"getRandom"</span>, <span class="hljs-string">"getRandom"</span>, <span class="hljs-string">"getRandom"</span>, <span class="hljs-string">"getRandom"</span>]
+[[[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]], [], [], [], [], []]
+输出
+[null, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre></div>
+
+<h4 id="蓄水池抽样算法"><a href="#蓄水池抽样算法" class="headerlink" title="蓄水池抽样算法"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-random-node/solution/xu-shui-chi-chou-yang-suan-fa-by-jackwener/">蓄水池抽样算法</a></h4><p>当内存无法加载全部数据时，如何从包含<code>未知大小的数据流</code>中<code>随机选取k个数据</code>，并且要保证每个数据被抽取到的概率相等。</p>
+<p>当 k = 1 时，即此题的情况<br>也就是说，我们每次只能读一个数据。</p>
+<p>假设数据流含有N个数，我们知道如果要保证所有的数被抽到的概率相等，那么每个数抽到的概率应该为 1/N</p>
+<p>那如何保证呢？</p>
+<p>先说方案：</p>
+<p>每次只保留一个数，当遇到第 i 个数时，以 1/i的概率保留它，(i-1)/i的概率保留原来的数。</p>
+<p>举例说明： 1 - 10</p>
+<p>遇到1，概率为1，保留第一个数。<br>遇到2，概率为1/2，这个时候，1和2各1/2的概率被保留<br>遇到3，3被保留的概率为1/3，(之前剩下的数假设1被保留)，2/3的概率 1 被保留，(此时1被保留的总概率为 2/3 * 1/2 = 1/3)<br>遇到4，4被保留的概率为1/4，(之前剩下的数假设1被保留)，3/4的概率 1 被保留，(此时1被保留的总概率为 3/4 * 2/3 * 1/2 = 1/4)<br>以此类推，每个数被保留的概率都是1/N。</p>
+<p>证明使用数学归纳法即可</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220425010136581.png" srcset="/img/loading.gif" lazyload alt="image-20220425010136581" style="zoom: 33%;">
+
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    ListNode* head;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Solution</span>(ListNode* head) {
+        <span class="hljs-keyword">this</span>-&gt;head = head;
+    }
+    
+    <span class="hljs-comment">/** Returns a random node's value. */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getRandom</span><span class="hljs-params">()</span> </span>{
+        ListNode* phead = <span class="hljs-keyword">this</span>-&gt;head;
+        <span class="hljs-keyword">int</span> val = phead-&gt;val;
+        <span class="hljs-keyword">int</span> count = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span> (phead){
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">rand</span>() % count++ == <span class="hljs-number">0</span>)
+                val = phead-&gt;val;
+            phead = phead-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> val;
+    }
+};</code></pre></div>
+
+<h3 id="398-随机数索引"><a href="#398-随机数索引" class="headerlink" title="398. 随机数索引"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/random-pick-index/">398. 随机数索引</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=398">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/random-pick-index/#">思路</a></p>
+<p>难度中等146英文版讨论区</p>
+<p>给定一个可能含有重复元素的整数数组，要求随机输出给定的数字的索引。 您可以假设给定的数字一定存在于数组中。</p>
+<p><strong>注意：</strong><br>数组大小可能非常大。 使用太多额外空间的解决方案将不会通过测试。</p>
+<p><strong>示例:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs reasonml"><span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> nums = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> {<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>};
+Solution solution = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Solution(<span class="hljs-params">nums</span>)</span>;
+
+<span class="hljs-comment">// pick(3) 应该返回索引 2,3 或者 4。每个索引的返回概率应该相等。</span>
+solution.pick(<span class="hljs-number">3</span>);
+
+<span class="hljs-comment">// pick(1) 应该返回 0。因为只有nums[0]等于1。</span>
+solution.pick(<span class="hljs-number">1</span>);</code></pre></div>
+
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Solution</span>(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums) : <span class="hljs-built_in">nums</span>(nums) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pick</span><span class="hljs-params">(<span class="hljs-keyword">int</span> target)</span> </span>{
+        <span class="hljs-keyword">int</span> ans;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, cnt = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); ++i) {
+            <span class="hljs-keyword">if</span> (nums[i] == target) {
+                ++cnt; <span class="hljs-comment">// 第 cnt 次遇到 target</span>
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">rand</span>() % cnt == <span class="hljs-number">0</span>) {
+                    ans = i;
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h3 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h3><p>难度中等273</p>
+<p>给你一个整数数组 <code>nums</code> ，设计算法来打乱一个没有重复元素的数组。打乱后，数组的所有排列应该是 <strong>等可能</strong> 的。</p>
+<p>实现 <code>Solution</code> class:</p>
+<ul>
+<li><code>Solution(int[] nums)</code> 使用整数数组 <code>nums</code> 初始化对象</li>
+<li><code>int[] reset()</code> 重设数组到它的初始状态并返回</li>
+<li><code>int[] shuffle()</code> 返回数组随机打乱后的结果</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入
+[<span class="hljs-string">"Solution"</span>, <span class="hljs-string">"shuffle"</span>, <span class="hljs-string">"reset"</span>, <span class="hljs-string">"shuffle"</span>]
+[[[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]], [], [], []]
+输出
+[null, [<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>]]</code></pre></div>
+
+<h4 id="Fisher–Yates-shuffle-洗牌算法"><a href="#Fisher–Yates-shuffle-洗牌算法" class="headerlink" title="Fisher–Yates shuffle 洗牌算法"></a><code>Fisher–Yates shuffle 洗牌算法</code></h4><h5 id="现代方法"><a href="#现代方法" class="headerlink" title="现代方法"></a>现代方法</h5><p>Fisher–Yates shuffle 算法的现代版本是为计算机设计的。由 Richard Durstenfeld 在1964年 描述。并且是被 Donald E. Knuth 在 《The Art of Computer Programming》 中推广。但是不管是 Durstenfeld 还是 Knuth，都没有在书的第一版中承认这个算法是 Fisher 和 Yates 的研究成果。也许他们并不知道。不过后来出版的 《The Art of Computer Programming》提到了 Fisher 和 Yates 贡献。</p>
+<p>现代版本的描述与原始略有不同，因为如果按照原始方法，愚蠢的计算机会花很多无用的时间去计算上述第 3 步的剩余数字。<strong>这里的方法是在每次迭代时交换这个被取出的数字到原始列表的最后</strong>。这样就将时间复杂度从 O(n^2) 减小到了 **O(n)**。算法的伪代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs smali">-- To shuffle an<span class="hljs-built_in"> array </span>a of n elements (indices 0..n-1):
+for i from n−1 downto 1 do
+     j ← random integer such that 0 ≤ j ≤ i
+     exchange a[j]<span class="hljs-built_in"> and </span>a[i]</code></pre></div>
+
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><h6 id="迭代步骤演示"><a href="#迭代步骤演示" class="headerlink" title="迭代步骤演示"></a>迭代步骤演示</h6><p>根据每次迭代次数可以用下面的表格，描述这个算法的执行过程</p>
+<table>
+<thead>
+<tr>
+<th align="left">随机数取值范围</th>
+<th align="left">随机数</th>
+<th align="right">原始数据</th>
+<th align="left">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="right">1 2 3 4 5 6 7 8</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">1-8</td>
+<td align="left">6</td>
+<td align="right">1 2 3 4 5 7 8</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">1-7</td>
+<td align="left">2</td>
+<td align="right">1 7 3 4 5 8</td>
+<td align="left">2 6</td>
+</tr>
+<tr>
+<td align="left">1–6</td>
+<td align="left">6</td>
+<td align="right">1 7 3 4 5</td>
+<td align="left">8 2 6</td>
+</tr>
+<tr>
+<td align="left">1–5</td>
+<td align="left">1</td>
+<td align="right">5 7 3 4</td>
+<td align="left">1 8 2 6</td>
+</tr>
+<tr>
+<td align="left">1–4</td>
+<td align="left">3</td>
+<td align="right">5 7 4</td>
+<td align="left">3 1 8 2 6</td>
+</tr>
+<tr>
+<td align="left">1–3</td>
+<td align="left">3</td>
+<td align="right">5 7</td>
+<td align="left">4 3 1 8 2 6</td>
+</tr>
+<tr>
+<td align="left">1–2</td>
+<td align="left">1</td>
+<td align="right">7</td>
+<td align="left">5 4 3 1 8 2 6</td>
+</tr>
+</tbody></table>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+		vector&lt;<span class="hljs-keyword">int</span>&gt; nums;
+		vector&lt;<span class="hljs-keyword">int</span>&gt; origin;
+  
+    <span class="hljs-built_in">Solution</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums) {
+        <span class="hljs-keyword">this</span>-&gt;nums = nums;
+        <span class="hljs-keyword">this</span>-&gt;origin.<span class="hljs-built_in">resize</span>(nums.<span class="hljs-built_in">size</span>());
+        <span class="hljs-built_in">copy</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), origin.<span class="hljs-built_in">begin</span>());
+    }
+    
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">reset</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-built_in">copy</span>(origin.<span class="hljs-built_in">begin</span>(), origin.<span class="hljs-built_in">end</span>(), nums.<span class="hljs-built_in">begin</span>());
+        <span class="hljs-keyword">return</span> nums;
+    }
+    
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">shuffle</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+            <span class="hljs-keyword">int</span> j =i+ <span class="hljs-built_in">rand</span>()%(nums.<span class="hljs-built_in">size</span>()-i);
+            <span class="hljs-built_in">swap</span>(nums[i], nums[j]);
+        }
+        <span class="hljs-keyword">return</span> nums;
+    }
+};</code></pre></div>
+
+<h3 id="剑指-Offer-II-071-按权重生成随机数"><a href="#剑指-Offer-II-071-按权重生成随机数" class="headerlink" title="剑指 Offer II 071. 按权重生成随机数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cuyjEf/">剑指 Offer II 071. 按权重生成随机数</a></h3><p>难度中等19英文版讨论区</p>
+<p>给定一个正整数数组 <code>w</code> ，其中 <code>w[i]</code> 代表下标 <code>i</code> 的权重（下标从 <code>0</code> 开始），请写一个函数 <code>pickIndex</code> ，它可以随机地获取下标 <code>i</code>，选取下标 <code>i</code> 的概率与 <code>w[i]</code> 成正比。</p>
+<p>例如，对于 <code>w = [1, 3]</code>，挑选下标 <code>0</code> 的概率为 <code>1 / (1 + 3) = 0.25</code> （即，25%），而选取下标 <code>1</code> 的概率为 <code>3 / (1 + 3) = 0.75</code>（即，75%）。</p>
+<p>也就是说，选取下标 <code>i</code> 的概率为 <code>w[i] / sum(w)</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：
+inputs = [<span class="hljs-string">"Solution"</span>,<span class="hljs-string">"pickIndex"</span>]
+inputs = [[[<span class="hljs-number">1</span>]],[]]
+输出：
+[null,<span class="hljs-number">0</span>]
+解释：
+<span class="hljs-symbol">Solution</span> solution = new <span class="hljs-symbol">Solution</span>([<span class="hljs-number">1</span>]);
+solution.pickIndex(); // 返回 <span class="hljs-number">0</span>，因为数组中只有一个元素，所以唯一的选择是返回下标 <span class="hljs-number">0</span>。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：
+inputs = [<span class="hljs-string">"Solution"</span>,<span class="hljs-string">"pickIndex"</span>,<span class="hljs-string">"pickIndex"</span>,<span class="hljs-string">"pickIndex"</span>,<span class="hljs-string">"pickIndex"</span>,<span class="hljs-string">"pickIndex"</span>]
+inputs = [[[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]],[],[],[],[],[]]
+输出：
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+解释：
+<span class="hljs-symbol">Solution</span> solution = new <span class="hljs-symbol">Solution</span>([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>]);
+solution.pickIndex(); // 返回 <span class="hljs-number">1</span>，返回下标 <span class="hljs-number">1</span>，返回该下标概率为 <span class="hljs-number">3</span>/<span class="hljs-number">4</span> 。
+solution.pickIndex(); // 返回 <span class="hljs-number">1</span>
+solution.pickIndex(); // 返回 <span class="hljs-number">1</span>
+solution.pickIndex(); // 返回 <span class="hljs-number">1</span>
+solution.pickIndex(); // 返回 <span class="hljs-number">0</span>，返回下标 <span class="hljs-number">0</span>，返回该下标概率为 <span class="hljs-number">1</span>/<span class="hljs-number">4</span> 。
+
+由于这是一个随机问题，允许多个答案，因此下列输出都可以被认为是正确的:
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]
+[null,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+......
+诸若此类。</code></pre></div>
+
+<h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>前缀和 + 二分 主要注意二分查找的值的选择</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    vector&lt;<span class="hljs-keyword">int</span>&gt; preSum;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Solution</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; w) {
+      preSum.<span class="hljs-built_in">resize</span>(w.<span class="hljs-built_in">size</span>());
+      <span class="hljs-keyword">int</span> pre = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;preSum.<span class="hljs-built_in">size</span>(); i++){
+        preSum[i] = pre + w[i];
+        pre = preSum[i];
+      }
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pickIndex</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-comment">//假设1 1 1 presum: 1 2 3 </span>
+      <span class="hljs-comment">//取随机数的size应该就是 3 但是查找随机数应该在随机数+1</span>
+      <span class="hljs-comment">//从最后一个看 rand最大为2 永远取不到最后一个 且多取到1次0</span>
+      <span class="hljs-keyword">int</span> val = <span class="hljs-built_in">rand</span>()%(preSum.<span class="hljs-built_in">back</span>());
+      <span class="hljs-keyword">int</span> pos = <span class="hljs-built_in">lower_bound</span>(preSum.<span class="hljs-built_in">begin</span>(), preSum.<span class="hljs-built_in">end</span>(), val + <span class="hljs-number">1</span>) - preSum.<span class="hljs-built_in">begin</span>();
+      <span class="hljs-keyword">return</span> pos;
+    }
+};</code></pre></div>
+
+<h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>蓄水池抽样 超时了 想起来更简单 但是每次都是On 总体时间超时了 试了下随机中断他，通过不了 可能中断思路不对吧</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    vector&lt;<span class="hljs-keyword">int</span>&gt; nums;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Solution</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; w) : <span class="hljs-built_in">nums</span>(w){}
+    
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pickIndex</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">int</span> ans;
+      <span class="hljs-keyword">int</span> preSum = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+        preSum += nums[i];
+        ans = <span class="hljs-built_in">rand</span>()%preSum &lt; nums[i]?i:ans;
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>随机算法</div>
+      <div>https://qianxunslimg.github.io/2022/04/25/sui-ji-xiang-guan-suan-fa/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/02/zi-wo-jie-shao/" title="自我介绍">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">自我介绍</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/22/bo-ke-yuan-kao-bei-dai-ma-de-yi-ge-keng/" title="博客园代码拷贝问题">
+                        <span class="hidden-mobile">博客园代码拷贝问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
