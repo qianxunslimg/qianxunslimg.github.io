@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
 <meta property="article:published_time" content="2022-04-13T17:52:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:31:13.037Z">
+<meta property="article:modified_time" content="2022-06-01T01:48:27.710Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -949,11 +949,7 @@
       <span class="hljs-comment">//begin 0/1</span>
       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
         <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = target; j&gt;=nums[i]; j--){
-          dp[
-            
-            
-            
-            j] = <span class="hljs-built_in">max</span>(dp[j], dp[j-nums[i]] + nums[i]);
+          dp[j] = <span class="hljs-built_in">max</span>(dp[j], dp[j-nums[i]] + nums[i]);
         }
       }
       <span class="hljs-keyword">return</span> dp[target] == target;

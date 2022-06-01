@@ -23,11 +23,17 @@
 <meta property="og:site_name" content="qianxunslimgのblog">
 <meta property="og:description" content="回溯回溯模板void backtracking(参数) {     if (终止条件) {         存放结果;         return;     }      for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) {         处理节点;         backtracking(路径，选择列表); &#x2F;&#x2F; 递归         回溯，撤销处理结果     } }">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111309070.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111317698.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111324598.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111331636.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/matchsticks1-grid.jpg">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:31:53.117Z">
+<meta property="article:modified_time" content="2022-06-01T03:34:28.646Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111309070.png">
   
   
   
@@ -1350,6 +1356,188 @@
             <span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">255</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
         }
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+};</code></pre></div>
+
+<h2 id="集合划分问题"><a href="#集合划分问题" class="headerlink" title="集合划分问题"></a>集合划分问题</h2><h3 id="698-划分为k个相等的子集"><a href="#698-划分为k个相等的子集" class="headerlink" title="698. 划分为k个相等的子集"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/">698. 划分为k个相等的子集</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=698">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/#">思路</a></p>
+<p>难度中等564</p>
+<p>给定一个整数数组 <code>nums</code> 和一个正整数 <code>k</code>，找出是否有可能把这个数组分成 <code>k</code> 个非空子集，其总和都相等。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入： <span class="hljs-attr">nums</span> = [<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">4</span>
+输出： True
+说明： 有可能将其分成 <span class="hljs-number">4</span> 个子集（<span class="hljs-number">5</span>），（<span class="hljs-number">1</span>,<span class="hljs-number">4</span>），（<span class="hljs-number">2</span>,<span class="hljs-number">3</span>），（<span class="hljs-number">2</span>,<span class="hljs-number">3</span>）等于总和。</code></pre></div>
+
+<p><strong>示例 2:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">nums</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>], <span class="hljs-attr">k</span> = <span class="hljs-number">3</span>
+输出: <span class="hljs-literal">false</span></code></pre></div>
+
+<h4 id="遍历数字-然后按-数字遍历所有桶的情况-超时"><a href="#遍历数字-然后按-数字遍历所有桶的情况-超时" class="headerlink" title="遍历数字 然后按 数字遍历所有桶的情况 超时"></a>遍历数字 然后按 数字遍历所有桶的情况 超时</h4><p>遍历数字 每个数字遍历桶 <code>容易超时</code></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;<span class="hljs-keyword">int</span>&gt; bucket;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canPartitionKSubsets</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> sum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span>(sum%k) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> target = sum / k;
+      bucket.<span class="hljs-built_in">resize</span>(k, <span class="hljs-number">0</span>);
+      <span class="hljs-comment">//排序可以更多的触发剪枝操作</span>
+      <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), [](<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; b)-&gt;<span class="hljs-keyword">bool</span>{<span class="hljs-keyword">return</span> a&gt;b;});
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(nums, <span class="hljs-number">0</span>, target);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> target)</span></span>{
+      <span class="hljs-keyword">if</span>(index == nums.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;bucket.<span class="hljs-built_in">size</span>(); i++){
+          <span class="hljs-keyword">if</span>(bucket[i] != target)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-comment">// 穷举 nums[index] 可能装入的桶</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;bucket.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(bucket[i] + nums[index] &gt; target)
+          <span class="hljs-keyword">continue</span>;
+        bucket[i] += nums[index];
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">backtrack</span>(nums, index+<span class="hljs-number">1</span>, target))
+          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        bucket[i] -= nums[index];
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
+
+<h4 id="以桶的视角"><a href="#以桶的视角" class="headerlink" title="以桶的视角"></a>以桶的视角</h4><p><strong>以桶的视角进行穷举，每个桶需要遍历 <code>nums</code> 中的所有数字，决定是否把当前数字装进桶中；当装满一个桶之后，还要装下一个桶，直到所有桶都装满为止</strong>。 但是不优化的话 仍然超时</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canPartitionKSubsets</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> sum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span>(sum%k) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> target = sum / k;
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(n, <span class="hljs-number">0</span>)</span></span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(k, <span class="hljs-number">0</span>, nums, <span class="hljs-number">0</span>, target, used);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> nowBucketSum, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> startIndex, <span class="hljs-keyword">int</span> target, vector&lt;<span class="hljs-keyword">bool</span>&gt;&amp; used)</span></span>{
+      <span class="hljs-keyword">if</span>(k == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">if</span>(nowBucketSum == target)
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(k<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, nums, <span class="hljs-number">0</span>, target, used);
+      
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = startIndex; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(used[i] || nums[i] + nowBucketSum &gt; target)
+          <span class="hljs-keyword">continue</span>;
+        used[i] = <span class="hljs-number">1</span>;
+        nowBucketSum += nums[i];
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">backtrack</span>(k, nowBucketSum, nums, i+<span class="hljs-number">1</span>, target, used))
+          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        used[i] = <span class="hljs-number">0</span>;
+        nowBucketSum -= nums[i];
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
+
+<p>首先，在这个解法中每个桶都可以认为是没有差异的，但是我们的回溯算法却会对它们区别对待，这里就会出现重复计算的情况。</p>
+<p>什么意思呢？我们的回溯算法，说到底就是穷举所有可能的组合，然后看是否能找出和为 <code>target</code> 的 <code>k</code> 个桶（子集）。</p>
+<p>那么，比如下面这种情况，<code>target = 5</code>，算法会在第一个桶里面装 <code>1, 4</code>：</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111309070.png" srcset="/img/loading.gif" lazyload alt="image-20220601111309070"></p>
+<p>现在第一个桶装满了，就开始装第二个桶，算法会装入 <code>2, 3</code>：</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111317698.png" srcset="/img/loading.gif" lazyload alt="image-20220601111317698"></p>
+<p>然后以此类推，对后面的元素进行穷举，凑出若干个和为 5 的桶（子集）。</p>
+<p>但问题是，如果最后发现无法凑出和为 <code>target</code> 的 <code>k</code> 个子集，算法会怎么做？  ==<u><strong>比如说 target变为4</strong></u>==</p>
+<p>回溯算法会回溯到第一个桶，重新开始穷举，现在它知道第一个桶里装 <code>1, 4</code> 是不可行的，它会尝试把 <code>2, 3</code> 装到第一个桶里：</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111324598.png" srcset="/img/loading.gif" lazyload alt="image-20220601111324598"></p>
+<p>现在第一个桶装满了，就开始装第二个桶，算法会装入 <code>1, 4</code>：</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111331636.png" srcset="/img/loading.gif" lazyload alt="image-20220601111331636"></p>
+<p>好，到这里你应该看出来问题了，这种情况其实和之前的那种情况是一样的。也就是说，到这里你其实已经知道不需要再穷举了，必然凑不出来和为 <code>target</code> 的 <code>k</code> 个子集。</p>
+<p>但我们的算法还是会傻乎乎地继续穷举，因为在她看来，第一个桶和第二个桶里面装的元素不一样，那这就是两种不一样的情况呀。</p>
+<p>注意这两种情况的 <code>used</code> 数组<u>肯定长得一样</u>，所以 <code>used</code> 数组可以认为是回溯过程中的「状态」。</p>
+<p><strong>所以，我们可以用一个 <code>memo</code> 备忘录，在装满一个桶时记录当前 <code>used</code> 的状态，如果当前 <code>used</code> 的状态是曾经出现过的，那就不用再继续穷举，从而起到剪枝避免冗余计算的作用</strong>。</p>
+<h4 id="对used数组进行记录和状态压缩"><a href="#对used数组进行记录和状态压缩" class="headerlink" title="对used数组进行记录和状态压缩"></a>对used数组进行记录和状态压缩</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">bool</span>&gt; memo;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canPartitionKSubsets</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> sum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span>(sum%k) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> target = sum / k;
+      <span class="hljs-keyword">int</span> used = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(k, <span class="hljs-number">0</span>, nums, <span class="hljs-number">0</span>, target, used);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> nowBucketSum, vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> startIndex, <span class="hljs-keyword">int</span> target, <span class="hljs-keyword">int</span>&amp; used)</span></span>{
+      <span class="hljs-keyword">if</span>(k == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">if</span>(nowBucketSum == target){
+        <span class="hljs-keyword">bool</span> res = <span class="hljs-built_in">backtrack</span>(k<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, nums, <span class="hljs-number">0</span>, target, used);
+        memo[used] = res;
+        <span class="hljs-keyword">return</span> res;
+      }
+
+      <span class="hljs-keyword">if</span>(memo.<span class="hljs-built_in">count</span>(used))
+        <span class="hljs-keyword">return</span> memo[used];
+
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = startIndex; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-comment">//剪枝</span>
+        <span class="hljs-keyword">if</span> (((used &gt;&gt; i) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span> || nums[i]+nowBucketSum&gt; target) <span class="hljs-comment">// 判断第 i 位是否是 1  nums[i] 已经被装入别的桶中</span>
+          <span class="hljs-keyword">continue</span>;
+        used |= <span class="hljs-number">1</span>&lt;&lt;i; <span class="hljs-comment">// 将第 i 位置为 1</span>
+        nowBucketSum += nums[i];
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">backtrack</span>(k, nowBucketSum, nums, i+<span class="hljs-number">1</span>, target, used))
+          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// 撤销选择</span>
+        used ^= <span class="hljs-number">1</span> &lt;&lt; i; <span class="hljs-comment">// 使用异或运算将第 i 位恢复 0</span>
+        nowBucketSum -= nums[i];
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
+
+<h3 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h3><p>难度中等316</p>
+<p>你将得到一个整数数组 <code>matchsticks</code> ，其中 <code>matchsticks[i]</code> 是第 <code>i</code> 个火柴棒的长度。你要用 <strong>所有的火柴棍</strong> 拼成一个正方形。你 <strong>不能折断</strong> 任何一根火柴棒，但你可以把它们连在一起，而且每根火柴棒必须 <strong>使用一次</strong> 。</p>
+<p>如果你能使这个正方形，则返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/matchsticks1-grid.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: matchsticks = [1,1,2,2,2]</span>
+<span class="hljs-section">输出: true</span>
+<span class="hljs-section">解释: 能拼成一个边长为2的正方形，每边两根火柴。</span></code></pre></div>
+
+<p><strong>示例 2:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: matchsticks = [3,3,3,3,4]</span>
+<span class="hljs-section">输出: false</span>
+<span class="hljs-section">解释: 不能用所有火柴拼成一个正方形。</span></code></pre></div>
+
+<h4 id="遍历数字遍历桶-勉强能过"><a href="#遍历数字遍历桶-勉强能过" class="headerlink" title="遍历数字遍历桶 勉强能过"></a>遍历数字遍历桶 勉强能过</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;<span class="hljs-keyword">int</span>&gt; bucket;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">makesquare</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> sum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span>(sum%<span class="hljs-number">4</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> target = sum / <span class="hljs-number">4</span>;
+      bucket.<span class="hljs-built_in">resize</span>(<span class="hljs-number">4</span>, <span class="hljs-number">0</span>);
+      <span class="hljs-comment">//排序可以更多的触发剪枝操作</span>
+      <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), [](<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; a, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; b)-&gt;<span class="hljs-keyword">bool</span>{<span class="hljs-keyword">return</span> a&gt;b;});
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(nums, <span class="hljs-number">0</span>, target);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> target)</span></span>{
+      <span class="hljs-keyword">if</span>(index == nums.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+          <span class="hljs-keyword">if</span>(bucket[i]!=target)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      }
+
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;bucket.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(nums[index] + bucket[i] &gt; target) 
+          <span class="hljs-keyword">continue</span>;
+        bucket[i] += nums[index];
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">backtrack</span>(nums, index+<span class="hljs-number">1</span>, target))
+          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        bucket[i] -= nums[index];
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
     }
 };</code></pre></div>
 
