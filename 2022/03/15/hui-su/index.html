@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111331636.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/matchsticks1-grid.jpg">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-06-01T03:34:28.646Z">
+<meta property="article:modified_time" content="2022-06-01T06:56:09.098Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1407,6 +1407,55 @@
     }
 };</code></pre></div>
 
+<p>再优化 可以 通过<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/solution/hua-fen-zi-ji-wen-ti-by-pedantic-mcleanb-vi1h/">集合划分问题：回溯 - 划分为k个相等的子集 - 力扣（LeetCode）</a></p>
+<p>剪枝</p>
+<ul>
+<li>将nums数组从大到小<code>排序</code>，可以尽可能多的情况命中 if (bucket[i] + nums[index] &gt; target) 这个剪枝</li>
+<li>如果 当前子集的元素和 与 前一个子集的元素和 是一样的，那就跳过。因为当前这个数字放在前一个桶和后一个桶都是一样的，对后面的数字摆放没有影响。<code>if(i &gt; 0 &amp;&amp; bucket[i] == bucket[i-1])  continue;</code></li>
+<li>如果数字遍历完了，其实我们是不需要检查bucket中的元素和是否都是target的。因为前面的 if(sum % k != 0) return false; 已经能保证只要所有元素都放入bucket中，那么bucket中的元素和都为target。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;<span class="hljs-keyword">int</span>&gt; bucket;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canPartitionKSubsets</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> sum = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span>(sum%k) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> target = sum / k;
+      bucket.<span class="hljs-built_in">resize</span>(k, <span class="hljs-number">0</span>);
+      <span class="hljs-comment">//排序可以更多的触发剪枝操作</span>
+      <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">rbegin</span>(), nums.<span class="hljs-built_in">rend</span>());
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">backtrack</span>(nums, <span class="hljs-number">0</span>, target);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> target)</span></span>{
+      <span class="hljs-keyword">if</span>(index == nums.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-comment">// 既然所有数字都放进集合中了，那么所有bucket中的元素和一定为target。所以下面这个循环是没有必要的：</span>
+        <span class="hljs-comment">// 检查所有子集中的数字之和是否都是target</span>
+        <span class="hljs-comment">// for(int i = 0; i&lt;bucket.size(); i++){</span>
+        <span class="hljs-comment">//   if(bucket[i] != target)</span>
+        <span class="hljs-comment">//     return 0;</span>
+        <span class="hljs-comment">// }</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-comment">// 穷举 nums[index] 可能装入的桶</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;bucket.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-comment">// 如果这个数字放入子集i中使子集i中元素和超出target了</span>
+        <span class="hljs-keyword">if</span>(bucket[i] + nums[index] &gt; target)
+          <span class="hljs-keyword">continue</span>;
+        <span class="hljs-comment">// 如果 当前子集的元素和 与 前一个子集的元素和 是一样的，那就跳过</span>
+        <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span> &amp;&amp; bucket[i] == bucket[i<span class="hljs-number">-1</span>])
+          <span class="hljs-keyword">continue</span>;
+        bucket[i] += nums[index];
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">backtrack</span>(nums, index+<span class="hljs-number">1</span>, target))
+          <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        bucket[i] -= nums[index];
+      }
+      <span class="hljs-comment">// 如果 nums[index] 放入哪个子集都不行</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
+
 <h4 id="以桶的视角"><a href="#以桶的视角" class="headerlink" title="以桶的视角"></a>以桶的视角</h4><p><strong>以桶的视角进行穷举，每个桶需要遍历 <code>nums</code> 中的所有数字，决定是否把当前数字装进桶中；当装满一个桶之后，还要装下一个桶，直到所有桶都装满为止</strong>。 但是不优化的话 仍然超时</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
@@ -1445,7 +1494,7 @@
 <p>现在第一个桶装满了，就开始装第二个桶，算法会装入 <code>2, 3</code>：</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111317698.png" srcset="/img/loading.gif" lazyload alt="image-20220601111317698"></p>
 <p>然后以此类推，对后面的元素进行穷举，凑出若干个和为 5 的桶（子集）。</p>
-<p>但问题是，如果最后发现无法凑出和为 <code>target</code> 的 <code>k</code> 个子集，算法会怎么做？  ==<u><strong>比如说 target变为4</strong></u>==</p>
+<p>但问题是，如果最后发现无法凑出和为 <code>target</code> 的 <code>k</code> 个子集，算法会怎么做？  </p>
 <p>回溯算法会回溯到第一个桶，重新开始穷举，现在它知道第一个桶里装 <code>1, 4</code> 是不可行的，它会尝试把 <code>2, 3</code> 装到第一个桶里：</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111324598.png" srcset="/img/loading.gif" lazyload alt="image-20220601111324598"></p>
 <p>现在第一个桶装满了，就开始装第二个桶，算法会装入 <code>1, 4</code>：</p>
