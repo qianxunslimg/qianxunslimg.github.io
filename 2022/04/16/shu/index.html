@@ -33,6 +33,8 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png">
@@ -48,7 +50,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png">
 <meta property="article:published_time" content="2022-04-16T12:09:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:31:29.697Z">
+<meta property="article:modified_time" content="2022-06-02T14:02:00.948Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -292,7 +294,7 @@
             
             <div class="markdown-body">
               
-              <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><p>树是连通的无环图，最常利用的有二叉树，即一个节点最多只有两个子节点，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。</p>
+              <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><h3 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h3><p>树是连通的无环图，最常利用的有二叉树，<code>即一个节点最多只有两个子节点</code>，称为左子树和右子树。但是树都是相通的，无论是二叉树或者多个节点的树都能一般能用递归方法进行求解。二叉树节点之间的顺序一般不可调换，在数据结构定义时，左是左，右是右，不会说节点1，节点2。</p>
 <h4 id="二叉排序树又叫二叉查找树或者二叉搜索树："><a href="#二叉排序树又叫二叉查找树或者二叉搜索树：" class="headerlink" title="二叉排序树又叫二叉查找树或者二叉搜索树："></a>二叉排序树又叫二叉查找树或者二叉搜索树：</h4><p>1）若左子树不空，则左子树上所有结点的值均小于它的根节点的值；</p>
 <p>2）若右子树不空，则右子树上所有结点的值均大于它的根结点的值；</p>
 <p>3）左、右子树也分别为二叉排序树；4）没有键值相等的节点</p>
@@ -799,6 +801,43 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
         <span class="hljs-keyword">return</span> mRoot;
     }
 };</code></pre></div>
+
+
+
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h3 id="剑指-Offer-II-053-二叉搜索树中的中序后继-1"><a href="#剑指-Offer-II-053-二叉搜索树中的中序后继-1" class="headerlink" title="剑指 Offer II 053. 二叉搜索树中的中序后继"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/P5rCT8/">剑指 Offer II 053. 二叉搜索树中的中序后继</a></h3><p>难度中等40</p>
+<p>给定一棵二叉搜索树和其中的一个节点 <code>p</code> ，找到该节点在树中的中序后继。如果节点没有中序后继，请返回 <code>null</code> 。</p>
+<p>节点 <code>p</code> 的后继是值比 <code>p.val</code> 大的节点中键值最小的节点，即按中序遍历的顺序节点 <code>p</code> 的下一个节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs stylus">输入：root = <span class="hljs-selector-attr">[2,1,3]</span>, <span class="hljs-selector-tag">p</span> = <span class="hljs-number">1</span>
+输出：<span class="hljs-number">2</span>
+解释：这里 <span class="hljs-number">1</span> 的中序后继是 <span class="hljs-number">2</span>。请注意 <span class="hljs-selector-tag">p</span> 和返回值都应是 TreeNode 类型。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">1</span>], <span class="hljs-attr">p</span> = <span class="hljs-number">6</span>
+输出：<span class="hljs-literal">null</span>
+解释：因为给出的节点没有中序后继，所以答案就返回 <span class="hljs-literal">null</span> 了。</code></pre></div>
+
+<h4 id="解法-二叉树的性质"><a href="#解法-二叉树的性质" class="headerlink" title="解法 二叉树的性质"></a>解法 二叉树的性质</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">inorderSuccessor</span><span class="hljs-params">(TreeNode* root, TreeNode* p)</span> </span>{
+      TreeNode* res = <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">int</span> val = p-&gt;val;
+      <span class="hljs-keyword">while</span>(root){
+        <span class="hljs-keyword">if</span>(root-&gt;val &gt; val){
+          <span class="hljs-comment">// 当root-&gt;val &gt; val时，会走到左节点，所以走得越深越接近val</span>
+          <span class="hljs-comment">// 保证了每次root-&gt;val都小于res-&gt;val</span>
+          res = root;
+          root = root-&gt;left;
+        }<span class="hljs-keyword">else</span>
+          root = root-&gt;right;
+      }
+      <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre></div>
+
+
 
 
 
