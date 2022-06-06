@@ -26,17 +26,24 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsumii1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606151253075.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111436426.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606114249246.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_2.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarysearchtree_improved.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarytree.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606171840647.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png">
@@ -52,7 +59,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png">
 <meta property="article:published_time" content="2022-04-16T12:09:49.000Z">
-<meta property="article:modified_time" content="2022-06-06T03:42:53.575Z">
+<meta property="article:modified_time" content="2022-06-06T09:36:41.343Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -480,6 +487,47 @@
     }
 };</code></pre></div>
 
+<h3 id="剑指-Offer-34-二叉树中和为某一值的路径"><a href="#剑指-Offer-34-二叉树中和为某一值的路径" class="headerlink" title="剑指 Offer 34. 二叉树中和为某一值的路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/">剑指 Offer 34. 二叉树中和为某一值的路径</a></h3><p>难度中等341收藏分享切换为英文接收动态反馈</p>
+<p>给你二叉树的根节点 <code>root</code> 和一个整数目标和 <code>targetSum</code> ，找出所有 <strong>从根节点到叶子节点</strong> 路径总和等于给定目标和的路径。</p>
+<p><strong>叶子节点</strong> 是指没有子节点的节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsumii1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs lua">输入：root = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">11</span>,null,<span class="hljs-number">13</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">2</span>,null,null,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>], targetSum = <span class="hljs-number">22</span>
+输出：<span class="hljs-string">[[5,4,11,2],[5,8,4,5]]</span></code></pre></div>
+
+<h4 id="前序-回溯"><a href="#前序-回溯" class="headerlink" title="前序 回溯"></a>前序 回溯</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; ans;
+    vector&lt;<span class="hljs-keyword">int</span>&gt; path;
+    <span class="hljs-keyword">int</span> sumVal;
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">pathSum</span>(TreeNode* root, <span class="hljs-keyword">int</span> target) {
+      sumVal = <span class="hljs-number">0</span>;
+      <span class="hljs-built_in">dfs</span>(root, target);
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* node, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; target)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;
+      path.<span class="hljs-built_in">push_back</span>(node-&gt;val);
+      sumVal += node-&gt;val;
+      <span class="hljs-comment">//结果检查</span>
+      <span class="hljs-keyword">if</span>(node-&gt;left == <span class="hljs-literal">nullptr</span> &amp;&amp; node-&gt;right == <span class="hljs-literal">nullptr</span>){
+        <span class="hljs-keyword">if</span>(sumVal == target){
+          ans.<span class="hljs-built_in">push_back</span>(path);
+          sumVal -= node-&gt;val;
+          path.<span class="hljs-built_in">pop_back</span>();
+          <span class="hljs-keyword">return</span>;
+        }
+      }
+      <span class="hljs-built_in">dfs</span>(node-&gt;left, target);
+      <span class="hljs-built_in">dfs</span>(node-&gt;right, target);
+      path.<span class="hljs-built_in">pop_back</span>();
+      sumVal -= node-&gt;val;
+    }
+};</code></pre></div>
+
+
+
 <h3 id="剑指-Offer-II-050-向下的路径节点之和"><a href="#剑指-Offer-II-050-向下的路径节点之和" class="headerlink" title="剑指 Offer II 050. 向下的路径节点之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/6eUYwP/">剑指 Offer II 050. 向下的路径节点之和</a></h3><p>难度中等32</p>
 <p>给定一个二叉树的根节点 <code>root</code> ，和一个整数 <code>targetSum</code> ，求该二叉树里节点值之和等于 <code>targetSum</code> 的 <strong>路径</strong> 的数目。</p>
 <p><strong>路径</strong> 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。</p>
@@ -669,6 +717,32 @@
     }
 };</code></pre></div>
 
+<h3 id="剑指-Offer-54-二叉搜索树的第k大节点"><a href="#剑指-Offer-54-二叉搜索树的第k大节点" class="headerlink" title="剑指 Offer 54. 二叉搜索树的第k大节点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">剑指 Offer 54. 二叉搜索树的第k大节点</a></h3><p>难度简单309收藏分享切换为英文接收动态反馈</p>
+<p>给定一棵二叉搜索树，请找出其中第 <code>k</code> 大的节点的值。</p>
+<h4 id="右中左的中序"><a href="#右中左的中序" class="headerlink" title="右中左的中序"></a>右中左的中序</h4><p>二叉搜索树的右中左中序就是从大到小排列的了</p>
+<p>注意的点是 计数的index应该是全局的（或者说 引用的）</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> ans;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">kthLargest</span><span class="hljs-params">(TreeNode* root, <span class="hljs-keyword">int</span> k)</span> </span>{
+      ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
+      <span class="hljs-built_in">dfs</span>(root, index, k);
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-comment">//注意index必须是引用或者类的数据成员</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* node, <span class="hljs-keyword">int</span>&amp; index, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; k)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span> || index&gt;k) <span class="hljs-keyword">return</span>;
+      <span class="hljs-built_in">dfs</span>(node-&gt;right, index, k);
+      <span class="hljs-keyword">if</span>(++index == k){
+        ans = node-&gt;val;
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-built_in">dfs</span>(node-&gt;left, index, k);
+    }
+};</code></pre></div>
+
 
 
 <h2 id="二叉树-后序遍历"><a href="#二叉树-后序遍历" class="headerlink" title="二叉树 后序遍历"></a>二叉树 后序遍历</h2><h3 id="543-二叉树的直径-后序遍历的使用"><a href="#543-二叉树的直径-后序遍历的使用" class="headerlink" title="543. 二叉树的直径 后序遍历的使用"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diameter-of-binary-tree/">543. 二叉树的直径 后序遍历的使用</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=543">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/diameter-of-binary-tree/#">思路</a></p>
@@ -740,6 +814,41 @@
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(leftMax, rightMax) + curr-&gt;val; 
     }
 };</code></pre></div>
+
+<h3 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h3><p>难度中等525收藏分享切换为英文接收动态反馈</p>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 <code>true</code>，否则返回 <code>false</code>。假设输入的数组的任意两个数字都互不相同。</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606151253075.png" srcset="/img/loading.gif" lazyload alt="image-20220606151253075" style="zoom:50%;">
+
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>根据后序遍历和二叉搜索树的性质进行递归检查</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">verifyPostorder</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">if</span>(nums.<span class="hljs-built_in">size</span>() &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">helper</span>(nums, <span class="hljs-number">0</span>, nums.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">helper</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+      <span class="hljs-keyword">if</span>(left &gt;= right) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">int</span> rootVal = nums[right];
+      <span class="hljs-keyword">int</span> leftIndex = left;
+      <span class="hljs-comment">//细节 leftindex每次都需要赋值 而不是在brk中赋值</span>
+      <span class="hljs-comment">//不然可能整个数组都是left 但是没更新leftIndex</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = left; i&lt;right; i++){
+        leftIndex = i;
+        <span class="hljs-keyword">if</span>(nums[i] &gt;= rootVal){
+          leftIndex--;
+          <span class="hljs-keyword">break</span>;
+        }
+      }
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = leftIndex+<span class="hljs-number">1</span>; i&lt;right; i++){
+        <span class="hljs-keyword">if</span>(nums[i] &lt; rootVal)
+          <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">helper</span>(nums, left, leftIndex) &amp;&amp; <span class="hljs-built_in">helper</span>(nums, leftIndex+<span class="hljs-number">1</span>, right<span class="hljs-number">-1</span>);
+    }
+};</code></pre></div>
+
+
 
 <h2 id="二叉树抽象递归"><a href="#二叉树抽象递归" class="headerlink" title="二叉树抽象递归"></a>二叉树抽象递归</h2><h3 id="剑指-Offer-27-二叉树的镜像"><a href="#剑指-Offer-27-二叉树的镜像" class="headerlink" title="剑指 Offer 27. 二叉树的镜像"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/">剑指 Offer 27. 二叉树的镜像</a></h3><p>难度简单263收藏分享切换为英文接收动态反馈</p>
 <p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。</p>
@@ -837,6 +946,70 @@
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">helper</span>(A-&gt;left, B-&gt;left) &amp;&amp; <span class="hljs-built_in">helper</span>(A-&gt;right, B-&gt;right);
     }
 };</code></pre></div>
+
+<h3 id="剑指-Offer-55-II-平衡二叉树"><a href="#剑指-Offer-55-II-平衡二叉树" class="headerlink" title="剑指 Offer 55 - II. 平衡二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ping-heng-er-cha-shu-lcof/">剑指 Offer 55 - II. 平衡二叉树</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/#">思路</a></p>
+<p>难度简单1031收藏分享切换为英文接收动态反馈</p>
+<p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<blockquote>
+<p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1 。</p>
+</blockquote>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">3</span>,<span class="hljs-number">9</span>,<span class="hljs-number">20</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>]
+输出：<span class="hljs-literal">true</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">root</span> = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>]
+输出：<span class="hljs-literal">false</span></code></pre></div>
+
+<h4 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode* root)</span> </span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">int</span> dep1 = <span class="hljs-built_in">getDepth</span>(root-&gt;left);
+      <span class="hljs-keyword">int</span> dep2 = <span class="hljs-built_in">getDepth</span>(root-&gt;right);
+      <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(dep1 - dep2)&gt;<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">isBalanced</span>(root-&gt;left) &amp;&amp; <span class="hljs-built_in">isBalanced</span>(root-&gt;right);
+    }
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">int</span> maxDepth;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getDepth</span><span class="hljs-params">(TreeNode* node)</span></span>{
+      maxDepth = <span class="hljs-number">0</span>;
+      <span class="hljs-built_in">dfs</span>(node, <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">return</span> maxDepth;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* node, <span class="hljs-keyword">int</span> depth)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;
+      depth++;
+      maxDepth = <span class="hljs-built_in">max</span>(depth, maxDepth);
+      <span class="hljs-built_in">dfs</span>(node-&gt;left, depth);
+      <span class="hljs-built_in">dfs</span>(node-&gt;right, depth);
+      depth--;
+    }
+};</code></pre></div>
+
+<h4 id="官方-更抽象的"><a href="#官方-更抽象的" class="headerlink" title="官方 更抽象的"></a>官方 更抽象的</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode* root)</span> </span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">int</span> l = <span class="hljs-built_in">maxDepth</span>(root-&gt;left);
+      <span class="hljs-keyword">int</span> r = <span class="hljs-built_in">maxDepth</span>(root-&gt;right);
+      <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(l-r)&gt;<span class="hljs-number">1</span>){
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">isBalanced</span>(root-&gt;left)&amp;&amp; <span class="hljs-built_in">isBalanced</span>(root-&gt;right);
+    }
+		<span class="hljs-comment">//二叉树深度的简单解法</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode* node)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">maxDepth</span>(node-&gt;left), <span class="hljs-built_in">maxDepth</span>(node-&gt;right)) + <span class="hljs-number">1</span>;
+    }
+};</code></pre></div>
+
+
 
 
 
@@ -938,7 +1111,159 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
     }
 };</code></pre></div>
 
+<h2 id="公共祖先"><a href="#公共祖先" class="headerlink" title="公共祖先"></a>公共祖先</h2><h3 id="剑指-Offer-68-I-二叉搜索树的最近公共祖先"><a href="#剑指-Offer-68-I-二叉搜索树的最近公共祖先" class="headerlink" title="剑指 Offer 68 - I. 二叉搜索树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/">剑指 Offer 68 - I. 二叉搜索树的最近公共祖先</a></h3><p>难度简单232收藏分享切换为英文接收动态反馈</p>
+<p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<p>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarysearchtree_improved.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">root</span> = [<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">8</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>], <span class="hljs-attr">p</span> = <span class="hljs-number">2</span>, <span class="hljs-attr">q</span> = <span class="hljs-number">8</span>
+输出: <span class="hljs-number">6</span> 
+解释: 节点 <span class="hljs-number">2</span> 和节点 <span class="hljs-number">8</span> 的最近公共祖先是 <span class="hljs-number">6</span>。</code></pre></div>
 
+<h4 id="利用二叉搜索树的性质-分叉"><a href="#利用二叉搜索树的性质-分叉" class="headerlink" title="利用二叉搜索树的性质 分叉"></a>利用二叉搜索树的性质 分叉</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>{
+      TreeNode* ancestor = root;
+      <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+        <span class="hljs-keyword">if</span>(ancestor-&gt;val&lt;p-&gt;val &amp;&amp; ancestor-&gt;val&lt;q-&gt;val){
+          ancestor = ancestor-&gt;right;
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(ancestor-&gt;val&gt;p-&gt;val &amp;&amp; ancestor-&gt;val&gt;q-&gt;val){
+          ancestor = ancestor-&gt;left;
+        }<span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">break</span>;
+      }
+      <span class="hljs-keyword">return</span> ancestor;
+    }
+
+    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">if</span>(root-&gt;val&gt;p-&gt;val &amp;&amp; root-&gt;val&gt;q-&gt;val)
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">lowestCommonAncestor</span>(root-&gt;left, p, q);
+      <span class="hljs-keyword">if</span>(root-&gt;val&lt;p-&gt;val &amp;&amp; root-&gt;val&lt;q-&gt;val)
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">lowestCommonAncestor</span>(root-&gt;right, p, q);
+      <span class="hljs-keyword">return</span> root;
+    }
+};</code></pre></div>
+
+<h3 id="剑指-Offer-68-II-二叉树的最近公共祖先"><a href="#剑指-Offer-68-II-二叉树的最近公共祖先" class="headerlink" title="剑指 Offer 68 - II. 二叉树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/">剑指 Offer 68 - II. 二叉树的最近公共祖先</a></h3><p>难度简单448收藏分享切换为英文接收动态反馈</p>
+<p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
+<p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarytree.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">root</span> = [<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">8</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>,<span class="hljs-number">4</span>], <span class="hljs-attr">p</span> = <span class="hljs-number">5</span>, <span class="hljs-attr">q</span> = <span class="hljs-number">1</span>
+输出: <span class="hljs-number">3</span>
+解释: 节点 <span class="hljs-number">5</span> 和节点 <span class="hljs-number">1</span> 的最近公共祖先是节点 <span class="hljs-number">3</span>。</code></pre></div>
+
+<h4 id="通用解法"><a href="#通用解法" class="headerlink" title="通用解法"></a>通用解法</h4><p>在当前节点下查找是否存在 两个节点</p>
+<ol>
+<li>p q 一个在左子树 一个在右子树 那么当前节点即是最近公共祖先</li>
+<li>p q 都在左子树 </li>
+<li>p q 都在右子树</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(root, p, q);
+    }
+
+    <span class="hljs-function">TreeNode* <span class="hljs-title">find</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span></span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-comment">//找到目标</span>
+      <span class="hljs-keyword">if</span>(root == p || root == q)
+        <span class="hljs-keyword">return</span> root;
+      TreeNode* left = <span class="hljs-built_in">find</span>(root-&gt;left, p, q);
+      TreeNode* right = <span class="hljs-built_in">find</span>(root-&gt;right, p, q);
+      <span class="hljs-comment">// p q 一个在左，一个在右</span>
+      <span class="hljs-keyword">if</span>(left != <span class="hljs-literal">nullptr</span> &amp;&amp; right != <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> root;
+      <span class="hljs-keyword">return</span> left != <span class="hljs-literal">nullptr</span> ? left : right;
+    }
+};</code></pre></div>
+
+<h3 id="1676-题「二叉树的最近公共祖先-IV」"><a href="#1676-题「二叉树的最近公共祖先-IV」" class="headerlink" title="1676 题「二叉树的最近公共祖先 IV」"></a>1676 题「二叉树的最近公共祖先 IV」</h3><p>依然给你输入一棵不含重复值的二叉树，但这次不是给你输入<code>p</code>和<code>q</code>两个节点了，而是给你输入一个包含若干节点的列表<code>nodes</code>（<u>这些节点都存在于二叉树中</u>），让你算这些节点的最近公共祖先。</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606171840647.png" srcset="/img/loading.gif" lazyload alt="image-20220606171840647" style="zoom: 50%;">
+
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><p>和两个节点的公共祖先是一样的 只是存在判定需要用到unordered_set;</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, vector&lt;TreeNode*&gt; &amp;nodes)</span> </span>{
+      unordered_set&lt;TreeNode*&gt; sett;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; node: nodes)
+        sett.<span class="hljs-built_in">insert</span>(node);
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(root, nodes);
+    }
+
+    <span class="hljs-function">TreeNode* <span class="hljs-title">find</span><span class="hljs-params">(TreeNode* root, unordered_set&lt;TreeNode*&gt;&amp; nodes)</span></span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-comment">//找到目标</span>
+      <span class="hljs-keyword">if</span>(nodes.<span class="hljs-built_in">count</span>(root))
+        <span class="hljs-keyword">return</span> root;
+      TreeNode* left = <span class="hljs-built_in">find</span>(root-&gt;left, nodes);
+      TreeNode* right = <span class="hljs-built_in">find</span>(root-&gt;right, nodes);
+      <span class="hljs-comment">// p q 一个在左，一个在右</span>
+      <span class="hljs-keyword">if</span>(left != <span class="hljs-literal">nullptr</span> &amp;&amp; right != <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> root;
+      <span class="hljs-keyword">return</span> left != <span class="hljs-literal">nullptr</span> ? left : right;
+    }
+};</code></pre></div>
+
+<h3 id="1644-题「二叉树的最近公共祖先-II」"><a href="#1644-题「二叉树的最近公共祖先-II」" class="headerlink" title="1644 题「二叉树的最近公共祖先 II」"></a>1644 题「二叉树的最近公共祖先 II」</h3><p>给你输入一棵<strong>不含重复值</strong>的二叉树的，以及两个节点<code>p</code>和<code>q</code>，如果<code>p</code>或<code>q</code>不存在于树中，则返回空指针，否则的话返回<code>p</code>和<code>q</code>的最近公共祖先节点。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  	<span class="hljs-keyword">bool</span> findP, findQ;
+    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>{
+      findP = <span class="hljs-number">0</span>;
+      findQ = <span class="hljs-number">0</span>;
+      TreeNode* res = <span class="hljs-built_in">find</span>(root, p, q);
+      <span class="hljs-keyword">if</span>(!findP || !findQ)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">return</span> res;
+    }
+
+    <span class="hljs-function">TreeNode* <span class="hljs-title">find</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span></span>{
+      <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+
+      TreeNode* left = <span class="hljs-built_in">find</span>(root-&gt;left, p, q);
+      TreeNode* right = <span class="hljs-built_in">find</span>(root-&gt;right, p, q);
+      <span class="hljs-comment">// p q 一个在左，一个在右</span>
+      <span class="hljs-keyword">if</span>(left != <span class="hljs-literal">nullptr</span> &amp;&amp; right != <span class="hljs-literal">nullptr</span>)
+        <span class="hljs-keyword">return</span> root;
+      <span class="hljs-comment">//找到目标 调整到后序的位置 这样总会遍历整个树</span>
+      <span class="hljs-keyword">if</span>(root == p || root == q){
+        <span class="hljs-keyword">if</span>(root == p) findP = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(root == q) findQ = <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-keyword">return</span> left != <span class="hljs-literal">nullptr</span> ? left : right;
+    }
+};</code></pre></div>
+
+<h3 id="1650-题「二叉树的最近公共祖先-III」"><a href="#1650-题「二叉树的最近公共祖先-III」" class="headerlink" title="1650 题「二叉树的最近公共祖先 III」"></a>1650 题「二叉树的最近公共祖先 III」</h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> {</span>
+    <span class="hljs-keyword">int</span> val;
+    Node* left;
+    Node* right;
+    Node* parent;
+};</code></pre></div>
+
+<p>给你输入一棵存在于二叉树中的两个节点<code>p</code>和<code>q</code>，请你返回它们的最近公共祖先，函数签名如下：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">Node* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(Node* p, Node* q)</span></span>;</code></pre></div>
+
+<p><strong>这道题其实不是公共祖先的问题，而是单链表相交的问题</strong>，你把<code>parent</code>指针想象成单链表的<code>next</code>指针，题目就变成了：</p>
+<p>给你输入两个单链表的头结点<code>p</code>和<code>q</code>，这两个单链表必然会相交，请你返回相交点。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">Node* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(Node* p, Node* q)</span> </span>{
+    <span class="hljs-comment">// 施展链表双指针技巧</span>
+    Node* a = p, *b = q;
+    <span class="hljs-keyword">while</span> (a != b) {
+        <span class="hljs-comment">// a 走一步，如果走到根节点，转到 q 节点</span>
+        <span class="hljs-keyword">if</span> (a == null) a = q;
+        <span class="hljs-keyword">else</span>	a = a.parent;
+        <span class="hljs-comment">// b 走一步，如果走到根节点，转到 p 节点</span>
+        <span class="hljs-keyword">if</span> (b == null) b = p;
+        <span class="hljs-keyword">else</span>	b = b-&gt;parent;
+    }
+    <span class="hljs-keyword">return</span> a;
+}</code></pre></div>
 
 
 
@@ -955,7 +1280,7 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
 
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png" srcset="/img/loading.gif" lazyload alt="image-20220417231809203"></p>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>首先<code>偶数是不能构成满二叉树</code>的。 思路是把总node数分别左边，根，右边进行递归，如7个node可以分成1,1,5；3,1,5；5,1,1（左,根,右）。 5个node又可以分为1,1,3和3,1,1。 3个node又可以分为1,1,1。 1个node直接返回。</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     unordered_map&lt;<span class="hljs-keyword">int</span>, vector&lt;TreeNode*&gt;&gt; memo;
     <span class="hljs-function">vector&lt;TreeNode*&gt; <span class="hljs-title">allPossibleFBT</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
@@ -996,7 +1321,7 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
 
 <h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png" srcset="/img/loading.gif" lazyload alt="image-20220417233328660" style="zoom: 50%;">
 
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
       <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
@@ -1030,7 +1355,7 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
 <li>产生的以当前<code>i</code>为根结点的BST（子）树有<code>left_nodes.size() * right_nodes.size()</code>个，遍历每种情况，即可生成以<code>i</code>为根节点的BST序列；</li>
 <li>然后以<code>for</code>循环使得<code>[left, right]</code>中每个结点都能生成子树序列。</li>
 </ul>
-<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function">vector&lt;TreeNode*&gt; <span class="hljs-title">generateTrees</span><span class="hljs-params">(<span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span> </span>{
         <span class="hljs-keyword">if</span> (start &gt; end) {
@@ -1213,7 +1538,7 @@ cBTInserter.get_root(); // 返回 [<span class="hljs-number">1</span>, <span cla
 }
 </code></pre></div>
 
-<h4 id="迭代代码框架"><a href="#迭代代码框架" class="headerlink" title="迭代代码框架"></a>迭代代码框架</h4><p>想在迭代代码中体现前中后序遍历，关键点在哪里？</p>
+<h3 id="迭代代码框架"><a href="#迭代代码框架" class="headerlink" title="迭代代码框架"></a>迭代代码框架</h3><p>想在迭代代码中体现前中后序遍历，关键点在哪里？</p>
 <p><strong>当我从栈中拿出一个节点 <code>p</code>，我应该想办法搞清楚这个节点 <code>p</code> 左右子树的遍历情况</strong>。</p>
 <p>如果 <code>p</code> 的左右子树都没有被遍历，那么现在对 <code>p</code> 进行操作就属于前序遍历代码。</p>
 <p>如果 <code>p</code> 的左子树被遍历过了，而右子树没有被遍历过，那么现在对 <code>p</code> 进行操作就属于中序遍历代码。</p>
@@ -1451,7 +1776,7 @@ trie.<span class="hljs-keyword">insert</span>("app");
 trie.<span class="hljs-keyword">search</span>("app");     // 返回 <span class="hljs-keyword">True</span></code></pre></div>
 
 <h4 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h4><p>构建前缀树</p>
-<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span> {</span>
+<h4 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span> {</span>
 <span class="hljs-keyword">private</span>:
     vector&lt;Trie*&gt; next;
     <span class="hljs-keyword">bool</span> isEnd;
@@ -1500,7 +1825,7 @@ trie.<span class="hljs-keyword">search</span>("app");     // 返回 <span class=
 <div class="code-wrapper"><pre><code class="hljs smalltalk">输入：dictionary = [<span class="hljs-comment">"a"</span>,<span class="hljs-comment">"b"</span>,<span class="hljs-comment">"c"</span>], sentence = <span class="hljs-comment">"aadsfasf absbs bbab cadsfafs"</span>
 输出：<span class="hljs-comment">"a a b c"</span></code></pre></div>
 
-<h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
+<h4 id="代码-8"><a href="#代码-8" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
 <span class="hljs-keyword">private</span>:
     vector&lt;Trie*&gt; next;
     <span class="hljs-keyword">bool</span> isEnd;
@@ -1611,7 +1936,7 @@ wordDictionary.<span class="hljs-keyword">search</span>(".ad"); // 返回 <span 
 wordDictionary.<span class="hljs-keyword">search</span>("b.."); // 返回 <span class="hljs-keyword">True</span></code></pre></div>
 
 <h4 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h4><p>前缀树带通配符的匹配 加入startIndex进行递归</p>
-<h4 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
+<h4 id="代码-9"><a href="#代码-9" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
 <span class="hljs-keyword">private</span>:
     vector&lt;Trie*&gt; next;
     <span class="hljs-keyword">bool</span> isEnd;
@@ -1681,7 +2006,7 @@ wordDictionary.<span class="hljs-keyword">search</span>("b.."); // 返回 <span 
 <li>哈希解法 sort后 依次substr检查是否存在 存在则压入</li>
 <li>字典树  需要自己构建函数 isGoodWord查找单词路径上每个节点 是否都是isEnd</li>
 </ol>
-<h4 id="代码-8"><a href="#代码-8" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
+<h4 id="代码-10"><a href="#代码-10" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span>{</span>
 <span class="hljs-keyword">private</span>:
     vector&lt;Trie*&gt; next;
     <span class="hljs-keyword">bool</span> isEnd;
@@ -1772,7 +2097,7 @@ magicDictionary.<span class="hljs-keyword">search</span>("leetcoded"); // 返回
 
 <h4 id="思路-9"><a href="#思路-9" class="headerlink" title="思路"></a>思路</h4><p>用字典树的解法 其实没有那么麻烦 不要想的太复杂</p>
 <p>每一位都用其他的25个字母替换一下就行了</p>
-<h4 id="代码-9"><a href="#代码-9" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicDictionary</span> {</span>
+<h4 id="代码-11"><a href="#代码-11" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicDictionary</span> {</span>
 <span class="hljs-keyword">private</span>:
     vector&lt;MagicDictionary*&gt; next;
     <span class="hljs-keyword">bool</span> isEnd;
