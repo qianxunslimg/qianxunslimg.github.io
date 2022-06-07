@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220325183754754.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220325202117864.png">
 <meta property="article:published_time" content="2022-03-15T12:17:49.000Z">
-<meta property="article:modified_time" content="2022-06-06T17:22:54.600Z">
+<meta property="article:modified_time" content="2022-06-07T14:14:14.909Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1561,6 +1561,231 @@ k = <span class="hljs-number">1</span>
         nowH+=n;
       }
       <span class="hljs-keyword">return</span> nowH;
+    }
+};</code></pre></div>
+
+<h3 id="274-H-指数"><a href="#274-H-指数" class="headerlink" title="274. H 指数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/h-index/">274. H 指数</a></h3><p>难度中等262收藏分享切换为英文接收动态反馈</p>
+<p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
+<p>根据维基百科上 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin">h 指数的定义</a>：h 代表“高引用次数”，一名科研人员的 <code>h</code><strong>指数</strong>是指他（她）的 （<code>n</code> 篇论文中）<strong>总共</strong>有 <code>h</code> 篇论文分别被引用了<strong>至少</strong> <code>h</code> 次。且其余的 <em><code>n - h</code></em> 篇论文每篇被引用次数 <strong>不超过</strong> <em><code>h</code></em> 次。</p>
+<p>如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs tap">输入：citations = [3,0,6,1,5]
+输出：3 
+解释：给定数组表示研究者总共有<span class="hljs-number"> 5 </span>篇论文，每篇论文相应的被引用了 3, 0, 6, 1,<span class="hljs-number"> 5 </span>次。
+     由于研究者有<span class="hljs-number"> 3 </span>篇论文每篇 至少 被引用了<span class="hljs-number"> 3 </span>次，其余两篇论文每篇被引用 不多于<span class="hljs-number"> 3 </span>次，所以她的 h 指数是 3。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs fix"><span class="hljs-attr">输入：citations </span>=<span class="hljs-string"> [1,3,1]</span>
+<span class="hljs-string">输出：1</span></code></pre></div>
+
+<h4 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h4><p>注意是查找右边界的二分 最后的left要-1</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hIndex</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> right = *std::<span class="hljs-built_in">max_element</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+      <span class="hljs-keyword">while</span>(left &lt;= right){
+        <span class="hljs-keyword">int</span> mid = left + (right - left) /<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> papers = <span class="hljs-built_in">papersMoreThan</span>(nums, mid);
+        <span class="hljs-keyword">if</span>(papers &lt; mid)
+          right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(papers == mid)
+          left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> 
+          left = mid + <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-keyword">return</span> left - <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-comment">// 引用次数多于k的篇数</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">papersMoreThan</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span></span>{
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; num : nums){
+        <span class="hljs-keyword">if</span>(num &gt;= k)
+          ans++;
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h3 id="275-H-指数-II"><a href="#275-H-指数-II" class="headerlink" title="275. H 指数 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/h-index-ii/">275. H 指数 II</a></h3><p>难度中等197收藏分享切换为英文接收动态反馈</p>
+<p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数，<code>citations</code> 已经按照 <strong>升序排列</strong> 。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/h-index/3991452?fr=aladdin">h 指数的定义</a>：h 代表“高引用次数”（high citations），一名科研人员的 h 指数是指他（她）的 （<code>n</code> 篇论文中）<strong>总共</strong>有 <code>h</code> 篇论文分别被引用了<strong>至少</strong> <code>h</code> 次。且其余的 <em><code>n - h</code></em> 篇论文每篇被引用次数 <strong>不超过</strong> <em><code>h</code></em> 次。</p>
+<p><strong>提示：</strong>如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
+<p>请你设计并实现对数时间复杂度的算法解决此问题。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs tap">输入：citations = [0,1,3,5,6]
+输出：3 
+解释：给定数组表示研究者总共有<span class="hljs-number"> 5 </span>篇论文，每篇论文相应的被引用了 0, 1, 3, 5,<span class="hljs-number"> 6 </span>次。
+     由于研究者有<span class="hljs-number"> 3 </span>篇论文每篇 至少 被引用了<span class="hljs-number"> 3 </span>次，其余两篇论文每篇被引用 不多于<span class="hljs-number"> 3 </span>次，所以她的 h 指数是<span class="hljs-number"> 3 </span>。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：citations = [<span class="hljs-number">1,2,100</span>]
+输出：<span class="hljs-number">2</span></code></pre></div>
+
+<h4 id="解法1-同上"><a href="#解法1-同上" class="headerlink" title="解法1 同上"></a>解法1 同上</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hIndex</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> right = nums.<span class="hljs-built_in">back</span>();
+      <span class="hljs-keyword">while</span>(left &lt;= right){
+        <span class="hljs-keyword">int</span> mid = left + (right - left) /<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> papers = <span class="hljs-built_in">papersMoreThan</span>(nums, mid);
+        <span class="hljs-keyword">if</span>(papers &lt; mid)
+          right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(papers == mid)
+          left = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> 
+          left = mid + <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-keyword">return</span> left- <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-comment">// 引用次数多于k的篇数</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">papersMoreThan</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span></span>{
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; num : nums){
+        <span class="hljs-keyword">if</span>(num &gt;= k)
+          ans++;
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>因为已经是排序的 所以大于当前索引的数目可以由下标得到，转换为了查找左边界的二分，上一道题也可以这么做</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hIndex</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> right = n<span class="hljs-number">-1</span>;
+      <span class="hljs-keyword">while</span>(left &lt;= right){
+        <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> papers = n - mid; <span class="hljs-comment">//引用次数超过nums[mid]的篇数</span>
+        <span class="hljs-keyword">if</span>(papers &lt; nums[mid])
+          right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(papers == nums[mid])
+          right = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> 
+          left = mid + <span class="hljs-number">1</span>;
+      }
+      <span class="hljs-keyword">return</span> n - left;
+    }
+};</code></pre></div>
+
+
+
+<h3 id="29-两数相除"><a href="#29-两数相除" class="headerlink" title="29. 两数相除"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/divide-two-integers/">29. 两数相除</a></h3><p>难度中等915</p>
+<p>给定两个整数，被除数 <code>dividend</code> 和除数 <code>divisor</code>。将两数相除，要求不使用乘法、除法和 mod 运算符。</p>
+<p>返回被除数 <code>dividend</code> 除以除数 <code>divisor</code> 得到的商。</p>
+<p>整数除法的结果应当截去（<code>truncate</code>）其小数部分，例如：<code>truncate(8.345) = 8</code> 以及 <code>truncate(-2.7335) = -2</code></p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: dividend = 10, divisor = 3</span>
+<span class="hljs-section">输出: 3</span>
+<span class="hljs-section">解释: 10/3 = truncate(3.33333..) = truncate(3) = 3</span></code></pre></div>
+
+<p><strong>示例 2:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs subunit">输入: dividend = 7, divisor = <span class="hljs-string">-3</span>
+输出: <span class="hljs-string">-2</span>
+解释: 7/<span class="hljs-string">-3</span> = truncate(<span class="hljs-string">-2</span>.33333..) = <span class="hljs-string">-2</span></code></pre></div>
+
+<h4 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-keyword">int</span> dividend, <span class="hljs-keyword">int</span> divisor)</span> </span>{
+        <span class="hljs-comment">// 考虑被除数为最小值的情况</span>
+        <span class="hljs-keyword">if</span> (dividend == INT_MIN) {
+            <span class="hljs-keyword">if</span> (divisor == <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">return</span> INT_MIN;
+            }
+            <span class="hljs-keyword">if</span> (divisor == <span class="hljs-number">-1</span>) {
+                <span class="hljs-keyword">return</span> INT_MAX;
+            }
+        }
+        <span class="hljs-comment">// 考虑除数为最小值的情况</span>
+        <span class="hljs-keyword">if</span> (divisor == INT_MIN) {
+            <span class="hljs-keyword">return</span> dividend == INT_MIN ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-comment">// 考虑被除数为 0 的情况</span>
+        <span class="hljs-keyword">if</span> (dividend == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        
+        <span class="hljs-comment">// 一般情况，使用二分查找</span>
+        <span class="hljs-comment">// 将所有的正数取相反数，这样就只需要考虑一种情况</span>
+        <span class="hljs-keyword">bool</span> rev = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span> (dividend &gt; <span class="hljs-number">0</span>) {
+            dividend = -dividend;
+            rev = !rev;
+        }
+        <span class="hljs-keyword">if</span> (divisor &gt; <span class="hljs-number">0</span>) {
+            divisor = -divisor;
+            rev = !rev;
+        }
+
+        <span class="hljs-comment">// 快速乘</span>
+        <span class="hljs-keyword">auto</span> quickAdd = [](<span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z, <span class="hljs-keyword">int</span> x) {
+            <span class="hljs-comment">// x 和 y 是负数，z 是正数</span>
+            <span class="hljs-comment">// 需要判断 z * y &gt;= x 是否成立</span>
+            <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>, add = y;
+            <span class="hljs-keyword">while</span> (z) {
+                <span class="hljs-keyword">if</span> (z &amp; <span class="hljs-number">1</span>) {
+                    <span class="hljs-comment">// 需要保证 result + add &gt;= x</span>
+                    <span class="hljs-keyword">if</span> (result &lt; x - add) {
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                    }
+                    result += add;
+                }
+                <span class="hljs-keyword">if</span> (z != <span class="hljs-number">1</span>) {
+                    <span class="hljs-comment">// 需要保证 add + add &gt;= x</span>
+                    <span class="hljs-keyword">if</span> (add &lt; x - add) {
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                    }
+                    add += add;
+                }
+                <span class="hljs-comment">// 不能使用除法</span>
+                z &gt;&gt;= <span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        };
+        
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">1</span>, right = INT_MAX, ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (left &lt;= right) {
+            <span class="hljs-comment">// 注意溢出，并且不能使用除法</span>
+            <span class="hljs-keyword">int</span> mid = left + ((right - left) &gt;&gt; <span class="hljs-number">1</span>);
+            <span class="hljs-keyword">bool</span> check = <span class="hljs-built_in">quickAdd</span>(divisor, mid, dividend);
+            <span class="hljs-keyword">if</span> (check) {
+                ans = mid;
+                <span class="hljs-comment">// 注意溢出</span>
+                <span class="hljs-keyword">if</span> (mid == INT_MAX) {
+                    <span class="hljs-keyword">break</span>;
+                }
+                left = mid + <span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">else</span> {
+                right = mid - <span class="hljs-number">1</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> rev ? -ans : ans;
+    }
+};</code></pre></div>
+
+<h4 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-keyword">int</span> dividend, <span class="hljs-keyword">int</span> divisor)</span> </span>{
+        <span class="hljs-keyword">if</span> (dividend == INT_MIN &amp;&amp; divisor == <span class="hljs-number">-1</span>) {
+            <span class="hljs-keyword">return</span> INT_MAX;
+        }
+        <span class="hljs-keyword">long</span> dvd = <span class="hljs-built_in">labs</span>(dividend), dvs = <span class="hljs-built_in">labs</span>(divisor), ans = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> sign = dividend &gt; <span class="hljs-number">0</span> ^ divisor &gt; <span class="hljs-number">0</span> ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span> (dvd &gt;= dvs) {
+            <span class="hljs-keyword">long</span> temp = dvs, m = <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">while</span> (temp &lt;&lt; <span class="hljs-number">1</span> &lt;= dvd) {
+                temp &lt;&lt;= <span class="hljs-number">1</span>;
+                m &lt;&lt;= <span class="hljs-number">1</span>;
+            }
+            dvd -= temp;
+            ans += m;
+        }
+        <span class="hljs-keyword">return</span> sign * ans;
     }
 };</code></pre></div>
 
