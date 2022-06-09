@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:32:07.885Z">
+<meta property="article:modified_time" content="2022-06-08T14:15:50.200Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -808,23 +808,23 @@
 }</code></pre></div>
 
 <p>更更好理解的一个 <code>记这个</code></p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;tmp)</span> </span>{
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;tmp)</span> </span>{
   <span class="hljs-comment">// 终止条件</span>
-  <span class="hljs-keyword">if</span> (l &gt;= r)
+  <span class="hljs-keyword">if</span> (left &gt;= right)
     <span class="hljs-keyword">return</span>;
   <span class="hljs-comment">// 递归划分</span>
-  <span class="hljs-keyword">int</span> m = (l + r) / <span class="hljs-number">2</span>;
-  <span class="hljs-built_in">merge</span>(l, m, nums, tmp);
-  <span class="hljs-built_in">merge</span>(m + <span class="hljs-number">1</span>, r, nums, tmp);
+  <span class="hljs-keyword">int</span> mid = (left + right) / <span class="hljs-number">2</span>;
+  <span class="hljs-built_in">merge</span>(left, mid, nums, tmp);
+  <span class="hljs-built_in">merge</span>(mid + <span class="hljs-number">1</span>, right, nums, tmp);
   <span class="hljs-comment">// 合并阶段</span>
-  <span class="hljs-keyword">int</span> i = l, j = m + <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++)
+  <span class="hljs-keyword">int</span> i = left, j = mid + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = left; k &lt;= right; k++)
     tmp[k] = nums[k];
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = l; k &lt;= r; k++) {
-    <span class="hljs-keyword">if</span> (i == m + <span class="hljs-number">1</span>) <span class="hljs-comment">//i == mid+ 1表示左侧排完 只能排右边了</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = left; k &lt;= right; k++) {
+    <span class="hljs-keyword">if</span> (i == mid + <span class="hljs-number">1</span>) <span class="hljs-comment">//i == mid+ 1表示左侧排完 只能排右边了</span>
       nums[k] = tmp[j++];
     <span class="hljs-comment">//j == r+1表示右边排完 只能排左边</span>
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j == r + <span class="hljs-number">1</span> || tmp[i] &lt;= tmp[j])
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j == right + <span class="hljs-number">1</span> || tmp[i] &lt;= tmp[j])
       nums[k] = tmp[i++];
     <span class="hljs-keyword">else</span> <span class="hljs-comment">//都没排完，且temp[i]&gt;temp[j]</span>
       nums[k] = tmp[j++];
