@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
 <meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-06-09T12:58:27.264Z">
+<meta property="article:modified_time" content="2022-06-09T15:32:23.704Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -971,6 +971,134 @@ son is created
 <li>使用一个<code>公有的静态方法获取该实例</code>。</li>
 </ol>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-懒汉版（Lazy-Singleton）"><a href="#2-懒汉版（Lazy-Singleton）" class="headerlink" title="2. 懒汉版（Lazy Singleton）"></a><strong>2. 懒汉版（Lazy Singleton）</strong></h3><p>教学版，即懒汉版（Lazy Singleton）：单例实例在第一次被使用时才进行初始化，这叫做延迟初始化。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.0</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Singleton *instance;
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton *<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">NULL</span>)
+      instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+    <span class="hljs-keyword">return</span> instance;
+  }
+};
+
+<span class="hljs-comment">// init static member</span>
+Singleton *Singleton::instance = <span class="hljs-literal">NULL</span>;</code></pre></div>
+
+<p><strong>问题1：</strong>Lazy Singleton存在<code>内存泄露</code>的问题，有两种解决方法：</p>
+<blockquote>
+<p>私有的析构函数 无法析构对象 delete会直接报错<a target="_blank" rel="noopener" href="https://blog.csdn.net/shltsh/article/details/45958697">C++构造与析构(10) - private析构函数_水草的博客-CSDN博客_private 析构函数</a></p>
+</blockquote>
+<ol>
+<li>使用<code>智能指针</code></li>
+<li>使用<code>静态的嵌套类对象</code></li>
+</ol>
+<p>对于第二种解决方法，代码如下：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.1</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Singleton *instance;
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Deletor</span> {</span>
+  <span class="hljs-keyword">public</span>:
+    ~<span class="hljs-built_in">Deletor</span>() {
+      <span class="hljs-keyword">if</span> (Singleton::instance != <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">delete</span> Singleton::instance;
+    }
+  };
+  <span class="hljs-keyword">static</span> Deletor deletor;
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton *<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">NULL</span>) {
+      instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+    }
+    <span class="hljs-keyword">return</span> instance;
+  }
+};
+
+<span class="hljs-comment">// init static member</span>
+Singleton *Singleton::instance = <span class="hljs-literal">NULL</span>;
+Singleton::Deletor Singleton::deletor;</code></pre></div>
+
+<p>在程序运行结束时，系统会调用静态成员<code>deletor</code>的析构函数，该析构函数会删除单例的唯一实例。使用这种方法释放单例对象有以下特征：</p>
+<ul>
+<li>在单例类内部定义专有的嵌套类。</li>
+<li>在单例类内定义私有的专门用于释放的静态成员。</li>
+<li>利用程序在结束时析构全局变量的特性，选择最终的释放时机。</li>
+</ul>
+<p><code>在单例类内再定义一个嵌套类，总是感觉很麻烦。</code></p>
+<p><strong>问题2：</strong>这个代码在单线程环境下是正确无误的，但是当拿到多线程环境下时这份代码就会出现race condition，注意version 1.0与version 1.1都不是线程安全的。要使其线程安全，能在多线程环境下实现单例模式</p>
+<blockquote>
+<p>单例的初始化是不安全的 </p>
+</blockquote>
+<p>C++11规定了local static在多线程条件下的初始化行为，要求编译器保证了内部静态变量的线程安全性。在C++11标准下，《Effective C++》提出了一种更优雅的单例模式实现，使用函数内的 local static 对象。这样，只有当第一次访问<code>getInstance()</code>方法时才创建实例。这种方法也被称为Meyers’ Singleton。C++0x之后该实现是线程安全的，C++0x之前仍需加锁。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.2</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">static</span> Singleton instance;
+    <span class="hljs-keyword">return</span> instance;
+  }
+  
+  <span class="hljs-comment">// 或者</span>
+  <span class="hljs-function"><span class="hljs-keyword">static</span> shared_ptr&lt;Singleton&gt; &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> shared_ptr&lt;Singleton&gt; <span class="hljs-title">instance</span><span class="hljs-params">(<span class="hljs-keyword">new</span> Singleton)</span></span>;
+    <span class="hljs-keyword">return</span> instance;
+  }
+};</code></pre></div>
+
+<blockquote>
+<p>局部静态变量可以保证线程安全</p>
+</blockquote>
+<h3 id="3-饿汉版（Eager-Singleton）"><a href="#3-饿汉版（Eager-Singleton）" class="headerlink" title="3. 饿汉版（Eager Singleton）"></a><strong>3. 饿汉版（Eager Singleton）</strong></h3><p>饿汉版（Eager Singleton）：<code>指单例实例在程序运行时被立即执行初始化</code></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.3</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Singleton instance;
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>();
+  ~<span class="hljs-built_in">Singleton</span>();
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> instance; }
+}
+
+<span class="hljs-comment">// initialize defaultly</span>
+Singleton Singleton::instance;</code></pre></div>
+
+<p>由于在main函数之前初始化，所以没有线程安全的问题。但是潜在问题在于no-local static对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的。也即，static Singleton instance;和static Singleton&amp; getInstance()二者的初始化顺序不确定，如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
+<p>总结：</p>
+<ul>
+<li>Eager Singleton 虽然是线程安全的，但存在潜在问题；</li>
+<li>Lazy Singleton通常需要加锁来保证线程安全，但局部静态变量版本在C++11后是线程安全的；</li>
+<li>局部静态变量版本（Meyers Singleton）最优雅。</li>
+</ul>
 
               
             </div>
