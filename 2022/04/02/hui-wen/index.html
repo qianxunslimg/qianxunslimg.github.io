@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220406112344685.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610113052739.png">
 <meta property="article:published_time" content="2022-04-02T12:17:49.000Z">
-<meta property="article:modified_time" content="2022-06-10T03:34:50.260Z">
+<meta property="article:modified_time" content="2022-06-10T13:15:06.214Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -923,14 +923,14 @@
     }
 };</code></pre></div>
 
-<h3 id="730-统计不同回文子序列"><a href="#730-统计不同回文子序列" class="headerlink" title="730. 统计不同回文子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-different-palindromic-subsequences/">730. 统计不同回文子序列</a></h3><p>难度困难197</p>
+<h3 id="730-统计不同回文子序列-的个数"><a href="#730-统计不同回文子序列-的个数" class="headerlink" title="730. 统计不同回文子序列 的个数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-different-palindromic-subsequences/">730. 统计不同回文子序列 的个数</a></h3><p>难度困难197</p>
 <p>给定一个字符串 s，返回 <em><code>s</code> 中不同的非空「回文子序列」个数 。</em></p>
 <p>通过从 s 中删除 0 个或多个字符来获得子序列。</p>
 <p>如果一个字符序列与它反转后的字符序列一致，那么它是「回文字符序列」。</p>
 <p>如果有某个 <code>i</code> , 满足 <code>ai != bi</code> ，则两个序列 <code>a1, a2, ...</code> 和 <code>b1, b2, ...</code> 不同。</p>
 <p><strong>注意：</strong></p>
 <ul>
-<li>结果可能很大，你需要对 <code>10^9^ + 7</code> 取模 。</li>
+<li>结果可能很大，你需要对 10^9^ + 7 取模 。</li>
 </ul>
 <p><strong>示例 1：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs 1c">输入：s = 'bccb'
@@ -978,6 +978,57 @@
       }
       <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     }
+};</code></pre></div>
+
+<h4 id="dp-1"><a href="#dp-1" class="headerlink" title="dp"></a>dp</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countPalindromicSubsequences</span><span class="hljs-params">(string S)</span> </span>{
+    <span class="hljs-keyword">int</span> strSize = S.<span class="hljs-built_in">size</span>(), M = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;
+    <span class="hljs-comment">// dp[i][j]表示的S[i, j]这段字符串中不同的回文子序列个数</span>
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(strSize, vector&lt;<span class="hljs-keyword">int</span>&gt;(strSize, <span class="hljs-number">0</span>));
+    <span class="hljs-comment">//初始化，当个长度的字符串也是一个结果</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; strSize; ++i) {
+      dp[i][i] = <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-comment">//开始动态规划</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = strSize - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; --i) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; strSize; ++j) {
+        <span class="hljs-comment">//上面的两层for循环用于穷举区间[i,</span>
+        <span class="hljs-comment">//j]，i用于确定区间的起点，j确定区间的尾端，并且区间的长度都是由2逐渐增大</span>
+        <span class="hljs-keyword">if</span> (S[i] == S[j]) {
+          <span class="hljs-comment">// left用于寻找与S[i]相同的左端第一个下标，right用于寻找与S[i]相同的右端第一个下标</span>
+          <span class="hljs-keyword">int</span> left = i + <span class="hljs-number">1</span>, right = j - <span class="hljs-number">1</span>;
+          <span class="hljs-keyword">while</span> (left &lt;= right &amp;&amp; S[left] != S[i]) {
+            ++left;
+          }
+          <span class="hljs-keyword">while</span> (left &lt;= right &amp;&amp; S[right] != S[i]) {
+            --right;
+          }
+          <span class="hljs-keyword">if</span> (left &gt; right) {
+            <span class="hljs-comment">//中间没有和S[i]相同的字母，例如"aba"这种情况</span>
+            <span class="hljs-comment">//其中dp[i + 1][j -</span>
+            <span class="hljs-comment">//1]是中间部分的回文子序列个数，因为中间的所有子序列可以单独存在，也可以再外面包裹上字母a，所以是成对出现的，要乘2。</span>
+            <span class="hljs-comment">//加2的原因是外层的"a"和"aa"也要统计上</span>
+            dp[i][j] = dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] * <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;
+          } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (left == right) {
+            <span class="hljs-comment">//中间只有一个和S[i]相同的字母，就是"aaa"这种情况，</span>
+            <span class="hljs-comment">//其中乘2的部分跟上面的原因相同，</span>
+            <span class="hljs-comment">//加1的原因是单个字母"a"的情况已经在中间部分算过了，外层就只能再加上个"aa"了。</span>
+            dp[i][j] = dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+          } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">//中间至少有两个和S[i]相同的字母，就是"aabaa"这种情况，</span>
+            <span class="hljs-comment">//其中乘2的部分跟上面的原因相同，要减去left和right中间部分的子序列个数的原因是其被计算了两遍，要将多余的减掉。</span>
+            dp[i][j] = dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] * <span class="hljs-number">2</span> - dp[left + <span class="hljs-number">1</span>][right - <span class="hljs-number">1</span>];
+          }
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-comment">// dp[i][j - 1] + dp[i + 1][j]这里计算了dp[i + 1][j - 1]两遍</span>
+          dp[i][j] = dp[i][j - <span class="hljs-number">1</span>] + dp[i + <span class="hljs-number">1</span>][j] - dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>];
+        }
+        dp[i][j] = (dp[i][j] &lt; <span class="hljs-number">0</span>) ? dp[i][j] + M : dp[i][j] % M;
+      }
+    }
+    <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][strSize - <span class="hljs-number">1</span>];
+  }
 };</code></pre></div>
 
 
