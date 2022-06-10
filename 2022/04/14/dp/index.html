@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
 <meta property="article:published_time" content="2022-04-13T17:52:49.000Z">
-<meta property="article:modified_time" content="2022-06-01T01:48:27.710Z">
+<meta property="article:modified_time" content="2022-06-10T07:33:02.791Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -468,6 +468,33 @@
       <span class="hljs-keyword">return</span> ans&gt;<span class="hljs-number">2</span>?ans:<span class="hljs-number">0</span>;
     }
 };</code></pre></div>
+
+<h3 id="剑指-Offer-46-把数字翻译成字符串"><a href="#剑指-Offer-46-把数字翻译成字符串" class="headerlink" title="剑指 Offer 46. 把数字翻译成字符串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/">剑指 Offer 46. 把数字翻译成字符串</a></h3><p>难度中等448</p>
+<p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入: <span class="hljs-number">12258</span>
+输出: <span class="hljs-number">5</span>
+解释: <span class="hljs-number">12258</span>有<span class="hljs-number">5</span>种不同的翻译，分别是<span class="hljs-string">"bccfi"</span>, <span class="hljs-string">"bwfi"</span>, <span class="hljs-string">"bczi"</span>, <span class="hljs-string">"mcfi"</span>和<span class="hljs-string">"mzi"</span></code></pre></div>
+
+<h4 id="青蛙跳台阶"><a href="#青蛙跳台阶" class="headerlink" title="青蛙跳台阶"></a><code>青蛙跳台阶</code></h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">translateNum</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>{
+      string s = <span class="hljs-built_in">to_string</span>(num);
+      <span class="hljs-keyword">if</span>(s.<span class="hljs-built_in">size</span>() == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(s.size())</span></span>;
+      dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+      dp[<span class="hljs-number">1</span>] = (s.<span class="hljs-built_in">substr</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>) &gt;=<span class="hljs-string">"10"</span> &amp;&amp; s.<span class="hljs-built_in">substr</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)&lt;=<span class="hljs-string">"25"</span>)?<span class="hljs-number">2</span>:<span class="hljs-number">1</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">int</span> temp = (s[i<span class="hljs-number">-1</span>]-<span class="hljs-string">'0'</span>)*<span class="hljs-number">10</span> + (s[i]-<span class="hljs-string">'0'</span>);
+        <span class="hljs-keyword">if</span>(temp&lt;<span class="hljs-number">10</span> || temp&gt;<span class="hljs-number">25</span>)
+          dp[i] = dp[i<span class="hljs-number">-1</span>];
+        <span class="hljs-keyword">else</span> dp[i] = dp[i<span class="hljs-number">-1</span>] + dp[i<span class="hljs-number">-2</span>];
+      }
+      <span class="hljs-keyword">return</span> dp[s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>];
+    }
+};</code></pre></div>
+
+
 
 <h3 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle/">118. 杨辉三角</a></h3><p>给定一个非负整数 <em><code>numRows</code>，</em>生成「杨辉三角」的前 <em><code>numRows</code></em> 行。</p>
 <p>在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>

@@ -26,8 +26,9 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626421737-LjXceN-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626422231-wgvnWh-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220406112344685.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610113052739.png">
 <meta property="article:published_time" content="2022-04-02T12:17:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:31:47.077Z">
+<meta property="article:modified_time" content="2022-06-10T03:34:50.260Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -288,27 +289,24 @@
 <li>开辟新string 判断是否回文</li>
 <li>原地判断 一次遍历</li>
 </ol>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>开辟新string 判断是否回文</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="开辟新string-判断是否回文"><a href="#开辟新string-判断是否回文" class="headerlink" title="开辟新string 判断是否回文"></a>开辟新string 判断是否回文</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(string s)</span> </span>{
-        string ss;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
-            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">tolower</span>(s[i])&gt;=<span class="hljs-string">'a'</span> &amp;&amp; <span class="hljs-built_in">tolower</span>(s[i])&lt;=<span class="hljs-string">'z'</span>  ||(s[i]&gt;=<span class="hljs-string">'0'</span> &amp;&amp;s[i]&lt;=<span class="hljs-string">'9'</span>))
-                ss += <span class="hljs-built_in">tolower</span>(s[i]);
-        }
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">isHuiWen</span>(ss);
-    }
-    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isHuiWen</span><span class="hljs-params">(string s)</span></span>{
-        string ss = s;
-        <span class="hljs-built_in">reverse</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>());
-        cout&lt;&lt;s&lt;&lt;endl;
-        <span class="hljs-keyword">return</span> ss == s;
+      <span class="hljs-keyword">if</span>(s.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+      string ss;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span>&amp; ch : s)
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isalpha</span>(ch) || <span class="hljs-built_in">isdigit</span>(ch))
+          ss += <span class="hljs-built_in">isalpha</span>(ch) ? <span class="hljs-built_in">tolower</span>(ch) : ch;
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = ss.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;
+      <span class="hljs-keyword">while</span>(left &lt; right){
+        <span class="hljs-keyword">if</span>(ss[left++] != ss[right--])
+          <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     }
 };</code></pre></div>
 
-<p>原地判断 一次遍历</p>
-<div class="code-wrapper"><pre><code class="hljs c++">
+<h4 id="原地判断-一次遍历"><a href="#原地判断-一次遍历" class="headerlink" title="原地判断 一次遍历"></a>原地判断 一次遍历</h4><div class="code-wrapper"><pre><code class="hljs c++">
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(string s)</span> </span>{
@@ -336,6 +334,33 @@
     }
 };</code></pre></div>
 
+<h4 id="官方解法"><a href="#官方解法" class="headerlink" title="官方解法"></a>官方解法</h4><p><code>函数 isalnum()判断是否是字母或者数字</code></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(string s)</span> </span>{
+        <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span> (left &lt; right) {
+            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; !<span class="hljs-built_in">isalnum</span>(s[left])) {
+                ++left;
+            }
+            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; !<span class="hljs-built_in">isalnum</span>(s[right])) {
+                --right;
+            }
+            <span class="hljs-keyword">if</span> (left &lt; right) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">tolower</span>(s[left]) != <span class="hljs-built_in">tolower</span>(s[right])) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                }
+                ++left;
+                --right;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+};</code></pre></div>
+
+
+
 <h3 id="剑指-Offer-II-027-回文链表"><a href="#剑指-Offer-II-027-回文链表" class="headerlink" title="剑指 Offer II 027. 回文链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/aMhZSa/">剑指 Offer II 027. 回文链表</a></h3><p>难度简单42</p>
 <p>给定一个链表的 <strong>头节点</strong> <code>head</code> <strong>，</strong>请判断其是否为回文链表。</p>
 <p>如果一个链表是回文，那么链表节点序列从前往后看和从后往前看是相同的。</p>
@@ -353,7 +378,7 @@
 <li>笨比vector</li>
 <li>快慢指针 反转一半</li>
 </ol>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(ListNode* head)</span> </span>{
         vector&lt;<span class="hljs-keyword">int</span>&gt; nums;
@@ -448,7 +473,7 @@
 <li>难点在于不转换为字符串或者数组</li>
 <li>反转一半 反转后的数字为大半 剩余的为小半</li>
 </ol>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPalindrome</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{
         <span class="hljs-comment">// 特殊情况：</span>
@@ -482,7 +507,7 @@
 输出：<span class="hljs-literal">true</span>（排列有<span class="hljs-string">"tacocat"</span>、<span class="hljs-string">"atcocta"</span>，等等）</code></pre></div>
 
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>用到回文一个性质 奇数个数的元素 只可能存在一个 或 0个</p>
-<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">canPermutePalindrome</span><span class="hljs-params">(string s)</span> </span>{
         unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; mapp;
@@ -515,7 +540,7 @@
 输出: <span class="hljs-literal">false</span></code></pre></div>
 
 <h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><p>不等的时候 判断两次字串</p>
-<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">validPalindrome</span><span class="hljs-params">(string s)</span> </span>{
         <span class="hljs-keyword">bool</span> ans = <span class="hljs-number">0</span>;
@@ -587,7 +612,7 @@
 <p>left - right 10-100 一次while生成的回文数 101 111 121 131…999 和 1001 1111 1221 1331…9999</p>
 <p>……</p>
 </blockquote>
-<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPrim</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{ <span class="hljs-comment">/* 质数判断 */</span>
         <span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span>) {
@@ -646,7 +671,7 @@
 <ol start="2">
 <li>马拉车算法，我选择放弃<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/37289584">有什么浅显易懂的Manacher Algorithm讲解？ - 知乎 (zhihu.com)</a></li>
 </ol>
-<h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//一次</span>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//一次</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countSubstrings</span><span class="hljs-params">(string s)</span> </span>{
@@ -740,7 +765,7 @@
 
 <h4 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h4><p>中心扩展 直接返回string还好操作一点 </p>
 <p>返回左右下标 节省空间 </p>
-<h4 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function">string <span class="hljs-title">expandCenter</span><span class="hljs-params">(string&amp; s, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
       <span class="hljs-keyword">while</span>(left&gt;= <span class="hljs-number">0</span> &amp;&amp; right&lt;s.<span class="hljs-built_in">size</span>() &amp;&amp; s[left] == s[right]){
@@ -802,7 +827,7 @@
 输出：<span class="hljs-string">[["a"]]</span></code></pre></div>
 
 <h4 id="思路-8"><a href="#思路-8" class="headerlink" title="思路"></a>思路</h4><p>回溯，检测每个字串是否是回文 回文的话压入path 否则跳过</p>
-<h4 id="代码-8"><a href="#代码-8" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     vector&lt;vector&lt;string&gt;&gt; ans;
     vector&lt;string&gt; path;
@@ -868,7 +893,116 @@
 输出：<span class="hljs-number">2</span>
 解释：一个可能的最长回文子序列为 <span class="hljs-string">"bb"</span> 。</code></pre></div>
 
+<h5 id="dp"><a href="#dp" class="headerlink" title="dp"></a>dp</h5><p>dp数组含义：dpij表示 i到j下标的字串的最大回文子序列的长度</p>
+<p>basecase：对角线位置 也就是 单个字符的dpii为1</p>
+<p>状态转移方程：</p>
+<div class="code-wrapper"><pre><code class="hljs">1. si == sj dpij由内部扩展+2
+ 2. si != sj dpij取两个情况的dp最大值
+</code></pre></div>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610113052739.png" srcset="/img/loading.gif" lazyload alt="image-20220610113052739"></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestPalindromeSubseq</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">size</span>();
+      <span class="hljs-comment">//dpij表示 ij范围内字串的最大回文长度</span>
+      vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n, vector&lt;<span class="hljs-keyword">int</span>&gt;(n));
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++)
+        dp[i][i] = <span class="hljs-number">1</span>;
+      <span class="hljs-comment">//注意理解一下i为什么反向</span>
+      <span class="hljs-comment">//因为状态转移方程是i从i+1转移而来的</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = n<span class="hljs-number">-1</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j&lt;n; j++){
+          <span class="hljs-comment">// 它俩一定在最长回文子序列中</span>
+          <span class="hljs-keyword">if</span>(s[j] == s[i])
+            dp[i][j] = dp[i+<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>]+<span class="hljs-number">2</span>;
+          <span class="hljs-keyword">else</span>
+            dp[i][j] = <span class="hljs-built_in">max</span>(dp[i+<span class="hljs-number">1</span>][j], dp[i][j<span class="hljs-number">-1</span>]);
+        }
+      }
+      <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][n<span class="hljs-number">-1</span>];
+    }
+};</code></pre></div>
 
+<h3 id="730-统计不同回文子序列"><a href="#730-统计不同回文子序列" class="headerlink" title="730. 统计不同回文子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-different-palindromic-subsequences/">730. 统计不同回文子序列</a></h3><p>难度困难197</p>
+<p>给定一个字符串 s，返回 <em><code>s</code> 中不同的非空「回文子序列」个数 。</em></p>
+<p>通过从 s 中删除 0 个或多个字符来获得子序列。</p>
+<p>如果一个字符序列与它反转后的字符序列一致，那么它是「回文字符序列」。</p>
+<p>如果有某个 <code>i</code> , 满足 <code>ai != bi</code> ，则两个序列 <code>a1, a2, ...</code> 和 <code>b1, b2, ...</code> 不同。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>结果可能很大，你需要对 <code>10^9^ + 7</code> 取模 。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = 'bccb'
+输出：<span class="hljs-number">6</span>
+解释：<span class="hljs-number">6</span> 个不同的非空回文子字符序列分别为：'b', 'c', 'bb', 'cc', 'bcb', 'bccb'。
+注意：'bcb' 虽然出现两次但仅计数一次。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：s = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba'
+输出：<span class="hljs-number">104860361</span>
+解释：共有 <span class="hljs-number">3104860382</span> 个不同的非空回文子序列，<span class="hljs-number">104860361</span> 对 <span class="hljs-number">109</span> + <span class="hljs-number">7</span> 取模后的值。</code></pre></div>
+
+<h4 id="暴力回溯"><a href="#暴力回溯" class="headerlink" title="暴力回溯"></a>暴力回溯</h4><p>emmm 手写的用例可以过 提交一个都过不了</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> Mod = <span class="hljs-built_in">pow</span>(<span class="hljs-number">10</span>, <span class="hljs-number">9</span>) + <span class="hljs-number">7</span>;
+    vector&lt;string&gt; ans;
+    unordered_set&lt;string&gt; sett;
+    string path;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countPalindromicSubsequences</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-built_in">backtrack</span>(s, <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">return</span> ans.<span class="hljs-built_in">size</span>()%Mod;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(string&amp; s, <span class="hljs-keyword">int</span> startIndex)</span></span>{
+      <span class="hljs-keyword">if</span>(startIndex == s.<span class="hljs-built_in">size</span>())  <span class="hljs-keyword">return</span>;
+
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = startIndex; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        path+=s[i];
+        <span class="hljs-keyword">if</span>(!sett.<span class="hljs-built_in">count</span>(path) &amp;&amp; <span class="hljs-built_in">isP</span>(path)){
+          ans.<span class="hljs-built_in">push_back</span>(path);
+          cout&lt;&lt;path&lt;&lt;endl;
+          sett.<span class="hljs-built_in">insert</span>(path);
+        }
+        <span class="hljs-built_in">backtrack</span>(s, i+<span class="hljs-number">1</span>);
+        path.<span class="hljs-built_in">pop_back</span>();
+      }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isP</span><span class="hljs-params">(<span class="hljs-keyword">const</span> string&amp; s)</span></span>{
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = s.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;
+      <span class="hljs-keyword">while</span>(left &lt; right){
+        <span class="hljs-keyword">if</span>(s[left++] != s[right--])
+          <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+};</code></pre></div>
+
+
+
+
+
+<h3 id="1312-让字符串成为回文串的最少插入次数"><a href="#1312-让字符串成为回文串的最少插入次数" class="headerlink" title="1312. 让字符串成为回文串的最少插入次数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/">1312. 让字符串成为回文串的最少插入次数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1312">labuladong 题解</a></p>
+<p>难度困难146</p>
+<p>给你一个字符串 <code>s</code> ，每一次操作你都可以在字符串的任意位置插入任意字符。</p>
+<p>请你返回让 <code>s</code> 成为回文串的 <strong>最少操作次数</strong> 。</p>
+<p>「回文串」是正读和反读都相同的字符串。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"zzazz"</span>
+输出：<span class="hljs-number">0</span>
+解释：字符串 <span class="hljs-string">"zzazz"</span> 已经是回文串了，所以不需要做任何插入操作。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"mbadm"</span>
+输出：<span class="hljs-number">2</span>
+解释：字符串可变为 <span class="hljs-string">"mbdadbm"</span> 或者 <span class="hljs-string">"mdbabdm"</span> 。</code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"leetcode"</span>
+输出：<span class="hljs-number">5</span>
+解释：插入 <span class="hljs-number">5</span> 个字符后字符串变为 <span class="hljs-string">"leetcodocteel"</span> 。</code></pre></div>
               
             </div>
             <hr/>

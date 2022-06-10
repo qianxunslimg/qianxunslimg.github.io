@@ -16,13 +16,20 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+    <meta name="description" content="dfs54. 螺旋矩阵 不是dfs 但是有四个方向labuladong 题解 难度中等1118 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。 示例 1：  输入：matrix &#x3D; [[1,2,3],[4,5,6],[7,8,9]] 输出：[1,2,3,6,9,8,7,4,5]  示例 2：  输入：matrix &#x3D; [[1,2,3,4],[5,6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bfs">
+<meta property="og:title" content="dfs&amp;bfs">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/04/18/bfs/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="bfs介绍之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别 二维矩阵 或者说 图 的bfs从岛屿问题感受下 引入 200. 岛屿数量labuladong 题解思路 难度中等1672">
+<meta property="og:description" content="dfs54. 螺旋矩阵 不是dfs 但是有四个方向labuladong 题解 难度中等1118 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。 示例 1：  输入：matrix &#x3D; [[1,2,3],[4,5,6],[7,8,9]] 输出：[1,2,3,6,9,8,7,4,5]  示例 2：  输入：matrix &#x3D; [[1,2,3,4],[5,6">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/spiral1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/spiral.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/ball.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/maxarea1-grid.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sample_3_1610.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/enclaves1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/test1.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667201-NCWmuP-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626667205-xFxIeK-image.png">
@@ -31,15 +38,15 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/trees1.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/grid1.jpg">
 <meta property="article:published_time" content="2022-04-18T07:53:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:32:43.995Z">
+<meta property="article:modified_time" content="2022-06-10T12:40:08.536Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220418163802022.png">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/spiral1.jpg">
   
   
   
-  <title>bfs - qianxunslimgのblog</title>
+  <title>dfs&amp;bfs - qianxunslimgのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -205,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="bfs"></span>
+            <span id="subtitle" data-typed-text="dfs&amp;bfs"></span>
           
         </div>
 
@@ -271,11 +278,581 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">bfs</h1>
+            <h1 style="display: none">dfs&amp;bfs</h1>
             
             <div class="markdown-body">
               
-              <h2 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs</p>
+              <h1 id="dfs"><a href="#dfs" class="headerlink" title="dfs"></a>dfs</h1><h3 id="54-螺旋矩阵-不是dfs-但是有四个方向"><a href="#54-螺旋矩阵-不是dfs-但是有四个方向" class="headerlink" title="54. 螺旋矩阵 不是dfs 但是有四个方向"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix/">54. 螺旋矩阵</a> 不是dfs 但是有四个方向</h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=54">labuladong 题解</a></p>
+<p>难度中等1118</p>
+<p>给你一个 <code>m</code> 行 <code>n</code> 列的矩阵 <code>matrix</code> ，请按照 <strong>顺时针螺旋顺序</strong> ，返回矩阵中的所有元素。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/spiral1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：matrix = <span class="hljs-comment">[<span class="hljs-comment">[1,2,3]</span>,<span class="hljs-comment">[4,5,6]</span>,<span class="hljs-comment">[7,8,9]</span>]</span>
+输出：<span class="hljs-comment">[1,2,3,6,9,8,7,4,5]</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/spiral.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：matrix = [[<span class="hljs-number">1,2,3,4</span>],[<span class="hljs-number">5,6,7,8</span>],[<span class="hljs-number">9,10,11,12</span>]]
+输出：[<span class="hljs-number">1,2,3,4</span>,<span class="hljs-number">8,12,11,10</span>,<span class="hljs-number">9,5,6,7</span>]</code></pre></div>
+
+<h4 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir{{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}};
+  <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">spiralOrder</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;matrix)</span> </span>{
+    <span class="hljs-keyword">int</span> m = matrix.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">if</span>(m == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> {};
+    <span class="hljs-keyword">int</span> n = matrix[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+    vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+    vector&lt;vector&lt;<span class="hljs-keyword">bool</span>&gt;&gt; <span class="hljs-built_in">used</span>(m, vector&lt;<span class="hljs-keyword">bool</span>&gt;(n, <span class="hljs-number">0</span>));
+    <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> row = <span class="hljs-number">0</span>, col = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m * n; i++) {
+      ans.<span class="hljs-built_in">push_back</span>(matrix[row][col]);
+      <span class="hljs-comment">//temp判断是否撞墙 或者撞到之前走过的</span>
+      <span class="hljs-comment">//撞到的话 就顺时针转向</span>
+      <span class="hljs-keyword">int</span> tempRow = row + dir[index % <span class="hljs-number">4</span>][<span class="hljs-number">0</span>];
+      <span class="hljs-keyword">int</span> tempCol = col + dir[index % <span class="hljs-number">4</span>][<span class="hljs-number">1</span>];
+      <span class="hljs-keyword">if</span> (tempRow &lt; <span class="hljs-number">0</span> || tempCol &lt; <span class="hljs-number">0</span> || tempRow &gt;= m || tempCol &gt;= n || used[tempRow][tempCol]) {
+        index++;
+      } 
+      used[row][col] = <span class="hljs-number">1</span>;
+      row += dir[index%<span class="hljs-number">4</span>][<span class="hljs-number">0</span>];
+      col += dir[index%<span class="hljs-number">4</span>][<span class="hljs-number">1</span>];
+    }
+    <span class="hljs-keyword">return</span> ans;
+  }
+};</code></pre></div>
+
+
+
+<h3 id="1706-球会落何处"><a href="#1706-球会落何处" class="headerlink" title="1706. 球会落何处"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/where-will-the-ball-fall/">1706. 球会落何处</a></h3><p>难度中等135</p>
+<p>用一个大小为 <code>m x n</code> 的二维网格 <code>grid</code> 表示一个箱子。你有 <code>n</code> 颗球。箱子的顶部和底部都是开着的。</p>
+<p>箱子中的每个单元格都有一个对角线挡板，跨过单元格的两个角，可以将球导向左侧或者右侧。</p>
+<ul>
+<li>将球导向右侧的挡板跨过左上角和右下角，在网格中用 <code>1</code> 表示。</li>
+<li>将球导向左侧的挡板跨过右上角和左下角，在网格中用 <code>-1</code> 表示。</li>
+</ul>
+<p>在箱子每一列的顶端各放一颗球。每颗球都可能卡在箱子里或从底部掉出来。如果球恰好卡在两块挡板之间的 “V” 形图案，或者被一块挡导向到箱子的任意一侧边上，就会卡住。</p>
+<p>返回一个大小为 <code>n</code> 的数组 <code>answer</code> ，其中 <code>answer[i]</code> 是球放在顶部的第 <code>i</code> 列后从底部掉出来的那一列对应的下标，如果球卡在盒子里，则返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/ball.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
+
+<div class="code-wrapper"><pre><code class="hljs subunit">输入：grid = [[1,1,1,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>],[1,1,1,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>],[<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,1,1],[1,1,1,1,<span class="hljs-string">-1</span>],[<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>]]
+输出：[1,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>,<span class="hljs-string">-1</span>]
+解释：示例如图：
+b0 球开始放在第 0 列上，最终从箱子底部第 1 列掉出。
+b1 球开始放在第 1 列上，会卡在第 2、3 列和第 1 行之间的 "V" 形里。
+b2 球开始放在第 2 列上，会卡在第 2、3 列和第 0 行之间的 "V" 形里。
+b3 球开始放在第 3 列上，会卡在第 2、3 列和第 0 行之间的 "V" 形里。
+b4 球开始放在第 4 列上，会卡在第 2、3 列和第 1 行之间的 "V" 形里。</code></pre></div>
+
+<h4 id="dfs-模拟滚动"><a href="#dfs-模拟滚动" class="headerlink" title="dfs 模拟滚动"></a>dfs 模拟滚动</h4><p>from代表的含义 -1 1代表从从左 右 话过来 0代表从上面掉下 </p>
+<p>搞麻烦了 还要分析特殊情况 妈的 自己的代码自己都看不懂了    </p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//dfs 模拟滚动</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  vector&lt;<span class="hljs-keyword">int</span>&gt; ans;
+  <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findBall</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;grid)</span> </span>{
+    ans.<span class="hljs-built_in">clear</span>();
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); i++)
+      <span class="hljs-built_in">dfs</span>(grid, <span class="hljs-number">0</span>, i, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">return</span> ans;
+  }
+  
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;grid, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> from)</span> </span>{
+    <span class="hljs-keyword">if</span> (y &lt; <span class="hljs-number">0</span> || y &gt;= grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()) {
+      ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">-1</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">int</span> temp = from + grid[x][y];
+    <span class="hljs-keyword">if</span> (temp == <span class="hljs-number">0</span>) { <span class="hljs-comment">// 1 + -1 = 0 死角</span>
+      ans.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">-1</span>);
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (x == grid.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span> &amp;&amp; from != <span class="hljs-number">0</span>) { <span class="hljs-comment">//到底</span>
+      ans.<span class="hljs-built_in">push_back</span>(y);
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (from == <span class="hljs-number">0</span>) { <span class="hljs-comment">//从上面来 向左右运动</span>
+      <span class="hljs-built_in">dfs</span>(grid, x, y + grid[x][y], grid[x][y]);
+    }
+    <span class="hljs-comment">//方向相同 向下</span>
+    <span class="hljs-keyword">if</span> (from == grid[x][y])
+      <span class="hljs-built_in">dfs</span>(grid, x + <span class="hljs-number">1</span>, y, <span class="hljs-number">0</span>);
+  }
+};</code></pre></div>
+
+<h4 id="for循环-模拟"><a href="#for循环-模拟" class="headerlink" title="for循环 模拟"></a>for循环 模拟</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// for循环 模拟</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findBall</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;grid)</span> </span>{
+        <span class="hljs-keyword">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(n)</span></span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) {
+            <span class="hljs-keyword">int</span> col = j; <span class="hljs-comment">// 球的初始列</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;row : grid) {
+                <span class="hljs-keyword">int</span> dir = row[col];
+                col += dir; <span class="hljs-comment">// 移动球</span>
+                <span class="hljs-keyword">if</span> (col &lt; <span class="hljs-number">0</span> || col == n || row[col] != dir) { <span class="hljs-comment">// 到达侧边或 V 形</span>
+                    col = <span class="hljs-number">-1</span>;
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+            ans[j] = col; <span class="hljs-comment">// col &gt;= 0 为成功到达底部</span>
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h2 id="岛屿问题"><a href="#岛屿问题" class="headerlink" title="岛屿问题"></a>岛屿问题</h2><h4 id="200-岛屿数量"><a href="#200-岛屿数量" class="headerlink" title="200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/">200. 岛屿数量</a></h4><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=200">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/#">思路</a></p>
+<p>难度中等1760</p>
+<p>给你一个由 <code>'1'</code>（陆地）和 <code>'0'</code>（水）组成的的二维网格，请你计算网格中岛屿的数量。</p>
+<p>岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。</p>
+<p>此外，你可以假设该网格的四条边均被水包围。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：grid = [
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>]
+]
+输出：<span class="hljs-number">1</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs prolog">输入：grid = [
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],
+  [<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>]
+]
+输出：<span class="hljs-number">3</span></code></pre></div>
+
+<h4 id="dfs-1"><a href="#dfs-1" class="headerlink" title="dfs"></a>dfs</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = {{<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid)</span> </span>{
+      <span class="hljs-keyword">int</span> m = grid.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;m; i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;n; j++){
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-string">'1'</span>){
+            <span class="hljs-built_in">dfs</span>(grid, i, j);
+            ans++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>{
+      <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span> || y&lt;<span class="hljs-number">0</span> || x&gt;=grid.<span class="hljs-built_in">size</span>() || y&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>() || grid[x][y] == <span class="hljs-string">'0'</span>)
+        <span class="hljs-keyword">return</span>;
+      grid[x][y] = <span class="hljs-string">'0'</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+        <span class="hljs-built_in">dfs</span>(grid, x+dir[i][<span class="hljs-number">0</span>], y+dir[i][<span class="hljs-number">1</span>]);
+      }
+    }
+};</code></pre></div>
+
+
+
+<h3 id="695-岛屿的最大面积"><a href="#695-岛屿的最大面积" class="headerlink" title="695. 岛屿的最大面积"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/max-area-of-island/">695. 岛屿的最大面积</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=695">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/max-area-of-island/#">思路</a></p>
+<p>难度中等793</p>
+<p>给你一个大小为 <code>m x n</code> 的二进制矩阵 <code>grid</code> 。</p>
+<p><strong>岛屿</strong> 是由一些相邻的 <code>1</code> (代表土地) 构成的组合，这里的「相邻」要求两个 <code>1</code> 必须在 <strong>水平或者竖直的四个方向上</strong> 相邻。你可以假设 <code>grid</code> 的四个边缘都被 <code>0</code>（代表水）包围着。</p>
+<p>岛屿的面积是岛上值为 <code>1</code> 的单元格的数目。</p>
+<p>计算并返回 <code>grid</code> 中最大的岛屿面积。如果没有岛屿，则返回面积为 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/maxarea1-grid.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
+
+<div class="code-wrapper"><pre><code class="hljs dns">输入：grid = [[<span class="hljs-number">0,0,1,0</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1,1,0,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,1,1,0</span>,<span class="hljs-number">1,0,0,0</span>,<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,1,0,0</span>,<span class="hljs-number">1,1,0,0</span>,<span class="hljs-number">1,0,1,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,1,0,0</span>,<span class="hljs-number">1,1,0,0</span>,<span class="hljs-number">1,1,1,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0,0,1,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1,1,0,0</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0,0,0,0</span>,<span class="hljs-number">0,0,0,1</span>,<span class="hljs-number">1,0,0,0</span>,<span class="hljs-number">0</span>]]
+输出：<span class="hljs-number">6</span>
+解释：答案不应该是 <span class="hljs-number">11</span> ，因为岛屿只能包含水平或垂直这四个方向上的 <span class="hljs-number">1</span> 。</code></pre></div>
+
+<h4 id="dfs-2"><a href="#dfs-2" class="headerlink" title="dfs"></a>dfs</h4><p>四个方向进行深搜 因为题目没有要求不能改变原数组 所以可以在原数组上做修改 </p>
+<p>遍历过了 就修改数组 <code>沉没岛屿</code>  避免重复搜索 （或者用used数组 或者 用set? 用set的话 pair是不行的 需要转换成数字 第几个格子）</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = {{<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxAreaOfIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+      <span class="hljs-keyword">int</span> m = grid.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;m; i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;n; j++){
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+            <span class="hljs-built_in">dfs</span>(grid, i, j, temp);
+            ans = <span class="hljs-built_in">max</span>(ans, temp);
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span>&amp; temp)</span></span>{
+      <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span> || y&lt;<span class="hljs-number">0</span> || x&gt;=grid.<span class="hljs-built_in">size</span>() || y&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>() || grid[x][y] == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+      temp++;
+      grid[x][y] = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+        <span class="hljs-built_in">dfs</span>(grid, x+dir[i][<span class="hljs-number">0</span>], y+dir[i][<span class="hljs-number">1</span>], temp);
+      }
+    }
+};</code></pre></div>
+
+<h3 id="1254-统计封闭岛屿的数目"><a href="#1254-统计封闭岛屿的数目" class="headerlink" title="1254. 统计封闭岛屿的数目"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-closed-islands/">1254. 统计封闭岛屿的数目</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1254">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-closed-islands/#">思路</a></p>
+<p>难度中等142</p>
+<p>二维矩阵 <code>grid</code> 由 <code>0</code> （土地）和 <code>1</code> （水）组成。岛是由最大的4个方向连通的 <code>0</code> 组成的群，封闭岛是一个 <code>完全</code> 由1包围（左、上、右、下）的岛。</p>
+<p>请返回 <em>封闭岛屿</em> 的数目。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/sample_3_1610.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs dns">输入：grid = [[<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,0</span>],[<span class="hljs-number">1,0,0,0</span>,<span class="hljs-number">0,1,1,0</span>],[<span class="hljs-number">1,0,1,0</span>,<span class="hljs-number">1,1,1,0</span>],[<span class="hljs-number">1,0,0,0</span>,<span class="hljs-number">0,1,0,1</span>],[<span class="hljs-number">1,1,1,1</span>,<span class="hljs-number">1,1,1,0</span>]]
+输出：<span class="hljs-number">2</span>
+解释：
+灰色区域的岛屿是封闭岛屿，因为这座岛屿完全被水域包围（即被 <span class="hljs-number">1</span> 区域包围）。</code></pre></div>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>先把与边界相连的 岛屿 处理了 然后在深搜0</li>
+<li>设置一个撞到边界的标志位 根据标志位判断是否++</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir{{<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>},{<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">closedIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;grid.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">bool</span> flag = <span class="hljs-number">1</span>;
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>){
+            <span class="hljs-built_in">infect</span>(grid, i, j, flag);
+            <span class="hljs-keyword">if</span>(flag)
+              ans++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">infect</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">bool</span>&amp; flag)</span></span>{
+      <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span> || x&gt;=grid.<span class="hljs-built_in">size</span>() || y&lt;<span class="hljs-number">0</span> || y&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()){
+        flag = <span class="hljs-number">0</span>;<span class="hljs-comment">//碰到边界 不是岛屿</span>
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">if</span>(grid[x][y]!=<span class="hljs-number">0</span>){
+        <span class="hljs-keyword">return</span>;
+      }
+      grid[x][y] = <span class="hljs-number">2</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+        <span class="hljs-built_in">infect</span>(grid, x+dir[i][<span class="hljs-number">0</span>], y+dir[i][<span class="hljs-number">1</span>], flag);
+      }
+    }
+};</code></pre></div>
+
+<h3 id="1020-飞地的数量"><a href="#1020-飞地的数量" class="headerlink" title="1020. 飞地的数量"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-enclaves/">1020. 飞地的数量</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1020">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-enclaves/#">思路</a></p>
+<p>难度中等175</p>
+<p>给你一个大小为 <code>m x n</code> 的二进制矩阵 <code>grid</code> ，其中 <code>0</code> 表示一个海洋单元格、<code>1</code> 表示一个陆地单元格。</p>
+<p>一次 <strong>移动</strong> 是指从一个陆地单元格走到另一个相邻（<strong>上、下、左、右</strong>）的陆地单元格或跨过 <code>grid</code> 的边界。</p>
+<p>返回网格中 <strong>无法</strong> 在任意次数的移动中离开网格边界的陆地单元格的数量。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/enclaves1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：grid = <span class="hljs-comment">[<span class="hljs-comment">[0,0,0,0]</span>,<span class="hljs-comment">[1,0,1,0]</span>,<span class="hljs-comment">[0,1,1,0]</span>,<span class="hljs-comment">[0,0,0,0]</span>]</span>
+输出：3
+解释：有三个 1 被 0 包围。一个 1 没有被包围，因为它在边界上。</code></pre></div>
+
+<h4 id="和1254-统计封闭岛屿的数目-完全一样"><a href="#和1254-统计封闭岛屿的数目-完全一样" class="headerlink" title="和1254. 统计封闭岛屿的数目 完全一样"></a>和<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-closed-islands/">1254. 统计封闭岛屿的数目</a> 完全一样</h4><h3 id="1905-统计子岛屿"><a href="#1905-统计子岛屿" class="headerlink" title="1905. 统计子岛屿"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-sub-islands/">1905. 统计子岛屿</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1905">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-sub-islands/#">思路</a></p>
+<p>难度中等61</p>
+<p>给你两个 <code>m x n</code> 的二进制矩阵 <code>grid1</code> 和 <code>grid2</code> ，它们只包含 <code>0</code> （表示水域）和 <code>1</code> （表示陆地）。一个 <strong>岛屿</strong> 是由 <strong>四个方向</strong> （水平或者竖直）上相邻的 <code>1</code> 组成的区域。任何矩阵以外的区域都视为水域。</p>
+<p>如果 <code>grid2</code> 的一个岛屿，被 <code>grid1</code> 的一个岛屿 <strong>完全</strong> 包含，也就是说 <code>grid2</code> 中该岛屿的每一个格子都被 <code>grid1</code> 中同一个岛屿完全包含，那么我们称 <code>grid2</code> 中的这个岛屿为 <strong>子岛屿</strong> 。</p>
+<p>请你返回 <code>grid2</code> 中 <strong>子岛屿</strong> 的 <strong>数目</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/test1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<div class="code-wrapper"><pre><code class="hljs inform7">输入：grid1 = <span class="hljs-comment">[<span class="hljs-comment">[1,1,1,0,0]</span>,<span class="hljs-comment">[0,1,1,1,1]</span>,<span class="hljs-comment">[0,0,0,0,0]</span>,<span class="hljs-comment">[1,0,0,0,0]</span>,<span class="hljs-comment">[1,1,0,1,1]</span>]</span>, grid2 = <span class="hljs-comment">[<span class="hljs-comment">[1,1,1,0,0]</span>,<span class="hljs-comment">[0,0,1,1,1]</span>,<span class="hljs-comment">[0,1,0,0,0]</span>,<span class="hljs-comment">[1,0,1,1,0]</span>,<span class="hljs-comment">[0,1,0,1,0]</span>]</span>
+输出：3
+解释：如上图所示，左边为 grid1 ，右边为 grid2 。
+grid2 中标红的 1 区域是子岛屿，总共有 3 个子岛屿。</code></pre></div>
+
+<h4 id="还是比较简单的dfs"><a href="#还是比较简单的dfs" class="headerlink" title="还是比较简单的dfs"></a>还是比较简单的dfs</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir{{<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>},{<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countSubIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid1, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid2)</span> </span>{
+      <span class="hljs-keyword">int</span> m = grid2.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> n = grid2[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;m; i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;n; j++){
+          <span class="hljs-keyword">if</span>(grid2[i][j] == <span class="hljs-number">1</span>){
+            <span class="hljs-keyword">bool</span> flag = <span class="hljs-number">0</span>;
+            <span class="hljs-built_in">dfs</span>(grid1, grid2, i, j, flag);
+            <span class="hljs-keyword">if</span>(!flag)
+              ans++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+		<span class="hljs-comment">//注意：不能使用flag剪枝 必须沉没完整的岛屿</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid1, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid2, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">bool</span>&amp; flag)</span></span>{
+      <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span> || y&lt;<span class="hljs-number">0</span> || x&gt;=grid2.<span class="hljs-built_in">size</span>() || y&gt;=grid2[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>() || grid2[x][y] == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+
+      <span class="hljs-keyword">if</span>(grid1[x][y] == <span class="hljs-number">0</span>){
+        flag = <span class="hljs-number">1</span>;
+      }
+      grid2[x][y] = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+        <span class="hljs-built_in">dfs</span>(grid1, grid2, x+dir[i][<span class="hljs-number">0</span>], y+dir[i][<span class="hljs-number">1</span>], flag);
+      }
+    }
+};</code></pre></div>
+
+<h3 id="694-不同的岛屿"><a href="#694-不同的岛屿" class="headerlink" title="694. 不同的岛屿"></a>694. 不同的岛屿</h3><p>给定一个非空01<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020">二维数组</a>表示的网格，一个岛屿由四连通（上、下、左、右四个方向）的 1 组成，你可以认为网格的四周被海水包围。</p>
+<p>请你计算这个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BD%91%E6%A0%BC&amp;spm=1001.2101.3001.7020">网格</a>中共有多少个<strong>形状不同</strong>的岛屿。<br>两个岛屿被认为是相同的，当且仅当一个岛屿可以通过平移变换（不可以旋转、翻转）和另一个岛屿重合。</p>
+<div class="code-wrapper"><pre><code class="hljs text">样例 1:
+11000
+11000
+00011
+00011
+给定上图，返回结果 1。
+
+样例 2:
+11011
+10000
+00001
+11011
+给定上图，返回结果 3。
+
+注意:
+11
+1
+和
+ 1
+11
+是不同的岛屿，因为我们不考虑旋转、翻转操作。
+
+注释 :  二维数组每维的大小都不会超过50。</code></pre></div>
+
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>记录开始BFS或DFS的起点，后续点跟起点做差，存储路径到set中去重，返回 set 的大小</li>
+</ul>
+<p>牛逼啊 用set记录相对坐标 最后结果就是set的大小</p>
+<h4 id="2-1-BFS"><a href="#2-1-BFS" class="headerlink" title="2.1 BFS"></a>2.1 BFS</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numDistinctIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+        <span class="hljs-keyword">if</span>(grid.<span class="hljs-built_in">empty</span>() || grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> m = grid.<span class="hljs-built_in">size</span>(), n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(), i, j, k, x, y, x0, y0, nx, ny;
+        vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir = {{<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>},{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>}};
+        set&lt;vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&gt; s;
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; ++i)
+        {
+        	<span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; ++j)
+        	{
+        		<span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>)
+        			<span class="hljs-keyword">continue</span>;
+        		x0 = i, y0 = j;
+        		queue&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; q;
+        		vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; path;
+        		q.<span class="hljs-built_in">push</span>({x0, y0});
+        		grid[x0][y0] = <span class="hljs-number">0</span>;<span class="hljs-comment">//访问过</span>
+        		<span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>())
+        		{
+        			x = q.<span class="hljs-built_in">front</span>()[<span class="hljs-number">0</span>];
+        			y = q.<span class="hljs-built_in">front</span>()[<span class="hljs-number">1</span>];
+        			path.<span class="hljs-built_in">push_back</span>({x-x0, y-y0});<span class="hljs-comment">//路径记录相对坐标</span>
+        			q.<span class="hljs-built_in">pop</span>();
+        			<span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; ++k)
+        			{
+        				nx = x + dir[k][<span class="hljs-number">0</span>];
+        				ny = y + dir[k][<span class="hljs-number">1</span>];
+        				<span class="hljs-keyword">if</span>(nx&gt;=<span class="hljs-number">0</span> &amp;&amp; nx&lt;m &amp;&amp; ny&gt;=<span class="hljs-number">0</span> &amp;&amp; ny&lt;n &amp;&amp; grid[nx][ny])
+        				{
+        					q.<span class="hljs-built_in">push</span>({nx, ny});
+        					grid[nx][ny] = <span class="hljs-number">0</span>;<span class="hljs-comment">//访问过</span>
+        				}
+        			}
+        		}
+        		s.<span class="hljs-built_in">insert</span>(path);
+        	}
+        }
+        <span class="hljs-keyword">return</span> s.<span class="hljs-built_in">size</span>();
+    }
+};</code></pre></div>
+
+<p>172 ms 43.6 MB</p>
+<h4 id="2-2-DFS"><a href="#2-2-DFS" class="headerlink" title="2.2 DFS"></a>2.2 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=DFS&amp;spm=1001.2101.3001.7020">DFS</a></h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; dir = {{<span class="hljs-number">1</span>,<span class="hljs-number">0</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},{<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>},{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>}};
+    <span class="hljs-keyword">int</span> m, n;
+  	<span class="hljs-comment">//注意用unordered_set是不行的</span>
+    set&lt;vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&gt; s;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numDistinctIslands</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+        <span class="hljs-keyword">if</span>(grid.<span class="hljs-built_in">empty</span>() || grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        m = grid.<span class="hljs-built_in">size</span>(), n = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j; i &lt; m; ++i)
+        {
+            <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; ++j)
+            {
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>)
+                    <span class="hljs-keyword">continue</span>;
+                vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; path;
+                grid[i][j] = <span class="hljs-number">0</span>;<span class="hljs-comment">//访问过</span>
+                <span class="hljs-built_in">DFS</span>(grid,i,j,i,j,path);
+                s.<span class="hljs-built_in">insert</span>(path);
+            }
+        }
+        <span class="hljs-keyword">return</span> s.<span class="hljs-built_in">size</span>();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> x0, <span class="hljs-keyword">int</span> y0, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; path)</span></span>
+<span class="hljs-function">    </span>{
+        path.<span class="hljs-built_in">push_back</span>({x-x0, y-y0});<span class="hljs-comment">//路径记录相对坐标</span>
+        <span class="hljs-keyword">int</span> k, nx, ny;
+        <span class="hljs-keyword">for</span>(k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">4</span>; ++k)
+        {
+            nx = x + dir[k][<span class="hljs-number">0</span>];
+            ny = y + dir[k][<span class="hljs-number">1</span>];
+            <span class="hljs-keyword">if</span>(nx&gt;=<span class="hljs-number">0</span> &amp;&amp; nx&lt;m &amp;&amp; ny&gt;=<span class="hljs-number">0</span> &amp;&amp; ny&lt;n &amp;&amp; grid[nx][ny])
+            {
+                grid[nx][ny] = <span class="hljs-number">0</span>;<span class="hljs-comment">//访问过</span>
+                <span class="hljs-built_in">DFS</span>(grid, x0, y0, nx, ny, path);
+            }
+        }
+    }
+};</code></pre></div>
+
+<p>128 ms 35.8 MB</p>
+<h3 id="827-最大人工岛"><a href="#827-最大人工岛" class="headerlink" title="827. 最大人工岛"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/making-a-large-island/"><code>827. 最大人工岛</code></a></h3><p>难度困难154</p>
+<p>给你一个大小为 <code>n x n</code> 二进制矩阵 <code>grid</code> 。<strong>最多</strong> 只能将一格 <code>0</code> 变成 <code>1</code> 。</p>
+<p>返回执行此操作后，<code>grid</code> 中最大的岛屿面积是多少？</p>
+<p><strong>岛屿</strong> 由一组上、下、左、右四个方向相连的 <code>1</code> 形成。</p>
+<p><strong>示例 1:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs lua">输入: grid = <span class="hljs-string">[[1, 0], [0, 1]]</span>
+输出: <span class="hljs-number">3</span>
+解释: 将一格<span class="hljs-number">0</span>变成<span class="hljs-number">1</span>，最终连通两个小岛得到面积为 <span class="hljs-number">3</span> 的岛屿。</code></pre></div>
+
+<p><strong>示例 2:</strong></p>
+<div class="code-wrapper"><pre><code class="hljs lua">输入: grid = <span class="hljs-string">[[1, 1], [1, 0]]</span>
+输出: <span class="hljs-number">4</span>
+解释: 将一格<span class="hljs-number">0</span>变成<span class="hljs-number">1</span>，岛屿的面积扩大为 <span class="hljs-number">4</span>。</code></pre></div>
+
+<h4 id="暴力超时"><a href="#暴力超时" class="headerlink" title="暴力超时"></a>暴力超时</h4><p>每一个0变成1 然后dfs</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = {{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>}, {<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>}};
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">largestIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+      vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; matrix;
+      <span class="hljs-keyword">int</span> n = grid.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;n; j++){
+          <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>){
+            matrix = grid;
+            <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;
+            matrix[i][j] = <span class="hljs-number">1</span>;
+            <span class="hljs-built_in">dfs</span>(matrix, i, j, temp);
+            ans = <span class="hljs-built_in">max</span>(ans, temp);
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> ans == <span class="hljs-number">0</span>?n*n:ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span>&amp; temp)</span></span>{
+      <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span> || y&lt;<span class="hljs-number">0</span> || x&gt;=grid.<span class="hljs-built_in">size</span>()||y&gt;=grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()||grid[x][y] == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span>;
+      temp++;
+      grid[x][y] = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">4</span>; i++){
+        <span class="hljs-built_in">dfs</span>(grid, x + dir[i][<span class="hljs-number">0</span>], y+dir[i][<span class="hljs-number">1</span>], temp);
+      }
+    }
+};</code></pre></div>
+
+<h4 id="优化解法"><a href="#优化解法" class="headerlink" title="优化解法"></a>优化解法</h4><p>暴力的问题在于每个0都进行了dfs 这是没必要的</p>
+<ol>
+<li>每个岛屿进行编号 直接原地修改岛屿的数值 并记录 该编号岛屿记录的面积</li>
+<li>遍历所有的0  查看四周存在哪些编号 用哈希进行去重 加起来即为联通的面积 取最大即可</li>
+</ol>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">inArea</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col)</span> </span>{
+        <span class="hljs-keyword">return</span> row &gt;=<span class="hljs-number">0</span> &amp;&amp; col &gt;= <span class="hljs-number">0</span> &amp;&amp; row &lt; grid.<span class="hljs-built_in">size</span>() &amp;&amp; col &lt; grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+    }
+  
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col, <span class="hljs-keyword">int</span> index)</span> </span>{
+        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">inArea</span>(grid, row, col)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">if</span>(grid[row][col] != <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        grid[row][col] = index;
+        <span class="hljs-keyword">return</span> (<span class="hljs-number">1</span>+<span class="hljs-built_in">dfs</span>(grid, row + <span class="hljs-number">1</span>, col, index) + <span class="hljs-built_in">dfs</span>(grid, row - <span class="hljs-number">1</span>, col, index) + <span class="hljs-built_in">dfs</span>(grid, row, col + <span class="hljs-number">1</span>, index) + <span class="hljs-built_in">dfs</span>(grid, row, col - <span class="hljs-number">1</span>, index));
+    }
+  
+    <span class="hljs-function">set&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">findNeighbour</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid, <span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col)</span> </span>{
+        set&lt;<span class="hljs-keyword">int</span>&gt; hashSet;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">inArea</span>(grid, row+<span class="hljs-number">1</span>, col) &amp;&amp; grid[row+<span class="hljs-number">1</span>][col] != <span class="hljs-number">0</span>) {
+            hashSet.<span class="hljs-built_in">insert</span>(grid[row+<span class="hljs-number">1</span>][col]);
+        }
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">inArea</span>(grid, row<span class="hljs-number">-1</span>,col) &amp;&amp; grid[row<span class="hljs-number">-1</span>][col] != <span class="hljs-number">0</span>) {
+            hashSet.<span class="hljs-built_in">insert</span>(grid[row<span class="hljs-number">-1</span>][col]);
+        }
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">inArea</span>(grid, row, col+<span class="hljs-number">1</span>) &amp;&amp; grid[row][col+<span class="hljs-number">1</span>] != <span class="hljs-number">0</span>) {
+            hashSet.<span class="hljs-built_in">insert</span>(grid[row][col+<span class="hljs-number">1</span>]);
+        }
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">inArea</span>(grid, row, col<span class="hljs-number">-1</span>) &amp;&amp; grid[row][col<span class="hljs-number">-1</span>] != <span class="hljs-number">0</span>) {
+            hashSet.<span class="hljs-built_in">insert</span>(grid[row][col<span class="hljs-number">-1</span>]);
+        }
+        <span class="hljs-keyword">return</span> hashSet;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">largestIsland</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; grid)</span> </span>{
+        <span class="hljs-keyword">int</span> row = grid.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> col = grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">int</span> index = <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">int</span> max_area = <span class="hljs-number">0</span>;  <span class="hljs-comment">// max_are 记录最大的岛屿块，返回值初始化的时候设置这个，处理全是岛屿的case</span>
+        <span class="hljs-keyword">if</span>(row == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        }
+        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; record;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; row; ++i) {
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; col; ++j) {
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>) {
+                    <span class="hljs-keyword">int</span> size = <span class="hljs-built_in">dfs</span>(grid, i, j, index);
+                    record[index] = size;
+                    max_area = std::<span class="hljs-built_in">max</span>(max_area, size);
+                    ++index;
+                }
+            }
+        }
+        <span class="hljs-keyword">if</span>(max_area == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        }
+        
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; row; ++i) {
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; col; ++j) {
+                <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">0</span>) {
+                    set&lt;<span class="hljs-keyword">int</span>&gt; neighbors = <span class="hljs-built_in">findNeighbour</span>(grid, i, j);
+                    <span class="hljs-keyword">if</span>(neighbors.<span class="hljs-built_in">size</span>() &lt; <span class="hljs-number">1</span>) {
+                        <span class="hljs-keyword">continue</span>;
+                    }
+                    set&lt;<span class="hljs-keyword">int</span>&gt;::iterator it = neighbors.<span class="hljs-built_in">begin</span>();
+                    <span class="hljs-keyword">int</span> area = <span class="hljs-number">1</span>;
+                    <span class="hljs-keyword">for</span>(; it != neighbors.<span class="hljs-built_in">end</span>(); ++it) {
+                        area += record[*it]; 
+                    }
+                    max_area = std::<span class="hljs-built_in">max</span>(max_area, area);
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> max_area;
+    }
+};
+</code></pre></div>
+
+<h1 id="bfs"><a href="#bfs" class="headerlink" title="bfs"></a>bfs</h1><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>之前做题一直用的都是dfs，bfs只在层序遍历时用到过 感觉需要整理下bfs</p>
 <h4 id="dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似"><a href="#dfs是深度优先，一直往深层遍历-思路和回溯有很大的相似" class="headerlink" title="dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似"></a>dfs是深度优先，一直往深层遍历 思路和回溯有很大的相似</h4><h4 id="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"><a href="#bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤" class="headerlink" title="bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤"></a>bfs是广度优先，在一个节点先遍历周围，遍历完自己这层后，在子节点重复这个步骤</h4><p>二叉树已经很熟悉了，就是前中后三种遍历和层序遍历的区别</p>
 <p>二维矩阵 或者说 图 的bfs从岛屿问题感受下</p>
 <h3 id="引入-200-岛屿数量"><a href="#引入-200-岛屿数量" class="headerlink" title="引入 200. 岛屿数量"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">引入 200. 岛屿数量</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=200">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/#">思路</a></p>
@@ -388,7 +965,7 @@ E#..
 
 <h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><div class="code-wrapper"><pre><code class="hljs gcode">一种可行的路径是用对称飞行器到达 <span class="hljs-comment">(4,3)</span> 再向上走一步，再向右走一步，然后使用一次对称飞行器到达终点。</code></pre></div>
 
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>最短路径属于dp问题 优先考虑使用bfs dfs复杂会更高 代码也复杂</li>
 <li></li>
 </ol>
@@ -890,7 +1467,7 @@ unordered_set&lt;string&gt; seen = {<span class="hljs-string">"0000"</span>};
 
 
 
-<h2 id="记忆化dfs"><a href="#记忆化dfs" class="headerlink" title="记忆化dfs"></a>记忆化dfs</h2><h3 id="剑指-Offer-II-112-最长递增路径"><a href="#剑指-Offer-II-112-最长递增路径" class="headerlink" title="剑指 Offer II 112. 最长递增路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fpTFWP/">剑指 Offer II 112. 最长递增路径</a></h3><p>难度困难17</p>
+<h1 id="记忆化dfs"><a href="#记忆化dfs" class="headerlink" title="记忆化dfs"></a>记忆化dfs</h1><h3 id="剑指-Offer-II-112-最长递增路径"><a href="#剑指-Offer-II-112-最长递增路径" class="headerlink" title="剑指 Offer II 112. 最长递增路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fpTFWP/">剑指 Offer II 112. 最长递增路径</a></h3><p>难度困难17</p>
 <p>给定一个 <code>m x n</code> 整数矩阵 <code>matrix</code> ，找出其中 <strong>最长递增路径</strong> 的长度。</p>
 <p>对于每个单元格，你可以往上，下，左，右四个方向移动。 <strong>不能</strong> 在 <strong>对角线</strong> 方向上移动或移动到 <strong>边界外</strong>（即不允许环绕）。</p>
 <p><strong>示例 1：</strong></p>
@@ -985,7 +1562,7 @@ unordered_set&lt;string&gt; seen = {<span class="hljs-string">"0000"</span>};
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>bfs</div>
+      <div>dfs&amp;bfs</div>
       <div>https://qianxunslimg.github.io/2022/04/18/bfs/</div>
     </div>
     <div class="license-meta">

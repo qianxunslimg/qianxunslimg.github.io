@@ -16,16 +16,17 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="c++ leetcode 常用库函数1.2. 字符(串)相关 判断字符是否为数字、字母 123isalpha(char c)&#x2F;&#x2F;判断是否为字母isdigit(char c)&#x2F;&#x2F;判断是否为数字isalnum(char c)&#x2F;&#x2F;判断是否为数字或字母  字母的大小写转换 12tolower(char c)&#x2F;&#x2F;变成小写字母toupper(char c)&#x2F;&#x2F;变成大写字母  字符串转整型 stoi: stoi">
+    <meta name="description" content="常用库函数1. 字符(串)相关 判断字符是否为数字、字母 isalpha isdigit isalnum isalpha(char c)&#x2F;&#x2F;判断是否为字母 isdigit(char c)&#x2F;&#x2F;判断是否为数字 isalnum(char c)&#x2F;&#x2F;判断是否为数字或字母  字母的大小写转换 tolower(char c)&#x2F;&#x2F;变成小写字母 toupper(char c)&#x2F;&#x2F;变成大写字母  字符串转整型 sto">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode常用库函数">
+<meta property="og:title" content="leetcode常用函数">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/03/24/c-leetcode-chang-yong-ku-han-shu/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="c++ leetcode 常用库函数1.2. 字符(串)相关 判断字符是否为数字、字母 123isalpha(char c)&#x2F;&#x2F;判断是否为字母isdigit(char c)&#x2F;&#x2F;判断是否为数字isalnum(char c)&#x2F;&#x2F;判断是否为数字或字母  字母的大小写转换 12tolower(char c)&#x2F;&#x2F;变成小写字母toupper(char c)&#x2F;&#x2F;变成大写字母  字符串转整型 stoi: stoi">
+<meta property="og:description" content="常用库函数1. 字符(串)相关 判断字符是否为数字、字母 isalpha isdigit isalnum isalpha(char c)&#x2F;&#x2F;判断是否为字母 isdigit(char c)&#x2F;&#x2F;判断是否为数字 isalnum(char c)&#x2F;&#x2F;判断是否为数字或字母  字母的大小写转换 tolower(char c)&#x2F;&#x2F;变成小写字母 toupper(char c)&#x2F;&#x2F;变成大写字母  字符串转整型 sto">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220419164310609.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610123508050.png">
 <meta property="article:published_time" content="2022-03-24T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-04-19T08:44:00.487Z">
+<meta property="article:modified_time" content="2022-06-10T05:01:53.321Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +34,7 @@
   
   
   
-  <title>leetcode常用库函数 - qianxunslimgのblog</title>
+  <title>leetcode常用函数 - qianxunslimgのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode常用库函数"></span>
+            <span id="subtitle" data-typed-text="leetcode常用函数"></span>
           
         </div>
 
@@ -265,44 +266,118 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">leetcode常用库函数</h1>
+            <h1 style="display: none">leetcode常用函数</h1>
             
             <div class="markdown-body">
               
-              <h1 id="c-leetcode-常用库函数"><a href="#c-leetcode-常用库函数" class="headerlink" title="c++ leetcode 常用库函数"></a>c++ leetcode 常用库函数</h1><h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><h2 id="2-字符-串-相关"><a href="#2-字符-串-相关" class="headerlink" title="2. 字符(串)相关"></a>2. 字符(串)相关</h2><ol>
+              <h1 id="常用库函数"><a href="#常用库函数" class="headerlink" title="常用库函数"></a>常用库函数</h1><h2 id="1-字符-串-相关"><a href="#1-字符-串-相关" class="headerlink" title="1. 字符(串)相关"></a>1. 字符(串)相关</h2><ol>
 <li><p>判断字符是否为数字、字母</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isalpha</span>(<span class="keyword">char</span> c)<span class="comment">//判断是否为字母</span></span><br><span class="line"><span class="built_in">isdigit</span>(<span class="keyword">char</span> c)<span class="comment">//判断是否为数字</span></span><br><span class="line"><span class="built_in">isalnum</span>(<span class="keyword">char</span> c)<span class="comment">//判断是否为数字或字母</span></span><br></pre></td></tr></tbody></table></figure>
+<p>isalpha isdigit isalnum</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">isalpha</span>(<span class="hljs-keyword">char</span> c)<span class="hljs-comment">//判断是否为字母</span>
+<span class="hljs-built_in">isdigit</span>(<span class="hljs-keyword">char</span> c)<span class="hljs-comment">//判断是否为数字</span>
+<span class="hljs-built_in">isalnum</span>(<span class="hljs-keyword">char</span> c)<span class="hljs-comment">//判断是否为数字或字母</span></code></pre></div>
 </li>
 <li><p>字母的大小写转换</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tolower</span>(<span class="keyword">char</span> c)<span class="comment">//变成小写字母</span></span><br><span class="line"><span class="built_in">toupper</span>(<span class="keyword">char</span> c)<span class="comment">//变成大写字母</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">tolower</span>(<span class="hljs-keyword">char</span> c)<span class="hljs-comment">//变成小写字母</span>
+<span class="hljs-built_in">toupper</span>(<span class="hljs-keyword">char</span> c)<span class="hljs-comment">//变成大写字母</span></code></pre></div>
 </li>
 <li><p>字符串转整型 stoi:</p>
 <p>stoi(s,start,base)//s是要转换的字符串，start是起始位置，base是要转换的整数进制，默认是从0位置开始，转换为10进制</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	string str = <span class="string">"123"</span>;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="built_in">stoi</span>(str);</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+	string str = <span class="hljs-string">"123"</span>;
+	<span class="hljs-keyword">int</span> res = <span class="hljs-built_in">stoi</span>(str);
+	cout &lt;&lt; res &lt;&lt; endl;
+	<span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	}</code></pre></div>
 </li>
 <li><p>数值转字符串 to_string</p>
 <p>to_string(val)//val可以是任何数值类型</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">123</span>;</span><br><span class="line">	string res = <span class="built_in">to_string</span>(num);</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-keyword">int</span> num = <span class="hljs-number">123</span>;
+	string res = <span class="hljs-built_in">to_string</span>(num);
+	cout &lt;&lt; res &lt;&lt; endl;
+	<span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 
 </li>
 <li><p>分割字符串 分割字符串可以使用getline和istringstream联合实现。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据','号分割字符串，getline默认的是按照行读取，但是指定就按照给定的标志分割。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	string str = <span class="string">"1,2,3,4,5"</span>;</span><br><span class="line">	<span class="function">istringstream <span class="title">s_in</span><span class="params">(str)</span></span>;</span><br><span class="line">	string c;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">getline</span>(s_in, c, <span class="string">','</span>)) {</span><br><span class="line">		cout &lt;&lt; c &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//根据','号分割字符串，getline默认的是按照行读取，但是指定就按照给定的标志分割。</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+	string str = <span class="hljs-string">"1,2,3,4,5"</span>;
+	<span class="hljs-function">istringstream <span class="hljs-title">s_in</span><span class="hljs-params">(str)</span></span>;
+	string c;
+	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">getline</span>(s_in, c, <span class="hljs-string">','</span>)) {
+		cout &lt;&lt; c &lt;&lt; endl;
+	}
+	<span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
 </ol>
-<h2 id="3-有序查找"><a href="#3-有序查找" class="headerlink" title="3. 有序查找"></a>3. 有序查找</h2><ol>
+<h2 id="2-有序查找"><a href="#2-有序查找" class="headerlink" title="2. 有序查找"></a>2. 有序查找</h2><ol>
 <li><p>lower_bound()  大于等于<br>用于在指定区域内(左闭右开)查找<strong>不小于目标值的第一个元素</strong>，也就是说最终查找的不一定是和目标值想等的元素，也可能是比目标值大的元素。其底层实现是二分查找。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;nums{ <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span> };</span><br><span class="line">	<span class="keyword">auto</span> it1 = <span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">3</span>);</span><br><span class="line">	cout &lt;&lt; *it1&lt;&lt; endl;  <span class="comment">//3</span></span><br><span class="line">	<span class="keyword">auto</span> it2 = <span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">4</span>);</span><br><span class="line">	cout &lt;&lt; *it2 &lt;&lt; endl; <span class="comment">//5</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+	vector&lt;<span class="hljs-keyword">int</span>&gt;nums{ <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span> };
+	<span class="hljs-keyword">auto</span> it1 = <span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">3</span>);
+	cout &lt;&lt; *it1&lt;&lt; endl;  <span class="hljs-comment">//3</span>
+	<span class="hljs-keyword">auto</span> it2 = <span class="hljs-built_in">lower_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">4</span>);
+	cout &lt;&lt; *it2 &lt;&lt; endl; <span class="hljs-comment">//5</span>
+	<span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <p>注意：lower_bound查找超范围的判断</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> vector&lt;<span class="keyword">int</span>&gt; v{<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>};</span><br><span class="line"> <span class="keyword">auto</span> it = <span class="built_in">lower_bound</span>(v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), <span class="number">6</span>);</span><br><span class="line"> <span class="keyword">int</span> pos = it - v.<span class="built_in">begin</span>(); <span class="comment">// pos = 5 返回的就是查找区间的大小</span></span><br><span class="line"> <span class="keyword">if</span> (pos == v.<span class="built_in">size</span>())</span><br><span class="line">   cout &lt;&lt; <span class="string">"超范围了。。。查找的元素比所有元素都大"</span> &lt;&lt; endl;</span><br><span class="line"><span class="keyword">if</span>(it == v.<span class="built_in">end</span>())</span><br><span class="line">   cout &lt;&lt; <span class="string">"超范围了。。。查找的元素比所有元素都大"</span> &lt;&lt; endl;</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"> vector&lt;<span class="hljs-keyword">int</span>&gt; v{<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>};
+ <span class="hljs-keyword">auto</span> it = <span class="hljs-built_in">lower_bound</span>(v.<span class="hljs-built_in">begin</span>(), v.<span class="hljs-built_in">end</span>(), <span class="hljs-number">6</span>);
+ <span class="hljs-keyword">int</span> pos = it - v.<span class="hljs-built_in">begin</span>(); <span class="hljs-comment">// pos = 5 返回的就是查找区间的大小</span>
+ <span class="hljs-keyword">if</span> (pos == v.<span class="hljs-built_in">size</span>())
+   cout &lt;&lt; <span class="hljs-string">"超范围了。。。查找的元素比所有元素都大"</span> &lt;&lt; endl;
+<span class="hljs-keyword">if</span>(it == v.<span class="hljs-built_in">end</span>())
+   cout &lt;&lt; <span class="hljs-string">"超范围了。。。查找的元素比所有元素都大"</span> &lt;&lt; endl;</code></pre></div>
 
 <p>起始也没有这么麻烦 没找到的话返回的迭代器就是end()</p>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220419164310609.png" srcset="/img/loading.gif" lazyload alt="image-20220419164310609" style="zoom: 80%;">
 </li>
 <li><p>upper_bound() 大于<br>在指定目标区域中查找<strong>大于目标值的第一个元素</strong>，返回该元素所在位置的迭代器。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;nums{ <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">5</span> };</span><br><span class="line">	<span class="keyword">auto</span> it1 = <span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">3</span>);</span><br><span class="line">	cout &lt;&lt; it1-nums.<span class="built_in">begin</span>()&lt;&lt; endl;  <span class="comment">//3</span></span><br><span class="line">	<span class="keyword">auto</span> it2 = <span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">4</span>);</span><br><span class="line">	cout &lt;&lt; it2-nums.<span class="built_in">begin</span>() &lt;&lt; endl;  <span class="comment">//3</span></span><br><span class="line">	<span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+	vector&lt;<span class="hljs-keyword">int</span>&gt;nums{ <span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span> };
+	<span class="hljs-keyword">auto</span> it1 = <span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">3</span>);
+	cout &lt;&lt; it1-nums.<span class="hljs-built_in">begin</span>()&lt;&lt; endl;  <span class="hljs-comment">//3</span>
+	<span class="hljs-keyword">auto</span> it2 = <span class="hljs-built_in">upper_bound</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">4</span>);
+	cout &lt;&lt; it2-nums.<span class="hljs-built_in">begin</span>() &lt;&lt; endl;  <span class="hljs-comment">//3</span>
+	<span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></li>
 </ol>
 <p>这两个函数如果找不到 例如 查找6 <code>it-nums.begin() == nums.size();</code></p>
+<h1 id="常用的手写函数"><a href="#常用的手写函数" class="headerlink" title="常用的手写函数"></a>常用的手写函数</h1><h2 id="数字相关"><a href="#数字相关" class="headerlink" title="数字相关"></a>数字相关</h2><h3 id="1-质数判断"><a href="#1-质数判断" class="headerlink" title="1. 质数判断"></a>1. 质数判断</h3><p>其实还是很暴力的 重点在于判断到 sqrt(num)</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isPrime</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>&amp; num)</span></span>{
+  <span class="hljs-keyword">if</span>(num&lt;=<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i*i&lt;=num; i++){
+    <span class="hljs-keyword">if</span>(num%i == <span class="hljs-number">0</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}</code></pre></div>
+
+<h3 id="2-快速幂"><a href="#2-快速幂" class="headerlink" title="2. 快速幂"></a>2. 快速幂</h3><p>时间复杂度 Ologn</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610123508050.png" srcset="/img/loading.gif" lazyload alt="image-20220610123508050" style="zoom:50%;">
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>{
+  <span class="hljs-keyword">bool</span> sign = n &lt; <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">double</span> res = <span class="hljs-number">1.0</span>;
+  <span class="hljs-keyword">while</span> (n) {
+    <span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span>)
+      res *= x;
+    x *= x;
+    n /= <span class="hljs-number">2</span>;
+  }
+  <span class="hljs-comment">//cout &lt;&lt; n;</span>
+  <span class="hljs-keyword">return</span> sign ? <span class="hljs-number">1</span> / res : res;
+}</code></pre></div>
+
 
               
             </div>
@@ -326,7 +401,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode常用库函数</div>
+      <div>leetcode常用函数</div>
       <div>https://qianxunslimg.github.io/2022/03/24/c-leetcode-chang-yong-ku-han-shu/</div>
     </div>
     <div class="license-meta">
