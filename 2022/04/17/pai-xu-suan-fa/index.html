@@ -35,11 +35,12 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220528172918710.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/selectionSort.gif">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/insertionSort.gif">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20190712143216563.gif">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-8fa032e195365f77fb6b980a4ed71958_r.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-06-08T14:15:50.200Z">
+<meta property="article:modified_time" content="2022-06-13T02:12:36.538Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1152,6 +1153,44 @@
     nums[j + <span class="hljs-number">1</span>] = key;
   }
 }</code></pre></div>
+
+<h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20190712143216563.gif" srcset="/img/loading.gif" lazyload alt="计数排序"></p>
+<h3 id="1051-高度检查器"><a href="#1051-高度检查器" class="headerlink" title="1051. 高度检查器"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/height-checker/">1051. 高度检查器</a></h3><p>难度简单116收藏分享切换为英文接收动态反馈</p>
+<p>学校打算为全体学生拍一张年度纪念照。根据要求，学生需要按照 <strong>非递减</strong> 的高度顺序排成一行。</p>
+<p>排序后的高度情况用整数数组 <code>expected</code> 表示，其中 <code>expected[i]</code> 是预计排在这一行中第 <code>i</code> 位的学生的高度（<strong>下标从 0 开始</strong>）。</p>
+<p>给你一个整数数组 <code>heights</code> ，表示 <strong>当前学生站位</strong> 的高度情况。<code>heights[i]</code> 是这一行中第 <code>i</code> 位学生的高度（<strong>下标从 0 开始</strong>）。</p>
+<p>返回满足 <code>heights[i] != expected[i]</code> 的 <strong>下标数量</strong> 。</p>
+<p><strong>示例：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入：heights = <span class="hljs-string">[1,1,4,2,1,3]</span>
+输出：<span class="hljs-number">3</span> 
+解释：
+高度：<span class="hljs-string">[1,1,4,2,1,3]</span>
+预期：<span class="hljs-string">[1,1,1,2,3,4]</span>
+下标 <span class="hljs-number">2</span> 、<span class="hljs-number">4</span> 、<span class="hljs-number">5</span> 处的学生高度不匹配。</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">heightChecker</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">clone</span><span class="hljs-params">(nums)</span></span>;
+      <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(<span class="hljs-number">101</span>)</span></span>;
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; num : nums)
+        cnt[num]++;
+      <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;<span class="hljs-number">101</span>; i++){
+        <span class="hljs-keyword">while</span>(cnt[i]){
+          clone[index] = i;
+          cnt[i]--;
+          <span class="hljs-keyword">if</span>(clone[index] != nums[index])
+            ans++;
+          index++;
+        }
+      }
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+
 
 <h1 id="STL里sort算法用的是什么排序算法？"><a href="#STL里sort算法用的是什么排序算法？" class="headerlink" title="STL里sort算法用的是什么排序算法？"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36274119">STL里sort算法用的是什么排序算法？</a></h1><h3 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h3><p><strong>毫无疑问是用到了快速排序，但不仅仅只用了快速排序，还结合了插入排序和堆排序。</strong></p>
 <h3 id="并非所有容器都使用sort算法"><a href="#并非所有容器都使用sort算法" class="headerlink" title="并非所有容器都使用sort算法"></a>并非所有容器都使用sort算法</h3><p>既然问的是STL的sort算法实现，那么先确认一个问题，<code>哪些STL容器需要用到sort算法？</code></p>

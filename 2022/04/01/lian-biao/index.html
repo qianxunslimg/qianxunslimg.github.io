@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203130110029.jpeg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203130110233.jpeg">
 <meta property="article:published_time" content="2022-04-01T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:32:25.312Z">
+<meta property="article:modified_time" content="2022-06-12T15:10:02.446Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -402,27 +402,30 @@
 </ol>
 <h4 id="双链表merge解法"><a href="#双链表merge解法" class="headerlink" title="双链表merge解法"></a>双链表merge解法</h4><div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
-    <span class="hljs-function">ListNode* <span class="hljs-title">mergeTwoLists</span><span class="hljs-params">(ListNode *a, ListNode *b)</span> </span>{
-        <span class="hljs-keyword">if</span> ((!a) || (!b)) <span class="hljs-keyword">return</span> a ? a : b;
-        ListNode head, *tail = &amp;head, *aPtr = a, *bPtr = b;
-        <span class="hljs-keyword">while</span> (aPtr &amp;&amp; bPtr) {
-            <span class="hljs-keyword">if</span> (aPtr-&gt;val &lt; bPtr-&gt;val) {
-                tail-&gt;next = aPtr; aPtr = aPtr-&gt;next;
-            } <span class="hljs-keyword">else</span> {
-                tail-&gt;next = bPtr; bPtr = bPtr-&gt;next;
-            }
-            tail = tail-&gt;next;
+    <span class="hljs-function">ListNode* <span class="hljs-title">merge2</span><span class="hljs-params">(ListNode* node1, ListNode* node2)</span></span>{
+      ListNode dumpy;
+      ListNode* dumpyNode = &amp;dumpy;
+      <span class="hljs-keyword">while</span>(node1 &amp;&amp; node2){
+        <span class="hljs-keyword">if</span>(node1-&gt;val &gt; node2-&gt;val){
+          dumpyNode-&gt;next = node2;
+          node2= node2-&gt;next;
+        }<span class="hljs-keyword">else</span>{
+          dumpyNode-&gt;next = node1;
+          node1= node1-&gt;next;          
         }
-        tail-&gt;next = (aPtr ? aPtr : bPtr);
-        <span class="hljs-keyword">return</span> head.next;
+        dumpyNode = dumpyNode-&gt;next;
+      }
+      dumpyNode-&gt;next = node1?node1:node2;
+      <span class="hljs-keyword">return</span> dumpy.next;
     }
-
     <span class="hljs-function">ListNode* <span class="hljs-title">mergeKLists</span><span class="hljs-params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>{
-        ListNode *ans = <span class="hljs-literal">nullptr</span>;
-        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">size_t</span> i = <span class="hljs-number">0</span>; i &lt; lists.<span class="hljs-built_in">size</span>(); ++i) {
-            ans = <span class="hljs-built_in">mergeTwoLists</span>(ans, lists[i]);
-        }
-        <span class="hljs-keyword">return</span> ans;
+      <span class="hljs-keyword">int</span> n = lists.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+      ListNode* ans = <span class="hljs-literal">nullptr</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+        ans = <span class="hljs-built_in">merge2</span>(lists[i], ans);
+      }
+      <span class="hljs-keyword">return</span> dumpansyNode;
     }
 };</code></pre></div>
 
@@ -1055,6 +1058,33 @@ ans<span class="hljs-selector-class">.val</span> = <span class="hljs-number">3</
 
 <p>递归部分就不展开了，整个函数递归完成之后就是这个结果，完全符合题意：</p>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203130047037.jpeg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
+
+<p>==<u><strong>一样的优雅写法</strong></u>==</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">reverseKGroup</span><span class="hljs-params">(ListNode* head, <span class="hljs-keyword">int</span> k)</span> </span>{
+      ListNode* tail = head;
+      <span class="hljs-comment">//移动到当前k个的尾部</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;k; i++){
+        <span class="hljs-comment">//不足k个 不反转 直接返回head</span>
+        <span class="hljs-keyword">if</span>(tail == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> head;
+        tail = tail-&gt;next;
+      }
+      <span class="hljs-comment">//反转head 到 tail的链表</span>
+      ListNode* pre = <span class="hljs-literal">nullptr</span>, *curr = head;
+      <span class="hljs-keyword">while</span>(curr!=tail){
+        ListNode* temp = curr-&gt;next;
+        curr-&gt;next = pre;
+        pre = curr;
+        curr = temp;
+      }
+      <span class="hljs-comment">//连接下一段</span>
+      head-&gt;next = <span class="hljs-built_in">reverseKGroup</span>(curr, k);
+      <span class="hljs-keyword">return</span> pre;
+    }
+};</code></pre></div>
+
+
 
 <h4 id="好理解但是写起来困难的解法"><a href="#好理解但是写起来困难的解法" class="headerlink" title="好理解但是写起来困难的解法"></a>好理解但是写起来困难的解法</h4><div class="code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
