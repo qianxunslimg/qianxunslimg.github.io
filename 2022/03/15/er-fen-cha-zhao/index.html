@@ -26,8 +26,9 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220423153910360.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220325183754754.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220325202117864.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220613112814364.png">
 <meta property="article:published_time" content="2022-03-15T12:17:49.000Z">
-<meta property="article:modified_time" content="2022-06-07T14:14:14.909Z">
+<meta property="article:modified_time" content="2022-06-13T03:28:30.391Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1161,7 +1162,7 @@
 
 
 
-<h3 id="33-搜索旋转排序数组"><a href="#33-搜索旋转排序数组" class="headerlink" title="33. 搜索旋转排序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">33. 搜索旋转排序数组</a></h3><p>难度中等1937英文版讨论区</p>
+<h3 id="33-搜索旋转排序数组"><a href="#33-搜索旋转排序数组" class="headerlink" title="33. 搜索旋转排序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/"><code>33. 搜索旋转排序数组</code></a></h3><p>难度中等1937英文版讨论区</p>
 <p>整数数组 <code>nums</code> 按升序排列，数组中的值 <strong>互不相同</strong> 。</p>
 <p>在传递给函数之前，<code>nums</code> 在预先未知的某个下标 <code>k</code>（<code>0 &lt;= k &lt; nums.length</code>）上进行了 <strong>旋转</strong>，使数组变为 <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code>（下标 <strong>从 0 开始</strong> 计数）。例如， <code>[0,1,2,4,5,6,7]</code> 在下标 <code>3</code> 处经旋转后可能变为 <code>[4,5,6,7,0,1,2]</code> 。</p>
 <p>给你 <strong>旋转后</strong> 的数组 <code>nums</code> 和一个整数 <code>target</code> ，如果 <code>nums</code> 中存在这个目标值 <code>target</code> ，则返回它的下标，否则返回 <code>-1</code> 。</p>
@@ -1173,35 +1174,39 @@
 <div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">nums</span> = [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], <span class="hljs-attr">target</span> = <span class="hljs-number">3</span>
 输出：-<span class="hljs-number">1</span></code></pre></div>
 
-<h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>注意「断崖」左侧的所有元素比右侧所有元素都大，我们是可以在这样一个存在断崖的山坡上用二分搜索算法搜索元素的，主要分成两步：</p>
+<p><strong>1、确定 <code>mid</code> 中点落在「断崖」左侧还是右侧</strong>。</p>
+<p><strong>2、在第 1 步确定的结果之上，根据 <code>target</code> 和 <code>nums[left], nums[right], nums[mid]</code> 的相对大小收缩搜索区间</strong>。</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220613112814364.png" srcset="/img/loading.gif" lazyload alt="image-20220613112814364" style="zoom:50%;">
+
+<p>具体来说，我们首先可以根据 <code>nums[mid]</code> 和 <code>nums[left]</code> 的相对大小确定 <code>mid</code> 和「断崖」的相对位置：</p>
+<p>假设 <code>mid</code> 在「断崖」左侧，那么可以肯定 <code>nums[left..mid]</code> 是连续且有序的，所以如果 <code>nums[left] &lt;= target &lt; nums[mid]</code>，则可以收缩右边界，否则应该收缩左边界。</p>
+<p>假设 <code>mid</code> 在「断崖」右侧，那么可以肯定 <code>nums[mid..right]</code> 是连续且有序的，所以如果 <code>nums[mid] &lt; target &lt;= nums[right]</code>，则可以收缩左边界，否则应该收缩右边界。</p>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>{
-        <span class="hljs-keyword">int</span> n = (<span class="hljs-keyword">int</span>)nums.<span class="hljs-built_in">size</span>();
-        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = n - <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">while</span> (left &lt;= right) {
-            <span class="hljs-keyword">int</span> mid = (right-left) / <span class="hljs-number">2</span> + left;
-            <span class="hljs-keyword">if</span> (nums[mid] == target) <span class="hljs-keyword">return</span> mid;
-            <span class="hljs-comment">//判断左边一半是否有序</span>
-            <span class="hljs-keyword">if</span> (nums[<span class="hljs-number">0</span>] &lt;= nums[mid]) {
-                <span class="hljs-comment">//target落在左半部分有序区域内</span>
-                <span class="hljs-keyword">if</span> (nums[<span class="hljs-number">0</span>] &lt;= target &amp;&amp; target &lt; nums[mid]) {
-                    right = mid - <span class="hljs-number">1</span>;
-                } <span class="hljs-keyword">else</span> {
-                    <span class="hljs-comment">//target落在右半部分无序区域内</span>
-                    left = mid + <span class="hljs-number">1</span>;
-                }
-            } <span class="hljs-keyword">else</span> {  <span class="hljs-comment">//右半部分是有序</span>
-                <span class="hljs-comment">//target落在右半部分有序区域内</span>
-                <span class="hljs-keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="hljs-number">1</span>]) {
-                    left = mid + <span class="hljs-number">1</span>;
-                } <span class="hljs-keyword">else</span> {
-                    <span class="hljs-comment">//target落在左半部分无序区域内</span>
-                    right = mid - <span class="hljs-number">1</span>;
-                }
-            }
+      <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = nums.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;
+      <span class="hljs-keyword">while</span>(left &lt;= right){
+        <span class="hljs-keyword">int</span> mid = left + (right-left);
+        <span class="hljs-comment">// 首先检查 nums[mid]，是否找到 target</span>
+        <span class="hljs-keyword">if</span>(nums[mid] == target) <span class="hljs-keyword">return</span> mid;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[mid] &gt;= nums[left]){
+          <span class="hljs-comment">// mid 落在断崖左边，此时 nums[left..mid] 有序</span>
+          <span class="hljs-keyword">if</span>(nums[left]&lt;=target &amp;&amp; target&lt;nums[mid])
+            <span class="hljs-comment">// target 落在 [left..mid-1] 中</span>
+            right = mid<span class="hljs-number">-1</span>;
+          <span class="hljs-comment">// target 落在 [mid+1..right] 中</span>
+          <span class="hljs-keyword">else</span> left = mid+<span class="hljs-number">1</span>;
+        }<span class="hljs-keyword">else</span>{
+          <span class="hljs-comment">// mid 落在断崖右边，此时 nums[mid..right] 有序</span>
+          <span class="hljs-keyword">if</span>(nums[mid] &lt; target &amp;&amp; target&lt;=nums[right])
+            <span class="hljs-comment">// target 落在 [mid+1..right] 中</span>
+            left = mid+<span class="hljs-number">1</span>;
+          <span class="hljs-comment">// target 落在 [left..mid-1] 中</span>
+          <span class="hljs-keyword">else</span> right = mid<span class="hljs-number">-1</span>;
         }
-        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     }
 };</code></pre></div>
 

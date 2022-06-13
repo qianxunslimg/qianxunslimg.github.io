@@ -24,7 +24,7 @@
 <meta property="og:description" content="滑动窗口模板框架 &#x2F;* 滑动窗口算法框架 *&#x2F; void slidingWindow(string s, string t) {     unordered_map&lt;char, int&gt; need, window;     for (char c : t) need[c]++;          int left &#x3D; 0, right &#x3D; 0;     int valid &#x3D; 0;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:32:16.217Z">
+<meta property="article:modified_time" content="2022-06-13T06:57:26.375Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -736,6 +736,27 @@
             maxn = <span class="hljs-built_in">max</span>(maxn, num[s[right] - <span class="hljs-string">'A'</span>]);
             <span class="hljs-keyword">if</span> (right - left + <span class="hljs-number">1</span> - maxn &gt; k) {
                 num[s[left] - <span class="hljs-string">'A'</span>]--;
+                left++;
+            }
+            right++;
+        }
+        <span class="hljs-keyword">return</span> right - left;
+    }
+};
+
+<span class="hljs-comment">//更换为 map计数</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">characterReplacement</span><span class="hljs-params">(string s, <span class="hljs-keyword">int</span> k)</span> </span>{
+        unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; window;
+        <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">length</span>();
+        <span class="hljs-keyword">int</span> maxn = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span> (right &lt; n) {
+            window[s[right]]++;
+            maxn = <span class="hljs-built_in">max</span>(maxn, window[s[right]]);
+            <span class="hljs-keyword">while</span>(right - left + <span class="hljs-number">1</span> - maxn &gt; k) {
+                window[s[left]]--;;
                 left++;
             }
             right++;
