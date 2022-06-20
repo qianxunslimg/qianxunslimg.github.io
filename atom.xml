@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-05-26T13:01:43.975Z</updated>
+  <updated>2022-06-20T16:00:49.698Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AHK的初次接触</title>
+    <link href="https://qianxunslimg.github.io/2022/06/20/ahk-shi-yong/"/>
+    <id>https://qianxunslimg.github.io/2022/06/20/ahk-shi-yong/</id>
+    <published>2022-06-20T15:43:00.000Z</published>
+    <updated>2022-06-20T16:00:49.698Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h5 id=&quot;午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot;&gt;&lt;a href=&quot;#午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot; class=&quot;headerlink&quot; title=&quot;午休刷视频发现了有个脚本小工具 尝试了下</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>CNAME CDN IPC</title>
@@ -459,25 +482,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面经题目们</title>
-    <link href="https://qianxunslimg.github.io/2022/04/18/mian-jing-ti-mu-men/"/>
-    <id>https://qianxunslimg.github.io/2022/04/18/mian-jing-ti-mu-men/</id>
-    <published>2022-04-17T19:32:00.000Z</published>
-    <updated>2022-05-28T15:49:03.337Z</updated>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    <category term="基础知识" scheme="https://qianxunslimg.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-    
-    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
