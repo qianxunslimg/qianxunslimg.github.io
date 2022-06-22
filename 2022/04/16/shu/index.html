@@ -63,7 +63,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png">
 <meta property="article:published_time" content="2022-04-16T12:09:49.000Z">
-<meta property="article:modified_time" content="2022-06-18T08:55:44.411Z">
+<meta property="article:modified_time" content="2022-06-22T03:30:43.999Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -994,6 +994,56 @@
           <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
       }
       <span class="hljs-keyword">return</span> <span class="hljs-built_in">helper</span>(nums, left, leftIndex) &amp;&amp; <span class="hljs-built_in">helper</span>(nums, leftIndex+<span class="hljs-number">1</span>, right<span class="hljs-number">-1</span>);
+    }
+};</code></pre></div>
+
+<h4 id="543-二叉树的直径-英文版讨论区"><a href="#543-二叉树的直径-英文版讨论区" class="headerlink" title="543. 二叉树的直径 英文版讨论区"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/diameter-of-binary-tree/">543. 二叉树的直径</a> 英文版讨论区</h4><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=543">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/diameter-of-binary-tree/#">思路</a></p>
+<p>难度简单1070</p>
+<p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。</p>
+<p><strong>示例 :</strong><br>给定二叉树</p>
+<div class="code-wrapper"><pre><code class="hljs livescript">    <span class="hljs-number">1</span>
+   / <span class="hljs-string">\</span>
+  <span class="hljs-number">2</span>   <span class="hljs-number">3</span>
+ / <span class="hljs-string">\</span>     
+<span class="hljs-number">4</span>   <span class="hljs-number">5</span></code></pre></div>
+
+<p>返回 <strong>3</strong>, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。</p>
+<h4 id="简单-但粗暴垃圾"><a href="#简单-但粗暴垃圾" class="headerlink" title="简单 但粗暴垃圾"></a>简单 但粗暴垃圾</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">//过当前节点的最大直径的 是当前节点的左子树最大深度 + 右子树最大深度</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">diameterOfBinaryTree</span><span class="hljs-params">(TreeNode* root)</span> </span>{
+      <span class="hljs-built_in">dfs</span>(root);
+      <span class="hljs-keyword">return</span> ans;
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* node)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;
+      ans = <span class="hljs-built_in">max</span>(ans, <span class="hljs-built_in">maxDepth</span>(node-&gt;left) + <span class="hljs-built_in">maxDepth</span>(node-&gt;right));
+      <span class="hljs-built_in">dfs</span>(node-&gt;left);
+      <span class="hljs-built_in">dfs</span>(node-&gt;right);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(TreeNode* node)</span></span>{
+      <span class="hljs-keyword">if</span>(node == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">maxDepth</span>(node-&gt;left), <span class="hljs-built_in">maxDepth</span>(node-&gt;right))+<span class="hljs-number">1</span>;
+    }
+};</code></pre></div>
+
+<h4 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">int</span> res;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">diameterOfBinaryTree</span><span class="hljs-params">(TreeNode* root)</span> </span>{
+      res = <span class="hljs-number">0</span>;
+      <span class="hljs-built_in">dfs</span>(root);
+      <span class="hljs-keyword">return</span> res;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* curr)</span></span>{
+      <span class="hljs-keyword">if</span>(!curr) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> l = <span class="hljs-built_in">dfs</span>(curr-&gt;left);
+      <span class="hljs-keyword">int</span> r = <span class="hljs-built_in">dfs</span>(curr-&gt;right);
+      res = <span class="hljs-built_in">max</span>(res,l+r); 
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(l,r)+<span class="hljs-number">1</span>;
     }
 };</code></pre></div>
 
