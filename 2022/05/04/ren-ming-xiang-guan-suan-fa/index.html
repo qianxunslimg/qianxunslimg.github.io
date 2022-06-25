@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505002315098.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610130057626.png">
 <meta property="article:published_time" content="2022-05-04T12:13:49.000Z">
-<meta property="article:modified_time" content="2022-06-10T10:31:46.190Z">
+<meta property="article:modified_time" content="2022-06-25T19:09:21.856Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -415,6 +415,86 @@
   }
 };</code></pre></div>
 
+<h2 id="摩尔投票法"><a href="#摩尔投票法" class="headerlink" title="摩尔投票法"></a>摩尔投票法</h2><p>核心就是<strong>对拼消耗</strong>。</p>
+<p>玩一个诸侯争霸的游戏，假设你方人口超过总人口一半以上，并且能保证每个人口出去干仗都能一对一同归于尽。最后还有人活下来的国家就是胜利。</p>
+<p>那就大混战呗，最差所有人都联合起来对付你（对应你每次选择作为计数器的数都是众数），或者其他国家也会相互攻击（会选择其他数作为计数器的数），但是只要你们不要内斗，最后肯定你赢。</p>
+<h4 id="169-多数元素"><a href="#169-多数元素" class="headerlink" title="169. 多数元素"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/majority-element/">169. 多数元素</a></h4><p>难度简单1471</p>
+<p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [3,2,3]</span>
+<span class="hljs-string">输出：3</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs accesslog">输入：nums = <span class="hljs-string">[2,2,1,1,1,2,2]</span>
+输出：<span class="hljs-number">2</span></code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<p>==<strong>进阶：</strong>尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。==</p>
+<ol>
+<li>摩尔投票法<div class="code-wrapper"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">//投票算法证明：</span>
+    <span class="hljs-comment">// 如果候选人不是maj 则 maj,会和其他非候选人一起反对 会反对候选人,所以候选人一定会下台(maj==0时发生换届选举)</span>
+    <span class="hljs-comment">// 如果候选人是maj , 则maj 会支持自己，其他候选人会反对，同样因为maj 票数超过一半，所以maj 一定会成功当选</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> maj = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(cnt == <span class="hljs-number">0</span>){
+          maj = nums[i];
+          cnt++;
+        }<span class="hljs-keyword">else</span>{
+          nums[i] == maj ? cnt++ : cnt--;
+        }
+      }
+      <span class="hljs-keyword">return</span> maj;
+    }
+};</code></pre></div></li>
+<li>随机法<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 随机数法 期望的随机次数是常数 平均时间复杂度On</span>
+    <span class="hljs-comment">// 期望计算 1*0.5 + 2*0.5*0.5 + 3*0.5*0.5...收敛于2</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+        <span class="hljs-keyword">int</span> randNum = nums[<span class="hljs-built_in">rand</span>() % nums.<span class="hljs-built_in">size</span>()];
+        <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; num : nums){
+          <span class="hljs-keyword">if</span>(randNum == num)
+            cnt++;
+          <span class="hljs-keyword">if</span>(cnt&gt;nums.<span class="hljs-built_in">size</span>() / <span class="hljs-number">2</span>)
+            <span class="hljs-keyword">return</span> randNum;
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+};</code></pre></div></li>
+<li>位运算<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
+      <span class="hljs-comment">//位运算法,统计每个数字每一位0，1出现的次数，如果某一位1出现的次数多则该位为1，0同理；</span>
+      <span class="hljs-comment">//最后按为统计出来的数就是众数</span>
+      <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>,len = nums.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">32</span>;i++){
+        <span class="hljs-keyword">int</span> ones=<span class="hljs-number">0</span>,zero=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j &lt; len; j++){
+          <span class="hljs-keyword">if</span>(ones&gt;len/<span class="hljs-number">2</span> ||zero&gt;len/<span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">if</span>((nums[j]&amp;(<span class="hljs-number">1</span>&lt;&lt;i)) != <span class="hljs-number">0</span>) ones++;
+          <span class="hljs-keyword">else</span> zero++;   
+        }
+        <span class="hljs-comment">// 还原数字</span>
+        <span class="hljs-keyword">if</span>(ones &gt; zero)
+          res |= (<span class="hljs-number">1</span>&lt;&lt;i);
+      }
+      <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre></div></li>
+</ol>
 
               
             </div>
