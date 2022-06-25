@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-06-24T15:39:14.594Z">
+<meta property="article:modified_time" content="2022-06-25T03:41:58.441Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1127,7 +1127,7 @@
     }
 };</code></pre></div>
 
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AF411G7cA/?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=247930c6c184032909af4f3293b42221">这个视频很牛逼</a></p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><code>堆排序</code></h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1AF411G7cA/?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=247930c6c184032909af4f3293b42221">这个视频很牛逼</a></p>
 <p>堆排序应用的<code>数据结构</code>: 完全二叉树  除了最后一层每层都满, 且最后一层是从左到右</p>
 <h3 id="上下滤"><a href="#上下滤" class="headerlink" title="上下滤"></a>上下滤</h3><p>上滤一般用于元素插入堆的场景, 将元素插入到最后不断于父节点交换位置, 直到满足堆序性. 插入的时间复杂度为Ologn</p>
 <p>下滤是父节点与大于自己的最大的子节点交换位置, 以满足堆序性.</p>
@@ -1135,8 +1135,7 @@
 <p>怎样建堆呢 一般采用由下而上的进行建堆 也就是从倒数第二层依次进行下滤操作, 通过节点与子节点位置的交换 实现这一层的堆序性, 然后向上进行相同的操作   这样建堆的时间复杂度为On 而不断插入建堆的时间复杂度为Onlogn</p>
 <h3 id="堆弹出"><a href="#堆弹出" class="headerlink" title="堆弹出"></a>堆弹出</h3><p>堆弹出的过程其实就是将根节点弹出, 然后将最后一个节点放于根节点的位置进行下滤操作, 直到满足堆序性</p>
 <h3 id="堆排序-1"><a href="#堆排序-1" class="headerlink" title="堆排序"></a>堆排序</h3><p>把根堆内的所有元素依次弹出就是堆排序了</p>
-<p>为什么用大根堆呢?</p>
-<p>因为堆元素的弹出需要额外的空间去存储, 而使用大根堆则可以直接将堆顶和最后元素直接交换位置, 天然得到了排序好的数组</p>
+<p>使用大根堆实现从小到达的排序 相反 使用小根堆实现从大到小的排序</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 下滤操作 比较父节点和叶子节点 大于父节点的最大的叶子节点与父节点交换位置</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Heap_build</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a[], <span class="hljs-keyword">int</span> root, <span class="hljs-keyword">int</span> length)</span> </span>{
   <span class="hljs-keyword">int</span> lchild = root * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>; <span class="hljs-comment">//根节点的左子结点下标</span>
@@ -1169,6 +1168,34 @@
     <span class="hljs-built_in">Heap_build</span>(a, <span class="hljs-number">0</span>, j);
   }
 }</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heap_build</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> rootPos, <span class="hljs-keyword">int</span> lastPos)</span> </span>{
+  <span class="hljs-keyword">int</span> lPos = rootPos * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (lPos &lt; lastPos) {
+    <span class="hljs-keyword">int</span> rPos = rootPos * <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">int</span> maxPos = lPos;
+    <span class="hljs-keyword">if</span> (rPos &lt; lastPos)
+      maxPos = nums[lPos] &gt; nums[rPos] ? lPos : rPos;
+    <span class="hljs-keyword">if</span> (nums[rootPos] &lt; nums[maxPos]) {
+      <span class="hljs-built_in">swap</span>(nums[rootPos], nums[maxPos]); <span class="hljs-comment">//下滤,交换位置</span>
+      <span class="hljs-built_in">heap_build</span>(nums, maxPos, lastPos); <span class="hljs-comment">//递归</span>
+    }
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
+  <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
+  <span class="hljs-comment">//从最后一个非叶子节点的父结点开始建堆 建堆复杂度为On</span>
+  <span class="hljs-comment">//也就是说用到的是自下而上建堆法 用的是下滤操作</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n / <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    <span class="hljs-built_in">heap_build</span>(nums, i, n);
+  }
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+    <span class="hljs-built_in">swap</span>(nums[<span class="hljs-number">0</span>], nums[i]); <span class="hljs-comment">//出堆,其实就是放到堆的最后</span>
+    <span class="hljs-built_in">heap_build</span>(nums, <span class="hljs-number">0</span>, i); <span class="hljs-comment">//递归下滤 保证堆序性</span>
+  }</code></pre></div>
+
+
 
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>选择排序是一种简单直观的排序算法，<u>无论什么数据进去都是 <code>O(n²)</code> 的时间复杂度</u>。所以用到它的时候，<code>数据规模越小越好</code>。唯一的好处可能就是不占用额外的内存空间了吧。</p>
 <h3 id="1-算法步骤-3"><a href="#1-算法步骤-3" class="headerlink" title="1. 算法步骤"></a>1. 算法步骤</h3><p>首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。</p>
