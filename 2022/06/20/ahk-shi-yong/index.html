@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220620235708526.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220621001428713.png">
 <meta property="article:published_time" content="2022-06-20T15:43:00.000Z">
-<meta property="article:modified_time" content="2022-06-20T16:16:32.369Z">
+<meta property="article:modified_time" content="2022-06-27T09:12:50.161Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
@@ -298,10 +298,15 @@
 <span class="hljs-keyword">for</span> SelectedFile in SelectedFiles
 {
     Contents := <span class="hljs-built_in">FileRead</span>(SelectedFile, <span class="hljs-string">"UTF-8"</span>)
-    ;msgbox Contents
-    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"``````"</span>, <span class="hljs-string">"123456"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"````````````"</span>, <span class="hljs-string">"dian6"</span>)      
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"``````````"</span>, <span class="hljs-string">"dian5"</span>)      
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"````````"</span>, <span class="hljs-string">"dian4"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"``````"</span>, <span class="hljs-string">"dian3"</span>)
     Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"``"</span>, <span class="hljs-string">"=="</span>)
-    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"123456"</span>, <span class="hljs-string">"``````"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"dian3"</span>, <span class="hljs-string">"``````"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"dian4"</span>, <span class="hljs-string">"````````"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"dian5"</span>, <span class="hljs-string">"``````````"</span>)
+    Contents := <span class="hljs-built_in">StrReplace</span>(Contents, <span class="hljs-string">"dian6"</span>, <span class="hljs-string">"````````````"</span>)
     SelectedFile := <span class="hljs-built_in">StrReplace</span>(SelectedFile, <span class="hljs-string">".md"</span>, <span class="hljs-string">"_打印副本.md"</span>)
     FileObj := <span class="hljs-built_in">FileOpen</span>(SelectedFile, <span class="hljs-string">"w"</span>) 
     FileObj.<span class="hljs-built_in">Write</span>(Contents)

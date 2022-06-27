@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-06-25T03:41:58.441Z">
+<meta property="article:modified_time" content="2022-06-27T17:57:41.039Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1170,15 +1170,15 @@
 }</code></pre></div>
 
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heap_build</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums, <span class="hljs-keyword">int</span> rootPos, <span class="hljs-keyword">int</span> lastPos)</span> </span>{
-  <span class="hljs-keyword">int</span> lPos = rootPos * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">if</span> (lPos &lt; lastPos) {
-    <span class="hljs-keyword">int</span> rPos = rootPos * <span class="hljs-number">2</span> + <span class="hljs-number">2</span>;
-    <span class="hljs-keyword">int</span> maxPos = lPos;
-    <span class="hljs-keyword">if</span> (rPos &lt; lastPos)
-      maxPos = nums[lPos] &gt; nums[rPos] ? lPos : rPos;
-    <span class="hljs-keyword">if</span> (nums[rootPos] &lt; nums[maxPos]) {
-      <span class="hljs-built_in">swap</span>(nums[rootPos], nums[maxPos]); <span class="hljs-comment">//下滤,交换位置</span>
-      <span class="hljs-built_in">heap_build</span>(nums, maxPos, lastPos); <span class="hljs-comment">//递归</span>
+  <span class="hljs-keyword">int</span> leftPos = rootPos * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> (leftPos &lt; lastPos) {
+    <span class="hljs-keyword">int</span> rightPos = leftPos + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> maxPos = leftPos;  <span class="hljs-comment">//注意 这里必须初始化为leftPos</span>
+    <span class="hljs-keyword">if</span> (rightPos &lt; lastPos)
+      maxPos = nums[leftPos] &gt; nums[rightPos] ? leftPos : rightPos;
+    <span class="hljs-keyword">if</span> (nums[maxPos] &gt; nums[rootPos]) {
+      <span class="hljs-built_in">swap</span>(nums[maxPos], nums[rootPos]);<span class="hljs-comment">//下滤,交换位置</span>
+      <span class="hljs-built_in">heap_build</span>(nums, maxPos, lastPos);<span class="hljs-comment">//递归</span>
     }
   }
 }
@@ -1186,14 +1186,15 @@
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>{
   <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();
   <span class="hljs-comment">//从最后一个非叶子节点的父结点开始建堆 建堆复杂度为On</span>
-  <span class="hljs-comment">//也就是说用到的是自下而上建堆法 用的是下滤操作</span>
+  <span class="hljs-comment">//也就是说用到的是自下而上建堆法 用的是下滤操作  </span>
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n / <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
     <span class="hljs-built_in">heap_build</span>(nums, i, n);
   }
   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
-    <span class="hljs-built_in">swap</span>(nums[<span class="hljs-number">0</span>], nums[i]); <span class="hljs-comment">//出堆,其实就是放到堆的最后</span>
-    <span class="hljs-built_in">heap_build</span>(nums, <span class="hljs-number">0</span>, i); <span class="hljs-comment">//递归下滤 保证堆序性</span>
-  }</code></pre></div>
+    <span class="hljs-built_in">swap</span>(nums[<span class="hljs-number">0</span>], nums[i]);
+    <span class="hljs-built_in">heap_build</span>(nums, <span class="hljs-number">0</span>, i);
+  }
+}</code></pre></div>
 
 
 

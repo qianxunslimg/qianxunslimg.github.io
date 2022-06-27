@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203130110029.jpeg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203130110233.jpeg">
 <meta property="article:published_time" content="2022-04-01T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-06-13T03:25:58.670Z">
+<meta property="article:modified_time" content="2022-06-27T13:29:47.885Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -882,7 +882,6 @@ ans<span class="hljs-selector-class">.val</span> = <span class="hljs-number">3</
       <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>)
         <span class="hljs-keyword">return</span> head;
       ListNode* last = <span class="hljs-built_in">reverseList</span>(head-&gt;next);
-      <span class="hljs-comment">//nmb 秀到头晕</span>
       head-&gt;next-&gt;next = head;
       head-&gt;next = <span class="hljs-literal">nullptr</span>;
       <span class="hljs-keyword">return</span> last;
