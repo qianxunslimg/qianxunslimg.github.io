@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20210223155303971.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220331164646464.png">
 <meta property="article:published_time" content="2022-03-30T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:31:39.512Z">
+<meta property="article:modified_time" content="2022-06-27T03:28:27.112Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -375,6 +375,225 @@
 	}
 };</code></pre></div>
 
+<h2 id="括号题目"><a href="#括号题目" class="headerlink" title="括号题目"></a>括号题目</h2><h3 id="22-括号生成"><a href="#22-括号生成" class="headerlink" title="22. 括号生成"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/">22. 括号生成</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=22">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/#">思路</a></p>
+<p>难度中等2723</p>
+<p>数字 <code>n</code> 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">3</span>
+输出：[<span class="hljs-string">"((()))"</span>,<span class="hljs-string">"(()())"</span>,<span class="hljs-string">"(())()"</span>,<span class="hljs-string">"()(())"</span>,<span class="hljs-string">"()()()"</span>]</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">1</span>
+输出：[<span class="hljs-string">"()"</span>]</code></pre></div>
+
+<h4 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h4><p>记录剩余的 左右括号的数目</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;string&gt; ans;
+    string path;
+    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+      <span class="hljs-built_in">backtrack</span>(n, n);
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+      <span class="hljs-keyword">if</span>(left&lt;<span class="hljs-number">0</span> || right&lt;<span class="hljs-number">0</span> || left&gt;right)
+        <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">if</span>(left == <span class="hljs-number">0</span> &amp;&amp; right == <span class="hljs-number">0</span>){
+        ans.<span class="hljs-built_in">push_back</span>(path);
+        <span class="hljs-keyword">return</span>;
+      }
+      path+=<span class="hljs-string">'('</span>;
+      <span class="hljs-built_in">backtrack</span>(left<span class="hljs-number">-1</span>, right);
+      path.<span class="hljs-built_in">pop_back</span>();
+      path+=<span class="hljs-string">")"</span>;
+      <span class="hljs-built_in">backtrack</span>(left, right<span class="hljs-number">-1</span>);
+      path.<span class="hljs-built_in">pop_back</span>();
+    }
+};</code></pre></div>
+
+<h3 id="20-有效的括号"><a href="#20-有效的括号" class="headerlink" title="20. 有效的括号"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-parentheses/">20. 有效的括号</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=20">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-parentheses/#">思路</a></p>
+<p>难度简单3349</p>
+<p>给定一个只包括 <code>'('</code>，<code>')'</code>，<code>'{'</code>，<code>'}'</code>，<code>'['</code>，<code>']'</code> 的字符串 <code>s</code> ，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<ol>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+</ol>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"()"</span>
+输出：<span class="hljs-literal">true</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"()[]{}"</span>
+输出：<span class="hljs-literal">true</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"(]"</span>
+输出：<span class="hljs-literal">false</span></code></pre></div>
+
+<p><strong>示例 4：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"([)]"</span>
+输出：<span class="hljs-literal">false</span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isValid</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      stack&lt;<span class="hljs-keyword">char</span>&gt; stk;
+      unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">char</span>&gt; mapp{{<span class="hljs-string">'('</span>,<span class="hljs-string">')'</span>},{<span class="hljs-string">'{'</span>,<span class="hljs-string">'}'</span>},{<span class="hljs-string">'['</span>,<span class="hljs-string">']'</span>}};
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+          <span class="hljs-keyword">if</span>(s[i] == <span class="hljs-string">'}'</span> || s[i] == <span class="hljs-string">']'</span> || s[i] == <span class="hljs-string">')'</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+          stk.<span class="hljs-built_in">push</span>(s[i]);
+          <span class="hljs-keyword">continue</span>;
+        }
+
+        <span class="hljs-keyword">if</span>(mapp[stk.<span class="hljs-built_in">top</span>()] == s[i]){
+          stk.<span class="hljs-built_in">pop</span>();
+        }<span class="hljs-keyword">else</span> stk.<span class="hljs-built_in">push</span>(s[i]);
+      }
+      <span class="hljs-keyword">return</span> stk.<span class="hljs-built_in">empty</span>();
+    }
+};</code></pre></div>
+
+<h3 id="921-使括号有效的最少添加"><a href="#921-使括号有效的最少添加" class="headerlink" title="921. 使括号有效的最少添加"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/">921. 使括号有效的最少添加</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=921">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/#">思路</a></p>
+<p>难度中等140</p>
+<p>只有满足下面几点之一，括号字符串才是有效的：</p>
+<ul>
+<li>它是一个空字符串，或者</li>
+<li>它可以被写成 <code>AB</code> （<code>A</code> 与 <code>B</code> 连接）, 其中 <code>A</code> 和 <code>B</code> 都是有效字符串，或者</li>
+<li>它可以被写作 <code>(A)</code>，其中 <code>A</code> 是有效字符串。</li>
+</ul>
+<p>给定一个括号字符串 <code>s</code> ，移动N次，你就可以在字符串的任何位置插入一个括号。</p>
+<ul>
+<li>例如，如果 <code>s = "()))"</code> ，你可以插入一个开始括号为 <code>"(()))"</code> 或结束括号为 <code>"())))"</code> 。</li>
+</ul>
+<p>返回 <em>为使结果字符串 <code>s</code> 有效而必须添加的最少括号数</em>。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"())"</span>
+输出：<span class="hljs-number">1</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"((("</span>
+输出：<span class="hljs-number">3</span></code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 1000</code></li>
+<li><code>s</code> 只包含 <code>'('</code> 和 <code>')'</code> 字符。</li>
+</ul>
+<h4 id="栈解法"><a href="#栈解法" class="headerlink" title="栈解法"></a>栈解法</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minAddToMakeValid</span><span class="hljs-params">(string s)</span> </span>{
+      stack&lt;<span class="hljs-keyword">char</span>&gt; stk;
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-comment">//其实for循环里面的ans 记录的需要的左括号的个数</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">empty</span>()){
+          <span class="hljs-keyword">if</span>(s[i] == <span class="hljs-string">'('</span>)
+            stk.<span class="hljs-built_in">push</span>(<span class="hljs-string">')'</span>);
+          <span class="hljs-keyword">else</span> ans++;
+        }<span class="hljs-keyword">else</span> { 
+          <span class="hljs-keyword">if</span>(stk.<span class="hljs-built_in">top</span>() == s[i]){
+            stk.<span class="hljs-built_in">pop</span>();
+          }<span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">if</span>(s[i] == <span class="hljs-string">')'</span>)
+              stk.<span class="hljs-built_in">push</span>(<span class="hljs-string">'('</span>);
+            <span class="hljs-keyword">else</span> stk.<span class="hljs-built_in">push</span>(<span class="hljs-string">')'</span>);
+          }
+        }
+      }
+      <span class="hljs-comment">//最后剩下的size是需要的右括号的个数</span>
+      ans += stk.<span class="hljs-built_in">size</span>();
+      <span class="hljs-keyword">return</span> ans;
+    }
+};</code></pre></div>
+
+<h4 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minAddToMakeValid</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-comment">//need 需要括号的个数</span>
+      <span class="hljs-keyword">int</span> needL = <span class="hljs-number">0</span>, needR = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">if</span>(s[i] == <span class="hljs-string">'('</span>)
+          needR++;
+        <span class="hljs-keyword">else</span>{
+          needR--;
+          <span class="hljs-keyword">if</span>(needR == <span class="hljs-number">-1</span>){
+            needR = <span class="hljs-number">0</span>;
+            needL++;
+          }
+        }
+      }
+      <span class="hljs-keyword">return</span> needL + needR;
+    }
+};</code></pre></div>
+
+<h3 id="1541-平衡括号字符串的最少插入次数"><a href="#1541-平衡括号字符串的最少插入次数" class="headerlink" title="1541. 平衡括号字符串的最少插入次数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-insertions-to-balance-a-parentheses-string/">1541. 平衡括号字符串的最少插入次数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1541">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-insertions-to-balance-a-parentheses-string/#">思路</a></p>
+<p>难度中等48</p>
+<p>给你一个括号字符串 <code>s</code> ，它只包含字符 <code>'('</code> 和 <code>')'</code> 。一个括号字符串被称为平衡的当它满足：</p>
+<ul>
+<li>任何左括号 <code>'('</code> 必须对应两个连续的右括号 <code>'))'</code> 。</li>
+<li>左括号 <code>'('</code> 必须在对应的连续两个右括号 <code>'))'</code> 之前。</li>
+</ul>
+<p>比方说 <code>"())"</code>， <code>"())(())))"</code> 和 <code>"(())())))"</code> 都是平衡的， <code>")()"</code>， <code>"()))"</code> 和 <code>"(()))"</code> 都是不平衡的。</p>
+<p>你可以在任意位置插入字符 ‘(‘ 和 ‘)’ 使字符串平衡。</p>
+<p>请你返回让 <code>s</code> 平衡的最少插入次数。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"(()))"</span>
+输出：<span class="hljs-number">1</span>
+解释：第二个左括号有与之匹配的两个右括号，但是第一个左括号只有一个右括号。我们需要在字符串结尾额外增加一个 ')' 使字符串变成平衡字符串 <span class="hljs-string">"(())))"</span> 。</code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"())"</span>
+输出：<span class="hljs-number">0</span>
+解释：字符串已经平衡了。</code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"))())("</span>
+输出：<span class="hljs-number">3</span>
+解释：添加 '(' 去匹配最开头的 '))' ，然后添加 '))' 去匹配最后一个 '(' 。</code></pre></div>
+
+<p><strong>示例 4：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">"(((((("</span>
+输出：<span class="hljs-number">12</span>
+解释：添加 <span class="hljs-number">12</span> 个 ')' 得到平衡字符串。</code></pre></div>
+
+<p><strong>示例 5：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs 1c">输入：s = <span class="hljs-string">")))))))"</span>
+输出：<span class="hljs-number">5</span>
+解释：在字符串开头添加 <span class="hljs-number">4</span> 个 '(' 并在结尾添加 <span class="hljs-number">1</span> 个 ')' ，字符串变成平衡字符串 <span class="hljs-string">"(((())))))))"</span> 。</code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 10^5</code></li>
+<li><code>s</code> 只包含 <code>'('</code> 和 <code>')'</code> 。</li>
+</ul>
+<h3 id="32-最长有效括号"><a href="#32-最长有效括号" class="headerlink" title="32. 最长有效括号"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-valid-parentheses/">32. 最长有效括号</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-valid-parentheses/#">思路</a></p>
+<p>难度困难1880</p>
+<p>给你一个只包含 <code>'('</code> 和 <code>')'</code> 的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"(()"</span>
+输出：<span class="hljs-number">2</span>
+解释：最长有效括号子串是 <span class="hljs-string">"()"</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">")()())"</span>
+输出：<span class="hljs-number">4</span>
+解释：最长有效括号子串是 <span class="hljs-string">"()()"</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">""</span>
+输出：<span class="hljs-number">0</span></code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= s.length &lt;= 3 * 104</code></li>
+<li><code>s[i]</code> 为 <code>'('</code> 或 <code>')'</code></li>
+</ul>
 <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><p><strong>通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了</strong>。</p>
 <p>时间复杂度为$O(n)$。</p>
 <p>例如本题其实就是找找到一个元素右边第一个比自己大的元素。</p>
