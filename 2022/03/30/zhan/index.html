@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20210223155303971.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220331164646464.png">
 <meta property="article:published_time" content="2022-03-30T02:42:00.000Z">
-<meta property="article:modified_time" content="2022-06-27T03:28:27.112Z">
+<meta property="article:modified_time" content="2022-06-28T08:31:53.194Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -375,7 +375,7 @@
 	}
 };</code></pre></div>
 
-<h2 id="括号题目"><a href="#括号题目" class="headerlink" title="括号题目"></a>括号题目</h2><h3 id="22-括号生成"><a href="#22-括号生成" class="headerlink" title="22. 括号生成"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/">22. 括号生成</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=22">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/#">思路</a></p>
+<h3 id="括号题目"><a href="#括号题目" class="headerlink" title="括号题目"></a><code>括号题目</code></h3><h3 id="22-括号生成"><a href="#22-括号生成" class="headerlink" title="22. 括号生成"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/">22. 括号生成</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=22">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/generate-parentheses/#">思路</a></p>
 <p>难度中等2723</p>
 <p>数字 <code>n</code> 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
 <p><strong>示例 1：</strong></p>
@@ -594,6 +594,290 @@
 <li><code>0 &lt;= s.length &lt;= 3 * 104</code></li>
 <li><code>s[i]</code> 为 <code>'('</code> 或 <code>')'</code></li>
 </ul>
+<h3 id="解码-波兰-四则运算"><a href="#解码-波兰-四则运算" class="headerlink" title="解码/波兰/四则运算"></a><code>解码/波兰/四则运算</code></h3><h3 id="394-字符串解码"><a href="#394-字符串解码" class="headerlink" title="394. 字符串解码"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-string/">394. 字符串解码</a></h3><p>难度中等1202</p>
+<p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"3[a]2[bc]"</span>
+输出：<span class="hljs-string">"aaabcbc"</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"3[a2[c]]"</span>
+输出：<span class="hljs-string">"accaccacc"</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"2[abc]3[cd]ef"</span>
+输出：<span class="hljs-string">"abcabccdcdcdef"</span></code></pre></div>
+
+<p><strong>示例 4：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"abc3[cd]xyz"</span>
+输出：<span class="hljs-string">"abccdcdcdxyz"</span></code></pre></div>
+
+<h4 id="双栈"><a href="#双栈" class="headerlink" title="双栈"></a>双栈</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">decodeString</span><span class="hljs-params">(string s)</span> </span>{
+      stack&lt;<span class="hljs-keyword">int</span>&gt; num_stk;     <span class="hljs-comment">//数字栈</span>
+      stack&lt;string&gt; str_stk;  <span class="hljs-comment">//字符串栈</span>
+      string str;             <span class="hljs-comment">//当前正在累积的字符串</span>
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); i++) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(s[i])) {  <span class="hljs-comment">//遇到数字</span>
+          <span class="hljs-keyword">int</span> n = s[i] - <span class="hljs-string">'0'</span>;
+          <span class="hljs-comment">//数字可能有多位</span>
+          <span class="hljs-keyword">while</span> (<span class="hljs-built_in">isdigit</span>(s[++i])) n = <span class="hljs-number">10</span> * n + s[i] - <span class="hljs-string">'0'</span>;
+          num_stk.<span class="hljs-built_in">push</span>(n);  <span class="hljs-comment">//加入数字栈</span>
+          --i;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">'['</span>) {
+          str_stk.<span class="hljs-built_in">push</span>(str);  <span class="hljs-comment">//将当前累积的字符串入栈</span>
+          str = <span class="hljs-string">""</span>;           <span class="hljs-comment">//开始记录新的一段字符串</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">']'</span>) {
+          string tmp;
+          <span class="hljs-comment">//将当前字符串按数字栈栈顶元素为倍数进行扩展</span>
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num_stk.<span class="hljs-built_in">top</span>(); i++) {
+            tmp += str;
+          }
+          str = tmp;
+          num_stk.<span class="hljs-built_in">pop</span>();  <span class="hljs-comment">//数字栈栈顶元素弹出</span>
+          <span class="hljs-comment">//字符串栈栈顶元素弹出来并与当前字符串拼接，作为新的当前正在累积的字符串</span>
+          str = str_stk.<span class="hljs-built_in">top</span>() + str;
+          str_stk.<span class="hljs-built_in">pop</span>();
+        } <span class="hljs-keyword">else</span>
+          str += s[i];  <span class="hljs-comment">//当前字符串继续累积</span>
+      }
+      <span class="hljs-keyword">return</span> str;
+    }
+};</code></pre></div>
+
+
+
+<h3 id="224-基本计算器"><a href="#224-基本计算器" class="headerlink" title="224. 基本计算器"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/basic-calculator/">224. 基本计算器</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=224">labuladong 题解</a></p>
+<p>难度困难782</p>
+<p>给你一个字符串表达式 <code>s</code> ，请你实现一个基本计算器来计算并返回它的值。</p>
+<p>注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 <code>eval()</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"1 + 1"</span>
+输出：<span class="hljs-number">2</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">" 2-1 + 2 "</span>
+输出：<span class="hljs-number">3</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs subunit">输入：s = "(1+(4<span class="hljs-string">+5</span><span class="hljs-string">+2</span>)<span class="hljs-string">-3</span>)+(6<span class="hljs-string">+8</span>)"
+输出：23</code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 3 * 105</code></li>
+<li><code>s</code> 由数字、<code>'+'</code>、<code>'-'</code>、<code>'('</code>、<code>')'</code>、和 <code>' '</code> 组成</li>
+<li><code>s</code> 表示一个有效的表达式</li>
+<li>‘+’ 不能用作一元运算(例如， “+1” 和 <code>"+(2 + 3)"</code> 无效)</li>
+<li>‘-‘ 可以用作一元运算(即 “-1” 和 <code>"-(2 + 3)"</code> 是有效的)</li>
+<li>输入中不存在两个连续的操作符</li>
+<li>每个数字和运行的计算将适合于一个有符号的 32位 整数</li>
+</ul>
+<h3 id="带括号的四则运算-字节"><a href="#带括号的四则运算-字节" class="headerlink" title="带括号的四则运算 字节"></a><code>带括号的四则运算 字节</code></h3><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    unordered_map&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; pr{{<span class="hljs-string">'+'</span>, <span class="hljs-number">1</span>}, {<span class="hljs-string">'-'</span>, <span class="hljs-number">1</span>}, {<span class="hljs-string">'*'</span>, <span class="hljs-number">2</span>}, {<span class="hljs-string">'/'</span>, <span class="hljs-number">2</span>}};
+    stack&lt;<span class="hljs-keyword">int</span>&gt; nums;
+    stack&lt;<span class="hljs-keyword">char</span>&gt; op;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eval</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">int</span> b = nums.<span class="hljs-built_in">top</span>(); nums.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-keyword">int</span> a = nums.<span class="hljs-built_in">top</span>(); nums.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-keyword">int</span> c = op.<span class="hljs-built_in">top</span>(); op.<span class="hljs-built_in">pop</span>();
+        <span class="hljs-keyword">int</span> res;
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'+'</span>) res = a + b;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'-'</span>) res = a - b;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'*'</span>) res = a * b;
+        <span class="hljs-keyword">else</span> res = a / b;
+        nums.<span class="hljs-built_in">push</span>(res);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">replace</span><span class="hljs-params">(string &amp;s, string a, string b)</span> </span>{
+        <span class="hljs-keyword">int</span> pos = s.<span class="hljs-built_in">find</span>(a), m = a.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">while</span> (pos != <span class="hljs-number">-1</span>) {
+            s.<span class="hljs-built_in">replace</span>(pos, m, b);
+            pos = s.<span class="hljs-built_in">find</span>(a);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(string s)</span> </span>{
+        <span class="hljs-comment">// 处理 s 使之合法</span>
+        <span class="hljs-comment">// 去空格</span>
+        <span class="hljs-built_in">replace</span>(s, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>);
+        <span class="hljs-comment">// (- 替换为 (0-</span>
+        <span class="hljs-built_in">replace</span>(s, <span class="hljs-string">"(-"</span>, <span class="hljs-string">"(0-"</span>);
+        <span class="hljs-comment">// (+ 替换为 (0+</span>
+        <span class="hljs-built_in">replace</span>(s, <span class="hljs-string">"(+"</span>, <span class="hljs-string">"(0+"</span>);
+        <span class="hljs-comment">// 在 nums 中先放个 0 预防开始的符号</span>
+        nums.<span class="hljs-built_in">push</span>(<span class="hljs-number">0</span>);
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.<span class="hljs-built_in">size</span>(); ++ i) {
+            <span class="hljs-keyword">char</span> c = s[i];
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(c)) {
+                <span class="hljs-keyword">int</span> j = i; <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">while</span> (j &lt; s.<span class="hljs-built_in">size</span>() &amp;&amp; <span class="hljs-built_in">isdigit</span>(s[j]))
+                    num = num * <span class="hljs-number">10</span> + (s[j++] - <span class="hljs-string">'0'</span>);
+                i = j - <span class="hljs-number">1</span>;
+                nums.<span class="hljs-built_in">push</span>(num);
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'('</span>) {
+                op.<span class="hljs-built_in">push</span>(<span class="hljs-string">'('</span>);
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">')'</span>) {
+                <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">top</span>() != <span class="hljs-string">'('</span>) <span class="hljs-built_in">eval</span>();
+                op.<span class="hljs-built_in">pop</span>();
+            } <span class="hljs-keyword">else</span> { 
+                <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>() &amp;&amp; op.<span class="hljs-built_in">top</span>() != <span class="hljs-string">'('</span> &amp;&amp; pr[op.<span class="hljs-built_in">top</span>()] &gt;= pr[c]) <span class="hljs-built_in">eval</span>();
+                op.<span class="hljs-built_in">push</span>(c);
+            }
+        }
+        <span class="hljs-keyword">while</span> (op.<span class="hljs-built_in">size</span>()) <span class="hljs-built_in">eval</span>();
+        <span class="hljs-keyword">return</span> nums.<span class="hljs-built_in">top</span>();
+    }
+};</code></pre></div>
+
+
+
+
+
+<h3 id="227-基本计算器-II"><a href="#227-基本计算器-II" class="headerlink" title="227. 基本计算器 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/basic-calculator-ii/">227. 基本计算器 II</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=227">labuladong 题解</a></p>
+<p>难度中等585</p>
+<p>给你一个字符串表达式 <code>s</code> ，请你实现一个基本计算器来计算并返回它的值。</p>
+<p>整数除法仅保留整数部分。</p>
+<p>你可以假设给定的表达式总是有效的。所有中间结果将在 <code>[-231, 231 - 1]</code> 的范围内。</p>
+<p><strong>注意：</strong>不允许使用任何将字符串作为数学表达式计算的内置函数，比如 <code>eval()</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"3+2*2"</span>
+输出：<span class="hljs-number">7</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">" 3/2 "</span>
+输出：<span class="hljs-number">1</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">" 3+5 / 2 "</span>
+输出：<span class="hljs-number">5</span></code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 3 * 105</code></li>
+<li><code>s</code> 由整数和算符 <code>('+', '-', '*', '/')</code> 组成，中间由一些空格隔开</li>
+<li><code>s</code> 表示一个 <strong>有效表达式</strong></li>
+<li>表达式中的所有整数都是非负整数，且在范围 <code>[0, 231 - 1]</code> 内</li>
+<li>题目数据保证答案是一个 <strong>32-bit 整数</strong></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calculate</span><span class="hljs-params">(string s)</span> </span>{
+    <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">char</span> sign = <span class="hljs-string">'+'</span>;
+    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>, d = <span class="hljs-number">0</span>;
+    stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isdigit</span>(s[i])) d = d * <span class="hljs-number">10</span> - <span class="hljs-string">'0'</span> + s[i];  <span class="hljs-comment">//先做减法 避免傻逼溢出</span>
+      <span class="hljs-keyword">if</span> ((!<span class="hljs-built_in">isdigit</span>(s[i]) &amp;&amp; s[i] != <span class="hljs-string">' '</span>) || i == n - <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">if</span> (sign == <span class="hljs-string">'+'</span>)
+          stk.<span class="hljs-built_in">push</span>(d);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sign == <span class="hljs-string">'-'</span>)
+          stk.<span class="hljs-built_in">push</span>(-d);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sign == <span class="hljs-string">'*'</span> || sign == <span class="hljs-string">'/'</span>) {
+          <span class="hljs-keyword">int</span> tmp = sign == <span class="hljs-string">'*'</span> ? stk.<span class="hljs-built_in">top</span>() * d : stk.<span class="hljs-built_in">top</span>() / d;
+          stk.<span class="hljs-built_in">pop</span>();
+          stk.<span class="hljs-built_in">push</span>(tmp);
+        }
+        sign = s[i];  <span class="hljs-comment">//保存当前符号</span>
+        d = <span class="hljs-number">0</span>;
+      }
+    }
+    <span class="hljs-keyword">while</span> (!stk.<span class="hljs-built_in">empty</span>()) {
+      ans += stk.<span class="hljs-built_in">top</span>();
+      stk.<span class="hljs-built_in">pop</span>();
+    }
+    <span class="hljs-keyword">return</span> ans;
+  }
+};</code></pre></div>
+
+
+
+<h3 id="150-逆波兰表达式求值"><a href="#150-逆波兰表达式求值" class="headerlink" title="150. 逆波兰表达式求值"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/">150. 逆波兰表达式求值</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/#">思路</a></p>
+<p>难度中等559</p>
+<p>根据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/128437"> 逆波兰表示法</a>，求表达式的值。</p>
+<p>有效的算符包括 <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code> 。每个运算对象可以是整数，也可以是另一个逆波兰表达式。</p>
+<p><strong>注意</strong> 两个整数之间的除法只保留整数部分。</p>
+<p>可以保证给定的逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。</p>
+<p><strong>示例 1：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs maxima">输入：<span class="hljs-built_in">tokens</span> = [<span class="hljs-string">"2"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"+"</span>,<span class="hljs-string">"3"</span>,<span class="hljs-string">"*"</span>]
+输出：<span class="hljs-number">9</span>
+解释：该算式转化为常见的中缀算术表达式为：((<span class="hljs-number">2</span> + <span class="hljs-number">1</span>) * <span class="hljs-number">3</span>) = <span class="hljs-number">9</span></code></pre></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs maxima">输入：<span class="hljs-built_in">tokens</span> = [<span class="hljs-string">"4"</span>,<span class="hljs-string">"13"</span>,<span class="hljs-string">"5"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"+"</span>]
+输出：<span class="hljs-number">6</span>
+解释：该算式转化为常见的中缀算术表达式为：(<span class="hljs-number">4</span> + (<span class="hljs-number">13</span> / <span class="hljs-number">5</span>)) = <span class="hljs-number">6</span></code></pre></div>
+
+<p><strong>示例 3：</strong></p>
+<div class="code-wrapper"><pre><code class="hljs excel">输入：tokens = [<span class="hljs-string">"10"</span>,<span class="hljs-string">"6"</span>,<span class="hljs-string">"9"</span>,<span class="hljs-string">"3"</span>,<span class="hljs-string">"+"</span>,<span class="hljs-string">"-11"</span>,<span class="hljs-string">"*"</span>,<span class="hljs-string">"/"</span>,<span class="hljs-string">"*"</span>,<span class="hljs-string">"17"</span>,<span class="hljs-string">"+"</span>,<span class="hljs-string">"5"</span>,<span class="hljs-string">"+"</span>]
+输出：<span class="hljs-number">22</span>
+解释：该算式转化为常见的中缀算术表达式为：
+  ((<span class="hljs-number">10</span> * (<span class="hljs-number">6</span> / ((<span class="hljs-number">9</span> + <span class="hljs-number">3</span>) * -<span class="hljs-number">11</span>))) + <span class="hljs-number">17</span>) + <span class="hljs-number">5</span>
+= ((<span class="hljs-number">10</span> * (<span class="hljs-number">6</span> / (<span class="hljs-number">12</span> * -<span class="hljs-number">11</span>))) + <span class="hljs-number">17</span>) + <span class="hljs-number">5</span>
+= ((<span class="hljs-number">10</span> * (<span class="hljs-number">6</span> / -<span class="hljs-number">132</span>)) + <span class="hljs-number">17</span>) + <span class="hljs-number">5</span>
+= ((<span class="hljs-number">10</span> * <span class="hljs-number">0</span>) + <span class="hljs-number">17</span>) + <span class="hljs-number">5</span>
+= (<span class="hljs-number">0</span> + <span class="hljs-number">17</span>) + <span class="hljs-number">5</span>
+= <span class="hljs-number">17</span> + <span class="hljs-number">5</span>
+= <span class="hljs-number">22</span></code></pre></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= tokens.length &lt;= 104</code></li>
+<li><code>tokens[i]</code> 是一个算符（<code>"+"</code>、<code>"-"</code>、<code>"*"</code> 或 <code>"/"</code>），或是在范围 <code>[-200, 200]</code> 内的一个整数</li>
+</ul>
+<p><strong>逆波兰表达式：</strong></p>
+<p>逆波兰表达式是一种后缀表达式，所谓后缀就是指算符写在后面。</p>
+<ul>
+<li>平常使用的算式则是一种中缀表达式，如 <code>( 1 + 2 ) * ( 3 + 4 )</code> 。</li>
+<li>该算式的逆波兰表达式写法为 <code>( ( 1 2 + ) ( 3 4 + ) * )</code> 。</li>
+</ul>
+<p>逆波兰表达式主要有以下两个优点：</p>
+<ul>
+<li>去掉括号后表达式无歧义，上式即便写成 <code>1 2 + 3 4 + * </code>也可以依据次序计算出正确结果。</li>
+<li>适合用栈操作运算：遇到数字则入栈；遇到算符则取出栈顶两个数字进行计算，并将结果压入栈中</li>
+</ul>
+<p>背</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">evalRPN</span><span class="hljs-params">(vector&lt;string&gt;&amp; tokens)</span> </span>{
+      <span class="hljs-keyword">int</span> n = tokens.<span class="hljs-built_in">size</span>();
+      stack&lt;<span class="hljs-keyword">int</span>&gt; stk;
+      <span class="hljs-keyword">int</span> secondVal;
+      <span class="hljs-keyword">int</span> firstVal;
+      <span class="hljs-keyword">int</span> nowVal;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;n; i++){
+        <span class="hljs-keyword">if</span>(tokens[i] == <span class="hljs-string">"*"</span> || tokens[i] == <span class="hljs-string">"/"</span> || tokens[i] == <span class="hljs-string">"+"</span> || tokens[i] == <span class="hljs-string">"-"</span>){
+          secondVal = stk.<span class="hljs-built_in">top</span>();
+          stk.<span class="hljs-built_in">pop</span>();
+          firstVal = stk.<span class="hljs-built_in">top</span>();
+          stk.<span class="hljs-built_in">pop</span>();  
+          <span class="hljs-keyword">if</span>(tokens[i] == <span class="hljs-string">"*"</span>)
+            nowVal = firstVal * secondVal;
+          <span class="hljs-keyword">if</span>(tokens[i] == <span class="hljs-string">"/"</span>)
+            nowVal = firstVal / secondVal;
+          <span class="hljs-keyword">if</span>(tokens[i] == <span class="hljs-string">"+"</span>)
+            nowVal = firstVal + secondVal;
+          <span class="hljs-keyword">if</span>(tokens[i] == <span class="hljs-string">"-"</span>)
+            nowVal = firstVal - secondVal;    
+          stk.<span class="hljs-built_in">push</span>(nowVal);  
+        }
+        <span class="hljs-keyword">else</span> stk.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">stoi</span>(tokens[i]));
+      }
+      <span class="hljs-keyword">return</span> stk.<span class="hljs-built_in">top</span>();
+    }
+};</code></pre></div>
+
+
+
 <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><p><strong>通常是一维数组，要寻找任一个元素的右边或者左边第一个比自己大或者小的元素的位置，此时我们就要想到可以用单调栈了</strong>。</p>
 <p>时间复杂度为$O(n)$。</p>
 <p>例如本题其实就是找找到一个元素右边第一个比自己大的元素。</p>
