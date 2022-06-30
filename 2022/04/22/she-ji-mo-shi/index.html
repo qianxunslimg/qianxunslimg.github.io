@@ -16,12 +16,12 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。 1.1、简单工厂模式应用举例客户Jungle需要时可以向工厂提供产品参数">
+    <meta name="description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。  简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。 1.1、简单工厂模式应用举例客户Jungle需要时可以向工厂提供产品参数">
+<meta property="og:description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。  简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20191017205259541.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105125245.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
 <meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-06-09T15:32:23.704Z">
+<meta property="article:modified_time" content="2022-06-30T13:43:14.015Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -286,6 +286,15 @@
               
               <h1 id="面试问题"><a href="#面试问题" class="headerlink" title="面试问题"></a>面试问题</h1><h1 id="常用设计模式"><a href="#常用设计模式" class="headerlink" title="常用设计模式"></a>常用设计模式</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengjundu/p/8473564.html">C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com)</a></p>
 <h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1. 工厂模式"></a>1. 工厂模式</h2><p>在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。</p>
+<blockquote>
+<p>简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根据产品类型形参返回产品</p>
+<p>工厂方法: 抽象产品-&gt;具体产品   抽象工厂-&gt;具体工厂   具体的工厂创建具体的产品</p>
+<p>抽象工厂: 太抽象了 看例子</p>
+<blockquote>
+<p>抽象上衣-&gt;黑/白上衣  抽象裤子-&gt;黑/白裤子</p>
+<p>抽象工厂-&gt;黑/白衣服工厂  : 黑衣服工厂生产黑上衣 黑裤子….</p>
+</blockquote>
+</blockquote>
 <h3 id="1-1、简单工厂模式"><a href="#1-1、简单工厂模式" class="headerlink" title="1.1、简单工厂模式"></a>1.1、简单工厂模式</h3><h4 id="应用举例"><a href="#应用举例" class="headerlink" title="应用举例"></a>应用举例</h4><p><strong>客户Jungle需要时可以向工厂提供产品参数，工厂根据产品参数生产对应产品，客户<code>Jungle</code>并不需要关心产品的生产过程细节</strong>。</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20191017205259541.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>简单工厂模式：</strong></p>
@@ -560,84 +569,136 @@
   <span class="hljs-function">Pants *<span class="hljs-title">createPants</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">BlackPants</span>(); }
 };</code></pre></div>
 
-<h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. 策略模式</h2><p>策略模式是指定义一系列的算法，把它们单独封装起来，并且使它们可以互相替换，使得算法可以独立于使用它的客户端而变化，也是说这些算法所完成的功能类型是一样的，对外接口也是一样的，只是不同的策略为引起环境角色环境角色表现出不同的行为。</p>
+<h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. <code>策略</code>模式</h2><p>策略模式是指定义一系列的算法，把它们单独封装起来，并且使它们可以互相替换，使得算法可以独立于使用它的客户端而变化，也是说这些算法所完成的功能类型是一样的，对外接口也是一样的，只是不同的策略为引起环境角色环境角色表现出不同的行为。</p>
 <p>相比于使用大量的if…else，使用策略模式可以降低复杂度，使得代码更容易维护。</p>
 <p>缺点：可能需要定义大量的策略类，并且这些策略类都要提供给客户端。</p>
 <p>[环境角色] 持有一个策略类的引用，最终给客户端调用。</p>
 <p><code>在运行时根据需要透明地更改对象的算法？将算法与对象本身解耦</code></p>
-<h4 id="传统的策略模式利用多态实现"><a href="#传统的策略模式利用多态实现" class="headerlink" title="传统的策略模式利用多态实现"></a>传统的策略模式利用多态实现</h4><h4 id="除了多态-还可以利用函数指针实现-略"><a href="#除了多态-还可以利用函数指针实现-略" class="headerlink" title="除了多态 还可以利用函数指针实现 略"></a>除了多态 <code>还可以利用函数指针实现</code> 略</h4><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png" srcset="/img/loading.gif" lazyload alt="image-20220422111042179"></p>
+<h3 id="传统的策略模式利用多态实现"><a href="#传统的策略模式利用多态实现" class="headerlink" title="传统的策略模式利用多态实现"></a>传统的策略模式利用多态实现</h3><h3 id="除了多态-还可以利用std-function闭包实现-略"><a href="#除了多态-还可以利用std-function闭包实现-略" class="headerlink" title="除了多态 还可以利用std::function闭包实现 略"></a>除了多态 <code>还可以利用std::function闭包实现</code> 略</h3><blockquote>
+<p>==function闭包指向lamda, lamda捕获this指针==</p>
+</blockquote>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png" srcset="/img/loading.gif" lazyload alt="image-20220422111042179"></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaxStrategy</span></span>
-<span class="hljs-class">{</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span></span>=<span class="hljs-number">0</span>;
-    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">TaxStrategy</span>(){}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaxStrategy</span> {</span>
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">TaxStrategy</span>() {}
 };
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CNTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy
-{
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">	</span>{
-       <span class="hljs-built_in">printf</span>(<span class="hljs-string">"CNTax Calculate\n"</span>);
-	   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CNTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"CNTax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
 };
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">USTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy
-{
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">	</span>{
-       <span class="hljs-built_in">printf</span>(<span class="hljs-string">"USTax Calculate\n"</span>);
-	   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">USTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"USTax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
 };
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DETax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy{
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span></span>
-<span class="hljs-function">	</span>{
-       <span class="hljs-built_in">printf</span>(<span class="hljs-string">"DETax Calculate\n"</span>);
-	   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DETax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"DETax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
 };
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SalesOrder</span>{</span>
-<span class="hljs-keyword">private</span>:
-    TaxStrategy* strategy;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SalesOrder</span> {</span>
+ <span class="hljs-keyword">private</span>:
+  TaxStrategy *strategy;
 
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-comment">/*SalesOrder(StrategyFactory* strategyFactory)</span>
-<span class="hljs-comment">	{//使用工厂方法</span>
-<span class="hljs-comment">        this-&gt;strategy = strategyFactory-&gt;NewStrategy();</span>
-<span class="hljs-comment">    }*/</span>
-	<span class="hljs-built_in">SalesOrder</span>(TaxStrategy* strategy)
-	{
-		<span class="hljs-keyword">this</span>-&gt;strategy = strategy;
-	}
-  ~<span class="hljs-built_in">SalesOrder</span>(){}
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">/*SalesOrder(StrategyFactory* strategyFactory)</span>
+<span class="hljs-comment">{//使用工厂方法</span>
+<span class="hljs-comment">      this-&gt;strategy = strategyFactory-&gt;NewStrategy();</span>
+<span class="hljs-comment">  }*/</span>
+  <span class="hljs-built_in">SalesOrder</span>(TaxStrategy *strategy) { <span class="hljs-keyword">this</span>-&gt;strategy = strategy; }
+  ~<span class="hljs-built_in">SalesOrder</span>() {}
 
-  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">CalculateTax</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">CalculateTax</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-comment">//...</span>
-    <span class="hljs-keyword">double</span> val = strategy-&gt;<span class="hljs-built_in">Calculate</span>();<span class="hljs-comment">//多态调用</span>
+    <span class="hljs-keyword">double</span> val = strategy-&gt;<span class="hljs-built_in">Calculate</span>();  <span class="hljs-comment">//多态调用</span>
     <span class="hljs-comment">//...</span>
     <span class="hljs-keyword">return</span> val;
-  }   
+  }
 };
 
-<span class="hljs-keyword">int</span> _tmain(<span class="hljs-keyword">int</span> argc, _TCHAR* argv[])
-{
-	<span class="hljs-comment">//TaxStrategy* strategy = new DETax();</span>
-	TaxStrategy* strategy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">CNTax</span>();
-	<span class="hljs-function">SalesOrder <span class="hljs-title">order</span><span class="hljs-params">(strategy)</span></span>;
-	order.<span class="hljs-built_in">CalculateTax</span>();
-	<span class="hljs-keyword">delete</span> strategy;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, _TCHAR *argv[])</span> </span>{
+  <span class="hljs-comment">// TaxStrategy* strategy = new DETax();</span>
+  TaxStrategy *strategy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">CNTax</span>();
+  <span class="hljs-function">SalesOrder <span class="hljs-title">order</span><span class="hljs-params">(strategy)</span></span>;
+  order.<span class="hljs-built_in">CalculateTax</span>();
+  <span class="hljs-keyword">delete</span> strategy;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
 
+<h3 id="我项目中用到的策略模式"><a href="#我项目中用到的策略模式" class="headerlink" title="我项目中用到的策略模式"></a>我项目中用到的策略模式</h3><ol>
+<li><p>SubPoolWindow继承QWidget </p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"SubSignalPool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;QWidget&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubPoolWindow</span> :</span> <span class="hljs-keyword">public</span> QWidget {
+  Q_OBJECT
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">SubPoolWindow</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>);
+  <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">SubPoolWindow</span>();
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSubPool</span><span class="hljs-params">(<span class="hljs-keyword">const</span> SubSignalPool &amp;subPool)</span></span>;
+  <span class="hljs-function">SubSignalPool &amp;<span class="hljs-title">subPool</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> _subPool; }
+  <span class="hljs-function"><span class="hljs-keyword">const</span> SubSignalPool &amp;<span class="hljs-title">subPool</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _subPool; }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSubPoolDataType</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> b)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">getSubPoolDataType</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> _isIntermediateData; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWindowTitle</span><span class="hljs-params">(QString title)</span></span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subPoolUpdate</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-comment">// virtual void closeEvent(QCloseEvent * e);</span>
+
+<span class="hljs-keyword">private</span>:
+  SubSignalPool _subPool;
+  <span class="hljs-keyword">bool</span> _isIntermediateData; <span class="hljs-comment">// 是否为中间数据，中间数据在析构时，要释放内存</span>
+};</code></pre></div>
+</li>
+<li><p>MapWindow GraphWindow TableWindow继承自SubPoolWindow并重写设置信号池等方法</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"SubPoolWindow.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QCustomPlot</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapWindow</span> :</span> <span class="hljs-keyword">public</span> SubPoolWindow {
+  Q_OBJECT
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MapWindow</span>(QWidget *parent = <span class="hljs-number">0</span>);
+  ~<span class="hljs-built_in">MapWindow</span>() {}
+
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWindowTitle</span><span class="hljs-params">(QString title)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subPoolUpdate</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myMoveEvent</span><span class="hljs-params">(QMouseEvent *e)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+  QCustomPlot *_qcustom;
+};</code></pre></div>
+</li>
+<li><p>多态调用</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CMainWindow::OnActionMap</span><span class="hljs-params">()</span> </span>{
+  SubSignalPool subPool = <span class="hljs-built_in">getSubPool</span>();
+  SubPoolWindow *mapWin = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MapWindow</span>(<span class="hljs-keyword">this</span>);
+  mapWin-&gt;<span class="hljs-built_in">setSubPool</span>(subPool);
+  mapWin-&gt;<span class="hljs-built_in">setWindowTitle</span>(subPool.<span class="hljs-built_in">name</span>());
+  ui.mdiArea-&gt;<span class="hljs-built_in">addSubWindow</span>(mapWin);
+  mapWin-&gt;<span class="hljs-built_in">show</span>();
+}</code></pre></div></li>
+</ol>
 <h2 id="3-观察者模式"><a href="#3-观察者模式" class="headerlink" title="3. 观察者模式"></a>3. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/119308881">观察者模式</a></h2><h3 id="观察者模式的核心思想是-1对多"><a href="#观察者模式的核心思想是-1对多" class="headerlink" title="观察者模式的核心思想是 1对多"></a>观察者模式的核心思想是 <strong>1对多</strong></h3><p>以自己为例，我下班的时候会告诉孩子和他妈，我开车要往回走了</p>
 <ul>
 <li>孩子妈收到消息后开始做饭</li>
@@ -981,7 +1042,7 @@ son is created
 <li>使用一个<code>公有的静态方法获取该实例</code>。</li>
 </ol>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h3 id="2-懒汉版（Lazy-Singleton）"><a href="#2-懒汉版（Lazy-Singleton）" class="headerlink" title="2. 懒汉版（Lazy Singleton）"></a><strong>2. 懒汉版（Lazy Singleton）</strong></h3><p>教学版，即懒汉版（Lazy Singleton）：单例实例在第一次被使用时才进行初始化，这叫做延迟初始化。</p>
+<h3 id="2-懒汉版（Lazy-Singleton）"><a href="#2-懒汉版（Lazy-Singleton）" class="headerlink" title="2. 懒汉版（Lazy Singleton）"></a><strong>2. 懒汉版（Lazy Singleton）</strong></h3><p>教学版，即懒汉版（Lazy Singleton）：<code>单例实例在第一次被使用时才进行初始化</code>，这叫做延迟初始化。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.0</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
 <span class="hljs-keyword">private</span>:
@@ -1006,7 +1067,7 @@ Singleton *Singleton::instance = <span class="hljs-literal">NULL</span>;</code><
 
 <p><strong>问题1：</strong>Lazy Singleton存在<code>内存泄露</code>的问题，有两种解决方法：</p>
 <blockquote>
-<p>私有的析构函数 无法析构对象 delete会直接报错<a target="_blank" rel="noopener" href="https://blog.csdn.net/shltsh/article/details/45958697">C++构造与析构(10) - private析构函数_水草的博客-CSDN博客_private 析构函数</a></p>
+<p>私有的析构函数 无法析构对象 delete会直接报错<a target="_blank" rel="noopener" href="https://blog.csdn.net/shltsh/article/details/45958697">C++构造与析构(10) - private析构函数_ 水草的博客-CSDN博客_private 析构函数</a></p>
 </blockquote>
 <ol>
 <li>使用<code>智能指针</code></li>
