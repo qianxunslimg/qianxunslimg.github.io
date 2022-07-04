@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111331636.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/matchsticks1-grid.jpg">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-06-10T02:48:48.282Z">
+<meta property="article:modified_time" content="2022-07-04T06:55:40.615Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1327,8 +1327,7 @@
 <div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s</span> = <span class="hljs-string">"101023"</span>
 输出：[<span class="hljs-string">"1.0.10.23"</span>,<span class="hljs-string">"1.0.102.3"</span>,<span class="hljs-string">"10.1.0.23"</span>,<span class="hljs-string">"10.10.2.3"</span>,<span class="hljs-string">"101.0.2.3"</span>]</code></pre></div>
 
-<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>回溯 类似上述回文串 进行有效判定</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<h4 id="回溯-类似上述回文s串-进行有效判定"><a href="#回溯-类似上述回文s串-进行有效判定" class="headerlink" title="回溯 类似上述回文s串 进行有效判定"></a>回溯 类似上述回文s串 进行有效判定</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     vector&lt;string&gt; ans;
     <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">restoreIpAddresses</span><span class="hljs-params">(string s)</span> </span>{
@@ -1368,6 +1367,54 @@
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
     }
 };</code></pre></div>
+
+<h4 id="更符合我习惯的回溯方法"><a href="#更符合我习惯的回溯方法" class="headerlink" title="更符合我习惯的回溯方法"></a>更符合我习惯的回溯方法</h4><p>枚举所有可能的dot的位置 然后在最后进行valid判断</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    vector&lt;<span class="hljs-keyword">int</span>&gt; dotPos;
+    vector&lt;string&gt; all;
+    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">restoreIpAddresses</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-built_in">backtrack</span>(s, <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">return</span> all;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(string&amp; s, <span class="hljs-keyword">int</span> startIndex)</span></span>{
+      <span class="hljs-keyword">if</span>(dotPos.<span class="hljs-built_in">size</span>() == <span class="hljs-number">3</span>){
+        <span class="hljs-keyword">bool</span> valid = <span class="hljs-number">1</span>;
+        valid = <span class="hljs-built_in">isValid</span>(s, <span class="hljs-number">0</span>, dotPos[<span class="hljs-number">0</span>] - <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">isValid</span>(s, dotPos[<span class="hljs-number">0</span>], dotPos[<span class="hljs-number">1</span>] - <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">isValid</span>(s, dotPos[<span class="hljs-number">1</span>], dotPos[<span class="hljs-number">2</span>] - <span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-built_in">isValid</span>(s, dotPos[<span class="hljs-number">2</span>], s.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">if</span>(valid){
+          string temp = s;
+          temp.<span class="hljs-built_in">insert</span>(temp.<span class="hljs-built_in">begin</span>() + dotPos[<span class="hljs-number">2</span>], <span class="hljs-string">'.'</span>);
+          temp.<span class="hljs-built_in">insert</span>(temp.<span class="hljs-built_in">begin</span>() + dotPos[<span class="hljs-number">1</span>], <span class="hljs-string">'.'</span>);
+          temp.<span class="hljs-built_in">insert</span>(temp.<span class="hljs-built_in">begin</span>() + dotPos[<span class="hljs-number">0</span>], <span class="hljs-string">'.'</span>);
+          all.<span class="hljs-built_in">push_back</span>(temp);
+        }
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = startIndex; i&lt;s.<span class="hljs-built_in">size</span>(); i++){
+        dotPos.<span class="hljs-built_in">push_back</span>(i);
+        <span class="hljs-built_in">backtrack</span>(s, i+<span class="hljs-number">1</span>);
+        dotPos.<span class="hljs-built_in">pop_back</span>();
+      }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isValid</span><span class="hljs-params">(<span class="hljs-keyword">const</span> string&amp; s, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+      <span class="hljs-keyword">if</span>(left &gt; right) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">if</span>(left != right &amp;&amp; s[left] == <span class="hljs-string">'0'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = left; i&lt;=right; i++){
+        <span class="hljs-keyword">if</span>(s[i] &gt; <span class="hljs-string">'9'</span> || s[i] &lt;<span class="hljs-string">'0'</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        num*=<span class="hljs-number">10</span>;
+        num+=(s[i] - <span class="hljs-string">'0'</span>);
+        <span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">255</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+};</code></pre></div>
+
+
+
+
 
 <h2 id="集合划分问题"><a href="#集合划分问题" class="headerlink" title="集合划分问题"></a>集合划分问题</h2><h3 id="698-划分为k个相等的子集"><a href="#698-划分为k个相等的子集" class="headerlink" title="698. 划分为k个相等的子集"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/">698. 划分为k个相等的子集</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=698">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/#">思路</a></p>
 <p>难度中等564</p>
@@ -1696,7 +1743,7 @@
 <div class="code-wrapper"><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">1</span>
 输出：[<span class="hljs-string">"()"</span>]</code></pre></div>
 
-<h4 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h4><p>回溯，回溯终止条件为 左右括号次数用完 和 右括号用的次数大于左括号用的次数</p>
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>回溯，回溯终止条件为 左右括号次数用完 和 右括号用的次数大于左括号用的次数</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     vector&lt;string&gt; ans;
