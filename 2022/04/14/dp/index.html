@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
 <meta property="article:published_time" content="2022-04-13T17:52:49.000Z">
-<meta property="article:modified_time" content="2022-07-02T06:51:56.598Z">
+<meta property="article:modified_time" content="2022-07-08T11:37:47.035Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -410,6 +410,28 @@
     }
 };</code></pre></div>
 
+<h4 id="二刷"><a href="#二刷" class="headerlink" title="二刷"></a>二刷</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minFlipsMonoIncr</span><span class="hljs-params">(string s)</span> </span>{
+      <span class="hljs-keyword">int</span> n = s.<span class="hljs-built_in">size</span>();
+      <span class="hljs-comment">//dp[i][0]表示i 变为0 最小反转次数</span>
+      vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n, vector&lt;<span class="hljs-keyword">int</span>&gt;(<span class="hljs-number">2</span>));
+      dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = s[<span class="hljs-number">0</span>] == <span class="hljs-string">'0'</span>? <span class="hljs-number">0</span>: <span class="hljs-number">1</span>;
+      dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = s[<span class="hljs-number">0</span>] == <span class="hljs-string">'0'</span>? <span class="hljs-number">1</span>: <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;n; i++){
+        <span class="hljs-keyword">if</span>(s[i] == <span class="hljs-string">'0'</span>){
+          dp[i][<span class="hljs-number">0</span>] = dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>];
+          dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">min</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>, dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>);
+        }
+        <span class="hljs-keyword">else</span>{
+          dp[i][<span class="hljs-number">0</span>] = dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;
+          dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">min</span>(dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]);
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">0</span>], dp[n<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]);
+    }
+};</code></pre></div>
+
 <h3 id="剑指-Offer-II-093-最长斐波那契数列"><a href="#剑指-Offer-II-093-最长斐波那契数列" class="headerlink" title="剑指 Offer II 093. 最长斐波那契数列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/Q91FMA/">剑指 Offer II 093. 最长斐波那契数列</a></h3><p>难度中等31英文版讨论区</p>
 <p>如果序列 <code>X_1, X_2, ..., X_n</code> 满足下列条件，就说它是 <em>斐波那契式</em> 的：</p>
 <ul>
@@ -449,6 +471,39 @@
             }
 
         <span class="hljs-keyword">return</span> ans &gt;= <span class="hljs-number">3</span> ? ans : <span class="hljs-number">0</span>;
+    }
+};</code></pre></div>
+
+<p>二刷暴力</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lenLongestFibSubseq</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; arr)</span> </span>{
+      <span class="hljs-function">unordered_set&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">sett</span><span class="hljs-params">(arr.begin(), arr.end())</span></span>;
+      <span class="hljs-keyword">int</span> maxx = *(arr.<span class="hljs-built_in">end</span>()<span class="hljs-number">-1</span>);
+      <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;arr.<span class="hljs-built_in">size</span>(); i++){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j&lt;arr.<span class="hljs-built_in">size</span>(); j++){
+          <span class="hljs-keyword">int</span> cnt = <span class="hljs-built_in">fibor</span>(sett, arr[i], arr[j], maxx);
+          <span class="hljs-comment">//cout&lt;&lt;cnt&lt;&lt;" ";</span>
+          ans = <span class="hljs-built_in">max</span>(ans, cnt&gt;=<span class="hljs-number">3</span>? cnt:<span class="hljs-number">0</span>);
+        }
+      }
+      <span class="hljs-comment">//cout&lt;&lt;endl;</span>
+      <span class="hljs-keyword">return</span> ans;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fibor</span><span class="hljs-params">(unordered_set&lt;<span class="hljs-keyword">int</span>&gt;&amp; sett, <span class="hljs-keyword">int</span> dp0, <span class="hljs-keyword">int</span> dp1, <span class="hljs-keyword">int</span> maxx)</span></span>{
+      <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">2</span>;
+      <span class="hljs-keyword">int</span> temp = dp0;
+      <span class="hljs-keyword">while</span>(dp1 &lt;= maxx){
+        temp = dp1;
+        dp1 = dp0 + dp1;
+        dp0 = temp;
+        <span class="hljs-keyword">if</span>(sett.<span class="hljs-built_in">count</span>(dp1))
+          cnt++;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;
+      }
+      <span class="hljs-keyword">return</span> cnt;
     }
 };</code></pre></div>
 
@@ -2987,7 +3042,7 @@ rabbbit</code></pre></div>
 
 <h3 id="72-编辑距离"><a href="#72-编辑距离" class="headerlink" title="72. 编辑距离"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/edit-distance/">72. 编辑距离</a></h3><p><a href="https://labuladong.gitee.io/plugin-v4/?qno=72&amp;target=gitee">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/edit-distance/#">思路</a></p>
 <p>难度困难2239英文版讨论区</p>
-<p>给你两个单词 <code>word1</code> 和 <code>word2</code>， <em>请返回将 <code>word1</code> 转换成 <code>word2</code> 所使用的最少操作数</em> 。</p>
+<p>给你两个单词 <code>word1</code> 和 <code>word2</code>， * 请返回将 <code>word1</code> 转换成 <code>word2</code> 所使用的最少操作数* 。</p>
 <p>你可以对一个单词进行如下三种操作：</p>
 <ul>
 <li>插入一个字符</li>
