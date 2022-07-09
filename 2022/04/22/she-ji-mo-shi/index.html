@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
 <meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-06-30T13:43:14.015Z">
+<meta property="article:modified_time" content="2022-07-09T02:23:51.183Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -1119,7 +1119,7 @@ Singleton::Deletor Singleton::deletor;</code></pre></div>
 <blockquote>
 <p>单例的初始化是不安全的 </p>
 </blockquote>
-<p>C++11规定了local static在多线程条件下的初始化行为，要求编译器保证了内部静态变量的线程安全性。在C++11标准下，《Effective C++》提出了一种更优雅的单例模式实现，使用函数内的 local static 对象。这样，只有当第一次访问<code>getInstance()</code>方法时才创建实例。这种方法也被称为Meyers’ Singleton。C++0x之后该实现是线程安全的，C++0x之前仍需加锁。</p>
+<p>C++11规定了local static在多线程条件下的初始化行为，要求编译器保证了内部静态变量的线程安全性。在C++11标准下，《Effective C++》提出了一种更优雅的单例模式实现，使用函数内的 local static 对象。这样，只有当第一次访问<code>getInstance()</code>方法时才创建实例。这种方法也被称为==Meyers’ Singleton==。C++0x之后该实现是线程安全的，C++0x之前仍需加锁。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.2</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
 <span class="hljs-keyword">private</span>:
@@ -1158,12 +1158,12 @@ Singleton::Deletor Singleton::deletor;</code></pre></div>
 
 <span class="hljs-keyword">public</span>:
   <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> instance; }
-}
+};
 
 <span class="hljs-comment">// initialize defaultly</span>
 Singleton Singleton::instance;</code></pre></div>
 
-<p>由于在main函数之前初始化，所以没有线程安全的问题。但是潜在问题在于no-local static对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的。也即，static Singleton instance;和static Singleton&amp; getInstance()二者的初始化顺序不确定，如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
+<p>由于在main函数之前初始化，所以没有线程安全的问题。但是<u>潜在问题在于no-local static对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的</u>。也即，static Singleton instance;和static Singleton&amp; getInstance()二者的初始化顺序不确定，如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
 <p>总结：</p>
 <ul>
 <li>Eager Singleton 虽然是线程安全的，但存在潜在问题；</li>

@@ -82,28 +82,6 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="https://qianxunslimg.github.io/2022/05/28/cao-zuo-xi-tong-ji-chu-zhi-shi/"/>
-    <id>https://qianxunslimg.github.io/2022/05/28/cao-zuo-xi-tong-ji-chu-zhi-shi/</id>
-    <published>2022-05-28T13:25:00.371Z</published>
-    <updated>2022-07-06T15:17:22.006Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;title: 操作系统面试&lt;br&gt;date: 2022-03-16 02:31:49&lt;br&gt;tags: 面试&lt;br&gt;hidden: false&lt;br&gt;password: 87654123&lt;br&gt;categories: 基础知识&lt;/p&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>CNAME CDN IPC</title>
     <link href="https://qianxunslimg.github.io/2022/05/26/cname-cdn-ipc/"/>
     <id>https://qianxunslimg.github.io/2022/05/26/cname-cdn-ipc/</id>
@@ -244,7 +222,7 @@
     <link href="https://qianxunslimg.github.io/2022/05/18/shou-si-dai-ma/"/>
     <id>https://qianxunslimg.github.io/2022/05/18/shou-si-dai-ma/</id>
     <published>2022-05-18T01:46:00.000Z</published>
-    <updated>2022-06-14T02:20:28.162Z</updated>
+    <updated>2022-07-09T09:55:34.291Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -402,7 +380,7 @@
     <link href="https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/"/>
     <id>https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/</id>
     <published>2022-04-22T01:46:00.000Z</published>
-    <updated>2022-06-30T13:43:14.015Z</updated>
+    <updated>2022-07-09T02:23:51.183Z</updated>
     
     
       
@@ -470,6 +448,29 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>bat实现hexo一键部署</title>
+    <link href="https://qianxunslimg.github.io/2022/04/19/bat-shi-xian-hexo-yi-jian-bu-shu/"/>
+    <id>https://qianxunslimg.github.io/2022/04/19/bat-shi-xian-hexo-yi-jian-bu-shu/</id>
+    <published>2022-04-19T07:41:00.000Z</published>
+    <updated>2022-04-20T17:08:04.034Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
