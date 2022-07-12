@@ -30,6 +30,8 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob1-tree.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob2-tree.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202101101032124.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002044878.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002124671.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505094926693.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220416161203581.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20201221201553618.png">
@@ -43,7 +45,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
 <meta property="article:published_time" content="2022-04-13T17:52:49.000Z">
-<meta property="article:modified_time" content="2022-07-10T18:43:32.718Z">
+<meta property="article:modified_time" content="2022-07-12T16:23:03.851Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1296,7 +1298,7 @@
     }
 };
 
-<span class="hljs-comment">//完全背包dp</span>
+<span class="hljs-comment">//完全背包dp  排列方法 先背包 后物品</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">combinationSum4</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>{
@@ -1458,6 +1460,75 @@
 <p><strong>示例 3：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs nix">输入: <span class="hljs-attr">s</span> = <span class="hljs-string">"catsandog"</span>, <span class="hljs-attr">wordDict</span> = [<span class="hljs-string">"cats"</span>, <span class="hljs-string">"dog"</span>, <span class="hljs-string">"sand"</span>, <span class="hljs-string">"and"</span>, <span class="hljs-string">"cat"</span>]
 输出: <span class="hljs-literal">false</span></code></pre></div>
+
+<h4 id="暴力回溯-超时"><a href="#暴力回溯-超时" class="headerlink" title="暴力回溯 超时"></a>暴力回溯 超时</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    string path;
+    <span class="hljs-keyword">bool</span> find = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">wordBreak</span><span class="hljs-params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>{
+      <span class="hljs-built_in">backtrack</span>(s, wordDict);
+      <span class="hljs-keyword">return</span> find;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(string&amp; s, vector&lt;string&gt;&amp; wordDict)</span></span>{
+      <span class="hljs-keyword">if</span>(find) <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">if</span>(path.<span class="hljs-built_in">size</span>() == s.<span class="hljs-built_in">size</span>()){
+        <span class="hljs-keyword">if</span>(path == s) find = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span>;
+      }
+      <span class="hljs-keyword">if</span>(path.<span class="hljs-built_in">size</span>() &gt;= s.<span class="hljs-built_in">size</span>())
+        <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;wordDict.<span class="hljs-built_in">size</span>(); i++){
+        string temp = path;
+        path += wordDict[i];
+        <span class="hljs-built_in">backtrack</span>(s, wordDict);
+        path = temp;
+      }
+    }
+};</code></pre></div>
+
+<h4 id="完全背包-排列-先物品再背包"><a href="#完全背包-排列-先物品再背包" class="headerlink" title="完全背包 排列 先物品再背包"></a>完全背包 排列 先物品再背包</h4><ul>
+<li>s 串能否分解为单词表的单词（前 s.length 个字符的 s 串能否分解为单词表单词）</li>
+<li>将大问题分解为规模小一点的子问题：前 i个字符的子串，能否分解成单词<br>剩余子串，是否为单个单词。</li>
+<li>dp[i]：长度为i的s[0:i-1]子串是否能拆分成单词。题目求:dp[s.length]</li>
+</ul>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002044878.png" srcset="/img/loading.gif" lazyload alt="image-20220713002044878"></p>
+<ul>
+<li>类似的，我们用指针 j 去划分s[0:i] 子串，如下图：</li>
+<li>s[0:i] 子串对应 dp[i+1] ，它是否为 true（s[0:i]能否 break），取决于两点：<ul>
+<li>它的前缀子串 s[0:j-1] 的 dp[j]，是否为 true。</li>
+<li>剩余子串 s[j:i]，是否是单词表的单词。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002124671.png" srcset="/img/loading.gif" lazyload alt="image-20220713002124671"></p>
+<p><strong>base case</strong></p>
+<ul>
+<li>base case 为dp[0] = true。即，长度为 0 的s[0:-1]能拆分成单词表单词。</li>
+<li>这看似荒谬，但这只是为了让边界情况也能套用状态转移方程，而已。</li>
+<li>当 j = 0 时（上图黄色前缀串为空串），s[0:i]的dp[i+1]，取决于s[0:-1]的dp[0]，和，剩余子串s[0:i]是否是单个单词。</li>
+<li>只有让dp[0]为真，dp[i+1]才会只取决于s[0:i]是否为单个单词，才能用上这个状态转移方程。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+ <span class="hljs-comment">//排列的完全背包  </span>
+ <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">wordBreak</span><span class="hljs-params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>{
+   <span class="hljs-function">unordered_set&lt;string&gt; <span class="hljs-title">wordSet</span><span class="hljs-params">(wordDict.begin(), wordDict.end())</span></span>;
+   <span class="hljs-function">vector&lt;<span class="hljs-keyword">bool</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(s.size() + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;
+   dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;= s.<span class="hljs-built_in">size</span>(); i++){
+     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j&lt;i; j++){
+       string word = s.<span class="hljs-built_in">substr</span>(j, i-j);
+       <span class="hljs-comment">// cout&lt;&lt;word&lt;&lt;" ";</span>
+       <span class="hljs-keyword">if</span>(wordSet.<span class="hljs-built_in">count</span>(word) &amp;&amp; dp[j]){
+         dp[i] = <span class="hljs-number">1</span>;
+         <span class="hljs-keyword">break</span>;
+       }
+     }
+   }
+   <span class="hljs-keyword">return</span> dp.<span class="hljs-built_in">back</span>();
+ }
+};</code></pre></div>
 
 <h1 id="炒股专题"><a href="#炒股专题" class="headerlink" title="炒股专题"></a>炒股专题</h1><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505094926693.png" srcset="/img/loading.gif" lazyload alt="image-20220505094926693" style="zoom: 67%;">
 
