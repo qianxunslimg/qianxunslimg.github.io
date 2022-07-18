@@ -1,42 +1,151 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
-     <link rel="shortcut icon" href= https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png >
-    <title>
-        qianxunslimgのblog
-    </title>
-    <meta name="description" content= 欢迎访问我的博客， >
-    <meta name="keywords" content= qianxunslimg,blog,job,面试,找工作 >
-    
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>人名算法 | qianxunslimgのblog</title><meta name="keywords" content="算法总结"><meta name="author" content="qianxunslimg"><meta name="copyright" content="qianxunslimg"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="约瑟夫环1823. 找出游戏的获胜者难度中等129收藏分享切换为英文接收动态反馈 共有 n 名小伙伴一起做游戏。小伙伴们围成一圈，按 顺时针顺序 从 1 到 n 编号。确切地说，从第 i 名小伙伴顺时针移动一位会到达第 (i+1) 名小伙伴的位置，其中 1 &lt;&#x3D; i &lt; n ，从第 n 名小伙伴顺时针移动一位会回到第 1 名小伙伴的位置。 游戏遵循如下规则：  从第 1 名小伙伴所在位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人名算法">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="约瑟夫环1823. 找出游戏的获胜者难度中等129收藏分享切换为英文接收动态反馈 共有 n 名小伙伴一起做游戏。小伙伴们围成一圈，按 顺时针顺序 从 1 到 n 编号。确切地说，从第 i 名小伙伴顺时针移动一位会到达第 (i+1) 名小伙伴的位置，其中 1 &lt;&#x3D; i &lt; n ，从第 n 名小伙伴顺时针移动一位会回到第 1 名小伙伴的位置。 游戏遵循如下规则：  从第 1 名小伙伴所在位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg">
+<meta property="article:published_time" content="2022-05-04T12:13:49.000Z">
+<meta property="article:modified_time" content="2022-07-10T18:21:28.930Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg"><link rel="shortcut icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png"><link rel="canonical" href="https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.useco.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: qianxunslimg","link":"链接: ","source":"来源: qianxunslimgのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '人名算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2022-07-11 02:21:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-    
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    
-<link rel="stylesheet" href="/css/style.css">
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-<meta name="generator" content="Hexo 5.4.0">
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-</head>
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-home
- replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            人名算法
-        </p>
-        <hr>
-    </div>
-    <div class="post-content">
-        <h2 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h2><h3 id="1823-找出游戏的获胜者"><a href="#1823-找出游戏的获胜者" class="headerlink" title="1823. 找出游戏的获胜者"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-winner-of-the-circular-game/">1823. 找出游戏的获胜者</a></h3><p>难度中等129收藏分享切换为英文接收动态反馈</p>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">qianxunslimgのblog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">人名算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-04T12:13:49.000Z" title="发表于 2022-05-04 20:13:49">2022-05-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-10T18:21:28.930Z" title="更新于 2022-07-11 02:21:28">2022-07-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/">算法整理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h2><h3 id="1823-找出游戏的获胜者"><a href="#1823-找出游戏的获胜者" class="headerlink" title="1823. 找出游戏的获胜者"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-winner-of-the-circular-game/">1823. 找出游戏的获胜者</a></h3><p>难度中等129收藏分享切换为英文接收动态反馈</p>
 <p>共有 <code>n</code> 名小伙伴一起做游戏。小伙伴们围成一圈，按 <strong>顺时针顺序</strong> 从 <code>1</code> 到 <code>n</code> 编号。确切地说，从第 <code>i</code> 名小伙伴顺时针移动一位会到达第 <code>(i+1)</code> 名小伙伴的位置，其中 <code>1 &lt;= i &lt; n</code> ，从第 <code>n</code> 名小伙伴顺时针移动一位会回到第 <code>1</code> 名小伙伴的位置。</p>
 <p>游戏遵循如下规则：</p>
 <ol>
@@ -48,171 +157,49 @@
 </ol>
 <p>给你参与游戏的小伙伴总数 <code>n</code> ，和一个整数 <code>k</code> ，返回游戏的获胜者。</p>
 <p><strong>示例 1：</strong></p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505002315098.png" alt="image-20220505002315098" style="zoom:67%;">
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505002315098.png" alt="image-20220505002315098" style="zoom:67%;">
 
-<div class="code-wrapper"><pre><code class="hljs tap">输入：n = 5, k = 2
-输出：3
-解释：游戏运行步骤如下：
-1) 从小伙伴<span class="hljs-number"> 1 </span>开始。
-2) 顺时针数<span class="hljs-number"> 2 </span>名小伙伴，也就是小伙伴<span class="hljs-number"> 1 </span>和<span class="hljs-number"> 2 </span>。
-3) 小伙伴<span class="hljs-number"> 2 </span>离开圈子。下一次从小伙伴<span class="hljs-number"> 3 </span>开始。
-4) 顺时针数<span class="hljs-number"> 2 </span>名小伙伴，也就是小伙伴<span class="hljs-number"> 3 </span>和<span class="hljs-number"> 4 </span>。
-5) 小伙伴<span class="hljs-number"> 4 </span>离开圈子。下一次从小伙伴<span class="hljs-number"> 5 </span>开始。
-6) 顺时针数<span class="hljs-number"> 2 </span>名小伙伴，也就是小伙伴<span class="hljs-number"> 5 </span>和<span class="hljs-number"> 1 </span>。
-7) 小伙伴<span class="hljs-number"> 1 </span>离开圈子。下一次从小伙伴<span class="hljs-number"> 3 </span>开始。
-8) 顺时针数<span class="hljs-number"> 2 </span>名小伙伴，也就是小伙伴<span class="hljs-number"> 3 </span>和<span class="hljs-number"> 5 </span>。
-9) 小伙伴<span class="hljs-number"> 5 </span>离开圈子。只剩下小伙伴<span class="hljs-number"> 3 </span>。所以小伙伴<span class="hljs-number"> 3 </span>是游戏的获胜者。</code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 5, k = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：游戏运行步骤如下：</span><br><span class="line">1) 从小伙伴 1 开始。</span><br><span class="line">2) 顺时针数 2 名小伙伴，也就是小伙伴 1 和 2 。</span><br><span class="line">3) 小伙伴 2 离开圈子。下一次从小伙伴 3 开始。</span><br><span class="line">4) 顺时针数 2 名小伙伴，也就是小伙伴 3 和 4 。</span><br><span class="line">5) 小伙伴 4 离开圈子。下一次从小伙伴 5 开始。</span><br><span class="line">6) 顺时针数 2 名小伙伴，也就是小伙伴 5 和 1 。</span><br><span class="line">7) 小伙伴 1 离开圈子。下一次从小伙伴 3 开始。</span><br><span class="line">8) 顺时针数 2 名小伙伴，也就是小伙伴 3 和 5 。</span><br><span class="line">9) 小伙伴 5 离开圈子。只剩下小伙伴 3 。所以小伙伴 3 是游戏的获胜者。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">n</span> = <span class="hljs-number">6</span>, <span class="hljs-attr">k</span> = <span class="hljs-number">5</span>
-输出：<span class="hljs-number">1</span>
-解释：小伙伴离开圈子的顺序：<span class="hljs-number">5</span>、<span class="hljs-number">4</span>、<span class="hljs-number">6</span>、<span class="hljs-number">2</span>、<span class="hljs-number">3</span> 。小伙伴 <span class="hljs-number">1</span> 是游戏的获胜者。</code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 6, k = 5</span><br><span class="line">输出：1</span><br><span class="line">解释：小伙伴离开圈子的顺序：5、4、6、2、3 。小伙伴 1 是游戏的获胜者。</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="笨比解法-模拟-效率不错"><a href="#笨比解法-模拟-效率不错" class="headerlink" title="笨比解法 模拟 效率不错"></a>笨比解法 模拟 效率不错</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findTheWinner</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>{
-      vector&lt;<span class="hljs-keyword">int</span>&gt; all;
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i&lt;=n; i++){
-        all.<span class="hljs-built_in">push_back</span>(i);
-      }
-      <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">while</span>(all.<span class="hljs-built_in">size</span>() &gt; <span class="hljs-number">1</span>){
-        index = (index + k - <span class="hljs-number">1</span>)%n;
-        all.<span class="hljs-built_in">erase</span>(all.<span class="hljs-built_in">begin</span>() + index);
-        n--;
-      }
-      <span class="hljs-keyword">return</span> all.<span class="hljs-built_in">front</span>();
-    }
-};</code></pre></div>
+<h4 id="笨比解法-模拟-效率不错"><a href="#笨比解法-模拟-效率不错" class="headerlink" title="笨比解法 模拟 效率不错"></a>笨比解法 模拟 效率不错</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTheWinner</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">      vector&lt;<span class="keyword">int</span>&gt; all;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=n; i++){</span><br><span class="line">        all.<span class="built_in">push_back</span>(i);</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">while</span>(all.<span class="built_in">size</span>() &gt; <span class="number">1</span>){</span><br><span class="line">        index = (index + k - <span class="number">1</span>)%n;</span><br><span class="line">        all.<span class="built_in">erase</span>(all.<span class="built_in">begin</span>() + index);</span><br><span class="line">        n--;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> all.<span class="built_in">front</span>();</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="数学解法"><a href="#数学解法" class="headerlink" title="数学解法"></a>数学解法</h4><div class="code-wrapper"><pre><code class="hljs dart">下表 <span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>   数到<span class="hljs-number">3</span>删除
-最后只剩下一个元素，假设这个最后存活的元素为 <span class="hljs-built_in">num</span>, 这个元素最终的的下标一定是<span class="hljs-number">0</span> （因为最后只剩这一个元素），
-所以如果我们可以推出上一轮次中这个<span class="hljs-built_in">num</span>的下标，然后根据上一轮<span class="hljs-built_in">num</span>的下标推断出上上一轮<span class="hljs-built_in">num</span>的下标，
-直到推断出元素个数为n的那一轮<span class="hljs-built_in">num</span>的下标，那我们就可以根据这个下标获取到最终的元素了。推断过程如下：
-
-首先最后一轮中<span class="hljs-built_in">num</span>的下标一定是<span class="hljs-number">0</span>， 这个是已知的。
-那上一轮应该是有两个元素，此轮次中 <span class="hljs-built_in">num</span> 的下标为 (<span class="hljs-number">0</span> + m)%n = (<span class="hljs-number">0</span>+<span class="hljs-number">3</span>)%<span class="hljs-number">2</span> = <span class="hljs-number">1</span>; 说明这一轮删除之前<span class="hljs-built_in">num</span>的下标为<span class="hljs-number">1</span>；
-再上一轮应该有<span class="hljs-number">3</span>个元素，此轮次中 <span class="hljs-built_in">num</span> 的下标为 (<span class="hljs-number">1</span>+<span class="hljs-number">3</span>)%<span class="hljs-number">3</span> = <span class="hljs-number">1</span>；说明这一轮某元素被删除之前<span class="hljs-built_in">num</span>的下标为<span class="hljs-number">1</span>；
-再上一轮应该有<span class="hljs-number">4</span>个元素，此轮次中 <span class="hljs-built_in">num</span> 的下标为 (<span class="hljs-number">1</span>+<span class="hljs-number">3</span>)%<span class="hljs-number">4</span> = <span class="hljs-number">0</span>；说明这一轮某元素被删除之前<span class="hljs-built_in">num</span>的下标为<span class="hljs-number">0</span>；
-再上一轮应该有<span class="hljs-number">5</span>个元素，此轮次中 <span class="hljs-built_in">num</span> 的下标为 (<span class="hljs-number">0</span>+<span class="hljs-number">3</span>)%<span class="hljs-number">5</span> = <span class="hljs-number">3</span>；说明这一轮某元素被删除之前<span class="hljs-built_in">num</span>的下标为<span class="hljs-number">3</span>；
-....
-
-因为我们要删除的序列为<span class="hljs-number">0</span>-n<span class="hljs-number">-1</span>, 所以求得下标其实就是求得了最终的结果。比如当n 为<span class="hljs-number">5</span>的时候，<span class="hljs-built_in">num</span>的初始下标为<span class="hljs-number">3</span>，
- 所以<span class="hljs-built_in">num</span>就是<span class="hljs-number">3</span>，也就是说从<span class="hljs-number">0</span>-n<span class="hljs-number">-1</span>的序列中， 经过n<span class="hljs-number">-1</span>轮的淘汰，<span class="hljs-number">3</span>这个元素最终存活下来了，也是最终的结果。
-
-总结一下推导公式：(此轮过后的<span class="hljs-built_in">num</span>下标 + m) % 上轮元素个数 = 上轮<span class="hljs-built_in">num</span>的下标</code></pre></div>
+<h4 id="数学解法"><a href="#数学解法" class="headerlink" title="数学解法"></a>数学解法</h4><figure class="highlight dart"><table><tbody><tr><td class="code"><pre><span class="line">下表 <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span>   数到<span class="number">3</span>删除</span><br><span class="line">最后只剩下一个元素，假设这个最后存活的元素为 <span class="built_in">num</span>, 这个元素最终的的下标一定是<span class="number">0</span> （因为最后只剩这一个元素），</span><br><span class="line">所以如果我们可以推出上一轮次中这个<span class="built_in">num</span>的下标，然后根据上一轮<span class="built_in">num</span>的下标推断出上上一轮<span class="built_in">num</span>的下标，</span><br><span class="line">直到推断出元素个数为n的那一轮<span class="built_in">num</span>的下标，那我们就可以根据这个下标获取到最终的元素了。推断过程如下：</span><br><span class="line"></span><br><span class="line">首先最后一轮中<span class="built_in">num</span>的下标一定是<span class="number">0</span>， 这个是已知的。</span><br><span class="line">那上一轮应该是有两个元素，此轮次中 <span class="built_in">num</span> 的下标为 (<span class="number">0</span> + m)%n = (<span class="number">0</span>+<span class="number">3</span>)%<span class="number">2</span> = <span class="number">1</span>; 说明这一轮删除之前<span class="built_in">num</span>的下标为<span class="number">1</span>；</span><br><span class="line">再上一轮应该有<span class="number">3</span>个元素，此轮次中 <span class="built_in">num</span> 的下标为 (<span class="number">1</span>+<span class="number">3</span>)%<span class="number">3</span> = <span class="number">1</span>；说明这一轮某元素被删除之前<span class="built_in">num</span>的下标为<span class="number">1</span>；</span><br><span class="line">再上一轮应该有<span class="number">4</span>个元素，此轮次中 <span class="built_in">num</span> 的下标为 (<span class="number">1</span>+<span class="number">3</span>)%<span class="number">4</span> = <span class="number">0</span>；说明这一轮某元素被删除之前<span class="built_in">num</span>的下标为<span class="number">0</span>；</span><br><span class="line">再上一轮应该有<span class="number">5</span>个元素，此轮次中 <span class="built_in">num</span> 的下标为 (<span class="number">0</span>+<span class="number">3</span>)%<span class="number">5</span> = <span class="number">3</span>；说明这一轮某元素被删除之前<span class="built_in">num</span>的下标为<span class="number">3</span>；</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">因为我们要删除的序列为<span class="number">0</span>-n<span class="number">-1</span>, 所以求得下标其实就是求得了最终的结果。比如当n 为<span class="number">5</span>的时候，<span class="built_in">num</span>的初始下标为<span class="number">3</span>，</span><br><span class="line"> 所以<span class="built_in">num</span>就是<span class="number">3</span>，也就是说从<span class="number">0</span>-n<span class="number">-1</span>的序列中， 经过n<span class="number">-1</span>轮的淘汰，<span class="number">3</span>这个元素最终存活下来了，也是最终的结果。</span><br><span class="line"></span><br><span class="line">总结一下推导公式：(此轮过后的<span class="built_in">num</span>下标 + m) % 上轮元素个数 = 上轮<span class="built_in">num</span>的下标</span><br></pre></td></tr></tbody></table></figure>
 
 <p>注意 这道题因为编号是从1开始的 index 0对应的人是1 所以最后的下标要+1</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findTheWinner</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>{
-      <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>; <span class="hljs-comment">// 最终活下来那个人的初始位置</span>
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) <span class="hljs-comment">//上次剩两个人 最后剩n个人</span>
-          pos = (pos + k) % i;  <span class="hljs-comment">// 每次循环右移</span>
-      <span class="hljs-keyword">return</span> pos + <span class="hljs-number">1</span>;
-    }
-};</code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findTheWinner</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> pos = <span class="number">0</span>; <span class="comment">// 最终活下来那个人的初始位置</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) <span class="comment">//上次剩两个人 最后剩n个人</span></span><br><span class="line">          pos = (pos + k) % i;  <span class="comment">// 每次循环右移</span></span><br><span class="line">      <span class="keyword">return</span> pos + <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 
 
-<h2 id="厄拉多塞筛"><a href="#厄拉多塞筛" class="headerlink" title="厄拉多塞筛"></a>厄拉多塞筛</h2><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610130057626.png" alt="image-20220610130057626" style="zoom:50%;">
+<h2 id="厄拉多塞筛"><a href="#厄拉多塞筛" class="headerlink" title="厄拉多塞筛"></a>厄拉多塞筛</h2><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610130057626.png" alt="image-20220610130057626" style="zoom:50%;">
 
 <h3 id="204-计数质数"><a href="#204-计数质数" class="headerlink" title="204. 计数质数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-primes/">204. 计数质数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=204">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-primes/#">思路</a></p>
 <p>难度中等897</p>
 <p>给定整数 <code>n</code> ，返回 <em>所有小于非负整数 <code>n</code> 的质数的数量</em> 。</p>
 <p><strong>示例 1：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs tap">输入：n = 10
-输出：4
-解释：小于<span class="hljs-number"> 10 </span>的质数一共有<span class="hljs-number"> 4 </span>个, 它们是 2, 3, 5,<span class="hljs-number"> 7 </span>。</code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 10</span><br><span class="line">输出：4</span><br><span class="line">解释：小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">0</span>
-输出：<span class="hljs-number">0</span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 0</span><br><span class="line">输出：0</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 3：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs excel">输入：<span class="hljs-built_in">n</span> = <span class="hljs-number">1</span>
-输出：<span class="hljs-number">0</span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：0</span><br></pre></td></tr></tbody></table></figure>
 
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-comment">// //超时</span>
-    <span class="hljs-comment">// int countPrimes(int n) {</span>
-    <span class="hljs-comment">//     if(n == 0 || n == 1 || n==2) return 0;</span>
-    <span class="hljs-comment">//     if(iszhishu(n-1))</span>
-    <span class="hljs-comment">//     {</span>
-    <span class="hljs-comment">//         return countPrimes(n-1)+1;</span>
-    <span class="hljs-comment">//     }</span>
-    <span class="hljs-comment">//     else return countPrimes(n-1);</span>
-    <span class="hljs-comment">// }</span>
-    <span class="hljs-comment">// bool iszhishu(int n)</span>
-    <span class="hljs-comment">// {</span>
-    <span class="hljs-comment">//     if(n==2) return true;</span>
-    <span class="hljs-comment">//     for(int i=2; i&lt;n; i++)</span>
-    <span class="hljs-comment">//     {</span>
-    <span class="hljs-comment">//         if(n%i == 0 ) return false;</span>
-    <span class="hljs-comment">//     }</span>
-    <span class="hljs-comment">//     return true;</span>
-    <span class="hljs-comment">// }</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">countPrimes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
-    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
-    <span class="hljs-comment">//初始默认所有数为质数</span>
-    <span class="hljs-function">vector&lt;<span class="hljs-keyword">bool</span>&gt; <span class="hljs-title">signs</span><span class="hljs-params">(n, <span class="hljs-literal">true</span>)</span></span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt; n; i++) {
-        <span class="hljs-keyword">if</span> (signs[i]) {
-            count++;
-            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + i; j &lt; n; j += i) {
-                <span class="hljs-comment">//排除不是质数的数</span>
-                signs[j] = <span class="hljs-literal">false</span>;
-            }
-        }
-    }
-    <span class="hljs-keyword">return</span> count;
-  }
-};</code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// //超时</span></span><br><span class="line">    <span class="comment">// int countPrimes(int n) {</span></span><br><span class="line">    <span class="comment">//     if(n == 0 || n == 1 || n==2) return 0;</span></span><br><span class="line">    <span class="comment">//     if(iszhishu(n-1))</span></span><br><span class="line">    <span class="comment">//     {</span></span><br><span class="line">    <span class="comment">//         return countPrimes(n-1)+1;</span></span><br><span class="line">    <span class="comment">//     }</span></span><br><span class="line">    <span class="comment">//     else return countPrimes(n-1);</span></span><br><span class="line">    <span class="comment">// }</span></span><br><span class="line">    <span class="comment">// bool iszhishu(int n)</span></span><br><span class="line">    <span class="comment">// {</span></span><br><span class="line">    <span class="comment">//     if(n==2) return true;</span></span><br><span class="line">    <span class="comment">//     for(int i=2; i&lt;n; i++)</span></span><br><span class="line">    <span class="comment">//     {</span></span><br><span class="line">    <span class="comment">//         if(n%i == 0 ) return false;</span></span><br><span class="line">    <span class="comment">//     }</span></span><br><span class="line">    <span class="comment">//     return true;</span></span><br><span class="line">    <span class="comment">// }</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">countPrimes</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//初始默认所有数为质数</span></span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">signs</span><span class="params">(n, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (signs[i]) {</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + i; j &lt; n; j += i) {</span><br><span class="line">                <span class="comment">//排除不是质数的数</span></span><br><span class="line">                signs[j] = <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="1175-质数排列"><a href="#1175-质数排列" class="headerlink" title="1175. 质数排列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/prime-arrangements/">1175. 质数排列</a></h3><p>难度简单96收藏分享切换为英文接收动态反馈</p>
 <p>请你帮忙给从 <code>1</code> 到 <code>n</code> 的数设计排列方案，使得所有的「质数」都应该被放在「质数索引」（索引从 1 开始）上；你需要返回可能的方案总数。</p>
 <p>让我们一起来回顾一下「质数」：质数一定是大于 1 的，并且不能用两个小于它的正整数的乘积来表示。</p>
 <p>由于答案可能会很大，所以请你返回答案 <strong>模 mod <code>10^9 + 7</code></strong> 之后的结果即可。</p>
 <p><strong>示例 1：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs accesslog">输入：n = <span class="hljs-number">5</span>
-输出：<span class="hljs-number">12</span>
-解释：举个例子，<span class="hljs-string">[1,2,5,4,3]</span> 是一个有效的排列，但 <span class="hljs-string">[5,2,3,4,1]</span> 不是，因为在第二种情况里质数 <span class="hljs-number">5</span> 被错误地放在索引为 <span class="hljs-number">1</span> 的位置上。</code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 5</span><br><span class="line">输出：12</span><br><span class="line">解释：举个例子，[1,2,5,4,3] 是一个有效的排列，但 [5,2,3,4,1] 不是，因为在第二种情况里质数 5 被错误地放在索引为 1 的位置上。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs dns">输入：n = <span class="hljs-number">100</span>
-输出：<span class="hljs-number">682289015</span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 100</span><br><span class="line">输出：682289015</span><br></pre></td></tr></tbody></table></figure>
 
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MOD = <span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numPrimeArrangements</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
-      <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">1</span>;
-      <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> ans;
-      <span class="hljs-comment">//计算1-n的质数的个数</span>
-      <span class="hljs-function">vector&lt;<span class="hljs-keyword">bool</span>&gt; <span class="hljs-title">sign</span><span class="hljs-params">(n+<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)</span></span>;
-      <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i&lt;=n; i++){
-        <span class="hljs-keyword">if</span>(sign[i]){
-          cnt++;
-          <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+i; j&lt;=n; j+=i){
-            sign[j] = <span class="hljs-number">0</span>;
-          }
-        }
-      }
-      <span class="hljs-keyword">int</span> nn = n-cnt;
-      <span class="hljs-keyword">while</span>(nn){
-        ans=(ans * nn)%MOD;
-        nn--;
-      }
-      <span class="hljs-keyword">while</span>(cnt){
-        ans=(ans *cnt)%MOD;
-        cnt--;
-      }
-      <span class="hljs-keyword">return</span> ans;
-    }
-};</code></pre></div>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numPrimeArrangements</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> ans;</span><br><span class="line">      <span class="comment">//计算1-n的质数的个数</span></span><br><span class="line">      <span class="function">vector&lt;<span class="keyword">bool</span>&gt; <span class="title">sign</span><span class="params">(n+<span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">      <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i&lt;=n; i++){</span><br><span class="line">        <span class="keyword">if</span>(sign[i]){</span><br><span class="line">          cnt++;</span><br><span class="line">          <span class="keyword">for</span>(<span class="keyword">int</span> j = i+i; j&lt;=n; j+=i){</span><br><span class="line">            sign[j] = <span class="number">0</span>;</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">int</span> nn = n-cnt;</span><br><span class="line">      <span class="keyword">while</span>(nn){</span><br><span class="line">        ans=(ans * nn)%MOD;</span><br><span class="line">        nn--;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">while</span>(cnt){</span><br><span class="line">        ans=(ans *cnt)%MOD;</span><br><span class="line">        cnt--;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -225,12 +212,10 @@
 <p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
 <p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
 <p><strong>示例 1：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs fix"><span class="hljs-attr">输入：nums </span>=<span class="hljs-string"> [3,2,3]</span>
-<span class="hljs-string">输出：3</span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<div class="code-wrapper"><pre><code class="hljs accesslog">输入：nums = <span class="hljs-string">[2,2,1,1,1,2,2]</span>
-输出：<span class="hljs-number">2</span></code></pre></div>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
@@ -240,125 +225,23 @@
 </ul>
 <p>==<strong>进阶：</strong>尝试设计时间复杂度为 O(n)、空间复杂度为 O(1) 的算法解决此问题。==</p>
 <ol>
-<li>摩尔投票法<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-comment">//投票算法证明：</span>
-    <span class="hljs-comment">// 如果候选人不是maj 则 maj,会和其他非候选人一起反对 会反对候选人,所以候选人一定会下台(maj==0时发生换届选举)</span>
-    <span class="hljs-comment">// 如果候选人是maj , 则maj 会支持自己，其他候选人会反对，同样因为maj 票数超过一半，所以maj 一定会成功当选</span>
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
-      <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">int</span> maj = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;nums.<span class="hljs-built_in">size</span>(); i++){
-        <span class="hljs-keyword">if</span>(cnt == <span class="hljs-number">0</span>){
-          maj = nums[i];
-          cnt++;
-        }<span class="hljs-keyword">else</span>{
-          nums[i] == maj ? cnt++ : cnt--;
-        }
-      }
-      <span class="hljs-keyword">return</span> maj;
-    }
-};</code></pre></div></li>
-<li>随机法<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-comment">// 随机数法 期望的随机次数是常数 平均时间复杂度On</span>
-    <span class="hljs-comment">// 期望计算 1*0.5 + 2*0.5*0.5 + 3*0.5*0.5...收敛于2</span>
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
-      <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
-        <span class="hljs-keyword">int</span> randNum = nums[<span class="hljs-built_in">rand</span>() % nums.<span class="hljs-built_in">size</span>()];
-        <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span>&amp; num : nums){
-          <span class="hljs-keyword">if</span>(randNum == num)
-            cnt++;
-          <span class="hljs-keyword">if</span>(cnt&gt;nums.<span class="hljs-built_in">size</span>() / <span class="hljs-number">2</span>)
-            <span class="hljs-keyword">return</span> randNum;
-        }
-      }
-      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-    }
-};</code></pre></div></li>
-<li>位运算<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
-<span class="hljs-keyword">public</span>:
-    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>{
-      <span class="hljs-comment">//位运算法,统计每个数字每一位0，1出现的次数，如果某一位1出现的次数多则该位为1，0同理；</span>
-      <span class="hljs-comment">//最后按为统计出来的数就是众数</span>
-      <span class="hljs-keyword">int</span> res=<span class="hljs-number">0</span>,len = nums.<span class="hljs-built_in">size</span>();
-      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">32</span>;i++){
-        <span class="hljs-keyword">int</span> ones=<span class="hljs-number">0</span>,zero=<span class="hljs-number">0</span>;
-        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j &lt; len; j++){
-          <span class="hljs-keyword">if</span>(ones&gt;len/<span class="hljs-number">2</span> ||zero&gt;len/<span class="hljs-number">2</span>) <span class="hljs-keyword">break</span>;
-          <span class="hljs-keyword">if</span>((nums[j]&amp;(<span class="hljs-number">1</span>&lt;&lt;i)) != <span class="hljs-number">0</span>) ones++;
-          <span class="hljs-keyword">else</span> zero++;   
-        }
-        <span class="hljs-comment">// 还原数字</span>
-        <span class="hljs-keyword">if</span>(ones &gt; zero)
-          res |= (<span class="hljs-number">1</span>&lt;&lt;i);
-      }
-      <span class="hljs-keyword">return</span> res;
-    }
-};</code></pre></div></li>
+<li>摩尔投票法<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//投票算法证明：</span></span><br><span class="line">    <span class="comment">// 如果候选人不是maj 则 maj,会和其他非候选人一起反对 会反对候选人,所以候选人一定会下台(maj==0时发生换届选举)</span></span><br><span class="line">    <span class="comment">// 如果候选人是maj , 则maj 会支持自己，其他候选人会反对，同样因为maj 票数超过一半，所以maj 一定会成功当选</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> maj = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">if</span>(cnt == <span class="number">0</span>){</span><br><span class="line">          maj = nums[i];</span><br><span class="line">          cnt++;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">          nums[i] == maj ? cnt++ : cnt--;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> maj;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></li>
+<li>随机法<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 随机数法 期望的随机次数是常数 平均时间复杂度On</span></span><br><span class="line">    <span class="comment">// 期望计算 1*0.5 + 2*0.5*0.5 + 3*0.5*0.5...收敛于2</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">      <span class="keyword">while</span>(<span class="number">1</span>){</span><br><span class="line">        <span class="keyword">int</span> randNum = nums[<span class="built_in">rand</span>() % nums.<span class="built_in">size</span>()];</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span>&amp; num : nums){</span><br><span class="line">          <span class="keyword">if</span>(randNum == num)</span><br><span class="line">            cnt++;</span><br><span class="line">          <span class="keyword">if</span>(cnt&gt;nums.<span class="built_in">size</span>() / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> randNum;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></li>
+<li>位运算<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">      <span class="comment">//位运算法,统计每个数字每一位0，1出现的次数，如果某一位1出现的次数多则该位为1，0同理；</span></span><br><span class="line">      <span class="comment">//最后按为统计出来的数就是众数</span></span><br><span class="line">      <span class="keyword">int</span> res=<span class="number">0</span>,len = nums.<span class="built_in">size</span>();</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">32</span>;i++){</span><br><span class="line">        <span class="keyword">int</span> ones=<span class="number">0</span>,zero=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j &lt; len; j++){</span><br><span class="line">          <span class="keyword">if</span>(ones&gt;len/<span class="number">2</span> ||zero&gt;len/<span class="number">2</span>) <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">if</span>((nums[j]&amp;(<span class="number">1</span>&lt;&lt;i)) != <span class="number">0</span>) ones++;</span><br><span class="line">          <span class="keyword">else</span> zero++;   </span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 还原数字</span></span><br><span class="line">        <span class="keyword">if</span>(ones &gt; zero)</span><br><span class="line">          res |= (<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qianxunslimg</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/">https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qianxunslimg.github.io" target="_blank">qianxunslimgのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">算法总结</a></div><div class="post_share"><div class="social-share" data-image="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/airpay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/airpay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/09/yi-wei-huo-qu-int-min-he-int-max/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">移位获取INT_MIN和INT_MAX</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/02/shu-ju-jie-gou/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/13.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据结构</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-25</div><div class="title">子串问题</div></div></a></div><div><a href="/2022/05/22/ji-yi-hua-sou-suo/" title="记忆化搜索"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">记忆化搜索</div></div></a></div><div><a href="/2022/04/25/sui-ji-xiang-guan-suan-fa/" title="随机算法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-25</div><div class="title">随机算法</div></div></a></div><div><a href="/2022/04/20/ding-dui/" title="顶堆"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">顶堆</div></div></a></div><div><a href="/2022/04/20/duo-lu-gui-bing-suan-fa/" title="多路归并"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">多路归并</div></div></a></div><div><a href="/2022/04/18/bfs/" title="dfs&bfs"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-18</div><div class="title">dfs&bfs</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianxunslimg</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://leetcode-cn.com/u/qianxunslimg"><i class="fa-solid fa-code"></i><span>LeetCode</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qianxunslimg" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://gitee.com/qianxunslimg" target="_blank" title="Gitee"><i class="fa-brands fa-github-alt"></i></a><a class="social-icon" href="mailto:2511167079llm@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.cnblogs.com/qianxunslimg" target="_blank" title="CnBlog"><i class="fa-solid fa-poo"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">编程菜鸟,多多指教~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF"><span class="toc-number">1.</span> <span class="toc-text">约瑟夫环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1823-%E6%89%BE%E5%87%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E8%8E%B7%E8%83%9C%E8%80%85"><span class="toc-number">1.1.</span> <span class="toc-text">1823. 找出游戏的获胜者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A8%E6%AF%94%E8%A7%A3%E6%B3%95-%E6%A8%A1%E6%8B%9F-%E6%95%88%E7%8E%87%E4%B8%8D%E9%94%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">笨比解法 模拟 效率不错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E8%A7%A3%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">数学解法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%84%E6%8B%89%E5%A4%9A%E5%A1%9E%E7%AD%9B"><span class="toc-number">2.</span> <span class="toc-text">厄拉多塞筛</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">204. 计数质数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1175-%E8%B4%A8%E6%95%B0%E6%8E%92%E5%88%97"><span class="toc-number">2.2.</span> <span class="toc-text">1175. 质数排列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%A9%E5%B0%94%E6%8A%95%E7%A5%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">摩尔投票法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#169-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0"><span class="toc-number">3.0.1.</span> <span class="toc-text">169. 多数元素</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义key"/></a><div class="content"><a class="title" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key">自定义key</a><time datetime="2022-06-22T11:28:00.000Z" title="发表于 2022-06-22 19:28:00">2022-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AHK的初次接触"/></a><div class="content"><a class="title" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触">AHK的初次接触</a><time datetime="2022-06-20T15:43:00.000Z" title="发表于 2022-06-20 23:43:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试补充问题"/></a><div class="content"><a class="title" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题">面试补充问题</a><time datetime="2022-06-02T01:46:00.000Z" title="发表于 2022-06-02 09:46:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNAME CDN IPC"/></a><div class="content"><a class="title" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC">CNAME CDN IPC</a><time datetime="2022-05-26T12:54:00.000Z" title="发表于 2022-05-26 20:54:00">2022-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="子串问题"/></a><div class="content"><a class="title" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题">子串问题</a><time datetime="2022-05-25T02:42:00.000Z" title="发表于 2022-05-25 10:42:00">2022-05-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo搭建博客的几个问题"/></a><div class="content"><a class="title" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题">hexo搭建博客的几个问题</a><time datetime="2022-05-24T11:28:00.000Z" title="发表于 2022-05-24 19:28:00">2022-05-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By qianxunslimg</div><div class="footer_custom_text">只愿得一人心 白首不分离</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
 
-    </div>
-
-    
-        <hr class="fhr">
-        <div id="vcomments"></div>
-    
-</div>
-    <div class="footer" id="footer">
-    <p><h4>版权所有 © 2020 | 作者: qianxunslimg | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
-    
-        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
-        <span class="post-meta-divider">|</span>
-        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
-    
-    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
-        <input type="checkbox" name="switch" id="update_style">
-        <span class="el-switch-style"></span>
-    </label>
-
-    <!--         <script type="text/javascript">
-    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-    </script> -->
-</p>
-</div>
-
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="">
-<input type="hidden" id="valine_appKey" value="">
-
-<script src="/libs/jquery.min.js"></script>
-
-
-<script src="/libs/highlight/highlight.pack.js"></script>
-
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
-
-<script src="/js/js.js"></script>
-
-<style type="text/css">
-.v * {
-color: #698fca;
+  }
 }
-.v .vlist .vcard .vhead .vsys {
-color: #3a3e4a;
-}
-.v .vlist .vcard .vh .vmeta .vat {
-color: #638fd5;
-}
-.v .vlist .vcard .vhead .vnick {
-color: #6ba1ff;
-}
-.v a {
-color: #8696b1;
-}
-.v .vlist .vcard .vhead .vnick:hover {
-color: #669bfc;
-}
-</style>
-    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-</body>
-</html>
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="7340348271" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random"> </div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="塔塔开！,塔塔开！！,一子摸塔塔开！！！" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/SerokSSR/cdn/meting.min.js"></script></div></body></html>
