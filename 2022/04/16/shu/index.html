@@ -1,151 +1,323 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>树 | qianxunslimgのblog</title><meta name="keywords" content="算法总结"><meta name="author" content="qianxunslimg"><meta name="copyright" content="qianxunslimg"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二叉树ACM模式构建二叉树#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std;struct TreeNode {    int val;    TreeNode *left;    TreeNode *right;    TreeNode(int x) : val(x),">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="二叉树ACM模式构建二叉树#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std;struct TreeNode {    int val;    TreeNode *left;    TreeNode *right;    TreeNode(int x) : val(x),">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/04/16/shu/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
 <meta property="og:description" content="二叉树ACM模式构建二叉树#include &lt;iostream&gt;#include &lt;vector&gt;#include &lt;queue&gt;using namespace std;struct TreeNode {    int val;    TreeNode *left;    TreeNode *right;    TreeNode(int x) : val(x),">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsumii1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/tree.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606151253075.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111436426.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606114249246.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_1.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_2.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608163431792.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608214817590.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608220449344.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarysearchtree_improved.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarytree.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606171840647.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111859159.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111941926.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-4af05d4805b7384eee3e7ab496940f75_r.jpg">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png">
 <meta property="article:published_time" content="2022-04-16T12:09:49.000Z">
 <meta property="article:modified_time" content="2022-07-07T03:24:58.358Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg"><link rel="shortcut icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png"><link rel="canonical" href="https://qianxunslimg.github.io/2022/04/16/shu/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.useco.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: {"limitCount":50,"languages":{"author":"作者: qianxunslimg","link":"链接: ","source":"来源: qianxunslimgのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: true,
-  isAnchor: true
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '树',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: true,
-  isToc: true,
-  postUpdate: '2022-07-07 11:24:58'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png">
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
   
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>树 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0">
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">qianxunslimgのblog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">树</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-16T12:09:49.000Z" title="发表于 2022-04-16 20:09:49">2022-04-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-07T03:24:58.358Z" title="更新于 2022-07-07 11:24:58">2022-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/">算法整理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">18.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>82分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="ACM模式构建二叉树"><a href="#ACM模式构建二叉树" class="headerlink" title="ACM模式构建二叉树"></a>ACM模式构建二叉树</h2><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> {</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode *left;</span><br><span class="line">    TreeNode *right;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="keyword">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据数组构造二叉树</span></span><br><span class="line"><span class="function">TreeNode* <span class="title">construct_binary_tree</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt;&amp; vec)</span> </span>{</span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">vecTree</span> <span class="params">(vec.size(), <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line">    TreeNode* root = <span class="literal">NULL</span>;</span><br><span class="line">  	<span class="comment">// 把输入数值数组，先转化为二叉树节点数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        TreeNode* node = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span> (vec[i] != <span class="number">-1</span>) node = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(vec[i]);</span><br><span class="line">        vecTree[i] = node;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) root = node;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 遍历一遍，根据规则左右孩子赋值就可以了</span></span><br><span class="line">    <span class="comment">// 注意这里 结束规则是 i * 2 + 2 &lt; vec.size()，避免空指针</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i * <span class="number">2</span> + <span class="number">2</span> &lt; vec.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        <span class="keyword">if</span> (vecTree[i] != <span class="literal">NULL</span>) {</span><br><span class="line">            vecTree[i]-&gt;left = vecTree[i * <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line">            vecTree[i]-&gt;right = vecTree[i * <span class="number">2</span> + <span class="number">2</span>];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 层序打印打印二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_binary_tree</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">    queue&lt;TreeNode*&gt; que;</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">NULL</span>) que.<span class="built_in">push</span>(root);</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">    <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">        <span class="keyword">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) {</span><br><span class="line">            TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (node != <span class="literal">NULL</span>) {</span><br><span class="line">                vec.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">                que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 这里的处理逻辑是为了把null节点打印出来，用-1 表示null</span></span><br><span class="line">            <span class="keyword">else</span> vec.<span class="built_in">push_back</span>(<span class="number">-1</span>);</span><br><span class="line">        }</span><br><span class="line">        result.<span class="built_in">push_back</span>(vec);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result[i].<span class="built_in">size</span>(); j++) {</span><br><span class="line">            cout &lt;&lt; result[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        }</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// 注意本代码没有考虑输入异常数据的情况</span></span><br><span class="line">    <span class="comment">// 用 -1 来表示null</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; vec = {<span class="number">4</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">3</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">8</span>};</span><br><span class="line">    TreeNode* root = <span class="built_in">construct_binary_tree</span>(vec);</span><br><span class="line">    <span class="built_in">print_binary_tree</span>(root);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-16 20:09" pubdate>
+          2022年4月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">树</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="ACM模式构建二叉树"><a href="#ACM模式构建二叉树" class="headerlink" title="ACM模式构建二叉树"></a>ACM模式构建二叉树</h2><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> {</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode *left;</span><br><span class="line">    TreeNode *right;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="keyword">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">NULL</span>), <span class="built_in">right</span>(<span class="literal">NULL</span>) {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据数组构造二叉树</span></span><br><span class="line"><span class="function">TreeNode* <span class="title">construct_binary_tree</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt;&amp; vec)</span> </span>{</span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">vecTree</span> <span class="params">(vec.size(), <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line">    TreeNode* root = <span class="literal">NULL</span>;</span><br><span class="line">  	<span class="comment">// 把输入数值数组，先转化为二叉树节点数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vec.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        TreeNode* node = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span> (vec[i] != <span class="number">-1</span>) node = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(vec[i]);</span><br><span class="line">        vecTree[i] = node;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) root = node;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 遍历一遍，根据规则左右孩子赋值就可以了</span></span><br><span class="line">    <span class="comment">// 注意这里 结束规则是 i * 2 + 2 &lt; vec.size()，避免空指针</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i * <span class="number">2</span> + <span class="number">2</span> &lt; vec.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        <span class="keyword">if</span> (vecTree[i] != <span class="literal">NULL</span>) {</span><br><span class="line">            vecTree[i]-&gt;left = vecTree[i * <span class="number">2</span> + <span class="number">1</span>];</span><br><span class="line">            vecTree[i]-&gt;right = vecTree[i * <span class="number">2</span> + <span class="number">2</span>];</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 层序打印打印二叉树</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_binary_tree</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">    queue&lt;TreeNode*&gt; que;</span><br><span class="line">    <span class="keyword">if</span> (root != <span class="literal">NULL</span>) que.<span class="built_in">push</span>(root);</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; result;</span><br><span class="line">    <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) {</span><br><span class="line">        <span class="keyword">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) {</span><br><span class="line">            TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">            que.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span> (node != <span class="literal">NULL</span>) {</span><br><span class="line">                vec.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">                que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 这里的处理逻辑是为了把null节点打印出来，用-1 表示null</span></span><br><span class="line">            <span class="keyword">else</span> vec.<span class="built_in">push_back</span>(<span class="number">-1</span>);</span><br><span class="line">        }</span><br><span class="line">        result.<span class="built_in">push_back</span>(vec);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.<span class="built_in">size</span>(); i++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; result[i].<span class="built_in">size</span>(); j++) {</span><br><span class="line">            cout &lt;&lt; result[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        }</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">// 注意本代码没有考虑输入异常数据的情况</span></span><br><span class="line">    <span class="comment">// 用 -1 来表示null</span></span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; vec = {<span class="number">4</span>,<span class="number">1</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">3</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">8</span>};</span><br><span class="line">    TreeNode* root = <span class="built_in">construct_binary_tree</span>(vec);</span><br><span class="line">    <span class="built_in">print_binary_tree</span>(root);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 
 
@@ -153,7 +325,7 @@
 <h4 id="二叉排序树又叫二叉查找树或者二叉搜索树："><a href="#二叉排序树又叫二叉查找树或者二叉搜索树：" class="headerlink" title="二叉排序树又叫二叉查找树或者二叉搜索树："></a>二叉排序树又叫二叉查找树或者二叉搜索树：</h4><p>1）若左子树不空，则左子树上所有结点的值均小于它的根节点的值；</p>
 <p>2）若右子树不空，则右子树上所有结点的值均大于它的根结点的值；</p>
 <p>3）左、右子树也分别为二叉排序树；4）没有键值相等的节点</p>
-<h3 id="2-树的各种DFS遍历"><a href="#2-树的各种DFS遍历" class="headerlink" title="2. 树的各种DFS遍历"></a>2. 树的各种DFS遍历</h3><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png" alt="img" style="zoom: 80%;">
+<h3 id="2-树的各种DFS遍历"><a href="#2-树的各种DFS遍历" class="headerlink" title="2. 树的各种DFS遍历"></a>2. 树的各种DFS遍历</h3><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2092994-20211204202223075-1835072711.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 80%;">
 
 <p>前序遍历，根–&gt;左子树–&gt;右子树</p>
 <p>中序遍历，左子树–&gt;根–&gt;右子树</p>
@@ -177,11 +349,11 @@
 <p>计算从根节点到叶节点生成的 <strong>所有数字之和</strong> 。</p>
 <p><strong>叶节点</strong> 是指没有子节点的节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num1tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：25</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 1-&gt;2 代表数字 12</span><br><span class="line">从根到叶子节点路径 1-&gt;3 代表数字 13</span><br><span class="line">因此，数字总和 = 12 + 13 = 25</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/num2tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [4,9,0,5,1]</span><br><span class="line">输出：1026</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;5 代表数字 495</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;1 代表数字 491</span><br><span class="line">从根到叶子节点路径 4-&gt;0 代表数字 40</span><br><span class="line">因此，数字总和 = 495 + 491 + 40 = 1026</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
@@ -211,7 +383,7 @@
 <p>给你二叉树的根节点 <code>root</code> 和一个整数目标和 <code>targetSum</code> ，找出所有 <strong>从根节点到叶子节点</strong> 路径总和等于给定目标和的路径。</p>
 <p><strong>叶子节点</strong> 是指没有子节点的节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsumii1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsumii1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22</span><br><span class="line">输出：[[5,4,11,2],[5,8,4,5]]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="前序-回溯"><a href="#前序-回溯" class="headerlink" title="前序 回溯"></a>前序 回溯</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">    vector&lt;<span class="keyword">int</span>&gt; path;</span><br><span class="line">    <span class="keyword">int</span> sumVal;</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">pathSum</span>(TreeNode* root, <span class="keyword">int</span> target) {</span><br><span class="line">      sumVal = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(root, target);</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, <span class="keyword">const</span> <span class="keyword">int</span>&amp; target)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">      path.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">      sumVal += node-&gt;val;</span><br><span class="line">      <span class="comment">//结果检查</span></span><br><span class="line">      <span class="keyword">if</span>(node-&gt;left == <span class="literal">nullptr</span> &amp;&amp; node-&gt;right == <span class="literal">nullptr</span>){</span><br><span class="line">        <span class="keyword">if</span>(sumVal == target){</span><br><span class="line">          ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">          sumVal -= node-&gt;val;</span><br><span class="line">          path.<span class="built_in">pop_back</span>();</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left, target);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right, target);</span><br><span class="line">      path.<span class="built_in">pop_back</span>();</span><br><span class="line">      sumVal -= node-&gt;val;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -222,7 +394,7 @@
 <p>给定一个二叉树的根节点 <code>root</code> ，和一个整数 <code>targetSum</code> ，求该二叉树里节点值之和等于 <code>targetSum</code> 的 <strong>路径</strong> 的数目。</p>
 <p><strong>路径</strong> 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/pathsum3-1-tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8</span><br><span class="line">输出：3</span><br><span class="line">解释：和等于 8 的路径有 3 条，如图所示。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><h5 id="首先实现一个dfs回溯求和函数-这个函数有如下要求"><a href="#首先实现一个dfs回溯求和函数-这个函数有如下要求" class="headerlink" title="首先实现一个dfs回溯求和函数 这个函数有如下要求"></a>首先实现一个dfs回溯求和函数 这个函数有如下要求</h5><ol>
@@ -243,7 +415,7 @@
 <p>请设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 <p><strong>提示:</strong> 输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/faq/#binary-tree">LeetCode 序列化二叉树的格式</a>。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg" alt="img"></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/15/serdeser.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [1,2,3,null,null,4,5]</span><br><span class="line">输出：[1,2,3,null,null,4,5]</span><br></pre></td></tr></tbody></table></figure>
 
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function">string <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">nullptr</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">        }</span><br><span class="line">      	<span class="comment">//前序遍历</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">to_string</span>(root-&gt;val) + <span class="string">' '</span> + <span class="built_in">serialize</span>(root-&gt;left) + <span class="string">' '</span> + <span class="built_in">serialize</span>(root-&gt;right);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">mydeserialize</span><span class="params">(istringstream &amp;ss)</span></span>{</span><br><span class="line">        string tmp;</span><br><span class="line">        ss&gt;&gt;tmp;</span><br><span class="line">        <span class="keyword">if</span>(tmp==<span class="string">"#"</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        }</span><br><span class="line">        TreeNode* node = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="built_in">stoi</span>(tmp));</span><br><span class="line">        node-&gt;left = <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">        node-&gt;right = <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(string data)</span> </span>{</span><br><span class="line">        <span class="function">istringstream <span class="title">ss</span><span class="params">(data)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">mydeserialize</span>(ss);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -252,11 +424,11 @@
 <p>给定一棵二叉搜索树和其中的一个节点 <code>p</code> ，找到该节点在树中的中序后继。如果节点没有中序后继，请返回 <code>null</code> 。</p>
 <p>节点 <code>p</code> 的后继是值比 <code>p.val</code> 大的节点中键值最小的节点，即按中序遍历的顺序节点 <code>p</code> 的下一个节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [2,1,3], p = 1</span><br><span class="line">输出：2</span><br><span class="line">解释：这里 1 的中序后继是 2。请注意 p 和返回值都应是 TreeNode 类型。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [5,3,6,2,4,null,null,1], p = 6</span><br><span class="line">输出：null</span><br><span class="line">解释：因为给出的节点没有中序后继，所以答案就返回 null 了。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法1-中序dfs"><a href="#解法1-中序dfs" class="headerlink" title="解法1 中序dfs"></a>解法1 中序dfs</h4><p>二叉搜索树的中序遍历是递增的 所以搜索到该节点的 后一个就是结果</p>
@@ -283,7 +455,7 @@
 </ul>
 <p><strong>注意：</strong>本题和 1038: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/</a> 相同</p>
 <p><strong>示例 1：</strong></p>
-<p><strong><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/tree.png" alt="img"></strong></p>
+<p><strong><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/tree.png" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]</span><br><span class="line">输出：[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> sum;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">convertBST</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">      sum = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(root);</span><br><span class="line">      <span class="keyword">return</span> root;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right);</span><br><span class="line">      sum+=node-&gt;val;</span><br><span class="line">      node-&gt;val = sum;</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -305,11 +477,11 @@
 <p><strong>路径和</strong> 是路径中各节点值的总和。</p>
 <p>给你一个二叉树的根节点 <code>root</code> ，返回其 <strong>最大路径和</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：6</span><br><span class="line">解释：最优路径是 2 -&gt; 1 -&gt; 3 ，路径和为 2 + 1 + 3 = 6</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/exx2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [-10,9,20,null,null,15,7]</span><br><span class="line">输出：42</span><br><span class="line">解释：最优路径是 15 -&gt; 20 -&gt; 7 ，路径和为 15 + 20 + 7 = 42</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
@@ -321,7 +493,7 @@
 
 <h3 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h3><p>难度中等525收藏分享切换为英文接收动态反馈</p>
 <p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 <code>true</code>，否则返回 <code>false</code>。假设输入的数组的任意两个数字都互不相同。</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606151253075.png" alt="image-20220606151253075" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606151253075.png" srcset="/img/loading.gif" lazyload alt="image-20220606151253075" style="zoom:50%;">
 
 <h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>根据后序遍历和二叉搜索树的性质进行递归检查</p>
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">verifyPostorder</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(nums.<span class="built_in">size</span>() &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">helper</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(left &gt;= right) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">int</span> rootVal = nums[right];</span><br><span class="line">      <span class="keyword">int</span> leftIndex = left;</span><br><span class="line">      <span class="comment">//细节 leftindex每次都需要赋值 而不是在brk中赋值</span></span><br><span class="line">      <span class="comment">//不然可能整个数组都是left 但是没更新leftIndex</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = left; i&lt;right; i++){</span><br><span class="line">        leftIndex = i;</span><br><span class="line">        <span class="keyword">if</span>(nums[i] &gt;= rootVal){</span><br><span class="line">          leftIndex--;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = leftIndex+<span class="number">1</span>; i&lt;right; i++){</span><br><span class="line">        <span class="keyword">if</span>(nums[i] &lt; rootVal)</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">helper</span>(nums, left, leftIndex) &amp;&amp; <span class="built_in">helper</span>(nums, leftIndex+<span class="number">1</span>, right<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -348,14 +520,14 @@
 
 <h3 id="剑指-Offer-28-对称的二叉树"><a href="#剑指-Offer-28-对称的二叉树" class="headerlink" title="剑指 Offer 28. 对称的二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/dui-cheng-de-er-cha-shu-lcof/">剑指 Offer 28. 对称的二叉树</a></h3><p>难度简单349收藏分享切换为英文接收动态反馈</p>
 <p>请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111436426.png" alt="image-20220606111436426" style="zoom: 67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111436426.png" srcset="/img/loading.gif" lazyload alt="image-20220606111436426" style="zoom: 67%;">
 
 <h4 id="helper递归"><a href="#helper递归" class="headerlink" title="helper递归"></a>helper递归</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">helper</span>(root-&gt;left, root-&gt;right);</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(TreeNode* left, TreeNode* right)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(left == <span class="literal">nullptr</span> &amp;&amp; right == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span>(left == <span class="literal">nullptr</span> || right == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(left-&gt;val != right-&gt;val) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">helper</span>(left-&gt;left, right-&gt;right) &amp;&amp; <span class="built_in">helper</span>(left-&gt;right, right-&gt;left);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="剑指-Offer-26-树的子结构"><a href="#剑指-Offer-26-树的子结构" class="headerlink" title="剑指 Offer 26. 树的子结构"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/">剑指 Offer 26. 树的子结构</a></h3><p>难度中等567收藏分享切换为英文接收动态反馈</p>
 <p>输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)</p>
 <p>B是A的子结构， 即 A中有出现和B相同的结构和节点值。</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606114249246.png" alt="image-20220606114249246" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606114249246.png" srcset="/img/loading.gif" lazyload alt="image-20220606114249246" style="zoom:50%;">
 
 <h4 id="大佬解法"><a href="#大佬解法" class="headerlink" title="大佬解法"></a>大佬解法</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasSubStructure</span><span class="params">(TreeNode*A, TreeNode*B)</span></span>{</span><br><span class="line">      <span class="keyword">if</span> (!B)</span><br><span class="line">        <span class="comment">//递归结束条件1：递归到B为空了，肯定是A的子结构</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;     </span><br><span class="line">      <span class="keyword">if</span> (!A || A-&gt;val != B-&gt;val)  </span><br><span class="line">        <span class="comment">//递归结束条件2：B的一个节点A的对应位置没有 / A,B对应位置节点值不同，此时必然不可是子构</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      <span class="comment">//返回值：继续在对应位置递归判断</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">hasSubStructure</span>(A-&gt;left, B-&gt;left) &amp;&amp; <span class="built_in">hasSubStructure</span>(A-&gt;right, B-&gt;right); </span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSubStructure</span><span class="params">(TreeNode* A, TreeNode* B)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span> (!A || !B)</span><br><span class="line">        <span class="comment">//特殊判断</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;  </span><br><span class="line">      <span class="comment">// 根节点相同的话直接进入比较，根节点不相同看B是不是A的左/右子树的子结构</span></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">hasSubStructure</span>(A, B) || <span class="built_in">isSubStructure</span>(A-&gt;left, B) || <span class="built_in">isSubStructure</span>(A-&gt;right, B);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
@@ -369,11 +541,11 @@
 <p>一个二叉树<em>每个节点</em> 的左右两个子树的高度差的绝对值不超过 1 。</p>
 </blockquote>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_1.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [3,9,20,null,null,15,7]</span><br><span class="line">输出：true</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_2.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/balance_2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [1,2,2,3,3,null,null,4,4]</span><br><span class="line">输出：false</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="我的解法"><a href="#我的解法" class="headerlink" title="我的解法"></a>我的解法</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isBalanced</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">int</span> dep1 = <span class="built_in">getDepth</span>(root-&gt;left);</span><br><span class="line">      <span class="keyword">int</span> dep2 = <span class="built_in">getDepth</span>(root-&gt;right);</span><br><span class="line">      <span class="keyword">if</span>(<span class="built_in">abs</span>(dep1 - dep2)&gt;<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">isBalanced</span>(root-&gt;left) &amp;&amp; <span class="built_in">isBalanced</span>(root-&gt;right);</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> maxDepth;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getDepth</span><span class="params">(TreeNode* node)</span></span>{</span><br><span class="line">      maxDepth = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(node, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">return</span> maxDepth;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, <span class="keyword">int</span> depth)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span>;</span><br><span class="line">      depth++;</span><br><span class="line">      maxDepth = <span class="built_in">max</span>(depth, maxDepth);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left, depth);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right, depth);</span><br><span class="line">      depth--;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -389,7 +561,7 @@
 <li>每个未使用的空间应包含一个空的字符串<code>""</code>。</li>
 <li>使用相同的规则输出子树。</li>
 </ol>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608163431792.png" alt="image-20220608163431792" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608163431792.png" srcset="/img/loading.gif" lazyload alt="image-20220608163431792" style="zoom:50%;">
 
 <h4 id="dfs-分治"><a href="#dfs-分治" class="headerlink" title="dfs + 分治"></a>dfs + 分治</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//DFS+分治</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//DFS求树的高度</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>+<span class="built_in">max</span>(<span class="built_in">maxDepth</span>(root-&gt;left), <span class="built_in">maxDepth</span>(root-&gt;right));</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">//分治</span></span><br><span class="line">    <span class="comment">//low为每一行的边界下限,high为每一行的边界上限，row为行的索引</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(TreeNode* root, <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> row, vector&lt;vector&lt;string&gt;&gt; &amp;res)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = (low+high)/<span class="number">2</span>; <span class="comment">//中间元素的索引</span></span><br><span class="line">        res[row][mid] = <span class="built_in">to_string</span>(root-&gt;val); <span class="comment">//将int型转为字符串，输出在mid位置</span></span><br><span class="line">        <span class="built_in">print</span>(root-&gt;left, low, mid<span class="number">-1</span>, row+<span class="number">1</span>, res); <span class="comment">//左孩子递归输出</span></span><br><span class="line">        <span class="built_in">print</span>(root-&gt;right, mid+<span class="number">1</span>, high, row+<span class="number">1</span>, res); <span class="comment">//右孩子递归输出</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">printTree</span>(TreeNode* root) {</span><br><span class="line">        <span class="keyword">int</span> high = <span class="built_in">maxDepth</span>(root); <span class="comment">//获取树的高度</span></span><br><span class="line">        <span class="keyword">int</span> width = <span class="built_in">pow</span>(<span class="number">2</span>,high)<span class="number">-1</span>; <span class="comment">//宽度</span></span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; <span class="built_in">res</span>(high, vector&lt;string&gt;(width,<span class="string">""</span>)); <span class="comment">//保存输出结果,初始化为high个,并且长度为width个空字符串""</span></span><br><span class="line">        <span class="built_in">print</span>(root, <span class="number">0</span>, width<span class="number">-1</span>, <span class="number">0</span>, res); <span class="comment">//传入width-1是因为数组里面索引最大为width-1</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -406,7 +578,7 @@
 <li><code>CBTInserter.get_root()</code> 将返回树的头节点。</li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/lc-treeinsert.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">["CBTInserter", "insert", "insert", "get_root"]</span><br><span class="line">[[[1, 2]], [3], [4], []]</span><br><span class="line">输出</span><br><span class="line">[null, 1, 2, [1, 2, 3, 4]]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">CBTInserter cBTInserter = new CBTInserter([1, 2]);</span><br><span class="line">cBTInserter.insert(3);  // 返回 1</span><br><span class="line">cBTInserter.insert(4);  // 返回 2</span><br><span class="line">cBTInserter.get_root(); // 返回 [1, 2, 3, 4]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>使用层序遍历 从左右子树不满的节点开始存 后续在push的子节点就是左右子树都不存在的了</p>
@@ -420,20 +592,20 @@
 <p>每一层的宽度被定义为两个端点（该层最左和最右的非空节点，两端点间的<code>null</code>节点也计入长度）之间的长度。</p>
 <h4 id="解法-层序遍历"><a href="#解法-层序遍历" class="headerlink" title="解法 层序遍历"></a>解法 层序遍历</h4><p>用unordered_map记录每个节点在这一行的位置</p>
 <p>从0开始 当前节点左节点就是当前位置*2  右节点就是 *2+1</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608214817590.png" alt="image-20220608214817590"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608214817590.png" srcset="/img/loading.gif" lazyload alt="image-20220608214817590"></p>
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">widthOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>{</span><br><span class="line">        unordered_map&lt;TreeNode*, <span class="keyword">long</span>&gt; umap;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>){</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        queue&lt;TreeNode*&gt; q;</span><br><span class="line">        umap[root] = <span class="number">0</span>;<span class="comment">//利用散列表umap来存储每个节点对应的坐标pos</span></span><br><span class="line">        q.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="comment">//相对坐标: parent.pos*2(left); parent.pos*2+1(right)</span></span><br><span class="line">        <span class="keyword">long</span> maxSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>()){</span><br><span class="line">            maxSize = <span class="built_in">max</span>(maxSize, umap[q.<span class="built_in">back</span>()] - umap[q.<span class="built_in">front</span>()] + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">            <span class="comment">//cout &lt;&lt; size&lt;&lt;" ";</span></span><br><span class="line">            <span class="keyword">long</span> offset = umap[q.<span class="built_in">front</span>()];</span><br><span class="line">            <span class="comment">//cout&lt;&lt;offset&lt;&lt;" ";</span></span><br><span class="line">            <span class="comment">//遍历该层的所有的node</span></span><br><span class="line">            <span class="keyword">while</span>(size--){</span><br><span class="line">                TreeNode* n = q.<span class="built_in">front</span>();</span><br><span class="line">                q.<span class="built_in">pop</span>();<span class="comment">//将上层残余的Node全部pop出去</span></span><br><span class="line">                umap[n] -= offset;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(n-&gt;left){</span><br><span class="line">                    umap[n-&gt;left] = umap[n]*<span class="number">2</span>;</span><br><span class="line">                    q.<span class="built_in">push</span>(n-&gt;left);</span><br><span class="line">                }</span><br><span class="line">                <span class="keyword">if</span>(n-&gt;right){</span><br><span class="line">                    umap[n-&gt;right] = umap[n]*<span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">                    q.<span class="built_in">push</span>(n-&gt;right);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> maxSize;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608220449344.png" alt="image-20220608220449344" style="zoom:67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220608220449344.png" srcset="/img/loading.gif" lazyload alt="image-20220608220449344" style="zoom:67%;">
 
 <h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h3 id="剑指-Offer-II-053-二叉搜索树中的中序后继-1"><a href="#剑指-Offer-II-053-二叉搜索树中的中序后继-1" class="headerlink" title="剑指 Offer II 053. 二叉搜索树中的中序后继"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/P5rCT8/">剑指 Offer II 053. 二叉搜索树中的中序后继</a></h3><p>难度中等40</p>
 <p>给定一棵二叉搜索树和其中的一个节点 <code>p</code> ，找到该节点在树中的中序后继。如果节点没有中序后继，请返回 <code>null</code> 。</p>
 <p>节点 <code>p</code> 的后继是值比 <code>p.val</code> 大的节点中键值最小的节点，即按中序遍历的顺序节点 <code>p</code> 的下一个节点。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_1.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [2,1,3], p = 1</span><br><span class="line">输出：2</span><br><span class="line">解释：这里 1 的中序后继是 2。请注意 p 和返回值都应是 TreeNode 类型。</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>示例 2：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/285_example_2.PNG" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：root = [5,3,6,2,4,null,null,1], p = 6</span><br><span class="line">输出：null</span><br><span class="line">解释：因为给出的节点没有中序后继，所以答案就返回 null 了。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法-二叉树的性质"><a href="#解法-二叉树的性质" class="headerlink" title="解法 二叉树的性质"></a>解法 二叉树的性质</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">inorderSuccessor</span><span class="params">(TreeNode* root, TreeNode* p)</span> </span>{</span><br><span class="line">      TreeNode* res = <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">int</span> val = p-&gt;val;</span><br><span class="line">      <span class="keyword">while</span>(root){</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &gt; val){</span><br><span class="line">          <span class="comment">// 当root-&gt;val &gt; val时，会走到左节点，所以走得越深越接近val</span></span><br><span class="line">          <span class="comment">// 保证了每次root-&gt;val都小于res-&gt;val</span></span><br><span class="line">          res = root;</span><br><span class="line">          root = root-&gt;left;</span><br><span class="line">        }<span class="keyword">else</span></span><br><span class="line">          root = root-&gt;right;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -442,7 +614,7 @@
 <p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
 <p>例如，给定如下二叉搜索树: root = [6,2,8,0,4,7,9,null,null,3,5]</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarysearchtree_improved.png" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarysearchtree_improved.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8</span><br><span class="line">输出: 6 </span><br><span class="line">解释: 节点 2 和节点 8 的最近公共祖先是 6。</span><br></pre></td></tr></tbody></table></figure>
 
@@ -452,7 +624,7 @@
 <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/8918834?fr=aladdin">百度百科</a>中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。”</p>
 <p>例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4]</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarytree.png" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/binarytree.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1</span><br><span class="line">输出: 3</span><br><span class="line">解释: 节点 5 和节点 1 的最近公共祖先是节点 3。</span><br></pre></td></tr></tbody></table></figure>
 
@@ -465,7 +637,7 @@
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>{</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">find</span>(root, p, q);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">find</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="comment">//找到目标</span></span><br><span class="line">      <span class="keyword">if</span>(root == p || root == q)</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">      TreeNode* left = <span class="built_in">find</span>(root-&gt;left, p, q);</span><br><span class="line">      TreeNode* right = <span class="built_in">find</span>(root-&gt;right, p, q);</span><br><span class="line">      <span class="comment">// p q 一个在左，一个在右</span></span><br><span class="line">      <span class="keyword">if</span>(left != <span class="literal">nullptr</span> &amp;&amp; right != <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">      <span class="keyword">return</span> left != <span class="literal">nullptr</span> ? left : right;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="1676-题「二叉树的最近公共祖先-IV」"><a href="#1676-题「二叉树的最近公共祖先-IV」" class="headerlink" title="1676 题「二叉树的最近公共祖先 IV」"></a>1676 题「二叉树的最近公共祖先 IV」</h3><p>依然给你输入一棵不含重复值的二叉树，但这次不是给你输入<code>p</code>和<code>q</code>两个节点了，而是给你输入一个包含若干节点的列表<code>nodes</code>（<u>这些节点都存在于二叉树中</u>），让你算这些节点的最近公共祖先。</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606171840647.png" alt="image-20220606171840647" style="zoom: 50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606171840647.png" srcset="/img/loading.gif" lazyload alt="image-20220606171840647" style="zoom: 50%;">
 
 <h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><p>和两个节点的公共祖先是一样的 只是存在判定需要用到unordered_set;</p>
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, vector&lt;TreeNode*&gt; &amp;nodes)</span> </span>{</span><br><span class="line">      unordered_set&lt;TreeNode*&gt; sett;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; node: nodes)</span><br><span class="line">        sett.<span class="built_in">insert</span>(node);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">find</span>(root, nodes);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">find</span><span class="params">(TreeNode* root, unordered_set&lt;TreeNode*&gt;&amp; nodes)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="comment">//找到目标</span></span><br><span class="line">      <span class="keyword">if</span>(nodes.<span class="built_in">count</span>(root))</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">      TreeNode* left = <span class="built_in">find</span>(root-&gt;left, nodes);</span><br><span class="line">      TreeNode* right = <span class="built_in">find</span>(root-&gt;right, nodes);</span><br><span class="line">      <span class="comment">// p q 一个在左，一个在右</span></span><br><span class="line">      <span class="keyword">if</span>(left != <span class="literal">nullptr</span> &amp;&amp; right != <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">      <span class="keyword">return</span> left != <span class="literal">nullptr</span> ? left : right;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
@@ -493,7 +665,7 @@
 <p><strong>示例：</strong></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：7</span><br><span class="line">输出：[[0,0,0,null,null,0,0,null,null,0,0],[0,0,0,null,null,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,null,null,null,null,0,0],[0,0,0,0,0,null,null,0,0]]</span><br><span class="line">解释：</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png" alt="image-20220417231809203"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417231809203.png" srcset="/img/loading.gif" lazyload alt="image-20220417231809203"></p>
 <h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>首先<code>偶数是不能构成满二叉树</code>的。 思路是把总node数分别左边，根，右边进行递归，如7个node可以分成1,1,5；3,1,5；5,1,1（左,根,右）。 5个node又可以分为1,1,3和3,1,1。 3个node又可以分为1,1,1。 1个node直接返回。</p>
 <h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, vector&lt;TreeNode*&gt;&gt; memo;</span><br><span class="line">    <span class="function">vector&lt;TreeNode*&gt; <span class="title">allPossibleFBT</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        vector&lt;TreeNode*&gt; ans;</span><br><span class="line">        <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n)) <span class="keyword">return</span> memo[n];</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) ans.<span class="built_in">push_back</span>(<span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="number">0</span>));</span><br><span class="line">        <span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;n; i+=<span class="number">2</span>){</span><br><span class="line">                <span class="comment">// 获得所有可行的左子树集合</span></span><br><span class="line">                vector&lt;TreeNode*&gt; left = <span class="built_in">allPossibleFBT</span>(i);</span><br><span class="line">                <span class="comment">// 获得所有可行的右子树集合</span></span><br><span class="line">                vector&lt;TreeNode*&gt; right = <span class="built_in">allPossibleFBT</span>(n - i - <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 相当于 左右子树随机组合 从而得到多种情况 </span></span><br><span class="line">                <span class="comment">// 从左子树集合中选出一棵左子树，从右子树集合中选出一棵右子树，拼接到根节点上</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span> l : left){</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">auto</span> r : right){</span><br><span class="line">                        TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="number">0</span>);</span><br><span class="line">                        root-&gt;left = l;</span><br><span class="line">                        root-&gt;right = r;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(root);</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        memo[n] = ans;</span><br><span class="line">        <span class="comment">//cout&lt;&lt;ans.size()&lt;&lt;" ";</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -501,10 +673,10 @@
 <p>难度中等1703</p>
 <p>给你一个整数 <code>n</code> ，求恰由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的 <strong>二叉搜索树</strong> 有多少种？返回满足题意的二叉搜索树的种数。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：5</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png" alt="image-20220417233328660" style="zoom: 50%;">
+<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417233328660.png" srcset="/img/loading.gif" lazyload alt="image-20220417233328660" style="zoom: 50%;">
 
 <h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(n+<span class="number">1</span>)</span></span>;</span><br><span class="line">      dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=n; i++){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j&lt;=i; j++)</span><br><span class="line">          dp[i]+=dp[j<span class="number">-1</span>]*dp[i-j];</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> dp[n];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -518,7 +690,7 @@
 <p>难度中等1187</p>
 <p>给你一个整数 <code>n</code> ，请你生成并返回所有由 <code>n</code> 个节点组成且节点值从 <code>1</code> 到 <code>n</code> 互不相同的不同 <strong>二叉搜索树</strong> 。可以按 <strong>任意顺序</strong> 返回答案。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/uniquebstn3.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：[[1,null,2,null,3],[1,null,3,2],[2,1,3],[3,1,null,null,2],[3,2,null,1]]</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>对于连续整数序列<code>[left, right]</code>中的一点<code>i</code>，若要生成以<code>i</code>为根节点的BST，则有如下规律：</p>
@@ -538,9 +710,9 @@
 <li><p>三种遍历的数组分布</p>
 </li>
 </ul>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111859159.png" alt="image-20220606111859159" style="zoom:67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111859159.png" srcset="/img/loading.gif" lazyload alt="image-20220606111859159" style="zoom:67%;">
 
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111941926.png" alt="image-20220606111941926" style="zoom:67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220606111941926.png" srcset="/img/loading.gif" lazyload alt="image-20220606111941926" style="zoom:67%;">
 
 <h3 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h3><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  	<span class="comment">// 又臭又长的就 不看了</span></span><br><span class="line">    <span class="comment">// TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {</span></span><br><span class="line">    <span class="comment">//   if(preorder.size() == 0) return nullptr;</span></span><br><span class="line">    <span class="comment">//   int rootVal = preorder[0];</span></span><br><span class="line">    <span class="comment">//   int inorder_rootPos = find(inorder.begin(), inorder.end(), rootVal) - inorder.begin();</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//   //前序左右子树</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; preorderL = vector&lt;int&gt;(preorder.begin()+1, preorder.begin()+1+inorder_rootPos);</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; preorderR =vector&lt;int&gt;(preorder.begin()+1+inorder_rootPos, preorder.end());</span></span><br><span class="line">    <span class="comment">//   //中序左右子树</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; inorderL = vector&lt;int&gt;(inorder.begin(), inorder.begin()+inorder_rootPos);</span></span><br><span class="line">    <span class="comment">//   vector&lt;int&gt; inorderR = vector&lt;int&gt;(inorder.begin() + inorder_rootPos + 1, inorder.end());</span></span><br><span class="line">    <span class="comment">//   //cout&lt;&lt;inorder_rootPos;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//   TreeNode* root = new TreeNode(rootVal);</span></span><br><span class="line">    <span class="comment">//   root-&gt;left = buildTree(preorderL, inorderL);</span></span><br><span class="line">    <span class="comment">//   root-&gt;right = buildTree(preorderR, inorderR);</span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">//   return root;</span></span><br><span class="line">    <span class="comment">// }</span></span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>{</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">build</span>(preorder, <span class="number">0</span> ,preorder.<span class="built_in">size</span>()<span class="number">-1</span>, inorder, <span class="number">0</span>, inorder.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="keyword">int</span> preS, <span class="keyword">int</span> preE, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> inS, <span class="keyword">int</span> inE)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(preS&gt;preE) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">int</span> rootVal = preorder[preS];</span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = inS; i&lt;=inE; i++){   <span class="comment">//注意这里是小于等于</span></span><br><span class="line">        <span class="keyword">if</span>(inorder[i] == rootVal){</span><br><span class="line">          index = i;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">int</span> leftSize = index - inS;</span><br><span class="line">      TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(rootVal);</span><br><span class="line">      root-&gt;left = <span class="built_in">build</span>(preorder,preS + <span class="number">1</span>, preS + leftSize, inorder, inS, index<span class="number">-1</span>);</span><br><span class="line">      root-&gt;right = <span class="built_in">build</span>(preorder, preS + <span class="number">1</span> + leftSize, preE, inorder, index+ <span class="number">1</span>, inE);</span><br><span class="line">      <span class="keyword">return</span> root;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//改进 用哈希记录val2index 快速查找对应的下标</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; val2index;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>{</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;inorder.<span class="built_in">size</span>(); i++){</span><br><span class="line">        val2index[inorder[i]] = i;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">build</span>(preorder, <span class="number">0</span>, preorder.<span class="built_in">size</span>()<span class="number">-1</span>, inorder, <span class="number">0</span>, inorder.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="keyword">int</span> preL, <span class="keyword">int</span> preR, vector&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="keyword">int</span> inL, <span class="keyword">int</span> inR)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(preL&gt;preR || inL&gt;inR)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">      <span class="keyword">int</span> rootVal = preorder[preL];</span><br><span class="line">      <span class="keyword">int</span> leftSize = val2index[rootVal] - inL;</span><br><span class="line">      TreeNode* root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(rootVal);</span><br><span class="line">      root-&gt;left = <span class="built_in">build</span>(preorder, preL+<span class="number">1</span>, preL+leftSize, inorder, inL, inL+leftSize<span class="number">-1</span>);</span><br><span class="line">      root-&gt;right = <span class="built_in">build</span>(preorder, preL+leftSize+<span class="number">1</span>, preR, inorder, inL +leftSize+<span class="number">1</span>, inR);</span><br><span class="line">      <span class="keyword">return</span> root;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -572,7 +744,7 @@
 <p>而 Trie 的结点是这样的(假设只包含’a’~’z’中的字符)：</p>
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TrieNode</span> {</span></span><br><span class="line">    <span class="keyword">bool</span> isEnd; <span class="comment">//该结点是否是一个串的结束</span></span><br><span class="line">    vector&lt;TrieNode*&gt; next; <span class="comment">//字母映射表 26 or 其他</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-<h4 id="包含三个单词-“sea”-”sells”-”she”-的-Trie"><a href="#包含三个单词-“sea”-”sells”-”she”-的-Trie" class="headerlink" title="包含三个单词 “sea”,”sells”,”she” 的 Trie"></a>包含三个单词 “sea”,”sells”,”she” 的 Trie</h4><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png" alt="image-20220405131024751" style="zoom:50%;">
+<h4 id="包含三个单词-“sea”-”sells”-”she”-的-Trie"><a href="#包含三个单词-“sea”-”sells”-”she”-的-Trie" class="headerlink" title="包含三个单词 “sea”,”sells”,”she” 的 Trie"></a>包含三个单词 “sea”,”sells”,”she” 的 Trie</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405131024751.png" srcset="/img/loading.gif" lazyload alt="image-20220405131024751" style="zoom:50%;">
 
 <h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span>{</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;Trie*&gt; next;</span><br><span class="line">    <span class="keyword">bool</span> isEnd;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Trie</span>(): <span class="built_in">next</span>(<span class="number">26</span>), <span class="built_in">isEnd</span>(<span class="number">0</span>){}</span><br><span class="line"></span><br><span class="line">    <span class="comment">//树中插入单词</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next[c - <span class="string">'a'</span>] == <span class="literal">nullptr</span>)</span><br><span class="line">                node-&gt;next[c - <span class="string">'a'</span>] = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">        }</span><br><span class="line">        node-&gt;isEnd = <span class="number">1</span>;  <span class="comment">//最后不要忘了 置为1</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查找树中是否包含单词word</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">contianWord</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">            <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> node-&gt;isEnd;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查找树中是否包含以word为前缀的单词</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containWordStartsWith</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span> </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c : word){</span><br><span class="line">            node = node-&gt;next[c - <span class="string">'a'</span>];</span><br><span class="line">            <span class="keyword">if</span>(node == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在树中查找word的最短前缀 没有则返回为空</span></span><br><span class="line">    <span class="function">string <span class="title">shortestPrefixOf</span><span class="params">(<span class="keyword">const</span> string&amp; word)</span>  </span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        string res = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> ch : word){</span><br><span class="line">            <span class="keyword">if</span> (node-&gt;isEnd || node-&gt;next[ch - <span class="string">'a'</span>] == <span class="literal">nullptr</span>) <span class="keyword">break</span>;</span><br><span class="line">            res += ch;</span><br><span class="line">            node = node-&gt;next[ch - <span class="string">'a'</span>];</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> node-&gt;isEnd ? res : <span class="string">""</span>;         <span class="comment">//有前缀返回前缀，没有则返回空字符串</span></span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//带通配符.的匹配 例如 a.c 匹配 abc</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasKeyWithPattern</span><span class="params">(<span class="keyword">const</span> string&amp; word, <span class="keyword">int</span> index)</span></span>{</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="comment">//字符串到头 检测树枝是否到头</span></span><br><span class="line">        <span class="keyword">if</span>(index &gt;= word.<span class="built_in">size</span>()) <span class="keyword">return</span> node-&gt;isEnd == <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span> ch = word[index];</span><br><span class="line">        <span class="comment">//没有遇到通配符</span></span><br><span class="line">        <span class="keyword">if</span>(ch != <span class="string">'.'</span> )</span><br><span class="line">            <span class="keyword">return</span> node-&gt;next[ch - <span class="string">'a'</span>] != <span class="literal">nullptr</span> &amp;&amp; node-&gt;next[ch -  <span class="string">'a'</span>]-&gt;<span class="built_in">hasKeyWithPattern</span>(word, index+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遇到通配符</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">26</span>; i++){</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next[i] != <span class="literal">nullptr</span> &amp;&amp; node-&gt;next[i]-&gt;<span class="built_in">hasKeyWithPattern</span>(word, index+<span class="number">1</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//没有找到</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -688,12 +860,12 @@
 <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：words = ["t"]</span><br><span class="line">输出：2</span><br><span class="line">解释：一组有效编码为 s = "t#" 和 indices = [0] 。</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法1"><a href="#解法1" class="headerlink" title="解法1"></a>解法1</h4><p>单词倒序插入字典树</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png" alt="image-20220422181126201" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181126201.png" srcset="/img/loading.gif" lazyload alt="image-20220422181126201" style="zoom:50%;">
 
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> {</span> <span class="comment">//创建前缀树</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  vector&lt;Trie *&gt; next;</span><br><span class="line">  <span class="built_in">Trie</span>() : <span class="built_in">next</span>(<span class="number">26</span>) {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">insertReverse</span><span class="params">(<span class="keyword">const</span> string &amp;word)</span> </span>{ <span class="comment">//向树中倒序插入字符串</span></span><br><span class="line">    Trie *node = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = word.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">      <span class="keyword">if</span> (node-&gt;next[word[i] - <span class="string">'a'</span>] == <span class="literal">nullptr</span>)</span><br><span class="line">        node-&gt;next[word[i] - <span class="string">'a'</span>] = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">      node = node-&gt;next[word[i] - <span class="string">'a'</span>];</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">containWordStartsWithReverse</span><span class="params">(<span class="keyword">const</span> string word)</span> </span>{ <span class="comment">//判断字符串倒序后是否为字典树的前缀</span></span><br><span class="line">    Trie *node = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = word.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">      node = node-&gt;next[word[i] - <span class="string">'a'</span>];</span><br><span class="line">      <span class="keyword">if</span> (node == <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">minimumLengthEncoding</span><span class="params">(vector&lt;string&gt; &amp;words)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>; <span class="comment">//结果</span></span><br><span class="line">    Trie *node = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">    <span class="built_in">sort</span>(words.<span class="built_in">begin</span>(), words.<span class="built_in">end</span>(), [](string&amp; str1, string&amp; str2) {</span><br><span class="line">      <span class="keyword">return</span> str1.<span class="built_in">size</span>() &gt; str2.<span class="built_in">size</span>();</span><br><span class="line">    }); <span class="comment">//将字符串按长度从大到小排序</span></span><br><span class="line">    <span class="keyword">for</span> (string str : words) {</span><br><span class="line">      <span class="keyword">if</span> (!node-&gt;<span class="built_in">containWordStartsWithReverse</span>(str)){</span><br><span class="line">        res += (str.<span class="built_in">size</span>() + <span class="number">1</span>); <span class="comment">//若其不是前缀树的前缀，则结果+=字符串长度+1</span></span><br><span class="line">      	node-&gt;<span class="built_in">insertReverse</span>(str); <span class="comment">//并将字符串插入到前缀树中     </span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="解法2"><a href="#解法2" class="headerlink" title="解法2"></a>解法2</h4><p>哈希 检查互为后缀</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png" alt="image-20220422181047635" style="zoom: 50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422181047635.png" srcset="/img/loading.gif" lazyload alt="image-20220422181047635" style="zoom: 50%;">
 
 <figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumLengthEncoding</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>{</span><br><span class="line">      <span class="function">unordered_set&lt;string&gt; <span class="title">sett</span><span class="params">(words.begin(), words.end())</span></span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span> word : words){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;word.<span class="built_in">size</span>(); i++){</span><br><span class="line">          <span class="keyword">if</span>(sett.<span class="built_in">find</span>(word.<span class="built_in">substr</span>(i)) != sett.<span class="built_in">end</span>())</span><br><span class="line">            sett.<span class="built_in">erase</span>(word.<span class="built_in">substr</span>(i));</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span> word : sett)</span><br><span class="line">        ans += word.<span class="built_in">size</span>() + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
@@ -733,7 +905,7 @@
 <li><p>主要到此题数据量较大 不然可以直接使用sort   (对string)</p>
 </li>
 <li><p>字典树 统计节点个数 判断向下还是向右</p>
-<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-4af05d4805b7384eee3e7ab496940f75_r.jpg" alt="img" style="zoom:50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-4af05d4805b7384eee3e7ab496940f75_r.jpg" srcset="/img/loading.gif" lazyload alt="img" style="zoom:50%;">
 
 
 
@@ -757,9 +929,9 @@
 
 <h1 id="线段树和树状数组"><a href="#线段树和树状数组" class="headerlink" title="线段树和树状数组"></a><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/seg/">线段树</a>和树状数组</h1><h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p>线段树是算法竞赛中常用的用来维护 <strong>区间信息</strong> 的数据结构。</p>
 <p>线段树可以在Ologn 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png" alt="image-20220405022002717"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405022002717.png" srcset="/img/loading.gif" lazyload alt="image-20220405022002717"></p>
 <h3 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h3><p>树状数组和线段树具有相似的功能，但他俩毕竟还有一些区别：树状数组能有的操作，线段树一定有；线段树有的操作，树状数组不一定有。但是树状数组的代码要比线段树短，思维更清晰，速度也更快，在解决一些单点修改的问题时，树状数组是不二之选。</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png" alt="image-20220405024155141"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220405024155141.png" srcset="/img/loading.gif" lazyload alt="image-20220405024155141"></p>
 <h3 id="307-区域和检索-数组可修改"><a href="#307-区域和检索-数组可修改" class="headerlink" title="307. 区域和检索 - 数组可修改"></a><u><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-mutable/">307. 区域和检索 - 数组可修改</a></u></h3><p>难度中等470英文版讨论区</p>
 <p>给你一个数组 <code>nums</code> ，请你完成两类查询。</p>
 <ol>
@@ -810,31 +982,410 @@
 <blockquote>
 <p>输入：<code>root = [1,null,2,null,3,null,4,null,5], ops = [[1,2,4],[1,1,3],[0,3,5]]</code></p>
 <p>输出：<code>2</code></p>
-<p>解释：<br>第 0 次操作，将值为 2、3、4 的节点染红；<br>第 1 次操作，将值为 1、2、3 的节点染红；<br>第 2 次操作，将值为 3、4、5 的节点染蓝；<br>因此，最终值为 1、2 的节点为红色节点，返回数量 2<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png" alt="image.png" style="zoom:25%;"></p>
+<p>解释：<br>第 0 次操作，将值为 2、3、4 的节点染红；<br>第 1 次操作，将值为 1、2、3 的节点染红；<br>第 2 次操作，将值为 3、4、5 的节点染蓝；<br>因此，最终值为 1、2 的节点为红色节点，返回数量 2<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833948-arSlXd-image.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom:25%;"></p>
 </blockquote>
 <p><strong>示例 2：</strong></p>
 <blockquote>
 <p>输入：<code>root = [4,2,7,1,null,5,null,null,null,null,6]</code><br><code>ops = [[0,2,2],[1,1,5],[0,4,5],[1,5,7]]</code></p>
 <p>输出：<code>5</code></p>
-<p>解释：<br>第 0 次操作，将值为 2 的节点染蓝；<br>第 1 次操作，将值为 1、2、4、5 的节点染红；<br>第 2 次操作，将值为 4、5 的节点染蓝；<br>第 3 次操作，将值为 5、6、7 的节点染红；<br>因此，最终值为 1、2、5、6、7 的节点为红色节点，返回数量 5<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png" alt="image.png" style="zoom: 50%;"></p>
+<p>解释：<br>第 0 次操作，将值为 2 的节点染蓝；<br>第 1 次操作，将值为 1、2、4、5 的节点染红；<br>第 2 次操作，将值为 4、5 的节点染蓝；<br>第 3 次操作，将值为 5、6、7 的节点染红；<br>因此，最终值为 1、2、5、6、7 的节点为红色节点，返回数量 5<br><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1649833763-BljEbP-image.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom: 50%;"></p>
 </blockquote>
 <h4 id="解法-暴力"><a href="#解法-暴力" class="headerlink" title="解法 暴力"></a>解法 暴力</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNumber</span><span class="params">(TreeNode* root, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ops)</span> </span>{</span><br><span class="line">      unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mapp;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;ops.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">int</span> val = ops[i][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> begin = ops[i][<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> end = ops[i][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">while</span>(begin &lt;= end){</span><br><span class="line">          mapp[begin++] = val;</span><br><span class="line">          <span class="comment">//cout&lt;&lt;val&lt;&lt;" ";</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      ans = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">dfs</span>(root, mapp);</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node, unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp; mapp)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(!node) <span class="keyword">return</span>;</span><br><span class="line">        node-&gt;val = mapp[node-&gt;val];</span><br><span class="line">        ans+=node-&gt;val;</span><br><span class="line">        <span class="built_in">dfs</span>(node-&gt;left, mapp);</span><br><span class="line">        <span class="built_in">dfs</span>(node-&gt;right, mapp);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
 <h4 id="set二分"><a href="#set二分" class="headerlink" title="set二分"></a>set二分</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    set&lt;<span class="keyword">int</span>&gt; sett;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(!node) <span class="keyword">return</span>;</span><br><span class="line">      sett.<span class="built_in">insert</span>(node-&gt;val);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;left);</span><br><span class="line">      <span class="built_in">dfs</span>(node-&gt;right);</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getNumber</span><span class="params">(TreeNode* root, vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; ops)</span> </span>{</span><br><span class="line">      <span class="built_in">dfs</span>(root);</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = ops.<span class="built_in">size</span>() - <span class="number">1</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>){</span><br><span class="line">          <span class="keyword">auto</span> it = sett.<span class="built_in">lower_bound</span>(ops[i][<span class="number">1</span>]);</span><br><span class="line">          <span class="keyword">if</span>(it == sett.<span class="built_in">end</span>() || (*it) &gt; ops[i][<span class="number">2</span>])</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          sett.<span class="built_in">erase</span>(it);</span><br><span class="line">          <span class="keyword">if</span>(ops[i][<span class="number">0</span>]) ans++;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">qianxunslimg</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://qianxunslimg.github.io/2022/04/16/shu/">https://qianxunslimg.github.io/2022/04/16/shu/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qianxunslimg.github.io" target="_blank">qianxunslimgのblog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">算法总结</a></div><div class="post_share"><div class="social-share" data-image="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/airpay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/airpay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/04/17/pai-xu-suan-fa/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">排序算法</div></div></a></div><div class="next-post pull-right"><a href="/2022/04/16/bi-shi-mian-shi-suan-fa-ti-mu/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">笔试面试算法题目</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-25</div><div class="title">子串问题</div></div></a></div><div><a href="/2022/05/22/ji-yi-hua-sou-suo/" title="记忆化搜索"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">记忆化搜索</div></div></a></div><div><a href="/2022/05/04/ren-ming-xiang-guan-suan-fa/" title="人名算法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="title">人名算法</div></div></a></div><div><a href="/2022/04/25/sui-ji-xiang-guan-suan-fa/" title="随机算法"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-25</div><div class="title">随机算法</div></div></a></div><div><a href="/2022/04/20/ding-dui/" title="顶堆"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">顶堆</div></div></a></div><div><a href="/2022/04/20/duo-lu-gui-bing-suan-fa/" title="多路归并"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">多路归并</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianxunslimg</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://leetcode-cn.com/u/qianxunslimg"><i class="fa-solid fa-code"></i><span>LeetCode</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qianxunslimg" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://gitee.com/qianxunslimg" target="_blank" title="Gitee"><i class="fa-brands fa-github-alt"></i></a><a class="social-icon" href="mailto:2511167079llm@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.cnblogs.com/qianxunslimg" target="_blank" title="CnBlog"><i class="fa-solid fa-poo"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">编程菜鸟,多多指教~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ACM%E6%A8%A1%E5%BC%8F%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.1.</span> <span class="toc-text">ACM模式构建二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.</span> <span class="toc-text">二叉树的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E5%8F%88%E5%8F%AB%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E6%88%96%E8%80%85%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%9A"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">二叉排序树又叫二叉查找树或者二叉搜索树：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A0%91%E7%9A%84%E5%90%84%E7%A7%8DDFS%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 树的各种DFS遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%EF%BC%88Depth-First-Search%EF%BC%8CDFS%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%9C%89%E4%B8%89%E7%A7%8D%E5%AD%90%E6%96%B9%E6%B3%95%EF%BC%8C%E5%89%8D%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%89"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">深度优先遍历（Depth First Search，DFS，主要有三种子方法，前中后序遍历）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A0%91%E7%9A%84%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.树的广度优先遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%EF%BC%88Breadth-FirstSearch%EF%BC%8CBFS-%E5%AE%9E%E9%99%85%E4%B8%8A%E5%B0%B1%E6%98%AF%E9%80%90%E5%B1%82%E6%9F%A5%E6%89%BE%EF%BC%8C%E5%8F%88%E5%8F%AB%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%EF%BC%8C%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E6%88%96%E6%A8%AA%E5%90%91%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">广度优先遍历（Breadth FirstSearch，BFS,实际上就是逐层查找，又叫层次遍历，宽度优先搜索或横向优先搜索）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.3.</span> <span class="toc-text">二叉树的前序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-049-%E4%BB%8E%E6%A0%B9%E8%8A%82%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E7%9A%84%E8%B7%AF%E5%BE%84%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C"><span class="toc-number">1.3.1.</span> <span class="toc-text">剑指 Offer II 049. 从根节点到叶节点的路径数字之和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">思考</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BE%97%E5%87%BA%E5%A6%82%E4%B8%8B%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="toc-number">1.3.1.3.1.</span> <span class="toc-text">得出如下结论：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B"><span class="toc-number">1.3.1.3.1.1.</span> <span class="toc-text">代码实现如下</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-34-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-number">1.3.2.</span> <span class="toc-text">剑指 Offer 34. 二叉树中和为某一值的路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F-%E5%9B%9E%E6%BA%AF"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">前序 回溯</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-050-%E5%90%91%E4%B8%8B%E7%9A%84%E8%B7%AF%E5%BE%84%E8%8A%82%E7%82%B9%E4%B9%8B%E5%92%8C"><span class="toc-number">1.3.3.</span> <span class="toc-text">剑指 Offer II 050. 向下的路径节点之和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A6%96%E5%85%88%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAdfs%E5%9B%9E%E6%BA%AF%E6%B1%82%E5%92%8C%E5%87%BD%E6%95%B0-%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E6%9C%89%E5%A6%82%E4%B8%8B%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.3.1.1.</span> <span class="toc-text">首先实现一个dfs回溯求和函数 这个函数有如下要求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%84%B6%E5%90%8E-%E7%A9%B6%E6%9E%81%E6%9A%B4%E5%8A%9B"><span class="toc-number">1.3.3.1.2.</span> <span class="toc-text">然后 究极暴力</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-1"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E7%9A%84%E4%BC%98%E9%9B%85%E5%86%99%E6%B3%95"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">官方的优雅写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-number">1.3.3.4.</span> <span class="toc-text">前缀和</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#297-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.3.4.</span> <span class="toc-text">297. 二叉树的序列化与反序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91-%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.</span> <span class="toc-text">二叉树 中序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-053-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%AD%E5%BA%8F%E5%90%8E%E7%BB%A7"><span class="toc-number">1.4.1.</span> <span class="toc-text">剑指 Offer II 053. 二叉搜索树中的中序后继</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951-%E4%B8%AD%E5%BA%8Fdfs"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">解法1 中序dfs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%80%A7%E8%B4%A8"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">解法2 二叉搜索树性质</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-54-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E8%8A%82%E7%82%B9"><span class="toc-number">1.4.2.</span> <span class="toc-text">剑指 Offer 54. 二叉搜索树的第k大节点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%B3%E4%B8%AD%E5%B7%A6%E7%9A%84%E4%B8%AD%E5%BA%8F"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">右中左的中序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#538-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">538. 把二叉搜索树转换为累加树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F"><span class="toc-number">1.4.3.1.</span> <span class="toc-text">中序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91-%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.5.</span> <span class="toc-text">二叉树 后序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84-%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">543. 二叉树的直径 后序遍历的使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#124-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C"><span class="toc-number">1.5.2.</span> <span class="toc-text">124. 二叉树中的最大路径和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">思路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-33-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.3.</span> <span class="toc-text">剑指 Offer 33. 二叉搜索树的后序遍历序列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84-%E8%8B%B1%E6%96%87%E7%89%88%E8%AE%A8%E8%AE%BA%E5%8C%BA"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">543. 二叉树的直径 英文版讨论区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-%E4%BD%86%E7%B2%97%E6%9A%B4%E5%9E%83%E5%9C%BE"><span class="toc-number">1.5.3.3.</span> <span class="toc-text">简单 但粗暴垃圾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F"><span class="toc-number">1.5.3.4.</span> <span class="toc-text">后序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E6%8A%BD%E8%B1%A1%E9%80%92%E5%BD%92"><span class="toc-number">1.6.</span> <span class="toc-text">二叉树抽象递归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-27-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-number">1.6.1.</span> <span class="toc-text">剑指 Offer 27. 二叉树的镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-28-%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">剑指 Offer 28. 对称的二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#helper%E9%80%92%E5%BD%92"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">helper递归</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-26-%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.3.</span> <span class="toc-text">剑指 Offer 26. 树的子结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E4%BD%AC%E8%A7%A3%E6%B3%95"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">大佬解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%A7%A3-%E5%A5%BD%E7%90%86%E8%A7%A3-%E8%80%97%E6%97%B6%E7%A8%8D%E9%AB%98"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">我的解 好理解 耗时稍高</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-55-II-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.6.4.</span> <span class="toc-text">剑指 Offer 55 - II. 平衡二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%A7%A3%E6%B3%95"><span class="toc-number">1.6.4.1.</span> <span class="toc-text">我的解法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%98%E6%96%B9-%E6%9B%B4%E6%8A%BD%E8%B1%A1%E7%9A%84"><span class="toc-number">1.6.4.2.</span> <span class="toc-text">官方 更抽象的</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#655-%E8%BE%93%E5%87%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.6.5.</span> <span class="toc-text">655. 输出二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dfs-%E5%88%86%E6%B2%BB"><span class="toc-number">1.6.5.1.</span> <span class="toc-text">dfs + 分治</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.7.</span> <span class="toc-text">层序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#919-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E6%8F%92%E5%85%A5%E5%99%A8"><span class="toc-number">1.7.1.</span> <span class="toc-text">919. 完全二叉树插入器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#662-%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9C%80%E5%A4%A7%E5%AE%BD%E5%BA%A6"><span class="toc-number">1.7.2.</span> <span class="toc-text">662. 二叉树最大宽度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95-%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.7.2.1.</span> <span class="toc-text">解法 层序遍历</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.8.</span> <span class="toc-text">二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-053-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%B8%AD%E5%BA%8F%E5%90%8E%E7%BB%A7-1"><span class="toc-number">1.8.1.</span> <span class="toc-text">剑指 Offer II 053. 二叉搜索树中的中序后继</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">解法 二叉树的性质</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="toc-number">1.9.</span> <span class="toc-text">公共祖先</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-68-I-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="toc-number">1.9.1.</span> <span class="toc-text">剑指 Offer 68 - I. 二叉搜索树的最近公共祖先</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8-%E5%88%86%E5%8F%89"><span class="toc-number">1.9.1.1.</span> <span class="toc-text">利用二叉搜索树的性质 分叉</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-68-II-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="toc-number">1.9.2.</span> <span class="toc-text">剑指 Offer 68 - II. 二叉树的最近公共祖先</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E8%A7%A3%E6%B3%95"><span class="toc-number">1.9.2.1.</span> <span class="toc-text">通用解法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1676-%E9%A2%98%E3%80%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-IV%E3%80%8D"><span class="toc-number">1.9.3.</span> <span class="toc-text">1676 题「二叉树的最近公共祖先 IV」</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-number">1.9.3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1644-%E9%A2%98%E3%80%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-II%E3%80%8D"><span class="toc-number">1.9.4.</span> <span class="toc-text">1644 题「二叉树的最近公共祖先 II」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1650-%E9%A2%98%E3%80%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88-III%E3%80%8D"><span class="toc-number">1.9.5.</span> <span class="toc-text">1650 题「二叉树的最近公共祖先 III」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E6%9E%84%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.10.</span> <span class="toc-text">枚举构建二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#894-%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.10.1.</span> <span class="toc-text">894. 所有可能的满二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="toc-number">1.10.1.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="toc-number">1.10.1.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">1.10.2.</span> <span class="toc-text">96. 不同的二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="toc-number">1.10.2.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="toc-number">1.10.2.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-II"><span class="toc-number">1.10.3.</span> <span class="toc-text">95. 不同的二叉搜索树 II</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-5"><span class="toc-number">1.10.3.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-6"><span class="toc-number">1.10.3.2.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E9%81%8D%E5%8E%86%E6%95%B0%E6%8D%AE%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.11.</span> <span class="toc-text">从遍历数据重建二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.11.1.</span> <span class="toc-text">105. 从前序与中序遍历序列构造二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#106-%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.11.2.</span> <span class="toc-text">106. 从中序与后序遍历序列构造二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#889-%E6%A0%B9%E6%8D%AE%E5%89%8D%E5%BA%8F%E5%92%8C%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.11.3.</span> <span class="toc-text">889. 根据前序和后序遍历构造二叉树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%94%B9%E8%BF%AD%E4%BB%A3"><span class="toc-number">1.12.</span> <span class="toc-text">递归改迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E4%BB%A3%E7%A0%81%E6%A1%86%E6%9E%B6"><span class="toc-number">1.12.1.</span> <span class="toc-text">迭代代码框架</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91-Trie"><span class="toc-number">2.</span> <span class="toc-text">字典树 (Trie)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E4%B8%89%E4%B8%AA%E5%8D%95%E8%AF%8D-%E2%80%9Csea%E2%80%9D-%E2%80%9Dsells%E2%80%9D-%E2%80%9Dshe%E2%80%9D-%E7%9A%84-Trie"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">包含三个单词 “sea”,”sells”,”she” 的 Trie</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.2.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E6%A0%91%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E7%A7%92%E6%9D%80-5-%E9%81%93%E7%AE%97%E6%B3%95%E9%A2%98-qq-com"><span class="toc-number">2.2.1.</span> <span class="toc-text">前缀树算法模板秒杀 5 道算法题 (qq.com)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E5%8C%B9%E9%85%8D"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">前缀匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%AF%8D%E6%A0%B9"><span class="toc-number">2.2.1.4.</span> <span class="toc-text">最短词根</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%A6%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-number">2.2.1.5.</span> <span class="toc-text">带通配符的查找</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98%E7%9B%AE"><span class="toc-number">2.3.</span> <span class="toc-text">模板题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#208-%E5%AE%9E%E7%8E%B0-Trie-%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-number">2.3.1.</span> <span class="toc-text">208. 实现 Trie (前缀树)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-6"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-7"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#648-%E5%8D%95%E8%AF%8D%E6%9B%BF%E6%8D%A2-%E6%9F%A5%E6%89%BE%E6%9C%80%E7%9F%AD%E5%89%8D%E7%BC%80"><span class="toc-number">2.3.2.</span> <span class="toc-text">648. 单词替换 查找最短前缀</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-8"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#211-%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%8D%95%E8%AF%8D-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1-%E5%B8%A6%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-number">2.3.3.</span> <span class="toc-text">211. 添加与搜索单词 - 数据结构设计 带通配符的查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-7"><span class="toc-number">2.3.3.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-9"><span class="toc-number">2.3.3.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#720-%E8%AF%8D%E5%85%B8%E4%B8%AD%E6%9C%80%E9%95%BF%E7%9A%84%E5%8D%95%E8%AF%8D-%E7%BB%8F%E5%85%B8"><span class="toc-number">2.3.4.</span> <span class="toc-text">720. 词典中最长的单词 经典</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-8"><span class="toc-number">2.3.4.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-10"><span class="toc-number">2.3.4.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-064-%E7%A5%9E%E5%A5%87%E7%9A%84%E5%AD%97%E5%85%B8"><span class="toc-number">2.3.5.</span> <span class="toc-text">剑指 Offer II 064. 神奇的字典</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF-9"><span class="toc-number">2.3.5.1.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-11"><span class="toc-number">2.3.5.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-065-%E6%9C%80%E7%9F%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E7%BC%96%E7%A0%81"><span class="toc-number">2.3.6.</span> <span class="toc-text">剑指 Offer II 065. 最短的单词编码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951"><span class="toc-number">2.3.6.1.</span> <span class="toc-text">解法1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952"><span class="toc-number">2.3.6.2.</span> <span class="toc-text">解法2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%91%E6%8C%87-Offer-II-066-%E5%8D%95%E8%AF%8D%E4%B9%8B%E5%92%8C"><span class="toc-number">2.3.7.</span> <span class="toc-text">剑指 Offer II 066. 单词之和</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%951-1"><span class="toc-number">2.3.7.1.</span> <span class="toc-text">解法1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%952-1"><span class="toc-number">2.3.7.2.</span> <span class="toc-text">解法2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E5%85%B8%E6%A0%91%E9%A2%98%E7%9B%AE"><span class="toc-number">2.4.</span> <span class="toc-text">其他字典树题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#440-%E5%AD%97%E5%85%B8%E5%BA%8F%E7%9A%84%E7%AC%ACK%E5%B0%8F%E6%95%B0%E5%AD%97"><span class="toc-number">2.4.1.</span> <span class="toc-text">440. 字典序的第K小数字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%92%8C%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">线段树和树状数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">3.0.1.</span> <span class="toc-text">线段树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84"><span class="toc-number">3.0.2.</span> <span class="toc-text">树状数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#307-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E5%8F%AF%E4%BF%AE%E6%94%B9"><span class="toc-number">3.0.3.</span> <span class="toc-text">307. 区域和检索 - 数组可修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E9%AB%98%E5%88%86%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.0.4.</span> <span class="toc-text">最高分是多少</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.0.4.0.1.</span> <span class="toc-text">输入描述:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.0.4.0.2.</span> <span class="toc-text">输出描述:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E4%BE%8B%E5%AD%901"><span class="toc-number">3.0.4.0.3.</span> <span class="toc-text">输入例子1:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E4%BE%8B%E5%AD%901"><span class="toc-number">3.0.4.0.4.</span> <span class="toc-text">输出例子1:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E4%BE%8B%E5%AD%902"><span class="toc-number">3.0.4.0.5.</span> <span class="toc-text">输入例子2:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E4%BE%8B%E5%AD%902"><span class="toc-number">3.0.4.0.6.</span> <span class="toc-text">输出例子2:</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ACM%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.0.4.1.</span> <span class="toc-text">ACM模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LCP-52-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E6%9F%93%E8%89%B2"><span class="toc-number">3.0.5.</span> <span class="toc-text">LCP 52. 二叉搜索树染色</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95-%E6%9A%B4%E5%8A%9B"><span class="toc-number">3.0.5.1.</span> <span class="toc-text">解法 暴力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#set%E4%BA%8C%E5%88%86"><span class="toc-number">3.0.5.2.</span> <span class="toc-text">set二分</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义key"/></a><div class="content"><a class="title" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key">自定义key</a><time datetime="2022-06-22T11:28:00.000Z" title="发表于 2022-06-22 19:28:00">2022-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AHK的初次接触"/></a><div class="content"><a class="title" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触">AHK的初次接触</a><time datetime="2022-06-20T15:43:00.000Z" title="发表于 2022-06-20 23:43:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试补充问题"/></a><div class="content"><a class="title" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题">面试补充问题</a><time datetime="2022-06-02T01:46:00.000Z" title="发表于 2022-06-02 09:46:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNAME CDN IPC"/></a><div class="content"><a class="title" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC">CNAME CDN IPC</a><time datetime="2022-05-26T12:54:00.000Z" title="发表于 2022-05-26 20:54:00">2022-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="子串问题"/></a><div class="content"><a class="title" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题">子串问题</a><time datetime="2022-05-25T02:42:00.000Z" title="发表于 2022-05-25 10:42:00">2022-05-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo搭建博客的几个问题"/></a><div class="content"><a class="title" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题">hexo搭建博客的几个问题</a><time datetime="2022-05-24T11:28:00.000Z" title="发表于 2022-05-24 19:28:00">2022-05-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By qianxunslimg</div><div class="footer_custom_text">只愿得一人心 白首不分离</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
-  endLoading: () => {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loading-box').classList.add("loaded")
-  },
-  initLoading: () => {
-    document.body.style.overflow = '';
-    document.getElementById('loading-box').classList.remove("loaded")
 
-  }
-}
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="7340348271" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random"> </div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = true;
-POWERMODE.mobile = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="塔塔开！,塔塔开！！,一子摸塔塔开！！！" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/SerokSSR/cdn/meting.min.js"></script></div></body></html>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>树</div>
+      <div>https://qianxunslimg.github.io/2022/04/16/shu/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月16日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/17/pai-xu-suan-fa/" title="排序算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">排序算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/16/bi-shi-mian-shi-suan-fa-ti-mu/" title="笔试面试算法题目">
+                        <span class="hidden-mobile">笔试面试算法题目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
