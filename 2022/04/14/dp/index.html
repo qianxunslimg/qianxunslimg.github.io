@@ -1,305 +1,42 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
-
-
-
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
-  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="qianxunslimg">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="框架for 状态1 in 状态1的所有取值：     for 状态2 in 状态2的所有取值：         for ...             dp[状态1][状态2][...] &#x3D; 择优(选择1，选择2...)  一些dp问题剑指 Offer II 088. 爬楼梯的最少成本难度简单38英文版讨论区 数组的每个下标作为一个阶梯，第 i 个阶梯对应着一个非负数的体力花费值 cost[i]（">
-<meta property="og:type" content="article">
-<meta property="og:title" content="dp">
-<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/14/dp/index.html">
-<meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="框架for 状态1 in 状态1的所有取值：     for 状态2 in 状态2的所有取值：         for ...             dp[状态1][状态2][...] &#x3D; 择优(选择1，选择2...)  一些dp问题剑指 Offer II 088. 爬楼梯的最少成本难度简单38英文版讨论区 数组的每个下标作为一个阶梯，第 i 个阶梯对应着一个非负数的体力花费值 cost[i]（">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220501231554023.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132135089.gif">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132138328.gif">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132145601.jpeg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob1-tree.jpg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob2-tree.jpg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202101101032124.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002044878.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002124671.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505094926693.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220416161203581.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20201221201553618.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1631176639-giAMKQ-image.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/robot_maze.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/minpath.jpg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/max1grid.jpg">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417172957421.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173007635.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg">
-<meta property="article:published_time" content="2022-04-13T17:52:49.000Z">
-<meta property="article:modified_time" content="2022-07-12T16:23:03.851Z">
-<meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="算法总结">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220501231554023.png">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>dp - qianxunslimgのblog</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png >
+    <title>
+        qianxunslimgのblog
+    </title>
+    <meta name="description" content= 欢迎访问我的博客， >
+    <meta name="keywords" content= qianxunslimg,blog,job,面试,找工作 >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
+    
+<link rel="stylesheet" href="/css/style.css">
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-
-  
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>qianxunslimg</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            dp
+        </p>
+        <hr>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="dp"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-14 01:52" pubdate>
-          2022年4月14日 凌晨
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">dp</h1>
-            
-            <div class="markdown-body">
-              
-              <h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> 状态<span class="hljs-number">1</span> in 状态<span class="hljs-number">1</span>的所有取值：
+    <div class="post-content">
+        <h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> 状态<span class="hljs-number">1</span> in 状态<span class="hljs-number">1</span>的所有取值：
     <span class="hljs-keyword">for</span> 状态<span class="hljs-number">2</span> in 状态<span class="hljs-number">2</span>的所有取值：
         <span class="hljs-keyword">for</span> ...
             dp[状态<span class="hljs-number">1</span>][状态<span class="hljs-number">2</span>][...] = 择优(选择<span class="hljs-number">1</span>，选择<span class="hljs-number">2.</span>..)</code></pre></div>
@@ -509,7 +246,7 @@
     }
 };</code></pre></div>
 
-<h4 id="dp解法-1"><a href="#dp解法-1" class="headerlink" title="dp解法"></a>dp解法</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220501231554023.png" srcset="/img/loading.gif" lazyload alt="image-20220501231554023" style="zoom: 67%;">
+<h4 id="dp解法-1"><a href="#dp解法-1" class="headerlink" title="dp解法"></a>dp解法</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220501231554023.png" alt="image-20220501231554023" style="zoom: 67%;">
 
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
@@ -540,7 +277,7 @@
 
 <h3 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle/">118. 杨辉三角</a></h3><p>给定一个非负整数 <em><code>numRows</code>，</em>生成「杨辉三角」的前 <em><code>numRows</code></em> 行。</p>
 <p>在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132135089.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132135089.gif" alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <div class="code-wrapper"><pre><code class="hljs inform7">输入: numRows = 5
 输出: <span class="hljs-comment">[<span class="hljs-comment">[1]</span>,<span class="hljs-comment">[1,1]</span>,<span class="hljs-comment">[1,2,1]</span>,<span class="hljs-comment">[1,3,3,1]</span>,<span class="hljs-comment">[1,4,6,4,1]</span>]</span></code></pre></div>
@@ -567,7 +304,7 @@
 
 <h3 id="119-杨辉三角-II"><a href="#119-杨辉三角-II" class="headerlink" title="119. 杨辉三角 II "></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/pascals-triangle-ii/">119. 杨辉三角 II </a></h3><p>给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。</p>
 <p>在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132138328.gif" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132138328.gif" alt="img"></p>
 <p>示例 1:</p>
 <p>输入: rowIndex = 3<br>输出: [1,3,3,1]</p>
 <h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
@@ -619,7 +356,7 @@
     }
 };</code></pre></div>
 
-<h4 id="线性递推"><a href="#线性递推" class="headerlink" title="线性递推"></a>线性递推</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132145601.jpeg" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;">
+<h4 id="线性递推"><a href="#线性递推" class="headerlink" title="线性递推"></a>线性递推</h4><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202203132145601.jpeg" alt="img" style="zoom: 67%;">
 
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
 <span class="hljs-keyword">public</span>:
@@ -727,13 +464,13 @@
 <p>除了 <code>root</code> 之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果 <strong>两个直接相连的房子在同一天晚上被打劫</strong> ，房屋将自动报警。</p>
 <p>给定二叉树的 <code>root</code> 。返回 <em><strong>在不触动警报的情况下</strong> ，小偷能够盗取的最高金额</em> 。</p>
 <p><strong>示例 1:</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob1-tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob1-tree.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs tap">输入: root = [3,2,3,null,3,null,1]
 输出:<span class="hljs-number"> 7 </span>
 解释: 小偷一晚能够盗取的最高金额<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 3 </span>+<span class="hljs-number"> 1 </span>= 7</code></pre></div>
 
 <p><strong>示例 2:</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob2-tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/rob2-tree.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-section">输入: root = [3,4,5,1,3,null,1]</span>
 <span class="hljs-section">输出: 9</span>
 <span class="hljs-section">解释: 小偷一晚能够盗取的最高金额 4 + 5 = 9</span></code></pre></div>
@@ -847,7 +584,7 @@
 </tr>
 </tbody></table>
 <p>对于背包问题，有一种写法， 是使用二维数组，即<strong>dp[i] [j] 表示从下标为[0-i]的物品里任意取，放进容量为j的背包，价值总和最大是多少</strong>。</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202101101032124.png" srcset="/img/loading.gif" lazyload alt="动态规划-背包问题5"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/202101101032124.png" alt="动态规划-背包问题5"></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_2_wei_bag_problem1</span><span class="hljs-params">()</span> </span>{
     vector&lt;<span class="hljs-keyword">int</span>&gt; weight = {<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>};
     vector&lt;<span class="hljs-keyword">int</span>&gt; value = {<span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
@@ -1492,7 +1229,7 @@
 <li>将大问题分解为规模小一点的子问题：前 i个字符的子串，能否分解成单词<br>剩余子串，是否为单个单词。</li>
 <li>dp[i]：长度为i的s[0:i-1]子串是否能拆分成单词。题目求:dp[s.length]</li>
 </ul>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002044878.png" srcset="/img/loading.gif" lazyload alt="image-20220713002044878"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002044878.png" alt="image-20220713002044878"></p>
 <ul>
 <li>类似的，我们用指针 j 去划分s[0:i] 子串，如下图：</li>
 <li>s[0:i] 子串对应 dp[i+1] ，它是否为 true（s[0:i]能否 break），取决于两点：<ul>
@@ -1501,7 +1238,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002124671.png" srcset="/img/loading.gif" lazyload alt="image-20220713002124671"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220713002124671.png" alt="image-20220713002124671"></p>
 <p><strong>base case</strong></p>
 <ul>
 <li>base case 为dp[0] = true。即，长度为 0 的s[0:-1]能拆分成单词表单词。</li>
@@ -1530,7 +1267,7 @@
  }
 };</code></pre></div>
 
-<h1 id="炒股专题"><a href="#炒股专题" class="headerlink" title="炒股专题"></a>炒股专题</h1><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505094926693.png" srcset="/img/loading.gif" lazyload alt="image-20220505094926693" style="zoom: 67%;">
+<h1 id="炒股专题"><a href="#炒股专题" class="headerlink" title="炒股专题"></a>炒股专题</h1><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220505094926693.png" alt="image-20220505094926693" style="zoom: 67%;">
 
 <h3 id="121-买卖股票的最佳时机-一次买卖"><a href="#121-买卖股票的最佳时机-一次买卖" class="headerlink" title="121. 买卖股票的最佳时机 一次买卖"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机 <code>一次买卖</code></a></h3><p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
 <p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
@@ -2008,7 +1745,7 @@ dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</spa
 <h4 id="答案都看不懂啊-操他妈"><a href="#答案都看不懂啊-操他妈" class="headerlink" title="答案都看不懂啊 操他妈"></a>答案都看不懂啊 操他妈</h4><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-dong-tai-gui-hua-2/">https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-dong-tai-gui-hua-2/</a></p>
 <p>二分的思路是这样的<a target="_blank" rel="noopener" href="https://labuladong.github.io/algo/3/24/77/">动态规划设计：最长递增子序列 :: labuladong的算法小抄</a></p>
 <p>大佬的文章中提到了扑克牌的思路，其中有几个点</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220416161203581.png" srcset="/img/loading.gif" lazyload alt="image-20220416161203581"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220416161203581.png" alt="image-20220416161203581"></p>
 <ol>
 <li><p>每一堆扑克牌的最上方纸牌 是单调递增的</p>
 </li>
@@ -2278,7 +2015,7 @@ dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</spa
 <li><p>反向推断 移除区间的最小数量 只需要计算 满足不重复条件的区间的最大数量 LIS dp</p>
 </li>
 <li><p>贪心 也是反向查找的思路 不过是按照右边界 拼接查找无重叠的最大区间数</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20201221201553618.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20201221201553618.png" alt="img" style="zoom: 67%;">
 
 <p>如图 按照右边界排序 可以简单的找出无重叠的最大区间序列 1 4 6</p>
 <p>每次取非交叉区间的时候，都是可右边界最小的来做分割点（==<u>这样留给下一个区间的空间就越大</u>==），所以第一条分割线就是区间1结束的位置。</p>
@@ -2648,7 +2385,7 @@ dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</spa
 </ul>
 <p><strong>提示：</strong><code>a + b</code> 意味着字符串 <code>a</code> 和 <code>b</code> 连接。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s1</span> = <span class="hljs-string">"aabcc"</span>, <span class="hljs-attr">s2</span> = <span class="hljs-string">"dbbca"</span>, <span class="hljs-attr">s3</span> = <span class="hljs-string">"aadbbcbcac"</span>
 输出：<span class="hljs-literal">true</span></code></pre></div>
 
@@ -2706,7 +2443,7 @@ rabbbit</code></pre></div>
 <li><p>dp数组含义：s的前i 对应t的钱j 的子序列数目</p>
 </li>
 <li><p>状态转移方程</p>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1631176639-giAMKQ-image.png" srcset="/img/loading.gif" lazyload alt="image.png" style="zoom: 50%;">
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1631176639-giAMKQ-image.png" alt="image.png" style="zoom: 50%;">
 </li>
 <li><p>base case：dp[0] [0] = 1,dp[all] [0] = 1;</p>
 </li>
@@ -2819,7 +2556,7 @@ rabbbit</code></pre></div>
 <p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
 <p>问总共有多少条不同的路径？</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/robot_maze.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/robot_maze.png" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">m</span> = <span class="hljs-number">3</span>, <span class="hljs-attr">n</span> = <span class="hljs-number">7</span>
 输出：<span class="hljs-number">28</span></code></pre></div>
 
@@ -2855,7 +2592,7 @@ rabbbit</code></pre></div>
 <p>给定一个包含非负整数的 <code>*m* x *n*</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
 <p><strong>说明：</strong>每次只能向下或者向右移动一步。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/minpath.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/minpath.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs lua">输入：grid = <span class="hljs-string">[[1,3,1],[1,5,1],[4,2,1]]</span>
 输出：<span class="hljs-number">7</span>
 解释：因为路径 <span class="hljs-number">1</span>→<span class="hljs-number">3</span>→<span class="hljs-number">1</span>→<span class="hljs-number">1</span>→<span class="hljs-number">1</span> 的总和最小。</code></pre></div>
@@ -2974,7 +2711,7 @@ rabbbit</code></pre></div>
 <h4 id=""><a href="#" class="headerlink" title=""></a></h4><h3 id="221-最大正方形"><a href="#221-最大正方形" class="headerlink" title="221. 最大正方形"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximal-square/">221. 最大正方形</a></h3><p>难度中等1091英文版讨论区</p>
 <p>在一个由 <code>'0'</code> 和 <code>'1'</code> 组成的二维矩阵内，找到只包含 <code>'1'</code> 的最大正方形，并返回其面积。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/max1grid.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/max1grid.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs prolog">输入：matrix = [[<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"1"</span>],[<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"0"</span>,<span class="hljs-string">"1"</span>,<span class="hljs-string">"0"</span>]]
 输出：<span class="hljs-number">4</span></code></pre></div>
 
@@ -3003,9 +2740,9 @@ rabbbit</code></pre></div>
 
 <h1 id="二叉树的dp"><a href="#二叉树的dp" class="headerlink" title="二叉树的dp"></a>二叉树的dp</h1><p>二叉树的种类情况存在状态方程 随意有些dp的题目</p>
 <h3 id="n个节点不超过m高度的二叉树种类数"><a href="#n个节点不超过m高度的二叉树种类数" class="headerlink" title="n个节点不超过m高度的二叉树种类数"></a>n个节点不超过m高度的二叉树种类数</h3><p>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/aaefe5896cce4204b276e213e725f3ea">https://www.nowcoder.com/questionTerminal/aaefe5896cce4204b276e213e725f3ea</a></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417172957421.png" srcset="/img/loading.gif" lazyload alt="image-20220417172957421"></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173007635.png" srcset="/img/loading.gif" lazyload alt="image-20220417173007635"></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png" srcset="/img/loading.gif" lazyload alt="image-20220417173040449"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417172957421.png" alt="image-20220417172957421"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173007635.png" alt="image-20220417173007635"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220417173040449.png" alt="image-20220417173040449"></p>
 <h4 id="思路-21"><a href="#思路-21" class="headerlink" title="思路"></a>思路</h4><p>动态规划：</p>
 <ol>
 <li>dp[i] [j]的含义为 i个节点 最大高度为j的二叉树种类数</li>
@@ -3052,7 +2789,7 @@ rabbbit</code></pre></div>
 </ul>
 <p><strong>注意：</strong><code>a + b</code> 意味着字符串 <code>a</code> 和 <code>b</code> 连接。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/interleave.jpg" alt="img"></p>
 <div class="code-wrapper"><pre><code class="hljs nix">输入：<span class="hljs-attr">s1</span> = <span class="hljs-string">"aabcc"</span>, <span class="hljs-attr">s2</span> = <span class="hljs-string">"dbbca"</span>, <span class="hljs-attr">s3</span> = <span class="hljs-string">"aadbbcbcac"</span>
 输出：<span class="hljs-literal">true</span></code></pre></div>
 
@@ -3300,397 +3037,66 @@ rabbbit</code></pre></div>
 };</code></pre></div>
 
 
-              
-            </div>
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
     </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
-      
-    </div>
-  
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>版权所有 © 2020 | 作者: qianxunslimg | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
 </div>
 
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>dp</div>
-      <div>https://qianxunslimg.github.io/2022/04/14/dp/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>qianxunslimg</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年4月14日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/14/nan/" title="-nan">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">-nan</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/04/13/tan-xin/" title="贪心">
-                        <span class="hidden-mobile">贪心</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
-
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 </body>
 </html>

@@ -1,652 +1,107 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=dark>
-
-
-
+<html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
-  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="qianxunslimg">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位 10进制int型数据转16进制，并取高低位： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686">
-<meta property="og:type" content="article">
-<meta property="og:title" content="串口发送问题">
-<meta property="og:url" content="https://qianxunslimg.github.io/2021/04/20/chuan-kou-fa-song-wen-ti/index.html">
-<meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位 10进制int型数据转16进制，并取高低位： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-20T11:42:17.000Z">
-<meta property="article:modified_time" content="2022-04-22T16:31:21.812Z">
-<meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="开发随笔">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  
-  <title>串口发送问题 - qianxunslimgのblog</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png >
+    <title>
+        qianxunslimgのblog
+    </title>
+    <meta name="description" content= 欢迎访问我的博客， >
+    <meta name="keywords" content= qianxunslimg,blog,job,面试,找工作 >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
+    
+<link rel="stylesheet" href="/css/style.css">
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-
-  
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>qianxunslimg</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            串口发送问题
+        </p>
+        <hr>
     </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="串口发送问题"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-04-20 19:42" pubdate>
-          2021年4月20日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-
-    
-
-    
-    
-      
-        <span id="busuanzi_container_page_pv" style="display: none">
-          <i class="iconfont icon-eye" aria-hidden="true"></i>
-          <span id="busuanzi_value_page_pv"></span> 次
-        </span>
-        
-      
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">串口发送问题</h1>
-            
-            <div class="markdown-body">
-              
-              <p>串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位</p>
+    <div class="post-content">
+        <p>串口发送hex命令为char型的十六进制命令，并用到了CRC16校验，分别取校验结果数据的高低位</p>
 <p>10进制int型数据转16进制，并取高低位：</p>
 <figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TABLE_METHOD    1</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">uint8_t</span> CRCHi[] = {</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>, <span class="number">0x01</span>, <span class="number">0xC0</span>, <span class="number">0x80</span>, <span class="number">0x41</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC1</span>, <span class="number">0x81</span>, <span class="number">0x40</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">uint8_t</span> CRCLo[] = {</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0xC0</span>, <span class="number">0xC1</span>, <span class="number">0x01</span>, <span class="number">0xC3</span>, <span class="number">0x03</span>, <span class="number">0x02</span>, <span class="number">0xC2</span>, <span class="number">0xC6</span>, <span class="number">0x06</span>, <span class="number">0x07</span>, <span class="number">0xC7</span>,</span><br><span class="line">    <span class="number">0x05</span>, <span class="number">0xC5</span>, <span class="number">0xC4</span>, <span class="number">0x04</span>, <span class="number">0xCC</span>, <span class="number">0x0C</span>, <span class="number">0x0D</span>, <span class="number">0xCD</span>, <span class="number">0x0F</span>, <span class="number">0xCF</span>, <span class="number">0xCE</span>, <span class="number">0x0E</span>,</span><br><span class="line">    <span class="number">0x0A</span>, <span class="number">0xCA</span>, <span class="number">0xCB</span>, <span class="number">0x0B</span>, <span class="number">0xC9</span>, <span class="number">0x09</span>, <span class="number">0x08</span>, <span class="number">0xC8</span>, <span class="number">0xD8</span>, <span class="number">0x18</span>, <span class="number">0x19</span>, <span class="number">0xD9</span>,</span><br><span class="line">    <span class="number">0x1B</span>, <span class="number">0xDB</span>, <span class="number">0xDA</span>, <span class="number">0x1A</span>, <span class="number">0x1E</span>, <span class="number">0xDE</span>, <span class="number">0xDF</span>, <span class="number">0x1F</span>, <span class="number">0xDD</span>, <span class="number">0x1D</span>, <span class="number">0x1C</span>, <span class="number">0xDC</span>,</span><br><span class="line">    <span class="number">0x14</span>, <span class="number">0xD4</span>, <span class="number">0xD5</span>, <span class="number">0x15</span>, <span class="number">0xD7</span>, <span class="number">0x17</span>, <span class="number">0x16</span>, <span class="number">0xD6</span>, <span class="number">0xD2</span>, <span class="number">0x12</span>, <span class="number">0x13</span>, <span class="number">0xD3</span>,</span><br><span class="line">    <span class="number">0x11</span>, <span class="number">0xD1</span>, <span class="number">0xD0</span>, <span class="number">0x10</span>, <span class="number">0xF0</span>, <span class="number">0x30</span>, <span class="number">0x31</span>, <span class="number">0xF1</span>, <span class="number">0x33</span>, <span class="number">0xF3</span>, <span class="number">0xF2</span>, <span class="number">0x32</span>,</span><br><span class="line">    <span class="number">0x36</span>, <span class="number">0xF6</span>, <span class="number">0xF7</span>, <span class="number">0x37</span>, <span class="number">0xF5</span>, <span class="number">0x35</span>, <span class="number">0x34</span>, <span class="number">0xF4</span>, <span class="number">0x3C</span>, <span class="number">0xFC</span>, <span class="number">0xFD</span>, <span class="number">0x3D</span>,</span><br><span class="line">    <span class="number">0xFF</span>, <span class="number">0x3F</span>, <span class="number">0x3E</span>, <span class="number">0xFE</span>, <span class="number">0xFA</span>, <span class="number">0x3A</span>, <span class="number">0x3B</span>, <span class="number">0xFB</span>, <span class="number">0x39</span>, <span class="number">0xF9</span>, <span class="number">0xF8</span>, <span class="number">0x38</span>,</span><br><span class="line">    <span class="number">0x28</span>, <span class="number">0xE8</span>, <span class="number">0xE9</span>, <span class="number">0x29</span>, <span class="number">0xEB</span>, <span class="number">0x2B</span>, <span class="number">0x2A</span>, <span class="number">0xEA</span>, <span class="number">0xEE</span>, <span class="number">0x2E</span>, <span class="number">0x2F</span>, <span class="number">0xEF</span>,</span><br><span class="line">    <span class="number">0x2D</span>, <span class="number">0xED</span>, <span class="number">0xEC</span>, <span class="number">0x2C</span>, <span class="number">0xE4</span>, <span class="number">0x24</span>, <span class="number">0x25</span>, <span class="number">0xE5</span>, <span class="number">0x27</span>, <span class="number">0xE7</span>, <span class="number">0xE6</span>, <span class="number">0x26</span>,</span><br><span class="line">    <span class="number">0x22</span>, <span class="number">0xE2</span>, <span class="number">0xE3</span>, <span class="number">0x23</span>, <span class="number">0xE1</span>, <span class="number">0x21</span>, <span class="number">0x20</span>, <span class="number">0xE0</span>, <span class="number">0xA0</span>, <span class="number">0x60</span>, <span class="number">0x61</span>, <span class="number">0xA1</span>,</span><br><span class="line">    <span class="number">0x63</span>, <span class="number">0xA3</span>, <span class="number">0xA2</span>, <span class="number">0x62</span>, <span class="number">0x66</span>, <span class="number">0xA6</span>, <span class="number">0xA7</span>, <span class="number">0x67</span>, <span class="number">0xA5</span>, <span class="number">0x65</span>, <span class="number">0x64</span>, <span class="number">0xA4</span>,</span><br><span class="line">    <span class="number">0x6C</span>, <span class="number">0xAC</span>, <span class="number">0xAD</span>, <span class="number">0x6D</span>, <span class="number">0xAF</span>, <span class="number">0x6F</span>, <span class="number">0x6E</span>, <span class="number">0xAE</span>, <span class="number">0xAA</span>, <span class="number">0x6A</span>, <span class="number">0x6B</span>, <span class="number">0xAB</span>,</span><br><span class="line">    <span class="number">0x69</span>, <span class="number">0xA9</span>, <span class="number">0xA8</span>, <span class="number">0x68</span>, <span class="number">0x78</span>, <span class="number">0xB8</span>, <span class="number">0xB9</span>, <span class="number">0x79</span>, <span class="number">0xBB</span>, <span class="number">0x7B</span>, <span class="number">0x7A</span>, <span class="number">0xBA</span>,</span><br><span class="line">    <span class="number">0xBE</span>, <span class="number">0x7E</span>, <span class="number">0x7F</span>, <span class="number">0xBF</span>, <span class="number">0x7D</span>, <span class="number">0xBD</span>, <span class="number">0xBC</span>, <span class="number">0x7C</span>, <span class="number">0xB4</span>, <span class="number">0x74</span>, <span class="number">0x75</span>, <span class="number">0xB5</span>,</span><br><span class="line">    <span class="number">0x77</span>, <span class="number">0xB7</span>, <span class="number">0xB6</span>, <span class="number">0x76</span>, <span class="number">0x72</span>, <span class="number">0xB2</span>, <span class="number">0xB3</span>, <span class="number">0x73</span>, <span class="number">0xB1</span>, <span class="number">0x71</span>, <span class="number">0x70</span>, <span class="number">0xB0</span>,</span><br><span class="line">    <span class="number">0x50</span>, <span class="number">0x90</span>, <span class="number">0x91</span>, <span class="number">0x51</span>, <span class="number">0x93</span>, <span class="number">0x53</span>, <span class="number">0x52</span>, <span class="number">0x92</span>, <span class="number">0x96</span>, <span class="number">0x56</span>, <span class="number">0x57</span>, <span class="number">0x97</span>,</span><br><span class="line">    <span class="number">0x55</span>, <span class="number">0x95</span>, <span class="number">0x94</span>, <span class="number">0x54</span>, <span class="number">0x9C</span>, <span class="number">0x5C</span>, <span class="number">0x5D</span>, <span class="number">0x9D</span>, <span class="number">0x5F</span>, <span class="number">0x9F</span>, <span class="number">0x9E</span>, <span class="number">0x5E</span>,</span><br><span class="line">    <span class="number">0x5A</span>, <span class="number">0x9A</span>, <span class="number">0x9B</span>, <span class="number">0x5B</span>, <span class="number">0x99</span>, <span class="number">0x59</span>, <span class="number">0x58</span>, <span class="number">0x98</span>, <span class="number">0x88</span>, <span class="number">0x48</span>, <span class="number">0x49</span>, <span class="number">0x89</span>,</span><br><span class="line">    <span class="number">0x4B</span>, <span class="number">0x8B</span>, <span class="number">0x8A</span>, <span class="number">0x4A</span>, <span class="number">0x4E</span>, <span class="number">0x8E</span>, <span class="number">0x8F</span>, <span class="number">0x4F</span>, <span class="number">0x8D</span>, <span class="number">0x4D</span>, <span class="number">0x4C</span>, <span class="number">0x8C</span>,</span><br><span class="line">    <span class="number">0x44</span>, <span class="number">0x84</span>, <span class="number">0x85</span>, <span class="number">0x45</span>, <span class="number">0x87</span>, <span class="number">0x47</span>, <span class="number">0x46</span>, <span class="number">0x86</span>, <span class="number">0x82</span>, <span class="number">0x42</span>, <span class="number">0x43</span>, <span class="number">0x83</span>,</span><br><span class="line">    <span class="number">0x41</span>, <span class="number">0x81</span>, <span class="number">0x80</span>, <span class="number">0x40</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uint16_t</span> <span class="title">CRC16</span><span class="params">( <span class="keyword">uint8_t</span> *Frame, <span class="keyword">uint16_t</span> Len )</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">uint8_t</span>        ucCRCHi = <span class="number">0xFF</span>;</span><br><span class="line">    <span class="keyword">uint8_t</span>        ucCRCLo = <span class="number">0xFF</span>;</span><br><span class="line">    <span class="keyword">int</span>                iIndex;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>( Len-- )</span><br><span class="line">    {</span><br><span class="line">        iIndex = ucCRCLo ^ *( Frame++ );</span><br><span class="line">        ucCRCLo = ( <span class="keyword">uint8_t</span> )( ucCRCHi ^ CRCHi[iIndex] );</span><br><span class="line">        ucCRCHi = CRCLo[iIndex];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> ( <span class="keyword">uint16_t</span> )( ucCRCHi &lt;&lt; <span class="number">8</span> | ucCRCLo );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>{</span><br><span class="line">  <span class="keyword">char</span> a[] = {<span class="number">0x01</span>,<span class="number">0x02</span>,<span class="number">0x03</span>, <span class="number">0x0d</span>};</span><br><span class="line">  <span class="keyword">char</span>* temp = a;</span><br><span class="line">  <span class="keyword">uint16_t</span> c = <span class="built_in">CRC16</span>((<span class="keyword">uint8_t</span> *)temp, <span class="number">4</span>);</span><br><span class="line">  cout&lt;&lt; c &lt;&lt;endl;</span><br><span class="line">  <span class="keyword">int</span> cL= c%<span class="number">256</span> &amp; <span class="number">0xff</span>;   <span class="comment">//校验结果的低位</span></span><br><span class="line">  <span class="keyword">int</span> cH = c/ <span class="number">256</span> &amp; <span class="number">0xff</span>; <span class="comment">//校验结果的高位</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <p>　　后续只需对得到的高低位数据进行强制类型转换就可以插入到命令字符串中发送了~</p>
 
-              
-            </div>
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
-      
     </div>
-  
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>版权所有 © 2020 | 作者: qianxunslimg | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
 </div>
 
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>串口发送问题</div>
-      <div>https://qianxunslimg.github.io/2021/04/20/chuan-kou-fa-song-wen-ti/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>qianxunslimg</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年4月20日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/07/26/qt-yang-shi-biao-dao-ru/" title="Qt样式表导入">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Qt样式表导入</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
-
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
 </body>
 </html>
