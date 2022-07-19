@@ -66,8 +66,7 @@ const btf = {
       backgroundColor: bg,
       showAction: showAction,
       duration: duration,
-      pos: position,
-      customClass: 'snackbar-css'
+      pos: position
     })
   },
 
