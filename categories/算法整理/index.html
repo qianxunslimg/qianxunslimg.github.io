@@ -1,166 +1,482 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>分类: 算法整理 | qianxunslimgのblog</title><meta name="author" content="qianxunslimg"><meta name="copyright" content="qianxunslimg"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="qianxunslimgのblog">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="分类 - 算法整理">
 <meta property="og:url" content="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png">
 <meta property="article:author" content="qianxunslimg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png"><link rel="shortcut icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png"><link rel="canonical" href="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.useco.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: {"limitCount":50,"languages":{"author":"作者: qianxunslimg","link":"链接: ","source":"来源: qianxunslimgのblog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: true,
-  isAnchor: true
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '分类: 算法整理',
-  isPost: false,
-  isHome: false,
-  isHighlightShrink: true,
-  isToc: false,
-  postUpdate: '2022-07-19 22:33:58'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+<meta name="twitter:card" content="summary_large_image">
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
   
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>分类 - 算法整理 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0">
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('https://www.hlapi.cn/api/ecy3')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">qianxunslimgのblog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">算法整理</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">分类 - 算法整理</div><div class="article-sort"><div class="article-sort-item year">2022</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/12.jpg" alt="子串问题" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-05-25T02:42:00.000Z" title="发表于 2022-05-25 10:42:00">2022-05-25</time></div><a class="article-sort-item-title" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题">子串问题</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/05/22/ji-yi-hua-sou-suo/" title="记忆化搜索"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" alt="记忆化搜索" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-05-22T07:53:49.000Z" title="发表于 2022-05-22 15:53:49">2022-05-22</time></div><a class="article-sort-item-title" href="/2022/05/22/ji-yi-hua-sou-suo/" title="记忆化搜索">记忆化搜索</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/05/04/ren-ming-xiang-guan-suan-fa/" title="人名算法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" alt="人名算法" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-05-04T12:13:49.000Z" title="发表于 2022-05-04 20:13:49">2022-05-04</time></div><a class="article-sort-item-title" href="/2022/05/04/ren-ming-xiang-guan-suan-fa/" title="人名算法">人名算法</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/25/sui-ji-xiang-guan-suan-fa/" title="随机算法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/1.jpg" alt="随机算法" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-25T12:12:49.000Z" title="发表于 2022-04-25 20:12:49">2022-04-25</time></div><a class="article-sort-item-title" href="/2022/04/25/sui-ji-xiang-guan-suan-fa/" title="随机算法">随机算法</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/20/ding-dui/" title="顶堆"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/12.jpg" alt="顶堆" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-20T02:42:00.000Z" title="发表于 2022-04-20 10:42:00">2022-04-20</time></div><a class="article-sort-item-title" href="/2022/04/20/ding-dui/" title="顶堆">顶堆</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/20/duo-lu-gui-bing-suan-fa/" title="多路归并"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/14.jpg" alt="多路归并" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-19T17:52:49.000Z" title="发表于 2022-04-20 01:52:49">2022-04-20</time></div><a class="article-sort-item-title" href="/2022/04/20/duo-lu-gui-bing-suan-fa/" title="多路归并">多路归并</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/18/bfs/" title="dfs&amp;bfs"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/5.jpg" alt="dfs&amp;bfs" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-18T07:53:49.000Z" title="发表于 2022-04-18 15:53:49">2022-04-18</time></div><a class="article-sort-item-title" href="/2022/04/18/bfs/" title="dfs&amp;bfs">dfs&amp;bfs</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/17/pai-xu-suan-fa/" title="排序算法"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/11.jpg" alt="排序算法" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-17T12:16:49.000Z" title="发表于 2022-04-17 20:16:49">2022-04-17</time></div><a class="article-sort-item-title" href="/2022/04/17/pai-xu-suan-fa/" title="排序算法">排序算法</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/16/shu/" title="树"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/7.jpg" alt="树" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-16T12:09:49.000Z" title="发表于 2022-04-16 20:09:49">2022-04-16</time></div><a class="article-sort-item-title" href="/2022/04/16/shu/" title="树">树</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/14/dp/" title="dp"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/8.jpg" alt="dp" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-13T17:52:49.000Z" title="发表于 2022-04-14 01:52:49">2022-04-14</time></div><a class="article-sort-item-title" href="/2022/04/14/dp/" title="dp">dp</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/13/tan-xin/" title="贪心"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" alt="贪心" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-13T02:42:00.000Z" title="发表于 2022-04-13 10:42:00">2022-04-13</time></div><a class="article-sort-item-title" href="/2022/04/13/tan-xin/" title="贪心">贪心</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/03/shuang-zhi-zhen/" title="双指针"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" alt="双指针" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-03T02:42:00.000Z" title="发表于 2022-04-03 10:42:00">2022-04-03</time></div><a class="article-sort-item-title" href="/2022/04/03/shuang-zhi-zhen/" title="双指针">双指针</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/02/hui-wen/" title="回文"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/5.jpg" alt="回文" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-02T12:17:49.000Z" title="发表于 2022-04-02 20:17:49">2022-04-02</time></div><a class="article-sort-item-title" href="/2022/04/02/hui-wen/" title="回文">回文</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/01/mo-ni-yun-suan/" title="模拟加减乘除"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/5.jpg" alt="模拟加减乘除" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-01T02:42:00.000Z" title="发表于 2022-04-01 10:42:00">2022-04-01</time></div><a class="article-sort-item-title" href="/2022/04/01/mo-ni-yun-suan/" title="模拟加减乘除">模拟加减乘除</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/04/01/lian-biao/" title="链表"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/10.jpg" alt="链表" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-01T02:42:00.000Z" title="发表于 2022-04-01 10:42:00">2022-04-01</time></div><a class="article-sort-item-title" href="/2022/04/01/lian-biao/" title="链表">链表</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/30/zhan/" title="栈"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/5.jpg" alt="栈" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-30T02:42:00.000Z" title="发表于 2022-03-30 10:42:00">2022-03-30</time></div><a class="article-sort-item-title" href="/2022/03/30/zhan/" title="栈">栈</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/er-fen-cha-zhao/" title="二分查找"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/3.jpg" alt="二分查找" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T12:17:49.000Z" title="发表于 2022-03-15 20:17:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/er-fen-cha-zhao/" title="二分查找">二分查找</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/qian-zhui-he-chai-fen/" title="前缀和/差分"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" alt="前缀和/差分" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T12:13:49.000Z" title="发表于 2022-03-15 20:13:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/qian-zhui-he-chai-fen/" title="前缀和/差分">前缀和/差分</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/tu-lun/" title="图论"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/3.jpg" alt="图论" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T12:12:49.000Z" title="发表于 2022-03-15 20:12:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/tu-lun/" title="图论">图论</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/wei-yun-suan/" title="位运算"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/13.jpg" alt="位运算" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T11:49:49.000Z" title="发表于 2022-03-15 19:49:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/wei-yun-suan/" title="位运算">位运算</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/hua-dong-chuang-kou/" title="滑动窗口"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/2.jpg" alt="滑动窗口" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T11:49:49.000Z" title="发表于 2022-03-15 19:49:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/hua-dong-chuang-kou/" title="滑动窗口">滑动窗口</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2022/03/15/hui-su/" title="回溯"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/4.jpg" alt="回溯" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-03-15T11:49:49.000Z" title="发表于 2022-03-15 19:49:49">2022-03-15</time></div><a class="article-sort-item-title" href="/2022/03/15/hui-su/" title="回溯">回溯</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/MTMRB7P@G[WVCWEB9W([}FT.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">qianxunslimg</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://leetcode-cn.com/u/qianxunslimg"><i class="fa-solid fa-code"></i><span>LeetCode</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/qianxunslimg" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://gitee.com/qianxunslimg" target="_blank" title="Gitee"><i class="fa-brands fa-github-alt"></i></a><a class="social-icon" href="mailto:2511167079llm@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.cnblogs.com/qianxunslimg" target="_blank" title="CnBlog"><i class="fa-solid fa-poo"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">编程菜鸟,多多指教~</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="自定义key"/></a><div class="content"><a class="title" href="/2022/06/22/ha-xi-zi-ding-yi-key/" title="自定义key">自定义key</a><time datetime="2022-06-22T11:28:00.000Z" title="发表于 2022-06-22 19:28:00">2022-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AHK的初次接触"/></a><div class="content"><a class="title" href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触">AHK的初次接触</a><time datetime="2022-06-20T15:43:00.000Z" title="发表于 2022-06-20 23:43:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="面试补充问题"/></a><div class="content"><a class="title" href="/2022/06/02/bu-chong-mian-jing-wen-ti/" title="面试补充问题">面试补充问题</a><time datetime="2022-06-02T01:46:00.000Z" title="发表于 2022-06-02 09:46:00">2022-06-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CNAME CDN IPC"/></a><div class="content"><a class="title" href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC">CNAME CDN IPC</a><time datetime="2022-05-26T12:54:00.000Z" title="发表于 2022-05-26 20:54:00">2022-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="子串问题"/></a><div class="content"><a class="title" href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" title="子串问题">子串问题</a><time datetime="2022-05-25T02:42:00.000Z" title="发表于 2022-05-25 10:42:00">2022-05-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/background/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo搭建博客的几个问题"/></a><div class="content"><a class="title" href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题">hexo搭建博客的几个问题</a><time datetime="2022-05-24T11:28:00.000Z" title="发表于 2022-05-24 19:28:00">2022-05-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>分类</span>
-            
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="card-category-list-name">基础知识</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"><span class="card-category-list-name">算法整理</span><span class="card-category-list-count">22</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/leetcode/" style="font-size: 1.15em; color: rgb(92, 168, 15)">leetcode</a><a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/" style="font-size: 1.45em; color: rgb(46, 78, 122)">开发随笔</a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.25em; color: rgb(60, 101, 3)">面试</a><a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/" style="font-size: 1.35em; color: rgb(1, 10, 137)">算法总结</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">21</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">17</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">20</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">78</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-02-11T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">170.3k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-07-19T14:33:56.545Z"></div></div></div></div><div class="card-widget user-map" id="user-map"><div class="item-headline"><i class="fas fa-heartbeat"></i><span>访客地图</span></div><div class="item-content"><script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=5V2tOKp8qAdRM-i8eu7ETTO9ugt5uKbbG-U7Yj8uMl8"></script></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.hlapi.cn/api/ecy3')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By qianxunslimg</div><div class="footer_custom_text">只愿得一人心 白首不分离</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
-  endLoading: () => {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loading-box').classList.add("loaded")
-  },
-  initLoading: () => {
-    document.body.style.overflow = '';
-    document.getElementById('loading-box').classList.remove("loaded")
+</head>
 
-  }
-}
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="7340348271" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-order="random"> </div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = true;
-POWERMODE.mobile = false;
-document.body.addEventListener('input', POWERMODE);
-</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="塔塔开！,塔塔开！！,一子摸塔塔开！！！" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/SerokSSR/cdn/meting.min.js"></script></div></body></html>
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="分类 - 算法整理"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 22 篇文章</p>
+  <hr>
+  
+  
+    
+      
+      <p class="h5">2022</p>
+    
+    <a href="/2022/05/25/zi-chuan-xiang-guan-wen-ti/" class="list-group-item list-group-item-action">
+      <time>05-25</time>
+      <div class="list-group-item-title">子串问题</div>
+    </a>
+  
+    
+    <a href="/2022/05/22/ji-yi-hua-sou-suo/" class="list-group-item list-group-item-action">
+      <time>05-22</time>
+      <div class="list-group-item-title">记忆化搜索</div>
+    </a>
+  
+    
+    <a href="/2022/05/04/ren-ming-xiang-guan-suan-fa/" class="list-group-item list-group-item-action">
+      <time>05-04</time>
+      <div class="list-group-item-title">人名算法</div>
+    </a>
+  
+    
+    <a href="/2022/04/25/sui-ji-xiang-guan-suan-fa/" class="list-group-item list-group-item-action">
+      <time>04-25</time>
+      <div class="list-group-item-title">随机算法</div>
+    </a>
+  
+    
+    <a href="/2022/04/20/ding-dui/" class="list-group-item list-group-item-action">
+      <time>04-20</time>
+      <div class="list-group-item-title">顶堆</div>
+    </a>
+  
+    
+    <a href="/2022/04/20/duo-lu-gui-bing-suan-fa/" class="list-group-item list-group-item-action">
+      <time>04-20</time>
+      <div class="list-group-item-title">多路归并</div>
+    </a>
+  
+    
+    <a href="/2022/04/18/bfs/" class="list-group-item list-group-item-action">
+      <time>04-18</time>
+      <div class="list-group-item-title">dfs&amp;bfs</div>
+    </a>
+  
+    
+    <a href="/2022/04/17/pai-xu-suan-fa/" class="list-group-item list-group-item-action">
+      <time>04-17</time>
+      <div class="list-group-item-title">排序算法</div>
+    </a>
+  
+    
+    <a href="/2022/04/16/shu/" class="list-group-item list-group-item-action">
+      <time>04-16</time>
+      <div class="list-group-item-title">树</div>
+    </a>
+  
+    
+    <a href="/2022/04/14/dp/" class="list-group-item list-group-item-action">
+      <time>04-14</time>
+      <div class="list-group-item-title">dp</div>
+    </a>
+  
+    
+    <a href="/2022/04/13/tan-xin/" class="list-group-item list-group-item-action">
+      <time>04-13</time>
+      <div class="list-group-item-title">贪心</div>
+    </a>
+  
+    
+    <a href="/2022/04/03/shuang-zhi-zhen/" class="list-group-item list-group-item-action">
+      <time>04-03</time>
+      <div class="list-group-item-title">双指针</div>
+    </a>
+  
+    
+    <a href="/2022/04/02/hui-wen/" class="list-group-item list-group-item-action">
+      <time>04-02</time>
+      <div class="list-group-item-title">回文</div>
+    </a>
+  
+    
+    <a href="/2022/04/01/mo-ni-yun-suan/" class="list-group-item list-group-item-action">
+      <time>04-01</time>
+      <div class="list-group-item-title">模拟加减乘除</div>
+    </a>
+  
+    
+    <a href="/2022/04/01/lian-biao/" class="list-group-item list-group-item-action">
+      <time>04-01</time>
+      <div class="list-group-item-title">链表</div>
+    </a>
+  
+    
+    <a href="/2022/03/30/zhan/" class="list-group-item list-group-item-action">
+      <time>03-30</time>
+      <div class="list-group-item-title">栈</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/er-fen-cha-zhao/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">二分查找</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/qian-zhui-he-chai-fen/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">前缀和/差分</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/tu-lun/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">图论</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/wei-yun-suan/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">位运算</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/hua-dong-chuang-kou/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">滑动窗口</div>
+    </a>
+  
+    
+    <a href="/2022/03/15/hui-su/" class="list-group-item list-group-item-action">
+      <time>03-15</time>
+      <div class="list-group-item-title">回溯</div>
+    </a>
+  
+</div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

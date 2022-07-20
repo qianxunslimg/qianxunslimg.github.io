@@ -231,7 +231,7 @@
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span</summary>
+    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs c++&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;int&lt;/span&gt; &lt;span</summary>
         
       
     
