@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112534018.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220519112602999.png">
 <meta property="article:published_time" content="2022-04-17T12:16:49.000Z">
-<meta property="article:modified_time" content="2022-07-11T03:05:01.781Z">
+<meta property="article:modified_time" content="2022-07-23T07:50:59.415Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -891,6 +891,8 @@
     }
 
     <span class="hljs-function">ListNode* <span class="hljs-title">sortList</span><span class="hljs-params">(ListNode* head, ListNode* tail)</span></span>{
+      <span class="hljs-comment">//主要是这里 两个节点的时候断开为单个节点</span>
+      <span class="hljs-comment">//因为tail可能是nullptr 也可是下一段的第一个节点</span>
       <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> head;
       <span class="hljs-keyword">if</span>(head-&gt;next == tail){
         head-&gt;next = <span class="hljs-literal">nullptr</span>;
