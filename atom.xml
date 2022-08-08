@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-06-22T08:42:18.723Z</updated>
+  <updated>2022-08-08T17:31:58.905Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>web项目</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/</id>
+    <published>2022-08-09T01:46:00.000Z</published>
+    <updated>2022-08-08T17:31:58.905Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="基础知识" scheme="https://qianxunslimg.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>自定义key</title>
@@ -454,31 +473,6 @@
     
     
     <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dfs&amp;bfs</title>
-    <link href="https://qianxunslimg.github.io/2022/04/18/bfs/"/>
-    <id>https://qianxunslimg.github.io/2022/04/18/bfs/</id>
-    <published>2022-04-18T07:53:49.000Z</published>
-    <updated>2022-06-10T12:40:08.536Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;dfs&quot;&gt;&lt;a href=&quot;#dfs&quot; class=&quot;headerlink&quot; title=&quot;dfs&quot;&gt;&lt;/a&gt;dfs&lt;/h1&gt;&lt;h3 id=&quot;54-螺旋矩阵-不是dfs-但是有四个方向&quot;&gt;&lt;a href=&quot;#54-螺旋矩阵-不是dfs-但是有四个方向&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="算法整理" scheme="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
