@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-08-09T18:45:16.764Z</updated>
+  <updated>2022-08-10T03:22:15.563Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>main</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/main/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/main/</id>
+    <published>2022-08-09T01:46:00.000Z</published>
+    <updated>2022-08-10T03:22:15.563Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="基础知识" scheme="https://qianxunslimg.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>web项目</title>
@@ -450,29 +469,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>bat实现hexo一键部署</title>
-    <link href="https://qianxunslimg.github.io/2022/04/19/bat-shi-xian-hexo-yi-jian-bu-shu/"/>
-    <id>https://qianxunslimg.github.io/2022/04/19/bat-shi-xian-hexo-yi-jian-bu-shu/</id>
-    <published>2022-04-19T07:41:00.000Z</published>
-    <updated>2022-04-20T17:08:04.034Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
