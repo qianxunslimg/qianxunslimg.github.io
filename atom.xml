@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-08-10T03:31:51.724Z</updated>
+  <updated>2022-08-12T03:59:04.208Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js脚本尝试</title>
+    <link href="https://qianxunslimg.github.io/2022/08/12/js-jiao-ben-chang-shi/"/>
+    <id>https://qianxunslimg.github.io/2022/08/12/js-jiao-ben-chang-shi/</id>
+    <published>2022-08-12T15:43:00.000Z</published>
+    <updated>2022-08-12T03:59:04.208Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;帮看作业 每次都要点击到input输入数字再提交 枯燥且浪费事件&lt;/p&gt;
+&lt;p&gt;测试尝试学着写了下油猴脚本</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>main</title>
@@ -243,7 +267,7 @@
     <link href="https://qianxunslimg.github.io/2022/05/18/shou-si-dai-ma/"/>
     <id>https://qianxunslimg.github.io/2022/05/18/shou-si-dai-ma/</id>
     <published>2022-05-18T01:46:00.000Z</published>
-    <updated>2022-08-11T18:23:28.014Z</updated>
+    <updated>2022-08-12T06:28:00.866Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -434,32 +458,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;顶堆基础知识&quot;&gt;&lt;a href=&quot;#顶堆基础知识&quot; class=&quot;headerlink&quot; title=&quot;顶堆基础知识&quot;&gt;&lt;/a&gt;顶堆基础知识&lt;/h2&gt;&lt;h3 id=&quot;1-底层原理&quot;&gt;&lt;a href=&quot;#1-底层原理&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="算法整理" scheme="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多路归并</title>
-    <link href="https://qianxunslimg.github.io/2022/04/20/duo-lu-gui-bing-suan-fa/"/>
-    <id>https://qianxunslimg.github.io/2022/04/20/duo-lu-gui-bing-suan-fa/</id>
-    <published>2022-04-19T17:52:49.000Z</published>
-    <updated>2022-05-28T15:32:53.624Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;多路归并&quot;&gt;&lt;a href=&quot;#多路归并&quot; class=&quot;headerlink&quot; title=&quot;多路归并&quot;&gt;&lt;/a&gt;多路归并&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
         
       
     
