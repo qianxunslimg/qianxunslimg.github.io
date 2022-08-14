@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimgblog.oss-cn-beijing.aliyuncs.com/img/image-20220812113928776.png">
 <meta property="article:published_time" content="2022-08-12T15:43:00.000Z">
-<meta property="article:modified_time" content="2022-08-12T03:59:04.208Z">
+<meta property="article:modified_time" content="2022-08-14T04:04:59.550Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
@@ -84,9 +84,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -289,7 +289,7 @@
 <span class="hljs-comment">// @namespace    http://tampermonkey.net/</span>
 <span class="hljs-comment">// @version      0.1</span>
 <span class="hljs-comment">// @description  try to take over the world!</span>
-<span class="hljs-comment">// @author       千寻slimg</span>
+<span class="hljs-comment">// @author       qianxunslimg</span>
 <span class="hljs-comment">// @match        http://laoshi.homework.100eks.com/*</span>
 <span class="hljs-comment">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=100eks.com</span>
 <span class="hljs-comment">// @grant        none</span>
@@ -300,27 +300,31 @@
     <span class="hljs-keyword">var</span> input = {
         <span class="hljs-attr">student_score</span>: <span class="hljs-string">"10"</span>,
     };
-
+    <span class="hljs-keyword">var</span> flag = <span class="hljs-number">1</span>;
     <span class="hljs-built_in">Object</span>.keys(input).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>{
         <span class="hljs-keyword">var</span> putval;
         <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
         $(<span class="hljs-string">"input[name='"</span>+key+<span class="hljs-string">"']"</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
             i++;
-            <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>){  <span class="hljs-comment">//第i个编辑框</span>
-                putval = <span class="hljs-number">11</span> +num(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<span class="hljs-comment">//11+ 1-2的随机数</span>
+            <span class="hljs-keyword">if</span>($(<span class="hljs-built_in">this</span>).val() != <span class="hljs-string">""</span>){
+                flag = <span class="hljs-number">0</span>;
+                alert(<span class="hljs-string">"这份试卷已经看过了"</span>);
+            }
+            <span class="hljs-keyword">if</span>(i == <span class="hljs-number">1</span>){ <span class="hljs-comment">//第i个编辑框</span>
+                putval = <span class="hljs-number">8</span> +num(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)
             }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i == <span class="hljs-number">2</span>)
-                putval = <span class="hljs-number">9</span> + num(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+                putval = <span class="hljs-number">7</span> + num(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
             <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i == <span class="hljs-number">3</span>)
-                putval = <span class="hljs-number">10</span> + num(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>);
+                putval = <span class="hljs-number">15</span> + num(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>);
             <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i == <span class="hljs-number">4</span>)
-                putval = <span class="hljs-number">8</span> + num(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+                putval = <span class="hljs-number">8</span> + num(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>);
             <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i == <span class="hljs-number">5</span>)
-                putval = <span class="hljs-number">5</span> + num(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+                putval = <span class="hljs-number">5</span> + num(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>);
             $(<span class="hljs-built_in">this</span>).val(putval);
         });
     });
-
-    <span class="hljs-comment">//submitData(); //自动提交</span>
+    <span class="hljs-keyword">if</span>(flag)
+        submitData(); <span class="hljs-comment">//自动提交</span>
 
     <span class="hljs-comment">//生成从minNum到maxNum的随机数</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">num</span>(<span class="hljs-params">minNum,maxNum</span>)</span>{
