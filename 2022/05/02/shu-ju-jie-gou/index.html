@@ -16,12 +16,12 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="RB-Tree概念明确二叉搜索树（二叉查找树） BST二叉查找树是一种特殊的二叉树，因此其也有递归定义：  二叉搜索树是一颗空树 二叉搜索树由根结点、左子树、右子树组成，其中左子树、右子树都是二叉查找树，且左子树上所有结点的数据域均小于或等于根结点的数据域，右子树上所有结点的数据域均大于根结点的数据域。  平衡二叉树(AVL)本质：仍是一棵二叉搜索树，只不过增加了平衡的要求 特点：使树的高度在每次">
+    <meta name="description" content="数组和链表的区别 逻辑结构都是线性表 但是在内存中 数组是连续的内存 而链表是分散的 因为链表要存储下一个节点的指针 所以消耗的资源更多 在访问上 数组优于链表 O1 On 增删上 链表优于数组 不会导致迭代器失效 On O1  RB-Tree 红黑树二叉搜索树（二叉查找树） BST二叉查找树是一种特殊的二叉树，因此其也有递归定义：  二叉搜索树是一颗空树 二叉搜索树由根结点、左子树、右子树组成，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构">
 <meta property="og:url" content="https://qianxunslimg.github.io/2022/05/02/shu-ju-jie-gou/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="RB-Tree概念明确二叉搜索树（二叉查找树） BST二叉查找树是一种特殊的二叉树，因此其也有递归定义：  二叉搜索树是一颗空树 二叉搜索树由根结点、左子树、右子树组成，其中左子树、右子树都是二叉查找树，且左子树上所有结点的数据域均小于或等于根结点的数据域，右子树上所有结点的数据域均大于根结点的数据域。  平衡二叉树(AVL)本质：仍是一棵二叉搜索树，只不过增加了平衡的要求 特点：使树的高度在每次">
+<meta property="og:description" content="数组和链表的区别 逻辑结构都是线性表 但是在内存中 数组是连续的内存 而链表是分散的 因为链表要存储下一个节点的指针 所以消耗的资源更多 在访问上 数组优于链表 O1 On 增删上 链表优于数组 不会导致迭代器失效 On O1  RB-Tree 红黑树二叉搜索树（二叉查找树） BST二叉查找树是一种特殊的二叉树，因此其也有递归定义：  二叉搜索树是一颗空树 二叉搜索树由根结点、左子树、右子树组成，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2392382-a95db442f1b47f8a.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2392382-0676a8e2a12e2a0b.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-5f069fd820637db1b877fdd6799a2b67_r.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-9644d1a1f83d3e45da779f2e63c35d55_r.jpg">
 <meta property="article:published_time" content="2022-05-02T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-05-28T15:49:40.288Z">
+<meta property="article:modified_time" content="2022-08-15T16:58:57.598Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -288,7 +288,13 @@
             
             <div class="markdown-body">
               
-              <h2 id="RB-Tree"><a href="#RB-Tree" class="headerlink" title="RB-Tree"></a>RB-Tree</h2><h3 id="概念明确"><a href="#概念明确" class="headerlink" title="概念明确"></a>概念明确</h3><h4 id="二叉搜索树（二叉查找树）-BST"><a href="#二叉搜索树（二叉查找树）-BST" class="headerlink" title="二叉搜索树（二叉查找树） BST"></a>二叉搜索树（二叉查找树） BST</h4><p>二叉查找树是一种特殊的<strong>二叉树</strong>，因此其也有递归定义：</p>
+              <h3 id="数组和链表的区别"><a href="#数组和链表的区别" class="headerlink" title="数组和链表的区别"></a><code>数组和链表</code>的区别</h3><ol>
+<li><strong>逻辑结构</strong>都是线性表 但是在<strong>内存</strong>中 数组是连续的内存 而链表是分散的</li>
+<li>因为链表要存储下一个节点的指针 所以<strong>消耗的资源更多</strong></li>
+<li>在<strong>访问</strong>上 数组优于链表 O1 On</li>
+<li><strong>增删</strong>上 链表优于数组 不会导致迭代器失效 On O1</li>
+</ol>
+<h3 id="RB-Tree-红黑树"><a href="#RB-Tree-红黑树" class="headerlink" title="RB-Tree 红黑树"></a><code>RB-Tree 红黑树</code></h3><h4 id="二叉搜索树（二叉查找树）-BST"><a href="#二叉搜索树（二叉查找树）-BST" class="headerlink" title="二叉搜索树（二叉查找树） BST"></a>二叉搜索树（二叉查找树） BST</h4><p>二叉查找树是一种特殊的<strong>二叉树</strong>，因此其也有递归定义：</p>
 <ul>
 <li>二叉搜索树是一颗空树</li>
 <li>二叉搜索树由根结点、左子树、右子树组成，其中左子树、右子树都是二叉查找树，且左子树上<strong>所有结点的数据域均小于或等于根结点的数据域</strong>，右子树上<strong>所有结点的数据域均大于根结点的数据域</strong>。</li>
@@ -297,7 +303,7 @@
 <p>特点：使树的高度在每次插入元素后仍能保持O(logn)级别</p>
 <p>平衡：对于树中任意结点，其<strong>左子树与右子树的高度之差的绝对值</strong>不大于1</p>
 <p>平衡因子：<strong>结点的左子树与右子树的高度之差</strong></p>
-<h3 id="红黑树-RB-Tree"><a href="#红黑树-RB-Tree" class="headerlink" title="红黑树 RB-Tree"></a>红黑树 RB-Tree</h3><p>红黑树是一种含有红黑结点并能<code>自平衡的二叉查找树</code>。</p>
+<h4 id="红黑树-RB-Tree"><a href="#红黑树-RB-Tree" class="headerlink" title="红黑树 RB-Tree"></a>红黑树 RB-Tree</h4><p><u>红黑树是一种含有红黑结点并能<code>自平衡的二叉查找树</code>。</u></p>
 <ul>
 <li>性质1：每个节点要么是黑色，要么是红色。</li>
 <li>性质2：根节点是黑色。</li>
@@ -306,7 +312,7 @@
 <li><strong>性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。</strong></li>
 <li>性质5.1：如果一个结点存在黑子结点，那么该结点肯定有两个子结点</li>
 </ul>
-<p><strong>黑是真正的节点，而红只不过是用来表示两个键是属于一个3-节点。</strong></p>
+<p><u>==黑是真正的节点==，而==红只不过是用来表示两个键是属于一个3-节点==。</u></p>
 <p>红黑树能自平衡，它靠的是什么？三种操作：左旋、右旋和变色。</p>
 <ul>
 <li><p><strong>左旋</strong>：以某个结点作为支点(旋转结点)，其右子结点变为旋转结点的父结点，右子结点的左子结点变为旋转结点的右子结点，左子结点保持不变。（<code>右子节点的左岔连自己 右子节点当爹</code>）</p>
@@ -334,7 +340,7 @@
 <li>若当前结点key小于查找key，把当前结点的右子结点设置为当前结点，重复步骤2；</li>
 </ol>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/2392382-07b47eb3722981e6.png" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="b树和b-树"><a href="#b树和b-树" class="headerlink" title="b树和b+树"></a>b树和b+树</h2><h3 id="B树-B-tree"><a href="#B树-B-tree" class="headerlink" title="B树(B-tree)"></a>B树(B-tree)</h3><p>注意:之前有看到有很多文章把B树和B-tree理解成了两种不同类别的树，其实这两个是同一种树;</p>
+<h3 id="b树和b-树"><a href="#b树和b-树" class="headerlink" title="b树和b+树"></a><code>b树和b+树</code></h3><h4 id="B树-B-tree"><a href="#B树-B-tree" class="headerlink" title="B树(B-tree)"></a>B树(B-tree)</h4><p>注意:之前有看到有很多文章把B树和B-tree理解成了两种不同类别的树，其实这两个是同一种树;</p>
 <h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>B树和平衡二叉树稍有不同的是B树属于多叉树又名平衡多路查找树（查找路径不只两个），<code>数据库索引技术</code>里大量使用者B树和B+树的数据结构，让我们来看看他有什么特点;</p>
 <h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><p>（1）排序方式：所有节点关键字是按递增次序排列，并遵循左小右大原则；</p>
 <p>（2）子节点数：非叶节点的子节点数&gt;1，且&lt;=M ，且M&gt;=2，空树除外（注：M阶代表一个树节点最多有多少个查找路径，M=M路,当M=2则是2叉树,M=3则是3叉）；</p>
@@ -361,7 +367,7 @@
 <p>（3）关键字数小于二时先从子节点取，子节点没有符合条件时就向向父节点取，取中间值往父节点放；</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-a8712ab2bded1411726efea37ae20223_r.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a><strong>特点：</strong></h5><p>B树相对于平衡二叉树的不同是，每个节点包含的关键字增多了，特别是在B树应用到数据库中的时候，数据库充分利用了磁盘块的原理（磁盘数据存储是采用块的形式存储的，每个块的大小为4K，每次IO进行数据读取时，同一个磁盘块的数据可以一次性读取出来）把节点大小限制和充分使用在磁盘快大小范围；把树的节点关键字增多后树的层级比原来的二叉树少了，减少数据查找的次数和复杂度;</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><code>B+树是B树的一个升级版</code>，相对于B树来说B+树<code>更充分的利用了节点的空间</code>，<code>让查询速度更加稳定</code>，<code>其速度完全接近于二分法查找</code>。为什么说B+树查找的效率要比B树更高、更稳定；我们先看看两者的区别</p>
+<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><code>B+树是B树的一个升级版</code>，相对于B树来说B+树<code>更充分的利用了节点的空间</code>，<code>让查询速度更加稳定</code>，<code>其速度完全接近于二分法查找</code>。为什么说B+树查找的效率要比B树更高、更稳定；我们先看看两者的区别</p>
 <h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><p>（1）B+跟B树不同B+树的<strong>非叶子</strong>节点不保存关键字记录的指针，只进行数据索引，这样使得B+树每个<strong>非叶子</strong>节点所能保存的关键字大大增加；</p>
 <p>（2）B+树<strong>叶子</strong>节点保存了父节点的所有关键字记录的指针，所有数据地址必须要到叶子节点才能获取到。所以每次数据查询的次数都一样；</p>
 <p>（3）B+树叶子节点的关键字从小到大有序排列，左边结尾数据都会保存右边节点开始数据的指针。</p>
