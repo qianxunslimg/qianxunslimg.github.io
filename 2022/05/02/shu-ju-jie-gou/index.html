@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-5f069fd820637db1b877fdd6799a2b67_r.jpg">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-9644d1a1f83d3e45da779f2e63c35d55_r.jpg">
 <meta property="article:published_time" content="2022-05-02T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-08-15T16:58:57.598Z">
+<meta property="article:modified_time" content="2022-08-16T08:41:33.473Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -379,6 +379,18 @@
 <p>3、B+<strong>树天然具备排序功能：</strong>B+树所有的<strong>叶子</strong>节点数据构成了一个有序链表，在查询大小区间的数据时候更方便，数据紧密性很高，缓存的命中率也会比B树高。</p>
 <p>4、B+<strong>树全节点遍历更快：</strong>B+树遍历整棵树只需要遍历所有的<strong>叶子</strong>节点即可，，而不需要像B树一样需要对每一层进行遍历，这有利于数据库做全表扫描。</p>
 <p><strong>B树</strong>相对于<strong>B+树</strong>的优点是，如果经常访问的数据离根节点很近，而<strong>B树</strong>的<strong>非叶子</strong>节点本身存有关键字其数据的地址，所以这种数据检索的时候会要比<strong>B+树</strong>快。</p>
+<h3 id="哈希冲突解决方法"><a href="#哈希冲突解决方法" class="headerlink" title="哈希冲突解决方法"></a><code>哈希冲突</code>解决方法</h3><p><strong>哈希冲突</strong>：通过哈希算法，多个数据得到的结果相同。</p>
+<ul>
+<li>链式地址法：相同值使用链表连接起来，哈希表保存链表的头节点；</li>
+<li>开放地址法：<ul>
+<li>线性探测：如果某数据的值已经存在，则在原来的基础上往后加一个单位，直至不发生哈希冲突；</li>
+<li>平方探测：按顺序决定值时，如果某数据的值已经存在，则在原来值的基础上先加1的平方个单位，若仍然存在则减1的平方个单位。随之是2的平方……；</li>
+<li>伪随即探测：按顺序决定值时，如果某数据已经存在，通过随机函数产生一个数，在原来值的基础上加上随机数，直至不产生哈希冲突；</li>
+</ul>
+</li>
+<li>再哈希：多准备一个哈希函数，如果一个有冲突，再用第二个算；</li>
+<li>建立公共溢出区：建立公共溢出区存储所有哈希冲突的数据。</li>
+</ul>
 
               
             </div>

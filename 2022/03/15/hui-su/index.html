@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220601111331636.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/matchsticks1-grid.jpg">
 <meta property="article:published_time" content="2022-03-15T11:49:49.000Z">
-<meta property="article:modified_time" content="2022-07-04T06:55:40.615Z">
+<meta property="article:modified_time" content="2022-08-16T15:08:10.876Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="算法总结">
 <meta name="twitter:card" content="summary_large_image">
@@ -1769,6 +1769,52 @@
       <span class="hljs-built_in">backtrack</span>(left, right - <span class="hljs-number">1</span>);
       path.<span class="hljs-built_in">pop_back</span>();
     }
+};</code></pre></div>
+
+<h3 id="679-24-点游戏"><a href="#679-24-点游戏" class="headerlink" title="679. 24 点游戏"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/24-game/">679. 24 点游戏</a></h3><p>给定一个长度为4的整数数组 cards 。你有 4 张卡片，每张卡片上都包含一个范围在 [1,9] 的数字。您应该使用运算符 [‘+’, ‘-‘, ‘*’, ‘/‘] 和括号 ‘(‘ 和 ‘)’ 将这些卡片上的数字排列成数学表达式，以获得值24。</p>
+<p>你须遵守以下规则:</p>
+<p>除法运算符 ‘/‘ 表示实数除法，而不是整数除法。<br>例如， 4 /(1 - 2 / 3)= 4 /(1 / 3)= 12 。<br>每个运算都在两个数字之间。特别是，不能使用 “-” 作为一元运算符。<br>例如，如果 cards =[1,1,1,1] ，则表达式 “-1 -1 -1 -1” 是 不允许 的。<br>你不能把数字串在一起<br>例如，如果 cards =[1,2,1,2] ，则表达式 “12 + 12” 无效。<br>如果可以得到这样的表达式，其计算结果为 24 ，则返回 true ，否则返回 false 。</p>
+<h4 id="暴力回溯-枚举所有情况"><a href="#暴力回溯-枚举所有情况" class="headerlink" title="暴力回溯 枚举所有情况"></a>暴力回溯 枚举所有情况</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judgePoint24</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;cards)</span> </span>{
+    vector&lt;<span class="hljs-keyword">double</span>&gt; nums; <span class="hljs-comment">//转化为double，为了便于除法运算（会产生小数）</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> card : cards) {
+      nums.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in"><span class="hljs-keyword">double</span></span>(card));
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">dfs</span>(nums);
+  }
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">double</span>&gt; &amp;nums)</span> </span>{
+    <span class="hljs-keyword">if</span> (nums.<span class="hljs-built_in">size</span>() == <span class="hljs-number">1</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(nums[<span class="hljs-number">0</span>] - <span class="hljs-number">24</span>) &lt;= <span class="hljs-number">1e-6</span>; <span class="hljs-comment">//如果只有一个数，判断跟24的差值</span>
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; nums.<span class="hljs-built_in">size</span>(); j++) {
+        <span class="hljs-keyword">if</span> (i == j)
+          <span class="hljs-keyword">continue</span>;         <span class="hljs-comment">//不能重复取数</span>
+        <span class="hljs-keyword">double</span> a = nums[i]; <span class="hljs-comment">//第一步，取出两个数</span>
+        <span class="hljs-keyword">double</span> b = nums[j];
+        vector&lt;<span class="hljs-keyword">double</span>&gt; shengyu;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; nums.<span class="hljs-built_in">size</span>(); k++) {
+          <span class="hljs-keyword">if</span> (k == i || k == j)
+            <span class="hljs-keyword">continue</span>;
+          shengyu.<span class="hljs-built_in">push_back</span>(
+              nums[k]); <span class="hljs-comment">//第二步，存储下剩余的元素，等待第一步取出的两个数在四则运算之后的结果存入当前容器，再次进行dfs运算</span>
+        }
+        <span class="hljs-keyword">double</span> sum = a + b; <span class="hljs-comment">//四则运算</span>
+        <span class="hljs-keyword">double</span> sub = a - b;
+        <span class="hljs-keyword">double</span> mul = a * b;
+        <span class="hljs-keyword">double</span> div = a / b;
+        <span class="hljs-keyword">double</span> yunsuan[<span class="hljs-number">4</span>] = {sum, sub, mul, div};
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> w = <span class="hljs-number">0</span>; w &lt; <span class="hljs-number">4</span>; w++) {
+          shengyu.<span class="hljs-built_in">push_back</span>(yunsuan[w]);
+          <span class="hljs-keyword">if</span> (<span class="hljs-built_in">dfs</span>(shengyu))
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+          shengyu.<span class="hljs-built_in">pop_back</span>(); <span class="hljs-comment">//回溯</span>
+        }
+      }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
 };</code></pre></div>
 
 
