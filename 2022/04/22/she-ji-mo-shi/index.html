@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
 <meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-08-16T04:38:38.740Z">
+<meta property="article:modified_time" content="2022-08-22T14:42:29.694Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -89,9 +89,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -1171,6 +1171,71 @@ Singleton Singleton::instance;</code></pre></div>
 <li>Lazy Singleton通常需要加锁来保证线程安全，但局部静态变量版本在C++11后是线程安全的；</li>
 <li>局部静态变量版本（Meyers Singleton）最优雅。</li>
 </ul>
+<h2 id="5-装饰器模式"><a href="#5-装饰器模式" class="headerlink" title="5. 装饰器模式"></a>5. 装饰器模式</h2><p>装饰器模式是比较常用的一种设计模式，Python中就内置了对于装饰器的支持。</p>
+<p>具体来说，装饰器模式是用来给对象增加某些特性或者对被装饰对象进行某些修改。</p>
+<p>下面的代码是一个买煎饼的例子，如我们生活中所见，可以选基础煎饼（鸡蛋煎饼，肉煎饼等），然后再额外加别的东西：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pancake</span> {</span> <span class="hljs-comment">//基类</span>
+<span class="hljs-keyword">public</span>:
+  string description = <span class="hljs-string">"Basic Pancake"</span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> description; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CondimentDecorator</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//装饰器基类</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">string <span class="hljs-title">getDescrition</span><span class="hljs-params">()</span></span>;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MeatPancake</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//肉煎饼</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MeatPancake</span>() { description = <span class="hljs-string">"MeatPancake"</span>; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">6</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EggPancake</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//鸡蛋煎饼</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">EggPancake</span>() { description = <span class="hljs-string">"EggPancake"</span>; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Egg</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加鸡蛋</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Egg"</span>; }
+  <span class="hljs-built_in">Egg</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">1.5</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Potato</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加土豆</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Potato"</span>; }
+  <span class="hljs-built_in">Potato</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">1</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bacon</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加培根</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Bacon"</span>; }
+  <span class="hljs-built_in">Bacon</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">2</span>; }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  Pancake *pan = <span class="hljs-keyword">new</span> <span class="hljs-built_in">EggPancake</span>();
+  pan = &amp;<span class="hljs-built_in">Potato</span>(pan); <span class="hljs-comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span>
+  pan = &amp;<span class="hljs-built_in">Bacon</span>(pan); <span class="hljs-comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span>
+  cout &lt;&lt; pan-&gt;<span class="hljs-built_in">getDescription</span>() &lt;&lt; <span class="hljs-string">"  $ : "</span> &lt;&lt; pan-&gt;<span class="hljs-built_in">cost</span>() &lt;&lt; endl;
+  <span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
+
 
               
             </div>
