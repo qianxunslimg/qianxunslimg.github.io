@@ -16,24 +16,26 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="哈希 自定义key 自定义&#x3D;&#x3D;等于判断函数&#x3D;&#x3D;  结构体中重载&#x3D;&#x3D; 仿函数 struct内重载()   自定义&#x3D;&#x3D;哈希函数&#x3D;&#x3D; 根据向量的每一个维度的不同，通过一定的计算，得到一个值，注意类型要用size_t来返回   struct Point {   int x;   int y;   Point() : x(0), y(0){};   Point(int _x, int _y) : x(_x)">
+    <meta name="description" content="累了, 秋招进入任命阶段,投递110+, 累了, 秋招进入人命阶段  offer: 最右，中望，万集, 星猿哲，楚兴，鼎信（都是七月前投递的，要在这里面选真就**了） 池子: 快手,米哈游, zoom, 华为, 海康 面试中: 字节, 绿盟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义key">
-<meta property="og:url" content="https://qianxunslimg.github.io/2022/06/22/ha-xi-zi-ding-yi-key/index.html">
+<meta property="og:title" content="秋招总结">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/09/25/qiu-zhao-zong-jie/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="哈希 自定义key 自定义&#x3D;&#x3D;等于判断函数&#x3D;&#x3D;  结构体中重载&#x3D;&#x3D; 仿函数 struct内重载()   自定义&#x3D;&#x3D;哈希函数&#x3D;&#x3D; 根据向量的每一个维度的不同，通过一定的计算，得到一个值，注意类型要用size_t来返回   struct Point {   int x;   int y;   Point() : x(0), y(0){};   Point(int _x, int _y) : x(_x)">
+<meta property="og:description" content="累了, 秋招进入任命阶段,投递110+, 累了, 秋招进入人命阶段  offer: 最右，中望，万集, 星猿哲，楚兴，鼎信（都是七月前投递的，要在这里面选真就**了） 池子: 快手,米哈游, zoom, 华为, 海康 面试中: 字节, 绿盟">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-22T11:28:00.000Z">
-<meta property="article:modified_time" content="2022-06-22T08:42:18.723Z">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220929173459803.png">
+<meta property="article:published_time" content="2022-09-25T09:03:00.000Z">
+<meta property="article:modified_time" content="2022-09-29T09:37:30.520Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220929173459803.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>自定义key - qianxunslimgのblog</title>
+  <title>秋招总结 - qianxunslimgのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="自定义key"></span>
+            <span id="subtitle" data-typed-text="秋招总结"></span>
           
         </div>
 
@@ -210,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-22 19:28" pubdate>
-          2022年6月22日 晚上
+        <time datetime="2022-09-25 17:03" pubdate>
+          2022年9月25日 下午
         </time>
       </span>
     
@@ -273,123 +275,18 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">自定义key</h1>
+            <h1 style="display: none">秋招总结</h1>
             
             <div class="markdown-body">
               
-              <h1 id="哈希-自定义key"><a href="#哈希-自定义key" class="headerlink" title="哈希 自定义key"></a>哈希 自定义key</h1><ol>
-<li><p>自定义==等于判断函数==</p>
+              <h4 id="累了-秋招进入任命阶段"><a href="#累了-秋招进入任命阶段" class="headerlink" title="累了, 秋招进入任命阶段,"></a>累了, 秋招进入任命阶段,</h4><p>投递110+, 累了, 秋招进入人命阶段</p>
 <ol>
-<li>结构体中重载==</li>
-<li>仿函数 struct内重载()</li>
+<li>offer: 最右，中望，万集, 星猿哲，楚兴，鼎信（都是七月前投递的，要在这里面选真就**了）</li>
+<li>池子: 快手,米哈游, zoom, 华为, 海康</li>
+<li>面试中: 字节, 绿盟</li>
 </ol>
-</li>
-<li><p>自定义==哈希函数==</p>
-<p>根据向量的每一个维度的不同，通过一定的计算，得到一个值，注意类型要用<code>size_t</code>来返回</p>
-</li>
-</ol>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Point</span> {</span>
-  <span class="hljs-keyword">int</span> x;
-  <span class="hljs-keyword">int</span> y;
-  <span class="hljs-built_in">Point</span>() : <span class="hljs-built_in">x</span>(<span class="hljs-number">0</span>), <span class="hljs-built_in">y</span>(<span class="hljs-number">0</span>){};
-  <span class="hljs-built_in">Point</span>(<span class="hljs-keyword">int</span> _x, <span class="hljs-keyword">int</span> _y) : <span class="hljs-built_in">x</span>(_x), <span class="hljs-built_in">y</span>(_y){};
-  <span class="hljs-comment">//1. 重载==</span>
-  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>==(<span class="hljs-keyword">const</span> Point &amp;other) <span class="hljs-keyword">const</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;x == other.x &amp;&amp; <span class="hljs-keyword">this</span>-&gt;y == other.y;
-  }
-};
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220929173459803.png" srcset="/img/loading.gif" lazyload alt="image-20220929173459803"></p>
 
-<span class="hljs-comment">//2. 仿函数重载()</span>
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyEqualFunc</span> {</span>
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Point &amp;v1, <span class="hljs-keyword">const</span> Point &amp;v2)</span> <span class="hljs-keyword">const</span> </span>{
-    <span class="hljs-keyword">return</span> (v1.x == v2.x &amp;&amp; v1.y == v2.y);
-  }
-};
-
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyHashFunc</span> {</span>
-  <span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Point &amp;p)</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> hash&lt;<span class="hljs-keyword">int</span>&gt;()(p.x &amp; p.y); }
-};
-
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-comment">//1.</span>
-  unordered_set&lt;Point, MyHashFunc, MyEqualFunc&gt; set1;
-  <span class="hljs-comment">//2. </span>
-  unordered_set&lt;Point, MyHashFunc&gt; set2;
-  
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>));
-  set1.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">Point</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
-
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</code></pre></div>
-
-<h1 id="红黑树自定义key"><a href="#红黑树自定义key" class="headerlink" title="红黑树自定义key"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/y109y/article/details/82901710">红黑树自定义key</a></h1><p>map是STL里的一个模板类，用来存放&lt;key, value&gt;键值对的数据结构，它的定义如下。</p>
-<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">template</span> &lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Key</span>,                          				 //<span class="hljs-title">map</span>:</span>:key_tpe
-           <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>,                                     //<span class="hljs-title">map</span>:</span>:mapped_type
-           <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Compare</span> =</span> less&lt;Key&gt;,                   <span class="hljs-comment">//map::key_compare</span>
-           <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Alloc</span> =</span> allocator&lt;<span class="hljs-built_in">pair</span>&lt;<span class="hljs-keyword">const</span> Key, T&gt;&gt;  <span class="hljs-comment">//map::allocator_type</span>
-           &gt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">map</span>;</span></code></pre></div>
-
-<ul>
-<li><p>第1个参数存储了key。</p>
-</li>
-<li><p>第2个参数存储了mapped value。</p>
-</li>
-<li><p>第3个参数是比较函数的<a target="_blank" rel="noopener" href="https://blog.csdn.net/y109y/article/details/82898345">函数对象</a>。map用它来判断两个key的大小，并返回bool类型的结果。利用这个函数，map可以确定元素在容器中遵循的顺序以及两个元素键是否相等（！comp（a，b）&amp;&amp;！comp（b，a）），确保map中没有两个元素可以具有等效键。这里，它的默认值是==less&lt; Key &gt;==，定义如下。</p>
-<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">T</span>&gt;</span> 
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">less</span> {</span>
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span> <span class="hljs-params">(<span class="hljs-keyword">const</span> T&amp; x, <span class="hljs-keyword">const</span> T&amp; y)</span> <span class="hljs-keyword">const</span> </span>{<span class="hljs-keyword">return</span> x &lt; y;}
-  <span class="hljs-keyword">typedef</span> T first_argument_type;
-  <span class="hljs-keyword">typedef</span> T second_argument_type;
-  <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">bool</span> result_type;
-};</code></pre></div>
-</li>
-<li><p>第4个参数是用来定义存储分配模型的。</p>
-</li>
-</ul>
-<h3 id="自定义key的方法主要是重载比较函数"><a href="#自定义key的方法主要是重载比较函数" class="headerlink" title="自定义key的方法主要是重载比较函数"></a>自定义key的方法主要是重载比较函数</h3><ol>
-<li>重载自定义的结构体的&lt; 注意重载函数的两个const</li>
-<li>lamda表达式 定义小于号的比较规则</li>
-<li>结构体仿函数重载()   map&lt;Person, int, MyCompare&gt; group;</li>
-<li>利用std::function调用普通函数</li>
-<li>less函数的模板定制 略</li>
-</ol>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Nodee</span> {</span>
-  <span class="hljs-keyword">int</span> a;
-  <span class="hljs-built_in">Nodee</span>(<span class="hljs-keyword">int</span> val) { a = val; }
-  <span class="hljs-comment">// 2. 直接重载&lt;</span>
-  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Nodee &amp;other) <span class="hljs-keyword">const</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;a &lt; other.a; }
-};
-
-<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">MyFunCompare</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Nodee &amp;p1, <span class="hljs-keyword">const</span> Nodee &amp;p2)</span> </span>{ <span class="hljs-comment">//普通的函数</span>
-  <span class="hljs-keyword">return</span> (p1.a &lt; p2.a);
-}
-
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MyStructCompare</span> {</span> <span class="hljs-comment">// Function Object</span>
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Nodee &amp;p1, <span class="hljs-keyword">const</span> Nodee &amp;p2)</span> <span class="hljs-keyword">const</span> </span>{
-    <span class="hljs-keyword">return</span> (p1.a &lt; p2.a);
-  }
-};
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-function">Nodee <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">5</span>)</span></span>;
-  <span class="hljs-function">Nodee <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;
-  <span class="hljs-function">Nodee <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">100</span>)</span></span>;
-  <span class="hljs-comment">// 1. lamda</span>
-  <span class="hljs-keyword">auto</span> cmp = [](Nodee a, Nodee b) { <span class="hljs-keyword">return</span> a.a &lt; b.a; };
-  <span class="hljs-function">map&lt;Nodee, <span class="hljs-keyword">int</span>, <span class="hljs-title">decltype</span><span class="hljs-params">(cmp)</span>&gt; <span class="hljs-title">map1</span><span class="hljs-params">(cmp)</span></span>;
-  <span class="hljs-comment">// 3. 结构体仿函数</span>
-  map&lt;Nodee, <span class="hljs-keyword">int</span>, MyStructCompare&gt; map2;
-  <span class="hljs-comment">// 4. 利用std::function调用普通函数</span>
-  map&lt;Nodee, <span class="hljs-keyword">int</span>, function&lt;<span class="hljs-keyword">bool</span>(<span class="hljs-keyword">const</span> Nodee &amp;, <span class="hljs-keyword">const</span> Nodee &amp;)&gt;&gt; <span class="hljs-built_in">map3</span>(
-      MyFunCompare); <span class="hljs-comment">//需要在构造函数中指明</span>
-  <span class="hljs-comment">// 5. less函数的模板定制 略</span>
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre></div>
               
             </div>
             <hr/>
@@ -412,8 +309,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>自定义key</div>
-      <div>https://qianxunslimg.github.io/2022/06/22/ha-xi-zi-ding-yi-key/</div>
+      <div>秋招总结</div>
+      <div>https://qianxunslimg.github.io/2022/09/25/qiu-zhao-zong-jie/</div>
     </div>
     <div class="license-meta">
       
@@ -425,7 +322,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月22日</div>
+          <div>2022年9月25日</div>
         </div>
       
       
@@ -455,9 +352,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/09/main/" title="main">
+                      <a href="/2022/09/25/git-ssh-de-wen-ti/" title="git ssh的问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">main</span>
+                        <span class="hidden-mobile">git ssh的问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -465,8 +362,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/20/ahk-shi-yong/" title="AHK的初次接触">
-                        <span class="hidden-mobile">AHK的初次接触</span>
+                      <a href="/2022/08/12/js-jiao-ben-chang-shi/" title="js脚本尝试">
+                        <span class="hidden-mobile">js脚本尝试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
