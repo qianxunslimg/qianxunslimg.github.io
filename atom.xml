@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-10-25T02:13:14.283Z</updated>
+  <updated>2022-10-28T07:30:34.030Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://qianxunslimg.github.io/2022/11/02/di-zhi-wei-dong-zhu-yu/"/>
+    <id>https://qianxunslimg.github.io/2022/11/02/di-zhi-wei-dong-zhu-yu/</id>
+    <published>2022-11-02T12:33:57.586Z</published>
+    <updated>2022-10-28T07:30:34.030Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;GEO术语&quot;&gt;&lt;a href=&quot;#GEO术语&quot; class=&quot;headerlink&quot; title=&quot;GEO术语&quot;&gt;&lt;/a&gt;GEO术语&lt;/h1&gt;&lt;h1 id=&quot;波&quot;&gt;&lt;a href=&quot;#波&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>HRFK</title>
@@ -40,7 +61,7 @@
     <link href="https://qianxunslimg.github.io/2022/10/24/oka/"/>
     <id>https://qianxunslimg.github.io/2022/10/24/oka/</id>
     <published>2022-10-24T15:05:00.000Z</published>
-    <updated>2022-10-26T02:37:51.369Z</updated>
+    <updated>2022-11-02T08:56:32.160Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -78,7 +99,7 @@
     <link href="https://qianxunslimg.github.io/2022/10/24/bido-spac/"/>
     <id>https://qianxunslimg.github.io/2022/10/24/bido-spac/</id>
     <published>2022-10-24T15:04:00.000Z</published>
-    <updated>2022-10-27T15:17:32.566Z</updated>
+    <updated>2022-10-28T09:16:24.361Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -419,31 +440,6 @@
     
     
     <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人名算法</title>
-    <link href="https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/"/>
-    <id>https://qianxunslimg.github.io/2022/05/04/ren-ming-xiang-guan-suan-fa/</id>
-    <published>2022-05-04T12:13:49.000Z</published>
-    <updated>2022-07-10T18:21:28.930Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;约瑟夫环&quot;&gt;&lt;a href=&quot;#约瑟夫环&quot; class=&quot;headerlink&quot; title=&quot;约瑟夫环&quot;&gt;&lt;/a&gt;约瑟夫环&lt;/h2&gt;&lt;h3 id=&quot;1823-找出游戏的获胜者&quot;&gt;&lt;a href=&quot;#1823-找出游戏的获胜者&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="算法整理" scheme="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
