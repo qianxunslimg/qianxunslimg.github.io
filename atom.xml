@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2022-11-03T13:59:33.272Z</updated>
+  <updated>2022-11-14T09:25:15.110Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>geo术语</title>
+    <link href="https://qianxunslimg.github.io/2022/11/14/zao-sheng-gan-she-ce-liang-fa-de-li-lun-ji-chu/"/>
+    <id>https://qianxunslimg.github.io/2022/11/14/zao-sheng-gan-she-ce-liang-fa-de-li-lun-ji-chu/</id>
+    <published>2022-11-14T15:05:00.000Z</published>
+    <updated>2022-11-14T09:25:15.110Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="地质算法" scheme="https://qianxunslimg.github.io/categories/%E5%9C%B0%E8%B4%A8%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="噪声干涉测量法的理论基础" scheme="https://qianxunslimg.github.io/tags/%E5%99%AA%E5%A3%B0%E5%B9%B2%E6%B6%89%E6%B5%8B%E9%87%8F%E6%B3%95%E7%9A%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>HRFK</title>
     <link href="https://qianxunslimg.github.io/2022/10/24/hrfk/"/>
     <id>https://qianxunslimg.github.io/2022/10/24/hrfk/</id>
     <published>2022-10-24T15:05:00.000Z</published>
-    <updated>2022-11-03T13:59:33.272Z</updated>
+    <updated>2022-11-18T06:55:41.041Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -116,7 +135,7 @@
     <link href="https://qianxunslimg.github.io/2022/09/29/qiu-zhao-zong-jie/"/>
     <id>https://qianxunslimg.github.io/2022/09/29/qiu-zhao-zong-jie/</id>
     <published>2022-09-29T09:03:00.000Z</published>
-    <updated>2022-09-29T11:36:13.795Z</updated>
+    <updated>2022-12-28T07:16:09.389Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -415,29 +434,6 @@
     
     
     <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>移位获取INT_MIN和INT_MAX</title>
-    <link href="https://qianxunslimg.github.io/2022/05/09/yi-wei-huo-qu-int-min-he-int-max/"/>
-    <id>https://qianxunslimg.github.io/2022/05/09/yi-wei-huo-qu-int-min-he-int-max/</id>
-    <published>2022-05-09T11:28:00.000Z</published>
-    <updated>2022-05-09T03:02:30.746Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;code-wrapper&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs c++&quot;&gt;&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;int&lt;/span&gt; &lt;span</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
