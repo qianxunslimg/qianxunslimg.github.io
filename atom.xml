@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-01-05T18:00:26.958Z</updated>
+  <updated>2023-01-08T15:13:49.690Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>蓝牙通信</title>
+    <link href="https://qianxunslimg.github.io/2023/01/08/lan-ya-tong-xin/"/>
+    <id>https://qianxunslimg.github.io/2023/01/08/lan-ya-tong-xin/</id>
+    <published>2023-01-08T14:59:00.000Z</published>
+    <updated>2023-01-08T15:13:49.690Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-蓝牙的基础知识&quot;&gt;&lt;a href=&quot;#1-蓝牙的基础知识&quot; class=&quot;headerlink&quot; title=&quot;1. 蓝牙的基础知识&quot;&gt;&lt;/a&gt;1. &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker入门</title>
     <link href="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-01-05T18:00:26.958Z</updated>
+    <updated>2023-01-26T01:27:15.826Z</updated>
     
     
       
@@ -55,32 +78,6 @@
     
     
     <category term="噪声干涉测量法的理论基础" scheme="https://qianxunslimg.github.io/tags/%E5%99%AA%E5%A3%B0%E5%B9%B2%E6%B6%89%E6%B5%8B%E9%87%8F%E6%B3%95%E7%9A%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>秋招总结</title>
-    <link href="https://qianxunslimg.github.io/2022/11/01/qiu-zhao-zong-jie/"/>
-    <id>https://qianxunslimg.github.io/2022/11/01/qiu-zhao-zong-jie/</id>
-    <published>2022-11-01T09:03:00.000Z</published>
-    <updated>2022-12-28T07:23:41.880Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;签的不提，没签的透露下&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;快手&quot;&gt;&lt;a href=&quot;#快手&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
