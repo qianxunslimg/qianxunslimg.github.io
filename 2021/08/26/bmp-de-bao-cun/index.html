@@ -24,7 +24,7 @@
 <meta property="og:description" content="说明 做一个实际工程应用的项目 甲方是将图片拖到cad里进行观看 因此就要求比例尺等的信息保存 cad支持的只有tif和bmp，而我的软件的成图是基于opencv的 opencv的imwrite还是过于粗糙，因此查阅整理了一个完整bmp的函数 bmp的头信息是很复杂的，并不是单纯的改个文件名就可以，这也是为什么 mfc的icon那么难搞 网上找遍格式转换的网站 只有那么一两个的转换结果可以使用（简">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-26T11:28:00.000Z">
-<meta property="article:modified_time" content="2022-04-24T09:00:44.402Z">
+<meta property="article:modified_time" content="2023-04-12T14:54:38.710Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
@@ -82,9 +82,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -280,7 +280,7 @@
               <h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><ol>
 <li>做一个实际工程应用的项目 甲方是将图片拖到cad里进行观看 因此就要求比例尺等的信息保存 cad支持的只有tif和bmp，而我的软件的成图是基于opencv的 opencv的imwrite还是过于粗糙，因此查阅整理了一个完整bmp的函数</li>
 <li>bmp的头信息是很复杂的，并不是单纯的改个文件名就可以，这也是为什么 mfc的icon那么难搞 网上找遍格式转换的网站 只有那么一两个的转换结果可以使用（简直折磨）</li>
-<li>bmp格式这里不加赘述了 可以惨开<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012877472/article/details/50272771">这个</a></li>
+<li>bmp格式这里不加赘述了 可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012877472/article/details/50272771">这个</a></li>
 </ol>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>bmp.h</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> BMP_H</span>
@@ -415,7 +415,7 @@
 }</code></pre></div>
 
 <h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><p>其实还有一个注意的点就是 <code>bmp还涉及到一个反转的问题</code> 从opencv的mat格式 存储为bmp是需要对mat进行一下<code>反转</code></p>
-<p>我的调用图下</p>
+<p>我的调用如下</p>
 <div class="code-wrapper"><pre><code class="hljs c++">Mat res;
 <span class="hljs-built_in">flip</span>(img, res, <span class="hljs-number">0</span>); <span class="hljs-comment">// bmp需要垂直反转</span>
 

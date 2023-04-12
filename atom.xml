@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-01-08T15:13:49.690Z</updated>
+  <updated>2023-04-12T14:38:24.552Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tortoisegit解决冲突</title>
+    <link href="https://qianxunslimg.github.io/2023/04/12/tortoisegit-jie-jue-chong-tu/"/>
+    <id>https://qianxunslimg.github.io/2023/04/12/tortoisegit-jie-jue-chong-tu/</id>
+    <published>2023-04-12T15:43:00.000Z</published>
+    <updated>2023-04-12T14:38:24.552Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前开发虽然使用了git但只是当作备份 和版本管理，很少进行多人多线开发，偶尔设计也只是手动进行合并，解决冲突，参考&lt;a href=&quot;https://www.cnblogs.com/jasongrass/p/11199039.html&quot;&gt;git 使用</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>蓝牙通信</title>
@@ -226,11 +249,11 @@
   </entry>
   
   <entry>
-    <title>main</title>
-    <link href="https://qianxunslimg.github.io/2022/08/09/main/"/>
-    <id>https://qianxunslimg.github.io/2022/08/09/main/</id>
+    <title>web项目</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/</id>
     <published>2022-08-09T01:46:00.000Z</published>
-    <updated>2022-08-15T16:45:11.887Z</updated>
+    <updated>2022-08-17T08:29:08.508Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -245,11 +268,11 @@
   </entry>
   
   <entry>
-    <title>web项目</title>
-    <link href="https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/"/>
-    <id>https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/</id>
+    <title>main</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/main/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/main/</id>
     <published>2022-08-09T01:46:00.000Z</published>
-    <updated>2022-08-17T08:29:08.508Z</updated>
+    <updated>2022-08-15T16:45:11.887Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -419,31 +442,6 @@
     
     
     <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记忆化搜索</title>
-    <link href="https://qianxunslimg.github.io/2022/05/22/ji-yi-hua-sou-suo/"/>
-    <id>https://qianxunslimg.github.io/2022/05/22/ji-yi-hua-sou-suo/</id>
-    <published>2022-05-22T07:53:49.000Z</published>
-    <updated>2022-08-01T03:17:30.020Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;记忆化搜索&quot;&gt;&lt;a href=&quot;#记忆化搜索&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="算法整理" scheme="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   
