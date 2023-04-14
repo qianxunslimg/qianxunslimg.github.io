@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-12T14:38:24.552Z</updated>
+  <updated>2023-04-14T12:06:39.716Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nfc音乐墙制作-安卓</title>
+    <link href="https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/"/>
+    <id>https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/</id>
+    <published>2023-04-14T15:43:00.000Z</published>
+    <updated>2023-04-14T12:06:39.716Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;todo: 制作并美观音乐墙&lt;/p&gt;
+&lt;h3 id=&quot;软件准备&quot;&gt;&lt;a href=&quot;#软件准备&quot; class=&quot;headerlink&quot; title=&quot;软件准备&quot;&gt;&lt;/a&gt;软件准备&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;NFC Tools：安卓系统下对nfc芯片写入信息的软件</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>tortoisegit解决冲突</title>
@@ -67,7 +92,7 @@
     <link href="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-04-13T08:33:28.265Z</updated>
+    <updated>2023-04-14T03:06:34.068Z</updated>
     
     
       
@@ -412,29 +437,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>以往项目</title>
-    <link href="https://qianxunslimg.github.io/2022/05/23/cheng-guo-zhan-shi/"/>
-    <id>https://qianxunslimg.github.io/2022/05/23/cheng-guo-zhan-shi/</id>
-    <published>2022-05-23T13:45:00.000Z</published>
-    <updated>2022-08-10T08:51:44.426Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;软件项目&quot;&gt;&lt;a href=&quot;#软件项目&quot; class=&quot;headerlink&quot; title=&quot;软件项目&quot;&gt;&lt;/a&gt;软件项目&lt;/h1&gt;&lt;h2 id=&quot;VIDO微动处理系统&quot;&gt;&lt;a href=&quot;#VIDO微动处理系统&quot; class=&quot;headerlink&quot;</summary>
         
       
     

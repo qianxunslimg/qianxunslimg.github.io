@@ -16,27 +16,24 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+    <meta name="description" content="todo: 制作并美观音乐墙 软件准备 NFC Tools：安卓系统下对nfc芯片写入信息的软件  NFC Tasks：由于没有ios下的快捷指令，需要此软件执行任务 Tasker(可选)：执行nfc扫描后的复杂任务，此处没有必要，而且感觉并不好用  音乐播放实现个人尝试着，有以下几种实现方式，各有利弊了属于是  直接写入url，tasks执行打开连接操作 NFC Tools：任务–添加任务–应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker入门">
-<meta property="og:url" content="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/index.html">
+<meta property="og:title" content="nfc音乐墙制作-安卓">
+<meta property="og:url" content="https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+<meta property="og:description" content="todo: 制作并美观音乐墙 软件准备 NFC Tools：安卓系统下对nfc芯片写入信息的软件  NFC Tasks：由于没有ios下的快捷指令，需要此软件执行任务 Tasker(可选)：执行nfc扫描后的复杂任务，此处没有必要，而且感觉并不好用  音乐播放实现个人尝试着，有以下几种实现方式，各有利弊了属于是  直接写入url，tasks执行打开连接操作 NFC Tools：任务–添加任务–应用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png">
-<meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-14T03:06:34.068Z">
+<meta property="article:published_time" content="2023-04-14T15:43:00.000Z">
+<meta property="article:modified_time" content="2023-04-14T12:06:39.716Z">
 <meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="工具学习">
+<meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>docker入门 - qianxunslimgのblog</title>
+  <title>nfc音乐墙制作-安卓 - qianxunslimgのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="docker入门"></span>
+            <span id="subtitle" data-typed-text="nfc音乐墙制作-安卓"></span>
           
         </div>
 
@@ -213,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-06 01:59" pubdate>
-          2023年1月6日 凌晨
+        <time datetime="2023-04-14 23:43" pubdate>
+          2023年4月14日 晚上
         </time>
       </span>
     
@@ -276,121 +273,40 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">docker入门</h1>
+            <h1 style="display: none">nfc音乐墙制作-安卓</h1>
             
             <div class="markdown-body">
               
-              <h2 id="1-window安装问题"><a href="#1-window安装问题" class="headerlink" title="1. window安装问题"></a>1. window安装问题</h2><p>docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用</p>
+              <p>todo: 制作并美观音乐墙</p>
+<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ol>
+<li>NFC Tools：安卓系统下对nfc芯片写入信息的软件 </li>
+<li>NFC Tasks：由于没有ios下的快捷指令，需要此软件执行任务</li>
+<li><del>Tasker(可选)：执行nfc扫描后的复杂任务，此处没有必要，而且感觉并不好用</del></li>
+</ol>
+<h3 id="音乐播放实现"><a href="#音乐播放实现" class="headerlink" title="音乐播放实现"></a>音乐播放实现</h3><p>个人尝试着，有以下几种实现方式，各有利弊了属于是</p>
 <ol>
-<li><p>使用vmware</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype off</code></pre></div>
-</li>
-<li><p>使用docker</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype auto</code></pre></div>
-</li>
-<li><p>切换完需要重启</p>
-</li>
-</ol>
-<h2 id="2-镜像和容器关系"><a href="#2-镜像和容器关系" class="headerlink" title="2. 镜像和容器关系"></a>2. 镜像和容器关系</h2><h3 id="windows中的vmware安装操作系统："><a href="#windows中的vmware安装操作系统：" class="headerlink" title="windows中的vmware安装操作系统："></a>windows中的vmware安装操作系统：</h3><ol>
-<li>创建虚拟机</li>
-<li>选择ios文件（操作系统镜像）</li>
-<li>配置虚拟机</li>
-</ol>
-<h3 id="docker操作"><a href="#docker操作" class="headerlink" title="docker操作"></a>docker操作</h3><ol>
-<li>pull镜像 （类似windows下的下载iso文件）</li>
-<li>运行容器 （从镜像新建容器， 相当于操作系统安装运行）</li>
-</ol>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png" srcset="/img/loading.gif" lazyload alt="image-20230106010045452" style="zoom:50%;">
-
-<h2 id="3-docker命令"><a href="#3-docker命令" class="headerlink" title="3. docker命令"></a>3. docker命令</h2><h3 id="拉取镜像：docker-pull-ubuntu-18-04"><a href="#拉取镜像：docker-pull-ubuntu-18-04" class="headerlink" title="拉取镜像：docker pull ubuntu:18.04"></a>拉取镜像：<code>docker pull ubuntu:18.04</code></h3><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><h4 id="运行和终止容器（实则是从镜像创建容器并运行）：docker-run"><a href="#运行和终止容器（实则是从镜像创建容器并运行）：docker-run" class="headerlink" title="运行和终止容器（实则是从镜像创建容器并运行）：docker run"></a>运行和终止容器（实则是从镜像创建容器并运行）：<code>docker run</code></h4><ol>
-<li><p>输出一个 “Hello World”，之后终止容器</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run ubuntu:18.04 /bin/<span class="hljs-built_in">echo</span> <span class="hljs-string">'Hello world'</span>
-<span class="hljs-string">'Hello world'</span></code></pre></div>
-
-<ol start="2">
-<li>启动一个 bash 终端，允许用户进行交互</li>
-</ol>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -t -i ubuntu:18.04 /bin/bash
-root@7563162c9979:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
-
-<p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
-</li>
-<li><p>退出容器： 直接<code>exit</code>   或者 <code>Ctrl+d</code>  多个容器时使用<code>docker container stop</code></p>
-</li>
-<li><p>终止状态容器查看和启动： </p>
-<ol>
-<li><code>docker container ls -a</code> 终止状态容器查看</li>
-<li>处于终止状态的容器，可以通过 <code>docker container start</code> 命令来重新启动</li>
-</ol>
-</li>
-</ol>
-<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>在使用 <code>-d</code> 参数时，容器启动后会进入后台。</p>
-<ol>
-<li><p>attach 不好</p>
-<div class="code-wrapper"><pre><code class="hljs shell">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075
-
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
-adc05673f248   ubuntu    "bash"    12 seconds ago   Up 11 seconds             pedantic_hugle
-
-C:\Users\qianxunslimg&gt;docker attach adc
-root@adc05673f248:/# ls
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
-</li>
-<li><p>exec 优先使用</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-d51137b164abacaa0ea8f151d6b5cad5a1c316b55869bb2ae27c81f50f2f3eac
-
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-d51137b164ab   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             crazy_mendeleev
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -i d51 bash  //-i没有命令提示符 难用
-ls
-bin
-boot
-dev
-...
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -it d51 bash  //完整shell界面
-root@d51137b164ab:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div></li>
-</ol>
-<h4 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h4><ol>
-<li><p>导出 docker export</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker container ls -a
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-61e0da2df721   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             pensive_fermat
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">export</span> 61e &gt; ubuntu_container_test.tar</code></pre></div>
-
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png" srcset="/img/loading.gif" lazyload alt="image-20230106013015214" style="zoom: 67%;">
-</li>
-<li><p>导入容器快照 docker import</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker import ubuntu_container_test.tar <span class="hljs-built_in">test</span>:ubuntu_v1.0
-sha256:149d18447e370d3e6d15417450c7ad3189c3dfe32c79d16c5aea36927e5ed3ef
-
-C:\Users\qianxunslimg&gt;docker image ls
-REPOSITORY               TAG           IMAGE ID       CREATED          SIZE
-<span class="hljs-built_in">test</span>                     ubuntu_v1.0   149d18447e37   30 seconds ago   77.8MB
-ubuntu                   18.04         e28a50f651f9   2 days ago       63.1MB
-docker/getting-started   latest        3e4394f6b72f   13 days ago      47MB
-ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB
-hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</code></pre></div>
-
+<li><p>直接写入url，tasks执行打开连接操作</p>
+<p>NFC Tools：<code>任务</code>–<code>添加任务</code>–<code>应用程序</code>–<code>URL/URI</code>–<code>填入音乐链接</code></p>
+<p>贴靠NFC芯片，点击 <code>写/个字节</code></p>
 <blockquote>
-<p><em>注：用户既可以使用</em> <code>docker load</code> <em>来导入镜像存储文件到本地镜像库，也可以使用</em> <code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
+<p>这种方法的好处就是，不限于音乐，可以设置打开一些网站。</p>
+<p>但是不足之处在于，音乐在网页上，没有自动播放，想要到app中需要点击进行跳转。</p>
 </blockquote>
 </li>
+<li><p>音乐存储在本地</p>
+<p>NFC Tools：<code>任务</code>–<code>添加任务</code>–<code>声音&amp;媒体</code>–<code>播放一个声音</code>–选择一个根路径–创建一个文件夹并放置音乐文件–选择要播放的音乐</p>
+<p>贴靠NFC芯片，点击 <code>写/个字节</code></p>
+<blockquote>
+<p>好处：扫描即播放，并且使用的是系统播放，没有启动其他软件，播放完就停止</p>
+<p>缺点：需要单独准备音乐放置在文件夹下</p>
+<p>但是这是我目前觉得安卓下最==理想==的方式了，效果好，麻烦点怎么了</p>
+</blockquote>
+</li>
+<li><p>结合tasker操作，比较难用</p>
+<p>尝试了以下直接卸载了，tasker不在主界面时无法响应</p>
+<p>思路就是tools的任务为tasker中的自定义任务，其中自定义任务设置启动网易云，将歌曲链接传参进去</p>
+</li>
 </ol>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><ol>
-<li>删除特定终止状态的容器 <code>docker container rm</code></li>
-<li>删除所有终止容器  <code>docker container prune</code></li>
-</ol>
-<h2 id="4-打包程序"><a href="#4-打包程序" class="headerlink" title="4. 打包程序"></a>4. 打包程序</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1893294">【Docker】从零开始将自己的应用打包到docker镜像 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
-<p>==（todo: 仿照这个操作步骤，打包一下tinywebserver, 在windows下的docker运行）==</p>
 
               
             </div>
@@ -402,7 +318,7 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/">#工具学习</a>
+        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
       
     </div>
   
@@ -414,8 +330,8 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>docker入门</div>
-      <div>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</div>
+      <div>nfc音乐墙制作-安卓</div>
+      <div>https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/</div>
     </div>
     <div class="license-meta">
       
@@ -427,7 +343,7 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月6日</div>
+          <div>2023年4月14日</div>
         </div>
       
       
@@ -457,18 +373,12 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/08/lan-ya-tong-xin/" title="蓝牙通信">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">蓝牙通信</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/14/zao-sheng-gan-she-ce-liang-fa-de-li-lun-ji-chu/" title="geo术语">
-                        <span class="hidden-mobile">geo术语</span>
+                      <a href="/2023/04/12/tortoisegit-jie-jue-chong-tu/" title="tortoisegit解决冲突">
+                        <span class="hidden-mobile">tortoisegit解决冲突</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
