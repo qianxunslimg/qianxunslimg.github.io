@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-17T09:02:00.052Z</updated>
+  <updated>2023-04-17T16:34:34.219Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ScopeGuard理解与使用</title>
+    <link href="https://qianxunslimg.github.io/2023/04/18/scopeguard-li-jie-yu-shi-yong/"/>
+    <id>https://qianxunslimg.github.io/2023/04/18/scopeguard-li-jie-yu-shi-yong/</id>
+    <published>2023-04-17T16:24:00.000Z</published>
+    <updated>2023-04-17T16:34:34.219Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;对看了下大佬的博客：&lt;a href=&quot;http://mindhacks.cn/2012/08/27/modern-cpp-practices/&quot;&gt;C++11（及现代C++风格）和快速迭代式开发 – 刘未鹏 | Mind Hacks&lt;/a&gt;中</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>make-cmake-vscode_roject</title>
@@ -117,7 +140,7 @@
     <link href="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-04-14T16:17:50.030Z</updated>
+    <updated>2023-04-17T13:50:25.484Z</updated>
     
     
       
@@ -421,31 +444,6 @@
     
     
     <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>子串问题</title>
-    <link href="https://qianxunslimg.github.io/2022/05/25/zi-chuan-xiang-guan-wen-ti/"/>
-    <id>https://qianxunslimg.github.io/2022/05/25/zi-chuan-xiang-guan-wen-ti/</id>
-    <published>2022-05-25T02:42:00.000Z</published>
-    <updated>2022-05-28T15:33:28.409Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;696-计数二进制子串&quot;&gt;&lt;a href=&quot;#696-计数二进制子串&quot; class=&quot;headerlink&quot; title=&quot;696. 计数二进制子串&quot;&gt;&lt;/a&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="算法整理" scheme="https://qianxunslimg.github.io/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/"/>
-    
-    
-    <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
     
   </entry>
   

@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-14T16:17:50.030Z">
+<meta property="article:modified_time" content="2023-04-17T13:50:25.484Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -412,7 +412,32 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
 <span class="hljs-keyword">RUN</span><span class="bash"> sudo make</span>
 
 <span class="hljs-comment"># 运行程序</span>
-<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span></code></pre></div>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
+
+<span class="hljs-comment">###########################逐行解释#############################</span>
+<span class="hljs-comment"># 基础镜像</span>
+<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
+<span class="hljs-comment"># 这一行表示从codenvy/cpp_gcc这个镜像开始构建，这个镜像是一个包含了C++和GCC的环境，用于编译和运行C++程序。</span>
+
+<span class="hljs-comment"># make file in the docker image</span>
+<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即创建一个/home/user/myapp的目录，用于存放项目文件。</span>
+
+<span class="hljs-comment"># 将本地文件复制到容器中</span>
+<span class="hljs-keyword">ADD</span><span class="bash"> ./project /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示将本地的./project目录下的所有文件和子目录复制到容器中的/home/user/myapp目录下，这样就可以在容器中访问项目文件了。</span>
+
+<span class="hljs-comment"># set workdir</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示设置容器中的工作目录为/home/user/myapp，这样后面的命令都会在这个目录下执行。</span>
+
+<span class="hljs-comment"># 编译程序</span>
+<span class="hljs-comment"># RUN sudo make</span>
+<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即使用sudo权限执行make命令，用于编译项目中的程序。但是这一行是被注释掉的，所以不会执行。</span>
+
+<span class="hljs-comment"># 运行程序</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
+<span class="hljs-comment"># 这一行表示设置容器启动时要执行的命令，即运行./hello_world这个可执行文件，这是项目中编译出来的程序。</span></code></pre></div>
 
 <p>镜像运行为容器</p>
 <div class="code-wrapper"><pre><code class="hljs shell">docker build -f ./docker_file -t my_hello_docker:v1.0 .
