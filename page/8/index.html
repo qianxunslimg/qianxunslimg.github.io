@@ -226,6 +226,46 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/12/02/zu-he-shu-fang-yi-chu/" target="_self">
+          组合数 防溢出
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2021/12/02/zu-he-shu-fang-yi-chu/" target="_self">
+        <div>
+          
+          1   2 long long C(int N, int M) { 3     long long sum &#x3D; 1; 4     for(int i&#x3D;1;i&lt;&#x3D;M; i++) { 5         sum&#x3D;sum*(N-M+i)&#x2F;i; 6     } 7     return sum; 8 }
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-02 19:27" pubdate>
+              2021-12-02
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">#leetcode</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/12/02/vector-pair-huo-zhe-you-xu-map/" target="_self">
           vector&lt;pair&gt;或者有序map
         </a>
@@ -621,46 +661,6 @@
         <div>
           
           起因本身软件的文件读取逻辑是csv存储工程测点路径 然后根据路径去指定目录下找指定格式的文件读取 这个文件逻辑也是我们的采集设备采集完成后，结果文件的保存逻辑 奈何甲方使用习惯不同，习惯ctrl A全选 所有文件放在一个文件夹下和csv匹配，只好添加此逻辑 实现过程中，按照网上的方法，发现mfc的CFileDialog读取多个文件有个最大数量的限制，选的多，实际读取到的并不全 解决方法设置CFil
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-26 19:28" pubdate>
-              2021-09-26
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/09/26/opencv-tian-jia-han-zi/" target="_self">
-          opencv添加汉字
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2021/09/26/opencv-tian-jia-han-zi/" target="_self">
-        <div>
-          
-          起因opencv的mat图片上 如果添加非中午字符 或者英文的话 使用opencv自带的putText就可以满足需求 但是添加汉字的话 putText就会出现问题 可以使用如下函数 在mat上添加汉字 函数void putTextZH(Mat &amp;dst, const char *str, Point org, Scalar color, int fontsize,
         </div>
       </a>
 

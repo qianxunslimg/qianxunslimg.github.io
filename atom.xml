@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-14T12:06:39.716Z</updated>
+  <updated>2023-04-17T09:02:00.052Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>make-cmake-vscode_roject</title>
+    <link href="https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/"/>
+    <id>https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/</id>
+    <published>2023-04-17T07:53:00.000Z</published>
+    <updated>2023-04-17T09:02:00.052Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;对如下简单代码进行测试&lt;/p&gt;
+&lt;p&gt;目录结构如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>nfc音乐墙制作-安卓</title>
-    <link href="https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/"/>
-    <id>https://qianxunslimg.github.io/2023/04/14/tortoisegit-jie-jue-chong-tu-fu-ben/</id>
+    <link href="https://qianxunslimg.github.io/2023/04/14/nfc-yin-le-qiang-zhi-zuo-an-zhuo/"/>
+    <id>https://qianxunslimg.github.io/2023/04/14/nfc-yin-le-qiang-zhi-zuo-an-zhuo/</id>
     <published>2023-04-14T15:43:00.000Z</published>
     <updated>2023-04-14T12:06:39.716Z</updated>
     
@@ -274,11 +299,11 @@
   </entry>
   
   <entry>
-    <title>web项目</title>
-    <link href="https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/"/>
-    <id>https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/</id>
+    <title>main</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/main/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/main/</id>
     <published>2022-08-09T01:46:00.000Z</published>
-    <updated>2022-08-17T08:29:08.508Z</updated>
+    <updated>2022-08-15T16:45:11.887Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -293,11 +318,11 @@
   </entry>
   
   <entry>
-    <title>main</title>
-    <link href="https://qianxunslimg.github.io/2022/08/09/main/"/>
-    <id>https://qianxunslimg.github.io/2022/08/09/main/</id>
+    <title>web项目</title>
+    <link href="https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/"/>
+    <id>https://qianxunslimg.github.io/2022/08/09/web-xiang-mu-zheng-li/</id>
     <published>2022-08-09T01:46:00.000Z</published>
-    <updated>2022-08-15T16:45:11.887Z</updated>
+    <updated>2022-08-17T08:29:08.508Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -421,29 +446,6 @@
     
     
     <category term="算法总结" scheme="https://qianxunslimg.github.io/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo搭建博客的几个问题</title>
-    <link href="https://qianxunslimg.github.io/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/"/>
-    <id>https://qianxunslimg.github.io/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/</id>
-    <published>2022-05-24T11:28:00.000Z</published>
-    <updated>2022-05-24T11:53:39.486Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
