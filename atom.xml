@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-17T16:34:34.219Z</updated>
+  <updated>2023-04-18T17:25:46.563Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu系统配置</title>
+    <link href="https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/"/>
+    <id>https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/</id>
+    <published>2023-04-18T17:59:00.000Z</published>
+    <updated>2023-04-18T17:25:46.563Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 总是一遍一遍配置 一遍一遍找教程 记录一下&lt;/p&gt;
+&lt;h3 id=&quot;1-ubuntu换源&quot;&gt;&lt;a href=&quot;#1-ubuntu换源&quot; class=&quot;headerlink&quot; title=&quot;1. ubuntu换源&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="工具学习" scheme="https://qianxunslimg.github.io/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>ScopeGuard理解与使用</title>
@@ -139,6 +163,29 @@
     <title>docker入门</title>
     <link href="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</id>
+    <published>2023-01-05T17:59:00.000Z</published>
+    <updated>2023-04-17T13:50:25.484Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-window安装问题&quot;&gt;&lt;a href=&quot;#1-window安装问题&quot; class=&quot;headerlink&quot; title=&quot;1. window安装问题&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="工具学习" scheme="https://qianxunslimg.github.io/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker入门</title>
+    <link href="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/"/>
+    <id>https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/</id>
     <published>2023-01-05T17:59:00.000Z</published>
     <updated>2023-04-17T13:50:25.484Z</updated>
     
@@ -395,48 +442,6 @@
         
         
     <summary type="html">&lt;h5 id=&quot;午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot;&gt;&lt;a href=&quot;#午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot; class=&quot;headerlink&quot; title=&quot;午休刷视频发现了有个脚本小工具 尝试了下</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面试补充问题</title>
-    <link href="https://qianxunslimg.github.io/2022/06/02/bu-chong-mian-jing-wen-ti/"/>
-    <id>https://qianxunslimg.github.io/2022/06/02/bu-chong-mian-jing-wen-ti/</id>
-    <published>2022-06-02T01:46:00.000Z</published>
-    <updated>2022-07-25T08:38:51.448Z</updated>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    <category term="基础知识" scheme="https://qianxunslimg.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-    
-    <category term="面试" scheme="https://qianxunslimg.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CNAME CDN IPC</title>
-    <link href="https://qianxunslimg.github.io/2022/05/26/cname-cdn-ipc/"/>
-    <id>https://qianxunslimg.github.io/2022/05/26/cname-cdn-ipc/</id>
-    <published>2022-05-26T12:54:00.000Z</published>
-    <updated>2022-05-26T13:05:14.964Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot;</summary>
         
       
     

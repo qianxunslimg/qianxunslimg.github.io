@@ -16,29 +16,24 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+    <meta name="description" content="总是一遍一遍配置 一遍一遍找教程 记录一下 1. ubuntu换源参考这个网站的源ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror 执行如下： sudo gedit &#x2F;etc&#x2F;cat&#x2F;sources.list  直接替换源即可 2. ROS安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker入门">
-<meta property="og:url" content="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/index.html">
+<meta property="og:title" content="ubuntu系统配置">
+<meta property="og:url" content="https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+<meta property="og:description" content="总是一遍一遍配置 一遍一遍找教程 记录一下 1. ubuntu换源参考这个网站的源ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror 执行如下： sudo gedit &#x2F;etc&#x2F;cat&#x2F;sources.list  直接替换源即可 2. ROS安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png">
-<meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-17T13:50:25.484Z">
+<meta property="article:published_time" content="2023-04-18T17:59:00.000Z">
+<meta property="article:modified_time" content="2023-04-18T17:25:46.563Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>docker入门 - qianxunslimgのblog</title>
+  <title>ubuntu系统配置 - qianxunslimgのblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="docker入门"></span>
+            <span id="subtitle" data-typed-text="ubuntu系统配置"></span>
           
         </div>
 
@@ -215,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-06 01:59" pubdate>
-          2023年1月6日 凌晨
+        <time datetime="2023-04-19 01:59" pubdate>
+          2023年4月19日 凌晨
         </time>
       </span>
     
@@ -278,195 +273,108 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">docker入门</h1>
+            <h1 style="display: none">ubuntu系统配置</h1>
             
             <div class="markdown-body">
               
-              <h2 id="1-window安装问题"><a href="#1-window安装问题" class="headerlink" title="1. window安装问题"></a>1. window安装问题</h2><p>docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用</p>
+              <p> 总是一遍一遍配置 一遍一遍找教程 记录一下</p>
+<h3 id="1-ubuntu换源"><a href="#1-ubuntu换源" class="headerlink" title="1. ubuntu换源"></a>1. ubuntu换源</h3><p>参考这个网站的源<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<p>执行如下：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo gedit /etc/cat/sources.list</code></pre></div>
+
+<p>直接替换源即可</p>
+<h3 id="2-ROS安装"><a href="#2-ROS安装" class="headerlink" title="2. ROS安装"></a>2. ROS安装</h3><p>参考网站<a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/20/%E5%B0%8F%E9%B1%BC%E7%9A%84%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97?lang=zh-CN">小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn)</a></p>
+<p>直接输入指令</p>
+<div class="code-wrapper"><pre><code class="hljs bash">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</code></pre></div>
+
+<p>根据需求 选择即可</p>
+<p>根据如下教程<code>测试ros2是否安装成功</code></p>
 <ol>
-<li><p>使用vmware</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype off</code></pre></div>
+<li><p>新开一个terminal，运行以下命令，打开小乌龟窗口：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node       <span class="hljs-comment"># 启动乌龟GUI节点界面，乌龟可以在界面中运动</span></code></pre></div>
 </li>
-<li><p>使用docker</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype auto</code></pre></div>
+<li><p>新开一个terminal，运行以下命令，打开乌龟控制窗口，可使用方向键控制乌龟运动：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtle_teleop_key    <span class="hljs-comment"># 启动键盘控制节点，可以通过键盘控制乌龟运动</span></code></pre></div></li>
+</ol>
+<h3 id="3-安装c-相关"><a href="#3-安装c-相关" class="headerlink" title="3. 安装c++相关"></a>3. 安装c++相关</h3><h4 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h4><p>ubuntu自带gcc，查看版本</p>
+<div class="code-wrapper"><pre><code class="hljs bash">gcc -v</code></pre></div>
+
+<h4 id="g"><a href="#g" class="headerlink" title="g++"></a>g++</h4><div class="code-wrapper"><pre><code class="hljs bash">sudo apt-get install build-essential</code></pre></div>
+
+<p>查看版本</p>
+<div class="code-wrapper"><pre><code class="hljs bash">g++ -v</code></pre></div>
+
+<h4 id="make"><a href="#make" class="headerlink" title="make"></a>make</h4><p>ubuntu自带make，查看版本</p>
+<div class="code-wrapper"><pre><code class="hljs bash">make -v</code></pre></div>
+
+<h4 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h4><p>ubuntu基本也自带cmake，查看版本</p>
+<div class="code-wrapper"><pre><code class="hljs bash">cmake --version</code></pre></div>
+
+<p>不带的话就</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo apt install cmake</code></pre></div>
+
+<h3 id="4-安装vscode"><a href="#4-安装vscode" class="headerlink" title="4. 安装vscode"></a>4. 安装vscode</h3><ol>
+<li><p>软件商店直接下载</p>
 </li>
-<li><p>切换完需要重启</p>
+<li><p>下载dbkg包，然后</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo dpkg -i ***.deb</code></pre></div>
 </li>
+<li><p>snap命令</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo snap install --classic code</code></pre></div></li>
 </ol>
-<h2 id="2-镜像和容器关系"><a href="#2-镜像和容器关系" class="headerlink" title="2. 镜像和容器关系"></a>2. 镜像和容器关系</h2><h3 id="windows中的vmware安装操作系统："><a href="#windows中的vmware安装操作系统：" class="headerlink" title="windows中的vmware安装操作系统："></a>windows中的vmware安装操作系统：</h3><ol>
-<li>创建虚拟机</li>
-<li>选择ios文件（操作系统镜像）</li>
-<li>配置虚拟机</li>
-</ol>
-<h3 id="docker操作"><a href="#docker操作" class="headerlink" title="docker操作"></a>docker操作</h3><ol>
-<li>pull镜像 （类似windows下的下载iso文件）</li>
-<li>运行容器 （从镜像新建容器， 相当于操作系统安装运行）</li>
-</ol>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png" srcset="/img/loading.gif" lazyload alt="image-20230106010045452" style="zoom:50%;">
+<h3 id="5-安装python-pip"><a href="#5-安装python-pip" class="headerlink" title="5. 安装python pip"></a>5. 安装python pip</h3><p>python肯定自带</p>
+<div class="code-wrapper"><pre><code class="hljs bash">python --version
+python3 --version <span class="hljs-comment">#3.6</span></code></pre></div>
 
-<h2 id="3-docker命令"><a href="#3-docker命令" class="headerlink" title="3. docker命令"></a>3. docker命令</h2><h3 id="拉取镜像：docker-pull-ubuntu-18-04"><a href="#拉取镜像：docker-pull-ubuntu-18-04" class="headerlink" title="拉取镜像：docker pull ubuntu:18.04"></a>拉取镜像：<code>docker pull ubuntu:18.04</code></h3><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><h4 id="运行和终止容器（实则是从镜像创建容器并运行）：docker-run"><a href="#运行和终止容器（实则是从镜像创建容器并运行）：docker-run" class="headerlink" title="运行和终止容器（实则是从镜像创建容器并运行）：docker run"></a>运行和终止容器（实则是从镜像创建容器并运行）：<code>docker run</code></h4><ol>
-<li><p>输出一个 “Hello World”，之后终止容器</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run ubuntu:18.04 /bin/<span class="hljs-built_in">echo</span> <span class="hljs-string">'Hello world'</span>
-<span class="hljs-string">'Hello world'</span></code></pre></div>
+<p>安装python3.8，搜到的教程可以直接使用<a target="_blank" rel="noopener" href="https://aitechtogether.com/python/50592.html">Ubuntu安装Python3.8 | AI技术聚合 (aitechtogether.com)</a></p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.8
+python3.8 --version
 
-<ol start="2">
-<li>启动一个 bash 终端，允许用户进行交互</li>
-</ol>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -t -i ubuntu:18.04 /bin/bash
-root@7563162c9979:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
 
-<p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
-</li>
-<li><p>退出容器： 直接<code>exit</code>   或者 <code>Ctrl+d</code>  多个容器时使用<code>docker container stop</code></p>
-</li>
-<li><p>终止状态容器查看和启动： </p>
-<ol>
-<li><code>docker container ls -a</code> 终止状态容器查看</li>
-<li>处于终止状态的容器，可以通过 <code>docker container start</code> 命令来重新启动</li>
-</ol>
-</li>
-</ol>
-<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>在使用 <code>-d</code> 参数时，容器启动后会进入后台。</p>
-<ol>
-<li><p>attach 不好</p>
-<div class="code-wrapper"><pre><code class="hljs shell">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075
+<span class="hljs-comment">#设置为默认的python3</span>
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1</code></pre></div>
 
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
-adc05673f248   ubuntu    "bash"    12 seconds ago   Up 11 seconds             pedantic_hugle
+<p>安装pip3</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo apt-get install python3-pip</code></pre></div>
 
-C:\Users\qianxunslimg&gt;docker attach adc
-root@adc05673f248:/# ls
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
-</li>
-<li><p>exec 优先使用</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-d51137b164abacaa0ea8f151d6b5cad5a1c316b55869bb2ae27c81f50f2f3eac
+<p>换源，建立sh 然后<code>sudo sh **.sh</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-d51137b164ab   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             crazy_mendeleev
+<span class="hljs-built_in">set</span> -ex
 
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -i d51 bash  //-i没有命令提示符 难用
-ls
-bin
-boot
-dev
-...
+<span class="hljs-comment"># 更换国内镜像源，这里使用的是 aliyun</span>
 
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -it d51 bash  //完整shell界面
-root@d51137b164ab:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div></li>
-</ol>
-<h4 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h4><ol>
-<li><p>导出 docker export</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker container ls -a
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-61e0da2df721   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             pensive_fermat
+mkdir -p ~/.pip
 
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">export</span> 61e &gt; ubuntu_container_test.tar</code></pre></div>
+touch ~/.pip/pip.conf
 
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png" srcset="/img/loading.gif" lazyload alt="image-20230106013015214" style="zoom: 67%;">
-</li>
-<li><p>导入容器快照 docker import</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker import ubuntu_container_test.tar <span class="hljs-built_in">test</span>:ubuntu_v1.0
-sha256:149d18447e370d3e6d15417450c7ad3189c3dfe32c79d16c5aea36927e5ed3ef
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"[global]</span>
+<span class="hljs-string">timeout = 6000</span>
+<span class="hljs-string">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span>
+<span class="hljs-string">trusted-host = mirrors.aliyun.com</span>
+<span class="hljs-string">"</span> &gt; ~/.pip/pip.conf
 
-C:\Users\qianxunslimg&gt;docker image ls
-REPOSITORY               TAG           IMAGE ID       CREATED          SIZE
-<span class="hljs-built_in">test</span>                     ubuntu_v1.0   149d18447e37   30 seconds ago   77.8MB
-ubuntu                   18.04         e28a50f651f9   2 days ago       63.1MB
-docker/getting-started   latest        3e4394f6b72f   13 days ago      47MB
-ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB
-hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</code></pre></div>
+<span class="hljs-comment"># example</span>
+<span class="hljs-comment"># pip3 install numpy</span></code></pre></div>
 
-<blockquote>
-<p><em>注：用户既可以使用</em> <code>docker load</code> <em>来导入镜像存储文件到本地镜像库，也可以使用</em> <code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><ol>
-<li>删除特定终止状态的容器 <code>docker container rm</code></li>
-<li>删除所有终止容器  <code>docker container prune</code></li>
-</ol>
-<h2 id="4-打包程序"><a href="#4-打包程序" class="headerlink" title="4. 打包程序"></a>4. 打包程序</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1893294">【Docker】从零开始将自己的应用打包到docker镜像 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
-<p>==（todo: 仿照这个操作步骤，打包一下tinywebserver, 在windows下的docker运行）==</p>
-<h3 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h3><p>简单c++</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png" srcset="/img/loading.gif" lazyload alt="image-20230415000909382"></p>
-<p>docker_file如下</p>
-<div class="code-wrapper"><pre><code class="hljs dockerfile"><span class="hljs-comment"># 基础镜像</span>
-<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
+<h3 id="6-安装jupyter-notebook"><a href="#6-安装jupyter-notebook" class="headerlink" title="6. 安装jupyter notebook"></a>6. 安装jupyter notebook</h3><div class="code-wrapper"><pre><code class="hljs bash">python3 -m pip install --upgrade pip
+sudo python3 -m pip install jupyter</code></pre></div>
 
-<span class="hljs-comment"># make file in the docker image</span>
-<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
+<h3 id="7-docker安装"><a href="#7-docker安装" class="headerlink" title="7. docker安装"></a>7. docker安装</h3><p><del>官方脚本安装</del> 网太差 版本也可能不对应</p>
+<div class="code-wrapper"><pre><code class="hljs bash">curl -fsSL https://test.docker.com -o test-docker.sh
+sudo sh test-docker.sh</code></pre></div>
 
-<span class="hljs-comment"># 将本地文件复制到容器中</span>
-<span class="hljs-keyword">ADD</span><span class="bash"> ./docker_test /home/user/myapp</span>
+<p>参考<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022374119">Docker之Ubuntu18.04简单安装 - 个人文章 - SegmentFault 思否</a></p>
+<p>在<a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/dists%E4%B8%8B%E8%BD%BDdeb%E5%AE%89%E8%A3%85%E5%8C%85">https://download.docker.com/linux/ubuntu/dists下载deb安装包</a> </p>
+<p>ubuntu1804代号是bionic 下载地址 <a target="_blank" rel="noopener" href="https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/">https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/</a> 下载速度也是一言难尽</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo dpkg -i package.deb</code></pre></div>
 
-<span class="hljs-comment"># set workdir</span>
-<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
+<p>还有就是之前的大佬制作的一键安装 没有测试</p>
+<div class="code-wrapper"><pre><code class="hljs bash">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</code></pre></div>
 
-<span class="hljs-comment"># 编译程序</span>
-<span class="hljs-keyword">RUN</span><span class="bash"> sudo make</span>
-
-<span class="hljs-comment"># 运行程序</span>
-<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
-
-<span class="hljs-comment">###########################逐行解释#############################</span>
-<span class="hljs-comment"># 基础镜像</span>
-<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
-<span class="hljs-comment"># 这一行表示从codenvy/cpp_gcc这个镜像开始构建，这个镜像是一个包含了C++和GCC的环境，用于编译和运行C++程序。</span>
-
-<span class="hljs-comment"># make file in the docker image</span>
-<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即创建一个/home/user/myapp的目录，用于存放项目文件。</span>
-
-<span class="hljs-comment"># 将本地文件复制到容器中</span>
-<span class="hljs-keyword">ADD</span><span class="bash"> ./project /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示将本地的./project目录下的所有文件和子目录复制到容器中的/home/user/myapp目录下，这样就可以在容器中访问项目文件了。</span>
-
-<span class="hljs-comment"># set workdir</span>
-<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示设置容器中的工作目录为/home/user/myapp，这样后面的命令都会在这个目录下执行。</span>
-
-<span class="hljs-comment"># 编译程序</span>
-<span class="hljs-comment"># RUN sudo make</span>
-<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即使用sudo权限执行make命令，用于编译项目中的程序。但是这一行是被注释掉的，所以不会执行。</span>
-
-<span class="hljs-comment"># 运行程序</span>
-<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
-<span class="hljs-comment"># 这一行表示设置容器启动时要执行的命令，即运行./hello_world这个可执行文件，这是项目中编译出来的程序。</span></code></pre></div>
-
-<p>镜像运行为容器</p>
-<div class="code-wrapper"><pre><code class="hljs shell">docker build -f ./docker_file -t my_hello_docker:v1.0 .
-
-docker image ls
-docker run -it my_hello_docker:v1.0 //正常运行
-
-docker container ls -a  //查看container
-docker container export 632 &gt; test.tar  //导出container
-docker container prune  //删除所有容器
-docker container ls -a</code></pre></div>
-
-<p>重新导入容器测试</p>
-<div class="code-wrapper"><pre><code class="hljs sh">docker image rm my_hello_docker:v1.0 
-docker image ls
-docker import test.tar my_hello_docker:v1.0
-
-docker run -it my_hello_docker:v1.0 //为啥运行不起来了
-docker: Error response from daemon: No <span class="hljs-built_in">command</span> specified.</code></pre></div>
-
-<p>报错原因：</p>
-<p>从dockerfile新建容器时是可以缺省参数直接运行程序的，</p>
-<p>而导入的镜像 运行需要参数</p>
-<div class="code-wrapper"><pre><code class="hljs sh">docker run -it  my_hello_docker:v1.0 /bin/bash
-<span class="hljs-built_in">cd</span> /home/user/myapp
-./hello_world   //正常运行</code></pre></div>
-
-<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>dockerfile里边不执行make 直接打包  严谨一点</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png" srcset="/img/loading.gif" lazyload alt="image-20230415001742100"></p>
 
               
             </div>
@@ -490,8 +398,8 @@ docker: Error response from daemon: No <span class="hljs-built_in">command</span
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>docker入门</div>
-      <div>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</div>
+      <div>ubuntu系统配置</div>
+      <div>https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/</div>
     </div>
     <div class="license-meta">
       
@@ -503,7 +411,7 @@ docker: Error response from daemon: No <span class="hljs-built_in">command</span
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月6日</div>
+          <div>2023年4月19日</div>
         </div>
       
       
@@ -533,18 +441,12 @@ docker: Error response from daemon: No <span class="hljs-built_in">command</span
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/08/lan-ya-tong-xin/" title="蓝牙通信">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">蓝牙通信</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/01/06/ros-xue-xi/" title="docker入门">
-                        <span class="hidden-mobile">docker入门</span>
+                      <a href="/2023/04/18/scopeguard-li-jie-yu-shi-yong/" title="ScopeGuard理解与使用">
+                        <span class="hidden-mobile">ScopeGuard理解与使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
