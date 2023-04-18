@@ -24,7 +24,7 @@
 <meta property="og:description" content="todo: 制作并美观音乐墙 软件准备 NFC Tools：安卓系统下对nfc芯片写入信息的软件  NFC Tasks：由于没有ios下的快捷指令，需要此软件执行任务 Tasker(可选)：执行nfc扫描后的复杂任务，此处没有必要，而且感觉并不好用  音乐播放实现个人尝试着，有以下几种实现方式，各有利弊了属于是  直接写入url，tasks执行打开连接操作 NFC Tools：任务–添加任务–应用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-14T15:43:00.000Z">
-<meta property="article:modified_time" content="2023-04-14T12:06:39.716Z">
+<meta property="article:modified_time" content="2023-04-18T07:08:56.195Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="开发随笔">
 <meta name="twitter:card" content="summary_large_image">
@@ -290,7 +290,7 @@
 <p>贴靠NFC芯片，点击 <code>写/个字节</code></p>
 <blockquote>
 <p>这种方法的好处就是，不限于音乐，可以设置打开一些网站。</p>
-<p>但是不足之处在于，音乐在网页上，没有自动播放，想要到app中需要点击进行跳转。</p>
+<p>但是不足之处在于，音乐在网页上，没有自动播放，想要到app中需要点击进行跳转，一种解决方法是将网易云设置为默认浏览器</p>
 </blockquote>
 </li>
 <li><p>音乐存储在本地</p>
@@ -303,7 +303,7 @@
 </blockquote>
 </li>
 <li><p>结合tasker操作，比较难用</p>
-<p>尝试了以下直接卸载了，tasker不在主界面时无法响应</p>
+<p>尝试了一下直接卸载了，tasker不在主界面时无法响应</p>
 <p>思路就是tools的任务为tasker中的自定义任务，其中自定义任务设置启动网易云，将歌曲链接传参进去</p>
 </li>
 </ol>
