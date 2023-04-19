@@ -16,23 +16,23 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+    <meta name="description" content="1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 测试1：根据如下教程测试ros2是否安装成功  新开一个terminal，运行以下命令，打开小乌龟窗口： ros2 run turtlesim tu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker入门">
 <meta property="og:url" content="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="1. window安装问题docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用  使用vmware bcdedit &#x2F;set hypervisorlaunchtype off  使用docker bcdedit &#x2F;set hypervisorlaunchtype auto  切换完需要重启   2. 镜像和容器关系windows中的vmware安装操作系统：">
+<meta property="og:description" content="1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 测试1：根据如下教程测试ros2是否安装成功  新开一个terminal，运行以下命令，打开小乌龟窗口： ros2 run turtlesim tu">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104024167.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419165151313.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419220622266.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-17T13:50:25.484Z">
+<meta property="article:modified_time" content="2023-04-19T14:15:01.204Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -282,191 +282,202 @@
             
             <div class="markdown-body">
               
-              <h2 id="1-window安装问题"><a href="#1-window安装问题" class="headerlink" title="1. window安装问题"></a>1. window安装问题</h2><p>docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用</p>
+              <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><p>参考网站<a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/20/%E5%B0%8F%E9%B1%BC%E7%9A%84%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97?lang=zh-CN">小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn)</a></p>
+<p>直接输入指令</p>
+<div class="code-wrapper"><pre><code class="hljs bash">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</code></pre></div>
+
+<p>根据需求 选择即可</p>
+<p>测试1：根据如下教程<code>测试ros2是否安装成功</code></p>
 <ol>
-<li><p>使用vmware</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype off</code></pre></div>
+<li><p>新开一个terminal，运行以下命令，打开小乌龟窗口：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node       <span class="hljs-comment"># 启动乌龟GUI节点界面，乌龟可以在界面中运动</span></code></pre></div>
 </li>
-<li><p>使用docker</p>
-<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype auto</code></pre></div>
-</li>
-<li><p>切换完需要重启</p>
-</li>
+<li><p>新开一个terminal，运行以下命令，打开乌龟控制窗口，可使用方向键控制乌龟运动：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtle_teleop_key    <span class="hljs-comment"># 启动键盘控制节点，可以通过键盘控制乌龟运动</span></code></pre></div></li>
 </ol>
-<h2 id="2-镜像和容器关系"><a href="#2-镜像和容器关系" class="headerlink" title="2. 镜像和容器关系"></a>2. 镜像和容器关系</h2><h3 id="windows中的vmware安装操作系统："><a href="#windows中的vmware安装操作系统：" class="headerlink" title="windows中的vmware安装操作系统："></a>windows中的vmware安装操作系统：</h3><ol>
-<li>创建虚拟机</li>
-<li>选择ios文件（操作系统镜像）</li>
-<li>配置虚拟机</li>
-</ol>
-<h3 id="docker操作"><a href="#docker操作" class="headerlink" title="docker操作"></a>docker操作</h3><ol>
-<li>pull镜像 （类似windows下的下载iso文件）</li>
-<li>运行容器 （从镜像新建容器， 相当于操作系统安装运行）</li>
-</ol>
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png" srcset="/img/loading.gif" lazyload alt="image-20230106010045452" style="zoom:50%;">
-
-<h2 id="3-docker命令"><a href="#3-docker命令" class="headerlink" title="3. docker命令"></a>3. docker命令</h2><h3 id="拉取镜像：docker-pull-ubuntu-18-04"><a href="#拉取镜像：docker-pull-ubuntu-18-04" class="headerlink" title="拉取镜像：docker pull ubuntu:18.04"></a>拉取镜像：<code>docker pull ubuntu:18.04</code></h3><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><h4 id="运行和终止容器（实则是从镜像创建容器并运行）：docker-run"><a href="#运行和终止容器（实则是从镜像创建容器并运行）：docker-run" class="headerlink" title="运行和终止容器（实则是从镜像创建容器并运行）：docker run"></a>运行和终止容器（实则是从镜像创建容器并运行）：<code>docker run</code></h4><ol>
-<li><p>输出一个 “Hello World”，之后终止容器</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run ubuntu:18.04 /bin/<span class="hljs-built_in">echo</span> <span class="hljs-string">'Hello world'</span>
-<span class="hljs-string">'Hello world'</span></code></pre></div>
-
-<ol start="2">
-<li>启动一个 bash 终端，允许用户进行交互</li>
-</ol>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -t -i ubuntu:18.04 /bin/bash
-root@7563162c9979:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
-
-<p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
-</li>
-<li><p>退出容器： 直接<code>exit</code>   或者 <code>Ctrl+d</code>  多个容器时使用<code>docker container stop</code></p>
-</li>
-<li><p>终止状态容器查看和启动： </p>
+<p>测试2</p>
 <ol>
-<li><code>docker container ls -a</code> 终止状态容器查看</li>
-<li>处于终止状态的容器，可以通过 <code>docker container start</code> 命令来重新启动</li>
-</ol>
+<li><p>新开一个terminal，运行以下命令，启动listener</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run demo_nodes_py listener</code></pre></div>
 </li>
+<li><p>新开一个terminal，运行以下命令，启动talker</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 run demo_nodes_py talker</code></pre></div></li>
 </ol>
-<h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>在使用 <code>-d</code> 参数时，容器启动后会进入后台。</p>
+<h1 id="2-系统架构"><a href="#2-系统架构" class="headerlink" title="2. 系统架构"></a>2. 系统架构</h1><h3 id="ROS2的架构"><a href="#ROS2的架构" class="headerlink" title="ROS2的架构"></a>ROS2的架构</h3><p>ros2整体的系统架构如下：</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png" srcset="/img/loading.gif" lazyload alt="image-20230419104808030"></p>
+<p>ros2的系统架构是一个分布式的实时系统架构，它由多个组件（称为节点）组成，这些组件可以是机器人中的传感器、运动控制器、检测算法、人工智能算法、导航算法等。这些组件通过DDS中间件进行数据交换，DDS是一个开放标准的通信协议，它支持去中心化的发布订阅模式。ros2的控制组织体架构可以用下图表示：</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104024167.png" srcset="/img/loading.gif" lazyload alt="image-20230419104024167" style="zoom: 67%;">
+
+<p>图中的每个方框代表一个节点，每个节点可以有多个接口（称为command_interface或state_interface），用于发送或接收数据。每个接口都有一个名称和一个类型，比如position、velocity、effort等。节点之间通过话题（topic）或服务（service）进行通信，话题是一种基于发布订阅模式的异步通信方式，服务是一种基于请求响应模式的同步通信方式。ros2_control是一个用于控制机器人运动的框架，它提供了一种统一的方式来描述和管理机器人的硬件和控制器。ros2_control中有三种主要的组件类型：system、actuator和sensor。system组件代表了一个完整的机器人系统，它可以包含多个关节和传感器，并且可以提供多种类型的接口。actuator组件代表了一个单独的执行器，它只有一个关节，并且只提供一种类型的接口。sensor组件代表了一个单独的传感器，它只提供state_interface，并且不需要command_interface。ros2_control还提供了一种称为transmission的机制，用于在不同类型的接口之间进行转换，比如将position转换为effort</p>
+<h3 id="ROS2的特点"><a href="#ROS2的特点" class="headerlink" title="ROS2的特点"></a>ROS2的特点</h3><ul>
+<li>基于DDS（Data Distribution Service）中间件，支持去中心化的发布订阅模式，提高了通信的实时性、可靠性、安全性和标准性</li>
+<li>支持多种操作系统和编程语言，提高了跨平台和多语言的兼容性</li>
+<li>支持多机器人协同和嵌入式系统，提高了扩展性和适应性</li>
+<li>继承了ROS1的生态系统，提供了丰富的软件库和工具集，方便了机器人的开发和测试</li>
+</ul>
+<h3 id="ROS2的概念"><a href="#ROS2的概念" class="headerlink" title="ROS2的概念"></a>ROS2的概念</h3><ul>
+<li>节点（Node）：一个可执行程序，可以实现机器人的某个功能，比如控制、感知、规划等</li>
+<li>接口（Interface）：节点之间通信的数据类型，分为命令接口（Command Interface）和状态接口（State Interface），分别用于发送或接收数据</li>
+<li>话题（Topic）：一种基于发布订阅模式的异步通信方式，节点可以发布或订阅话题，实现数据的广播</li>
+<li>服务（Service）：一种基于请求响应模式的同步通信方式，节点可以提供或调用服务，实现数据的交互</li>
+<li>参数（Parameter）：节点的配置信息，可以在运行时动态修改</li>
+<li>Action：一种基于目标驱动模式的通信方式，节点可以发送或执行Action，实现数据的反馈</li>
+</ul>
+<h3 id="ROS2的工具"><a href="#ROS2的工具" class="headerlink" title="ROS2的工具"></a>ROS2的工具</h3><ul>
+<li>ros2命令行工具：用于管理ROS2系统，包括创建、运行、停止、列出、查看节点、话题、服务、参数等</li>
+<li>rviz可视化工具：用于展示机器人的模型、传感器数据、导航信息等</li>
+<li>rqt图形化工具：用于监控和调试ROS2系统，包括查看日志、绘制图表、发送消息等</li>
+<li>gazebo仿真工具：用于模拟机器人在真实环境中的运动和感知</li>
+<li>ros2_control控制框架：用于管理机器人的硬件和控制器，提供了一种统一的方式来描述和控制机器人</li>
+<li>ros2_launch启动工具：用于同时启动多个节点和设置参数</li>
+</ul>
+<h1 id="3-实验及指令"><a href="#3-实验及指令" class="headerlink" title="3.实验及指令"></a>3.实验及指令</h1><h2 id="小实验"><a href="#小实验" class="headerlink" title="小实验"></a>小实验</h2><h3 id="小节点"><a href="#小节点" class="headerlink" title="小节点"></a>小节点</h3><h4 id="c-构建"><a href="#c-构建" class="headerlink" title="c++构建"></a>c++构建</h4><p>cpp代码：first_ros2_node.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-comment">//#include "rclcpp/rclcpp.hpp"</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>
+<span class="hljs-function"></span>{
+    <span class="hljs-comment">// 调用rclcpp的初始化函数</span>
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-comment">// 调用rclcpp的循环运行我们创建的first_node节点</span>
+    rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;rclcpp::Node&gt;(<span class="hljs-string">"first_node"</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>CMakeLists:两种写法</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.10</span>)
+
+<span class="hljs-keyword">project</span>(first_node)
+
+<span class="hljs-comment">#include_directories 添加特定的头文件搜索路径 ，相当于指定g++编译器的-I参数</span>
+<span class="hljs-keyword">include_directories</span>(/opt/ros/dashing/<span class="hljs-keyword">include</span>/)
+
+<span class="hljs-comment"># no need for this</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rclcpp/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rcl/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rcutils/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rcl_yaml_param_parser/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rosidl_runtime_c/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rosidl_typesupport_interface/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rcpputils/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/builtin_interfaces/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rmw/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/rosidl_runtime_cpp/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/tracetools/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/libstatistics_collector/)</span>
+<span class="hljs-comment">#include_directories(/opt/ros/dashing/include/statistics_msgs/)</span>
+
+<span class="hljs-comment"># link_directories - 向工程添加多个特定的库文件搜索路径，相当于指定g++编译器的-L参数</span>
+<span class="hljs-keyword">link_directories</span>(/opt/ros/dashing/lib/)
+
+<span class="hljs-comment"># add_executable - 生成first_node可执行文件</span>
+<span class="hljs-keyword">add_executable</span>(first_node first_ros2_node.cpp)
+
+<span class="hljs-comment"># target_link_libraries - 为first_node(目标) </span>
+<span class="hljs-comment"># 添加需要动态链接库，相同于指定g++编译器-l参数</span>
+<span class="hljs-keyword">target_link_libraries</span>(first_node rclcpp rcutils)</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.10</span>)
+
+<span class="hljs-keyword">project</span>(first_node)
+
+<span class="hljs-keyword">find_package</span>(ament_cmake REQUIRED)
+<span class="hljs-keyword">find_package</span>(rclcpp REQUIRED)
+
+<span class="hljs-keyword">add_executable</span>(<span class="hljs-variable">${PROJECT_NAME}</span> first_ros2_node.cpp)
+
+ament_target_dependencies(<span class="hljs-variable">${PROJECT_NAME}</span> rclcpp)
+
+<span class="hljs-comment"># this was wrong, because </span>
+<span class="hljs-comment"># ament_target_dependencies 和 target_link_libraries 的区别在于，</span>
+<span class="hljs-comment"># 前者只适用于使用 find_package 找到的包，而后者适用于本地编译的库。</span>
+<span class="hljs-comment"># 如果你使用的库没有通过 find_package 找到，需要使用 target_link_libraries。</span>
+<span class="hljs-comment"># 使用的是 ROS 2 的库，而 ROS 2 的库通常是通过 find_package 找到的。</span>
+<span class="hljs-comment">## target_link_libraries(${PROJECT_NAME} rclcpp::rclcpp)</span></code></pre></div>
+
+<p>编译运行 然后 <code>ros2 node list</code> 查看</p>
+<h4 id="python构建"><a href="#python构建" class="headerlink" title="python构建"></a>python构建</h4><p>py文件</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> rclpy
+<span class="hljs-keyword">from</span> rclpy.node <span class="hljs-keyword">import</span> Node
+<span class="hljs-comment"># 调用rclcpp的初始化函数</span>
+rclpy.init() 
+<span class="hljs-comment"># 调用rclcpp的循环运行我们创建的second_node节点</span>
+rclpy.spin(Node(<span class="hljs-string">"second_node"</span>))</code></pre></div>
+
+<p>编译运行 然后 <code>ros2 node list</code> 查看</p>
+<h3 id="使用RCLCPP编写节点"><a href="#使用RCLCPP编写节点" class="headerlink" title="使用RCLCPP编写节点"></a>使用RCLCPP编写节点</h3><p>创建example功能包</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_cpp --build-type ament_cmake --dependencies rclcpp</code></pre></div>
+
+<ul>
+<li>pkg create 是创建包的意思</li>
+<li>–build-type 用来指定该包的编译类型，一共有三个可选项<code>ament_python</code>、<code>ament_cmake</code>、<code>cmake</code></li>
+<li>–dependencies 指的是这个功能包的依赖，这里给了一个ros2的python客户端接口<code>rclpy</code></li>
+</ul>
+<p>目录结构如下</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419165151313.png" srcset="/img/loading.gif" lazyload alt="image-20230419165151313"></p>
+<p>在src中新建node_01.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>{
+    <span class="hljs-comment">//init</span>
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-comment">//creat a node</span>
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;rclcpp::Node&gt;(<span class="hljs-string">"node_01"</span>);
+    <span class="hljs-comment">//print a introduce</span>
+    <span class="hljs-built_in">RCLCPP_INFO</span>(node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"node_01 has started..."</span>);
+    <span class="hljs-comment">//run the node and list for quit signal</span>
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    <span class="hljs-comment">//stop</span>
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>修改CMakeLists.txt，在最后添加如下几行</p>
+<div class="code-wrapper"><pre><code class="hljs bash">add_executable(node_01 src/node_01.cpp)
+ament_target_dependencies(node_01 rclcpp)
+install(TARGETS
+  node_01
+  DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>
+)</code></pre></div>
+
+<p>然后使用colcon编译 并运行</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 编译</span>
+colcon build
+<span class="hljs-comment"># ?</span>
+<span class="hljs-built_in">source</span> install/setup.sh
+<span class="hljs-comment"># 运行节点</span>
+ros2 run example_cpp node_01</code></pre></div>
+
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="节点相关的CLI"><a href="#节点相关的CLI" class="headerlink" title="节点相关的CLI"></a>节点相关的CLI</h3><h4 id="运行节点"><a href="#运行节点" class="headerlink" title="运行节点"></a>运行节点</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run &lt;package_name&gt; &lt;executable_name&gt;
+
+<span class="hljs-comment">#例如 小乌龟模拟器</span>
+ros2 run turtlesim turtlesim_node</code></pre></div>
+
+<h4 id="查看节点列表"><a href="#查看节点列表" class="headerlink" title="查看节点列表"></a>查看节点列表</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node list</code></pre></div>
+
+<h4 id="查看节点信息"><a href="#查看节点信息" class="headerlink" title="查看节点信息"></a>查看节点信息</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node info &lt;node_name&gt;</code></pre></div>
+
+<h4 id="重映射节点名称"><a href="#重映射节点名称" class="headerlink" title="重映射节点名称"></a>重映射节点名称</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtleCopy to clipboardErrorCopied</code></pre></div>
+
+<h4 id="运行节点时设置参数"><a href="#运行节点时设置参数" class="headerlink" title="运行节点时设置参数"></a>运行节点时设置参数</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run example_parameters_rclcpp parameters_basic --ros-args -p rcl_log_level:=10</code></pre></div>
+
+<h2 id="节点通信"><a href="#节点通信" class="headerlink" title="节点通信"></a>节点通信</h2><h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419220622266.png" srcset="/img/loading.gif" lazyload alt="image-20230419220622266"></p>
+<p>ros2的通信方式</p>
 <ol>
-<li><p>attach 不好</p>
-<div class="code-wrapper"><pre><code class="hljs shell">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075
-
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
-adc05673f248   ubuntu    "bash"    12 seconds ago   Up 11 seconds             pedantic_hugle
-
-C:\Users\qianxunslimg&gt;docker attach adc
-root@adc05673f248:/# ls
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
-</li>
-<li><p>exec 优先使用</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
-d51137b164abacaa0ea8f151d6b5cad5a1c316b55869bb2ae27c81f50f2f3eac
-
-C:\Users\qianxunslimg&gt;docker container ls
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-d51137b164ab   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             crazy_mendeleev
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -i d51 bash  //-i没有命令提示符 难用
-ls
-bin
-boot
-dev
-...
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -it d51 bash  //完整shell界面
-root@d51137b164ab:/<span class="hljs-comment"># ls</span>
-bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div></li>
+<li>基于<code>TCP/UDP</code>的网络通信。</li>
+<li>基于<code>共享内存</code>的进程间通信（IPC）。</li>
 </ol>
-<h4 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h4><ol>
-<li><p>导出 docker export</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker container ls -a
-CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
-61e0da2df721   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             pensive_fermat
-
-C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">export</span> 61e &gt; ubuntu_container_test.tar</code></pre></div>
-
-<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png" srcset="/img/loading.gif" lazyload alt="image-20230106013015214" style="zoom: 67%;">
-</li>
-<li><p>导入容器快照 docker import</p>
-<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker import ubuntu_container_test.tar <span class="hljs-built_in">test</span>:ubuntu_v1.0
-sha256:149d18447e370d3e6d15417450c7ad3189c3dfe32c79d16c5aea36927e5ed3ef
-
-C:\Users\qianxunslimg&gt;docker image ls
-REPOSITORY               TAG           IMAGE ID       CREATED          SIZE
-<span class="hljs-built_in">test</span>                     ubuntu_v1.0   149d18447e37   30 seconds ago   77.8MB
-ubuntu                   18.04         e28a50f651f9   2 days ago       63.1MB
-docker/getting-started   latest        3e4394f6b72f   13 days ago      47MB
-ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB
-hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</code></pre></div>
-
-<blockquote>
-<p><em>注：用户既可以使用</em> <code>docker load</code> <em>来导入镜像存储文件到本地镜像库，也可以使用</em> <code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><ol>
-<li>删除特定终止状态的容器 <code>docker container rm</code></li>
-<li>删除所有终止容器  <code>docker container prune</code></li>
-</ol>
-<h2 id="4-打包程序"><a href="#4-打包程序" class="headerlink" title="4. 打包程序"></a>4. 打包程序</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1893294">【Docker】从零开始将自己的应用打包到docker镜像 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
-<p>==（todo: 仿照这个操作步骤，打包一下tinywebserver, 在windows下的docker运行）==</p>
-<h3 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h3><p>简单c++</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png" srcset="/img/loading.gif" lazyload alt="image-20230415000909382"></p>
-<p>docker_file如下</p>
-<div class="code-wrapper"><pre><code class="hljs dockerfile"><span class="hljs-comment"># 基础镜像</span>
-<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
-
-<span class="hljs-comment"># make file in the docker image</span>
-<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
-
-<span class="hljs-comment"># 将本地文件复制到容器中</span>
-<span class="hljs-keyword">ADD</span><span class="bash"> ./docker_test /home/user/myapp</span>
-
-<span class="hljs-comment"># set workdir</span>
-<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
-
-<span class="hljs-comment"># 编译程序</span>
-<span class="hljs-keyword">RUN</span><span class="bash"> sudo make</span>
-
-<span class="hljs-comment"># 运行程序</span>
-<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
-
-<span class="hljs-comment">###########################逐行解释#############################</span>
-<span class="hljs-comment"># 基础镜像</span>
-<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
-<span class="hljs-comment"># 这一行表示从codenvy/cpp_gcc这个镜像开始构建，这个镜像是一个包含了C++和GCC的环境，用于编译和运行C++程序。</span>
-
-<span class="hljs-comment"># make file in the docker image</span>
-<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即创建一个/home/user/myapp的目录，用于存放项目文件。</span>
-
-<span class="hljs-comment"># 将本地文件复制到容器中</span>
-<span class="hljs-keyword">ADD</span><span class="bash"> ./project /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示将本地的./project目录下的所有文件和子目录复制到容器中的/home/user/myapp目录下，这样就可以在容器中访问项目文件了。</span>
-
-<span class="hljs-comment"># set workdir</span>
-<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
-<span class="hljs-comment"># 这一行表示设置容器中的工作目录为/home/user/myapp，这样后面的命令都会在这个目录下执行。</span>
-
-<span class="hljs-comment"># 编译程序</span>
-<span class="hljs-comment"># RUN sudo make</span>
-<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即使用sudo权限执行make命令，用于编译项目中的程序。但是这一行是被注释掉的，所以不会执行。</span>
-
-<span class="hljs-comment"># 运行程序</span>
-<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
-<span class="hljs-comment"># 这一行表示设置容器启动时要执行的命令，即运行./hello_world这个可执行文件，这是项目中编译出来的程序。</span></code></pre></div>
-
-<p>镜像运行为容器</p>
-<div class="code-wrapper"><pre><code class="hljs shell">docker build -f ./docker_file -t my_hello_docker:v1.0 .
-
-docker image ls
-docker run -it my_hello_docker:v1.0 //正常运行
-
-docker container ls -a  //查看container
-docker container export 632 &gt; test.tar  //导出container
-docker container prune  //删除所有容器
-docker container ls -a</code></pre></div>
-
-<p>重新导入容器测试</p>
-<div class="code-wrapper"><pre><code class="hljs sh">docker image rm my_hello_docker:v1.0 
-docker image ls
-docker import test.tar my_hello_docker:v1.0
-
-docker run -it my_hello_docker:v1.0 //为啥运行不起来了
-docker: Error response from daemon: No <span class="hljs-built_in">command</span> specified.</code></pre></div>
-
-<p>报错原因：</p>
-<p>从dockerfile新建容器时是可以缺省参数直接运行程序的，</p>
-<p>而导入的镜像 运行需要参数</p>
-<div class="code-wrapper"><pre><code class="hljs sh">docker run -it  my_hello_docker:v1.0 /bin/bash
-<span class="hljs-built_in">cd</span> /home/user/myapp
-./hello_world   //正常运行</code></pre></div>
-
-<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>dockerfile里边不执行make 直接打包  严谨一点</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png" srcset="/img/loading.gif" lazyload alt="image-20230415001742100"></p>
+<h3 id="通信中间件"><a href="#通信中间件" class="headerlink" title="通信中间件"></a>通信中间件</h3><p>消息中间件是一种软件，它提供了应用程序之间的通信机制。常见的消息中间件有 ZeroMQ、RabbitMQ、ActiveMQ、<code>Kafka</code> 等</p>
+<p><u>ROS2 使用 <code>DDS</code> 作为中间件，DDS 是一种分布式数据服务，它提供了一种分布式数据交换机制，使得不同计算机上的应用程序可以相互通信</u></p>
+<p>ZeroMQ（也称为 ØMQ、0MQ 或 ZMQ）是一个异步消息库，旨在用于分布式或并发应用程序。它提供了一个消息队列，但与面向消息的中间件不同，ZeroMQ 系统可以在没有专用消息代理的情况下运行；名称中的零表示零代理。该库的 API 设计类似于 Berkeley sockets</p>
+<p>ZeroMQ 的套接字实现“呈现异步消息队列的抽象”，与常规套接字同步方式不同。这些套接字的工作方式取决于所选择的套接字类型。发送的消息流取决于所选择的模式，其中有四种：请求-响应、发布-订阅、推送-拉取和管道</p>
+<p><code>ZeroMQ 和 DDS 都是消息中间件</code>，但是它们有很多不同之处。以下是它们之间的一些区别 ：</p>
+<ul>
+<li>ZeroMQ 是一种轻量级的消息中间件，而 DDS 是一种重量级的消息中间件。</li>
+<li>ZeroMQ 是一种点对点的通信模式，而 DDS 是一种发布-订阅模式。</li>
+<li>ZeroMQ 不支持 QoS（Quality of Service）和数据持久化，而 DDS 支持 QoS 和数据持久化。</li>
+<li>ZeroMQ 的性能比 DDS 更高，但 DDS 的可靠性更高。</li>
+</ul>
 
               
             </div>
