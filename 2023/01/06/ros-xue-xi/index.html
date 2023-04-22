@@ -16,19 +16,22 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 测试1：根据如下教程测试ros2是否安装成功  新开一个terminal，运行以下命令，打开小乌龟窗口： ros2 run turtlesim tu">
+    <meta name="description" content="从大佬教程整理的学习笔记，原文  动手学ROS2 (fishros.com)  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 ps:ubuntu1804不要安装dashing 缺少很多指令 安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker入门">
 <meta property="og:url" content="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 测试1：根据如下教程测试ros2是否安装成功  新开一个terminal，运行以下命令，打开小乌龟窗口： ros2 run turtlesim tu">
+<meta property="og:description" content="从大佬教程整理的学习笔记，原文  动手学ROS2 (fishros.com)  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 ps:ubuntu1804不要安装dashing 缺少很多指令 安装">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104024167.png">
-<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419165151313.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420112551064.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419220622266.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-19T14:15:01.204Z">
+<meta property="article:modified_time" content="2023-04-21T12:50:12.768Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -282,11 +285,15 @@
             
             <div class="markdown-body">
               
-              <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><p>参考网站<a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/20/%E5%B0%8F%E9%B1%BC%E7%9A%84%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97?lang=zh-CN">小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn)</a></p>
+              <p>从大佬教程整理的学习笔记，原文</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://fishros.com/d2lros2/#/">动手学ROS2 (fishros.com)</a></p>
+</blockquote>
+<h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><p>参考网站<a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/20/%E5%B0%8F%E9%B1%BC%E7%9A%84%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97?lang=zh-CN">小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn)</a></p>
 <p>直接输入指令</p>
 <div class="code-wrapper"><pre><code class="hljs bash">wget http://fishros.com/install -O fishros &amp;&amp; . fishros</code></pre></div>
 
-<p>根据需求 选择即可</p>
+<p>根据需求 选择即可 ps:ubuntu1804不要安装dashing 缺少很多指令 安装E*</p>
 <p>测试1：根据如下教程<code>测试ros2是否安装成功</code></p>
 <ol>
 <li><p>新开一个terminal，运行以下命令，打开小乌龟窗口：</p>
@@ -331,7 +338,20 @@
 <li>ros2_control控制框架：用于管理机器人的硬件和控制器，提供了一种统一的方式来描述和控制机器人</li>
 <li>ros2_launch启动工具：用于同时启动多个节点和设置参数</li>
 </ul>
-<h1 id="3-实验及指令"><a href="#3-实验及指令" class="headerlink" title="3.实验及指令"></a>3.实验及指令</h1><h2 id="小实验"><a href="#小实验" class="headerlink" title="小实验"></a>小实验</h2><h3 id="小节点"><a href="#小节点" class="headerlink" title="小节点"></a>小节点</h3><h4 id="c-构建"><a href="#c-构建" class="headerlink" title="c++构建"></a>c++构建</h4><p>cpp代码：first_ros2_node.cpp</p>
+<h1 id="3-节点通信"><a href="#3-节点通信" class="headerlink" title="3.节点通信"></a>3.节点通信</h1><h2 id="节点构建"><a href="#节点构建" class="headerlink" title="节点构建"></a>节点构建</h2><h3 id="节点相关的CLI"><a href="#节点相关的CLI" class="headerlink" title="节点相关的CLI"></a>节点相关的CLI</h3><h4 id="运行节点"><a href="#运行节点" class="headerlink" title="运行节点"></a>运行节点</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run &lt;package_name&gt; &lt;executable_name&gt;
+
+<span class="hljs-comment">#例如 小乌龟模拟器</span>
+ros2 run turtlesim turtlesim_node</code></pre></div>
+
+<h4 id="查看节点列表"><a href="#查看节点列表" class="headerlink" title="查看节点列表"></a>查看节点列表</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node list</code></pre></div>
+
+<h4 id="查看节点信息"><a href="#查看节点信息" class="headerlink" title="查看节点信息"></a>查看节点信息</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node info &lt;node_name&gt;</code></pre></div>
+
+<h4 id="重映射节点名称"><a href="#重映射节点名称" class="headerlink" title="重映射节点名称"></a>重映射节点名称</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtleCopy to clipboardErrorCopied</code></pre></div>
+
+<h4 id="运行节点时设置参数"><a href="#运行节点时设置参数" class="headerlink" title="运行节点时设置参数"></a>运行节点时设置参数</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run example_parameters_rclcpp parameters_basic --ros-args -p rcl_log_level:=10</code></pre></div>
+
+<h3 id="手动构建"><a href="#手动构建" class="headerlink" title="手动构建"></a>手动构建</h3><h4 id="c-构建"><a href="#c-构建" class="headerlink" title="c++构建"></a>c++构建</h4><p>cpp代码：first_ros2_node.cpp</p>
 <div class="code-wrapper"><pre><code class="hljs cpp"> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
 <span class="hljs-comment">//#include "rclcpp/rclcpp.hpp"</span>
 
@@ -405,7 +425,7 @@ rclpy.init()
 rclpy.spin(Node(<span class="hljs-string">"second_node"</span>))</code></pre></div>
 
 <p>编译运行 然后 <code>ros2 node list</code> 查看</p>
-<h3 id="使用RCLCPP编写节点"><a href="#使用RCLCPP编写节点" class="headerlink" title="使用RCLCPP编写节点"></a>使用RCLCPP编写节点</h3><p>创建example功能包</p>
+<h3 id="规范构建：使用RCLCPP编写节点"><a href="#规范构建：使用RCLCPP编写节点" class="headerlink" title="规范构建：使用RCLCPP编写节点"></a>规范构建：使用RCLCPP编写节点</h3><p>创建example功能包</p>
 <div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_cpp --build-type ament_cmake --dependencies rclcpp</code></pre></div>
 
 <ul>
@@ -414,7 +434,14 @@ rclpy.spin(Node(<span class="hljs-string">"second_node"</span>))</code></pre></d
 <li>–dependencies 指的是这个功能包的依赖，这里给了一个ros2的python客户端接口<code>rclpy</code></li>
 </ul>
 <p>目录结构如下</p>
-<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419165151313.png" srcset="/img/loading.gif" lazyload alt="image-20230419165151313"></p>
+<ul>
+<li>当前文件夹下生成一个大的example_cpp的pkg文件</li>
+</ul>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420112551064.png" srcset="/img/loading.gif" lazyload alt="image-20230420112551064" style="zoom: 80%;">
+
+<ul>
+<li>需要注意的是 在哪一级目录执行colcon build在那一级目录下生成 build log和install文件夹</li>
+</ul>
 <p>在src中新建node_01.cpp</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
 
@@ -448,19 +475,6 @@ colcon build
 <span class="hljs-comment"># 运行节点</span>
 ros2 run example_cpp node_01</code></pre></div>
 
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="节点相关的CLI"><a href="#节点相关的CLI" class="headerlink" title="节点相关的CLI"></a>节点相关的CLI</h3><h4 id="运行节点"><a href="#运行节点" class="headerlink" title="运行节点"></a>运行节点</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run &lt;package_name&gt; &lt;executable_name&gt;
-
-<span class="hljs-comment">#例如 小乌龟模拟器</span>
-ros2 run turtlesim turtlesim_node</code></pre></div>
-
-<h4 id="查看节点列表"><a href="#查看节点列表" class="headerlink" title="查看节点列表"></a>查看节点列表</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node list</code></pre></div>
-
-<h4 id="查看节点信息"><a href="#查看节点信息" class="headerlink" title="查看节点信息"></a>查看节点信息</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node info &lt;node_name&gt;</code></pre></div>
-
-<h4 id="重映射节点名称"><a href="#重映射节点名称" class="headerlink" title="重映射节点名称"></a>重映射节点名称</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtleCopy to clipboardErrorCopied</code></pre></div>
-
-<h4 id="运行节点时设置参数"><a href="#运行节点时设置参数" class="headerlink" title="运行节点时设置参数"></a>运行节点时设置参数</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run example_parameters_rclcpp parameters_basic --ros-args -p rcl_log_level:=10</code></pre></div>
-
 <h2 id="节点通信"><a href="#节点通信" class="headerlink" title="节点通信"></a>节点通信</h2><h3 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h3><p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419220622266.png" srcset="/img/loading.gif" lazyload alt="image-20230419220622266"></p>
 <p>ros2的通信方式</p>
 <ol>
@@ -478,7 +492,579 @@ ros2 run turtlesim turtlesim_node</code></pre></div>
 <li>ZeroMQ 不支持 QoS（Quality of Service）和数据持久化，而 DDS 支持 QoS 和数据持久化。</li>
 <li>ZeroMQ 的性能比 DDS 更高，但 DDS 的可靠性更高。</li>
 </ul>
+<p>ROS2使用<code>DDS</code>（Data Distribution Service）作为其中间件，DDS是一种分布式系统的通信协议，它可以在不同的进程之间进行高效的数据交换。ROS2中的<u>话题和服务都是通过DDS进行通信的</u>。当一个节点发布一个话题时，它会将消息发送到DDS中，然后DDS会将消息传递给所有订阅该话题的节点。当一个节点请求一个服务时，它会将请求发送到DDS中，然后DDS会将请求传递给提供该服务的节点。</p>
+<h2 id="话题和服务"><a href="#话题和服务" class="headerlink" title="话题和服务"></a>话题和服务</h2><p>在ROS2中，话题（Topic）和服务（Service）都是用于进程间通信的机制。</p>
+<ul>
+<li><code>话题是一种发布/订阅机制</code>，它允许多个节点之间进行异步通信。在话题中，一个节点可以发布一个消息，而其他节点可以订阅该消息。当一个节点发布一个消息时，所有订阅该消息的节点都会收到该消息。</li>
+<li>服务是一种<code>请求/响应机制</code>，它允许一个节点向另一个节点发送请求，并等待响应。在服务中，一个节点可以请求另一个节点执行某个操作，并等待该节点的响应。</li>
+</ul>
+<p>举个例子，假设我们有两个节点：Node A和Node B。Node A想要向Node B请求某个服务，那么它会向Node B发送一个请求消息。Node B接收到请求消息后，会执行相应的操作，并将结果作为响应消息发送回给Node A。</p>
+<blockquote>
+<p>这个例子中的功能同样可以用话题实现，但是可能会导致网络阻塞，并且可能会影响其他节点的性能</p>
+</blockquote>
+<h3 id="话题的发布和订阅"><a href="#话题的发布和订阅" class="headerlink" title="话题的发布和订阅"></a>话题的发布和订阅</h3><p>构建工程</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_topic_cpp --build-type ament_cmake --dependencies rclcpp</code></pre></div>
 
+<p>src下新建发布和订阅cpp，pkg整体目录结构如下</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png" srcset="/img/loading.gif" lazyload alt="image-20230420113144221"></p>
+<p>topic_publisher_01.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TopicPublisher01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 构造函数,有一个参数为节点名称</span>
+    <span class="hljs-built_in">TopicPublisher01</span>(std::string name) : <span class="hljs-built_in">Node</span>(name)
+    {
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"hello, i am %s."</span>, name.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-comment">// 创建发布者</span>
+        command_publisher_ = <span class="hljs-keyword">this</span>-&gt;create_publisher&lt;std_msgs::msg::String&gt;(<span class="hljs-string">"command"</span>, <span class="hljs-number">10</span>);
+        <span class="hljs-comment">// 创建定时器，500ms为周期，定时发布</span>
+        timer_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">500</span>), std::<span class="hljs-built_in">bind</span>(&amp;TopicPublisher01::timer_callback, <span class="hljs-keyword">this</span>));
+    }
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer_callback</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-comment">// 创建消息</span>
+        std_msgs::msg::String message;
+        message.data = <span class="hljs-string">"forward"</span>;
+        <span class="hljs-comment">// 日志打印</span>
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Publishing: '%s'"</span>, message.data.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-comment">// 发布消息</span>
+        command_publisher_-&gt;<span class="hljs-built_in">publish</span>(message);
+    }
+    <span class="hljs-comment">// 声名定时器指针</span>
+    rclcpp::TimerBase::SharedPtr timer_;
+    <span class="hljs-comment">// 声明话题发布者指针</span>
+    rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr command_publisher_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>
+<span class="hljs-function"></span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-comment">/*创建对应节点的共享指针对象*/</span>
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;TopicPublisher01&gt;(<span class="hljs-string">"topic_publisher_01"</span>);
+    <span class="hljs-comment">/* 运行节点，并检测退出信号*/</span>
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
+
+<p>topic_subscribe_01.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//</span>
+<span class="hljs-comment">// Created by qianxunslimg on 4/19/23.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> Msg = std_msgs::msg::String;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TopicSubscribe01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node{
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">TopicSubscribe01</span>(std::string name) : <span class="hljs-built_in">Node</span>(name){
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Hello, i am %s"</span>, name.<span class="hljs-built_in">c_str</span>());
+        command_subscribe_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;std_msgs::msg::String&gt;
+                (<span class="hljs-string">"command"</span>, <span class="hljs-number">10</span>, std::<span class="hljs-built_in">bind</span>(&amp;TopicSubscribe01::command_callback, <span class="hljs-keyword">this</span>, std::placeholders::_1));
+    }
+<span class="hljs-keyword">private</span>:
+    rclcpp::Subscription&lt;Msg&gt;::SharedPtr command_subscribe_;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">command_callback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Msg::SharedPtr msg)</span></span>{
+        <span class="hljs-keyword">double</span> speed = <span class="hljs-number">0.0f</span>;
+        <span class="hljs-keyword">if</span>(msg-&gt;data == <span class="hljs-string">"forward"</span>){
+            speed = <span class="hljs-number">0.2f</span>;
+        }
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"receive order %s, speed %f"</span>, msg-&gt;data.<span class="hljs-built_in">c_str</span>(), speed);
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;TopicSubscribe01&gt;(<span class="hljs-string">"topic_subscribe_01"</span>);
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>对应的cmakelist添加</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">add_executable</span>(topic_publisher_01 src/topic_publisher_01.cpp)
+ament_target_dependencies(topic_publisher_01 rclcpp std_msgs)
+
+<span class="hljs-keyword">install</span>(TARGETS
+  topic_publisher_01
+  DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>
+)
+
+
+<span class="hljs-keyword">add_executable</span>(topic_subscribe_01 src/topic_subscribe_01.cpp)
+ament_target_dependencies(topic_subscribe_01 rclcpp std_msgs)
+
+<span class="hljs-keyword">install</span>(TARGETS
+  topic_subscribe_01
+  DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>
+)</code></pre></div>
+
+<p>package.xml添加</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>std_msgs<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span></code></pre></div>
+
+<p>直接colcon build就可以了 直接用clion体验更佳</p>
+<div class="code-wrapper"><pre><code class="hljs bash">colcon build  <span class="hljs-comment"># 全部编译</span>
+<span class="hljs-comment"># colcon build --packages-select example_topic_rclcpp</span>
+<span class="hljs-built_in">source</span> install/setup.bash
+ros2 run example_topic_rclcpp topic_subscribe_01
+
+<span class="hljs-built_in">source</span> install/setup.bash
+ros2 run example_topic_rclcpp topic_publisher_01
+
+rqt <span class="hljs-comment">#查看逻辑图</span></code></pre></div>
+
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><h4 id="服务常用指令"><a href="#服务常用指令" class="headerlink" title="服务常用指令"></a>服务常用指令</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 service list  <span class="hljs-comment">#查看服务列表</span>
+ros2 run examples_rclpy_minimal_service service  <span class="hljs-comment">#启动服务端</span>
+ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts <span class="hljs-string">"{a: 5,b: 10}"</span>  <span class="hljs-comment">#手动调用服务</span>
+ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts <span class="hljs-comment">#不写参数调用 默认值 a = 0 b = 0</span>
+ros2 service <span class="hljs-built_in">type</span> /add_two_ints <span class="hljs-comment">#查看服务端口类型  dashing没有这个指令</span>
+ros2 service find example_interfaces/srv/AddTwoInts <span class="hljs-comment">#dashing没有这个指令</span></code></pre></div>
+
+<h4 id="服务RCLCPP实现"><a href="#服务RCLCPP实现" class="headerlink" title="服务RCLCPP实现"></a>服务RCLCPP实现</h4><p>==构建工程==</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_topic_cpp --build-type ament_cmake --dependencies rclcpp</code></pre></div>
+
+<p>src下新建发布和订阅cpp，pkg整体目录结构如下</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png" srcset="/img/loading.gif" lazyload alt="image-20230420113144221"></p>
+<p>service_client.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_interfaces/srv/add_two_ints.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServiceClient01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 构造函数,有一个参数为节点名称</span>
+    <span class="hljs-built_in">ServiceClient01</span>(std::string name) : <span class="hljs-built_in">Node</span>(name) {
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"节点已启动：%s."</span>, name.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-comment">// 创建客户端</span>
+        client_ = <span class="hljs-keyword">this</span>-&gt;create_client&lt;example_interfaces::srv::AddTwoInts&gt;(<span class="hljs-string">"add_two_ints_srv"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">send_request</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>{
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"计算%d+%d"</span>, a, b);
+
+        <span class="hljs-comment">// 1.等待服务端上线</span>
+        <span class="hljs-keyword">while</span> (!client_-&gt;<span class="hljs-built_in">wait_for_service</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>))) {
+            <span class="hljs-comment">//等待时检测rclcpp的状态</span>
+            <span class="hljs-keyword">if</span> (!rclcpp::<span class="hljs-built_in">ok</span>()) {
+                <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"等待服务的过程中被打断..."</span>);
+                <span class="hljs-keyword">return</span>;
+            }
+            <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"等待服务端上线中"</span>);
+        }
+
+        <span class="hljs-comment">// 2.构造请求的</span>
+        <span class="hljs-keyword">auto</span> request =
+                std::make_shared&lt;example_interfaces::srv::AddTwoInts_Request&gt;();
+        request-&gt;a = a;
+        request-&gt;b = b;
+
+        <span class="hljs-comment">// 3.发送异步请求，然后等待返回，返回时调用回调函数</span>
+        client_-&gt;<span class="hljs-built_in">async_send_request</span>(
+                request, std::<span class="hljs-built_in">bind</span>(&amp;ServiceClient01::result_callback_, <span class="hljs-keyword">this</span>,
+                                   std::placeholders::_1));
+    };
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-comment">// 声明客户端</span>
+    rclcpp::Client&lt;example_interfaces::srv::AddTwoInts&gt;::SharedPtr client_;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">result_callback_</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            rclcpp::Client&lt;example_interfaces::srv::AddTwoInts&gt;::SharedFuture</span></span>
+<span class="hljs-params"><span class="hljs-function">            result_future)</span> </span>{
+        <span class="hljs-keyword">auto</span> response = result_future.<span class="hljs-built_in">get</span>();
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"计算结果：%ld"</span>, response-&gt;sum);
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-comment">/*创建对应节点的共享指针对象*/</span>
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;ServiceClient01&gt;(<span class="hljs-string">"service_client_01"</span>);
+    <span class="hljs-comment">/* 运行节点，并检测退出信号*/</span>
+    <span class="hljs-comment">//增加这一行，node-&gt;send_request(5, 6);，计算5+6结果</span>
+    node-&gt;<span class="hljs-built_in">send_request</span>(<span class="hljs-number">5</span>, <span class="hljs-number">6</span>);
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>service_server.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_interfaces/srv/add_two_ints.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServiceServer01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">ServiceServer01</span>(std::string name) : <span class="hljs-built_in">Node</span>(name) {
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"节点已启动：%s."</span>, name.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-comment">// 创建服务</span>
+        add_ints_server_ =
+                <span class="hljs-keyword">this</span>-&gt;create_service&lt;example_interfaces::srv::AddTwoInts&gt;(
+                        <span class="hljs-string">"add_two_ints_srv"</span>,
+                        std::<span class="hljs-built_in">bind</span>(&amp;ServiceServer01::handle_add_two_ints, <span class="hljs-keyword">this</span>,
+                                  std::placeholders::_1, std::placeholders::_2));
+    }
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-comment">// 声明一个服务</span>
+    rclcpp::Service&lt;example_interfaces::srv::AddTwoInts&gt;::SharedPtr
+            add_ints_server_;
+
+    <span class="hljs-comment">// 收到请求的处理函数</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle_add_two_ints</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">const</span> std::shared_ptr&lt;example_interfaces::srv::AddTwoInts::Request&gt; request,</span></span>
+<span class="hljs-params"><span class="hljs-function">            std::shared_ptr&lt;example_interfaces::srv::AddTwoInts::Response&gt; response)</span> </span>{
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"收到a: %ld b: %ld"</span>, request-&gt;a,
+                    request-&gt;b);
+        response-&gt;sum = request-&gt;a + request-&gt;b;
+    };
+};
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;ServiceServer01&gt;(<span class="hljs-string">"service_server_01"</span>);
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
+
+<p>对应的cmakelist添加</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">add_executable</span>(client src/service_client_01.cpp)
+<span class="hljs-keyword">add_executable</span>(server src/service_server_01.cpp)
+
+ament_target_dependencies(client rclcpp example_interfaces)
+ament_target_dependencies(server rclcpp example_interfaces)
+
+<span class="hljs-keyword">install</span>(TARGETS
+        client
+        DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>
+        )
+
+<span class="hljs-keyword">install</span>(TARGETS
+        server
+        DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>
+        )</code></pre></div>
+
+<p>package.xml添加</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>example_interfaces<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span></code></pre></div>
+
+<p>直接clion调试</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口可以理解为统一的数据结构</p>
+<h4 id="自带接口"><a href="#自带接口" class="headerlink" title="自带接口"></a>自带接口</h4><p>查看自带传感器类的sensor_msgs的接口</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 interface package sensor_msgs</code></pre></div>
+
+<h3 id="接口文件内容"><a href="#接口文件内容" class="headerlink" title="接口文件内容"></a>接口文件内容</h3><h4 id="可以定义的接口三种类型"><a href="#可以定义的接口三种类型" class="headerlink" title="可以定义的接口三种类型"></a>可以定义的接口三种类型</h4><p>ROS2提供了四种通信方式：</p>
+<ul>
+<li>话题-Topics</li>
+<li>服务-Services</li>
+<li>动作-Action</li>
+<li>参数-Parameters</li>
+</ul>
+<p>除了参数之外，<code>话题、服务和动作</code>都支持自定义接口，所定义的接口被分为话题接口、服务接口、动作接口三种。</p>
+<h4 id="接口形式"><a href="#接口形式" class="headerlink" title="接口形式"></a>接口形式</h4><p>话题接口格式：<code>xxx.msg</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 话题接口定义了话题消息的数据结构</span>
+<span class="hljs-comment"># 每个字段由一个类型和一个名称组成，中间用空格分隔</span>
+<span class="hljs-comment"># 这里定义了一个名为num的int64类型的字段</span>
+int64 num</code></pre></div>
+
+<p>服务接口格式：<code>xxx.srv</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 服务接口定义了服务请求和响应的数据结构</span>
+<span class="hljs-comment"># 服务请求和响应之间用三个连字符（---）分隔</span>
+<span class="hljs-comment"># 这里定义了一个名为a和b的int64类型的请求字段</span>
+int64 a
+int64 b
+---
+<span class="hljs-comment"># 这里定义了一个名为sum的int64类型的响应字段</span>
+int64 sum</code></pre></div>
+
+<p>动作接口格式：<code>xxx.action</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 动作接口定义了动作目标，结果和反馈的数据结构</span>
+<span class="hljs-comment"># 动作目标，结果和反馈之间用三个连字符（---）分隔</span>
+<span class="hljs-comment"># 这里定义了一个名为order的int32类型的目标字段</span>
+int32 order
+---
+<span class="hljs-comment"># 这里定义了一个名为sequence的int32数组类型的结果字段</span>
+int32[] sequence
+---
+<span class="hljs-comment"># 这里定义了一个名为partial_sequence的int32数组类型的反馈字段</span>
+int32[] partial_sequence</code></pre></div>
+
+<h4 id="接口数据类型"><a href="#接口数据类型" class="headerlink" title="接口数据类型"></a>接口数据类型</h4><p>根据引用方式不同可以分为基础类型和包装类型两类。</p>
+<p><code>基础类型</code>有（同时后面加上[]可形成数组）</p>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-comment"># 基础类型是一些简单的数据类型，如布尔值，字节，字符，浮点数，整数和字符串</span>
+<span class="hljs-comment"># 它们可以直接在接口文件中使用，也可以组成数组</span>
+<span class="hljs-comment"># 例如，bool[]表示一个布尔值的数组</span>
+bool
+byte
+char
+float32,float64
+int8,uint8
+int16,uint16
+int32,uint32
+int64,uint64
+string</code></pre></div>
+
+<p><code>包装类型</code> 即在已有的接口类型上进行包含，可以理解为结构体</p>
+<div class="code-wrapper"><pre><code class="hljs sh"><span class="hljs-comment"># 包装类型是一些复杂的数据类型，如其他接口文件定义的消息，服务或动作</span>
+<span class="hljs-comment"># 它们可以通过包名/接口名的形式在接口文件中引用，也可以组成数组</span>
+<span class="hljs-comment"># 例如，sensor_msgs/Image表示一个图像消息，sensor_msgs/Image[]表示一个图像消息的数组</span>
+uint32 id <span class="hljs-comment"># 这是一个基础类型的字段</span>
+string image_name <span class="hljs-comment"># 这也是一个基础类型的字段</span>
+sensor_msgs/Image <span class="hljs-comment"># 这是一个包装类型的字段，它引用了sensor_msgs包中定义的Image消息接口</span></code></pre></div>
+
+<h3 id="自定义接口并包编"><a href="#自定义接口并包编" class="headerlink" title="自定义接口并包编"></a>自定义接口并包编</h3><h4 id="定义接口"><a href="#定义接口" class="headerlink" title="定义接口"></a>定义接口</h4><p>服务接口<code>MoveRobot.srv</code></p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># 前进后退的距离</span>
+<span class="hljs-string">float32</span> <span class="hljs-string">distance</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-comment"># 当前的位置</span>
+<span class="hljs-string">float32</span> <span class="hljs-string">pose</span></code></pre></div>
+
+<p>话题接口，采用基础类型 <code>RobotStatus.msg</code></p>
+<div class="code-wrapper"><pre><code class="hljs angelscript"><span class="hljs-built_in">uint</span>32 STATUS_MOVEING = <span class="hljs-number">1</span>
+<span class="hljs-built_in">uint</span>32 STATUS_STOP = <span class="hljs-number">1</span>
+<span class="hljs-built_in">uint</span>32  status
+<span class="hljs-built_in">float</span>32 pose</code></pre></div>
+
+<p>话题接口，混合包装类型 <code>RobotPose.msg</code></p>
+<div class="code-wrapper"><pre><code class="hljs shell">uint32 STATUS_MOVEING = 1
+uint32 STATUS_STOP = 2
+uint32  status
+geometry_msgs/Pose pose</code></pre></div>
+
+<h4 id="包编"><a href="#包编" class="headerlink" title="包编"></a>包编</h4><p>创建功能包</p>
+<div class="code-wrapper"><pre><code class="hljs shell">ros2 pkg create example_ros2_interfaces --build-type ament_cmake --dependencies rosidl_default_generators geometry_msgs</code></pre></div>
+
+<p>注意功能包类型必须为：ament_cmake</p>
+<p>依赖<code>rosidl_default_generators</code>必须添加，<code>geometry_msgs</code>视内容情况添加（这里有<code>geometry_msgs/Pose pose</code>所以要添加）。</p>
+<p>接着创建文件夹和文件将3.2中文件写入，注意话题接口放到<code>msg</code>文件夹下，以<code>.msg</code>结尾。服务接口放到<code>srv</code>文件夹下，以<code>srv</code>结尾。</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png" srcset="/img/loading.gif" lazyload alt="image-20230420212649711" style="zoom:67%;">
+
+<p>接着修改<code>CMakeLists.txt</code></p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">find_package</span>(rosidl_default_generators REQUIRED)
+<span class="hljs-keyword">find_package</span>(geometry_msgs REQUIRED)
+<span class="hljs-comment"># 添加下面的内容</span>
+rosidl_generate_interfaces(<span class="hljs-variable">${PROJECT_NAME}</span>
+  <span class="hljs-string">"msg/RobotPose.msg"</span>
+  <span class="hljs-string">"msg/RobotStatus.msg"</span>
+  <span class="hljs-string">"srv/MoveRobot.srv"</span>
+  DEPENDENCIES geometry_msgs
+)</code></pre></div>
+
+<p>接着修改<code>package.xml</code></p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">buildtool_depend</span>&gt;</span>ament_cmake<span class="hljs-tag">&lt;/<span class="hljs-name">buildtool_depend</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>rosidl_default_generators<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>geometry_msgs<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">member_of_group</span>&gt;</span>rosidl_interface_packages<span class="hljs-tag">&lt;/<span class="hljs-name">member_of_group</span>&gt;</span> #添加这一行
+
+<span class="hljs-tag">&lt;<span class="hljs-name">test_depend</span>&gt;</span>ament_lint_auto<span class="hljs-tag">&lt;/<span class="hljs-name">test_depend</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">test_depend</span>&gt;</span>ament_lint_common<span class="hljs-tag">&lt;/<span class="hljs-name">test_depend</span>&gt;</span></code></pre></div>
+
+<p>保存即可编译</p>
+<div class="code-wrapper"><pre><code class="hljs shell">colcon build --packages-select example_ros2_interfaces</code></pre></div>
+
+<p>编译完成后在<code>install/example_ros2_interfaces/include</code>下可以看到C++的头文件。</p>
+<p>接下来的代码里就可以通过头文件导入和使用自定义的接口了。</p>
+<h3 id="自定义接口RCLCPP实战"><a href="#自定义接口RCLCPP实战" class="headerlink" title="自定义接口RCLCPP实战"></a>自定义接口RCLCPP实战</h3><p>创建工程</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_interfaces_rclcpp --build-type ament_cmake --dependencies rclcpp example_ros2_interfaces --destination-directory src --node-name example_interfaces_robot_01 
+<span class="hljs-comment"># 还需添加control节点</span>
+touch example_interfaces_rclcpp/src/example_interfaces_control_01.cpp</code></pre></div>
+
+<p>cmakelist修改 注意 要用clion调试的话需要 添加的几行 因为会提示找不到接口的一个.so文件</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)
+<span class="hljs-keyword">project</span>(example_interfaces_rclcpp)
+
+<span class="hljs-comment"># Default to C99</span>
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> CMAKE_C_STANDARD)
+  <span class="hljs-keyword">set</span>(CMAKE_C_STANDARD <span class="hljs-number">99</span>)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-comment"># Default to C++14</span>
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> CMAKE_CXX_STANDARD)
+  <span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD <span class="hljs-number">14</span>)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-keyword">if</span>(CMAKE_COMPILER_IS_GNUCXX <span class="hljs-keyword">OR</span> CMAKE_CXX_COMPILER_ID <span class="hljs-keyword">MATCHES</span> <span class="hljs-string">"Clang"</span>)
+  <span class="hljs-keyword">add_compile_options</span>(-Wall -Wextra -Wpedantic)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-comment">################################################################</span>
+<span class="hljs-comment">#add for solve clion debug due to can not find the so of interface</span>
+<span class="hljs-comment">##link_directories(/home/qianxunslimg/Desktop/suudy/ros_study/d2lros2/chapt3/chapt_ws/build/example_ros2_interfaces)</span>
+<span class="hljs-keyword">add_library</span>(example_ros2_interfaces SHARED IMPORTED)
+<span class="hljs-keyword">set_property</span>(<span class="hljs-keyword">TARGET</span> example_ros2_interfaces PROPERTY IMPORTED_LOCATION /home/qianxunslimg/Desktop/suudy/ros_study/d2lros2/chapt3/chapt_ws/build/example_ros2_interfaces/libexample_ros2_interfaces__rosidl_typesupport_fastrtps_cpp.so)
+<span class="hljs-comment">################################################################</span>
+
+<span class="hljs-comment"># find dependencies</span>
+<span class="hljs-keyword">find_package</span>(ament_cmake REQUIRED)
+<span class="hljs-keyword">find_package</span>(rclcpp REQUIRED)
+<span class="hljs-keyword">find_package</span>(example_ros2_interfaces REQUIRED)
+
+
+<span class="hljs-keyword">add_executable</span>(example_interfaces_robot_01 src/example_interfaces_robot_01.cpp)
+<span class="hljs-keyword">target_include_directories</span>(example_interfaces_robot_01 PUBLIC
+  $&lt;BUILD_INTERFACE:<span class="hljs-variable">${CMAKE_CURRENT_SOURCE_DIR}</span>/<span class="hljs-keyword">include</span>&gt;
+  $&lt;INSTALL_INTERFACE:<span class="hljs-keyword">include</span>&gt;)
+ament_target_dependencies(
+  example_interfaces_robot_01
+  <span class="hljs-string">"rclcpp"</span>
+  <span class="hljs-string">"example_ros2_interfaces"</span>
+)
+
+<span class="hljs-comment">################################################################</span>
+<span class="hljs-comment">#add for solve clion debug due to can not find the so of interface</span>
+<span class="hljs-keyword">target_link_libraries</span>(example_interfaces_robot_01 example_ros2_interfaces)
+<span class="hljs-comment">################################################################</span>
+
+<span class="hljs-keyword">install</span>(TARGETS example_interfaces_robot_01
+  <span class="hljs-keyword">EXPORT</span> export_<span class="hljs-variable">${PROJECT_NAME}</span>
+  DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)
+
+<span class="hljs-comment"># add /</span>
+<span class="hljs-keyword">add_executable</span>(example_interfaces_control_01 src/example_interfaces_control_01.cpp)
+<span class="hljs-keyword">target_include_directories</span>(example_interfaces_control_01 PUBLIC
+        $&lt;BUILD_INTERFACE:<span class="hljs-variable">${CMAKE_CURRENT_SOURCE_DIR}</span>/<span class="hljs-keyword">include</span>&gt;
+        $&lt;INSTALL_INTERFACE:<span class="hljs-keyword">include</span>&gt;)
+<span class="hljs-keyword">target_compile_features</span>(example_interfaces_control_01 PUBLIC c_std_99 cxx_std_17)  <span class="hljs-comment"># Require C99 and C++17</span>
+ament_target_dependencies(
+        example_interfaces_control_01
+        <span class="hljs-string">"rclcpp"</span>
+        <span class="hljs-string">"example_ros2_interfaces"</span>
+)
+
+<span class="hljs-comment">################################################################</span>
+<span class="hljs-comment">#add for solve clion debug due to can not find the so of interface</span>
+<span class="hljs-keyword">target_link_libraries</span>(example_interfaces_control_01 example_ros2_interfaces)
+<span class="hljs-comment">################################################################</span>
+
+<span class="hljs-keyword">install</span>(TARGETS example_interfaces_control_01
+        DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)
+<span class="hljs-comment"># add /</span>
+
+<span class="hljs-keyword">if</span>(BUILD_TESTING)
+  <span class="hljs-keyword">find_package</span>(ament_lint_auto REQUIRED)
+  <span class="hljs-comment"># the following line skips the linter which checks for copyrights</span>
+  <span class="hljs-comment"># uncomment the line when a copyright and license is not present in all source files</span>
+  <span class="hljs-comment">#set(ament_cmake_copyright_FOUND TRUE)</span>
+  <span class="hljs-comment"># the following line skips cpplint (only works in a git repo)</span>
+  <span class="hljs-comment"># uncomment the line when this package is not in a git repo</span>
+  <span class="hljs-comment">#set(ament_cmake_cpplint_FOUND TRUE)</span>
+  ament_lint_auto_find_test_dependencies()
+<span class="hljs-keyword">endif</span>()
+
+ament_package()</code></pre></div>
+
+<p>会有循环警告，但不影响程序执行</p>
+<div class="code-wrapper"><pre><code class="hljs gradle">CMake Warning at CMakeLists.txt:<span class="hljs-number">31</span> (add_executable):
+  Cannot generate a safe <span class="hljs-keyword">runtime</span> search path <span class="hljs-keyword">for</span> target
+  example_interfaces_robot_01 because there is a cycle in the constraint
+  graph:
+
+    dir <span class="hljs-number">0</span> is [<span class="hljs-regexp">/opt/</span>ros<span class="hljs-regexp">/eloquent/</span>lib]
+    dir <span class="hljs-number">1</span> is [<span class="hljs-regexp">/home/</span>qianxunslimg<span class="hljs-regexp">/Desktop/</span>suudy<span class="hljs-regexp">/ros_study/</span>d2lros2<span class="hljs-regexp">/chapt3/i</span>nstall<span class="hljs-regexp">/example_ros2_interfaces/</span>lib]
+      dir <span class="hljs-number">2</span> must precede it due to <span class="hljs-keyword">runtime</span> library [libexample_ros2_interfaces__rosidl_typesupport_fastrtps_cpp.so]
+    dir <span class="hljs-number">2</span> is [<span class="hljs-regexp">/home/</span>qianxunslimg<span class="hljs-regexp">/Desktop/</span>suudy<span class="hljs-regexp">/ros_study/</span>d2lros2<span class="hljs-regexp">/chapt3/</span>chapt_ws<span class="hljs-regexp">/build/</span>example_ros2_interfaces]
+      dir <span class="hljs-number">1</span> must precede it due to <span class="hljs-keyword">runtime</span> library [libexample_ros2_interfaces__rosidl_typesupport_c.so]
+
+  Some of these libraries may not be found correctly.</code></pre></div>
+
+
+
+<h2 id="QoS"><a href="#QoS" class="headerlink" title="QoS"></a>QoS</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/J63fO4c_QIseLGQd5W2fAw">Rviz显示不出数据了！一文搞懂Qos (qq.com)</a></p>
+<p>ROS2的QoS是指服务质量（Quality of Service）的缩写，它是一组策略，用于控制节点之间通信的可靠性、持久性、延迟等属性。ROS2利用了底层DDS传输的灵活性，提供了多种QoS策略，可以根据不同的应用场景进行调整。</p>
+<p>ROS2的QoS策略包括以下几种：</p>
+<ul>
+<li>历史记录（History）：决定了订阅者节点可以接收到多少历史消息，可以设置为保留最后（Keep last）或保留全部（Keep all），并指定一个队列深度（Depth）。</li>
+<li>可靠性（Reliability）：决定了发布者节点是否保证消息送达，可以设置为尽力而为（Best effort）或可靠（Reliable）。</li>
+<li>持久性（Durability）：决定了发布者节点是否保留消息，以便后来加入的订阅者节点可以接收到，可以设置为易变性（Volatile）或瞬态本地（Transient local）。</li>
+<li>时间期限（Deadline）：决定了发布者节点和订阅者节点之间的最大时间间隔，如果超过这个时间间隔没有收到消息，则认为出现错误。</li>
+<li>寿命（Lifespan）：决定了消息在发布后的有效期限，如果超过这个期限没有被接收，则认为消息过期并丢弃。</li>
+<li>活力（Liveliness）：决定了发布者节点如何向订阅者节点证明自己还存活，可以设置为自动申明（Automatic）、按话题手动申明（Manual by topic）或按节点手动申明（Manual by node），并指定一个租期（Lease Duration），即最长的无响应时间。</li>
+</ul>
+<p>ROS2提供了一些预定义的QoS配置文件，用于常见的用例，例如传感器数据、参数、服务等。也可以自定义QoS配置文件，但要注意发布者和订阅者之间的QoS配置文件必须<code>兼容</code>才能建立连接。</p>
+<h2 id="通信参数与动作"><a href="#通信参数与动作" class="headerlink" title="通信参数与动作"></a>通信参数与动作</h2><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>创建功能包和测试节点</p>
+<div class="code-wrapper"><pre><code class="hljs shell">ros2 pkg create example_parameters_rclcpp --build-type ament_cmake --dependencies rclcpp --destination-directory src --node-name parameters_basic</code></pre></div>
+
+<p>parameters_basic.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">    # declare_parameter            声明和初始化一个参数</span>
+<span class="hljs-comment">    # describe_parameter(name)  通过参数名字获取参数的描述</span>
+<span class="hljs-comment">    # get_parameter                通过参数名字获取一个参数</span>
+<span class="hljs-comment">    # set_parameter                设置参数的值</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParametersBasicNode</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 构造函数,有一个参数为节点名称</span>
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ParametersBasicNode</span><span class="hljs-params">(std::string name)</span> : Node(name) {</span>
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"节点已启动：%s."</span>, name.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">declare_parameter</span>(<span class="hljs-string">"rcl_log_level"</span>, <span class="hljs-number">0</span>);     <span class="hljs-comment">/*声明参数*/</span>
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_parameter</span>(<span class="hljs-string">"rcl_log_level"</span>, log_level); <span class="hljs-comment">/*获取参数*/</span>
+        <span class="hljs-comment">/*设置日志级别*/</span>  <span class="hljs-comment">//注意foxy语句不同</span>
+        <span class="hljs-built_in">rcutils_logging_set_logger_level</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>().<span class="hljs-built_in">get_name</span>(), log_level);
+        <span class="hljs-comment">// this-&gt;get_logger().set_level((rclcpp::Logger::Level)log_level);</span>
+        <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::literals::chrono_literals;
+        timer_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(
+                <span class="hljs-number">2000</span>ms, std::<span class="hljs-built_in">bind</span>(&amp;ParametersBasicNode::timer_callback, <span class="hljs-keyword">this</span>));
+    }
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">int</span> log_level;
+    rclcpp::TimerBase::SharedPtr timer_;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer_callback</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_parameter</span>(<span class="hljs-string">"rcl_log_level"</span>, log_level); <span class="hljs-comment">/*get par to loglevel*/</span>
+        <span class="hljs-comment">/*设置日志级别*/</span>
+        <span class="hljs-built_in">srand</span>(<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>));
+        log_level = <span class="hljs-number">0</span> + <span class="hljs-built_in">rand</span>() % <span class="hljs-number">5</span>;
+        <span class="hljs-built_in">rcutils_logging_set_logger_level</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>().<span class="hljs-built_in">get_name</span>(), log_level);
+        <span class="hljs-comment">//this-&gt;get_logger().set_level((rclcpp::Logger::Level)log_level);</span>
+        std::cout &lt;&lt; <span class="hljs-string">"======================================================"</span> &lt;&lt; std::endl;
+        <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (log_level) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+                <span class="hljs-built_in">RCLCPP_DEBUG</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"我是DEBUG级别的日志，我被打印出来了!"</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"我是INFO级别的日志，我被打印出来了!"</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                <span class="hljs-built_in">RCLCPP_WARN</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"我是WARN级别的日志，我被打印出来了!"</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"我是ERROR级别的日志，我被打印出来了!"</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                <span class="hljs-built_in">RCLCPP_FATAL</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"我是FATAL级别的日志，我被打印出来了!"</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-keyword">break</span>;
+        }
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span> </span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-comment">/*创建对应节点的共享指针对象*/</span>
+    <span class="hljs-keyword">auto</span> node = std::make_shared&lt;ParametersBasicNode&gt;(<span class="hljs-string">"parameters_basic"</span>);
+    <span class="hljs-comment">/* 运行节点，并检测退出信号*/</span>
+    rclcpp::<span class="hljs-built_in">spin</span>(node);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3 id="动作通信"><a href="#动作通信" class="headerlink" title="动作通信"></a>动作通信</h3>
               
             </div>
             <hr/>

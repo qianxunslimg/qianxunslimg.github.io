@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-19T02:22:18.892Z</updated>
+  <updated>2023-04-21T15:17:36.760Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/"/>
     <id>https://qianxunslimg.github.io/2023/04/19/ubuntu-xi-tong-pei-zhi/</id>
     <published>2023-04-18T17:59:00.000Z</published>
-    <updated>2023-04-19T02:22:18.892Z</updated>
+    <updated>2023-04-21T15:17:36.760Z</updated>
     
     
       
@@ -187,14 +187,18 @@
     <link href="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-04-19T14:15:01.204Z</updated>
+    <updated>2023-04-21T12:50:12.768Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;1-安装&quot;&gt;&lt;a href=&quot;#1-安装&quot; class=&quot;headerlink&quot; title=&quot;1. 安装&quot;&gt;&lt;/a&gt;1. 安装&lt;/h1&gt;&lt;p&gt;参考网站&lt;a</summary>
+    <summary type="html">&lt;p&gt;从大佬教程整理的学习笔记，原文&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://fishros.com/d2lros2/#/&quot;&gt;动手学ROS2 (fishros.com)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
         
       
     
