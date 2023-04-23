@@ -30,8 +30,9 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420113144221.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-22T02:11:46.304Z">
+<meta property="article:modified_time" content="2023-04-23T14:10:16.171Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -90,9 +91,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -977,7 +978,13 @@ ament_package()</code></pre></div>
 
   Some of these libraries may not be found correctly.</code></pre></div>
 
+<p>控制端</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> install/setup.bash
+ros2 run example_interfaces_rclcpp example_interfaces_control_01</code></pre></div>
 
+<p>服务端</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> install/setup.bash
+ros2 run example_interfaces_rclcpp  example_interfaces_robot_01</code></pre></div>
 
 <h2 id="QoS"><a href="#QoS" class="headerlink" title="QoS"></a>QoS</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/J63fO4c_QIseLGQd5W2fAw">Rviz显示不出数据了！一文搞懂Qos (qq.com)</a></p>
 <p>ROS2的QoS是指服务质量（Quality of Service）的缩写，它是一组策略，用于控制节点之间通信的可靠性、持久性、延迟等属性。ROS2利用了底层DDS传输的灵活性，提供了多种QoS策略，可以根据不同的应用场景进行调整。</p>
@@ -1064,7 +1071,365 @@ ament_package()</code></pre></div>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
 
-<h3 id="动作通信"><a href="#动作通信" class="headerlink" title="动作通信"></a>动作通信</h3>
+<h3 id="动作通信"><a href="#动作通信" class="headerlink" title="动作通信"></a>动作通信</h3><p>动作是 ROS 2 中的通信类型之一，适用于<code>长时间运行的任务</code>。 它们由三部分组成：目标、反馈和结果。</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png" srcset="/img/loading.gif" lazyload alt="image-20230422215840959"></p>
+<p><a target="_blank" rel="noopener" href="https://fishros.com/d2lros2/#/humble/chapt4/get_started/5.%E5%8A%A8%E4%BD%9C%E4%B9%8BCPP%E5%AE%9E%E7%8E%B0">5.动作之CPP实现 (fishros.com)</a></p>
+<p>创建example_action_rclcpp功能包，添加<code>robot_control_interfaces</code>、<code>rclcpp_action</code>、<code>rclcpp</code>三个依赖，自动创建<code>action_robot_01</code>节点，并手动创建<code>action_control_01.cpp</code>节点。</p>
+<div class="code-wrapper"><pre><code class="hljs shell">cd chapt4_ws/
+ros2 pkg create example_action_rclcpp --build-type ament_cmake --dependencies rclcpp rclcpp_action robot_control_interfaces --destination-directory src --node-name action_robot_01 --maintainer-name "fishros" --maintainer-email "fishros@foxmail.com"
+touch src/example_action_rclcpp/src/action_control_01.cpp</code></pre></div>
+
+<p>接着创建Robot类的头文件和CPP文件。</p>
+<div class="code-wrapper"><pre><code class="hljs awk">touch src<span class="hljs-regexp">/example_action_rclcpp/i</span>nclude<span class="hljs-regexp">/example_action_rclcpp/</span>robot.h
+touch src<span class="hljs-regexp">/example_action_rclcpp/</span>src/robot.cpp</code></pre></div>
+
+<p>创建完成后目录结构</p>
+<div class="code-wrapper"><pre><code class="hljs stylus">.
+├── CMakeLists<span class="hljs-selector-class">.txt</span>
+├── include
+│   └── example_action_rclcpp
+│       └── robot<span class="hljs-selector-class">.h</span> 
+├── package<span class="hljs-selector-class">.xml</span>
+└── <span class="hljs-attribute">src</span>
+    ├── action_control_01<span class="hljs-selector-class">.cpp</span>
+    ├── action_robot_01<span class="hljs-selector-class">.cpp</span>
+    └── robot<span class="hljs-selector-class">.cpp</span>
+
+<span class="hljs-number">3</span> directes, <span class="hljs-number">6</span> files</code></pre></div>
+
+<p>cmakelists</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">find_package</span>(ament_cmake REQUIRED)
+<span class="hljs-keyword">find_package</span>(rclcpp REQUIRED)
+<span class="hljs-keyword">find_package</span>(robot_control_interfaces REQUIRED)
+<span class="hljs-keyword">find_package</span>(example_interfaces REQUIRED)
+<span class="hljs-keyword">find_package</span>(rclcpp_action REQUIRED)
+
+<span class="hljs-comment"># action_robot节点</span>
+
+<span class="hljs-keyword">add_executable</span>(action_robot_01 
+    src/robot.cpp
+    src/action_robot_01.cpp
+)
+<span class="hljs-keyword">target_include_directories</span>(action_robot_01 PUBLIC
+  $&lt;BUILD_INTERFACE:<span class="hljs-variable">${CMAKE_CURRENT_SOURCE_DIR}</span>/<span class="hljs-keyword">include</span>&gt;
+  $&lt;INSTALL_INTERFACE:<span class="hljs-keyword">include</span>&gt;)
+<span class="hljs-keyword">target_compile_features</span>(action_robot_01 PUBLIC c_std_99 cxx_std_17)  <span class="hljs-comment"># Require C99 and C++17</span>
+ament_target_dependencies(
+  action_robot_01
+  <span class="hljs-string">"rclcpp"</span>
+  <span class="hljs-string">"rclcpp_action"</span>
+  <span class="hljs-string">"robot_control_interfaces"</span>
+  <span class="hljs-string">"example_interfaces"</span>
+)
+
+<span class="hljs-keyword">install</span>(TARGETS action_robot_01
+  DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)
+
+<span class="hljs-comment"># action_control节点</span>
+
+<span class="hljs-keyword">add_executable</span>(action_control_01 
+  src/action_control_01.cpp
+)
+<span class="hljs-keyword">target_include_directories</span>(action_control_01 PUBLIC
+$&lt;BUILD_INTERFACE:<span class="hljs-variable">${CMAKE_CURRENT_SOURCE_DIR}</span>/<span class="hljs-keyword">include</span>&gt;
+$&lt;INSTALL_INTERFACE:<span class="hljs-keyword">include</span>&gt;)
+<span class="hljs-keyword">target_compile_features</span>(action_control_01 PUBLIC c_std_99 cxx_std_17)  <span class="hljs-comment"># Require C99 and C++17</span>
+ament_target_dependencies(
+  action_control_01
+  <span class="hljs-string">"rclcpp"</span>
+  <span class="hljs-string">"rclcpp_action"</span>
+  <span class="hljs-string">"robot_control_interfaces"</span>
+  <span class="hljs-string">"example_interfaces"</span>
+)
+
+<span class="hljs-keyword">install</span>(TARGETS action_control_01
+DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)</code></pre></div>
+
+<p>package.xml</p>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">buildtool_depend</span>&gt;</span>ament_cmake<span class="hljs-tag">&lt;/<span class="hljs-name">buildtool_depend</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>rclcpp<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>rclcpp_action<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">depend</span>&gt;</span>robot_control_interfaces<span class="hljs-tag">&lt;/<span class="hljs-name">depend</span>&gt;</span></code></pre></div>
+
+<p>robot.h</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> EXAMPLE_ACTIONI_RCLCPP_ROBOT_H_</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> EXAMPLE_ACTIONI_RCLCPP_ROBOT_H_</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"robot_control_interfaces/action/move_robot.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Robot</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">using</span> MoveRobot = robot_control_interfaces::action::MoveRobot;
+    <span class="hljs-built_in">Robot</span>() = <span class="hljs-keyword">default</span>;
+    ~<span class="hljs-built_in">Robot</span>() = <span class="hljs-keyword">default</span>;
+    <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">move_step</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">/*移动一小步，请间隔500ms调用一次*/</span>
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">set_goal</span><span class="hljs-params">(<span class="hljs-keyword">float</span> distance)</span></span>; <span class="hljs-comment">/*移动一段距离*/</span>
+    <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">get_current_pose</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_status</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">close_goal</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">/*是否接近目标*/</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">stop_move</span><span class="hljs-params">()</span></span>;  <span class="hljs-comment">/*停止移动*/</span>
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">float</span> current_pose_ = <span class="hljs-number">0.0</span>;             <span class="hljs-comment">/*声明当前位置*/</span>
+    <span class="hljs-keyword">float</span> target_pose_ = <span class="hljs-number">0.0</span>;              <span class="hljs-comment">/*目标距离*/</span>
+    <span class="hljs-keyword">float</span> move_distance_ = <span class="hljs-number">0.0</span>;            <span class="hljs-comment">/*目标距离*/</span>
+    std::atomic&lt;<span class="hljs-keyword">bool</span>&gt; cancel_flag_{<span class="hljs-literal">false</span>}; <span class="hljs-comment">/*取消标志*/</span>
+    <span class="hljs-keyword">int</span> status_ = MoveRobot::Feedback::STATUS_STOP;
+};
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span>  <span class="hljs-comment">// EXAMPLE_ACTIONI_RCLCPP_ROBOT_H_</span></span></code></pre></div>
+
+<p>robot.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_action_rclcpp/robot.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"cmath"</span></span>
+
+<span class="hljs-comment">/*移动一小步，请间隔500ms调用一次*/</span>
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">Robot::move_step</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> direct = move_distance_ / <span class="hljs-built_in">fabs</span>(move_distance_);
+    <span class="hljs-keyword">float</span> step = direct * <span class="hljs-built_in">fabs</span>(target_pose_ - current_pose_) *
+                 <span class="hljs-number">0.1</span>; <span class="hljs-comment">/* 每一步移动当前到目标距离的1/10*/</span>
+    current_pose_ += step;
+    std::cout &lt;&lt; <span class="hljs-string">"移动了："</span> &lt;&lt; step &lt;&lt; <span class="hljs-string">"当前位置："</span> &lt;&lt; current_pose_ &lt;&lt; std::endl;
+    <span class="hljs-keyword">return</span> current_pose_;
+}
+
+<span class="hljs-comment">/*移动一段距离*/</span>
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Robot::set_goal</span><span class="hljs-params">(<span class="hljs-keyword">float</span> distance)</span> </span>{
+    move_distance_ = distance;
+    target_pose_ += move_distance_;
+
+    <span class="hljs-comment">/* 当目标距离和当前距离大于0.01同意向目标移动 */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">close_goal</span>()) {
+        status_ = MoveRobot::Feedback::STATUS_STOP;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    status_ = MoveRobot::Feedback::STATUS_MOVEING;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">Robot::get_current_pose</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> current_pose_; }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Robot::get_status</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> status_; }
+<span class="hljs-comment">/*是否接近目标*/</span>
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Robot::close_goal</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-built_in">fabs</span>(target_pose_ - current_pose_) &lt; <span class="hljs-number">0.01</span>; }
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Robot::stop_move</span><span class="hljs-params">()</span> </span>{
+    status_ = MoveRobot::Feedback::STATUS_STOP;
+} <span class="hljs-comment">/*停止移动*/</span></code></pre></div>
+
+<p>action_control_01.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp_action/rclcpp_action.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"robot_control_interfaces/action/move_robot.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActionControl01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">using</span> MoveRobot = robot_control_interfaces::action::MoveRobot;
+    <span class="hljs-keyword">using</span> GoalHandleMoveRobot = rclcpp_action::ClientGoalHandle&lt;MoveRobot&gt;;
+
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ActionControl01</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            std::string name,</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">const</span> rclcpp::NodeOptions&amp; node_options = rclcpp::NodeOptions())</span></span>
+<span class="hljs-function">            : Node(name, node_options) {</span>
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"节点已启动：%s."</span>, name.<span class="hljs-built_in">c_str</span>());
+
+        <span class="hljs-keyword">this</span>-&gt;client_ptr_ =
+                rclcpp_action::create_client&lt;MoveRobot&gt;(<span class="hljs-keyword">this</span>, <span class="hljs-string">"move_robot"</span>);
+
+        <span class="hljs-keyword">this</span>-&gt;timer_ =
+                <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(std::chrono::<span class="hljs-built_in">milliseconds</span>(<span class="hljs-number">500</span>),
+                                        std::<span class="hljs-built_in">bind</span>(&amp;ActionControl01::send_goal, <span class="hljs-keyword">this</span>));
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">send_goal</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::placeholders;
+
+        <span class="hljs-keyword">this</span>-&gt;timer_-&gt;<span class="hljs-built_in">cancel</span>();
+
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>-&gt;client_ptr_-&gt;<span class="hljs-built_in">wait_for_action_server</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">10</span>))) {
+            <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(),
+                         <span class="hljs-string">"Action server not available after waiting"</span>);
+            rclcpp::<span class="hljs-built_in">shutdown</span>();
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-keyword">auto</span> goal_msg = MoveRobot::<span class="hljs-built_in">Goal</span>();
+        goal_msg.distance = <span class="hljs-number">10</span>;
+
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Sending goal"</span>);
+
+        <span class="hljs-keyword">auto</span> send_goal_options =
+                rclcpp_action::Client&lt;MoveRobot&gt;::<span class="hljs-built_in">SendGoalOptions</span>();
+
+        <span class="hljs-comment">///////////////////////////////////////////////////////////////</span>
+        <span class="hljs-comment">// call back is different</span>
+        send_goal_options.goal_response_callback =
+              std::<span class="hljs-built_in">bind</span>(&amp;ActionControl01::goal_response_callback, <span class="hljs-keyword">this</span>, _1);
+        <span class="hljs-comment">///////////////////////////////////////////////////////////////</span>
+
+        send_goal_options.feedback_callback =
+                std::<span class="hljs-built_in">bind</span>(&amp;ActionControl01::feedback_callback, <span class="hljs-keyword">this</span>, _1, _2);
+        send_goal_options.result_callback =
+                std::<span class="hljs-built_in">bind</span>(&amp;ActionControl01::result_callback, <span class="hljs-keyword">this</span>, _1);
+        
+        <span class="hljs-keyword">this</span>-&gt;client_ptr_-&gt;<span class="hljs-built_in">async_send_goal</span>(goal_msg, send_goal_options);
+    }
+
+<span class="hljs-keyword">private</span>:
+    rclcpp_action::Client&lt;MoveRobot&gt;::SharedPtr client_ptr_;
+    rclcpp::TimerBase::SharedPtr timer_;
+
+    <span class="hljs-comment">//right  its ROS2 Foxy GoalResponseCallback:</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">goal_response_callback</span><span class="hljs-params">(std::shared_future&lt;GoalHandleMoveRobot::SharedPtr&gt; goal_handle)</span></span>
+<span class="hljs-function">    </span>{
+        <span class="hljs-keyword">if</span> (!goal_handle.<span class="hljs-built_in">get</span>()-&gt;<span class="hljs-built_in">is_result_aware</span>()) {
+            <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal was rejected by server"</span>);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(),
+                        <span class="hljs-string">"Goal accepted by server, waiting for result"</span>);
+        }
+    }
+    <span class="hljs-comment">// wrong  its ROS2 Humble GoalResponseCallback:</span>
+    <span class="hljs-comment">//    void goal_response_callback(GoalHandleMoveRobot::SharedPtr goal_handle) {</span>
+    <span class="hljs-comment">//        if (!goal_handle) {</span>
+    <span class="hljs-comment">//            RCLCPP_ERROR(this-&gt;get_logger(), "Goal was rejected by server");</span>
+    <span class="hljs-comment">//        } else {</span>
+    <span class="hljs-comment">//            RCLCPP_INFO(this-&gt;get_logger(),</span>
+    <span class="hljs-comment">//                        "Goal accepted by server, waiting for result");</span>
+    <span class="hljs-comment">//        }</span>
+    <span class="hljs-comment">//    }</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">feedback_callback</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            GoalHandleMoveRobot::SharedPtr,</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">const</span> std::shared_ptr&lt;<span class="hljs-keyword">const</span> MoveRobot::Feedback&gt; feedback)</span> </span>{
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Feedback current pose:%f"</span>, feedback-&gt;pose);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">result_callback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> GoalHandleMoveRobot::WrappedResult&amp; result)</span> </span>{
+        <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (result.code) {
+            <span class="hljs-keyword">case</span> rclcpp_action::ResultCode::SUCCEEDED:
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> rclcpp_action::ResultCode::ABORTED:
+                <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal was aborted"</span>);
+                <span class="hljs-keyword">return</span>;
+            <span class="hljs-keyword">case</span> rclcpp_action::ResultCode::CANCELED:
+                <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal was canceled"</span>);
+                <span class="hljs-keyword">return</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Unknown result code"</span>);
+                <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Result received: %f"</span>, result.result-&gt;pose);
+        <span class="hljs-comment">// rclcpp::shutdown();</span>
+    }
+};  <span class="hljs-comment">// class ActionControl01</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-keyword">auto</span> action_client = std::make_shared&lt;ActionControl01&gt;(<span class="hljs-string">"action_robot_cpp"</span>);
+    rclcpp::<span class="hljs-built_in">spin</span>(action_client);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>action_robot_01.cpp</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_action_rclcpp/robot.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp_action/rclcpp_action.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"robot_control_interfaces/action/move_robot.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cmath&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActionRobot01</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">using</span> MoveRobot = robot_control_interfaces::action::MoveRobot;
+    <span class="hljs-keyword">using</span> GoalHandleMoveRobot = rclcpp_action::ServerGoalHandle&lt;MoveRobot&gt;;
+
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ActionRobot01</span><span class="hljs-params">(std::string name)</span> : Node(name) {</span>
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"节点已启动：%s."</span>, name.<span class="hljs-built_in">c_str</span>());
+
+        <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::placeholders;  <span class="hljs-comment">// NOLINT</span>
+
+        <span class="hljs-keyword">this</span>-&gt;action_server_ = rclcpp_action::create_server&lt;MoveRobot&gt;(
+                <span class="hljs-keyword">this</span>, <span class="hljs-string">"move_robot"</span>,
+                std::<span class="hljs-built_in">bind</span>(&amp;ActionRobot01::handle_goal, <span class="hljs-keyword">this</span>, _1, _2),
+                std::<span class="hljs-built_in">bind</span>(&amp;ActionRobot01::handle_cancel, <span class="hljs-keyword">this</span>, _1),
+                std::<span class="hljs-built_in">bind</span>(&amp;ActionRobot01::handle_accepted, <span class="hljs-keyword">this</span>, _1));
+    }
+
+<span class="hljs-keyword">private</span>:
+    Robot robot;
+    rclcpp_action::Server&lt;MoveRobot&gt;::SharedPtr action_server_;
+
+    <span class="hljs-function">rclcpp_action::GoalResponse <span class="hljs-title">handle_goal</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">const</span> rclcpp_action::GoalUUID&amp; uuid,</span></span>
+<span class="hljs-params"><span class="hljs-function">            std::shared_ptr&lt;<span class="hljs-keyword">const</span> MoveRobot::Goal&gt; goal)</span> </span>{
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Received goal request with distance %f"</span>,
+                    goal-&gt;distance);
+        (<span class="hljs-keyword">void</span>)uuid;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(goal-&gt;distance &gt; <span class="hljs-number">100</span>)) {
+            <span class="hljs-built_in">RCLCPP_WARN</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"目标距离太远了，本机器人表示拒绝！"</span>);
+            <span class="hljs-keyword">return</span> rclcpp_action::GoalResponse::REJECT;
+        }
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(),
+                    <span class="hljs-string">"目标距离%f我可以走到，本机器人接受，准备出发！"</span>,
+                    goal-&gt;distance);
+        <span class="hljs-keyword">return</span> rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
+    }
+
+    <span class="hljs-function">rclcpp_action::CancelResponse <span class="hljs-title">handle_cancel</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">            <span class="hljs-keyword">const</span> std::shared_ptr&lt;GoalHandleMoveRobot&gt; goal_handle)</span> </span>{
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Received request to cancel goal"</span>);
+        (<span class="hljs-keyword">void</span>)goal_handle;
+        robot.<span class="hljs-built_in">stop_move</span>(); <span class="hljs-comment">/*认可取消执行，让机器人停下来*/</span>
+        <span class="hljs-keyword">return</span> rclcpp_action::CancelResponse::ACCEPT;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">execute_move</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std::shared_ptr&lt;GoalHandleMoveRobot&gt; goal_handle)</span> </span>{
+        <span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> goal = goal_handle-&gt;<span class="hljs-built_in">get_goal</span>();
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"开始执行移动 %f 。。。"</span>, goal-&gt;distance);
+
+        <span class="hljs-keyword">auto</span> result = std::make_shared&lt;MoveRobot::Result&gt;();
+        rclcpp::Rate rate = rclcpp::<span class="hljs-built_in">Rate</span>(<span class="hljs-number">2</span>);
+        robot.<span class="hljs-built_in">set_goal</span>(goal-&gt;distance);
+        <span class="hljs-keyword">while</span> (rclcpp::<span class="hljs-built_in">ok</span>() &amp;&amp; !robot.<span class="hljs-built_in">close_goal</span>()) {
+            robot.<span class="hljs-built_in">move_step</span>();
+            <span class="hljs-keyword">auto</span> feedback = std::make_shared&lt;MoveRobot::Feedback&gt;();
+            feedback-&gt;pose = robot.<span class="hljs-built_in">get_current_pose</span>();
+            feedback-&gt;status = robot.<span class="hljs-built_in">get_status</span>();
+            goal_handle-&gt;<span class="hljs-built_in">publish_feedback</span>(feedback);
+            <span class="hljs-comment">/*检测任务是否被取消*/</span>
+            <span class="hljs-keyword">if</span> (goal_handle-&gt;<span class="hljs-built_in">is_canceling</span>()) {
+                result-&gt;pose = robot.<span class="hljs-built_in">get_current_pose</span>();
+                goal_handle-&gt;<span class="hljs-built_in">canceled</span>(result);
+                <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal Canceled"</span>);
+                <span class="hljs-keyword">return</span>;
+            }
+            <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Publish Feedback"</span>); <span class="hljs-comment">/*Publish feedback*/</span>
+            rate.<span class="hljs-built_in">sleep</span>();
+        }
+
+        result-&gt;pose = robot.<span class="hljs-built_in">get_current_pose</span>();
+        goal_handle-&gt;<span class="hljs-built_in">succeed</span>(result);
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal Succeeded"</span>);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle_accepted</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std::shared_ptr&lt;GoalHandleMoveRobot&gt; goal_handle)</span> </span>{
+        <span class="hljs-keyword">using</span> std::placeholders::_1;
+        std::thread{std::<span class="hljs-built_in">bind</span>(&amp;ActionRobot01::execute_move, <span class="hljs-keyword">this</span>, _1), goal_handle}
+                .<span class="hljs-built_in">detach</span>();
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+    rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+    <span class="hljs-keyword">auto</span> action_server = std::make_shared&lt;ActionRobot01&gt;(<span class="hljs-string">"action_robot_01"</span>);
+    rclcpp::<span class="hljs-built_in">spin</span>(action_server);
+    rclcpp::<span class="hljs-built_in">shutdown</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
               
             </div>
             <hr/>
