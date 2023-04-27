@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-23T14:10:16.171Z">
+<meta property="article:modified_time" content="2023-04-25T09:16:27.261Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -91,9 +91,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -929,6 +929,7 @@ ament_target_dependencies(
 <span class="hljs-keyword">install</span>(TARGETS example_interfaces_robot_01
   <span class="hljs-keyword">EXPORT</span> export_<span class="hljs-variable">${PROJECT_NAME}</span>
   DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)
+  
 
 <span class="hljs-comment"># add /</span>
 <span class="hljs-keyword">add_executable</span>(example_interfaces_control_01 src/example_interfaces_control_01.cpp)
@@ -1429,6 +1430,12 @@ DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)</code></pre>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
 
+
+
+<h3 id="通信机制对比总结"><a href="#通信机制对比总结" class="headerlink" title="通信机制对比总结"></a>通信机制对比总结</h3><h4 id="话题"><a href="#话题" class="headerlink" title="话题"></a>话题</h4><p>话题（Topic）是一种轻量级的通信方式，用于实现发布-订阅模式，即一个节点发布数据，另一个节点订阅数据。话题是一种单向的通信方式，发布者发布数据后，无法获知数据是否被订阅者成功接收。话题的数据类型可以是ROS中定义的任意消息类型。常见的使用话题实现的场景包括传感器数据的传递、节点间的状态信息交换等。</p>
+<h4 id="服务-1"><a href="#服务-1" class="headerlink" title="服务"></a>服务</h4><p>服务是双向的，提供了一种客户端-服务器模式，即客户端向服务器发送请求，服务器响应请求并返回结果。服务可以实现双向通信，并且支持传递任意的ROS消息类型。服务的实现需要定义两个消息类型，一个用于请求，一个用于响应。常见的使用服务实现的场景包括节点之间的命令调用、请求数据等。</p>
+<h4 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h4><p>参数（Parameter）是ROS 2中节点的一种配置机制，它可以用于对节点进行设置。参数可以存储整数、浮点数、布尔值、字符串等基本类型数据，也可以存储ROS消息类型。参数的读写操作可以通过服务实现。在节点启动时，可以通过ROS参数服务器将参数传递给节点，也可以在运行时动态修改参数。常见的使用参数的场景包括节点的配置、调试等。，原理基于服务。</p>
+<h4 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h4><p>动作（Action）是ROS 2中的高级通信机制，它可以实现异步的双向通信，并且支持取消、暂停、恢复等操作。动作通常用于需要执行较长时间的任务，如机器人的导航、物体识别等。与服务不同，动作可以通过话题实时发布执行状态、进度等信息，以便客户端监控执行情况。动作的实现需要定义三个消息类型，一个用于请求，一个用于响应，一个用于反馈。常见的使用动作的场景包括机器人的自主导航、物体抓取等。</p>
 
               
             </div>
