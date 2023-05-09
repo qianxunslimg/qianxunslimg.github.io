@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-25T09:16:27.261Z">
+<meta property="article:modified_time" content="2023-05-08T14:05:32.016Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -91,9 +91,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -1436,6 +1436,316 @@ DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)</code></pre>
 <h4 id="服务-1"><a href="#服务-1" class="headerlink" title="服务"></a>服务</h4><p>服务是双向的，提供了一种客户端-服务器模式，即客户端向服务器发送请求，服务器响应请求并返回结果。服务可以实现双向通信，并且支持传递任意的ROS消息类型。服务的实现需要定义两个消息类型，一个用于请求，一个用于响应。常见的使用服务实现的场景包括节点之间的命令调用、请求数据等。</p>
 <h4 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h4><p>参数（Parameter）是ROS 2中节点的一种配置机制，它可以用于对节点进行设置。参数可以存储整数、浮点数、布尔值、字符串等基本类型数据，也可以存储ROS消息类型。参数的读写操作可以通过服务实现。在节点启动时，可以通过ROS参数服务器将参数传递给节点，也可以在运行时动态修改参数。常见的使用参数的场景包括节点的配置、调试等。，原理基于服务。</p>
 <h4 id="动作"><a href="#动作" class="headerlink" title="动作"></a>动作</h4><p>动作（Action）是ROS 2中的高级通信机制，它可以实现异步的双向通信，并且支持取消、暂停、恢复等操作。动作通常用于需要执行较长时间的任务，如机器人的导航、物体识别等。与服务不同，动作可以通过话题实时发布执行状态、进度等信息，以便客户端监控执行情况。动作的实现需要定义三个消息类型，一个用于请求，一个用于响应，一个用于反馈。常见的使用动作的场景包括机器人的自主导航、物体抓取等。</p>
+<h1 id="4-ESP32-amp-MicroRos-amp-PIO"><a href="#4-ESP32-amp-MicroRos-amp-PIO" class="headerlink" title="4. ESP32 &amp; MicroRos &amp; PIO"></a>4. ESP32 &amp; MicroRos &amp; PIO</h1><p>参考教程<a target="_blank" rel="noopener" href="https://fishros.com/d2lros2/#/humble/chapt13/%E7%AB%A0%E8%8A%82%E5%AF%BC%E8%AF%BB"><strong>ROS2硬件控制篇</strong></a></p>
+<h2 id="PIO配置文件"><a href="#PIO配置文件" class="headerlink" title="PIO配置文件"></a>PIO配置文件</h2><div class="code-wrapper"><pre><code class="hljs ini"><span class="hljs-section">[env:featheresp32]</span>
+<span class="hljs-attr">platform</span> = espressif32
+<span class="hljs-attr">board</span> = featheresp32
+<span class="hljs-attr">framework</span> = ardui<span class="hljs-literal">no</span>
+<span class="hljs-attr">board_microros_transport</span> = wifi  <span class="hljs-comment">;wifi与microros通信</span>
+；<span class="hljs-attr">monitor_speed</span> = <span class="hljs-number">115200</span>  <span class="hljs-comment">;不使用wifi通信则默认串口 设置波特率</span>
+<span class="hljs-attr">lib_deps</span> = 
+    https://gitee.com/ohhuo/micro_ros_platformio.git  ；MicroRos包
+    madhephaestus/ESP32Servo@^0.12.0 <span class="hljs-comment">;驱动舵机</span>
+    adafruit/Adafruit SSD1306@^2.5.7 <span class="hljs-comment">;oled驱动</span>
+    adafruit/Adafruit GFX Library@^1.11.5 <span class="hljs-comment">;oled驱动的依赖</span>
+    adafruit/Adafruit BusIO@^1.14.1  <span class="hljs-comment">;oled驱动的依赖</span>
+    https://ghproxy.com/https://github.com/rfetick/MPU6050_light.git ；六轴传感器的运动处理组件
+    paulstoffregen/Time@^1.6.1  <span class="hljs-comment">;设置系统时间的插件</span>
+    arduino-libraries/Stepper   <span class="hljs-comment">;步进电机控制</span>
+    SPI  <span class="hljs-comment">;不接这些可能会找不到头文件 编译失败 偶发性</span>
+    Wire
+    Wifi</code></pre></div>
+
+<h2 id="调试命令"><a href="#调试命令" class="headerlink" title="调试命令"></a>调试命令</h2><h3 id="micro-ros-agent命令"><a href="#micro-ros-agent命令" class="headerlink" title="micro ros agent命令"></a>micro ros agent命令</h3><p>串口micro ros agent</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:<span class="hljs-variable">$ROS_DISTRO</span> serial --dev /dev/ttyUSB0 -v6</code></pre></div>
+
+<p>wifi micro ros agent</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:<span class="hljs-variable">$ROS_DISTRO</span> udp4 --port 8888 -v6</code></pre></div>
+
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><p>查看串口是否连接(查看usb设备)</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ls /dev/ttyUSB*</code></pre></div>
+
+<p>设置设备权限</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo chmod 666 /dev/ttyUSB0 <span class="hljs-comment">#临时设置</span>
+
+<span class="hljs-comment">#永久修改</span>
+sudo usermod -a -G dialout <span class="hljs-variable">$USER</span>
+sudo usermod -a -G plugdev <span class="hljs-variable">$USER</span></code></pre></div>
+
+
+
+<h2 id="开发板配置"><a href="#开发板配置" class="headerlink" title="开发板配置"></a>开发板配置</h2><p><a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/923/fishbot%E9%85%8D%E5%A5%97%E8%B5%84%E6%96%99%E6%95%99%E7%A8%8B%E6%B1%87%E6%80%BB">FishBot配套资料教程汇总 | 鱼香ROS (fishros.org.cn)</a></p>
+<h3 id="wifi配置"><a href="#wifi配置" class="headerlink" title="wifi配置"></a>wifi配置</h3><p>首先 使用配置软件烧录固件</p>
+<div class="code-wrapper"><pre><code class="hljs bash">xhost + &amp;&amp; sudo docker run -it --rm --privileged -v /dev:/dev -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix<span class="hljs-variable">$DISPLAY</span> fishros2/fishbot-tool:v1.0.0.20230105 python3 main.py</code></pre></div>
+
+<p>点击 一键下载 </p>
+<p>然后配置网络：配置项选择wifi_ssid 然后输入wifi名称 点击一键配置，再选择wifi_pswd输入当前wifi密码，点击一键配置，成功则oled显示ip</p>
+<p>代码中若选择wifi通信则需要代码中设置当前主机ip，ip查看命令</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ip -4 a | grep inet</code></pre></div>
+
+
+
+<blockquote>
+<p>我有两个网络 一个是2.4g 一个是5g 固件烧录wifi为2.4g 主机端2.4g 5g均可，主机ip不会变化 可以正常通信  但是大佬推荐的是固件烧录最好是2.4g</p>
+</blockquote>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><h3 id="oled显示"><a href="#oled显示" class="headerlink" title="oled显示"></a>oled显示</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Adafruit_GFX.h&gt;</span>     <span class="hljs-comment">// 加载Adafruit_GFX库</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Adafruit_SSD1306.h&gt;</span> <span class="hljs-comment">// 加载Adafruit_SSD1306库</span></span>
+
+Adafruit_SSD1306 display; <span class="hljs-comment">// 声明对象</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">oled_init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  Wire.<span class="hljs-built_in">begin</span>(<span class="hljs-number">18</span>, <span class="hljs-number">19</span>);
+  display = <span class="hljs-built_in">Adafruit_SSD1306</span>(<span class="hljs-number">128</span>, <span class="hljs-number">64</span>, &amp;Wire);
+  display.<span class="hljs-built_in">begin</span>(SSD1306_SWITCHCAPVCC, <span class="hljs-number">0x3C</span>);         <span class="hljs-comment">// 设置OLED的I2C地址，默认0x3C</span>
+  display.<span class="hljs-built_in">clearDisplay</span>();                            <span class="hljs-comment">// 清空屏幕</span>
+  display.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">2</span>);                            <span class="hljs-comment">// 设置字体大小，最小为1</span>
+  display.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);                           <span class="hljs-comment">// 设置开始显示文字的坐标</span>
+  display.<span class="hljs-built_in">setTextColor</span>(SSD1306_WHITE);               <span class="hljs-comment">// 设置字体颜色</span>
+  display.<span class="hljs-built_in">println</span>(<span class="hljs-string">"hello! let us show distance..."</span>); <span class="hljs-comment">// 输出的字符</span>
+  display.<span class="hljs-built_in">display</span>();                                 <span class="hljs-comment">// 必须有</span>
+}</code></pre></div>
+
+<h3 id="Wifi通信"><a href="#Wifi通信" class="headerlink" title="Wifi通信"></a>Wifi通信</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Arduino.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;micro_ros_platformio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rcl/rcl.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rclc/rclc.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rclc/executor.h&gt;</span></span>
+
+<span class="hljs-keyword">rclc_executor_t</span> executor;
+<span class="hljs-keyword">rclc_support_t</span> support;
+<span class="hljs-keyword">rcl_allocator_t</span> allocator;
+<span class="hljs-keyword">rcl_node_t</span> node;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * @brief MicroROSTASK,打印ID</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * @param param</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">microros_task</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *param)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-comment">// 设置通过WIFI进行MicroROS通信</span>
+  IPAddress agent_ip;
+  agent_ip.<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"192.168.31.191"</span>);  <span class="hljs-comment">//主要这里是agent的ip</span>
+  <span class="hljs-comment">// 设置wifi名称，密码，电脑IP,端口号</span>
+  <span class="hljs-built_in">set_microros_wifi_transports</span>(<span class="hljs-string">"WHCKKJ"</span>, <span class="hljs-string">"WHCKKJ456"</span>, agent_ip, <span class="hljs-number">8888</span>);
+  
+  <span class="hljs-comment">// 原始的串口通信</span>
+  <span class="hljs-comment">// set_microros_serial_transports(Serial);</span>
+
+  <span class="hljs-comment">// 延时时一段时间，等待设置完成</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);
+  <span class="hljs-comment">// 初始化内存分配器</span>
+  allocator = <span class="hljs-built_in">rcl_get_default_allocator</span>();
+  <span class="hljs-comment">// 创建初始化选项</span>
+  <span class="hljs-built_in">rclc_support_init</span>(&amp;support, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, &amp;allocator);
+  <span class="hljs-comment">// 创建节点 microros_wifi</span>
+  <span class="hljs-built_in">rclc_node_init_default</span>(&amp;node, <span class="hljs-string">"microros_wifi"</span>, <span class="hljs-string">""</span>, &amp;support);
+  <span class="hljs-comment">// 创建执行器</span>
+  <span class="hljs-built_in">rclc_executor_init</span>(&amp;executor, &amp;support.context, <span class="hljs-number">1</span>, &amp;allocator);
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)
+  {
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">100</span>);
+    Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"microros_task on core:%d\n"</span>, <span class="hljs-built_in">xPortGetCoreID</span>());
+    <span class="hljs-comment">// 循环处理数据</span>
+    <span class="hljs-built_in">rclc_executor_spin_some</span>(&amp;executor, <span class="hljs-built_in">RCL_MS_TO_NS</span>(<span class="hljs-number">100</span>));
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  <span class="hljs-built_in">xTaskCreatePinnedToCore</span>(microros_task, <span class="hljs-string">"microros_task"</span>, <span class="hljs-number">10240</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"do some control on core:%d\n"</span>, <span class="hljs-built_in">xPortGetCoreID</span>());
+}</code></pre></div>
+
+<h3 id="雷达扫描-oled显示-wifi通信-ros-rviz2显示"><a href="#雷达扫描-oled显示-wifi通信-ros-rviz2显示" class="headerlink" title="雷达扫描 oled显示 wifi通信 ros-rviz2显示"></a>雷达扫描 oled显示 wifi通信 ros-rviz2显示</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Arduino.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;micro_ros_platformio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;WiFi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rcl/rcl.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rclc/rclc.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;rclc/executor.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ESP32Servo.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sensor_msgs/msg/laser_scan.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;micro_ros_utilities/string_utilities.h&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PCOUNT 10</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Trig 27 <span class="hljs-comment">// 设定SR04连接的Arduino引脚</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> Echo 21</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Adafruit_GFX.h&gt;</span>     <span class="hljs-comment">// 加载Adafruit_GFX库</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Adafruit_SSD1306.h&gt;</span> <span class="hljs-comment">// 加载Adafruit_SSD1306库</span></span>
+
+Adafruit_SSD1306 display; <span class="hljs-comment">// 声明对象</span>
+
+<span class="hljs-keyword">rclc_executor_t</span> executor;
+<span class="hljs-keyword">rclc_support_t</span> support;
+<span class="hljs-keyword">rcl_allocator_t</span> allocator;
+<span class="hljs-keyword">rcl_node_t</span> node;
+
+<span class="hljs-keyword">rcl_publisher_t</span> publisher;           <span class="hljs-comment">// 声明话题发布者</span>
+sensor_msgs__msg__LaserScan pub_msg; <span class="hljs-comment">// 声明消息文件</span>
+
+Servo servo1;
+<span class="hljs-keyword">bool</span> connected_agent = <span class="hljs-literal">false</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">microros_task</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *param)</span></span>
+<span class="hljs-function"></span>{
+
+  IPAddress agent_ip;                                                    <span class="hljs-comment">// 设置通过WIFI进行MicroROS通信</span>
+  agent_ip.<span class="hljs-built_in">fromString</span>(<span class="hljs-string">"192.168.31.191"</span>);                                 <span class="hljs-comment">// 从字符串获取IP地址</span>
+  <span class="hljs-built_in">set_microros_wifi_transports</span>(<span class="hljs-string">"WHCKKJ"</span>, <span class="hljs-string">"WHCKKJ456"</span>, agent_ip, <span class="hljs-number">8888</span>);   <span class="hljs-comment">// 设置wifi名称，密码，电脑IP,端口号</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">2000</span>);                                                           <span class="hljs-comment">// 延时时一段时间，等待设置完成</span>
+  allocator = <span class="hljs-built_in">rcl_get_default_allocator</span>();                               <span class="hljs-comment">// 初始化内存分配器</span>
+  <span class="hljs-built_in">rclc_support_init</span>(&amp;support, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, &amp;allocator);                      <span class="hljs-comment">// 创建初始化选项</span>
+  <span class="hljs-built_in">rclc_node_init_default</span>(&amp;node, <span class="hljs-string">"example20_simple_laser"</span>, <span class="hljs-string">""</span>, &amp;support); <span class="hljs-comment">// 创建节点</span>
+  <span class="hljs-built_in">rclc_publisher_init_default</span>(                                           <span class="hljs-comment">// 发布初始化</span>
+      &amp;publisher,
+      &amp;node,
+      <span class="hljs-built_in">ROSIDL_GET_MSG_TYPE_SUPPORT</span>(sensor_msgs, msg, LaserScan),
+      <span class="hljs-string">"/scan"</span>);
+
+  <span class="hljs-built_in">rclc_executor_init</span>(&amp;executor, &amp;support.context, <span class="hljs-number">1</span>, &amp;allocator);                             <span class="hljs-comment">// 创建执行器</span>
+  pub_msg.header.frame_id = <span class="hljs-built_in">micro_ros_string_utilities_set</span>(pub_msg.header.frame_id, <span class="hljs-string">"laser"</span>); <span class="hljs-comment">// 初始化消息内容</span>
+  pub_msg.angle_increment = <span class="hljs-number">1.0</span> / <span class="hljs-number">180</span> * PI;
+  pub_msg.range_min = <span class="hljs-number">0.05</span>;
+  pub_msg.range_max = <span class="hljs-number">5.0</span>;
+
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)
+  {
+    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);
+    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">rmw_uros_epoch_synchronized</span>()) <span class="hljs-comment">// 判断时间是否同步</span>
+    {
+      <span class="hljs-built_in">rmw_uros_sync_session</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">//  同步时间</span>
+      <span class="hljs-keyword">continue</span>;
+    }
+    connected_agent = <span class="hljs-literal">true</span>;
+    <span class="hljs-built_in">rclc_executor_spin_some</span>(&amp;executor, <span class="hljs-built_in">RCL_MS_TO_NS</span>(<span class="hljs-number">100</span>)); <span class="hljs-comment">// 循环处理数据</span>
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">get_distance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> angle)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> mtime;
+  servo1.<span class="hljs-built_in">write</span>(angle);     <span class="hljs-comment">// 移动到指定角度</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">25</span>);               <span class="hljs-comment">// 稳定身形</span>
+  <span class="hljs-built_in">digitalWrite</span>(Trig, LOW); <span class="hljs-comment">// 测量距离</span>
+  <span class="hljs-built_in">delayMicroseconds</span>(<span class="hljs-number">2</span>);
+  <span class="hljs-built_in">digitalWrite</span>(Trig, HIGH);
+  <span class="hljs-built_in">delayMicroseconds</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// 产生一个10us的高脉冲去触发SR04</span>
+  <span class="hljs-built_in">digitalWrite</span>(Trig, LOW);
+  mtime = <span class="hljs-built_in">pulseIn</span>(Echo, HIGH);                  <span class="hljs-comment">// 检测脉冲宽度，注意返回值是微秒us</span>
+  <span class="hljs-keyword">float</span> detect_distance = mtime / <span class="hljs-number">58.0</span> / <span class="hljs-number">100.0</span>; <span class="hljs-comment">// 计算出距离,输出的距离的单位是厘米cm</span>
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"point(%d,%f)\n"</span>, angle, detect_distance);
+
+  <span class="hljs-comment">// oled show distace</span>
+  display.<span class="hljs-built_in">clearDisplay</span>();  <span class="hljs-comment">// 清空屏幕</span>
+  display.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// 设置开始显示文字的坐标</span>
+
+  std::string str = <span class="hljs-string">"angle: "</span>;
+  str += std::<span class="hljs-built_in">to_string</span>(angle);
+  display.<span class="hljs-built_in">println</span>(str.<span class="hljs-built_in">c_str</span>());
+
+  str = <span class="hljs-string">"distance: "</span>;
+  str += std::<span class="hljs-built_in">to_string</span>(detect_distance);
+  display.<span class="hljs-built_in">println</span>(str.<span class="hljs-built_in">c_str</span>());
+  display.<span class="hljs-built_in">display</span>();
+
+  <span class="hljs-keyword">return</span> detect_distance;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">oled_init</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  Wire.<span class="hljs-built_in">begin</span>(<span class="hljs-number">18</span>, <span class="hljs-number">19</span>);
+  display = <span class="hljs-built_in">Adafruit_SSD1306</span>(<span class="hljs-number">128</span>, <span class="hljs-number">64</span>, &amp;Wire);
+  display.<span class="hljs-built_in">begin</span>(SSD1306_SWITCHCAPVCC, <span class="hljs-number">0x3C</span>);         <span class="hljs-comment">// 设置OLED的I2C地址，默认0x3C</span>
+  display.<span class="hljs-built_in">clearDisplay</span>();                            <span class="hljs-comment">// 清空屏幕</span>
+  display.<span class="hljs-built_in">setTextSize</span>(<span class="hljs-number">2</span>);                            <span class="hljs-comment">// 设置字体大小，最小为1</span>
+  display.<span class="hljs-built_in">setCursor</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);                           <span class="hljs-comment">// 设置开始显示文字的坐标</span>
+  display.<span class="hljs-built_in">setTextColor</span>(SSD1306_WHITE);               <span class="hljs-comment">// 设置字体颜色</span>
+  display.<span class="hljs-built_in">println</span>(<span class="hljs-string">"hello! let us show distance..."</span>); <span class="hljs-comment">// 输出的字符</span>
+  display.<span class="hljs-built_in">display</span>();                                 <span class="hljs-comment">// 必须有</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+  <span class="hljs-built_in">pinMode</span>(Trig, OUTPUT);     <span class="hljs-comment">// 初始化舵机和雷达</span>
+  <span class="hljs-built_in">pinMode</span>(Echo, INPUT);      <span class="hljs-comment">// 要检测引脚上输入的脉冲宽度，需要先设置为输入状态</span>
+  servo1.<span class="hljs-built_in">setPeriodHertz</span>(<span class="hljs-number">50</span>); <span class="hljs-comment">// Standard 50hz servo</span>
+  servo1.<span class="hljs-built_in">attach</span>(<span class="hljs-number">4</span>, <span class="hljs-number">500</span>, <span class="hljs-number">2500</span>);
+  servo1.<span class="hljs-built_in">write</span>(<span class="hljs-number">90.0</span>);
+  <span class="hljs-built_in">xTaskCreatePinnedToCore</span>(microros_task, <span class="hljs-string">"microros_task"</span>, <span class="hljs-number">10240</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>);
+
+  <span class="hljs-built_in">oled_init</span>();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-keyword">if</span> (!connected_agent)
+    <span class="hljs-keyword">return</span>;
+
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> ranges[PCOUNT + <span class="hljs-number">1</span>];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(<span class="hljs-number">180</span> / PCOUNT); i++)
+  {
+    <span class="hljs-keyword">int64_t</span> start_scan_time = <span class="hljs-built_in">rmw_uros_epoch_millis</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; PCOUNT; j++)
+    {
+      <span class="hljs-keyword">int</span> angle = i * <span class="hljs-number">10</span> + j;
+      ranges[j] = <span class="hljs-built_in">get_distance</span>(angle);
+    }
+    pub_msg.angle_min = <span class="hljs-built_in"><span class="hljs-keyword">float</span></span>(i * <span class="hljs-number">10</span>) / <span class="hljs-number">180</span> * PI;       <span class="hljs-comment">// 结束角度</span>
+    pub_msg.angle_max = <span class="hljs-built_in"><span class="hljs-keyword">float</span></span>(i * (<span class="hljs-number">10</span> + <span class="hljs-number">1</span>)) / <span class="hljs-number">180</span> * PI; <span class="hljs-comment">// 结束角度</span>
+
+    <span class="hljs-keyword">int64_t</span> current_time = <span class="hljs-built_in">rmw_uros_epoch_millis</span>();
+    pub_msg.scan_time = <span class="hljs-built_in"><span class="hljs-keyword">float</span></span>(current_time - start_scan_time) * <span class="hljs-number">1e-3</span>;
+    pub_msg.time_increment = pub_msg.scan_time / PCOUNT;
+    pub_msg.header.stamp.sec = current_time * <span class="hljs-number">1e-3</span>;
+    pub_msg.header.stamp.nanosec = current_time - pub_msg.header.stamp.sec * <span class="hljs-number">1000</span>;
+    pub_msg.ranges.data = ranges;
+    pub_msg.ranges.capacity = PCOUNT;
+    pub_msg.ranges.size = PCOUNT;
+    <span class="hljs-built_in">rcl_publish</span>(&amp;publisher, &amp;pub_msg, <span class="hljs-literal">NULL</span>);
+  }
+}</code></pre></div>
+
+<h3 id="步进电机驱动"><a href="#步进电机驱动" class="headerlink" title="步进电机驱动"></a>步进电机驱动</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Arduino.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Stepper.h&gt;</span></span>
+
+<span class="hljs-comment">// 设置步进电机旋转一圈是多少步</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> stepsPerRevolution = <span class="hljs-number">100</span>; <span class="hljs-comment">//测出</span>
+<span class="hljs-comment">// 16 17 34 35</span>
+<span class="hljs-comment">// 这里特别注意 ，后面4个参数分别是驱动板上的 IN1 , IN3 , IN2 , IN4</span>
+Stepper myStepper = <span class="hljs-built_in">Stepper</span>(stepsPerRevolution, <span class="hljs-number">32</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>, <span class="hljs-number">23</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-comment">// 设置转速</span>
+  myStepper.<span class="hljs-built_in">setSpeed</span>(<span class="hljs-number">350</span>); <span class="hljs-comment">//测出</span>
+  Serial.<span class="hljs-built_in">begin</span>(<span class="hljs-number">115200</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loop</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-comment">// 这个电机转一圈是 2048步</span>
+  <span class="hljs-comment">// 先顺时针转360</span>
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"forward "</span>);
+  myStepper.<span class="hljs-built_in">step</span>(<span class="hljs-number">2048</span>);
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+
+  <span class="hljs-comment">// 逆时针转360</span>
+  Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"backward "</span>);
+  myStepper.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 倒转</span>
+  <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}</code></pre></div>
+
 
               
             </div>
