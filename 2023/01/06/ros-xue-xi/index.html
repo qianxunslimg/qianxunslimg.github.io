@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-05-10T07:30:23.365Z">
+<meta property="article:modified_time" content="2023-05-14T13:41:56.334Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -1755,6 +1755,539 @@ Stepper myStepper = <span class="hljs-built_in">Stepper</span>(stepsPerRevolutio
   Serial.<span class="hljs-built_in">printf</span>(<span class="hljs-string">"backward "</span>);
   myStepper.<span class="hljs-built_in">step</span>(<span class="hljs-number">-2048</span>); <span class="hljs-comment">// 倒转</span>
   <span class="hljs-built_in">delay</span>(<span class="hljs-number">500</span>);
+}</code></pre></div>
+
+
+
+<h1 id="foxy-examples"><a href="#foxy-examples" class="headerlink" title="foxy_examples"></a><code>foxy_examples</code></h1><h2 id="timer"><a href="#timer" class="headerlink" title="timer"></a>timer</h2><h4 id="lamda"><a href="#lamda" class="headerlink" title="lamda"></a>lamda</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/* This example creates a subclass of Node and uses a fancy C++11 lambda</span>
+<span class="hljs-comment"> * function to shorten the timer syntax, at the expense of making the</span>
+<span class="hljs-comment"> * code somewhat more difficult to understand at first glance if you are</span>
+<span class="hljs-comment"> * unaccustomed to C++11 lambda expressions. */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalTimer</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalTimer</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_timer"</span>)
+  {
+    <span class="hljs-keyword">auto</span> timer_callback = [<span class="hljs-keyword">this</span>]() -&gt; <span class="hljs-keyword">void</span> {<span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Hello, world!"</span>);};
+    timer_ = <span class="hljs-built_in">create_wall_timer</span>(<span class="hljs-number">500</span>ms, timer_callback);
+  }
+
+<span class="hljs-keyword">private</span>:
+  rclcpp::TimerBase::SharedPtr timer_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalTimer&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4 id="member-function"><a href="#member-function" class="headerlink" title="member_function"></a>member_function</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/* This example creates a subclass of Node and uses std::bind() to register a</span>
+<span class="hljs-comment"> * member function as a callback from the timer. */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalTimer</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalTimer</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_timer"</span>)
+  {
+    timer_ = <span class="hljs-built_in">create_wall_timer</span>(
+      <span class="hljs-number">500</span>ms, std::<span class="hljs-built_in">bind</span>(&amp;MinimalTimer::timer_callback, <span class="hljs-keyword">this</span>));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer_callback</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Hello, world!"</span>);
+  }
+  rclcpp::TimerBase::SharedPtr timer_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalTimer&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h2 id="topics"><a href="#topics" class="headerlink" title="topics"></a>topics</h2><h3 id="minimal-publisher"><a href="#minimal-publisher" class="headerlink" title="minimal_publisher"></a>minimal_publisher</h3><h4 id="lamda-1"><a href="#lamda-1" class="headerlink" title="lamda"></a>lamda</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/* This example creates a subclass of Node and uses std::bind() to register a</span>
+<span class="hljs-comment"> * member function as a callback from the timer. */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalTimer</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalTimer</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_timer"</span>)
+  {
+    timer_ = <span class="hljs-built_in">create_wall_timer</span>(
+      <span class="hljs-number">500</span>ms, std::<span class="hljs-built_in">bind</span>(&amp;MinimalTimer::timer_callback, <span class="hljs-keyword">this</span>));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer_callback</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Hello, world!"</span>);
+  }
+  rclcpp::TimerBase::SharedPtr timer_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalTimer&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4 id="member-function-1"><a href="#member-function-1" class="headerlink" title="member_function"></a>member_function</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/* This example creates a subclass of Node and uses std::bind() to register a</span>
+<span class="hljs-comment"> * member function as a callback from the timer. */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalPublisher</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalPublisher</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_publisher"</span>), <span class="hljs-built_in">count_</span>(<span class="hljs-number">0</span>)
+  {
+    publisher_ = <span class="hljs-keyword">this</span>-&gt;create_publisher&lt;std_msgs::msg::String&gt;(<span class="hljs-string">"topic"</span>, <span class="hljs-number">10</span>);
+    timer_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(
+      <span class="hljs-number">500</span>ms, std::<span class="hljs-built_in">bind</span>(&amp;MinimalPublisher::timer_callback, <span class="hljs-keyword">this</span>));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">timer_callback</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-keyword">auto</span> message = std_msgs::msg::<span class="hljs-built_in">String</span>();
+    message.data = <span class="hljs-string">"Hello, world! "</span> + std::<span class="hljs-built_in">to_string</span>(count_++);
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Publishing: '%s'"</span>, message.data.<span class="hljs-built_in">c_str</span>());
+    publisher_-&gt;<span class="hljs-built_in">publish</span>(message);
+  }
+  rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
+  <span class="hljs-keyword">size_t</span> count_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalPublisher&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4 id="not-composable"><a href="#not-composable" class="headerlink" title="not_composable"></a>not_composable</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/* We do not recommend this style anymore, because composition of multiple</span>
+<span class="hljs-comment"> * nodes in the same executable is not possible. Please see one of the subclass</span>
+<span class="hljs-comment"> * examples for the "new" recommended styles. This example is only included</span>
+<span class="hljs-comment"> * for completeness because it is similar to "classic" standalone ROS nodes. */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  <span class="hljs-keyword">auto</span> node = rclcpp::Node::<span class="hljs-built_in">make_shared</span>(<span class="hljs-string">"minimal_publisher"</span>);
+  <span class="hljs-keyword">auto</span> publisher = node-&gt;create_publisher&lt;std_msgs::msg::String&gt;(<span class="hljs-string">"topic"</span>, <span class="hljs-number">10</span>);
+  std_msgs::msg::String message;
+  <span class="hljs-keyword">auto</span> publish_count = <span class="hljs-number">0</span>;
+  <span class="hljs-function">rclcpp::WallRate <span class="hljs-title">loop_rate</span><span class="hljs-params">(<span class="hljs-number">500</span>ms)</span></span>;
+
+  <span class="hljs-keyword">while</span> (rclcpp::<span class="hljs-built_in">ok</span>()) {
+    message.data = <span class="hljs-string">"Hello, world! "</span> + std::<span class="hljs-built_in">to_string</span>(publish_count++);
+    <span class="hljs-built_in">RCLCPP_INFO</span>(node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Publishing: '%s'"</span>, message.data.<span class="hljs-built_in">c_str</span>());
+    <span class="hljs-keyword">try</span> {
+      publisher-&gt;<span class="hljs-built_in">publish</span>(message);
+      rclcpp::<span class="hljs-built_in">spin_some</span>(node);
+    } <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (<span class="hljs-keyword">const</span> rclcpp::exceptions::RCLError &amp; e) {
+      <span class="hljs-built_in">RCLCPP_ERROR</span>(
+        node-&gt;<span class="hljs-built_in">get_logger</span>(),
+        <span class="hljs-string">"unexpectedly failed with %s"</span>,
+        e.<span class="hljs-built_in">what</span>());
+    }
+    loop_rate.<span class="hljs-built_in">sleep</span>();
+  }
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+
+
+<h3 id="minimal-subscriber"><a href="#minimal-subscriber" class="headerlink" title="minimal_subscriber"></a>minimal_subscriber</h3><h4 id="lamda-2"><a href="#lamda-2" class="headerlink" title="lamda"></a>lamda</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalSubscriber</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalSubscriber</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_subscriber"</span>)
+  {
+    subscription_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+      <span class="hljs-string">"topic"</span>,
+      <span class="hljs-number">10</span>,
+      [<span class="hljs-keyword">this</span>](std_msgs::msg::String::UniquePtr msg) {
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"I heard: '%s'"</span>, msg-&gt;data.<span class="hljs-built_in">c_str</span>());
+      });
+  }
+
+<span class="hljs-keyword">private</span>:
+  rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalSubscriber&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4 id="member-function-2"><a href="#member-function-2" class="headerlink" title="member_function"></a>member_function</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+<span class="hljs-keyword">using</span> std::placeholders::_1;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinimalSubscriber</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MinimalSubscriber</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"minimal_subscriber"</span>)
+  {
+    subscription_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+      <span class="hljs-string">"topic"</span>, <span class="hljs-number">10</span>, std::<span class="hljs-built_in">bind</span>(&amp;MinimalSubscriber::topic_callback, <span class="hljs-keyword">this</span>, _1));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">topic_callback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std_msgs::msg::String::SharedPtr msg)</span> <span class="hljs-keyword">const</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"I heard: '%s'"</span>, msg-&gt;data.<span class="hljs-built_in">c_str</span>());
+  }
+  rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  rclcpp::<span class="hljs-built_in">spin</span>(std::make_shared&lt;MinimalSubscriber&gt;());
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h4 id="not-composable-1"><a href="#not-composable-1" class="headerlink" title="not_composable"></a>not_composable</h4><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
+
+<span class="hljs-comment">/* We do not recommend this style anymore, because composition of multiple</span>
+<span class="hljs-comment"> * nodes in the same executable is not possible. Please see one of the subclass</span>
+<span class="hljs-comment"> * examples for the "new" recommended styles. This example is only included</span>
+<span class="hljs-comment"> * for completeness because it is similar to "classic" standalone ROS nodes. */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">topic_callback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std_msgs::msg::String::SharedPtr msg)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-built_in">RCLCPP_INFO</span>(g_node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"I heard: '%s'"</span>, msg-&gt;data.<span class="hljs-built_in">c_str</span>());
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  g_node = rclcpp::Node::<span class="hljs-built_in">make_shared</span>(<span class="hljs-string">"minimal_subscriber"</span>);
+  <span class="hljs-keyword">auto</span> subscription =
+    g_node-&gt;create_subscription&lt;std_msgs::msg::String&gt;(<span class="hljs-string">"topic"</span>, <span class="hljs-number">10</span>, topic_callback);
+  rclcpp::<span class="hljs-built_in">spin</span>(g_node);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-comment">// TODO(clalancette): It would be better to remove both of these nullptr</span>
+  <span class="hljs-comment">// assignments and let the destructors handle it, but we can't because of</span>
+  <span class="hljs-comment">// https://github.com/eProsima/Fast-RTPS/issues/235 .  Once that is fixed</span>
+  <span class="hljs-comment">// we should probably look at removing these two assignments.</span>
+  subscription = <span class="hljs-literal">nullptr</span>;
+  g_node = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h2 id="services"><a href="#services" class="headerlink" title="services"></a>services</h2><h3 id="minimal-client"><a href="#minimal-client" class="headerlink" title="minimal_client"></a>minimal_client</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cinttypes&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_interfaces/srv/add_two_ints.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> AddTwoInts = example_interfaces::srv::AddTwoInts;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  <span class="hljs-keyword">auto</span> node = rclcpp::Node::<span class="hljs-built_in">make_shared</span>(<span class="hljs-string">"minimal_client"</span>);
+  <span class="hljs-keyword">auto</span> client = node-&gt;create_client&lt;AddTwoInts&gt;(<span class="hljs-string">"add_two_ints"</span>);
+  <span class="hljs-keyword">while</span> (!client-&gt;<span class="hljs-built_in">wait_for_service</span>(std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>))) {
+    <span class="hljs-keyword">if</span> (!rclcpp::<span class="hljs-built_in">ok</span>()) {
+      <span class="hljs-built_in">RCLCPP_ERROR</span>(node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"client interrupted while waiting for service to appear."</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-built_in">RCLCPP_INFO</span>(node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"waiting for service to appear..."</span>);
+  }
+
+  <span class="hljs-keyword">auto</span> request = std::make_shared&lt;AddTwoInts::Request&gt;();
+  request-&gt;a = <span class="hljs-number">41</span>;
+  request-&gt;b = <span class="hljs-number">1</span>;
+
+  <span class="hljs-comment">//异步地向服务发送请求，并将返回的std::shared_future对象赋值给result_future。这个对象表示未来会得到的响应结果</span>
+  <span class="hljs-keyword">auto</span> result_future = client-&gt;<span class="hljs-built_in">async_send_request</span>(request);
+
+  <span class="hljs-comment">//判断是否成功地得到响应结果。这个函数表示让节点处理事件直到未来结果完成。</span>
+  <span class="hljs-comment">//如果结果完成并且成功，就会返回rclcpp::FutureReturnCode::SUCCESS。</span>
+  <span class="hljs-comment">//如果结果完成但失败或者未完成或者出错，就会返回其他值</span>
+  <span class="hljs-keyword">if</span> (rclcpp::<span class="hljs-built_in">spin_until_future_complete</span>(node, result_future) !=
+    rclcpp::FutureReturnCode::SUCCESS)
+  {
+    <span class="hljs-built_in">RCLCPP_ERROR</span>(node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"service call failed :("</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+  }
+  <span class="hljs-keyword">auto</span> result = result_future.<span class="hljs-built_in">get</span>();
+  <span class="hljs-built_in">RCLCPP_INFO</span>(
+    node-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"result of %"</span> PRId64 <span class="hljs-string">" + %"</span> PRId64 <span class="hljs-string">" = %"</span> PRId64,
+    request-&gt;a, request-&gt;b, result-&gt;sum);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h3 id="minimal-service"><a href="#minimal-service" class="headerlink" title="minimal_service"></a>minimal_service</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;inttypes.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"example_interfaces/srv/add_two_ints.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> AddTwoInts = example_interfaces::srv::AddTwoInts;
+rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle_service</span><span class="hljs-params">(</span></span>
+<span class="hljs-params"><span class="hljs-function">  <span class="hljs-keyword">const</span> std::shared_ptr&lt;<span class="hljs-keyword">rmw_request_id_t</span>&gt; request_header,</span></span>
+<span class="hljs-params"><span class="hljs-function">  <span class="hljs-keyword">const</span> std::shared_ptr&lt;AddTwoInts::Request&gt; request,</span></span>
+<span class="hljs-params"><span class="hljs-function">  <span class="hljs-keyword">const</span> std::shared_ptr&lt;AddTwoInts::Response&gt; response)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-comment">//请求头对象，包含了请求的元数据，比如序列号、客户端标识等。这里使用(void)request_header表示不使用这个参数。</span>
+  <span class="hljs-comment">//(void)request_header;的作用是告诉编译器这个参数是故意不使用的，避免编译器发出未使用参数的警告。如果你直接不管它，可能会导致编译器认为你忘记了这个参数，或者这个参数是多余的，从而给你一些提示或警告。如果你不想看到这些提示或警告，可以使用(void)request_header;来消除它们。当然，这不是必须的，只是一种编程习惯。</span>
+  (<span class="hljs-keyword">void</span>)request_header;
+  
+  <span class="hljs-built_in">RCLCPP_INFO</span>(
+    g_node-&gt;<span class="hljs-built_in">get_logger</span>(),
+    <span class="hljs-string">"request: %"</span> PRId64 <span class="hljs-string">" + %"</span> PRId64, request-&gt;a, request-&gt;b);
+  response-&gt;sum = request-&gt;a + request-&gt;b;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> ** argv)</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  g_node = rclcpp::Node::<span class="hljs-built_in">make_shared</span>(<span class="hljs-string">"minimal_service"</span>);
+  <span class="hljs-keyword">auto</span> server = g_node-&gt;create_service&lt;AddTwoInts&gt;(<span class="hljs-string">"add_two_ints"</span>, handle_service);
+  rclcpp::<span class="hljs-built_in">spin</span>(g_node);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  g_node = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<h2 id="executors"><a href="#executors" class="headerlink" title="executors"></a>executors</h2><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;functional&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"std_msgs/msg/string.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std::chrono_literals;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * A small convenience function for converting a thread ID to a string</span>
+<span class="hljs-comment"> **/</span>
+<span class="hljs-function">std::string <span class="hljs-title">string_thread_id</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-keyword">auto</span> hashed = std::hash&lt;std::thread::id&gt;()(std::this_thread::<span class="hljs-built_in">get_id</span>());
+  <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">to_string</span>(hashed);
+}
+
+<span class="hljs-comment">/* For this example, we will be creating a publishing node like the one in minimal_publisher.</span>
+<span class="hljs-comment"> * We will have a single subscriber node running 2 threads. Each thread loops at different speeds, and</span>
+<span class="hljs-comment"> * just repeats what it sees from the publisher to the screen.</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PublisherNode</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">PublisherNode</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"PublisherNode"</span>), <span class="hljs-built_in">count_</span>(<span class="hljs-number">0</span>)
+  {
+    publisher_ = <span class="hljs-keyword">this</span>-&gt;create_publisher&lt;std_msgs::msg::String&gt;(<span class="hljs-string">"topic"</span>, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">auto</span> timer_callback =
+      [<span class="hljs-keyword">this</span>]() -&gt; <span class="hljs-keyword">void</span> {
+        <span class="hljs-keyword">auto</span> message = std_msgs::msg::<span class="hljs-built_in">String</span>();
+        message.data = <span class="hljs-string">"Hello World! "</span> + std::<span class="hljs-built_in">to_string</span>(<span class="hljs-keyword">this</span>-&gt;count_++);
+
+        <span class="hljs-comment">// Extract current thread</span>
+        <span class="hljs-keyword">auto</span> curr_thread = <span class="hljs-built_in">string_thread_id</span>();
+
+        <span class="hljs-comment">// Prep display message</span>
+        <span class="hljs-keyword">auto</span> info_message = <span class="hljs-string">"\n&lt;&lt;THREAD "</span> + curr_thread + <span class="hljs-string">"&gt;&gt; Publishing '%s'"</span>;
+        <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), info_message, message.data.<span class="hljs-built_in">c_str</span>());
+        <span class="hljs-keyword">this</span>-&gt;publisher_-&gt;<span class="hljs-built_in">publish</span>(message);
+      };
+    timer_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(<span class="hljs-number">500</span>ms, timer_callback);
+  }
+
+<span class="hljs-keyword">private</span>:
+  rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
+  <span class="hljs-keyword">size_t</span> count_;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DualThreadedNode</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">DualThreadedNode</span>()
+  : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"DualThreadedNode"</span>)
+  {
+    <span class="hljs-comment">/* These define the callback groups</span>
+<span class="hljs-comment">     * They don't really do much on their own, but they have to exist in order to</span>
+<span class="hljs-comment">     * assign callbacks to them. They're also what the executor looks for when trying to run multiple threads</span>
+<span class="hljs-comment">     */</span>
+    callback_group_subscriber1_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_callback_group</span>(
+      rclcpp::CallbackGroupType::MutuallyExclusive);
+    callback_group_subscriber2_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_callback_group</span>(
+      rclcpp::CallbackGroupType::MutuallyExclusive);
+
+    <span class="hljs-comment">// Each of these callback groups is basically a thread</span>
+    <span class="hljs-comment">// Everything assigned to one of them gets bundled into the same thread</span>
+    <span class="hljs-keyword">auto</span> sub1_opt = rclcpp::<span class="hljs-built_in">SubscriptionOptions</span>();
+    sub1_opt.callback_group = callback_group_subscriber1_;
+    <span class="hljs-keyword">auto</span> sub2_opt = rclcpp::<span class="hljs-built_in">SubscriptionOptions</span>();
+    sub2_opt.callback_group = callback_group_subscriber2_;
+
+    subscription1_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+      <span class="hljs-string">"topic"</span>,
+      rclcpp::<span class="hljs-built_in">QoS</span>(<span class="hljs-number">10</span>),
+      <span class="hljs-comment">// std::bind is sort of C++'s way of passing a function</span>
+      <span class="hljs-comment">// If you're used to function-passing, skip these comments</span>
+      std::<span class="hljs-built_in">bind</span>(
+        &amp;DualThreadedNode::subscriber1_cb,  <span class="hljs-comment">// First parameter is a reference to the function</span>
+        <span class="hljs-keyword">this</span>,                               <span class="hljs-comment">// What the function should be bound to</span>
+        std::placeholders::_1),             <span class="hljs-comment">// At this point we're not positive of all the</span>
+                                            <span class="hljs-comment">// parameters being passed</span>
+                                            <span class="hljs-comment">// So we just put a generic placeholder</span>
+                                            <span class="hljs-comment">// into the binder</span>
+                                            <span class="hljs-comment">// (since we know we need ONE parameter)</span>
+      sub1_opt);                  <span class="hljs-comment">// This is where we set the callback group.</span>
+                                  <span class="hljs-comment">// This subscription will run with callback group subscriber1</span>
+
+    subscription2_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+      <span class="hljs-string">"topic"</span>,
+      rclcpp::<span class="hljs-built_in">QoS</span>(<span class="hljs-number">10</span>),
+      std::<span class="hljs-built_in">bind</span>(
+        &amp;DualThreadedNode::subscriber2_cb,
+        <span class="hljs-keyword">this</span>,
+        std::placeholders::_1),
+      sub2_opt);
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Simple function for generating a timestamp</span>
+<span class="hljs-comment">   * Used for somewhat ineffectually demonstrating that the multithreading doesn't cripple performace</span>
+<span class="hljs-comment">   */</span>
+  <span class="hljs-function">std::string <span class="hljs-title">timing_string</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">  </span>{
+    rclcpp::Time time = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">now</span>();
+    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">to_string</span>(time.<span class="hljs-built_in">nanoseconds</span>());
+  }
+
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * Every time the Publisher publishes something, all subscribers to the topic get poked</span>
+<span class="hljs-comment">   * This function gets called when Subscriber1 is poked (due to the std::bind we used when defining it)</span>
+<span class="hljs-comment">   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">subscriber1_cb</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std_msgs::msg::String::SharedPtr msg)</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-keyword">auto</span> message_received_at = <span class="hljs-built_in">timing_string</span>();
+
+    <span class="hljs-comment">// Extract current thread</span>
+    <span class="hljs-keyword">auto</span> thread_string = <span class="hljs-string">"THREAD "</span> + <span class="hljs-built_in">string_thread_id</span>();
+    thread_string += <span class="hljs-string">" =&gt; Heard '%s' at "</span> + message_received_at;  <span class="hljs-comment">// Prep display message</span>
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), thread_string, msg-&gt;data.<span class="hljs-built_in">c_str</span>());
+  }
+
+  <span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * This function gets called when Subscriber2 is poked</span>
+<span class="hljs-comment">   * Since it's running on a separate thread than Subscriber 1, it will run at (more-or-less) the same time!</span>
+<span class="hljs-comment">   */</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">subscriber2_cb</span><span class="hljs-params">(<span class="hljs-keyword">const</span> std_msgs::msg::String::SharedPtr msg)</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-keyword">auto</span> message_received_at = <span class="hljs-built_in">timing_string</span>();
+
+    <span class="hljs-comment">// Extract current thread</span>
+    <span class="hljs-keyword">auto</span> thread_string = <span class="hljs-string">"THREAD "</span> + <span class="hljs-built_in">string_thread_id</span>();
+
+    <span class="hljs-comment">// Prep display message</span>
+    thread_string += <span class="hljs-string">" =&gt; Heard '%s' at "</span> + message_received_at;
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), thread_string, msg-&gt;data.<span class="hljs-built_in">c_str</span>());
+  }
+
+  rclcpp::CallbackGroup::SharedPtr callback_group_subscriber1_;
+  rclcpp::CallbackGroup::SharedPtr callback_group_subscriber2_;
+  rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription1_;
+  rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription2_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> * argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+
+  <span class="hljs-comment">// You MUST use the MultiThreadedExecutor to use, well, multiple threads</span>
+  rclcpp::executors::MultiThreadedExecutor executor;
+  <span class="hljs-keyword">auto</span> pubnode = std::make_shared&lt;PublisherNode&gt;();
+  <span class="hljs-keyword">auto</span> subnode = std::make_shared&lt;DualThreadedNode&gt;();  <span class="hljs-comment">// This contains BOTH subscriber callbacks.</span>
+                                                        <span class="hljs-comment">// They will still run on different threads</span>
+                                                        <span class="hljs-comment">// One Node. Two callbacks. Two Threads</span>
+  executor.<span class="hljs-built_in">add_node</span>(pubnode);
+  executor.<span class="hljs-built_in">add_node</span>(subnode);
+  executor.<span class="hljs-built_in">spin</span>();
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
 
 
