@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-05-08T14:05:32.016Z">
+<meta property="article:modified_time" content="2023-05-10T07:30:23.365Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -1462,6 +1462,17 @@ DESTINATION lib/<span class="hljs-variable">${PROJECT_NAME}</span>)</code></pre>
 <p>wifi micro ros agent</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:<span class="hljs-variable">$ROS_DISTRO</span> udp4 --port 8888 -v6</code></pre></div>
 
+<blockquote>
+<ul>
+<li><code>-it</code>表示以交互模式运行容器，并分配一个伪终端。这样你可以在容器内输入和输出信息。</li>
+<li><code>--rm</code>表示在容器退出后自动删除容器。这样可以避免产生过多的无用容器。</li>
+<li><code>-v /dev:/dev -v /dev/shm:/dev/shm</code>表示将主机上的/dev和/dev/shm目录挂载到容器内的同名目录。这样可以让容器访问主机上的设备和共享内存。</li>
+<li><code>--privileged</code>表示给予容器特权模式，让容器拥有主机上的所有权限。这样可以让容器执行一些需要高级权限的操作，比如加载内核模块等。</li>
+<li><code>--net=host</code>表示让容器使用主机上的网络接口和配置。这样可以让容器和主机共享网络资源，比如端口号等。</li>
+<li><code>microros/micro-ros-agent:$ROS_DISTRO</code>表示要使用的镜像名称，其中$ROS_DISTRO是一个环境变量，表示ROS（机器人操作系统）的发行版名称，比如foxy, galactic等。</li>
+<li><code>udp4 --port 8888 -v6</code>表示要在容器内执行的命令和参数，这里是启动一个micro-ros-agent服务，使用udp4协议，监听8888端口，并打印详细日志。</li>
+</ul>
+</blockquote>
 <h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><p>查看串口是否连接(查看usb设备)</p>
 <div class="code-wrapper"><pre><code class="hljs bash">ls /dev/ttyUSB*</code></pre></div>
 
