@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="剑指 Offer II 018. 有效的回文难度简单18 给定一个字符串 s ，验证 s 是否是 回文串 ，只考虑字母和数字字符，可以忽略字母的大小写。 本题中，将空字符串定义为有效的 回文串 。 示例 1: 输入: s &#x3D; &quot;A man, a plan, a canal: Panama&quot;输出: true解释：&quot;amanaplanacanalpanama&quot; 是回文串  示例 2: 输入: s &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回文">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/02/hui-wen/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="剑指 Offer II 018. 有效的回文难度简单18 给定一个字符串 s ，验证 s 是否是 回文串 ，只考虑字母和数字字符，可以忽略字母的大小写。 本题中，将空字符串定义为有效的 回文串 。 示例 1: 输入: s &#x3D; &quot;A man, a plan, a canal: Panama&quot;输出: true解释：&quot;amanaplanacanalpanama&quot; 是回文串  示例 2: 输入: s &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626421737-LjXceN-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626422231-wgvnWh-image.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220406112344685.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610113052739.png">
+<meta property="article:published_time" content="2022-04-02T12:17:49.000Z">
+<meta property="article:modified_time" content="2022-06-10T13:15:06.214Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626421737-LjXceN-image.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>回文 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="回文"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-02 20:17" pubdate>
+          2022年4月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">回文</h1>
+            
+            <div class="markdown-body">
+              
+              <h3 id="剑指-Offer-II-018-有效的回文"><a href="#剑指-Offer-II-018-有效的回文" class="headerlink" title="剑指 Offer II 018. 有效的回文"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/XltzEq/">剑指 Offer II 018. 有效的回文</a></h3><p>难度简单18</p>
+<p>给定一个字符串 <code>s</code> ，验证 <code>s</code> 是否是 <strong>回文串</strong> ，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>本题中，将空字符串定义为有效的 <strong>回文串</strong> 。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "A man, a plan, a canal: Panama"</span><br><span class="line">输出: true</span><br><span class="line">解释："amanaplanacanalpanama" 是回文串</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "race a car"</span><br><span class="line">输出: false</span><br><span class="line">解释："raceacar" 不是回文串</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>开辟新string 判断是否回文</li>
+<li>原地判断 一次遍历</li>
+</ol>
+<h4 id="开辟新string-判断是否回文"><a href="#开辟新string-判断是否回文" class="headerlink" title="开辟新string 判断是否回文"></a>开辟新string 判断是否回文</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(s.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      string ss;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; ch : s)</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isalpha</span>(ch) || <span class="built_in">isdigit</span>(ch))</span><br><span class="line">          ss += <span class="built_in">isalpha</span>(ch) ? <span class="built_in">tolower</span>(ch) : ch;</span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>, right = ss.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">      <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">        <span class="keyword">if</span>(ss[left++] != ss[right--])</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="原地判断-一次遍历"><a href="#原地判断-一次遍历" class="headerlink" title="原地判断 一次遍历"></a>原地判断 一次遍历</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right){</span><br><span class="line">            <span class="keyword">while</span>(left&lt;s.<span class="built_in">size</span>() &amp;&amp; !<span class="built_in">isValid</span>(s[left])){</span><br><span class="line">                left++;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">while</span>(right&gt;=<span class="number">0</span> &amp;&amp; !<span class="built_in">isValid</span>(s[right])){</span><br><span class="line">                right--;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">//越界 为空 直接返回1</span></span><br><span class="line">            <span class="keyword">if</span>(left&gt;=s.<span class="built_in">size</span>()|| right&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">tolower</span>(s[left]) != <span class="built_in">tolower</span>(s[right]))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValid</span><span class="params">(<span class="keyword">char</span>&amp; ch)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">tolower</span>(ch)&gt;=<span class="string">'a'</span> &amp;&amp; <span class="built_in">tolower</span>(ch)&lt;=<span class="string">'z'</span>  ||(ch&gt;=<span class="string">'0'</span> &amp;&amp;ch&lt;=<span class="string">'9'</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="官方解法"><a href="#官方解法" class="headerlink" title="官方解法"></a>官方解法</h4><p><code>函数 isalnum()判断是否是字母或者数字</code></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">            <span class="keyword">while</span> (left &lt; right &amp;&amp; !<span class="built_in">isalnum</span>(s[left])) {</span><br><span class="line">                ++left;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">while</span> (left &lt; right &amp;&amp; !<span class="built_in">isalnum</span>(s[right])) {</span><br><span class="line">                --right;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (left &lt; right) {</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">tolower</span>(s[left]) != <span class="built_in">tolower</span>(s[right])) {</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                }</span><br><span class="line">                ++left;</span><br><span class="line">                --right;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="剑指-Offer-II-027-回文链表"><a href="#剑指-Offer-II-027-回文链表" class="headerlink" title="剑指 Offer II 027. 回文链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/aMhZSa/">剑指 Offer II 027. 回文链表</a></h3><p>难度简单42</p>
+<p>给定一个链表的 <strong>头节点</strong> <code>head</code> <strong>，</strong>请判断其是否为回文链表。</p>
+<p>如果一个链表是回文，那么链表节点序列从前往后看和从后往前看是相同的。</p>
+<p><strong>示例 1：</strong></p>
+<p><strong><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626421737-LjXceN-image.png" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: head = [1,2,3,3,2,1]</span><br><span class="line">输出: true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><strong><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/1626422231-wgvnWh-image.png" srcset="/img/loading.gif" lazyload alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: head = [1,2]</span><br><span class="line">输出: false</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>笨比vector</li>
+<li>快慢指针 反转一半</li>
+</ol>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(ListNode* head)</span> </span>{</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; nums;</span><br><span class="line">        <span class="keyword">while</span>(head){</span><br><span class="line">            nums.<span class="built_in">push_back</span>(head-&gt;val);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isPalindrome</span>(nums);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right){</span><br><span class="line">            <span class="keyword">if</span>(nums[left]!=nums[right])</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>快慢指针 反转一半</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* last = <span class="built_in">reverseList</span>(head-&gt;next);</span><br><span class="line">        head-&gt;next-&gt;next = head;</span><br><span class="line">        head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    }</span><br><span class="line">		<span class="comment">//奇数中间 偶数前面最后一个</span></span><br><span class="line">    <span class="function">ListNode* <span class="title">findMiddleOfList</span><span class="params">(ListNode* head)</span></span>{</span><br><span class="line">        ListNode* slow = head;</span><br><span class="line">        ListNode* fast = head;</span><br><span class="line">        ListNode* preSlow;</span><br><span class="line">        <span class="keyword">while</span>(fast &amp;&amp; fast-&gt;next){</span><br><span class="line">            preSlow = slow;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> fast == <span class="literal">nullptr</span>?preSlow:slow;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(ListNode* head)</span> </span>{</span><br><span class="line">        ListNode* middle = <span class="built_in">findMiddleOfList</span>(head);</span><br><span class="line">        ListNode* secondBegin = middle-&gt;next;</span><br><span class="line">        middle-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">        secondBegin = <span class="built_in">reverseList</span>(secondBegin);</span><br><span class="line">        ListNode* firstBegin = head;</span><br><span class="line"></span><br><span class="line">        ListNode* cpySecondBegin = secondBegin;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">bool</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(firstBegin &amp;&amp; secondBegin){</span><br><span class="line">            <span class="keyword">if</span>(firstBegin-&gt;val!= secondBegin-&gt;val){</span><br><span class="line">                ans = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            }</span><br><span class="line">            firstBegin = firstBegin-&gt;next;</span><br><span class="line">            secondBegin = secondBegin-&gt;next;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">//还原链表</span></span><br><span class="line">        secondBegin = <span class="built_in">reverseList</span>(cpySecondBegin);</span><br><span class="line">        middle-&gt;next = secondBegin;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="9-回文数"><a href="#9-回文数" class="headerlink" title="9. 回文数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-number/">9. 回文数</a></h3><p>难度简单1921</p>
+<p>给你一个整数 <code>x</code> ，如果 <code>x</code> 是一个回文整数，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p>回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+<ul>
+<li>例如，<code>121</code> 是回文，而 <code>123</code> 不是。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：x = 121</span><br><span class="line">输出：true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：x = -121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>进阶：</strong>你能不将整数转为字符串来解决这个问题吗？</p>
+<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>难点在于不转换为字符串或者数组</li>
+<li>反转一半 反转后的数字为大半 剩余的为小半</li>
+</ol>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{</span><br><span class="line">        <span class="comment">// 特殊情况：</span></span><br><span class="line">        <span class="comment">// 如上所述，当 x &lt; 0 时，x 不是回文数。</span></span><br><span class="line">        <span class="comment">// 同样地，如果数字的最后一位是 0，为了使该数字为回文，</span></span><br><span class="line">        <span class="comment">// 则其第一位数字也应该是 0</span></span><br><span class="line">        <span class="comment">// 只有 0 满足这一属性</span></span><br><span class="line">        <span class="keyword">if</span> (x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>)) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> revertedNumber = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (x &gt; revertedNumber) {</span><br><span class="line">            revertedNumber = revertedNumber * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 当数字长度为奇数时，我们可以通过 revertedNumber/10 去除处于中位的数字。</span></span><br><span class="line">        <span class="comment">// 例如，当输入为 12321 时，在 while 循环的末尾我们可以得到 x = 12，revertedNumber = 123，</span></span><br><span class="line">        <span class="comment">// 由于处于中位的数字不影响回文（它总是与自己相等），所以我们可以简单地将其去除。</span></span><br><span class="line">        <span class="keyword">return</span> x == revertedNumber || x == revertedNumber / <span class="number">10</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="面试题-01-04-回文排列"><a href="#面试题-01-04-回文排列" class="headerlink" title="面试题 01.04. 回文排列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-permutation-lcci/">面试题 01.04. 回文排列</a></h3><p>难度简单78英文版讨论区</p>
+<p>给定一个字符串，编写一个函数判定其是否为某个回文串的排列之一。</p>
+<p>回文串是指正反两个方向都一样的单词或短语。排列是指字母的重新排列。</p>
+<p>回文串不一定是字典当中的单词。</p>
+<p><strong>示例1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入："tactcoa"</span><br><span class="line">输出：true（排列有"tacocat"、"atcocta"，等等）</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>用到回文一个性质 奇数个数的元素 只可能存在一个 或 0个</p>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPermutePalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mapp;</span><br><span class="line">        <span class="keyword">int</span> oddCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> ch:s)</span><br><span class="line">            mapp[ch]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it = mapp.<span class="built_in">begin</span>(); it!=mapp.<span class="built_in">end</span>(); it++){</span><br><span class="line">            <span class="keyword">if</span>(it-&gt;second%<span class="number">2</span>)</span><br><span class="line">                oddCount++;</span><br><span class="line">            <span class="keyword">if</span>(oddCount&gt;<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-019-最多删除一个字符得到回文"><a href="#剑指-Offer-II-019-最多删除一个字符得到回文" class="headerlink" title="剑指 Offer II 019. 最多删除一个字符得到回文"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/RQku0D/">剑指 Offer II 019. 最多删除一个字符得到回文</a></h3><p>难度简单28英文版讨论区</p>
+<p>给定一个非空字符串 <code>s</code>，请判断如果 <strong>最多</strong> 从字符串中删除一个字符能否得到一个回文字符串。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "aba"</span><br><span class="line">输出: true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "abca"</span><br><span class="line">输出: true</span><br><span class="line">解释: 可以删除 "c" 字符 或者 "b" 字符</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "abc"</span><br><span class="line">输出: false</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h4><p>不等的时候 判断两次字串</p>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">bool</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">            <span class="keyword">if</span>(s[left] != s[right]){</span><br><span class="line">                <span class="comment">//cout&lt;&lt;s.substr(left + 1, right-left)&lt;&lt;endl;</span></span><br><span class="line">                <span class="comment">//cout&lt;&lt;s.substr(left, right-left)&lt;&lt;endl;</span></span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">isPalidromee</span>(s.<span class="built_in">substr</span>(left + <span class="number">1</span>, right-left)) || </span><br><span class="line">                <span class="built_in">isPalidromee</span>(s.<span class="built_in">substr</span>(left, right-left));</span><br><span class="line">                <span class="comment">//return isPalidrome(s, left) || isPalidrome(s, right);</span></span><br><span class="line">            }</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalidrome</span><span class="params">(string&amp; s, <span class="keyword">int</span> pos)</span></span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right){</span><br><span class="line">            <span class="keyword">if</span>(left == pos || right == pos){</span><br><span class="line">                <span class="keyword">if</span>(left == pos)</span><br><span class="line">                    left++;</span><br><span class="line">                <span class="keyword">else</span> right--;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(s[left] != s[right]){</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            }</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalidromee</span><span class="params">(string s)</span></span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">            <span class="keyword">if</span>(s[left] != s[right])</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="866-回文素数-构造回文数"><a href="#866-回文素数-构造回文数" class="headerlink" title="866. 回文素数 构造回文数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/prime-palindrome/">866. 回文素数</a> 构造回文数</h3><p>难度中等77英文版讨论区</p>
+<p>求出大于或等于 <code>N</code> 的最小回文素数。</p>
+<p>回顾一下，如果一个数大于 1，且其因数只有 1 和它自身，那么这个数是<em>素数</em>。</p>
+<p>例如，2，3，5，7，11 以及 13 是素数。</p>
+<p>回顾一下，如果一个数从左往右读与从右往左读是一样的，那么这个数是<em>回文数。</em></p>
+<p>例如，12321 是回文数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：6</span><br><span class="line">输出：7</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：8</span><br><span class="line">输出：11</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：13</span><br><span class="line">输出：101</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h4><p>枚举所有回文数, 并判断是否为质数;<br>模拟回文数的方法, 计算回文根, 再生成回文数;<br>举例: 回文根为123, 可以构成的回文数为12321, 123321; </p>
+<blockquote>
+<p>left - right 1-10 一次while生成的回文数 1-9 和11 22 33 44 55…99</p>
+<p>left - right 10-100 一次while生成的回文数 101 111 121 131…999 和 1001 1111 1221 1331…9999</p>
+<p>……</p>
+</blockquote>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPrim</span><span class="params">(<span class="keyword">int</span> x)</span> </span>{ <span class="comment">/* 质数判断 */</span></span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">sqrt</span>(x); i++) {</span><br><span class="line">            <span class="keyword">if</span> (x % i == <span class="number">0</span>) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重点函数 背一下</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">primePalindrome</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">int</span> right = left * <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> op = <span class="number">0</span>; op &lt; <span class="number">2</span>; op++) {</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = left; i &lt; right; i++) {</span><br><span class="line">                    <span class="keyword">int</span> sum = i;</span><br><span class="line">                    <span class="keyword">int</span> x = (op == <span class="number">0</span>) ? i / <span class="number">10</span> : i;</span><br><span class="line">                    <span class="keyword">while</span> (x &gt; <span class="number">0</span>) { <span class="comment">/* 构造回文数 */</span></span><br><span class="line">                        sum = sum * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">                        x /= <span class="number">10</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">if</span> (sum &gt;= n &amp;&amp; <span class="built_in">isPrim</span>(sum)) { <span class="comment">/* 判断是否&gt;=n且为质数 */</span></span><br><span class="line">                        <span class="keyword">return</span> sum;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            left = right;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="剑指-Offer-II-020-回文子字符串的个数"><a href="#剑指-Offer-II-020-回文子字符串的个数" class="headerlink" title="剑指 Offer II 020. 回文子字符串的个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/a7VOhD/">剑指 Offer II 020. 回文子字符串的个数</a></h3><p>难度中等40</p>
+<p>给定一个字符串 <code>s</code> ，请计算这个字符串中有多少个回文子字符串。</p>
+<p>具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "abc"</span><br><span class="line">输出：3</span><br><span class="line">解释：三个回文子串: "a", "b", "c"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "aaa"</span><br><span class="line">输出：6</span><br><span class="line">解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>假设size = 4 一个循环解决回文中心奇数 偶数两种情况</li>
+</ol>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220406112344685.png" srcset="/img/loading.gif" lazyload alt="image-20220406112344685" style="zoom: 67%;">
+
+<ol start="2">
+<li>马拉车算法，我选择放弃<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/37289584">有什么浅显易懂的Manacher Algorithm讲解？ - 知乎 (zhihu.com)</a></li>
+</ol>
+<h4 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//一次</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.<span class="built_in">size</span>()*<span class="number">2</span><span class="number">-1</span>; i++){</span><br><span class="line">            <span class="keyword">int</span> left = i/<span class="number">2</span>, right = left + i%<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;s.<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(s[left] == s[right])</span><br><span class="line">                    ans++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">                left--;</span><br><span class="line">                right++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//两次好理解</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">            <span class="keyword">int</span> left = i, right = i;</span><br><span class="line">            <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;s.<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(s[left] == s[right])</span><br><span class="line">                    ans++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">                left--;</span><br><span class="line">                right++;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            left = i, right = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;s.<span class="built_in">size</span>()){</span><br><span class="line">                <span class="keyword">if</span>(s[left] == s[right])</span><br><span class="line">                    ans++;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">                left--;</span><br><span class="line">                right++;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//马拉车算法</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        string t = <span class="string">"$#"</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">char</span> &amp;c: s) {</span><br><span class="line">            t += c;</span><br><span class="line">            t += <span class="string">'#'</span>;</span><br><span class="line">        }</span><br><span class="line">        n = t.<span class="built_in">size</span>();</span><br><span class="line">        t += <span class="string">'!'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">auto</span> f = vector &lt;<span class="keyword">int</span>&gt; (n);</span><br><span class="line">        <span class="keyword">int</span> iMax = <span class="number">0</span>, rMax = <span class="number">0</span>, ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) {</span><br><span class="line">            <span class="comment">// 初始化 f[i]</span></span><br><span class="line">            f[i] = (i &lt;= rMax) ? <span class="built_in">min</span>(rMax - i + <span class="number">1</span>, f[<span class="number">2</span> * iMax - i]) : <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 中心拓展</span></span><br><span class="line">            <span class="keyword">while</span> (t[i + f[i]] == t[i - f[i]]) ++f[i];</span><br><span class="line">            <span class="comment">// 动态维护 iMax 和 rMax</span></span><br><span class="line">            <span class="keyword">if</span> (i + f[i] - <span class="number">1</span> &gt; rMax) {</span><br><span class="line">                iMax = i;</span><br><span class="line">                rMax = i + f[i] - <span class="number">1</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 统计答案, 当前贡献为 (f[i] - 1) / 2 上取整</span></span><br><span class="line">            ans += (f[i] / <span class="number">2</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=5">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-substring/#">思路</a></p>
+<p>难度中等5101</p>
+<p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "babad"</span><br><span class="line">输出："bab"</span><br><span class="line">解释："aba" 同样是符合题意的答案。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "cbbd"</span><br><span class="line">输出："bb"</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h4><p>中心扩展 直接返回string还好操作一点 </p>
+<p>返回左右下标 节省空间 </p>
+<h4 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">expandCenter</span><span class="params">(string&amp; s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">while</span>(left&gt;= <span class="number">0</span> &amp;&amp; right&lt;s.<span class="built_in">size</span>() &amp;&amp; s[left] == s[right]){</span><br><span class="line">        left--;</span><br><span class="line">        right++;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> s.<span class="built_in">substr</span>(left + <span class="number">1</span>, right - <span class="number">1</span> - left); <span class="comment">//right - 1 - (left + 1) - 1</span></span><br><span class="line">    }</span><br><span class="line">    <span class="function">string <span class="title">longestPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      string ans;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">        string p1 = <span class="built_in">expandCenter</span>(s, i, i);</span><br><span class="line">        string p2 = <span class="built_in">expandCenter</span>(s, i, i+<span class="number">1</span>);</span><br><span class="line">        ans = ans.<span class="built_in">size</span>()&lt;p1.<span class="built_in">size</span>()?p1:ans;</span><br><span class="line">        ans = ans.<span class="built_in">size</span>()&lt;p2.<span class="built_in">size</span>()?p2:ans;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; <span class="title">expandFromCenter</span><span class="params">(<span class="keyword">const</span> string&amp; s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>{</span><br><span class="line">        <span class="keyword">while</span>(l&gt;=<span class="number">0</span> &amp;&amp; r&lt;s.<span class="built_in">size</span>() &amp;&amp; s[l] == s[r]){</span><br><span class="line">            l--;</span><br><span class="line">            r++;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> {l+<span class="number">1</span>, r<span class="number">-1</span>};</span><br><span class="line">    }</span><br><span class="line">    <span class="function">string <span class="title">longestPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">int</span> end  = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.<span class="built_in">size</span>()<span class="number">-1</span>; i++){</span><br><span class="line">            <span class="keyword">auto</span> [l1, r1] = <span class="built_in">expandFromCenter</span>(s, i,i);</span><br><span class="line">            <span class="keyword">auto</span> [l2, r2] = <span class="built_in">expandFromCenter</span>(s, i,i+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(r1-l1&gt;end-start){</span><br><span class="line">                end = r1;</span><br><span class="line">                start = l1;</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(r2-l2&gt;end-start){</span><br><span class="line">                end = r2;</span><br><span class="line">                start = l2;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> s.<span class="built_in">substr</span>(start, end-start +<span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="131-分割回文串"><a href="#131-分割回文串" class="headerlink" title="131. 分割回文串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-partitioning/">131. 分割回文串</a></h3><p>难度中等1089</p>
+<p>给你一个字符串 <code>s</code>，请你将 <code>s</code> 分割成一些子串，使每个子串都是 <strong>回文串</strong> 。返回 <code>s</code> 所有可能的分割方案。</p>
+<p><strong>回文串</strong> 是正着读和反着读都一样的字符串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "aab"</span><br><span class="line">输出：[["a","a","b"],["aa","b"]]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "a"</span><br><span class="line">输出：[["a"]]</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="思路-8"><a href="#思路-8" class="headerlink" title="思路"></a>思路</h4><p>回溯，检测每个字串是否是回文 回文的话压入path 否则跳过</p>
+<h4 id="代码-7"><a href="#代码-7" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">    vector&lt;string&gt; path;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">partition</span>(string s) {</span><br><span class="line">      <span class="built_in">backtrack</span>(s, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(string&amp; s, <span class="keyword">int</span> startIndex)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(startIndex&gt;=s.<span class="built_in">size</span>()){</span><br><span class="line">        ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = startIndex; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isP</span>(s, startIndex, i))</span><br><span class="line">          path.<span class="built_in">push_back</span>(s.<span class="built_in">substr</span>(startIndex, i-startIndex + <span class="number">1</span>));</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">backtrack</span>(s, i+<span class="number">1</span>);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isP</span><span class="params">(string&amp; s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">        <span class="keyword">if</span>(s[left] != s[right])</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        left++;</span><br><span class="line">        right--;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>优化回文的判断 存储f[ i ] [ j] = 0 表示未搜索，1 表示是回文串，-1 表示不是回文串  记忆化搜索</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">  vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; f;</span><br><span class="line"><span class="comment">// 记忆化搜索中，f[i][j] = 0 表示未搜索，1 表示是回文串，-1 表示不是回文串</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">isP</span><span class="params">(string&amp; s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(f[left][right] != <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> f[left][right];</span><br><span class="line">    <span class="keyword">if</span>(left &gt;= right){</span><br><span class="line">      <span class="comment">//赋值 并返回1</span></span><br><span class="line">      <span class="keyword">return</span> f[left][right]  = <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> f[left][right] = (s[left] == s[right]? <span class="built_in">isP</span>(s,  left+<span class="number">1</span>, right<span class="number">-1</span>) : <span class="number">-1</span>);</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="回文子序列问题"><a href="#回文子序列问题" class="headerlink" title="回文子序列问题"></a><code>回文子序列问题</code></h3><p>回文子序列问题 涉及到 <code>dp</code> <code>回文</code></p>
+<p>更多的是<code>dp</code></p>
+<h3 id="516-最长回文子序列"><a href="#516-最长回文子序列" class="headerlink" title="516. 最长回文子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516. 最长回文子序列</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=516">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/#">思路</a></p>
+<p>难度中等777</p>
+<p>给你一个字符串 <code>s</code> ，找出其中最长的回文子序列，并返回该序列的长度。</p>
+<p>子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "bbbab"</span><br><span class="line">输出：4</span><br><span class="line">解释：一个可能的最长回文子序列为 "bbbb" 。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "cbbd"</span><br><span class="line">输出：2</span><br><span class="line">解释：一个可能的最长回文子序列为 "bb" 。</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="dp"><a href="#dp" class="headerlink" title="dp"></a>dp</h5><p>dp数组含义：dpij表示 i到j下标的字串的最大回文子序列的长度</p>
+<p>basecase：对角线位置 也就是 单个字符的dpii为1</p>
+<p>状态转移方程：</p>
+<pre><code>1. si == sj dpij由内部扩展+2
+ 2. si != sj dpij取两个情况的dp最大值
+</code></pre>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220610113052739.png" srcset="/img/loading.gif" lazyload alt="image-20220610113052739"></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestPalindromeSubseq</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">      <span class="comment">//dpij表示 ij范围内字串的最大回文长度</span></span><br><span class="line">      vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">dp</span>(n, vector&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        dp[i][i] = <span class="number">1</span>;</span><br><span class="line">      <span class="comment">//注意理解一下i为什么反向</span></span><br><span class="line">      <span class="comment">//因为状态转移方程是i从i+1转移而来的</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--){</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i+<span class="number">1</span>; j&lt;n; j++){</span><br><span class="line">          <span class="comment">// 它俩一定在最长回文子序列中</span></span><br><span class="line">          <span class="keyword">if</span>(s[j] == s[i])</span><br><span class="line">            dp[i][j] = dp[i+<span class="number">1</span>][j<span class="number">-1</span>]+<span class="number">2</span>;</span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">            dp[i][j] = <span class="built_in">max</span>(dp[i+<span class="number">1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="730-统计不同回文子序列-的个数"><a href="#730-统计不同回文子序列-的个数" class="headerlink" title="730. 统计不同回文子序列 的个数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-different-palindromic-subsequences/">730. 统计不同回文子序列 的个数</a></h3><p>难度困难197</p>
+<p>给定一个字符串 s，返回 <em><code>s</code> 中不同的非空「回文子序列」个数 。</em></p>
+<p>通过从 s 中删除 0 个或多个字符来获得子序列。</p>
+<p>如果一个字符序列与它反转后的字符序列一致，那么它是「回文字符序列」。</p>
+<p>如果有某个 <code>i</code> , 满足 <code>ai != bi</code> ，则两个序列 <code>a1, a2, ...</code> 和 <code>b1, b2, ...</code> 不同。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>结果可能很大，你需要对 10^9^ + 7 取模 。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = 'bccb'</span><br><span class="line">输出：6</span><br><span class="line">解释：6 个不同的非空回文子字符序列分别为：'b', 'c', 'bb', 'cc', 'bcb', 'bccb'。</span><br><span class="line">注意：'bcb' 虽然出现两次但仅计数一次。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = 'abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba'</span><br><span class="line">输出：104860361</span><br><span class="line">解释：共有 3104860382 个不同的非空回文子序列，104860361 对 109 + 7 取模后的值。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="暴力回溯"><a href="#暴力回溯" class="headerlink" title="暴力回溯"></a>暴力回溯</h4><p>emmm 手写的用例可以过 提交一个都过不了</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> Mod = <span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>) + <span class="number">7</span>;</span><br><span class="line">    vector&lt;string&gt; ans;</span><br><span class="line">    unordered_set&lt;string&gt; sett;</span><br><span class="line">    string path;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPalindromicSubsequences</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      <span class="built_in">backtrack</span>(s, <span class="number">0</span>);</span><br><span class="line">      <span class="keyword">return</span> ans.<span class="built_in">size</span>()%Mod;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(string&amp; s, <span class="keyword">int</span> startIndex)</span></span>{</span><br><span class="line">      <span class="keyword">if</span>(startIndex == s.<span class="built_in">size</span>())  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = startIndex; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">        path+=s[i];</span><br><span class="line">        <span class="keyword">if</span>(!sett.<span class="built_in">count</span>(path) &amp;&amp; <span class="built_in">isP</span>(path)){</span><br><span class="line">          ans.<span class="built_in">push_back</span>(path);</span><br><span class="line">          cout&lt;&lt;path&lt;&lt;endl;</span><br><span class="line">          sett.<span class="built_in">insert</span>(path);</span><br><span class="line">        }</span><br><span class="line">        <span class="built_in">backtrack</span>(s, i+<span class="number">1</span>);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isP</span><span class="params">(<span class="keyword">const</span> string&amp; s)</span></span>{</span><br><span class="line">      <span class="keyword">int</span> left = <span class="number">0</span>, right = s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">      <span class="keyword">while</span>(left &lt; right){</span><br><span class="line">        <span class="keyword">if</span>(s[left++] != s[right--])</span><br><span class="line">          <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="dp-1"><a href="#dp-1" class="headerlink" title="dp"></a>dp</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">countPalindromicSubsequences</span><span class="params">(string S)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> strSize = S.<span class="built_in">size</span>(), M = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">    <span class="comment">// dp[i][j]表示的S[i, j]这段字符串中不同的回文子序列个数</span></span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">dp</span>(strSize, vector&lt;<span class="keyword">int</span>&gt;(strSize, <span class="number">0</span>));</span><br><span class="line">    <span class="comment">//初始化，当个长度的字符串也是一个结果</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strSize; ++i) {</span><br><span class="line">      dp[i][i] = <span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">//开始动态规划</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = strSize - <span class="number">2</span>; i &gt;= <span class="number">0</span>; --i) {</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; strSize; ++j) {</span><br><span class="line">        <span class="comment">//上面的两层for循环用于穷举区间[i,</span></span><br><span class="line">        <span class="comment">//j]，i用于确定区间的起点，j确定区间的尾端，并且区间的长度都是由2逐渐增大</span></span><br><span class="line">        <span class="keyword">if</span> (S[i] == S[j]) {</span><br><span class="line">          <span class="comment">// left用于寻找与S[i]相同的左端第一个下标，right用于寻找与S[i]相同的右端第一个下标</span></span><br><span class="line">          <span class="keyword">int</span> left = i + <span class="number">1</span>, right = j - <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">while</span> (left &lt;= right &amp;&amp; S[left] != S[i]) {</span><br><span class="line">            ++left;</span><br><span class="line">          }</span><br><span class="line">          <span class="keyword">while</span> (left &lt;= right &amp;&amp; S[right] != S[i]) {</span><br><span class="line">            --right;</span><br><span class="line">          }</span><br><span class="line">          <span class="keyword">if</span> (left &gt; right) {</span><br><span class="line">            <span class="comment">//中间没有和S[i]相同的字母，例如"aba"这种情况</span></span><br><span class="line">            <span class="comment">//其中dp[i + 1][j -</span></span><br><span class="line">            <span class="comment">//1]是中间部分的回文子序列个数，因为中间的所有子序列可以单独存在，也可以再外面包裹上字母a，所以是成对出现的，要乘2。</span></span><br><span class="line">            <span class="comment">//加2的原因是外层的"a"和"aa"也要统计上</span></span><br><span class="line">            dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">          } <span class="keyword">else</span> <span class="keyword">if</span> (left == right) {</span><br><span class="line">            <span class="comment">//中间只有一个和S[i]相同的字母，就是"aaa"这种情况，</span></span><br><span class="line">            <span class="comment">//其中乘2的部分跟上面的原因相同，</span></span><br><span class="line">            <span class="comment">//加1的原因是单个字母"a"的情况已经在中间部分算过了，外层就只能再加上个"aa"了。</span></span><br><span class="line">            dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">          } <span class="keyword">else</span> {</span><br><span class="line">            <span class="comment">//中间至少有两个和S[i]相同的字母，就是"aabaa"这种情况，</span></span><br><span class="line">            <span class="comment">//其中乘2的部分跟上面的原因相同，要减去left和right中间部分的子序列个数的原因是其被计算了两遍，要将多余的减掉。</span></span><br><span class="line">            dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>] * <span class="number">2</span> - dp[left + <span class="number">1</span>][right - <span class="number">1</span>];</span><br><span class="line">          }</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          <span class="comment">// dp[i][j - 1] + dp[i + 1][j]这里计算了dp[i + 1][j - 1]两遍</span></span><br><span class="line">          dp[i][j] = dp[i][j - <span class="number">1</span>] + dp[i + <span class="number">1</span>][j] - dp[i + <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">        }</span><br><span class="line">        dp[i][j] = (dp[i][j] &lt; <span class="number">0</span>) ? dp[i][j] + M : dp[i][j] % M;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][strSize - <span class="number">1</span>];</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+<h3 id="1312-让字符串成为回文串的最少插入次数"><a href="#1312-让字符串成为回文串的最少插入次数" class="headerlink" title="1312. 让字符串成为回文串的最少插入次数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/">1312. 让字符串成为回文串的最少插入次数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=1312">labuladong 题解</a></p>
+<p>难度困难146</p>
+<p>给你一个字符串 <code>s</code> ，每一次操作你都可以在字符串的任意位置插入任意字符。</p>
+<p>请你返回让 <code>s</code> 成为回文串的 <strong>最少操作次数</strong> 。</p>
+<p>「回文串」是正读和反读都相同的字符串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "zzazz"</span><br><span class="line">输出：0</span><br><span class="line">解释：字符串 "zzazz" 已经是回文串了，所以不需要做任何插入操作。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "mbadm"</span><br><span class="line">输出：2</span><br><span class="line">解释：字符串可变为 "mbdadbm" 或者 "mdbabdm" 。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "leetcode"</span><br><span class="line">输出：5</span><br><span class="line">解释：插入 5 个字符后字符串变为 "leetcodocteel" 。</span><br></pre></td></tr></tbody></table></figure>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>回文</div>
+      <div>https://qianxunslimg.github.io/2022/04/02/hui-wen/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/03/shuang-zhi-zhen/" title="双指针">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">双指针</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/02/window-xia-tian-jia-you-jian-cao-zuo/" title="window下添加右键操作">
+                        <span class="hidden-mobile">window下添加右键操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

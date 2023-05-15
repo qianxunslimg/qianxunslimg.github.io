@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt;#include &quot;person.h&quot;int main(int argc, char **argv){    Person person;    int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告    int age &#x3D; 0;    std::cout &lt;&lt; &quot;in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="make-cmake-vscode_roject">
+<meta property="og:url" content="https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt;#include &quot;person.h&quot;int main(int argc, char **argv){    Person person;    int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告    int age &#x3D; 0;    std::cout &lt;&lt; &quot;in">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png">
+<meta property="article:published_time" content="2023-04-17T07:53:00.000Z">
+<meta property="article:modified_time" content="2023-04-17T09:02:00.052Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="开发随笔">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>make-cmake-vscode_roject - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="make-cmake-vscode_roject"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-17 15:53" pubdate>
+          2023年4月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">make-cmake-vscode_roject</h1>
+            
+            <div class="markdown-body">
+              
+              <p>对如下简单代码进行测试</p>
+<p>目录结构如下</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png" srcset="/img/loading.gif" lazyload alt="image-20230417155857923"></p>
+<p>main.cpp</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"person.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    Person person;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;  <span class="comment">//编译选项开启Wall时 会有警告</span></span><br><span class="line">    <span class="keyword">int</span> age = <span class="number">0</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"input the age plz"</span> &lt;&lt; std::endl;</span><br><span class="line">    std::cin &gt;&gt; age;</span><br><span class="line">    person.<span class="built_in">setAge</span>(age);</span><br><span class="line">    person.<span class="built_in">showInfo</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>person.h</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Person</span>();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<p>person.cpp</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"person.h"</span></span></span><br><span class="line"></span><br><span class="line">Person::<span class="built_in">Person</span>(){</span><br><span class="line">    _age = <span class="number">18</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Person::setAge</span><span class="params">(<span class="keyword">int</span> a)</span></span>{</span><br><span class="line">    _age = a;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Person::showInfo</span><span class="params">()</span></span>{</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"Bob's age is "</span>  &lt;&lt; _age&lt;&lt; std::endl;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><h4 id="makefile写法"><a href="#makefile写法" class="headerlink" title="makefile写法"></a>makefile写法</h4><figure class="highlight makefile"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 定义编译器和编译选项</span></span><br><span class="line">CXX = g++</span><br><span class="line">CXXFLAGS = -Wall -g -Iinclude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义目标文件和依赖文件</span></span><br><span class="line">TARGET = make.out</span><br><span class="line">OBJS = main.o src/person.o</span><br><span class="line">DEPS = <span class="keyword">include</span>/person.h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生成目标文件的规则</span></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生成.o文件的规则</span></span><br><span class="line"><span class="section">%.o: %.cpp <span class="variable">$(DEPS)</span></span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义清理文件的规则</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(TARGET)</span> <span class="variable">$(OBJS)</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="逐行解释"><a href="#逐行解释" class="headerlink" title="逐行解释"></a>逐行解释</h4><ol>
+<li><code>CXX = g++</code>：表示使用g++作为C++编译器，并把它赋值给一个变量CXX，方便后面使用</li>
+<li><code>CXXFLAGS = -Wall -g -Iinclude</code>：变量，用来指定C++编译器的编译选项。其中：<ul>
+<li>-Wall 表示开启所有的警告信息</li>
+<li>-g 表示生成调试信息</li>
+<li>-Iinclude 表示在预处理时添加include目录到搜索路径</li>
+<li>常用的还有 <code>-O2</code> 开启一些常用的优化，例如循环展开、常量传播、函数内联等，可以提高程序的运行速度，但也会增加编译时间和目标文件的大小。</li>
+</ul>
+</li>
+<li><code>TARGET = make.out</code> ：表示定义一个变量TARGET，用来存储最终要生成的可执行文件的名字，这里是make.out</li>
+<li><code>OBJS = main.o src/person.o</code> ：表示定义一个变量OBJS，用来存储要生成的目标文件（.o文件）的名字，这里是main.o和src/person.o</li>
+<li><code>DEPS = include/person.h</code> ：表示定义一个变量DEPS，用来存储要生成目标文件所依赖的头文件的名字，这里是include/person.h</li>
+<li><code>$(TARGET): $(OBJS)</code> # 这一行表示要生成TARGET（即make.out）这个可执行文件，需要先生成OBJS（即main.o和src/person.o）这两个目标文件<ul>
+<li><code>$(CXX) $(CXXFLAGS) -o $@ $^</code>  ： 这一行表示用CXX（即g++）这个编译器，用CXXFLAGS（即-Wall -g -Iinclude）这些编译选项，把<code>$^</code>（即所有的依赖文件，也就是main.o和src/person.o）链接起来，生成<code>$@</code>（即目标文件，也就是make.out）</li>
+</ul>
+</li>
+<li><code>%.o: %.cpp $(DEPS)</code> ：表示要生成任意一个.o文件（如main.o或src/person.o），需要先有对应的.cpp文件（如main.cpp或src/person.cpp），以及DEPS（即include/person.h）这个头文件<ul>
+<li><code>$(CXX) $(CXXFLAGS) -c -o $@ $&lt;</code> ：表示用CXX（即g++）这个编译器，用CXXFLAGS（即-Wall -g -Iinclude）这些编译选项，对``$&lt;<code>（即第一个依赖文件，也就是对应的.cpp文件）进行编译（-c选项），生成</code>$@`（即目标文件，也就是对应的.o文件）</li>
+</ul>
+</li>
+<li><code>.PHONY: clean</code> :表示声明一个伪目标clean，也就是说clean不是一个真正的文件，而是一个命令</li>
+<li><code>clean:</code> ：表示定义clean这个伪目标的规则<ul>
+<li><code>rm -f $(TARGET) $(OBJS)</code> ：表示执行rm -f命令，删除TARGET（即make.out）和OBJS（即main.o和src/person.o）这些文件</li>
+</ul>
+</li>
+</ol>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><p>直接makefile目录下 执行命令<code>make</code></p>
+<h3 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h3><h4 id="cmake写法"><a href="#cmake写法" class="headerlink" title="cmake写法"></a>cmake写法</h4><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(HELLO)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"${CMAKE_CXX_FLAGS} -g -O2 -Wall"</span>) <span class="comment">#compile options couldnt break at bearkpoint if without -g</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cmake.out main.cpp src/person.cpp)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="逐行解释-1"><a href="#逐行解释-1" class="headerlink" title="逐行解释"></a>逐行解释</h4><ol>
+<li><p><code>cmake_minimum_required(VERSION 3.0)</code> ：表示要求CMake的最低版本是3.0，如果当前的CMake版本低于这个要求，会报错</p>
+</li>
+<li><p><code>project(HELLO)</code> ：表示定义一个工程的名字，这里是HELLO，这个名字会用在一些变量中，例如PROJECT_SOURCE_DIR表示工程的源码目录</p>
+</li>
+<li><p><code>set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall")</code> ：表示设置一个变量CMAKE_CXX_FLAGS，用来存储C++编译器的编译选项，这里是在原有的选项基础上<code>添加</code>了-g -O2 -Wall，其中-g表示生成调试信息，-O2表示开启一般优化，-Wall表示开启所有警告</p>
+</li>
+<li><p><code>include_directories(include)</code> ：表示添加一个目录到编译器的头文件搜索路径中，这里是include目录，这样在编译时就可以找到include目录下的头文件</p>
+</li>
+<li><p><code>add_executable(cmake.out main.cpp src/person.cpp)</code> ：表示添加一个可执行文件的目标，需要指定可执行文件的名字和所依赖的源文件，这里是生成一个名为cmake.out的可执行文件，依赖于main.cpp和src/person.cpp两个源文件</p>
+</li>
+</ol>
+<h4 id="执行-1"><a href="#执行-1" class="headerlink" title="执行"></a>执行</h4><p>cmake的本质是生成makefile 然后使用make命令编译，会产生较多的中间文件，因此 一般采用外部编译的方式 执行过程如下</p>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">mkdir build </span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..  <span class="comment">#当前目录的话是cmake .由于此时CMakeLists位于上层目录，因此..</span></span><br><span class="line">make</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="vscode-project"><a href="#vscode-project" class="headerlink" title="vscode_project"></a>vscode_project</h3><p>搭配cmake使用，主要是配置两个json文件</p>
+<h4 id="写法与逐行解释"><a href="#写法与逐行解释" class="headerlink" title="写法与逐行解释"></a>写法与逐行解释</h4><p>launch.json</p>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>, <span class="comment">// 文件的版本号，用来标识文件的格式</span></span><br><span class="line">    <span class="attr">"configurations"</span>: [ <span class="comment">// 表示这个文件包含一个或多个调试配置，每个配置是一个对象，用花括号括起来</span></span><br><span class="line">        {</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"g++ make and debug"</span>, <span class="comment">// 表示这个调试配置的名字，会在VS Code的调试菜单中显示，方便用户选择</span></span><br><span class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"Build"</span>, <span class="comment">// 表示在启动调试之前要执行的任务名，这个名字要跟tasks.json中的任务名字大小写一致</span></span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>, <span class="comment">// 表示这个调试配置的类型，用来指定使用哪种调试器，这里是cppdbg，表示使用C/C++扩展提供的调试器</span></span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>, <span class="comment">// 表示这个调试配置的请求类型，有两种选择：launch和attach，launch表示启动一个新的程序进行调试，attach表示附加到一个已经运行的程序进行调试，这里是launch</span></span><br><span class="line">            <span class="attr">"program"</span>: <span class="string">"${workspaceFolder}/build/vscode_project.out"</span>, <span class="comment">// 表示要调试的程序的路径，可以使用一些变量来代替绝对路径，这里是${workspaceFolder}/build/vscode_project.out，表示工作空间目录下的build子目录中的vscode_project.out文件</span></span><br><span class="line">            <span class="attr">"args"</span>: [], <span class="comment">// 表示要传递给程序的参数列表，用数组形式表示，每个参数是一个字符串，这里是空数组，表示没有参数</span></span><br><span class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>, <span class="comment">// 表示是否在程序入口处停止调试器，如果为true，则会在main函数开始处暂停执行，如果为false，则会直接运行程序，这里是false</span></span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"${workspaceFolder}"</span>, <span class="comment">// 表示程序运行时的当前工作目录，也可以使用变量来代替绝对路径，这里是${workspaceFolder}，表示工作空间目录</span></span><br><span class="line">            <span class="attr">"environment"</span>: [], <span class="comment">// 表示程序运行时的环境变量列表，用数组形式表示，每个环境变量是一个对象，包含name和value两个属性，这里是空数组，表示没有额外的环境变量</span></span><br><span class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">false</span>, <span class="comment">// 表示是否使用外部控制台来显示程序的输入和输出，如果为true，则会打开一个新的控制台窗口来运行程序，如果为false，则会在VS Code内置的终端中运行程序</span></span><br><span class="line">            <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>, <span class="comment">// 表示要使用哪种MI（机器接口）模式来与调试器通信，有三种选择：gdb、lldb和clrdbg</span></span><br><span class="line">            <span class="attr">"miDebuggerPath"</span>: <span class="string">"/usr/bin/gdb"</span>, <span class="comment">// 表示MI调试器（如gdb）的路径，可以使用绝对路径或相对路径（相对于cwd）</span></span><br><span class="line">            <span class="attr">"setupCommands"</span>: [ <span class="comment">// 表示要在启动调试器之后执行的命令列表，用数组形式表示，每个命令是一个对象</span></span><br><span class="line">                {</span><br><span class="line">                    <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>, <span class="comment">// 表示命令的描述信息，用来帮助用户理解命令的作用</span></span><br><span class="line">                    <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,<span class="comment">//表示命令的文本内容，就是要发送给调试器的字符串</span></span><br><span class="line">                    <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span> <span class="comment">// 表示是否忽略命令执行失败的情况，如果为true，则即使命令执行失败，也不会影响调试器的启动，如果为false，则会报错并终止调试器的启动</span></span><br><span class="line">                }</span><br><span class="line">            ]</span><br><span class="line">        }</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>tasks.json</p>
+<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	<span class="attr">"version"</span>: <span class="string">"2.0.0"</span>, <span class="comment">// 表示这个文件的版本号，用来标识文件的格式</span></span><br><span class="line">	<span class="attr">"options"</span>: { <span class="comment">// 表示这个文件中所有任务的默认选项，可以用一个对象来表示</span></span><br><span class="line">		<span class="attr">"cwd"</span>: <span class="string">"${workspaceFolder}/build"</span> <span class="comment">// 表示所有任务的默认工作目录，也就是执行命令时的当前目录，这里是工作空间目录下的build子目录</span></span><br><span class="line">	},</span><br><span class="line">	<span class="attr">"tasks"</span>: [ <span class="comment">// 表示这个文件包含一个或多个任务，每个任务是一个对象，用花括号括起来</span></span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"shell"</span>, <span class="comment">// 表示这个任务的类型，有两种选择：shell和process，shell表示在一个shell中执行命令，process表示直接执行一个可执行文件，这里是shell</span></span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"cmake"</span>, <span class="comment">// 表示这个任务的标签，用来在VS Code中唯一标识这个任务，方便用户选择</span></span><br><span class="line">			<span class="attr">"command"</span>: <span class="string">"cmake"</span>, <span class="comment">// 表示这个任务要执行的命令，可以是一个可执行文件的名字或路径，也可以是一个shell命令</span></span><br><span class="line">			<span class="attr">"args"</span>: [ <span class="comment">// 表示要传递给命令的参数列表，用数组形式表示，每个参数是一个字符串</span></span><br><span class="line">				<span class="string">".."</span></span><br><span class="line">			]</span><br><span class="line">		},</span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"make"</span>,</span><br><span class="line">			<span class="attr">"group"</span>: { <span class="comment">// 表示这个任务所属的组，用一个对象来表示</span></span><br><span class="line">				<span class="attr">"kind"</span>: <span class="string">"build"</span>, <span class="comment">// 表示组的类型，有两种选择：build和test，build表示这个任务是用来构建项目的，test表示这个任务是用来测试项目的，这里是build</span></span><br><span class="line">				<span class="attr">"isDefault"</span>: <span class="literal">true</span> <span class="comment">// 表示是否把这个任务设为默认任务，如果为true，则当用户执行Run Build Task命令时，会自动执行这个任务，如果为false，则会让用户选择要执行哪个任务，这里是true</span></span><br><span class="line">			},</span><br><span class="line">			<span class="attr">"command"</span>: <span class="string">"make"</span>,</span><br><span class="line">			<span class="attr">"args"</span>: []</span><br><span class="line">		},</span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"Build"</span>,</span><br><span class="line">			<span class="attr">"dependsOrder"</span>: <span class="string">"sequence"</span>, <span class="comment">// 表示当这个任务有依赖其他任务时，依赖任务的执行顺序，有两种选择：sequence和parallel，sequence表示按列出的顺序依次执行依赖任务，parallel表示同时执行所有依赖任务，这里是sequence</span></span><br><span class="line">			<span class="attr">"dependsOn"</span>: [ <span class="comment">// 表示这个任务依赖于哪些其他任务，在执行这个任务之前要先执行它们，用数组形式表示，每个元素是一个依赖任务的标签名字</span></span><br><span class="line">				<span class="string">"cmake"</span>,</span><br><span class="line">				<span class="string">"make"</span></span><br><span class="line">			]</span><br><span class="line">		}</span><br><span class="line">	]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="执行-2"><a href="#执行-2" class="headerlink" title="执行"></a>执行</h4><p>直接vscode调试界面，选择要调试的配置 点击调试</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>make-cmake-vscode_roject</div>
+      <div>https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月17日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/18/scopeguard-li-jie-yu-shi-yong/" title="ScopeGuard理解与使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ScopeGuard理解与使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/14/nfc-yin-le-qiang-zhi-zuo-an-zhuo/" title="nfc音乐墙制作-安卓">
+                        <span class="hidden-mobile">nfc音乐墙制作-安卓</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

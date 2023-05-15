@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="696. 计数二进制子串难度简单455 给定一个字符串 s，统计并返回具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是成组连续的。 重复出现（不同位置）的子串也要统计它们出现的次数。 示例 1： 输入：s &#x3D; &quot;00110011&quot;输出：6解释：6 个子串满足具有相同数量的连续 1 和 0 ：&quot;0011&quot;、&quot;01&quot;、&quot;1100&quot;、&quot;10&quot;、&quot;00">
+<meta property="og:type" content="article">
+<meta property="og:title" content="子串问题">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/05/25/zi-chuan-xiang-guan-wen-ti/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="696. 计数二进制子串难度简单455 给定一个字符串 s，统计并返回具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是成组连续的。 重复出现（不同位置）的子串也要统计它们出现的次数。 示例 1： 输入：s &#x3D; &quot;00110011&quot;输出：6解释：6 个子串满足具有相同数量的连续 1 和 0 ：&quot;0011&quot;、&quot;01&quot;、&quot;1100&quot;、&quot;10&quot;、&quot;00">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-25T02:42:00.000Z">
+<meta property="article:modified_time" content="2022-05-28T15:33:28.409Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>子串问题 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="子串问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-25 10:42" pubdate>
+          2022年5月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">子串问题</h1>
+            
+            <div class="markdown-body">
+              
+              <h3 id="696-计数二进制子串"><a href="#696-计数二进制子串" class="headerlink" title="696. 计数二进制子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-binary-substrings/">696. 计数二进制子串</a></h3><p>难度简单455</p>
+<p>给定一个字符串 <code>s</code>，统计并返回具有相同数量 <code>0</code> 和 <code>1</code> 的非空（连续）子字符串的数量，并且这些子字符串中的所有 <code>0</code> 和所有 <code>1</code> 都是成组连续的。</p>
+<p>重复出现（不同位置）的子串也要统计它们出现的次数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "00110011"</span><br><span class="line">输出：6</span><br><span class="line">解释：6 个子串满足具有相同数量的连续 1 和 0 ："0011"、"01"、"1100"、"10"、"0011" 和 "01" 。</span><br><span class="line">注意，一些重复出现的子串（不同位置）要统计它们出现的次数。</span><br><span class="line">另外，"00110011" 不是有效的子串，因为所有的 0（还有 1 ）没有组合在一起。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "10101"</span><br><span class="line">输出：4</span><br><span class="line">解释：有 4 个子串："10"、"01"、"10"、"01" ，具有相同数量的连续 1 和 0 。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h4><p>脑筋急转弯 存储连续 0  1 的个数，两两取最小即可</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countBinarySubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      vector&lt;<span class="keyword">int</span>&gt; all;</span><br><span class="line">      <span class="keyword">char</span> pre = s[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">int</span> cnt = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">        <span class="keyword">if</span>(s[i] == pre){</span><br><span class="line">          cnt++;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">          all.<span class="built_in">push_back</span>(cnt);</span><br><span class="line">          cnt = <span class="number">1</span>;</span><br><span class="line">          pre = s[i];</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      all.<span class="built_in">push_back</span>(cnt);</span><br><span class="line">      <span class="comment">// for(int nun : all)</span></span><br><span class="line">      <span class="comment">//   cout&lt;&lt;nun &lt;&lt;" ";</span></span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;all.<span class="built_in">size</span>(); i++){</span><br><span class="line">        ans += <span class="built_in">min</span>(all[i<span class="number">-1</span>], all[i]);</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5. 最长回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/">5. 最长回文子串</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=5">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/#">思路</a></p>
+<p>难度中等5256收藏分享切换为英文接收动态反馈</p>
+<p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "babad"</span><br><span class="line">输出："bab"</span><br><span class="line">解释："aba" 同样是符合题意的答案。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "cbbd"</span><br><span class="line">输出："bb"</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法-中心扩展"><a href="#解法-中心扩展" class="headerlink" title="解法 中心扩展"></a>解法 中心扩展</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">expandCenter</span><span class="params">(string&amp; s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>{</span><br><span class="line">      <span class="keyword">while</span>(left&gt;= <span class="number">0</span> &amp;&amp; right&lt;s.<span class="built_in">size</span>() &amp;&amp; s[left] == s[right]){</span><br><span class="line">        left--;</span><br><span class="line">        right++;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> s.<span class="built_in">substr</span>(left + <span class="number">1</span>, right - <span class="number">1</span> - left); </span><br><span class="line">    }</span><br><span class="line">    <span class="function">string <span class="title">longestPalindrome</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      string ans;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;s.<span class="built_in">size</span>(); i++){</span><br><span class="line">        string p1 = <span class="built_in">expandCenter</span>(s, i, i);</span><br><span class="line">        string p2 = <span class="built_in">expandCenter</span>(s, i, i+<span class="number">1</span>);</span><br><span class="line">        ans = ans.<span class="built_in">size</span>()&lt;p1.<span class="built_in">size</span>()?p1:ans;</span><br><span class="line">        ans = ans.<span class="built_in">size</span>()&lt;p2.<span class="built_in">size</span>()?p2:ans;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="647-回文子串"><a href="#647-回文子串" class="headerlink" title="647. 回文子串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindromic-substrings/">647. 回文子串</a></h3><p>难度中等880</p>
+<p>给你一个字符串 <code>s</code> ，请你统计并返回这个字符串中 <strong>回文子串</strong> 的数目。</p>
+<p><strong>回文字符串</strong> 是正着读和倒过来读一样的字符串。</p>
+<p><strong>子字符串</strong> 是字符串中的由连续字符组成的一个序列。</p>
+<p>具有不同开始位置或结束位置的子串，即使是由相同的字符组成，也会被视作不同的子串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "abc"</span><br><span class="line">输出：3</span><br><span class="line">解释：三个回文子串: "a", "b", "c"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "aaa"</span><br><span class="line">输出：6</span><br><span class="line">解释：6个回文子串: "a", "a", "a", "aa", "aa", "aaa"</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="中心扩展"><a href="#中心扩展" class="headerlink" title="中心扩展"></a>中心扩展</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 中心扩展, 分别以一个字符为中心、两个字符为中心。 共2n-1种可能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> n = s.<span class="built_in">size</span>(), ans = <span class="number">0</span>;  <span class="comment">// 默认一个字符的均为回文串</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {   <span class="comment">// 以一个字符为中心</span></span><br><span class="line">        <span class="keyword">int</span> left = i, right = i;</span><br><span class="line">        <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; right &lt; n) {</span><br><span class="line">            <span class="keyword">if</span> (s[left--] == s[right++]) </span><br><span class="line">              ans++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) {   <span class="comment">// 以两个字符为中心</span></span><br><span class="line">        <span class="keyword">int</span> left = i, right = i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&gt;=<span class="number">0</span> &amp;&amp; right&lt;n){</span><br><span class="line">          <span class="keyword">if</span>(s[left--] == s[right++])</span><br><span class="line">            ans++;</span><br><span class="line">          <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="精简"><a href="#精简" class="headerlink" title="精简"></a>精简</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>(), ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span> * n - <span class="number">1</span>; ++i) {</span><br><span class="line">            <span class="keyword">int</span> l = i / <span class="number">2</span>, r = i / <span class="number">2</span> + i % <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {</span><br><span class="line">                --l;</span><br><span class="line">                ++r;</span><br><span class="line">                ++ans;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="1297-子串的最大出现次数"><a href="#1297-子串的最大出现次数" class="headerlink" title="1297. 子串的最大出现次数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-occurrences-of-a-substring/">1297. 子串的最大出现次数</a></h3><p>难度中等65收藏分享切换为英文接收动态反馈</p>
+<p>给你一个字符串 <code>s</code> ，请你返回满足以下条件且出现次数最大的 <strong>任意</strong> 子串的出现次数：</p>
+<ul>
+<li>子串中不同字母的数目必须小于等于 <code>maxLetters</code> 。</li>
+<li>子串的长度必须大于等于 <code>minSize</code> 且小于等于 <code>maxSize</code> 。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4</span><br><span class="line">输出：2</span><br><span class="line">解释：子串 "aab" 在原字符串中出现了 2 次。</span><br><span class="line">它满足所有的要求：2 个不同的字母，长度为 3 （在 minSize 和 maxSize 范围内）。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3</span><br><span class="line">输出：2</span><br><span class="line">解释：子串 "aaa" 在原字符串中出现了 2 次，且它们有重叠部分。</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h4><p>因为比最小长度大的字串肯定包含最小长度字串，所以只需要遍历最小长度满足条件的字串即可</p>
+<h5 id="长臭代码"><a href="#长臭代码" class="headerlink" title="长臭代码"></a>长臭代码</h5><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//maxsize长度的字符串肯定包含minsize的字符串 </span></span><br><span class="line">    <span class="comment">//所以只需要统计最小长度的额字符串就可以</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxFreq</span><span class="params">(string s, <span class="keyword">int</span> maxLetters, <span class="keyword">int</span> minSize, <span class="keyword">int</span> maxSize)</span> </span>{</span><br><span class="line">      <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">      <span class="comment">//暴力得到所有满足条件的字串</span></span><br><span class="line">      vector&lt;string&gt; all;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n; i++){</span><br><span class="line">        <span class="comment">//for(int j = minSize; j&lt;=maxSize; j++){</span></span><br><span class="line">          <span class="keyword">if</span>(i+minSize&gt;n) <span class="keyword">continue</span>;</span><br><span class="line">          string temp = s.<span class="built_in">substr</span>(i, minSize);</span><br><span class="line">          <span class="comment">//cout&lt;&lt;temp&lt;&lt;" ";</span></span><br><span class="line">          all.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        <span class="comment">//}</span></span><br><span class="line">        <span class="comment">//cout&lt;&lt;endl;</span></span><br><span class="line">      }</span><br><span class="line">      unordered_map&lt;string, <span class="keyword">int</span>&gt; mapp;</span><br><span class="line">      <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;all.<span class="built_in">size</span>(); i++){</span><br><span class="line">        unordered_set&lt;<span class="keyword">int</span>&gt; sett;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> ch : all[i]){</span><br><span class="line">          sett.<span class="built_in">insert</span>(ch);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span>(sett.<span class="built_in">size</span>() &gt; maxLetters)</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span> mapp[all[i]]++;</span><br><span class="line">        ans = <span class="built_in">max</span>(ans, mapp[all[i]]);</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h5 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h5><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxFreq</span><span class="params">(string s, <span class="keyword">int</span> maxLetters, <span class="keyword">int</span> minSize, <span class="keyword">int</span> maxSize)</span> </span>{</span><br><span class="line">        <span class="keyword">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        unordered_map&lt;string, <span class="keyword">int</span>&gt; occ;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - minSize + <span class="number">1</span>; ++i) {</span><br><span class="line">            string cur = s.<span class="built_in">substr</span>(i, minSize);</span><br><span class="line">            <span class="function">unordered_set&lt;<span class="keyword">char</span>&gt; <span class="title">exist</span><span class="params">(cur.begin(), cur.end())</span></span>;</span><br><span class="line">            <span class="keyword">if</span> (exist.<span class="built_in">size</span>() &lt;= maxLetters) {</span><br><span class="line">                string cur = s.<span class="built_in">substr</span>(i, minSize);</span><br><span class="line">                ++occ[cur];</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, occ[cur]);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="467-环绕字符串中唯一的子字符串"><a href="#467-环绕字符串中唯一的子字符串" class="headerlink" title="467. 环绕字符串中唯一的子字符串"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-substrings-in-wraparound-string/">467. 环绕字符串中唯一的子字符串</a></h3><p>难度中等317</p>
+<p>把字符串 <code>s</code> 看作是 <code>“abcdefghijklmnopqrstuvwxyz”</code> 的无限环绕字符串，所以 <code>s</code> 看起来是这样的：</p>
+<ul>
+<li><code>"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd...."</code> .</li>
+</ul>
+<p>现在给定另一个字符串 <code>p</code> 。返回 <em><code>s</code> 中 <strong>唯一</strong> 的 <code>p</code> 的 <strong>非空子串</strong> 的数量</em> 。 </p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: p = "a"</span><br><span class="line">输出: 1</span><br><span class="line">解释: 字符串 s 中只有一个"a"子字符。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: p = "cac"</span><br><span class="line">输出: 2</span><br><span class="line">解释: 字符串 s 中的字符串“cac”只有两个子串“a”、“c”。.</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: p = "zab"</span><br><span class="line">输出: 6</span><br><span class="line">解释: 在字符串 s 中有六个子串“z”、“a”、“b”、“za”、“ab”、“zab”。</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findSubstringInWraproundString</span><span class="params">(string p)</span> </span>{</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(<span class="number">26</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; p.<span class="built_in">length</span>(); ++i) {</span><br><span class="line">            <span class="keyword">if</span> (i &amp;&amp; (p[i] - p[i - <span class="number">1</span>] + <span class="number">26</span>) % <span class="number">26</span> == <span class="number">1</span>) { <span class="comment">// 字符之差为 1 或 -25</span></span><br><span class="line">                ++k;</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                k = <span class="number">1</span>;</span><br><span class="line">            }</span><br><span class="line">            dp[p[i] - <span class="string">'a'</span>] = <span class="built_in">max</span>(dp[p[i] - <span class="string">'a'</span>], k);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">accumulate</span>(dp.<span class="built_in">begin</span>(), dp.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>子串问题</div>
+      <div>https://qianxunslimg.github.io/2022/05/25/zi-chuan-xiang-guan-wen-ti/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/26/cname-cdn-ipc/" title="CNAME CDN IPC">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CNAME CDN IPC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/24/hexo-da-jian-bo-ke-de-ji-ge-wen-ti/" title="hexo搭建博客的几个问题">
+                        <span class="hidden-mobile">hexo搭建博客的几个问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

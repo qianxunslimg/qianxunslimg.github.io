@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="自己查到的三处说法的对比： 一、转自知道的答案：https:&#x2F;&#x2F;zhidao.baidu.com&#x2F;question&#x2F;323662520.html?qq-pf-to&#x3D;pcqq.c2c# vector，clear()并不真正释放内存(这是为优化效率所做的事)，clear实际所做的是为vector中所保存的所有对象调用析构函数(如果有的话),然后初始化size这些东西，让觉得把所有的对象清除了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector clear() 方法 内存释放问题">
+<meta property="og:url" content="https://qianxunslimg.github.io/2021/09/01/vector-clear-fang-fa-nei-cun-shi-fang-wen-ti/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="自己查到的三处说法的对比： 一、转自知道的答案：https:&#x2F;&#x2F;zhidao.baidu.com&#x2F;question&#x2F;323662520.html?qq-pf-to&#x3D;pcqq.c2c# vector，clear()并不真正释放内存(这是为优化效率所做的事)，clear实际所做的是为vector中所保存的所有对象调用析构函数(如果有的话),然后初始化size这些东西，让觉得把所有的对象清除了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-01T11:32:31.000Z">
+<meta property="article:modified_time" content="2022-04-22T16:29:44.430Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="开发随笔">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>vector clear() 方法 内存释放问题 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vector clear() 方法 内存释放问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-01 19:32" pubdate>
+          2021年9月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vector clear() 方法 内存释放问题</h1>
+            
+            <div class="markdown-body">
+              
+              <div class="com-markdown-collpase-main">
+<div class="rno-markdown J-articleContent">
+<pre class="prism-token token  language-javascript">自己查到的三处说法的对比：</pre>
+<pre class="prism-token token  language-javascript">一、转自知道的答案：https<span class="token operator">:<span class="token operator">/<span class="token operator">/zhidao<span class="token punctuation">.baidu<span class="token punctuation">.com<span class="token operator">/question<span class="token operator">/<span class="token number">323662520.html<span class="token operator">?qq<span class="token operator">-pf<span class="token operator">-to<span class="token operator">=pcqq<span class="token punctuation">.c2c#</span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<pre class="prism-token token  language-javascript"><span class="token function">vector，clear<span class="token punctuation">(<span class="token punctuation">)<span class="token function">并不真正释放内存<span class="token punctuation">(这是为优化效率所做的事<span class="token punctuation">)<span class="token function">，clear实际所做的是为vector中所保存的所有对象调用析构函数<span class="token punctuation">(如果有的话<span class="token punctuation">)<span class="token punctuation">,然后初始化size这些东西，让觉得把所有的对象清除了。
+　　真正释放内存是在vector的析构函数里进行的，所以一旦超出vector的作用域（如函数返回<span class="token punctuation">)，首先它所保存的所有对象会被析构，然后会调用allocator中的deallocate函数回收对象本身的内存。
+　　所以，某些编译器clear后还能访问到对象数据（因为它根本没清除），在一些比较新的<span class="token constant">C<span class="token operator">++<span class="token function">编译器上<span class="token punctuation">(例如<span class="token constant">VS2008<span class="token punctuation">)<span class="token function">，当进行数组引用时<span class="token punctuation">(例如a<span class="token punctuation">[<span class="token number">2<span class="token punctuation">]这种用法<span class="token punctuation">)<span class="token punctuation">,<span class="token constant">STL库中会有一些check函数根据当前容器的size值来判断下标引用是否超出范围，如果超出，则会执行这样一句：
+　　<span class="token function">_THROW<span class="token punctuation">(out_of_range<span class="token punctuation">, <span class="token string">"invalid vector&lt;T&gt; subscript"<span class="token punctuation">)<span class="token punctuation">;
+　　即抛出一个越界异常，clear后没有捕获异常，程序在新编译器编译后就会崩溃掉。</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<pre class="prism-token token  language-javascript"><span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">-分割线<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--<span class="token operator">--</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+
+
+<p>二、转自博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/summerRQ/articles/2407974.html">https://www.cnblogs.com/summerRQ/articles/2407974.html</a></p>
+<p>vector ： C++ STL中的顺序容器，封装数组</p>
+<ol>
+<li>vector容器的内存自增长&amp;nbsp;</li>
+</ol>
+<p>与其他容器不同，其内存空间只会增长，不会减小。先来看看”C++ Primer”中怎么说：为了支持快速的随机访问，vector容器的元素以连续方式存放，每一个元素都紧挨着前一个元素存储。设想一下，当vector添加一个元素时，为了满足连续存放这个特性，都需要重新分配空间、拷贝元素、撤销旧空间，这样性能难以接受。因此STL实现者在对vector进行内存分配时，其实际分配的容量要比当前所需的空间多一些。就是说，vector容器预留了一些额外的存储区，用于存放新添加的元素，这样就不必为每个新元素重新分配整个容器的内存空间。</p>
+<p>关于vector的内存空间，有两个函数需要注意：size()成员指当前拥有的元素个数；capacity()成员指当前(容器必须分配新存储空间之前)可以存储的元素个数。reserve()成员可以用来控制容器的预留空间。vector另外一个特性在于它的内存空间会自增长，每当vector容器不得不分配新的存储空间时，会以加倍当前容量的分配策略实现重新分配。例如，当前capacity为50，当添加第51个元素时，预留空间不够用了，vector容器会重新分配大小为100的内存空间，作为新连续存储的位置。</p>
+<p>2.&amp;nbsp;vector内存释放</p>
+<p>由于vector的内存占用空间只增不减，比如你首先分配了10,000个字节，然后erase掉后面9,999个，留下一个有效元素，但是内存占用仍为10,000个。所有内存空间是在vector析构时候才能被系统回收。empty()用来检测容器是否为空的，clear()可以清空所有元素。但是即使clear()，vector所占用的内存空间依然如故，无法保证内存的回收。</p>
+<p>如果需要空间动态缩小，可以考虑使用deque。如果非vector不可，可以用swap()来帮助你释放内存。具体方法如下：</p>
+<pre class="prism-token token  language-javascript">vector<span class="token operator">&lt;int<span class="token operator">&gt; nums<span class="token punctuation">; 
+nums<span class="token punctuation">.<span class="token function">push_back<span class="token punctuation">(<span class="token number">1<span class="token punctuation">)<span class="token punctuation">;
+nums<span class="token punctuation">.<span class="token function">push_back<span class="token punctuation">(<span class="token number">1<span class="token punctuation">)<span class="token punctuation">;
+nums<span class="token punctuation">.<span class="token function">push_back<span class="token punctuation">(<span class="token number">2<span class="token punctuation">)<span class="token punctuation">;
+nums<span class="token punctuation">.<span class="token function">push_back<span class="token punctuation">(<span class="token number">2<span class="token punctuation">)<span class="token punctuation">; 
+vector<span class="token operator">&lt;int<span class="token operator">&gt;<span class="token punctuation">(<span class="token punctuation">)<span class="token punctuation">.<span class="token function">swap<span class="token punctuation">(nums<span class="token punctuation">)<span class="token punctuation">; <span class="token comment">//或者nums.swap(vector&lt;int&gt; ())</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+
+
+<p>或者如下所示，使用一对大括号，意思一样的：</p>
+<pre class="prism-token token  language-javascript"><span class="token comment">//加一对大括号是可以让tmp退出{}的时候自动析构
+<span class="token punctuation">{ 
+    std<span class="token operator">:<span class="token operator">:vector<span class="token operator">&lt;int<span class="token operator">&gt; tmp <span class="token operator">=   nums<span class="token punctuation">;  
+    nums<span class="token punctuation">.<span class="token function">swap<span class="token punctuation">(tmp<span class="token punctuation">)<span class="token punctuation">; 
+<span class="token punctuation">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+
+
+<p>&amp;nbsp;swap()是交换函数，使vector离开其自身的作用域，从而强制释放vector所占的内存空间，总而言之，释放vector内存最简单的方法是vector&lt;int&gt;.swap(nums)。当时如果nums是一个类的成员，不能把vector&lt;int&gt;.swap(nums)写进类的析构函数中，否则会导致double free or corruption (fasttop)的错误，原因可能是重复释放内存。标准解决方法如下：</p>
+<pre class="prism-token token  language-javascript">template <span class="token operator">&lt; <span class="token keyword">class <span class="token class-name">T <span class="token operator">&gt;
+<span class="token keyword">void <span class="token function">ClearVector<span class="token punctuation">( <span class="token parameter">vector<span class="token operator">&lt; <span class="token constant">T <span class="token operator">&gt;<span class="token operator">&amp; vt <span class="token punctuation">) 
+<span class="token punctuation">{
+    vector<span class="token operator">&lt; <span class="token constant">T <span class="token operator">&gt; vtTemp<span class="token punctuation">; 
+    veTemp<span class="token punctuation">.<span class="token function">swap<span class="token punctuation">( vt <span class="token punctuation">)<span class="token punctuation">;
+<span class="token punctuation">}</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+
+
+<ol start="3">
+<li>利用vector释放指针</li>
+</ol>
+<p>如果vector中存放的是指针，那么当vector销毁时，这些指针指向的对象不会被销毁，那么内存就不会被释放。如下面这种情况，vector中的元素时由new操作动态申请出来的对象指针：</p>
+<pre class="prism-token token  language-javascript">#include <span class="token operator">&lt;vector<span class="token operator">&gt; 
+using namespace std<span class="token punctuation">; 
+vector<span class="token operator">&lt;<span class="token keyword">void <span class="token operator">*<span class="token operator">&gt; v<span class="token punctuation">;</span></span></span></span></span></span></span></span></pre>
+
+
+<p>每次new之后调用v.push_back()该指针，在程序退出或者根据需要，用以下代码进行内存的释放：&amp;nbsp;</p>
+<pre class="prism-token token  language-javascript"><span class="token keyword">for <span class="token punctuation">(vector<span class="token operator">&lt;<span class="token keyword">void <span class="token operator">*<span class="token operator">&gt;<span class="token operator">:<span class="token operator">:iterator it <span class="token operator">= v<span class="token punctuation">.<span class="token function">begin<span class="token punctuation">(<span class="token punctuation">)<span class="token punctuation">; it <span class="token operator">!= v<span class="token punctuation">.<span class="token function">end<span class="token punctuation">(<span class="token punctuation">)<span class="token punctuation">; it <span class="token operator">++<span class="token punctuation">) 
+    <span class="token keyword">if <span class="token punctuation">(<span class="token constant">NULL <span class="token operator">!= <span class="token operator">*it<span class="token punctuation">) 
+    <span class="token punctuation">{
+        <span class="token keyword">delete <span class="token operator">*it<span class="token punctuation">; 
+        <span class="token operator">*it <span class="token operator">= <span class="token constant">NULL<span class="token punctuation">;
+    <span class="token punctuation">}
+v<span class="token punctuation">.<span class="token function">clear<span class="token punctuation">(<span class="token punctuation">)<span class="token punctuation">;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+
+
+<p>三、转自博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hk_john/article/details/72463318">https://blog.csdn.net/hk_john/article/details/72463318</a></p>
+<p>最近经常用到vector容器，发现它的clear（）函数有点意思，经过验证之后进行一下总结。</p>
+<p>clear（）函数的调用方式是，vector&lt;datatype&gt; temp（50）;//定义了50个datatype大小的空间。temp.clear();</p>
+<p>作用：将会清空temp中的所有元素，包括temp开辟的空间（size），但是capacity会保留，即不可以以temp[1]这种形式赋初值，只能通过temp.push_back(value)的形式赋初值。</p>
+<p>同样对于vector&lt;vector&lt;datatype&gt; &gt; temp1（50）这种类型的变量，使用temp1.clear()之后将会不能用temp1[1].push_back(value)进行赋初值，只能使用temp1.push_back(temp)；的形式。</p>
+<p>下面的代码是可以运行的。</p>
+<pre class="prism-token token  language-javascript"></pre>
+
+<ol>
+<li>#include &lt;iostream&gt;</li>
+<li>#include&lt;vector&gt;<br>3.4.  using namespace std;<br>5.6.  int main(){<br>7.8.  vector&lt;vector&lt;int&gt;&gt; test(50);</li>
+<li>vector&lt;int&gt; temp;</li>
+<li>test[10].push_back(1);</li>
+<li>cout&lt;&lt;test[10][0]&lt;&lt;endl;</li>
+<li>test.clear();<br>13.14.15.  for(int i=0;i&lt;51;i++)</li>
+<li>test.push_back(temp);<br>17.18.  system(“pause”);</li>
+<li>return 0;</li>
+<li>}</li>
+</ol>
+<p>但是这样是会越界错误的。</p>
+<pre class="prism-token token  language-javascript"></pre>
+
+<ol>
+<li>#include &lt;iostream&gt;</li>
+<li>#include&lt;vector&gt;<br>3.4.  using namespace std;<br>5.6.  int main(){<br>7.8.  vector&lt;vector&lt;int&gt;&gt; test(50);</li>
+<li>vector&lt;int&gt; temp;</li>
+<li>test[10].push_back(1);</li>
+<li>cout&lt;&lt;test[10][0]&lt;&lt;endl;</li>
+<li>test.clear();<br>13.14.  for(int i=0;i&lt;50;i++)</li>
+<li>test[i].push_back(1);<br>16.17.  system(“pause”);</li>
+<li>return 0;</li>
+<li>}</li>
+</ol>
+<p>并且即使我们使用</p>
+<pre class="prism-token token  language-javascript"></pre>
+
+<ol>
+<li>for(int i=0;i&lt;100;i++)</li>
+<li>test[i].push_back(1);</li>
+</ol>
+<p>都是可以的，因为size已经被清除了。</p>
+</div></div>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vector clear() 方法 内存释放问题</div>
+      <div>https://qianxunslimg.github.io/2021/09/01/vector-clear-fang-fa-nei-cun-shi-fang-wen-ti/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/09/26/opencv-tian-jia-han-zi/" title="opencv添加汉字">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">opencv添加汉字</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/26/bmp-de-bao-cun/" title="BMP的保存">
+                        <span class="hidden-mobile">BMP的保存</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

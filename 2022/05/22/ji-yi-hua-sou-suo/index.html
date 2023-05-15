@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记忆化搜索记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式。 因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式。 509. 斐波那契数labuladong 题解思路 难度简单462收藏分享切换为英文接收动态反馈 斐波那契数 （通常用 F(n) 表示）形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记忆化搜索">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/05/22/ji-yi-hua-sou-suo/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="记忆化搜索记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式。 因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式。 509. 斐波那契数labuladong 题解思路 难度简单462收藏分享切换为英文接收动态反馈 斐波那契数 （通常用 F(n) 表示）形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/01/05/grid1.jpg">
+<meta property="article:published_time" content="2022-05-22T07:53:49.000Z">
+<meta property="article:modified_time" content="2022-08-01T03:17:30.020Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="算法总结">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2021/01/05/grid1.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>记忆化搜索 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="记忆化搜索"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-22 15:53" pubdate>
+          2022年5月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">记忆化搜索</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="记忆化搜索"><a href="#记忆化搜索" class="headerlink" title="记忆化搜索"></a>记忆化搜索</h1><p>记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式。</p>
+<p>因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式。</p>
+<h3 id="509-斐波那契数"><a href="#509-斐波那契数" class="headerlink" title="509. 斐波那契数"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/">509. 斐波那契数</a></h3><p><a target="_blank" rel="noopener" href="https://labuladong.github.io/article/?qno=509">labuladong 题解</a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/#">思路</a></p>
+<p>难度简单462收藏分享切换为英文接收动态反馈</p>
+<p><strong>斐波那契数</strong> （通常用 <code>F(n)</code> 表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由 <code>0</code> 和 <code>1</code> 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">F(0) = 0，F(1) = 1</span><br><span class="line">F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1</span><br></pre></td></tr></tbody></table></figure>
+
+<p>给定 <code>n</code> ，请计算 <code>F(n)</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：1</span><br><span class="line">解释：F(2) = F(1) + F(0) = 1 + 0 = 1</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 3</span><br><span class="line">输出：2</span><br><span class="line">解释：F(3) = F(2) + F(1) = 1 + 1 = 2</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="记忆化搜索-1"><a href="#记忆化搜索-1" class="headerlink" title="记忆化搜索"></a><code>记忆化搜索</code></h4><p>是因为函数压栈 所以用时高吗</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n)) <span class="keyword">return</span> memo[n];</span><br><span class="line">      <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">fib</span>(n<span class="number">-1</span>) + <span class="built_in">fib</span>(n<span class="number">-2</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="动态规划-略"><a href="#动态规划-略" class="headerlink" title="动态规划 略"></a>动态规划 略</h4><h3 id="397-整数替换"><a href="#397-整数替换" class="headerlink" title="397. 整数替换"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-replacement/">397. 整数替换</a></h3><p>难度中等235收藏分享切换为英文接收动态反馈</p>
+<p>给定一个正整数 <code>n</code> ，你可以做如下操作：</p>
+<ol>
+<li>如果 <code>n</code> 是偶数，则用 <code>n / 2</code>替换 <code>n</code> 。</li>
+<li>如果 <code>n</code> 是奇数，则可以用 <code>n + 1</code>或<code>n - 1</code>替换 <code>n</code> 。</li>
+</ol>
+<p>返回 <code>n</code> 变为 <code>1</code> 所需的 <em>最小替换次数</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 8</span><br><span class="line">输出：3</span><br><span class="line">解释：8 -&gt; 4 -&gt; 2 -&gt; 1</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：n = 7</span><br><span class="line">输出：4</span><br><span class="line">解释：7 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1</span><br><span class="line">或 7 -&gt; 6 -&gt; 3 -&gt; 2 -&gt; 1</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="最优-贪心"><a href="#最优-贪心" class="headerlink" title="最优 贪心"></a>最优 贪心</h4><p>局部最优的情况肯定是 不能被2整除的情况下下向4靠拢 比如 9 - 8 - 4 - 2 - 1    9 - 10 - 5 - 6 - 3 - 4 - 2 - 1</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">long</span> nn = n;</span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (nn != <span class="number">1</span>) {</span><br><span class="line">      <span class="keyword">if</span> (nn == <span class="number">3</span>) {</span><br><span class="line">        res += <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      }</span><br><span class="line">      <span class="keyword">if</span> (nn % <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">if</span> (!((nn + <span class="number">1</span>) % <span class="number">4</span>)) {</span><br><span class="line">          nn = nn + <span class="number">1</span>;</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          nn = nn - <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        nn /= <span class="number">2</span>;</span><br><span class="line">      }</span><br><span class="line">      res++;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="记忆化搜索-2"><a href="#记忆化搜索-2" class="headerlink" title="记忆化搜索"></a>记忆化搜索</h4><p>递归思想 恶心的是 有个INT_MAX会导致溢出</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; memo;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">      <span class="keyword">if</span>(n == INT_MAX) <span class="keyword">return</span> <span class="number">32</span>;  <span class="comment">//溢出的特殊情况直接返回</span></span><br><span class="line">      <span class="keyword">if</span>(memo.<span class="built_in">count</span>(n))</span><br><span class="line">        <span class="keyword">return</span> memo[n];</span><br><span class="line">      <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">if</span>(n%<span class="number">2</span>){</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">min</span>(<span class="built_in">integerReplacement</span>(n+<span class="number">1</span>), <span class="built_in">integerReplacement</span>(n<span class="number">-1</span>));</span><br><span class="line">      }<span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">integerReplacement</span>(n/<span class="number">2</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">integerReplacement</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">integerReplacement</span>(n / <span class="number">2</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span> + <span class="built_in">min</span>(<span class="built_in">integerReplacement</span>(n / <span class="number">2</span>), <span class="built_in">integerReplacement</span>(n / <span class="number">2</span> + <span class="number">1</span>));</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/can-i-win/">464. 我能赢吗</a></h3><p>难度中等424收藏分享切换为英文接收动态反馈</p>
+<p>在 “100 game” 这个游戏中，两名玩家轮流选择从 <code>1</code> 到 <code>10</code> 的任意整数，累计整数和，先使得累计整数和 <strong>达到或超过</strong> 100 的玩家，即为胜者。</p>
+<p>如果我们将游戏规则改为 “玩家 <strong>不能</strong> 重复使用整数” 呢？</p>
+<p>例如，两个玩家可以轮流从公共整数池中抽取从 1 到 15 的整数（不放回），直到累计整数和 &gt;= 100。</p>
+<p>给定两个整数 <code>maxChoosableInteger</code> （整数池中可选择的最大数）和 <code>desiredTotal</code>（累计和），若先出手的玩家是否能稳赢则返回 <code>true</code> ，否则返回 <code>false</code> 。假设两位玩家游戏时都表现 <strong>最佳</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：maxChoosableInteger = 10, desiredTotal = 11</span><br><span class="line">输出：false</span><br><span class="line">解释：</span><br><span class="line">无论第一个玩家选择哪个整数，他都会失败。</span><br><span class="line">第一个玩家可以选择从 1 到 10 的整数。</span><br><span class="line">如果第一个玩家选择 1，那么第二个玩家只能选择从 2 到 10 的整数。</span><br><span class="line">第二个玩家可以通过选择整数 10（那么累积和为 11 &gt;= desiredTotal），从而取得胜利.</span><br><span class="line">同样地，第一个玩家选择任意其他整数，第二个玩家都会赢。</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/can-i-win/solution/by-fuxuemingzhu-g16c/">【负雪明烛】图解算法：递归，步步优化，弄清每个细节 - 我能赢吗 - 力扣（LeetCode）</a></p>
+<h4 id="详细但超时的解法-有基本的思路"><a href="#详细但超时的解法-有基本的思路" class="headerlink" title="详细但超时的解法 有基本的思路"></a>详细但超时的解法 有基本的思路</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canIWin</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="comment">// 候选集，「公共整数池」</span></span><br><span class="line">        unordered_set&lt;<span class="keyword">int</span>&gt; choosable;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= maxChoosableInteger; ++i) {</span><br><span class="line">            choosable.<span class="built_in">insert</span>(i);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 判断当前做选择的玩家（先手），是否一定赢</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(choosable, <span class="number">0</span>, maxChoosableInteger, desiredTotal);</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 当前做选择的玩家是否一定赢</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(unordered_set&lt;<span class="keyword">int</span>&gt;&amp; choosable, <span class="keyword">int</span> sum, <span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="comment">// 遍历可选择的公共整数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> x : choosable) {</span><br><span class="line">            <span class="comment">// 如果选择了 x 以后，大于等于了 desiredTotal，当前玩家赢</span></span><br><span class="line">            <span class="keyword">if</span> (sum + x &gt;= desiredTotal) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">            <span class="comment">// 改变「公共整数池」</span></span><br><span class="line">            <span class="comment">// 为了避免影响当前的 choosable，因此复制了一份并擦出掉 x，传给对手</span></span><br><span class="line">            unordered_set&lt;<span class="keyword">int</span>&gt; choosable_copy = choosable;</span><br><span class="line">            choosable_copy.<span class="built_in">erase</span>(x);</span><br><span class="line">            <span class="comment">// 当前玩家选择了 x 以后，判断对方玩家一定输吗？</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="built_in">dfs</span>(choosable_copy, sum + x, maxChoosableInteger, desiredTotal)) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="官方题解"><a href="#官方题解" class="headerlink" title="官方题解"></a>官方题解</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">bool</span>&gt; memo;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canIWin</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> desiredTotal)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> ((<span class="number">1</span> + maxChoosableInteger) * (maxChoosableInteger) / <span class="number">2</span> &lt; desiredTotal) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(maxChoosableInteger, <span class="number">0</span>, desiredTotal, <span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> maxChoosableInteger, <span class="keyword">int</span> usedNumbers, <span class="keyword">int</span> desiredTotal, <span class="keyword">int</span> currentTotal)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (!memo.<span class="built_in">count</span>(usedNumbers)) {</span><br><span class="line">            <span class="keyword">bool</span> res = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxChoosableInteger; i++) {</span><br><span class="line">                <span class="keyword">if</span> (((usedNumbers &gt;&gt; i) &amp; <span class="number">1</span>) == <span class="number">0</span>) {</span><br><span class="line">                    <span class="keyword">if</span> (i + <span class="number">1</span> + currentTotal &gt;= desiredTotal) {</span><br><span class="line">                        res = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    }</span><br><span class="line">                    <span class="keyword">if</span> (!<span class="built_in">dfs</span>(maxChoosableInteger, usedNumbers | (<span class="number">1</span> &lt;&lt; i), desiredTotal, currentTotal + i + <span class="number">1</span>)) {</span><br><span class="line">                        res = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            memo[usedNumbers] = res;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> memo[usedNumbers];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="139-单词拆分"><a href="#139-单词拆分" class="headerlink" title="139. 单词拆分"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/">139. 单词拆分</a></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/#">思路</a></p>
+<p>难度中等1619收藏分享切换为英文接收动态反馈</p>
+<p>给你一个字符串 <code>s</code> 和一个字符串列表 <code>wordDict</code> 作为字典。请你判断是否可以利用字典中出现的单词拼接出 <code>s</code> 。</p>
+<p><strong>注意：</strong>不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "leetcode", wordDict = ["leet", "code"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "leetcode" 可以由 "leet" 和 "code" 拼接成。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "applepenapple", wordDict = ["apple", "pen"]</span><br><span class="line">输出: true</span><br><span class="line">解释: 返回 true 因为 "applepenapple" 可以由 "apple" "pen" "apple" 拼接成。</span><br><span class="line">     注意，你可以重复使用字典中的单词。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]</span><br><span class="line">输出: false</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="329-矩阵中的最长递增路径"><a href="#329-矩阵中的最长递增路径" class="headerlink" title="329. 矩阵中的最长递增路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/">329. 矩阵中的最长递增路径</a></h3><p>难度困难680</p>
+<p>给定一个 <code>m x n</code> 整数矩阵 <code>matrix</code> ，找出其中 <strong>最长递增路径</strong> 的长度。</p>
+<p>对于每个单元格，你可以往上，下，左，右四个方向移动。 你 <strong>不能</strong> 在 <strong>对角线</strong> 方向上移动或移动到 <strong>边界外</strong>（即不允许环绕）。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/05/grid1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">输入：matrix = [[9,9,4],[6,6,8],[2,1,1]]</span><br><span class="line">输出：4 </span><br><span class="line">解释：最长递增路径为 [1, 2, 6, 9]。</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="暴力dfs超时"><a href="#暴力dfs超时" class="headerlink" title="暴力dfs超时"></a>暴力dfs超时</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> dirs[<span class="number">4</span>][<span class="number">2</span>] = {{<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">0</span>, <span class="number">1</span>}};</span><br><span class="line">    <span class="keyword">int</span> rows, columns;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;matrix)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (matrix.<span class="built_in">size</span>() == <span class="number">0</span> || matrix[<span class="number">0</span>].<span class="built_in">size</span>() == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        rows = matrix.<span class="built_in">size</span>();</span><br><span class="line">        columns = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">auto</span> memo = vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; (rows, vector &lt;<span class="keyword">int</span>&gt; (columns));</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; ++i) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; columns; ++j) {</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, <span class="built_in">dfs</span>(matrix, i, j, memo));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;matrix, <span class="keyword">int</span> row, <span class="keyword">int</span> column, vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;memo)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (memo[row][column] != <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> memo[row][column];</span><br><span class="line">        }</span><br><span class="line">        ++memo[row][column];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) {</span><br><span class="line">            <span class="keyword">int</span> newRow = row + dirs[i][<span class="number">0</span>], newColumn = column + dirs[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (newRow &gt;= <span class="number">0</span> &amp;&amp; newRow &lt; rows &amp;&amp; newColumn &gt;= <span class="number">0</span> &amp;&amp; newColumn &lt; columns &amp;&amp; matrix[newRow][newColumn] &gt; matrix[row][column]) {</span><br><span class="line">                memo[row][column] = <span class="built_in">max</span>(memo[row][column], <span class="built_in">dfs</span>(matrix, newRow, newColumn, memo) + <span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> memo[row][column];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="记忆dfs"><a href="#记忆dfs" class="headerlink" title="记忆dfs"></a>记忆dfs</h4><p>记忆化dfs的 深搜函数</p>
+<ol>
+<li>非void返回值</li>
+<li>入口处判断是否被记录</li>
+<li>中间更新记录</li>
+<li>下一阶段深搜</li>
+<li>返回记录</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">int</span> dirs[<span class="number">4</span>][<span class="number">2</span>] = {{<span class="number">-1</span>, <span class="number">0</span>}, {<span class="number">1</span>, <span class="number">0</span>}, {<span class="number">0</span>, <span class="number">-1</span>}, {<span class="number">0</span>, <span class="number">1</span>}};</span><br><span class="line">    <span class="keyword">int</span> rows, columns;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestIncreasingPath</span><span class="params">(vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;matrix)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (matrix.<span class="built_in">size</span>() == <span class="number">0</span> || matrix[<span class="number">0</span>].<span class="built_in">size</span>() == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        rows = matrix.<span class="built_in">size</span>();</span><br><span class="line">        columns = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">auto</span> memo = vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; (rows, vector &lt;<span class="keyword">int</span>&gt; (columns));</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; ++i) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; columns; ++j) {</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, <span class="built_in">dfs</span>(matrix, i, j, memo));</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;matrix, <span class="keyword">int</span> row, <span class="keyword">int</span> column, vector&lt; vector&lt;<span class="keyword">int</span>&gt; &gt; &amp;memo)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (memo[row][column] != <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> memo[row][column];</span><br><span class="line">        }</span><br><span class="line">        ++memo[row][column];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i) {</span><br><span class="line">            <span class="keyword">int</span> newRow = row + dirs[i][<span class="number">0</span>], newColumn = column + dirs[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (newRow &gt;= <span class="number">0</span> &amp;&amp; newRow &lt; rows &amp;&amp; newColumn &gt;= <span class="number">0</span> &amp;&amp; newColumn &lt; columns &amp;&amp; matrix[newRow][newColumn] &gt; matrix[row][column]) {</span><br><span class="line">                memo[row][column] = <span class="built_in">max</span>(memo[row][column], <span class="built_in">dfs</span>(matrix, newRow, newColumn, memo) + <span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> memo[row][column];</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E6%95%B4%E7%90%86/" class="category-chain-item">算法整理</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/">#算法总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>记忆化搜索</div>
+      <div>https://qianxunslimg.github.io/2022/05/22/ji-yi-hua-sou-suo/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月22日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/23/cheng-guo-zhan-shi/" title="以往项目">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">以往项目</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/18/shou-si-dai-ma/" title="手撕代码">
+                        <span class="hidden-mobile">手撕代码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

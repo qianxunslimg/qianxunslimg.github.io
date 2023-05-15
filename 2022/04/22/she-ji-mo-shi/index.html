@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。  简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="面试问题常用设计模式C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com) 1. 工厂模式在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。  简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20191017205259541.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105125245.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105539020.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105924780.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
+<meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
+<meta property="article:modified_time" content="2022-08-22T14:42:29.694Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20191017205259541.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>设计模式 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="设计模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-22 09:46" pubdate>
+          2022年4月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">设计模式</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="面试问题"><a href="#面试问题" class="headerlink" title="面试问题"></a>面试问题</h1><h1 id="常用设计模式"><a href="#常用设计模式" class="headerlink" title="常用设计模式"></a>常用设计模式</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengjundu/p/8473564.html">C++ 常用设计模式 - 小肚哥 - 博客园 (cnblogs.com)</a></p>
+<h2 id="1-工厂模式"><a href="#1-工厂模式" class="headerlink" title="1. 工厂模式"></a>1. 工厂模式</h2><p>在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象。工厂模式作为一种创建模式，一般在创建复杂对象时，考虑使用；在创建简单对象时，建议直接new完成一个实例对象的创建。</p>
+<blockquote>
+<p>简单工厂: 枚举enum产品类型 抽象产品-&gt;具体产品  工厂根据产品类型形参返回产品</p>
+<p>工厂方法: 抽象产品-&gt;具体产品   抽象工厂-&gt;具体工厂   具体的工厂创建具体的产品</p>
+<p>抽象工厂: 太抽象了 看例子</p>
+<blockquote>
+<p>抽象上衣-&gt;黑/白上衣  抽象裤子-&gt;黑/白裤子</p>
+<p>抽象工厂-&gt;黑/白衣服工厂  : 黑衣服工厂生产黑上衣 黑裤子….</p>
+</blockquote>
+</blockquote>
+<h3 id="1-1、简单工厂模式"><a href="#1-1、简单工厂模式" class="headerlink" title="1.1、简单工厂模式"></a>1.1、简单工厂模式</h3><h4 id="应用举例"><a href="#应用举例" class="headerlink" title="应用举例"></a>应用举例</h4><p><strong>客户Jungle需要时可以向工厂提供产品参数，工厂根据产品参数生产对应产品，客户<code>Jungle</code>并不需要关心产品的生产过程细节</strong>。</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/20191017205259541.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>简单工厂模式：</strong></p>
+<p><strong>定义一个简单工厂类，它可以根据参数的不同返回不同类的实例，被创建的实例通常都具有共同的父类</strong></p>
+<h4 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h4><ul>
+<li>设计一个==抽象产品==类，它包含一些公共方法的实现；</li>
+<li>从抽象产品类中派生出多个==具体产品==类，如篮球类、足球类、排球类，具体产品类中实现具体产品生产的相关代码；</li>
+<li>设计一个==工厂==类，工厂类中==提供==一个生产各种产品的==工厂方法==，该方法根据传入参数（产品名称）创建不同的具体产品类对象；</li>
+<li>客户只需调用工厂类的工厂方法，并==传入具体产品参数，即可得到一个具体产品对象==。</li>
+</ul>
+<p>主要特点是需要在工厂类中做判断，从而创造相应的产品，当增加新产品时，需要修改工厂类。使用简单工厂模式，我们只需要知道具体的产品型号就可以创建一个产品。</p>
+<p>简单工厂模式的<code>优点</code>在于：</p>
+<ul>
+<li>工厂类提供创建具体产品的方法，并包含一定判断逻辑，客户不必参与产品的创建过程；</li>
+<li>客户只需要知道对应产品的参数即可，参数一般简单好记，如数字、字符或者字符串等。</li>
+</ul>
+<p><code>缺点</code>：工厂类集中了所有产品类的创建逻辑，如果产品量较大，会使得工厂类变的非常臃肿</p>
+<h4 id="大体上有3个角色"><a href="#大体上有3个角色" class="headerlink" title="大体上有3个角色"></a>大体上有3个角色</h4><ul>
+<li><strong>工厂（Factory）</strong>：根据客户提供的具体产品类的参数，创建具体产品实例；</li>
+<li><strong>抽象产品（AbstractProduct）</strong>：具体产品类的基类，包含创建产品的公共方法；</li>
+<li><strong>具体产品（ConcreteProduct）</strong>：抽象产品的派生类，包含具体产品特有的实现方法，是简单工厂模式的创建目标。</li>
+</ul>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105125245.png" srcset="/img/loading.gif" lazyload alt="image-20220422105125245"></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设计模式</span></span><br><span class="line"><span class="comment">//定义产品类型信息</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> {</span> Tank_Type_56, Tank_Type_96, Tank_Type_Num } Tank_Type;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank56</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank56"</span>) {}</span><br><span class="line">  <span class="comment">// 在派生类的成员函数中使用override时，如果基类中无此函数，或基类中的函数并不是虚函数，编译器会给出相关错误信息。</span></span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank96</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank96"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//工厂类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TankFactory</span> {</span>   <span class="comment">//产品量较大，会使得工厂类变的非常臃肿</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//根据产品信息创建具体的产品类实例，返回一个抽象产品类</span></span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">(Tank_Type type)</span> </span>{</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (type) {</span><br><span class="line">    <span class="keyword">case</span> Tank_Type_56:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank56</span>();</span><br><span class="line">    <span class="keyword">case</span> Tank_Type_96:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank96</span>();</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  TankFactory *factory = <span class="keyword">new</span> <span class="built_in">TankFactory</span>();</span><br><span class="line">  Tank *tank56 = factory-&gt;<span class="built_in">createTank</span>(Tank_Type_56);</span><br><span class="line">  tank56-&gt;<span class="built_in">type</span>();    <span class="comment">// output: Tank56</span></span><br><span class="line">  Tank *tank96 = factory-&gt;<span class="built_in">createTank</span>(Tank_Type_96);</span><br><span class="line">  tank96-&gt;<span class="built_in">type</span>();		<span class="comment">// output: Tank96</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank96;</span><br><span class="line">  tank96 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> tank56;</span><br><span class="line">  tank56 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory;</span><br><span class="line">  factory = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="1-2、工厂方法模式"><a href="#1-2、工厂方法模式" class="headerlink" title="1.2、工厂方法模式"></a>1.2、工厂方法模式</h3><p>定义一个创建对象的接口，其子类去具体现实这个接口以完成具体的创建工作。如果需要增加新的产品类，只需要扩展一个相应的工厂类即可。</p>
+<p>缺点：产品类数据较多时，需要实现大量的工厂类，这无疑增加了代码量</p>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105539020.png" srcset="/img/loading.gif" lazyload alt="image-20220422105539020"></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//产品抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank56</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank56"</span>) {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank96</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank96"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象工厂类，提供一个创建接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TankFactory</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//提供创建产品实例的接口，返回抽象产品类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Tank *<span class="title">createTank</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56Factory</span> :</span> <span class="keyword">public</span> TankFactory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank56</span>(); }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96Factory</span> :</span> <span class="keyword">public</span> TankFactory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank96</span>(); }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  TankFactory *factory56 = <span class="keyword">new</span> <span class="built_in">Tank56Factory</span>();</span><br><span class="line">  Tank *tank56 = factory56-&gt;<span class="built_in">createTank</span>();</span><br><span class="line">  tank56-&gt;<span class="built_in">type</span>();</span><br><span class="line"></span><br><span class="line">  TankFactory *factory96 = <span class="keyword">new</span> <span class="built_in">Tank96Factory</span>();</span><br><span class="line">  Tank *tank96 = factory96-&gt;<span class="built_in">createTank</span>();</span><br><span class="line">  tank96-&gt;<span class="built_in">type</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank96;</span><br><span class="line">  tank96 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory96;</span><br><span class="line">  factory96 = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank56;</span><br><span class="line">  tank56 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory56;</span><br><span class="line">  factory56 = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="1-3、抽象工厂模式"><a href="#1-3、抽象工厂模式" class="headerlink" title="1.3、抽象工厂模式"></a>1.3、<code>抽象工厂模式</code></h3><p>一个工厂可以提供创建多种相关产品的接口，而无需像工厂方法一样，为每一个产品都提供一个具体工厂。</p>
+<p><u>抽象工厂模式结构与工厂方法模式结构类似，不同之处在于，一个具体工厂可以生产多种<code>同类相关</code>的产品：</u></p>
+<p>缺点：当增加一个新系列的产品时，不仅需要现实具体的产品类，还需要增加一个新的创建接口，扩展相对困难。</p>
+<ul>
+<li><strong>抽象工厂（AbstractFactory）</strong>：所有生产具体产品的工厂类的基类，提供工厂类的公共方法；</li>
+<li><strong>具体工厂（ConcreteFactory）</strong>：生产具体的产品</li>
+<li><strong>抽象产品（AbstractProduct）</strong>：所有产品的基类，提供产品类的公共方法</li>
+<li><strong>具体产品（ConcreteProduct）</strong>：<code>具体的产品类</code></li>
+</ul>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105924780.png" srcset="/img/loading.gif" lazyload alt="image-20220422105924780" style="zoom:150%;">
+
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//抽象上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coat</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//黑色上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackCoat</span> :</span> <span class="keyword">public</span> Coat {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">BlackCoat</span>() : <span class="built_in">Coat</span>(), <span class="built_in">m_strColor</span>(<span class="string">"Black Coat"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//白色上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhiteCoat</span> :</span> <span class="keyword">public</span> Coat {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">WhiteCoat</span>() : <span class="built_in">Coat</span>(), <span class="built_in">m_strColor</span>(<span class="string">"White Coat"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pants</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//黑色裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackPants</span> :</span> <span class="keyword">public</span> Pants {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">BlackPants</span>() : <span class="built_in">Pants</span>(), <span class="built_in">m_strColor</span>(<span class="string">"Black Pants"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//白色裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhitePants</span> :</span> <span class="keyword">public</span> Pants {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">WhitePants</span>() : <span class="built_in">Pants</span>(), <span class="built_in">m_strColor</span>(<span class="string">"White Pants"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象工厂类，提供衣服创建接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//上衣创建接口，返回抽象上衣类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Coat *<span class="title">createCoat</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//裤子创建接口，返回抽象裤子类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Pants *<span class="title">createPants</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建白色衣服的工厂类，具体实现创建白色上衣和白色裤子的接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhiteFactory</span> :</span> <span class="keyword">public</span> Factory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Coat *<span class="title">createCoat</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">WhiteCoat</span>(); }</span><br><span class="line">  <span class="function">Pants *<span class="title">createPants</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">WhitePants</span>(); }</span><br><span class="line">};</span><br><span class="line"><span class="comment">//创建黑色衣服的工厂类，具体实现创建黑色上衣和白色裤子的接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackFactory</span> :</span> <span class="keyword">public</span> Factory {</span><br><span class="line">  <span class="function">Coat *<span class="title">createCoat</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">BlackCoat</span>(); }</span><br><span class="line">  <span class="function">Pants *<span class="title">createPants</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">BlackPants</span>(); }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. <code>策略</code>模式</h2><p>策略模式是指定义一系列的算法，把它们单独封装起来，并且使它们可以互相替换，使得算法可以独立于使用它的客户端而变化，也是说这些算法所完成的功能类型是一样的，对外接口也是一样的，只是不同的策略为引起环境角色环境角色表现出不同的行为。</p>
+<p>相比于使用大量的if…else，使用策略模式可以降低复杂度，使得代码更容易维护。</p>
+<p>缺点：可能需要定义大量的策略类，并且这些策略类都要提供给客户端。</p>
+<p>[环境角色] 持有一个策略类的引用，最终给客户端调用。</p>
+<p><code>在运行时根据需要透明地更改对象的算法？将算法与对象本身解耦</code></p>
+<h3 id="传统的策略模式利用多态实现"><a href="#传统的策略模式利用多态实现" class="headerlink" title="传统的策略模式利用多态实现"></a>传统的策略模式利用多态实现</h3><h3 id="除了多态-还可以利用std-function闭包实现-略"><a href="#除了多态-还可以利用std-function闭包实现-略" class="headerlink" title="除了多态 还可以利用std::function闭包实现 略"></a>除了多态 <code>还可以利用std::function闭包实现</code> 略</h3><blockquote>
+<p>==function闭包指向lamda, lamda捕获this指针==</p>
+</blockquote>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png" srcset="/img/loading.gif" lazyload alt="image-20220422111042179"></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaxStrategy</span> {</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">TaxStrategy</span>() {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNTax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"CNTax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">USTax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"USTax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DETax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"DETax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SalesOrder</span> {</span></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  TaxStrategy *strategy;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">/*SalesOrder(StrategyFactory* strategyFactory)</span></span><br><span class="line"><span class="comment">{//使用工厂方法</span></span><br><span class="line"><span class="comment">      this-&gt;strategy = strategyFactory-&gt;NewStrategy();</span></span><br><span class="line"><span class="comment">  }*/</span></span><br><span class="line">  <span class="built_in">SalesOrder</span>(TaxStrategy *strategy) { <span class="keyword">this</span>-&gt;strategy = strategy; }</span><br><span class="line">  ~<span class="built_in">SalesOrder</span>() {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">CalculateTax</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">double</span> val = strategy-&gt;<span class="built_in">Calculate</span>();  <span class="comment">//多态调用</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR *argv[])</span> </span>{</span><br><span class="line">  <span class="comment">// TaxStrategy* strategy = new DETax();</span></span><br><span class="line">  TaxStrategy *strategy = <span class="keyword">new</span> <span class="built_in">CNTax</span>();</span><br><span class="line">  <span class="function">SalesOrder <span class="title">order</span><span class="params">(strategy)</span></span>;</span><br><span class="line">  order.<span class="built_in">CalculateTax</span>();</span><br><span class="line">  <span class="keyword">delete</span> strategy;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="我项目中用到的策略模式"><a href="#我项目中用到的策略模式" class="headerlink" title="我项目中用到的策略模式"></a>我项目中用到的策略模式</h3><ol>
+<li><p>SubPoolWindow继承QWidget </p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SubSignalPool.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubPoolWindow</span> :</span> <span class="keyword">public</span> QWidget {</span><br><span class="line">  Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">SubPoolWindow</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">SubPoolWindow</span>();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setSubPool</span><span class="params">(<span class="keyword">const</span> SubSignalPool &amp;subPool)</span></span>;</span><br><span class="line">  <span class="function">SubSignalPool &amp;<span class="title">subPool</span><span class="params">()</span> </span>{ <span class="keyword">return</span> _subPool; }</span><br><span class="line">  <span class="function"><span class="keyword">const</span> SubSignalPool &amp;<span class="title">subPool</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> _subPool; }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setSubPoolDataType</span><span class="params">(<span class="keyword">bool</span> b)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">getSubPoolDataType</span><span class="params">()</span> </span>{ <span class="keyword">return</span> _isIntermediateData; }</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setWindowTitle</span><span class="params">(QString title)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">subPoolUpdate</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  <span class="comment">// virtual void closeEvent(QCloseEvent * e);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  SubSignalPool _subPool;</span><br><span class="line">  <span class="keyword">bool</span> _isIntermediateData; <span class="comment">// 是否为中间数据，中间数据在析构时，要释放内存</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>MapWindow GraphWindow TableWindow继承自SubPoolWindow并重写设置信号池等方法</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SubPoolWindow.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QCustomPlot</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapWindow</span> :</span> <span class="keyword">public</span> SubPoolWindow {</span><br><span class="line">  Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">MapWindow</span>(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">  ~<span class="built_in">MapWindow</span>() {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setWindowTitle</span><span class="params">(QString title)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">subPoolUpdate</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">myMoveEvent</span><span class="params">(QMouseEvent *e)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  QCustomPlot *_qcustom;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>多态调用</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CMainWindow::OnActionMap</span><span class="params">()</span> </span>{</span><br><span class="line">  SubSignalPool subPool = <span class="built_in">getSubPool</span>();</span><br><span class="line">  SubPoolWindow *mapWin = <span class="keyword">new</span> <span class="built_in">MapWindow</span>(<span class="keyword">this</span>);</span><br><span class="line">  mapWin-&gt;<span class="built_in">setSubPool</span>(subPool);</span><br><span class="line">  mapWin-&gt;<span class="built_in">setWindowTitle</span>(subPool.<span class="built_in">name</span>());</span><br><span class="line">  ui.mdiArea-&gt;<span class="built_in">addSubWindow</span>(mapWin);</span><br><span class="line">  mapWin-&gt;<span class="built_in">show</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="3-观察者模式"><a href="#3-观察者模式" class="headerlink" title="3. 观察者模式"></a>3. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/119308881">观察者模式</a></h2><h3 id="观察者模式的核心思想是-1对多"><a href="#观察者模式的核心思想是-1对多" class="headerlink" title="观察者模式的核心思想是 1对多"></a>观察者模式的核心思想是 <strong>1对多</strong></h3><p>以自己为例，我下班的时候会告诉孩子和他妈，我开车要往回走了</p>
+<ul>
+<li>孩子妈收到消息后开始做饭</li>
+<li>孩子收到消息后，就赶紧收起手机，怕挨揍</li>
+</ul>
+<p>传统写法：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸回来了，赶紧去写作业"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公回来了，去做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Gohome</span><span class="params">()</span></span>{</span><br><span class="line">        wife.<span class="built_in">DoSomething</span>();</span><br><span class="line">        son.<span class="built_in">DoSomething</span>();</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Wife wife;</span><br><span class="line">    Son son;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    me.<span class="built_in">Gohome</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样写的不足如下：</p>
+<ol>
+<li>如果关心我的人变多了，比如我又加了我老妈、老爸 ，这时候我们<code>不得不去修改Me的类</code></li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Gohome</span><span class="params">()</span></span>{</span><br><span class="line">        wife.<span class="built_in">DoSomething</span>();</span><br><span class="line">        son.<span class="built_in">DoSomething</span>();</span><br><span class="line">        mom.<span class="built_in">DoSomething</span>();</span><br><span class="line">        ba.<span class="built_in">DoSomething</span>();</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Wife wife;</span><br><span class="line">    Son son;</span><br><span class="line">    Mother mom;</span><br><span class="line">    Father ba;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>人数少的时候，还可以应付，假如关心我的人有1000人，那这时候我们该怎么办</li>
+<li>本身这样写就不科学 大家都是独立的人 不应该相互包含</li>
+</ol>
+<h4 id="1-开始重构，简单观察者模式，面向抽象编程"><a href="#1-开始重构，简单观察者模式，面向抽象编程" class="headerlink" title="1. 开始重构，简单观察者模式，面向抽象编程"></a>1. 开始重构，简单观察者模式，面向抽象编程</h4><ol>
+<li>观察者接口</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">ObserverInterface</span>(){}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>被观察者接口</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(ObserverInterface* obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(ObserverInterface* obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">SubjectInterface</span>(){}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>我自己</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(ObserverInterface* obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(obr);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(ObserverInterface* obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">auto</span> pos=std::<span class="built_in">find</span>(observers.<span class="built_in">begin</span>(),observers.<span class="built_in">end</span>(),obr);</span><br><span class="line">        <span class="keyword">if</span>(pos!=observers.<span class="built_in">end</span>()){</span><br><span class="line">            observers.<span class="built_in">erase</span>(pos);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;ObserverInterface*&gt; observers;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>孩子妈</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="5">
+<li>孩子</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="6">
+<li>main函数</li>
+</ol>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    ObserverInterface* wife=<span class="keyword">new</span> Wife;</span><br><span class="line">    ObserverInterface* son=<span class="keyword">new</span> Son;</span><br><span class="line">    me.<span class="built_in">Add</span>(wife);</span><br><span class="line">    me.<span class="built_in">Add</span>(son);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> wife;</span><br><span class="line">    <span class="keyword">delete</span> son;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这样的好处是：</p>
+<ul>
+<li>再增加新的观察者，我们就不用修改Me的类了，只需要添加到vector中就可以</li>
+</ul>
+<p>不足是：</p>
+<ul>
+<li><code>需要自己做内存管理</code>去 delete <u><code>感觉也不是什么不足吧</code></u></li>
+</ul>
+<h4 id="2-优化，使用智能指针shared-ptr代替"><a href="#2-优化，使用智能指针shared-ptr代替" class="headerlink" title="2. 优化，使用智能指针shared_ptr代替*"></a>2. 优化，使用智能指针shared_ptr代替*</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 刘春雷 on 2020/3/28.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//virtual ~ObserverInterface(){}</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> pObserverInterface=std::shared_ptr&lt;ObserverInterface&gt;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//virtual ~SubjectInterface(){}</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(obr);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">auto</span> pos=std::<span class="built_in">find</span>(observers.<span class="built_in">begin</span>(),observers.<span class="built_in">end</span>(),obr);</span><br><span class="line">        <span class="keyword">if</span>(pos!=observers.<span class="built_in">end</span>()){</span><br><span class="line">            observers.<span class="built_in">erase</span>(pos);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;pObserverInterface&gt; observers;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    <span class="keyword">auto</span> wife=std::make_shared&lt;Wife&gt;();</span><br><span class="line">    <span class="keyword">auto</span> son=std::make_shared&lt;Son&gt;();</span><br><span class="line">    me.<span class="built_in">Add</span>(wife);</span><br><span class="line">    me.<span class="built_in">Add</span>(son);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="3-使用智能指针-unique-ptr"><a href="#3-使用智能指针-unique-ptr" class="headerlink" title="3. 使用智能指针 unique_ptr"></a>3. 使用智能指针 unique_ptr</h4><p>unique_ptr有两个比较注意的地方</p>
+<ul>
+<li>所有权的转移</li>
+<li>基类析构函数要virtual（跟shared_ptr不一样）</li>
+</ul>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 刘春雷 on 2020/3/28.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">ObserverInterface</span>(){}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> pObserverInterface=std::unique_ptr&lt;ObserverInterface&gt;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">( pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">SubjectInterface</span>(){}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(std::<span class="built_in">move</span>(obr));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="comment">//TODO</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;pObserverInterface&gt; observers;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Wife</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"wife is created"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    ~<span class="built_in">Wife</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"wife is destroyed"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">Son</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"son is created"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    ~<span class="built_in">Son</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"son is destroyed"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    pObserverInterface wife=std::make_unique&lt;Wife&gt;();</span><br><span class="line">    pObserverInterface son=std::make_unique&lt;Son&gt;();</span><br><span class="line">    me.<span class="built_in">Add</span>(std::<span class="built_in">move</span>(wife));</span><br><span class="line">    </span><br><span class="line">    me.<span class="built_in">Add</span>(std::<span class="built_in">move</span>(son));</span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">wife is created</span><br><span class="line">son is created</span><br><span class="line">老公快回来了，开始做饭</span><br><span class="line">爸爸快回来了，不能玩游戏了</span><br><span class="line">调用son析构函数</span><br><span class="line">调用wife析构函数</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果把基类析构函数的virtual去掉，输出结果，基类的析构函数没有调用</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">wife is created</span><br><span class="line">son is created</span><br><span class="line">老公快回来了，开始做饭</span><br><span class="line">爸爸快回来了，不能玩游戏了</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="4-单例模式"><a href="#4-单例模式" class="headerlink" title="4. 单例模式"></a>4. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37469260">单例模式</a></h2><h3 id="1-什么是单例模式"><a href="#1-什么是单例模式" class="headerlink" title="1. 什么是单例模式"></a><strong>1. 什么是单例模式</strong></h3><p>单例模式(Singleton Pattern，也称为单件模式)，使用最广泛的设计模式之一。其意图是保证一个类仅有一个实例，并提供一个访问它的全局访问点，该实例被所有程序模块共享。</p>
+<p>定义一个单例类：</p>
+<ol>
+<li><code>私有化它的构造函数</code>，以防止外界创建单例类的对象；</li>
+<li>使用类的<code>私有静态指针变量指向类的唯一实例</code>；</li>
+<li>使用一个<code>公有的静态方法获取该实例</code>。</li>
+</ol>
+<p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-懒汉版（Lazy-Singleton）"><a href="#2-懒汉版（Lazy-Singleton）" class="headerlink" title="2. 懒汉版（Lazy Singleton）"></a><strong>2. 懒汉版（Lazy Singleton）</strong></h3><p>教学版，即懒汉版（Lazy Singleton）：<code>单例实例在第一次被使用时才进行初始化</code>，这叫做延迟初始化。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.0</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton *instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton *<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="literal">NULL</span>)</span><br><span class="line">      instance = <span class="keyword">new</span> <span class="built_in">Singleton</span>();</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// init static member</span></span><br><span class="line">Singleton *Singleton::instance = <span class="literal">NULL</span>;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>问题1：</strong>Lazy Singleton存在<code>内存泄露</code>的问题，有两种解决方法：</p>
+<blockquote>
+<p>私有的析构函数 无法析构对象 delete会直接报错<a target="_blank" rel="noopener" href="https://blog.csdn.net/shltsh/article/details/45958697">C++构造与析构(10) - private析构函数_ 水草的博客-CSDN博客_private 析构函数</a></p>
+</blockquote>
+<ol>
+<li>使用<code>智能指针</code></li>
+<li>使用<code>静态的嵌套类对象</code></li>
+</ol>
+<p>对于第二种解决方法，代码如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton *instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Deletor</span> {</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    ~<span class="built_in">Deletor</span>() {</span><br><span class="line">      <span class="keyword">if</span> (Singleton::instance != <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">delete</span> Singleton::instance;</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line">  <span class="keyword">static</span> Deletor deletor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton *<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="literal">NULL</span>) {</span><br><span class="line">      instance = <span class="keyword">new</span> <span class="built_in">Singleton</span>();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// init static member</span></span><br><span class="line">Singleton *Singleton::instance = <span class="literal">NULL</span>;</span><br><span class="line">Singleton::Deletor Singleton::deletor; </span><br></pre></td></tr></tbody></table></figure>
+
+<p>在程序运行结束时，系统会调用静态成员<code>deletor</code>的析构函数，该析构函数会删除单例的唯一实例。使用这种方法释放单例对象有以下特征：</p>
+<ul>
+<li>在单例类内部定义专有的嵌套类。</li>
+<li>在单例类内定义私有的专门用于释放的静态成员。</li>
+<li>利用程序在结束时析构全局变量的特性，选择最终的释放时机。</li>
+</ul>
+<p><code>在单例类内再定义一个嵌套类，总是感觉很麻烦。</code></p>
+<p><strong>问题2：</strong>这个代码在单线程环境下是正确无误的，但是当拿到多线程环境下时这份代码就会出现race condition，注意version 1.0与version 1.1都不是线程安全的。要使其线程安全，能在多线程环境下实现单例模式</p>
+<blockquote>
+<p>单例的初始化是不安全的 </p>
+</blockquote>
+<p>C++11规定了local static在多线程条件下的初始化行为，要求编译器保证了内部静态变量的线程安全性。在C++11标准下，《Effective C++》提出了一种更优雅的单例模式实现，使用函数内的 local static 对象。这样，只有当第一次访问<code>getInstance()</code>方法时才创建实例。这种方法也被称为==Meyers’ Singleton==。C++0x之后该实现是线程安全的，C++0x之前仍需加锁。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//这种</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 或者</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> shared_ptr&lt;Singleton&gt; &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">static</span> shared_ptr&lt;Singleton&gt; <span class="title">instance</span><span class="params">(<span class="keyword">new</span> Singleton)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>局部静态变量可以保证线程安全</p>
+</blockquote>
+<h3 id="3-饿汉版（Eager-Singleton）"><a href="#3-饿汉版（Eager-Singleton）" class="headerlink" title="3. 饿汉版（Eager Singleton）"></a><strong>3. 饿汉版（Eager Singleton）</strong></h3><p>饿汉版（Eager Singleton）：<code>指单例实例在程序运行时被立即执行初始化</code></p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>();</span><br><span class="line">  ~<span class="built_in">Singleton</span>();</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{ <span class="keyword">return</span> instance; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// initialize defaultly</span></span><br><span class="line">Singleton Singleton::instance;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>由于在main函数之前初始化，所以没有线程安全的问题。但是<u>潜在问题在于no-local static对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的</u>。也即，static Singleton instance;和static Singleton&amp; getInstance()二者的初始化顺序不确定，如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
+<p>总结：</p>
+<ul>
+<li>Eager Singleton 虽然是线程安全的，但存在潜在问题；</li>
+<li>Lazy Singleton通常需要加锁来保证线程安全，但局部静态变量版本在C++11后是线程安全的；</li>
+<li>局部静态变量版本（Meyers Singleton）最优雅。</li>
+</ul>
+<h2 id="5-装饰器模式"><a href="#5-装饰器模式" class="headerlink" title="5. 装饰器模式"></a>5. 装饰器模式</h2><p>装饰器模式是比较常用的一种设计模式，Python中就内置了对于装饰器的支持。</p>
+<p>具体来说，装饰器模式是用来给对象增加某些特性或者对被装饰对象进行某些修改。</p>
+<p>下面的代码是一个买煎饼的例子，如我们生活中所见，可以选基础煎饼（鸡蛋煎饼，肉煎饼等），然后再额外加别的东西：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pancake</span> {</span> <span class="comment">//基类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  string description = <span class="string">"Basic Pancake"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> description; }</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//装饰器基类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">string <span class="title">getDescrition</span><span class="params">()</span></span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MeatPancake</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//肉煎饼</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">MeatPancake</span>() { description = <span class="string">"MeatPancake"</span>; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="number">6</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EggPancake</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//鸡蛋煎饼</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">EggPancake</span>() { description = <span class="string">"EggPancake"</span>; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="number">5</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Egg</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加鸡蛋</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Egg"</span>; }</span><br><span class="line">  <span class="built_in">Egg</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">1.5</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Potato</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加土豆</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Potato"</span>; }</span><br><span class="line">  <span class="built_in">Potato</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">1</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bacon</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加培根</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Bacon"</span>; }</span><br><span class="line">  <span class="built_in">Bacon</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">2</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  Pancake *pan = <span class="keyword">new</span> <span class="built_in">EggPancake</span>();</span><br><span class="line">  pan = &amp;<span class="built_in">Potato</span>(pan); <span class="comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span></span><br><span class="line">  pan = &amp;<span class="built_in">Bacon</span>(pan); <span class="comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span></span><br><span class="line">  cout &lt;&lt; pan-&gt;<span class="built_in">getDescription</span>() &lt;&lt; <span class="string">"  $ : "</span> &lt;&lt; pan-&gt;<span class="built_in">cost</span>() &lt;&lt; endl;</span><br><span class="line">  <span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">基础知识</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>设计模式</div>
+      <div>https://qianxunslimg.github.io/2022/04/22/she-ji-mo-shi/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月22日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/22/bo-ke-yuan-kao-bei-dai-ma-de-yi-ge-keng/" title="博客园代码拷贝问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">博客园代码拷贝问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/20/ding-dui/" title="顶堆">
+                        <span class="hidden-mobile">顶堆</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

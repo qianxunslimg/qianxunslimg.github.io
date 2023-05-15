@@ -1,0 +1,709 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：std::string pur &#x3D; purposelist[i].toStdString();&#x2F;&#x2F;都转换为string&#x2F;&#x2F; qDebug()&lt;&lt;pur&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QString截断（string截断）">
+<meta property="og:url" content="https://qianxunslimg.github.io/2021/12/02/qstring-jie-duan-string-jie-duan/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：std::string pur &#x3D; purposelist[i].toStdString();&#x2F;&#x2F;都转换为string&#x2F;&#x2F; qDebug()&lt;&lt;pur&amp;lt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-02T11:16:42.000Z">
+<meta property="article:modified_time" content="2022-04-22T16:20:48.759Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="开发随笔">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>QString截断（string截断） - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="QString截断（string截断）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-02 19:16" pubdate>
+          2021年12月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">QString截断（string截断）</h1>
+            
+            <div class="markdown-body">
+              
+              <h4 id="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法："><a href="#最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：" class="headerlink" title="最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法："></a>最近写一个Qt小程序用到了QString的截断，在绝对路径中取文件的名字，再拼接到新路径中，用到了两个方法：</h4><h3 id="方法一：由于对QString没有深入了解，所以采用的QString–-gt-string–-gt-QString，代码如下："><a href="#方法一：由于对QString没有深入了解，所以采用的QString–-gt-string–-gt-QString，代码如下：" class="headerlink" title="方法一：由于对QString没有深入了解，所以采用的QString–>string–>QString，代码如下："></a>方法一：由于对QString没有深入了解，所以采用的QString–&gt;string–&gt;QString，代码如下：</h3><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">std::string pur = purposelist[i].<span class="built_in">toStdString</span>();<span class="comment">//都转换为string</span></span><br><span class="line"><span class="comment">// qDebug()&lt;&lt;pur&lt;&lt;endl;</span></span><br><span class="line">std::string sdir = dstpath.<span class="built_in">toStdString</span>();</span><br><span class="line"><span class="keyword">int</span> pos = pur.<span class="built_in">find_last_of</span>(<span class="string">'/'</span>); <span class="comment">//找到最后/</span></span><br><span class="line"><span class="function">std::string <span class="title">s</span><span class="params">(pur.substr(pos + <span class="number">1</span>))</span></span>;</span><br><span class="line">sdir.<span class="built_in">append</span>(<span class="string">"/"</span>);</span><br><span class="line">sdir.<span class="built_in">append</span>(s);</span><br><span class="line">QString qsdir = <span class="built_in">QString</span>(QString::<span class="built_in">fromLocal8Bit</span>(sdir.<span class="built_in">c_str</span>()));</span><br><span class="line"><span class="built_in">qDebug</span>() &lt;&lt; qsdir &lt;&lt; endl;</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h3 id="用这种方法出现的问题是，string中的中文字符转到QString会乱码…"><a href="#用这种方法出现的问题是，string中的中文字符转到QString会乱码…" class="headerlink" title="用这种方法出现的问题是，string中的中文字符转到QString会乱码…"></a>用这种方法出现的问题是，string中的中文字符转到QString会乱码…</h3><p>&amp;nbsp;</p>
+<h3 id="方法二：QString直接进行截断拼接"><a href="#方法二：QString直接进行截断拼接" class="headerlink" title="方法二：QString直接进行截断拼接"></a>方法二：QString直接进行截断拼接</h3><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//QString截断学习</span></span><br><span class="line"><span class="function">QString <span class="title">src</span><span class="params">(<span class="string">"E:/qq接收文件/MobileFile/thumb/碎裂收据.jpg"</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"original path: "</span>&lt;&lt;src&lt;&lt;endl;</span><br><span class="line"><span class="function">QString <span class="title">dir</span><span class="params">(<span class="string">"E:/目标文件夹"</span>)</span></span>;</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"the last string '/' pos is "</span>&lt;&lt;src.<span class="built_in">lastIndexOf</span>(<span class="string">'/'</span>)&lt;&lt;endl;</span><br><span class="line">QString filename = src.<span class="built_in">right</span>(src.<span class="built_in">size</span>() - (src.<span class="built_in">lastIndexOf</span>(<span class="string">"/"</span>)+<span class="number">1</span>));</span><br><span class="line"><span class="built_in">qDebug</span>()&lt;&lt;<span class="string">"the true filename is "</span>&lt;&lt;filename&lt;&lt;endl;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复盘，刚接触qt的自己好蠢，事实上-qstring可能是c-下最好用的string了"><a href="#复盘，刚接触qt的自己好蠢，事实上-qstring可能是c-下最好用的string了" class="headerlink" title="复盘，刚接触qt的自己好蠢，事实上 qstring可能是c++下最好用的string了"></a>复盘，刚接触qt的自己好蠢，事实上 qstring可能是c++下最好用的string了</h3><p>QString存储字符串采用的是Unicode码,每一个字符是一个十六位的QChar, 而不是八位的char, 所以处理中文字符没有问题, 而且一个汉字是一个字符。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p><strong>1、append()和prepend()</strong></p>
+<p>append()在字符串后面添加字符串,prepend()在字符串前面添加字符串。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str1="卖", str2 = "拐";</span><br><span class="line">str1 = str1.append(str2);	//"卖拐"</span><br><span class="line">str2 = str2.prepend(str1);	//"拐卖"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>2、toUpper()和toLower()</strong></p>
+<p>toUpper()是将字符串中的字母全部转化为大写字母,toLower()是将所有的字母全部转化为小写字母。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = "Hello World", str2;</span><br><span class="line">str2 = str1.toUpper();	//"HELLO WORLD"</span><br><span class="line">str2 = str1.toLower();	//"hello world"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>3、cont()、size()和length()</strong></p>
+<p>count()、size()和length()这三个函数都是返回字符串的个数的,这3个函数是相同的。注意：一个汉字算是一个字符</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str = "NI 好";</span><br><span class="line">N = str.count();	//N == 3</span><br><span class="line">N = str.size();		//N == 3</span><br><span class="line">N = str.length();	//N == 3</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>4、trimmed()和simplified()</strong></p>
+<p>trimmed()是去掉字符串首尾的空格,simplified()不仅去掉首尾的空格,中间连续的空格也能用一个空格替换。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = " Are    you  ok?   ";</span><br><span class="line">str2 = str1.trimmed();		//"Are    you  ok?"</span><br><span class="line">str2 = str1.simplified()	//"Are you ok?"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>5、indexOf()和lastIndexOf()</strong></p>
+<p>查找字符串的位置</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = "G:\Qt5Book\Qt5.9Study\qw.cpp";</span><br><span class="line">N = str1.indexOf("5.9");			//N == 13</span><br><span class="line">N = str1.lastIndexOf("\\");			//N == 21</span><br><span class="line">注意："\"是转义字符,如果要查找"\",需要输入"\\"</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>6、isNull()和isEmpty()</strong></p>
+<p>这两个函数都用来判断字符串是否为空,但是稍微有差别。如果一个空字符串,只有”\0”,isNull()返回false,而isEmpty()返回true;只有未赋值的字符串,isNull()才返回true。</p>
+<p>如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">QString str1, str2="";</span><br><span class="line">N = str1.isNull();	//true	未赋值字符串变量</span><br><span class="line">N = str2.isNull();	//false	只有"\0"的字符串,也不是Null</span><br><span class="line">N = str1.isEmpty(); //true</span><br><span class="line">N = str2.isEmpty(); //true</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>7、contains()</strong></p>
+<p>判断字符串内是否包含某个字符,可指定是否区分大小写。</p>
+<p>如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>;</span><br><span class="line">N = str1.<span class="built_in">contains</span>(<span class="string">".cpp"</span>, Qt::CaseInsensitive);		<span class="comment">//true 不区分大小写	</span></span><br><span class="line">N = str1.<span class="built_in">contains</span>(<span class="string">".CPP"</span>, Qt::CaseSensitive);		<span class="comment">//false 区分大小写</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>8、endsWith()和startsWith()</strong></p>
+<p>startsWith()判断是否以某个字符串开头,endsWith()表示是否以某个字符串结尾。</p>
+<p>如下：</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>;</span><br><span class="line">N = str1.<span class="built_in">endsWith</span>(<span class="string">".cpp"</span>, Qt::CaseInsensitive);		<span class="comment">//true 不区分大小写	</span></span><br><span class="line">N = str1.<span class="built_in">endsWith</span>(<span class="string">".CPP"</span>, Qt::CaseSensitive);		<span class="comment">//false 区分大小写</span></span><br><span class="line">N = str.<span class="built_in">startsWith</span>(<span class="string">"g:"</span>);							<span class="comment">//true 缺省为不区分大小写</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>9、left()和right()</strong></p>
+<p>left()表示取一个字符串左边多少个字符,right()表示取一个字符串右边多少个字符。注意：一个汉字被当作一个字符;</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">QString str2, str1=<span class="string">"学生姓名, 男, 1984-3-4, 汉族, 山东"</span>;</span><br><span class="line">N = str1.<span class="built_in">indexOf</span>(<span class="string">","</span>);					<span class="comment">//N == 4,第一个","出现的位置</span></span><br><span class="line">str2 = str1.<span class="built_in">left</span>(N);					<span class="comment">//str2 == "学生姓名"</span></span><br><span class="line">N = str1.<span class="built_in">lastIndexOf</span>(<span class="string">","</span>);				<span class="comment">//N ==18,最后一个逗号出现的位置</span></span><br><span class="line">str2 = str1.<span class="built_in">right</span>(str1.<span class="built_in">size</span>()-N<span class="number">-1</span>);		<span class="comment">//str2 = "山东",提取最后一个逗号之间的字符串</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>10、section()</strong></p>
+<p>从字符串中提取以se为分隔符,从start到end的字符串。</p>
+<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line">QString str1 = <span class="string">"G:\Qt5Book\Qt5.9Study\qw.cpp"</span>, str2;</span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">0</span>,<span class="number">0</span>);	<span class="comment">//str2 == "学生姓名"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">1</span>,<span class="number">1</span>);	<span class="comment">//str2 == "男"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">0</span>,<span class="number">1</span>);	<span class="comment">//str2 == "学生姓名,男"</span></span><br><span class="line">str2 = str1.<span class="built_in">section</span>(<span class="string">","</span>,<span class="number">4</span>,<span class="number">4</span>);	<span class="comment">//str2 == "山东"</span></span><br></pre></td></tr></tbody></table></figure>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>QString截断（string截断）</div>
+      <div>https://qianxunslimg.github.io/2021/12/02/qstring-jie-duan-string-jie-duan/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/02/qt-da-bao-cheng-xu/" title="QT打包程序">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QT打包程序</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/02/jian-dan-de-hua-dong-chuang-kou-643-zi-shu-zu-zui-da-ping-jun-shu-i/" title="简单的滑动窗口 643. 子数组最大平均数 I">
+                        <span class="hidden-mobile">简单的滑动窗口 643. 子数组最大平均数 I</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
