@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-04-24T06:52:26.874Z</updated>
+  <updated>2023-04-27T08:03:00.826Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>clion开发调试stm32</title>
+    <link href="https://qianxunslimg.github.io/2023/04/23/clion-kai-fa-diao-shi-stm32/"/>
+    <id>https://qianxunslimg.github.io/2023/04/23/clion-kai-fa-diao-shi-stm32/</id>
+    <published>2023-04-23T15:43:00.000Z</published>
+    <updated>2023-04-27T08:03:00.826Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;按照大佬的教程配置&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/145801160&quot;&gt;配置CLion用于STM32开发【优雅の嵌入式开发】 - 知乎</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>CMake笔记</title>
@@ -30,32 +56,6 @@
         
     <summary type="html">&lt;p&gt;大佬整理的笔记 此处作备份并修改&lt;/p&gt;
 &lt;p&gt; 原地址  &lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>clion开发调试stm32</title>
-    <link href="https://qianxunslimg.github.io/2023/04/23/clion-kai-fa-diao-shi-stm32/"/>
-    <id>https://qianxunslimg.github.io/2023/04/23/clion-kai-fa-diao-shi-stm32/</id>
-    <published>2023-04-23T15:43:00.000Z</published>
-    <updated>2023-04-27T07:49:25.275Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;按照大佬的教程配置&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/145801160&quot;&gt;配置CLion用于STM32开发【优雅の嵌入式开发】 - 知乎</summary>
         
       
     
@@ -214,7 +214,7 @@
     <link href="https://qianxunslimg.github.io/2023/01/06/docker-ru-men/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/docker-ru-men/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-04-17T13:50:25.484Z</updated>
+    <updated>2023-04-19T02:32:43.303Z</updated>
     
     
       
@@ -237,34 +237,7 @@
     <link href="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/"/>
     <id>https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/</id>
     <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-05-14T13:41:56.334Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;从大佬教程整理的学习笔记，原文&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://fishros.com/d2lros2/#/&quot;&gt;动手学ROS2 (fishros.com)&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="工具学习" scheme="https://qianxunslimg.github.io/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ROS2入门</title>
-    <link href="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi-fu-ben/"/>
-    <id>https://qianxunslimg.github.io/2023/01/06/ros-xue-xi-fu-ben/</id>
-    <published>2023-01-05T17:59:00.000Z</published>
-    <updated>2023-05-03T16:06:05.440Z</updated>
+    <updated>2023-05-15T03:06:12.430Z</updated>
     
     
       
@@ -348,7 +321,7 @@
     <link href="https://qianxunslimg.github.io/2022/10/24/fj/"/>
     <id>https://qianxunslimg.github.io/2022/10/24/fj/</id>
     <published>2022-10-24T15:04:00.000Z</published>
-    <updated>2022-11-02T16:00:36.413Z</updated>
+    <updated>2022-11-05T12:55:03.955Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
@@ -462,6 +435,29 @@
         
         
     <summary type="html">&lt;h1 id=&quot;哈希-自定义key&quot;&gt;&lt;a href=&quot;#哈希-自定义key&quot; class=&quot;headerlink&quot; title=&quot;哈希 自定义key&quot;&gt;&lt;/a&gt;哈希</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AHK的初次接触</title>
+    <link href="https://qianxunslimg.github.io/2022/06/20/ahk-shi-yong/"/>
+    <id>https://qianxunslimg.github.io/2022/06/20/ahk-shi-yong/</id>
+    <published>2022-06-20T15:43:00.000Z</published>
+    <updated>2022-06-27T09:12:50.161Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h5 id=&quot;午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot;&gt;&lt;a href=&quot;#午休刷视频发现了有个脚本小工具-尝试了下-立马真香&quot; class=&quot;headerlink&quot; title=&quot;午休刷视频发现了有个脚本小工具 尝试了下</summary>
         
       
     
