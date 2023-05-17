@@ -1,0 +1,1064 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <link rel="icon" href="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qianxunslimg">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. 项目配置及操作项目地址 ros2-realtime-demo&#x2F;pendulum at foxy (github.com) 项目installpendulum&#x2F;installation.md at foxy · ros2-realtime-demo&#x2F;pendulum · GitHub cd adehome ade --rc pendulum_ws&#x2F;src&#x2F;pendulum&#x2F;ade&#x2F;.aderc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pendulum学习">
+<meta property="og:url" content="https://qianxunslimg.github.io/2023/05/17/pendulum-xue-xi/index.html">
+<meta property="og:site_name" content="qianxunslimgのblog">
+<meta property="og:description" content="1. 项目配置及操作项目地址 ros2-realtime-demo&#x2F;pendulum at foxy (github.com) 项目installpendulum&#x2F;installation.md at foxy · ros2-realtime-demo&#x2F;pendulum · GitHub cd adehome ade --rc pendulum_ws&#x2F;src&#x2F;pendulum&#x2F;ade&#x2F;.aderc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517170509891.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517170434420.png">
+<meta property="article:published_time" content="2023-05-17T14:59:00.000Z">
+<meta property="article:modified_time" content="2023-05-17T16:00:58.527Z">
+<meta property="article:author" content="qianxunslimg">
+<meta property="article:tag" content="开发随笔">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517170509891.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>pendulum学习 - qianxunslimgのblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qianxunslimg.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>qianxunslimg</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pendulum学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-05-17 22:59" pubdate>
+          2023年5月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">pendulum学习</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="1-项目配置及操作"><a href="#1-项目配置及操作" class="headerlink" title="1. 项目配置及操作"></a>1. 项目配置及操作</h1><h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p> <a target="_blank" rel="noopener" href="https://github.com/ros2-realtime-demo/pendulum/tree/foxy">ros2-realtime-demo/pendulum at foxy (github.com)</a></p>
+<h2 id="项目install"><a href="#项目install" class="headerlink" title="项目install"></a>项目install</h2><p><a target="_blank" rel="noopener" href="https://github.com/ros2-realtime-demo/pendulum/blob/foxy/docs/installation.md">pendulum/installation.md at foxy · ros2-realtime-demo/pendulum · GitHub</a></p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> adehome
+ade --rc pendulum_ws/src/pendulum/ade/.aderc start --update --enter
+ade$ <span class="hljs-built_in">source</span> /opt/ros/foxy/setup.bash
+ade$ <span class="hljs-built_in">cd</span> pendulum_ws
+ade$ colcon build</code></pre></div>
+
+<h2 id="项目tutorial"><a href="#项目tutorial" class="headerlink" title="项目tutorial"></a>项目tutorial</h2><p> <a target="_blank" rel="noopener" href="https://github.com/ros2-realtime-demo/pendulum/blob/foxy/docs/tutorial.md">pendulum/tutorial.md at foxy · ros2-realtime-demo/pendulum · GitHub</a></p>
+<h3 id="Launch"><a href="#Launch" class="headerlink" title="Launch"></a>Launch</h3><p>The best way to run the pendulum demo is using ros2 launch. To check all the available launch options use the following command:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 launch -s pendulum_bringup pendulum_bringup.launch.py 
+Arguments (pass arguments as <span class="hljs-string">'&lt;name&gt;:=&lt;value&gt;'</span>):
+
+    <span class="hljs-string">'autostart'</span>:
+        Automatically start lifecycle nodes
+        (default: <span class="hljs-string">'True'</span>)
+
+    <span class="hljs-string">'priority'</span>:
+        Set process priority
+        (default: <span class="hljs-string">'0'</span>)
+
+    <span class="hljs-string">'cpu-affinity'</span>:
+        Set process CPU affinity
+        (default: <span class="hljs-string">'0'</span>)
+
+    <span class="hljs-string">'lock-memory'</span>:
+        Lock the process memory
+        (default: <span class="hljs-string">'False'</span>)
+
+    <span class="hljs-string">'lock-memory-size'</span>:
+        Set lock memory size <span class="hljs-keyword">in</span> MB
+        (default: <span class="hljs-string">'0'</span>)
+
+    <span class="hljs-string">'config-child-threads'</span>:
+        Configure process child threads (typically DDS threads)
+        (default: <span class="hljs-string">'False'</span>)
+
+    <span class="hljs-string">'rviz'</span>:
+        Launch RVIZ2 <span class="hljs-keyword">in</span> addition to other nodes
+        (default: <span class="hljs-string">'False'</span>)</code></pre></div>
+
+
+
+<p>Another way to run the demo is to use <code>ros2 run</code>. To see all the options use <code>-h</code>:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 run pendulum_demo pendulum_demo -h
+[INFO] [1600508474.177191293] [process_settings]: 	[--autostart auto start nodes]
+	[--lock-memory lock memory]
+	[--lock-memory-size lock a fixed memory size <span class="hljs-keyword">in</span> MB]
+	[--priority <span class="hljs-built_in">set</span> process real-time priority]
+	[--cpu-affinity <span class="hljs-built_in">set</span> process cpu affinity]
+	[--config-child-threads configure process settings <span class="hljs-keyword">in</span> child threads]
+	[-h]</code></pre></div>
+
+
+
+<p>The demo requires to pass the ros2 parameters. This can be done by using <code>--ros-args</code>:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 run pendulum_demo pendulum_demo --autostart True --ros-args --params-file src/pendulum/pendulum_bringup/params/pendulum.param.yaml</code></pre></div>
+
+
+
+<p>Note, the demo doesn’t not include for the moment any log message, see the following sections to check how to introspect the running demo.</p>
+<h3 id="Modify-the-parameters"><a href="#Modify-the-parameters" class="headerlink" title="Modify the parameters"></a>Modify the parameters</h3><p>src/pendulum/pendulum_bringup/params/pendulum.param.yaml</p>
+<div class="code-wrapper"><pre><code class="hljs bash">pendulum_controller:
+  ros__parameters:
+    state_topic_name: <span class="hljs-string">"joint_states"</span>
+    command_topic_name: <span class="hljs-string">"joint_command"</span>
+    teleop_topic_name: <span class="hljs-string">"teleop"</span>
+    command_publish_period_us: 10000
+    enable_topic_stats: False
+    topic_stats_topic_name: <span class="hljs-string">"controller_stats"</span>
+    topic_stats_publish_period_ms: 1000
+    deadline_duration_ms: 0
+    controller:
+      feedback_matrix: [-10.0000, -51.5393, 356.8637, 154.4146]
+
+pendulum_driver:
+  ros__parameters:
+    state_topic_name: <span class="hljs-string">"joint_states"</span>
+    command_topic_name: <span class="hljs-string">"joint_command"</span>
+    disturbance_topic_name: <span class="hljs-string">"disturbance"</span>
+    cart_base_joint_name: <span class="hljs-string">"cart_base_joint"</span>
+    pole_joint_name: <span class="hljs-string">"pole_joint"</span>
+    state_publish_period_us: 10000
+    enable_topic_stats: False
+    topic_stats_topic_name: <span class="hljs-string">"driver_stats"</span>
+    topic_stats_publish_period_ms: 1000
+    deadline_duration_ms: 0
+    driver:
+      pendulum_mass: 1.0
+      cart_mass: 5.0
+      pendulum_length: 2.0
+      damping_coefficient: 20.0
+      gravity: -9.8
+      max_cart_force: 1000.0
+      noise_level: 1.0</code></pre></div>
+
+<h3 id="Use-ros2-command-line-interface-tools-ros2cli"><a href="#Use-ros2-command-line-interface-tools-ros2cli" class="headerlink" title="Use ros2 command line interface tools (ros2cli)"></a>Use ros2 command line interface tools (ros2cli)</h3><p>The easiest way to instrospect the demo is by using the <a target="_blank" rel="noopener" href="https://docs.ros.org/en/foxy/Concepts/About-Command-Line-Tools.html">ros2 command line interface tools</a>.</p>
+<p>In terminal 1:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 launch pendulum_bringup pendulum_bringup.launch.py</code></pre></div>
+
+
+
+<p>In terminal 2, check all the available topic:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 topic list
+/disturbance
+/joint_command
+/parameter_events
+/pendulum_controller/transition_event
+/pendulum_driver/transition_event
+/pendulum_joint_states
+/rosout
+/teleop</code></pre></div>
+
+
+
+<p>In terminal 2, echo the pendulum joint states topic:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 topic <span class="hljs-built_in">echo</span> /pendulum_joint_states  
+pole_angle: 3.136657553013568
+pole_velocity: 0.0016956357748015758
+cart_position: -0.10783921258312011
+cart_velocity: -0.039079854353889186
+cart_force: -1.6641213259403278
+---
+pole_angle: 3.1366850786187856
+pole_velocity: 0.004907555002614707
+cart_position: -0.10823849698219573
+cart_velocity: -0.04076566297982292
+cart_force: -1.593213131740399
+---
+pole_angle: 3.1367604642211493
+pole_velocity: 0.008691379589434549
+cart_position: -0.10866019061041654
+cart_velocity: -0.04355419993947564
+cart_force: -2.189881484363576
+---
+pole_angle: 3.1368436514592037
+pole_velocity: 0.005850399768549463
+cart_position: -0.10911670139934684
+cart_velocity: -0.04772009714681185
+cart_force: -2.948997808600583
+...</code></pre></div>
+
+
+
+<p>The cart position should be close to 0.0 and the pole angle should be close to PI, that is, the pole up position.</p>
+<h3 id="Visualize-the-pendulum-in-rviz"><a href="#Visualize-the-pendulum-in-rviz" class="headerlink" title="Visualize the pendulum in rviz"></a>Visualize the pendulum in rviz</h3><div class="code-wrapper"><pre><code class="hljs bash">ros2 launch pendulum_bringup pendulum_bringup.launch.py rviz:=True</code></pre></div>
+
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517170509891.png" srcset="/img/loading.gif" lazyload alt="image-20230517170509891" style="zoom:80%;">
+
+<h3 id="Move-the-pendulum"><a href="#Move-the-pendulum" class="headerlink" title="Move the pendulum"></a>Move the pendulum</h3><p>The pendulum can be controller by using the topic <code>/teleop</code>.</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># PendulumTeleop.msg</span>
+<span class="hljs-comment"># This represents the desired state of the pendulum for teleoperation</span>
+float64 pole_angle
+float64 pole_velocity
+float64 cart_position
+float64 cart_velocity</code></pre></div>
+
+
+
+<p>By sending a teleoperation message it is possible to control the cart position. For the moment only the cart commands are accepted. For example, using <code>ros2 pub</code> to move the cart to a position 5.0, we would send a command as follows:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 topic pub -1 /teleop pendulum2_msgs/msg/PendulumTeleop <span class="hljs-string">"cart_position: 5.0"</span></code></pre></div>
+
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517170434420.png" srcset="/img/loading.gif" lazyload alt="image-20230517170434420" style="zoom: 80%;">
+
+<h3 id="Display-time-series-plots-using-PlotJuggler"><a href="#Display-time-series-plots-using-PlotJuggler" class="headerlink" title="Display time series plots using PlotJuggler"></a>Display time series plots using PlotJuggler</h3><p>Another way to instrospect the inverted pendulum status is using <a target="_blank" rel="noopener" href="https://github.com/facontidavide/PlotJuggler">PlotJuggler</a>. This assumes that PlotJuggler is installed and the demo is already running.</p>
+<h3 id="Use-lifecycle-node-functionality"><a href="#Use-lifecycle-node-functionality" class="headerlink" title="Use lifecycle node functionality"></a>Use lifecycle node functionality</h3><p>The controller and the drivers nodes are <a target="_blank" rel="noopener" href="http://design.ros2.org/articles/node_lifecycle.html">managed lifecycle nodes</a>. That means that it is possible to control the state of the nodes by using the ros2 lifecycle functionalities. In the demo, the option <code>autostart</code> was added to simplify things and automatically transit the nodes to the active state if this option is enabled.</p>
+<p>Let’s see an example of how manually transitioning the nodes to the active state.</p>
+<p>Check the node names:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 node list
+  /pendulum_controller
+  /pendulum_driver</code></pre></div>
+
+
+
+<p>Use <code>ros2 lifecycle</code> to get and change the node states:</p>
+<div class="code-wrapper"><pre><code class="hljs bash">$ ros2 lifecycle get /pendulum_controller
+unconfigured [1]
+$ ros2 lifecycle <span class="hljs-built_in">set</span> /pendulum_controller configure
+Transitioning successful
+$ ros2 lifecycle <span class="hljs-built_in">set</span> /pendulum_driver configure
+Transitioning successful
+$ ros2 lifecycle <span class="hljs-built_in">set</span> /pendulum_controller activate
+Transitioning successful
+$ ros2 lifecycle <span class="hljs-built_in">set</span> /pendulum_driver configure
+Transitioning successful</code></pre></div>
+
+<h1 id="2-新知识点"><a href="#2-新知识点" class="headerlink" title="2. 新知识点"></a>2. 新知识点</h1><h2 id="ADE"><a href="#ADE" class="headerlink" title="ADE"></a>ADE</h2><p>ADE是一个工具，用来<code>创建和管理开发环境</code>，它<code>基于docker</code>，但是提供了一些额外的功能，比如：</p>
+<ul>
+<li>允许你把一个基础镜像和一些附加的卷组合起来，比如IDE或者第三方库等。</li>
+<li>自动把你的主机上的一个目录挂载到容器中的用户主目录，比如你的源码目录，这样你可以在容器中修改代码而不影响主机上的文件。</li>
+<li>方便你切换不同版本的镜像和卷，比如不同的开发工具或者软件库的版本等。</li>
+<li>提供了一些命令行接口和图形界面，让你可以方便地启动、停止、进入、退出容器等。</li>
+</ul>
+<p>ADE可以用来开发任何类型的应用程序，<code>不仅仅是ROS</code>。它可以让你在一个隔离和一致的环境中开发和测试你的应用程序，而不需要在你的主机系统上安装或者配置各种依赖或者设置。ADE也可以让你在不同的平台上使用相同的开发环境，比如Windows、Linux或者MacOS等。ADE还可以让你和其他开发者共享相同的开发环境，方便协作和交流。</p>
+<h3 id="用到的ADE命令"><a href="#用到的ADE命令" class="headerlink" title="用到的ADE命令"></a>用到的ADE命令</h3><div class="code-wrapper"><pre><code class="hljs bash">ade --rc pendulum_ws/src/pendulum/ade/.aderc start --update --enter</code></pre></div>
+
+<ul>
+<li>ade是一个工具，可用来创建和管理ROS2的开发环境，它可以让你在一个容器中运行ROS2，而不影响你的主机系统。</li>
+<li>–rc pendulum_ws/src/pendulum/ade/.aderc是一个选项，用来<code>指定一个配置文件</code>，里面包含了一些环境变量和设置，比如ROS2的版本、源码的位置、依赖的包等。</li>
+<li>start –update –enter是一个子命令，用来启动一个容器，更新容器的内容，然后进入容器的交互模式。</li>
+<li>这个命令的目的是让你在一个预配置好的ROS2环境中运行pendulum这个项目，它是一个演示ROS2实时性能的项目。</li>
+</ul>
+<h3 id="我是不是可以这样理解，用docker中的虚拟的镜像来跑我本地的ros程序"><a href="#我是不是可以这样理解，用docker中的虚拟的镜像来跑我本地的ros程序" class="headerlink" title="我是不是可以这样理解，用docker中的虚拟的镜像来跑我本地的ros程序"></a>我是不是可以这样理解，用docker中的<code>虚拟的镜像</code>来跑我<code>本地的ros程序</code></h3><p>差不多是这样的。你可以把你的ros程序放在你本地的一个目录中，比如~/ros_ws，然后用docker或者ade来创建一个容器，把这个目录挂载到容器中的一个位置，比如/home/user/ros_ws。这样你就可以<code>在容器中编译、运行、调试你的ros程序</code>，而不影响你本地的其他文件。你也可以在容器中安装或者使用其他的ros包或者工具，比如rviz或者rqt等。这样你就可以在一个隔离和一致的环境中开发和测试你的ros程序。</p>
+<h3 id="ADE和docker的区别"><a href="#ADE和docker的区别" class="headerlink" title="ADE和docker的区别"></a>ADE和docker的区别</h3><p>ade和docker的区别是：</p>
+<ul>
+<li>ade是一个工具，用来创建和管理ROS2的开发环境，它基于docker，但是提供了一些额外的功能，比如：<ul>
+<li>允许你把一个基础镜像和一些附加的卷组合起来，比如IDE或者第三方库等。</li>
+<li>自动把你的主机上的一个目录挂载到容器中的用户主目录，比如你的源码目录，这样你可以在容器中修改代码而不影响主机上的文件。</li>
+<li>方便你切换不同版本的镜像和卷，比如ROS2的发行版或者软件库的版本等。</li>
+</ul>
+</li>
+<li>docker是一个平台，用来创建和运行容器，它可以让你把应用程序和它们所需的环境打包成一个镜像，然后在任何地方运行这个镜像，而不依赖于主机系统。<ul>
+<li>docker可以让你创建、启动、停止、删除容器，以及管理容器之间的网络和存储等。</li>
+<li>docker可以让你从一个Dockerfile构建一个镜像，或者从一个仓库下载一个镜像，或者把一个镜像上传到一个仓库等。</li>
+<li>docker可以让你在容器中运行任何类型的应用程序，不仅仅是ROS2。</li>
+</ul>
+</li>
+</ul>
+<p>总之，ade使用了docker作为底层技术，但是提供了一些更方便和灵活的功能。docker是一个通用的容器平台，它可以让你在隔离的环境中运行任何应用程序。如果你只想用docker来运行ROS2，你也可以这样做，但是你可能需要自己配置一些环境变量和设置等。如果你想用ade来运行ROS2，你可以享受一些预配置好的环境和选项等。</p>
+<h2 id="ROS2"><a href="#ROS2" class="headerlink" title="ROS2"></a>ROS2</h2><h3 id="source-install-x2F-setup-sh-和source-install-x2F-setup-bash分别是什么作用"><a href="#source-install-x2F-setup-sh-和source-install-x2F-setup-bash分别是什么作用" class="headerlink" title="source install/setup.sh 和source install/setup.bash分别是什么作用"></a>source install/setup.sh 和source install/setup.bash分别是什么作用</h3><ol>
+<li>source install/setup.sh和source install/setup.bash的作用是激活你的工作空间，让你的终端能够识别你的ROS2包和消息类型。</li>
+<li>它们的区别是，setup.sh是适用于任何shell的通用脚本，而setup.bash是专门针对bash shell的脚本。一般来说，如果你使用的是bash shell，你可以用source install/setup.bash来激活你的工作空间，如果你使用的是其他的shell，比如zsh或fish，你可以用source install/setup.sh来激活你的工作空间。你也可以根据你的shell类型选择对应的setup.*sh文件，比如source install/setup.zsh或source install/setup.fish。你可以用echo $SHELL命令来查看你当前使用的是哪种shell。你每次打开一个新的终端时，都需要执行一次source命令来激活你的工作空间，或者你可以把这个命令添加到你的shell启动脚本中，比如.bashrc或.zshrc等。</li>
+</ol>
+<blockquote>
+<p>如果在控制台不激活的话, ros2 topic echo /pendulum_joint_states 会报错 找不到自定义的消息类型pendulum2_msgs</p>
+</blockquote>
+<h3 id="lifecircle"><a href="#lifecircle" class="headerlink" title="lifecircle"></a>lifecircle</h3><p><a target="_blank" rel="noopener" href="https://design.ros2.org/articles/node_lifecycle.html">Managed nodes (ros2.org)</a></p>
+<p>ros2 lifecycle是一种<code>让节点具有管理生命周期的机制</code>，它可以让节点在不同的状态之间进行切换，从而实现对ROS系统的更好控制。ros2 lifecycle有以下特点：</p>
+<blockquote>
+<ul>
+<li>节点有四种基本状态（Primary States）：Unconfigured，Inactive，Active和Finalized。每种状态代表了节点的不同功能和行为。</li>
+<li>节点有六种切换状态（Transition States）：Configuring，CleaningUp，ShuttingDown，Activating，Deactivating和ErrorProcessing。每种状态代表了节点从一个基本状态到另一个基本状态的过程。</li>
+<li>节点有七种可被外部监督进程触发的转换（Transitions）：create，configure，cleanup，activate，deactivate，shutdown和destroy。每种转换会导致节点进入相应的切换状态，并执行相应的逻辑。</li>
+<li>节点在Active状态下可以正常执行其功能，如读取和处理数据，响应服务请求等。在Inactive状态下，节点不会执行任何功能，但可以被重新配置。在Unconfigured状态下，节点没有任何存储的状态。在Finalized状态下，节点已经被销毁。</li>
+<li>节点在切换状态下会通过生命周期管理接口向生命周期管理软件通报其转换的成功或失败。如果转换成功，节点会进入目标基本状态。如果转换失败或发生错误，节点会进入ErrorProcessing状态，并尝试恢复到之前的基本状态。</li>
+</ul>
+</blockquote>
+<ul>
+<li>基本状态（Primary States）：节点在这些状态下具有不同的功能和行为。<ul>
+<li>Unconfigured：节点在被实例化后或发生错误后恢复到的状态。在这个状态下，节点没有任何存储的状态。</li>
+<li>Inactive：节点在这个状态下不执行任何功能，但可以被重新配置。在这个状态下，节点不会读取或处理任何数据，也不会响应任何服务请求。</li>
+<li>Active：节点在这个状态下可以正常执行其功能，如读取和处理数据，响应服务请求等。在这个状态下，节点可能会触发错误，并进入ErrorProcessing状态。</li>
+<li>Finalized：节点在被销毁后进入的状态。在这个状态下，节点已经释放了所有资源，并不能再进行任何转换。</li>
+</ul>
+</li>
+<li>切换状态（Transition States）：节点在从一个基本状态到另一个基本状态的过程中经过的中间状态。在这些状态下，节点会执行相应的逻辑，并向生命周期管理软件通报其转换的成功或失败。<ul>
+<li>Configuring：节点从Unconfigured状态转换到Inactive状态时经过的切换状态。在这个状态下，节点会进行初始化和配置的操作。</li>
+<li>CleaningUp：节点从Active或Inactive状态转换到Unconfigured状态时经过的切换状态。在这个状态下，节点会进行清理和释放资源的操作。</li>
+<li>ShuttingDown：节点从Active或Inactive或Unconfigured状态转换到Finalized状态时经过的切换状态。在这个状态下，节点会进行关闭和销毁的操作。</li>
+<li>Activating：节点从Inactive状态转换到Active状态时经过的切换状态。在这个状态下，节点会进行激活和启动功能的操作。</li>
+<li>Deactivating：节点从Active状态转换到Inactive状态时经过的切换状态。在这个状态下，节点会进行停止功能和休眠的操作。</li>
+<li>ErrorProcessing：节点从Active或任何切换状态触发错误后进入的切换状态。在这个状态下，节点会进行错误处理和恢复的操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="静态单线程执行器"><a href="#静态单线程执行器" class="headerlink" title="静态单线程执行器"></a>静态单线程执行器</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建一个静态单线程执行器对象</span>
+rclcpp::executors::StaticSingleThreadedExecutor exec;
+<span class="hljs-comment">// 调用add_node方法，将节点添加到执行器中</span>
+exec.<span class="hljs-built_in">add_node</span>(controller_node_ptr-&gt;<span class="hljs-built_in">get_node_base_interface</span>());
+<span class="hljs-comment">// 调用spin方法，让执行器开始运行节点</span>
+exec.<span class="hljs-built_in">spin</span>();</code></pre></div>
+
+<p>什么是静态单线程执行器对象  除了这个还有其他别的类型吗 如何理解</p>
+<p>rclcpp::executors::StaticSingleThreadedExecutor是一个静态单线程执行器类，它继承自rclcpp::Executor类，是一种<code>ROS 2执行器的实现</code>。执行器是用于管理和运行节点的对象，它可以<code>添加、移除、激活、停止</code>节点，并根据节点的回调函数和事件来调度节点的执行。</p>
+<ul>
+<li>静态单线程执行器对象是指使用rclcpp::executors::StaticSingleThreadedExecutor类创建的对象，它<u>在一个单独的线程中运行所有添加到它的节点</u>。它与rclcpp::Executor类的区别在于，它<u>在添加节点时就会分配好内存和资源，而不是在运行时动态分配。这样可以提高执行器的性能和实时性，但也限制了执行器的灵活性和可扩展性。</u></li>
+<li>除了静态单线程执行器对象，还有其他类型的执行器对象，如rclcpp::executors::SingleThreadedExecutor对象和rclcpp::executors::MultiThreadedExecutor对象。它们都继承自rclcpp::Executor类，但有不同的实现方式和特点。<ul>
+<li><code>rclcpp::executors::SingleThreadedExecutor</code>对象是一种单线程执行器对象，它<u>在一个单独的线程中运行所有添加到它的节点</u>。它与静态单线程执行器对象的区别在于，它<u>在运行时动态分配内存和资源</u>，而不是在添加节点时就分配好。这样可以提高执行器的灵活性和可扩展性，但也降低了执行器的性能和实时性。</li>
+<li><code>rclcpp::executors::MultiThreadedExecutor</code>对象是一种多线程执行器对象，它<u>在多个线程中并行运行所有添加到它的节点</u>。它与单线程执行器对象的区别在于，它可以利用多核处理器的优势，提高执行器的并发性和吞吐量，但也增加了执行器的复杂性和同步开销。</li>
+</ul>
+</li>
+<li>要理解静态单线程执行器对象，可以参考以下几点：<ul>
+<li>静态单线程执行器对象需要在添加节点之前调用<code>rclcpp::init</code>方法，初始化ROS客户端库。</li>
+<li>静态单线程执行器对象需要调用<code>add_node</code>方法，将节点添加到执行器中。这个方法会为每个节点分配内存和资源，并将节点注册到ROS系统中。</li>
+<li>静态单线程执行器对象需要调用<code>spin</code>方法，让执行器开始运行节点。这个方法会创建一个单独的线程，并在该线程中循环地检查节点的事件和回调函数，并按照一定的策略来调度节点的执行。</li>
+<li>静态单线程执行器对象可以调用<code>remove_node</code>方法，将节点从执行器中移除。这个方法会<u>释放节点占用的内存和资源，并将节点从ROS系统中注销</u>。</li>
+<li>静态单线程执行器对象可以调用其他方法，如spin_some, spin_all, spin_until_future_complete等，来控制执行器的运行方式和时间。</li>
+</ul>
+</li>
+</ul>
+<h3 id="apex-test-tools"><a href="#apex-test-tools" class="headerlink" title="apex_test_tools"></a>apex_test_tools</h3><p><a target="_blank" rel="noopener" href="https://docs.ros.org/en/ros2_packages/humble/api/apex_test_tools/index.html#">Welcome to the documentation for apex_test_tools — apex_test_tools 0.0.2 documentation (ros.org)</a></p>
+<p>apex_test_tools是一个ROS 2的软件包，它包含了一些测试辅助工具，用于测试Apex.OS和Apex.Autonomy的功能和性能。Apex.OS是一个基于ROS 2的实时操作系统，用于开发自动驾驶和机器人应用。Apex.Autonomy是一个基于Apex.OS的自动驾驶软件框架，用于提供自动驾驶的核心功能和组件。</p>
+<ul>
+<li>要使用apex_test_tools，你需要先安装ROS 2和Apex.OS，以及相关的依赖包。你可以参考<a target="_blank" rel="noopener" href="https://docs.apex.ai/apex-os-user-guide/1.0.0/installation.html">这里</a>的安装指南。</li>
+<li>然后，你需要<code>克隆apex_test_tools的源码到你的工作空间中</code>，并使用colcon工具来编译它。你可以参考<a target="_blank" rel="noopener" href="https://docs.ros.org/en/ros2_packages/humble/api/apex_test_tools/index.html">这里</a>的文档。</li>
+<li>接着，你可以<u>使用apex_test_tools提供的一些函数和变量来编写你的测试用例</u>。例如，你可以使用apex_test_tools::memory::get_rss_usage()函数来获取当前进程的内存占用情况，或者使用apex_test_tools::memory::get_rss_limit()函数来获取当前进程的内存限制情况。你可以参考<a target="_blank" rel="noopener" href="https://docs.ros.org/en/ros2_packages/humble/api/apex_test_tools/files.html">这里</a>的文件列表。</li>
+<li>最后，你可以使用colcon工具或者其他测试工具来运行你的测试用例，并查看测试结果和代码覆盖率。你可以参考<a target="_blank" rel="noopener" href="https://docs.ros.org/en/ros2_packages/humble/api/apex_test_tools/index.html">这里</a>的示例代码。</li>
+</ul>
+<h2 id="CMAKE"><a href="#CMAKE" class="headerlink" title="CMAKE"></a>CMAKE</h2><h2 id="LAUNCH"><a href="#LAUNCH" class="headerlink" title="LAUNCH"></a>LAUNCH</h2><p><code>pendulum_bringup.launch.py</code></p>
+<p>这个文件的作用是<code>创建和管理一个摆动机器人的启动过程</code>，包括设置一些启动选项，创建和运行一些ROS 2节点，以及提供一个启动描述对象，用于描述启动过程中的动作和条件。</p>
+<p>ROS 2是通过ros2 launch命令来运行这个文件的，例如：</p>
+<p>ros2 launch pendulum_bringup pendulum_bringup.launch.py</p>
+<p>这个命令会调用pendulum_bringup包中的pendulum_bringup.launch.py文件，并执行其中的<code>generate_launch_description</code>函数，来<code>生成一个启动描述对象</code>。然后，ROS 2会<u>根据这个对象中的信息，来执行相应的动作，如创建和管理节点，设置参数，启动RVIZ2等。</u></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 导入os模块，用于操作系统相关的功能，如文件路径</span>
+<span class="hljs-keyword">import</span> os
+
+<span class="hljs-comment"># 导入launch模块，用于创建和管理ROS 2启动过程</span>
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> DeclareLaunchArgument
+<span class="hljs-keyword">from</span> launch.conditions <span class="hljs-keyword">import</span> IfCondition
+<span class="hljs-keyword">import</span> launch.substitutions
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
+<span class="hljs-comment"># 导入launch_ros模块，用于创建和管理ROS 2节点</span>
+<span class="hljs-keyword">from</span> launch_ros.actions <span class="hljs-keyword">import</span> Node
+<span class="hljs-keyword">from</span> launch_ros.substitutions <span class="hljs-keyword">import</span> FindPackageShare
+
+<span class="hljs-comment"># 定义一个函数，用于生成启动描述对象，该对象包含了启动过程中需要执行的动作和条件</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 获取pendulum_bringup包的目录路径，该包包含了摆动机器人的启动文件和参数</span>
+    bringup_dir = FindPackageShare(<span class="hljs-string">'pendulum_bringup'</span>).find(<span class="hljs-string">'pendulum_bringup'</span>)
+
+    <span class="hljs-comment"># 设置机器人描述参数，从urdf文件中读取机器人的模型和关节信息，并存储在robot_desc变量中</span>
+    urdf_file = os.path.join(bringup_dir, <span class="hljs-string">'urdf'</span>, <span class="hljs-string">'pendulum.urdf'</span>)
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(urdf_file, <span class="hljs-string">'r'</span>) <span class="hljs-keyword">as</span> infp:
+        robot_desc = infp.read()
+    rsp_params = {<span class="hljs-string">'robot_description'</span>: robot_desc}
+
+    <span class="hljs-comment"># 设置参数文件的路径，从param_file_path变量中获取参数文件的绝对路径，并存储在param_file变量中</span>
+    param_file_path = os.path.join(bringup_dir, <span class="hljs-string">'params'</span>, <span class="hljs-string">'pendulum.param.yaml'</span>)
+    param_file = launch.substitutions.LaunchConfiguration(<span class="hljs-string">'params'</span>, default=[param_file_path])
+
+    <span class="hljs-comment"># 设置rviz配置文件的路径，从rviz_cfg_path变量中获取rviz配置文件的绝对路径</span>
+    rviz_cfg_path = os.path.join(bringup_dir, <span class="hljs-string">'rviz/pendulum.rviz'</span>)
+
+
+    <span class="hljs-comment"># Create the launch configuration variables</span>
+    autostart_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'autostart'</span>,
+        default_value=<span class="hljs-string">'True'</span>,
+        description=<span class="hljs-string">'Automatically start lifecycle nodes'</span>)
+    priority_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'priority'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set process priority'</span>)
+    cpu_affinity_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'cpu-affinity'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set process CPU affinity'</span>)
+    with_lock_memory_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'lock-memory'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Lock the process memory'</span>)
+    lock_memory_size_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'lock-memory-size'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set lock memory size in MB'</span>)
+    config_child_threads_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'config-child-threads'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Configure process child threads (typically DDS threads)'</span>)
+    with_rviz_param = DeclareLaunchArgument(
+        <span class="hljs-string">'rviz'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Launch RVIZ2 in addition to other nodes'</span>
+    )
+
+    <span class="hljs-comment"># 创建一些启动配置变量，用于设置启动过程中的一些选项，如自动启动、优先级、CPU亲和性、内存锁定等</span>
+    <span class="hljs-comment"># 创建一个名为autostart的启动配置变量，用于设置是否自动启动生命周期节点，其默认值为True，即自动启动</span>
+    autostart_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'autostart'</span>,
+        default_value=<span class="hljs-string">'True'</span>,
+        description=<span class="hljs-string">'Automatically start lifecycle nodes'</span>)
+    <span class="hljs-comment"># 创建一个名为priority的启动配置变量，用于设置进程的优先级，其默认值为0，即不设置优先级</span>
+    priority_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'priority'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set process priority'</span>)
+    <span class="hljs-comment"># 创建一个名为cpu-affinity的启动配置变量，用于设置进程的CPU亲和性，其默认值为0，即不设置CPU亲和性</span>
+    cpu_affinity_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'cpu-affinity'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set process CPU affinity'</span>)
+    <span class="hljs-comment"># 创建一个名为lock-memory的启动配置变量，用于设置是否锁定进程的内存，其默认值为False，即不锁定内存</span>
+    with_lock_memory_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'lock-memory'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Lock the process memory'</span>)
+    <span class="hljs-comment"># 创建一个名为lock-memory-size的启动配置变量，用于设置锁定内存的大小，单位为MB，其默认值为0，即不设置锁定内存大小</span>
+    lock_memory_size_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'lock-memory-size'</span>,
+        default_value=<span class="hljs-string">'0'</span>,
+        description=<span class="hljs-string">'Set lock memory size in MB'</span>)
+    <span class="hljs-comment"># 创建一个名为config-child-threads的启动配置变量，用于设置是否配置进程的子线程（通常是DDS线程），其默认值为False，即不配置子线程</span>
+    config_child_threads_param = DeclareLaunchArgument(
+        name=<span class="hljs-string">'config-child-threads'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Configure process child threads (typically DDS threads)'</span>)
+    <span class="hljs-comment"># 创建一个名为rviz的启动配置变量，用于设置是否在其他节点之外启动RVIZ2，其默认值为False，即不启动RVIZ2</span>
+    with_rviz_param = DeclareLaunchArgument(
+        <span class="hljs-string">'rviz'</span>,
+        default_value=<span class="hljs-string">'False'</span>,
+        description=<span class="hljs-string">'Launch RVIZ2 in addition to other nodes'</span>
+    )
+
+    <span class="hljs-comment"># 创建一个启动描述对象，用于存储启动过程中需要执行的动作和条件</span>
+    ld = LaunchDescription()
+
+    <span class="hljs-comment"># 向启动描述对象中添加启动配置变量，这些变量可以在启动时通过命令行参数进行修改</span>
+    ld.add_action(autostart_param)
+    ld.add_action(priority_param)
+    ld.add_action(cpu_affinity_param)
+    ld.add_action(with_lock_memory_param)
+    ld.add_action(lock_memory_size_param)
+    ld.add_action(config_child_threads_param)
+    ld.add_action(with_rviz_param)
+    <span class="hljs-comment"># 向启动描述对象中添加节点运行器，这些运行器可以创建和管理ROS 2节点，如机器人状态发布器、摆动演示器、RVIZ2和摆动状态发布器</span>
+    ld.add_action(robot_state_publisher_runner)
+    ld.add_action(pendulum_demo_runner)
+    ld.add_action(rviz_runner)
+    ld.add_action(pendulum_state_publisher_runner)
+
+    <span class="hljs-comment"># 返回启动描述对象，供其他模块使用</span>
+    <span class="hljs-keyword">return</span> ld</code></pre></div>
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pendulum学习</div>
+      <div>https://qianxunslimg.github.io/2023/05/17/pendulum-xue-xi/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qianxunslimg</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年5月17日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/23/clion-kai-fa-diao-shi-stm32/" title="clion开发调试stm32">
+                        <span class="hidden-mobile">clion开发调试stm32</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
