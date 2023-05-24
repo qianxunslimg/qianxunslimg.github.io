@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-04-19T02:32:43.303Z">
+<meta property="article:modified_time" content="2023-05-20T02:38:23.835Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -285,10 +285,10 @@
               <h2 id="1-window安装问题"><a href="#1-window安装问题" class="headerlink" title="1. window安装问题"></a>1. window安装问题</h2><p>docker在windows下安装需要开启虚拟化服务，与vmware冲突，通常无法同时使用</p>
 <ol>
 <li><p>使用vmware</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">bcdedit /<span class="built_in">set</span> hypervisorlaunchtype off</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype off</code></pre></div>
 </li>
 <li><p>使用docker</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">bcdedit /<span class="built_in">set</span> hypervisorlaunchtype auto</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">bcdedit /<span class="hljs-built_in">set</span> hypervisorlaunchtype auto</code></pre></div>
 </li>
 <li><p>切换完需要重启</p>
 </li>
@@ -306,12 +306,15 @@
 
 <h2 id="3-docker命令"><a href="#3-docker命令" class="headerlink" title="3. docker命令"></a>3. docker命令</h2><h3 id="拉取镜像：docker-pull-ubuntu-18-04"><a href="#拉取镜像：docker-pull-ubuntu-18-04" class="headerlink" title="拉取镜像：docker pull ubuntu:18.04"></a>拉取镜像：<code>docker pull ubuntu:18.04</code></h3><h3 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h3><h4 id="运行和终止容器（实则是从镜像创建容器并运行）：docker-run"><a href="#运行和终止容器（实则是从镜像创建容器并运行）：docker-run" class="headerlink" title="运行和终止容器（实则是从镜像创建容器并运行）：docker run"></a>运行和终止容器（实则是从镜像创建容器并运行）：<code>docker run</code></h4><ol>
 <li><p>输出一个 “Hello World”，之后终止容器</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker run ubuntu:18.04 /bin/<span class="built_in">echo</span> <span class="string">'Hello world'</span></span><br><span class="line"><span class="string">'Hello world'</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run ubuntu:18.04 /bin/<span class="hljs-built_in">echo</span> <span class="hljs-string">'Hello world'</span>
+<span class="hljs-string">'Hello world'</span></code></pre></div>
 
 <ol start="2">
 <li>启动一个 bash 终端，允许用户进行交互</li>
 </ol>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker run -t -i ubuntu:18.04 /bin/bash</span><br><span class="line">root@7563162c9979:/<span class="comment"># ls</span></span><br><span class="line">bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -t -i ubuntu:18.04 /bin/bash
+root@7563162c9979:/<span class="hljs-comment"># ls</span>
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
 
 <p>其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
 </li>
@@ -327,19 +330,57 @@
 <h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>在使用 <code>-d</code> 参数时，容器启动后会进入后台。</p>
 <ol>
 <li><p>attach 不好</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker run -dit ubuntu</span><br><span class="line">adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker container ls</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES</span><br><span class="line">adc05673f248   ubuntu    "bash"    12 seconds ago   Up 11 seconds             pedantic_hugle</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker attach adc</span><br><span class="line">root@adc05673f248:/# ls</span><br><span class="line">bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs shell">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
+adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075
+
+C:\Users\qianxunslimg&gt;docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+adc05673f248   ubuntu    "bash"    12 seconds ago   Up 11 seconds             pedantic_hugle
+
+C:\Users\qianxunslimg&gt;docker attach adc
+root@adc05673f248:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div>
 </li>
 <li><p>exec 优先使用</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker run -dit ubuntu</span><br><span class="line">d51137b164abacaa0ea8f151d6b5cad5a1c316b55869bb2ae27c81f50f2f3eac</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker container ls</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES</span><br><span class="line">d51137b164ab   ubuntu    <span class="string">"bash"</span>    5 seconds ago   Up 4 seconds             crazy_mendeleev</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker <span class="built_in">exec</span> -i d51 bash  //-i没有命令提示符 难用</span><br><span class="line">ls</span><br><span class="line">bin</span><br><span class="line">boot</span><br><span class="line">dev</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker <span class="built_in">exec</span> -it d51 bash  //完整shell界面</span><br><span class="line">root@d51137b164ab:/<span class="comment"># ls</span></span><br><span class="line">bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br></pre></td></tr></tbody></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
+d51137b164abacaa0ea8f151d6b5cad5a1c316b55869bb2ae27c81f50f2f3eac
+
+C:\Users\qianxunslimg&gt;docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+d51137b164ab   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             crazy_mendeleev
+
+C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -i d51 bash  //-i没有命令提示符 难用
+ls
+bin
+boot
+dev
+...
+
+C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">exec</span> -it d51 bash  //完整shell界面
+root@d51137b164ab:/<span class="hljs-comment"># ls</span>
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</code></pre></div></li>
 </ol>
 <h4 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h4><ol>
 <li><p>导出 docker export</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker container ls -a</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES</span><br><span class="line">61e0da2df721   ubuntu    <span class="string">"bash"</span>    5 seconds ago   Up 4 seconds             pensive_fermat</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker <span class="built_in">export</span> 61e &gt; ubuntu_container_test.tar</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker container ls -a
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+61e0da2df721   ubuntu    <span class="hljs-string">"bash"</span>    5 seconds ago   Up 4 seconds             pensive_fermat
+
+C:\Users\qianxunslimg&gt;docker <span class="hljs-built_in">export</span> 61e &gt; ubuntu_container_test.tar</code></pre></div>
 
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106013015214.png" srcset="/img/loading.gif" lazyload alt="image-20230106013015214" style="zoom: 67%;">
 </li>
 <li><p>导入容器快照 docker import</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">C:\Users\qianxunslimg&gt;docker import ubuntu_container_test.tar <span class="built_in">test</span>:ubuntu_v1.0</span><br><span class="line">sha256:149d18447e370d3e6d15417450c7ad3189c3dfe32c79d16c5aea36927e5ed3ef</span><br><span class="line"></span><br><span class="line">C:\Users\qianxunslimg&gt;docker image ls</span><br><span class="line">REPOSITORY               TAG           IMAGE ID       CREATED          SIZE</span><br><span class="line"><span class="built_in">test</span>                     ubuntu_v1.0   149d18447e37   30 seconds ago   77.8MB</span><br><span class="line">ubuntu                   18.04         e28a50f651f9   2 days ago       63.1MB</span><br><span class="line">docker/getting-started   latest        3e4394f6b72f   13 days ago      47MB</span><br><span class="line">ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB</span><br><span class="line">hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">C:\Users\qianxunslimg&gt;docker import ubuntu_container_test.tar <span class="hljs-built_in">test</span>:ubuntu_v1.0
+sha256:149d18447e370d3e6d15417450c7ad3189c3dfe32c79d16c5aea36927e5ed3ef
+
+C:\Users\qianxunslimg&gt;docker image ls
+REPOSITORY               TAG           IMAGE ID       CREATED          SIZE
+<span class="hljs-built_in">test</span>                     ubuntu_v1.0   149d18447e37   30 seconds ago   77.8MB
+ubuntu                   18.04         e28a50f651f9   2 days ago       63.1MB
+docker/getting-started   latest        3e4394f6b72f   13 days ago      47MB
+ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB
+hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</code></pre></div>
 
 <blockquote>
 <p><em>注：用户既可以使用</em> <code>docker load</code> <em>来导入镜像存储文件到本地镜像库，也可以使用</em> <code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
@@ -355,21 +396,122 @@
 <h3 id="小练习"><a href="#小练习" class="headerlink" title="小练习"></a>小练习</h3><p>简单c++</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png" srcset="/img/loading.gif" lazyload alt="image-20230415000909382"></p>
 <p>docker_file如下</p>
-<figure class="highlight dockerfile"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> codenvy/cpp_gcc </span><br><span class="line"></span><br><span class="line"><span class="comment"># make file in the docker image</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地文件复制到容器中</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./docker_test /home/user/myapp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set workdir</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译程序</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sudo make</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"./hello_world"</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################逐行解释#############################</span></span><br><span class="line"><span class="comment"># 基础镜像</span></span><br><span class="line"><span class="keyword">FROM</span> codenvy/cpp_gcc </span><br><span class="line"><span class="comment"># 这一行表示从codenvy/cpp_gcc这个镜像开始构建，这个镜像是一个包含了C++和GCC的环境，用于编译和运行C++程序。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># make file in the docker image</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span></span><br><span class="line"><span class="comment"># 这一行表示在容器中运行一个命令，即创建一个/home/user/myapp的目录，用于存放项目文件。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将本地文件复制到容器中</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> ./project /home/user/myapp</span></span><br><span class="line"><span class="comment"># 这一行表示将本地的./project目录下的所有文件和子目录复制到容器中的/home/user/myapp目录下，这样就可以在容器中访问项目文件了。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set workdir</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span></span><br><span class="line"><span class="comment"># 这一行表示设置容器中的工作目录为/home/user/myapp，这样后面的命令都会在这个目录下执行。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译程序</span></span><br><span class="line"><span class="comment"># RUN sudo make</span></span><br><span class="line"><span class="comment"># 这一行表示在容器中运行一个命令，即使用sudo权限执行make命令，用于编译项目中的程序。但是这一行是被注释掉的，所以不会执行。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行程序</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"./hello_world"</span>]</span></span><br><span class="line"><span class="comment"># 这一行表示设置容器启动时要执行的命令，即运行./hello_world这个可执行文件，这是项目中编译出来的程序。</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs dockerfile"><span class="hljs-comment"># 基础镜像</span>
+<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
+
+<span class="hljs-comment"># make file in the docker image</span>
+<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
+
+<span class="hljs-comment"># 将本地文件复制到容器中</span>
+<span class="hljs-keyword">ADD</span><span class="bash"> ./docker_test /home/user/myapp</span>
+
+<span class="hljs-comment"># set workdir</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
+
+<span class="hljs-comment"># 编译程序</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> sudo make</span>
+
+<span class="hljs-comment"># 运行程序</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
+
+<span class="hljs-comment">###########################逐行解释#############################</span>
+<span class="hljs-comment"># 基础镜像</span>
+<span class="hljs-keyword">FROM</span> codenvy/cpp_gcc 
+<span class="hljs-comment"># 这一行表示从codenvy/cpp_gcc这个镜像开始构建，这个镜像是一个包含了C++和GCC的环境，用于编译和运行C++程序。</span>
+
+<span class="hljs-comment"># make file in the docker image</span>
+<span class="hljs-keyword">RUN</span><span class="bash">  mkdir /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即创建一个/home/user/myapp的目录，用于存放项目文件。</span>
+
+<span class="hljs-comment"># 将本地文件复制到容器中</span>
+<span class="hljs-keyword">ADD</span><span class="bash"> ./project /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示将本地的./project目录下的所有文件和子目录复制到容器中的/home/user/myapp目录下，这样就可以在容器中访问项目文件了。</span>
+
+<span class="hljs-comment"># set workdir</span>
+<span class="hljs-keyword">WORKDIR</span><span class="bash"> /home/user/myapp</span>
+<span class="hljs-comment"># 这一行表示设置容器中的工作目录为/home/user/myapp，这样后面的命令都会在这个目录下执行。</span>
+
+<span class="hljs-comment"># 编译程序</span>
+<span class="hljs-comment"># RUN sudo make</span>
+<span class="hljs-comment"># 这一行表示在容器中运行一个命令，即使用sudo权限执行make命令，用于编译项目中的程序。但是这一行是被注释掉的，所以不会执行。</span>
+
+<span class="hljs-comment"># 运行程序</span>
+<span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
+<span class="hljs-comment"># 这一行表示设置容器启动时要执行的命令，即运行./hello_world这个可执行文件，这是项目中编译出来的程序。</span></code></pre></div>
 
 <p>镜像运行为容器</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">docker build -f ./docker_file -t my_hello_docker:v1.0 .</span><br><span class="line"></span><br><span class="line">docker image ls</span><br><span class="line">docker run -it my_hello_docker:v1.0 //正常运行</span><br><span class="line"></span><br><span class="line">docker container ls -a  //查看container</span><br><span class="line">docker container export 632 &gt; test.tar  //导出container</span><br><span class="line">docker container prune  //删除所有容器</span><br><span class="line">docker container ls -a</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs shell">docker build -f ./docker_file -t my_hello_docker:v1.0 .
+
+docker image ls
+docker run -it my_hello_docker:v1.0 //正常运行
+
+docker container ls -a  //查看container
+docker container export 632 &gt; test.tar  //导出container
+docker container prune  //删除所有容器
+docker container ls -a</code></pre></div>
 
 <p>重新导入容器测试</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">docker image rm my_hello_docker:v1.0 </span><br><span class="line">docker image ls</span><br><span class="line">docker import test.tar my_hello_docker:v1.0</span><br><span class="line"></span><br><span class="line">docker run -it my_hello_docker:v1.0 //为啥运行不起来了</span><br><span class="line">docker: Error response from daemon: No <span class="built_in">command</span> specified.</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">docker image rm my_hello_docker:v1.0 
+docker image ls
+docker import test.tar my_hello_docker:v1.0
+
+docker run -it my_hello_docker:v1.0 //为啥运行不起来了
+docker: Error response from daemon: No <span class="hljs-built_in">command</span> specified.</code></pre></div>
 
 <p>报错原因：</p>
 <p>从dockerfile新建容器时是可以缺省参数直接运行程序的，</p>
 <p>而导入的镜像 运行需要参数</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">docker run -it  my_hello_docker:v1.0 /bin/bash</span><br><span class="line"><span class="built_in">cd</span> /home/user/myapp</span><br><span class="line">./hello_world   //正常运行</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">docker run -it  my_hello_docker:v1.0 /bin/bash
+<span class="hljs-built_in">cd</span> /home/user/myapp
+./hello_world   //正常运行</code></pre></div>
 
 <h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>dockerfile里边不执行make 直接打包  严谨一点</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png" srcset="/img/loading.gif" lazyload alt="image-20230415001742100"></p>
+<h2 id="5-挂载到虚拟环境"><a href="#5-挂载到虚拟环境" class="headerlink" title="5. 挂载到虚拟环境"></a>5. 挂载到虚拟环境</h2><p>如果你本地没有安装ROS 2环境，但想运行本地的ROS 2代码，你可以考虑使用Docker容器来创建一个包含ROS 2环境的运行环境。以下是一般步骤：</p>
+<ol>
+<li><p>安装Docker：首先，在你的本地系统上安装Docker。你可以按照Docker官方文档的说明进行安装。</p>
+</li>
+<li><p>获取ROS 2镜像：从Docker Hub上获取一个包含ROS 2环境的镜像。ROS官方提供了官方的ROS 2镜像，你可以选择适合你需要的版本和发行版。例如，你可以使用以下命令拉取ROS 2 Foxy版本的镜像：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker pull ros:foxy</code></pre></div>
+</li>
+<li><p>运行容器：使用<code>docker run</code>命令来创建并运行一个容器，并在容器内部执行你的ROS 2代码。以下是一个示例命令：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm -v /path/to/your/code:/ros_ws/src/ros_package_name -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>解释一下上述命令中的参数：</p>
+<ul>
+<li><code>-it</code>：在交互模式下运行容器。</li>
+<li><code>--rm</code>：容器退出后自动删除。</li>
+<li><code>-v /path/to/your/code:/ros_ws/src/ros_package_name</code>：将你的本地ROS 2代码所在的路径挂载到容器内部的ROS工作空间路径。</li>
+<li><code>-w /ros_ws</code>：设置容器的工作目录为ROS工作空间。</li>
+</ul>
+</li>
+<li><p>在容器中运行ROS 2代码：容器启动后，你可以在容器内部执行ROS 2相关的命令，例如构建、编译和运行你的ROS 2代码。</p>
+<div class="code-wrapper"><pre><code class="hljs bash">colcon build
+<span class="hljs-built_in">source</span> install/setup.bash
+ros2 run ros_package_name node_name</code></pre></div>
+
+<p>这些命令将在容器内部进行ROS 2代码的构建和运行。</p>
+</li>
+</ol>
+<p>通过这种方式，你可以在没有本地ROS 2环境的情况下，使用Docker容器来运行你的ROS 2代码，并且可以将本地的ROS 2代码目录挂载到容器内部，以便在容器中进行开发和调试。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h4><div class="code-wrapper"><pre><code class="hljs bash">qianxunslimg@ubuntu:~/Desktop/suudy/ros_study/node_test$ docker run -it -v /home/qianxunslimg/Desktop/suudy/ros_study/node_test:/ros_ws/src/ros_package_name -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>这个Docker命令用于创建并运行一个基于<code>ros:foxy</code>镜像的Docker容器。让我们逐步解释每个参数的含义：</p>
+<ul>
+<li><code>docker run</code>: 运行一个Docker容器。</li>
+<li><code>-it</code>: 创建一个交互式终端，允许用户与容器进行交互。</li>
+<li><code>-v /home/qianxunslimg/Desktop/suudy/ros_study/node_test:/ros_ws/src/ros_package_name</code>: 这是一个挂载命令，将本地的<code>/home/qianxunslimg/Desktop/suudy/ros_study/node_test</code>路径挂载到容器中的<code>/ros_ws/src/ros_package_name</code>路径。这样可以将本地的文件或目录与容器内的目录进行共享。</li>
+<li><code>-w /ros_ws</code>: 设置容器的工作目录为<code>/ros_ws</code>，即容器启动后默认所在的路径。</li>
+<li><code>ros:foxy</code>: 指定要使用的Docker镜像，这里使用的是名为<code>ros:foxy</code>的镜像。该镜像是基于ROS 2 Foxy Fitzroy版本构建的。</li>
+<li><code>bash</code>: 在容器中启动一个bash终端。</li>
+</ul>
+<p>通过以上命令，你将在一个交互式的终端中进入到一个基于<code>ros:foxy</code>镜像的Docker容器中。同时，将本地的<code>/home/qianxunslimg/Desktop/suudy/ros_study/node_test</code>路径挂载到容器内的<code>/ros_ws/src/ros_package_name</code>路径，以便在容器中访问和操作本地的文件。</p>
+<p>你可以在容器内执行ROS 2相关的命令和操作，并可以通过共享的挂载路径访问和修改本地的文件。</p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>运行是可能当前控制台会打印log 无法执行其他的指令</p>
+<ol>
+<li>如果外部由ros环境 可以直接在外部的控制台中 ros2 node list等</li>
+<li>如果外部没有 在外部新开控制台，<code>docker exec -it &lt;container_name&gt; bash</code>   本示例中就是<code>docker exec -it 174</code></li>
+</ol>
 
               
             </div>
@@ -446,8 +588,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/01/06/ros-xue-xi/" title="ROS2入门">
-                        <span class="hidden-mobile">ROS2入门</span>
+                      <a href="/2022/11/14/zao-sheng-gan-she-ce-liang-fa-de-li-lun-ji-chu/" title="geo术语">
+                        <span class="hidden-mobile">geo术语</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

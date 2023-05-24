@@ -16,12 +16,12 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="从大佬教程整理的学习笔记，原文  动手学ROS2 (fishros.com)  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 ps:ubuntu1804不要安装dashing 缺少很多指令 安装">
+    <meta name="description" content="参考资料  动手学ROS2 (fishros.com) https:&#x2F;&#x2F;docs.ros.org&#x2F;en&#x2F;foxy&#x2F;index.html 各种官方的demo  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS2入门">
-<meta property="og:url" content="https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/index.html">
+<meta property="og:url" content="https://qianxunslimg.github.io/2023/05/25/ros-xue-xi/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="从大佬教程整理的学习笔记，原文  动手学ROS2 (fishros.com)  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求 选择即可 ps:ubuntu1804不要安装dashing 缺少很多指令 安装">
+<meta property="og:description" content="参考资料  动手学ROS2 (fishros.com) https:&#x2F;&#x2F;docs.ros.org&#x2F;en&#x2F;foxy&#x2F;index.html 各种官方的demo  1. 安装参考网站小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn) 直接输入指令 wget http:&#x2F;&#x2F;fishros.com&#x2F;install -O fishros &amp;&amp; . fishros  根据需求">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104024167.png">
@@ -32,8 +32,10 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230420212649711.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230422215840959.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230517210359702.png">
-<meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-05-17T13:04:05.403Z">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230523210117583.png">
+<meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230524152514908.png">
+<meta property="article:published_time" content="2023-05-24T17:59:00.000Z">
+<meta property="article:modified_time" content="2023-05-24T17:54:20.967Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-06 01:59" pubdate>
-          2023年1月6日 凌晨
+        <time datetime="2023-05-25 01:59" pubdate>
+          2023年5月25日 凌晨
         </time>
       </span>
     
@@ -287,9 +289,11 @@
             
             <div class="markdown-body">
               
-              <p>从大佬教程整理的学习笔记，原文</p>
+              <p>参考资料</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://fishros.com/d2lros2/#/">动手学ROS2 (fishros.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.ros.org/en/foxy/index.html">https://docs.ros.org/en/foxy/index.html</a></p>
+<p>各种官方的demo</p>
 </blockquote>
 <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><p>参考网站<a target="_blank" rel="noopener" href="https://fishros.org.cn/forum/topic/20/%E5%B0%8F%E9%B1%BC%E7%9A%84%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E7%B3%BB%E5%88%97?lang=zh-CN">小鱼的一键安装系列 | 鱼香ROS (fishros.org.cn)</a></p>
 <p>直接输入指令</p>
@@ -2378,6 +2382,1318 @@ rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre></div>
 
+<h1 id="项目各模块"><a href="#项目各模块" class="headerlink" title="项目各模块"></a>项目各模块</h1><h2 id="LAUNCH"><a href="#LAUNCH" class="headerlink" title="LAUNCH"></a>LAUNCH</h2><h3 id="一个示例明确各部分"><a href="#一个示例明确各部分" class="headerlink" title="一个示例明确各部分"></a>一个示例明确各部分</h3><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> DeclareLaunchArgument, IncludeLaunchDescription
+<span class="hljs-keyword">from</span> launch.launch_description_sources <span class="hljs-keyword">import</span> PythonLaunchDescriptionSource
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration, TextSubstitution
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 声明参数</span>
+    declared_arguments = [
+        DeclareLaunchArgument(
+            <span class="hljs-string">"my_param"</span>,
+            default_value=<span class="hljs-string">"default_value"</span>,
+            description=<span class="hljs-string">"This is a sample parameter."</span>
+        )
+    ]
+    
+    <span class="hljs-comment"># 初始化参数</span>
+    my_param = LaunchConfiguration(<span class="hljs-string">"my_param"</span>)
+
+    <span class="hljs-comment"># 包含的启动文件路径</span>
+    included_launch_file = PythonLaunchDescriptionSource(<span class="hljs-string">"/path/to/included_launch_file.py"</span>)
+    
+    <span class="hljs-comment"># 设置要传递的参数</span>
+    parameters = {
+        <span class="hljs-string">"param1"</span>: my_param,
+        <span class="hljs-string">"param2"</span>: TextSubstitution(<span class="hljs-string">"some_value"</span>)
+    }
+    
+    <span class="hljs-comment"># 创建IncludeLaunchDescription实例，并传递参数</span>
+    include_launch = IncludeLaunchDescription(
+        included_launch_file,
+        launch_arguments=parameters.items()
+    )
+
+    <span class="hljs-comment"># 创建主启动过程</span>
+    ld = LaunchDescription()
+    ld.add_action(*declared_arguments)
+    ld.add_action(include_launch)
+
+    <span class="hljs-keyword">return</span> ld</code></pre></div>
+
+<p>在上面的示例中，我们完成了以下操作：</p>
+<ol>
+<li>使用<code>DeclareLaunchArgument</code>声明了一个名为<code>my_param</code>的参数。</li>
+<li>使用<code>LaunchConfiguration</code>初始化了参数<code>my_param</code>，该参数可以在启动时通过命令行或launch文件进行修改。</li>
+<li>创建了一个字典<code>parameters</code>，其中包含要传递给被包含的启动文件的参数。其中，<code>param1</code>的值为<code>my_param</code>，<code>param2</code>的值为<code>TextSubstitution</code>对象，表示一个固定的文本值。</li>
+<li>创建了一个<code>IncludeLaunchDescription</code>实例，并将<code>included_launch_file</code>和<code>parameters</code>作为参数传递。</li>
+<li>创建了主启动过程，并添加了声明的参数和被包含的启动文件。</li>
+</ol>
+<p>这样，当运行主启动文件时，可以通过命令行或launch文件修改参数<code>my_param</code>的值，并将其传递给被包含的启动文件。被包含的启动文件可以使用<code>LaunchConfiguration</code>来获取参数的值，并在启动过程中使用它们。</p>
+<p><code>included_launch_file.py</code> 实际启动</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> Node
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 获取 my_param 参数值</span>
+    my_param = LaunchConfiguration(<span class="hljs-string">"my_param"</span>)
+    
+    ld = LaunchDescription()
+
+    <span class="hljs-comment"># 启动 talker 节点，并传递 my_param 参数</span>
+    talker_node = Node(
+        package=<span class="hljs-string">"demo_package"</span>,
+        executable=<span class="hljs-string">"talker"</span>,
+        output=<span class="hljs-string">"screen"</span>,
+        parameters=[{<span class="hljs-string">"my_param"</span>: my_param}]
+    )
+
+    <span class="hljs-comment"># 启动 listener 节点，并传递 my_param 参数</span>
+    listener_node = Node(
+        package=<span class="hljs-string">"demo_package"</span>,
+        executable=<span class="hljs-string">"listener"</span>,
+        output=<span class="hljs-string">"screen"</span>,
+        parameters=[{<span class="hljs-string">"my_param"</span>: my_param}]
+    )
+
+    ld.add_action(talker_node)
+    ld.add_action(listener_node)
+
+    <span class="hljs-keyword">return</span> ld</code></pre></div>
+
+
+
+
+
+<h4 id="LaunchDescription"><a href="#LaunchDescription" class="headerlink" title="LaunchDescription"></a>LaunchDescription</h4><p><code>LaunchDescription</code>是ROS 2 Launch系统中的一个核心对象，用于描述和定义一个Launch文件的内容。它是由launch系统提供的一个Python类。</p>
+<p><code>LaunchDescription</code>对象可以包含一系列的Launch节点、参数配置、引用其他Launch文件等。通过创建和配置<code>LaunchDescription</code>对象，可以定义整个ROS系统的启动流程和配置。</p>
+<p>以下是<code>LaunchDescription</code>对象的一些常用属性和方法：</p>
+<ul>
+<li><code>add_action(action)</code>：将一个Launch动作（<code>Action</code>）添加到<code>LaunchDescription</code>对象中。动作可以是启动节点、设置参数等。</li>
+<li><code>add_actions(actions)</code>：将多个Launch动作一次性添加到<code>LaunchDescription</code>对象中。</li>
+<li><code>add_launch_description(launch_description)</code>：将另一个<code>LaunchDescription</code>对象作为子Launch描述添加到当前<code>LaunchDescription</code>对象中。</li>
+<li><code>get_action_names()</code>：返回当前<code>LaunchDescription</code>对象中所有动作的名称列表。</li>
+<li><code>get_action_by_name(name)</code>：根据名称获取指定的Launch动作。</li>
+<li><code>get_sub_launch_descriptions()</code>：返回当前<code>LaunchDescription</code>对象中所有的子Launch描述。</li>
+<li><code>get_sub_launch_description_by_name(name)</code>：根据名称获取指定的子Launch描述。</li>
+</ul>
+<p>通过配置<code>LaunchDescription</code>对象，可以定义启动的节点、参数、传递参数给其他Launch文件，以及指定节点之间的依赖关系。在启动ROS系统时，Launch系统会根据<code>LaunchDescription</code>对象的定义来加载和执行相应的节点和配置。</p>
+<p>需要注意的是，<code>LaunchDescription</code>对象是一个用于描述Launch文件内容的数据结构，并不直接执行实际的操作。执行Launch文件需要使用相应的工具或命令，如<code>ros2 launch</code>命令行工具或使用Launch系统提供的API进行编程控制。</p>
+<h4 id="DeclareLaunchArgument"><a href="#DeclareLaunchArgument" class="headerlink" title="DeclareLaunchArgument"></a>DeclareLaunchArgument</h4><p><code>DeclareLaunchArgument</code>是ROS 2中的一个类，用于声明启动文件的参数（LaunchArgument）。</p>
+<p>在ROS 2中，启动文件可以接受外部传递的参数，这些参数可以在启动文件中使用，并在系统启动时进行配置。<code>DeclareLaunchArgument</code>用于在启动文件中声明这些参数，以便在启动时接收和使用它们。</p>
+<p><code>DeclareLaunchArgument</code>的构造函数接受以下参数:</p>
+<ul>
+<li><code>name</code>（必需）: 参数的名称，以字符串形式指定。</li>
+<li><code>default_value</code>（可选）: 参数的默认值，在未提供参数值时使用。它可以是字符串、整数、浮点数或布尔值。</li>
+<li><code>description</code>（可选）: 参数的描述信息，用于解释参数的用途和含义。</li>
+</ul>
+<p>通过使用<code>DeclareLaunchArgument</code>，可以在启动文件中声明参数，并指定其名称、默认值和描述。声明的参数可以在启动文件中的其他地方使用，例如配置节点的参数、指定节点间的关系等。</p>
+<p>在启动文件运行时，可以通过命令行参数或LaunchConfiguration对象来为参数传递实际值。这样，参数的值可以根据实际需求进行动态配置，从而增加了启动文件的灵活性和可配置性。</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> DeclareLaunchArgument
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 声明一个启动参数</span>
+    declared_arguments = [
+        DeclareLaunchArgument(
+            <span class="hljs-string">'my_param'</span>,
+            default_value=<span class="hljs-string">'default_value'</span>,
+            description=<span class="hljs-string">'This is my parameter'</span>
+        )
+    ]
+
+    <span class="hljs-comment"># 其他启动文件组件...</span>
+
+    <span class="hljs-keyword">return</span> LaunchDescription(declared_arguments + other_components)</code></pre></div>
+
+<p>在上述示例中，我们使用<code>DeclareLaunchArgument</code>声明了一个名为<code>my_param</code>的启动参数。它具有默认值<code>default_value</code>和描述<code>This is my parameter</code>。可以根据需要添加多个<code>DeclareLaunchArgument</code>来声明多个启动参数。</p>
+<p>通过声明启动参数，我们可以在启动文件中定义配置选项，使其在启动时可以接收外部提供的值，从而实现启动文件的灵活配置和定制化部署。</p>
+<h4 id="LaunchConfiguration"><a href="#LaunchConfiguration" class="headerlink" title="LaunchConfiguration"></a>LaunchConfiguration</h4><p><code>LaunchConfiguration</code>是ROS 2中的一个类，用于表示启动文件中的参数配置。</p>
+<p>在ROS 2的启动文件中，可以使用<code>LaunchConfiguration</code>来引用和获取参数的值。它提供了一种方便的方式来访问在启动文件中声明的参数，并将其用作其他部分的配置。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> DeclareLaunchArgument
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 声明一个启动参数</span>
+    declared_arguments = [
+        DeclareLaunchArgument(
+            <span class="hljs-string">'my_param'</span>,
+            default_value=<span class="hljs-string">'default_value'</span>,
+            description=<span class="hljs-string">'This is my parameter'</span>
+        )
+    ]
+
+    <span class="hljs-comment"># 使用参数配置节点</span>
+    my_node = Node(
+        package=<span class="hljs-string">'my_package'</span>,
+        executable=<span class="hljs-string">'my_node'</span>,
+        parameters=[
+            {<span class="hljs-string">'my_parameter'</span>: LaunchConfiguration(<span class="hljs-string">'my_param'</span>)}
+        ]
+    )
+
+    <span class="hljs-keyword">return</span> LaunchDescription(declared_arguments + [my_node])</code></pre></div>
+
+<p>在上述示例中，我们首先通过<code>DeclareLaunchArgument</code>声明了一个名为<code>my_param</code>的启动参数，并设置了默认值和描述。然后，在创建节点<code>my_node</code>时，我们使用了<code>LaunchConfiguration('my_param')</code>来获取参数<code>my_param</code>的值，并将其作为节点的参数进行配置。</p>
+<p>通过这种方式，我们可以在启动文件中声明参数，并在需要的地方引用和使用这些参数值，从而实现启动文件的灵活配置和定制化部署。</p>
+<h4 id="修改my-param"><a href="#修改my-param" class="headerlink" title="修改my_param"></a>修改my_param</h4><p>在ROS 2中，==启动==参数可以通过命令行或参数文件进行修改。</p>
+<p>要修改一个已声明的启动参数，可以使用以下方法之一：</p>
+<ol>
+<li><p>通过命令行参数：在运行启动文件时，可以通过命令行选项来指定参数的值。使用<code>--</code>后跟参数名和新值的方式来修改参数。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs applescript">ros2 <span class="hljs-built_in">launch</span> my_package my_launch.py <span class="hljs-comment">--my_param new_value</span></code></pre></div>
+
+<p>在上述示例中，<code>my_param</code>参数的值被设置为<code>new_value</code>。</p>
+</li>
+<li><p>通过参数文件：可以将参数值写入一个参数文件，然后在运行启动文件时指定该参数文件。参数文件使用YAML格式，指定参数名和对应的值。</p>
+<p>示例：</p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># params.yaml</span>
+<span class="hljs-attr">my_param:</span> <span class="hljs-string">new_value</span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs bash">ros2 launch my_package my_launch.py --params-file params.yaml</code></pre></div>
+
+<p>在上述示例中，<code>my_param</code>参数的值被设置为<code>new_value</code>。</p>
+</li>
+</ol>
+<p>通过这些方式，你可以修改已声明的启动参数，从而影响节点、启动器或其他组件的行为。</p>
+<h4 id="IncludeLaunchDescription"><a href="#IncludeLaunchDescription" class="headerlink" title="IncludeLaunchDescription"></a>IncludeLaunchDescription</h4><p><code>IncludeLaunchDescription</code>是用于在一个启动文件中包含另一个启动文件的功能。</p>
+<p>它允许将其他启动文件作为子启动过程包含在当前启动过程中。这对于模块化和组织复杂系统非常有用，可以将系统划分为更小的模块，并将其组合在一起以构建完整的系统。</p>
+<p>下面是一个示例，演示如何使用<code>IncludeLaunchDescription</code>来包含另一个启动文件：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> IncludeLaunchDescription
+<span class="hljs-keyword">from</span> launch.launch_description_sources <span class="hljs-keyword">import</span> PythonLaunchDescriptionSource
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 包含的启动文件路径</span>
+    included_launch_file = PythonLaunchDescriptionSource(<span class="hljs-string">"/path/to/included_launch_file.py"</span>)
+    
+    <span class="hljs-comment"># 创建IncludeLaunchDescription实例</span>
+    include_launch = IncludeLaunchDescription(included_launch_file)
+
+    <span class="hljs-comment"># 创建主启动过程</span>
+    ld = LaunchDescription()
+    ld.add_action(include_launch)
+
+    <span class="hljs-keyword">return</span> ld</code></pre></div>
+
+<p>在上面的示例中，通过创建<code>IncludeLaunchDescription</code>实例，指定要包含的启动文件的路径，并将其添加到主启动过程中。</p>
+<p>请注意，<code>IncludeLaunchDescription</code>还提供了其他可选参数，例如<code>launch_arguments</code>，允许您向被包含的启动文件传递参数。</p>
+<p>需要注意的是，被包含的启动文件也可以包含其他启动文件，从而形成启动文件的嵌套结构。这样可以更好地组织和管理复杂的系统配置。</p>
+<h4 id="launch-arguments"><a href="#launch-arguments" class="headerlink" title="launch_arguments"></a>launch_arguments</h4><p><code>launch_arguments</code>是<code>IncludeLaunchDescription</code>中的一个参数，用于向被包含的启动文件传递参数。通过使用<code>launch_arguments</code>，可以在主启动文件中设置值，并将其传递给被包含的启动文件。</p>
+<p><code>launch_arguments</code>是一个字典，其中键是参数的名称，值是参数的值。被包含的启动文件可以通过<code>LaunchConfiguration</code>获取这些参数的值。</p>
+<p>下面是一个示例，演示如何使用<code>launch_arguments</code>向被包含的启动文件传递参数：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> IncludeLaunchDescription
+<span class="hljs-keyword">from</span> launch.launch_description_sources <span class="hljs-keyword">import</span> PythonLaunchDescriptionSource
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 包含的启动文件路径</span>
+    included_launch_file = PythonLaunchDescriptionSource(<span class="hljs-string">"/path/to/included_launch_file.py"</span>)
+    
+    <span class="hljs-comment"># 设置要传递的参数</span>
+    parameters = {
+        <span class="hljs-string">"param1"</span>: <span class="hljs-string">"value1"</span>,
+        <span class="hljs-string">"param2"</span>: <span class="hljs-string">"value2"</span>
+    }
+    
+    <span class="hljs-comment"># 创建IncludeLaunchDescription实例，并传递参数</span>
+    include_launch = IncludeLaunchDescription(
+        included_launch_file,
+        launch_arguments=parameters.items()
+    )
+
+    <span class="hljs-comment"># 创建主启动过程</span>
+    ld = LaunchDescription()
+    ld.add_action(include_launch)
+
+    <span class="hljs-keyword">return</span> ld</code></pre></div>
+
+<p>在上面的示例中，通过将参数作为字典传递给<code>launch_arguments</code>，主启动文件将<code>param1</code>和<code>param2</code>的值设置为”vaue1”和”value2”。被包含的启动文件可以使用<code>LaunchConfiguration</code>来获取这些参数的值。</p>
+<p>被包含的启动文件可以通过以下方式使用<code>LaunchConfiguration</code>获取参数的值：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchContext
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>(<span class="hljs-params">context: LaunchContext</span>):</span>
+    param1_value = LaunchConfiguration(<span class="hljs-string">"param1"</span>).perform(context)
+    param2_value = LaunchConfiguration(<span class="hljs-string">"param2"</span>).perform(context)
+    
+    <span class="hljs-comment"># 使用参数的值进行其他操作</span>
+
+    <span class="hljs-keyword">return</span> LaunchDescription()</code></pre></div>
+
+<p>在上面的示例中，<code>LaunchConfiguration("param1").perform(context)</code>获取参数<code>param1</code>的值。通过这种方式，被包含的启动文件可以访问并使用传递的参数值。</p>
+<h3 id="一个嵌套-x2F-子文件-x2F-替换-py示例"><a href="#一个嵌套-x2F-子文件-x2F-替换-py示例" class="headerlink" title="一个嵌套/子文件/替换 py示例"></a>一个嵌套/子文件/替换 py示例</h3><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230523210117583.png" srcset="/img/loading.gif" lazyload alt="image-20230523210117583" style="zoom:67%;">
+
+<h4 id="cmakelist添加"><a href="#cmakelist添加" class="headerlink" title="cmakelist添加"></a>cmakelist添加</h4><div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># Install launch files.</span>
+<span class="hljs-keyword">install</span>(DIRECTORY
+  launch
+  DESTINATION share/<span class="hljs-variable">${PROJECT_NAME}</span>/
+)</code></pre></div>
+
+<h4 id="example-main-launch-py"><a href="#example-main-launch-py" class="headerlink" title="example_main.launch.py"></a>example_main.launch.py</h4><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 导入必要的模块</span>
+<span class="hljs-keyword">from</span> launch_ros.substitutions <span class="hljs-keyword">import</span> FindPackageShare
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> IncludeLaunchDescription
+<span class="hljs-keyword">from</span> launch.launch_description_sources <span class="hljs-keyword">import</span> PythonLaunchDescriptionSource
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> PathJoinSubstitution, TextSubstitution
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 定义一个颜色字典，其中只有一个条目</span>
+    colors = {
+        <span class="hljs-string">'background_r'</span>: <span class="hljs-string">'200'</span>
+    }
+
+    <span class="hljs-comment"># 创建一个 LaunchDescription 对象</span>
+    <span class="hljs-keyword">return</span> LaunchDescription([
+        IncludeLaunchDescription(
+            <span class="hljs-comment"># 使用 PythonLaunchDescriptionSource 包含另一个 launch 文件</span>
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    <span class="hljs-comment"># 使用 FindPackageShare 定位包及其共享目录</span>
+                    FindPackageShare(<span class="hljs-string">'cpp_launch_example'</span>),
+                    <span class="hljs-string">'launch'</span>,
+                    <span class="hljs-string">'example_substitutions.launch.py'</span>
+                ])
+            ]),
+            <span class="hljs-comment"># 为包含的 launch 文件提供启动参数 这几个参数在子启动文件中</span>
+            launch_arguments={
+                <span class="hljs-string">'turtlesim_ns'</span>: <span class="hljs-string">'turtlesim2'</span>,
+                <span class="hljs-string">'use_provided_red'</span>: <span class="hljs-string">'True'</span>,
+                <span class="hljs-string">'new_background_r'</span>: TextSubstitution(text=<span class="hljs-built_in">str</span>(colors[<span class="hljs-string">'background_r'</span>]))
+            }.items()  <span class="hljs-comment"># 将启动参数字典转换为键值对列表</span>
+        )
+    ])
+</code></pre></div>
+
+<p>这段代码定义了一个名为 <code>generate_launch_description()</code> 的 Python 函数，它返回一个 <code>LaunchDescription</code> 对象。<code>LaunchDescription</code> 对象是一系列操作，描述了如何启动节点和配置 ROS 系统。</p>
+<p>以下是代码的详细解释：</p>
+<ul>
+<li>导入必要的模块：<ul>
+<li><code>FindPackageShare</code>：一个用于定位包及其共享目录的替代方案。</li>
+<li><code>LaunchDescription</code>：表示一个启动描述的类。</li>
+<li><code>IncludeLaunchDescription</code>：一个用于包含其他 launch 文件的操作。</li>
+<li><code>PythonLaunchDescriptionSource</code>：用于包含一个使用 Python 编写的 launch 文件的源。</li>
+<li><code>PathJoinSubstitution</code>：将多个路径组件连接成单个路径的替代方案。</li>
+<li><code>TextSubstitution</code>：用指定的值替换文本的替代方案。</li>
+</ul>
+</li>
+<li>定义一个名为 <code>colors</code> 的字典，其中包含一个条目。</li>
+<li>创建一个 <code>LaunchDescription</code> 对象，作为返回值。</li>
+<li>在 <code>LaunchDescription</code> 对象中包含一个 <code>IncludeLaunchDescription</code> 操作，用于包含另一个 launch 文件。</li>
+<li>使用 <code>PythonLaunchDescriptionSource</code> 指定要包含的 launch 文件的路径。在这里，使用 <code>FindPackageShare</code> 来定位包和其共享目录，并指定要包含的文件路径。</li>
+<li>为被包含的 launch 文件提供启动参数。使用 <code>launch_arguments</code> 参数将启动参数以字典形式传递。这里提供了三个启动参数，分别是 <code>turtlesim_ns</code>、<code>use_provided_red</code> 和 <code>new_background_r</code>。<ul>
+<li><code>turtlesim_ns</code> 设置为 ‘turtlesim2’。</li>
+<li><code>use_provided_red</code> 设置为 ‘True’。</li>
+<li><code>new_background_r</code> 使用 <code>TextSubstitution</code> 将 <code>colors['background_r']</code> 的值转换为字符串，并作为启动参数。</li>
+</ul>
+</li>
+<li>使用 <code>.items()</code> 将启动参数字典转换为键值对列表，并作为 <code>IncludeLaunchDescription</code> 操作的参数。</li>
+</ul>
+<h4 id="example-substitutions-launch-py"><a href="#example-substitutions-launch-py" class="headerlink" title="example_substitutions.launch.py"></a>example_substitutions.launch.py</h4><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 导入必要的模块和类</span>
+<span class="hljs-keyword">from</span> launch_ros.actions <span class="hljs-keyword">import</span> Node
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> DeclareLaunchArgument, ExecuteProcess, TimerAction
+<span class="hljs-keyword">from</span> launch.conditions <span class="hljs-keyword">import</span> IfCondition
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration, PythonExpression
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    <span class="hljs-comment"># 定义启动参数</span>
+    turtlesim_ns = LaunchConfiguration(<span class="hljs-string">'turtlesim_ns'</span>)
+    use_provided_red = LaunchConfiguration(<span class="hljs-string">'use_provided_red'</span>)
+    new_background_r = LaunchConfiguration(<span class="hljs-string">'new_background_r'</span>)
+
+    <span class="hljs-comment"># 声明启动参数</span>
+    turtlesim_ns_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'turtlesim_ns'</span>,
+        default_value=<span class="hljs-string">'turtlesim1'</span>
+    )
+    use_provided_red_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'use_provided_red'</span>,
+        default_value=<span class="hljs-string">'False'</span>
+    )
+    new_background_r_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'new_background_r'</span>,
+        default_value=<span class="hljs-string">'200'</span>
+    )
+
+    <span class="hljs-comment"># 创建节点</span>
+    turtlesim_node = Node(
+        package=<span class="hljs-string">'turtlesim'</span>,
+        namespace=turtlesim_ns,
+        executable=<span class="hljs-string">'turtlesim_node'</span>,
+        name=<span class="hljs-string">'sim'</span>
+    )
+
+    <span class="hljs-comment"># 执行进程操作：调用服务进行乌龟的生成</span>
+    spawn_turtle = ExecuteProcess(
+        cmd=[
+            <span class="hljs-string">'ros2 service call '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/spawn '</span>,
+            <span class="hljs-string">'turtlesim/srv/Spawn '</span>,
+            <span class="hljs-string">'"{x: 2, y: 2, theta: 0.2}"'</span>
+        ],
+        shell=<span class="hljs-literal">True</span>
+    )
+
+    <span class="hljs-comment"># 执行进程操作：修改背景颜色为固定值</span>
+    change_background_r = ExecuteProcess(
+        cmd=[
+            <span class="hljs-string">'ros2 param set '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/sim background_r '</span>,
+            <span class="hljs-string">'120'</span>
+        ],
+        shell=<span class="hljs-literal">True</span>
+    )
+
+    <span class="hljs-comment"># 执行进程操作：根据条件修改背景颜色</span>
+    change_background_r_conditioned = ExecuteProcess(
+        condition=IfCondition(
+            PythonExpression([
+                new_background_r,
+                <span class="hljs-string">' == 200'</span>,
+                <span class="hljs-string">' and '</span>,
+                use_provided_red
+            ])
+        ),
+        cmd=[
+            <span class="hljs-string">'ros2 param set '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/sim background_r '</span>,
+            new_background_r
+        ],
+        shell=<span class="hljs-literal">True</span>
+    )
+
+    <span class="hljs-comment"># 创建 LaunchDescription 对象并返回</span>
+    <span class="hljs-keyword">return</span> LaunchDescription([
+        turtlesim_ns_launch_arg,
+        use_provided_red_launch_arg,
+        new_background_r_launch_arg,
+        turtlesim_node,
+        spawn_turtle,
+        change_background_r,
+        TimerAction(
+            period=<span class="hljs-number">2.0</span>,
+            actions=[change_background_r_conditioned],
+        )
+    ])
+</code></pre></div>
+
+<h4 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h4><div class="code-wrapper"><pre><code class="hljs bash">colcon build <span class="hljs-comment">#构建项目 包括install</span>
+<span class="hljs-built_in">source</span> install/setup.sh <span class="hljs-comment">#引入环境变量</span>
+ros2 launch cpp_launch_example example_main.launch.py</code></pre></div>
+
+<h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><ol>
+<li>修改cmakelist 添加了install指令复制了launch内的文件到系统share目录</li>
+<li>colcon build包括install命令</li>
+</ol>
+<h3 id="一个事件处理启动文件"><a href="#一个事件处理启动文件" class="headerlink" title="一个事件处理启动文件"></a>一个事件处理启动文件</h3><h4 id="example-event-handlers-launch-py"><a href="#example-event-handlers-launch-py" class="headerlink" title="example_event_handlers.launch.py"></a>example_event_handlers.launch.py</h4><div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> launch_ros.actions <span class="hljs-keyword">import</span> Node
+
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> (DeclareLaunchArgument, EmitEvent, ExecuteProcess,
+                            LogInfo, RegisterEventHandler, TimerAction)
+<span class="hljs-keyword">from</span> launch.conditions <span class="hljs-keyword">import</span> IfCondition
+<span class="hljs-keyword">from</span> launch.event_handlers <span class="hljs-keyword">import</span> (OnExecutionComplete, OnProcessExit,
+                                OnProcessIO, OnProcessStart, OnShutdown)
+<span class="hljs-keyword">from</span> launch.events <span class="hljs-keyword">import</span> Shutdown
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> (EnvironmentVariable, FindExecutable,
+                                LaunchConfiguration, LocalSubstitution,
+                                PythonExpression)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+    turtlesim_ns = LaunchConfiguration(<span class="hljs-string">'turtlesim_ns'</span>)
+    use_provided_red = LaunchConfiguration(<span class="hljs-string">'use_provided_red'</span>)
+    new_background_r = LaunchConfiguration(<span class="hljs-string">'new_background_r'</span>)
+
+    turtlesim_ns_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'turtlesim_ns'</span>,
+        default_value=<span class="hljs-string">'turtlesim1'</span>
+    )
+    use_provided_red_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'use_provided_red'</span>,
+        default_value=<span class="hljs-string">'False'</span>
+    )
+    new_background_r_launch_arg = DeclareLaunchArgument(
+        <span class="hljs-string">'new_background_r'</span>,
+        default_value=<span class="hljs-string">'200'</span>
+    )
+
+    turtlesim_node = Node(
+        package=<span class="hljs-string">'turtlesim'</span>,
+        namespace=turtlesim_ns,
+        executable=<span class="hljs-string">'turtlesim_node'</span>,
+        name=<span class="hljs-string">'sim'</span>
+    )
+    spawn_turtle = ExecuteProcess(
+        cmd=[[
+            FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+            <span class="hljs-string">' service call '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/spawn '</span>,
+            <span class="hljs-string">'turtlesim/srv/Spawn '</span>,
+            <span class="hljs-string">'"{x: 2, y: 2, theta: 0.2}"'</span>
+        ]],
+        shell=<span class="hljs-literal">True</span>
+    )
+    change_background_r = ExecuteProcess(
+        cmd=[[
+            FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+            <span class="hljs-string">' param set '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/sim background_r '</span>,
+            <span class="hljs-string">'120'</span>
+        ]],
+        shell=<span class="hljs-literal">True</span>
+    )
+    change_background_r_conditioned = ExecuteProcess(
+        condition=IfCondition(
+            PythonExpression([
+                new_background_r,
+                <span class="hljs-string">' == 200'</span>,
+                <span class="hljs-string">' and '</span>,
+                use_provided_red
+            ])
+        ),
+        cmd=[[
+            FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+            <span class="hljs-string">' param set '</span>,
+            turtlesim_ns,
+            <span class="hljs-string">'/sim background_r '</span>,
+            new_background_r
+        ]],
+        shell=<span class="hljs-literal">True</span>
+    )
+
+    <span class="hljs-keyword">return</span> LaunchDescription([
+        turtlesim_ns_launch_arg,
+        use_provided_red_launch_arg,
+        new_background_r_launch_arg,
+        turtlesim_node,
+        RegisterEventHandler(
+            OnProcessStart(
+                target_action=turtlesim_node,
+                on_start=[
+                    LogInfo(msg=<span class="hljs-string">'Turtlesim started, spawning turtle'</span>),
+                    spawn_turtle
+                ]
+            )
+        ),
+        RegisterEventHandler(
+            OnProcessIO(
+                target_action=spawn_turtle,
+                on_stdout=<span class="hljs-keyword">lambda</span> event: LogInfo(
+                    msg=<span class="hljs-string">'Spawn request says "{}"'</span>.<span class="hljs-built_in">format</span>(
+                        event.text.decode().strip())
+                )
+            )
+        ),
+        RegisterEventHandler(
+            OnExecutionComplete(
+                target_action=spawn_turtle,
+                on_completion=[
+                    LogInfo(msg=<span class="hljs-string">'Spawn finished'</span>),
+                    change_background_r,
+                    TimerAction(
+                        period=<span class="hljs-number">2.0</span>,
+                        actions=[change_background_r_conditioned],
+                    )
+                ]
+            )
+        ),
+        RegisterEventHandler(
+            OnProcessExit(
+                target_action=turtlesim_node,
+                on_exit=[
+                    LogInfo(msg=(EnvironmentVariable(name=<span class="hljs-string">'USER'</span>),
+                            <span class="hljs-string">' closed the turtlesim window'</span>)),
+                    EmitEvent(event=Shutdown(
+                        reason=<span class="hljs-string">'Window closed'</span>))
+                ]
+            )
+        ),
+        RegisterEventHandler(
+            OnShutdown(
+                on_shutdown=[LogInfo(
+                    msg=[<span class="hljs-string">'Launch was asked to shutdown: '</span>,
+                        LocalSubstitution(<span class="hljs-string">'event.reason'</span>)]
+                )]
+            )
+        ),
+    ])</code></pre></div>
+
+
+
+<h4 id="test"><a href="#test" class="headerlink" title="test"></a>test</h4><div class="code-wrapper"><pre><code class="hljs bash">qianxunslimg@ubuntu:~/Desktop/suudy/ros_study/ros_launch/launch_ws$ ros2 launch cpp_launch_example example_event_handlers.launch.py turtlesim_ns:=<span class="hljs-string">'turtlesim3'</span> use_provided_red:=<span class="hljs-string">'True'</span> new_background_r:=200
+[INFO] [launch]: All <span class="hljs-built_in">log</span> files can be found below /home/qianxunslimg/.ros/<span class="hljs-built_in">log</span>/2023-05-23-07-36-35-462330-ubuntu-7180
+[INFO] [launch]: Default logging verbosity is <span class="hljs-built_in">set</span> to INFO
+[INFO] [turtlesim_node-1]: process started with pid [7182]
+[INFO] [launch.user]: Turtlesim started, spawning turtle
+[INFO] [Spawn <span class="hljs-string">"{x: 2, y: 2, theta: 0.2}"</span>-2]: process started with pid [7184]
+[turtlesim_node-1] [INFO] [1684852595.704742838] [turtlesim3.sim]: Starting turtlesim with node name /turtlesim3/sim
+[turtlesim_node-1] [INFO] [1684852595.708226086] [turtlesim3.sim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+[turtlesim_node-1] [INFO] [1684852596.417598136] [turtlesim3.sim]: Spawning turtle [turtle2] at x=[2.000000], y=[2.000000], theta=[0.200000]
+[INFO] [launch.user]: Spawn request says <span class="hljs-string">"requester: making request: turtlesim.srv.Spawn_Request(x=2.0, y=2.0, theta=0.2, name='')</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">response:</span>
+<span class="hljs-string">turtlesim.srv.Spawn_Response(name='turtle2')"</span>
+[INFO] [Spawn <span class="hljs-string">"{x: 2, y: 2, theta: 0.2}"</span>-2]: process has finished cleanly [pid 7184]
+[INFO] [launch.user]: Spawn finished
+[INFO] [sim background_r 120-3]: process started with pid [7220]
+[INFO] [sim background_r 120-3]: process has finished cleanly [pid 7220]
+[INFO] [sim background_r 200-4]: process started with pid [7236]
+[INFO] [sim background_r 200-4]: process has finished cleanly [pid 7236]
+[INFO] [turtlesim_node-1]: process has finished cleanly [pid 7182]
+[INFO] [launch.user]: qianxunslimg closed the turtlesim window
+[INFO] [launch.user]: Launch was asked to shutdown: Window closed</code></pre></div>
+
+
+
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>这段代码是一个使用 launch 文件编写的 ROS 2 Launch 文件。Launch 文件用于描述和配置 ROS 2 系统中的节点和执行过程。</p>
+<p>代码的主要目的是在 ROS 2 系统中启动一个名为 <code>turtlesim_node</code> 的节点，并执行一系列与该节点相关的操作。让我们逐个解释代码的每个部分：</p>
+<ol>
+<li><p>导入所需的模块和类：</p>
+<div class="code-wrapper"><pre><code class="hljs python">rom launch_ros.actions <span class="hljs-keyword">import</span> Node
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> (DeclareLaunchArgument, EmitEvent, ExecuteProcess, LogInfo, RegisterEventHandler, TimerAction)
+<span class="hljs-keyword">from</span> launch.conditions <span class="hljs-keyword">import</span> IfCondition
+<span class="hljs-keyword">from</span> launch.event_handlers <span class="hljs-keyword">import</span> (OnExecutionComplete, OnProcessExit, OnProcessIO, OnProcessStart, OnShutdown)
+<span class="hljs-keyword">from</span> launch.events <span class="hljs-keyword">import</span> Shutdown
+<span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> (EnvironmentVariable, FindExecutable, LaunchConfiguration, LocalSubstitution, PythonExpression)</code></pre></div>
+</li>
+<li><p>定义启动参数：</p>
+<div class="code-wrapper"><pre><code class="hljs python">turtlesim_ns = LaunchConfiguration(<span class="hljs-string">'turtlesim_ns'</span>)
+use_provided_red = LaunchConfiguration(<span class="hljs-string">'use_provided_red'</span>)
+new_background_r = LaunchConfiguration(<span class="hljs-string">'new_background_r'</span>)
+
+turtlesim_ns_launch_arg = DeclareLaunchArgument(<span class="hljs-string">'turtlesim_ns'</span>, default_value=<span class="hljs-string">'turtlesim1'</span>)
+use_provided_red_launch_arg = DeclareLaunchArgument(<span class="hljs-string">'use_provided_red'</span>, default_value=<span class="hljs-string">'False'</span>)
+new_background_r_launch_arg = DeclareLaunchArgument(<span class="hljs-string">'new_background_r'</span>, default_value=<span class="hljs-string">'200'</span>)</code></pre></div>
+
+<p>这些代码段定义了启动参数，并为每个参数指定了默认值。启动参数可以在运行 Launch 文件时提供，以便在配置节点和执行过程时使用。</p>
+</li>
+<li><p>创建节点对象：</p>
+<div class="code-wrapper"><pre><code class="hljs python">turtlesim_node = Node(
+    package=<span class="hljs-string">'turtlesim'</span>,
+    namespace=turtlesim_ns,
+    executable=<span class="hljs-string">'turtlesim_node'</span>,
+    name=<span class="hljs-string">'sim'</span>
+)</code></pre></div>
+
+<p>这段代码创建了一个名为 <code>turtlesim_node</code> 的节点对象。它使用了前面定义的启动参数，并指定了节点的包名、命名空间、可执行文件名和节点名。</p>
+</li>
+<li><p>创建执行过程对象：</p>
+<div class="code-wrapper"><pre><code class="hljs python">spawn_turtle = ExecuteProcess(
+    cmd=[[
+        FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+        <span class="hljs-string">' service call '</span>,
+        turtlesim_ns,
+        <span class="hljs-string">'/spawn '</span>,
+        <span class="hljs-string">'turtlesim/srv/Spawn '</span>,
+        <span class="hljs-string">'"{x: 2, y: 2, theta: 0.2}"'</span>
+    ]],
+    shell=<span class="hljs-literal">True</span>
+)
+
+change_background_r = ExecuteProcess(
+    cmd=[[
+        FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+        <span class="hljs-string">' param set '</span>,
+        turtlesim_ns,
+        <span class="hljs-string">'/sim background_r '</span>,
+        <span class="hljs-string">'120'</span>
+    ]],
+    shell=<span class="hljs-literal">True</span>
+)
+
+change_background_r_conditioned = ExecuteProcess(
+    condition=IfCondition(
+        PythonExpression([
+            new_background_r,
+            <span class="hljs-string">' == 200'</span>,
+            <span class="hljs-string">' and '</span>,
+            use_provided_red
+        ])
+    ),
+    cmd=[[
+        FindExecutable(name=<span class="hljs-string">'ros2'</span>),
+        <span class="hljs-string">' param set '</span>,
+        turtlesim_ns,
+        <span class="hljs-string">'/sim background_r '</span>,
+        new_background_r
+    ]],
+    shell=<span class="hljs-literal">True</span>
+)</code></pre></div>
+
+<p>这些代码段分别创建了三个执行过程对象。每个执行过程对象代表一个要在系统中执行的命令。它们使用了前面定义的启动参数，并使用 <code>ExecuteProcess</code> 类来执行命令。</p>
+</li>
+<li><p>==创建事件处理程序：==</p>
+<div class="code-wrapper"><pre><code class="hljs python">RegisterEventHandler(
+    OnProcessStart(
+        target_action=turtlesim_node,
+        on_start=[            LogInfo(msg=<span class="hljs-string">'Turtlesim started, spawning turtle'</span>),            spawn_turtle        ]
+    )
+),
+
+RegisterEventHandler(
+    OnProcessIO(
+        target_action=spawn_turtle,
+        on_stdout=<span class="hljs-keyword">lambda</span> event: LogInfo(
+            msg=<span class="hljs-string">'Spawn request says "{}"'</span>.<span class="hljs-built_in">format</span>(
+                event.text.decode().strip())
+        )
+    )
+),
+
+RegisterEventHandler(
+    OnExecutionComplete(
+        target_action=spawn_turtle,
+        on_completion=[
+            LogInfo(msg=<span class="hljs-string">'Spawn finished'</span>),
+            change_background_r,
+            TimerAction(
+                period=<span class="hljs-number">2.0</span>,
+                actions=[change_background_r_conditioned],
+            )
+        ]
+    )
+),
+
+RegisterEventHandler(
+    OnProcessExit(
+        target_action=turtlesim_node,
+        on_exit=[
+            LogInfo(msg=(EnvironmentVariable(name=<span class="hljs-string">'USER'</span>),
+                        <span class="hljs-string">' closed the turtlesim window'</span>)),
+            EmitEvent(event=Shutdown(reason=<span class="hljs-string">'Window closed'</span>))
+        ]
+    )
+),
+
+RegisterEventHandler(
+    OnShutdown(
+        on_shutdown=[LogInfo(
+            msg=[<span class="hljs-string">'Launch was asked to shutdown: '</span>,
+                 LocalSubstitution(<span class="hljs-string">'event.reason'</span>)]
+        )]
+    )
+),</code></pre></div>
+
+<p>这些代码段创建了一系列事件处理程序，用于在节点和执行过程的不同阶段触发特定的操作。例如，<code>OnProcessStart</code> 处理程序在节点开始时触发，<code>OnProcessIO</code> 处理程序在执行过程的标准输出时触发，<code>OnExecutionComplete</code> 处理程序在执行过程完成时触发，<code>OnProcessExit</code> 处理程序在节点退出时触发，<code>OnShutdown</code> 处理程序在系统关闭时触发。</p>
+</li>
+<li><p>返回 Launch 描述对象：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">return</span> LaunchDescription([
+    turtlesim_ns_launch_arg,
+    use_provided_red_launch_arg,
+    new_background_r_launch_arg,
+    turtlesim_node,
+    RegisterEventHandler(...),
+    RegisterEventHandler(...),
+    RegisterEventHandler(...),
+    RegisterEventHandler(...),
+    RegisterEventHandler(...)
+])</code></pre></div>
+
+<p>最后，将启动参数、节点对象和事件处理程序对象添加到 <code>LaunchDescription</code> 中，并返回该对象作为 Launch 文件的描述。这个描述将在运行 Launch 文件时使用，以配置和启动 ROS 2 系统中的节点和执行过程。</p>
+</li>
+</ol>
+<h3 id="管理大型项目"><a href="#管理大型项目" class="headerlink" title="管理大型项目"></a>管理大型项目</h3><p><a target="_blank" rel="noopener" href="https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Using-ROS2-Launch-For-Large-Projects.html">Managing large projects — ROS 2 Documentation: Foxy documentation</a></p>
+<p>机器人上的大型应用程序通常涉及<code>几个互连的节点</code>，每个节点都可以有<code>许多参数</code>。在海龟模拟器中模拟多只海龟可以作为一个很好的例子。乌龟模拟由多个乌龟节点、世界配置、TF广播器和侦听器节点组成。在所有节点之间，存在大量影响这些节点的行为和外观的ROS参数。ROS 2启动文件允许我们在一个地方启动所有节点并设置相应的参数。在教程结束时，您将在launch_tutorial包中构建launch_turtlesim.lonch.py启动文件。这个启动文件将带来负责模拟两个模拟的不同节点，启动TF广播和侦听器，加载参数，并启动RViz配置。在本教程中，我们将介绍这个启动文件以及所使用的所有相关功能。</p>
+<img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230524152514908.png" srcset="/img/loading.gif" lazyload alt="image-20230524152514908" style="zoom:67%;">
+
+<p>cmake添加</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">install</span>(DIRECTORY launch/
+    DESTINATION share/<span class="hljs-variable">${PROJECT_NAME}</span>/launch
+)
+
+<span class="hljs-keyword">install</span>(DIRECTORY config/
+    DESTINATION share/<span class="hljs-variable">${PROJECT_NAME}</span>/config
+)</code></pre></div>
+
+<p>turtlesim.yaml</p>
+<div class="code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">/**:</span> <span class="hljs-string">//所有空间</span>
+   <span class="hljs-attr">ros__parameters:</span>
+      <span class="hljs-attr">background_b:</span> <span class="hljs-number">255</span>
+      <span class="hljs-attr">background_g:</span> <span class="hljs-number">86</span>
+      <span class="hljs-attr">background_r:</span> <span class="hljs-number">150</span></code></pre></div>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros_launch/blob/main/launch_tutorial/src/launch/launch_turtlesim.launch.py">launch_turtlesim.launch.py</a></p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os
+
+<span class="hljs-keyword">from</span> ament_index_python.packages <span class="hljs-keyword">import</span> get_package_share_directory
+
+<span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> IncludeLaunchDescription
+<span class="hljs-keyword">from</span> launch.launch_description_sources <span class="hljs-keyword">import</span> PythonLaunchDescriptionSource
+
+<span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> GroupAction
+<span class="hljs-keyword">from</span> launch_ros.actions <span class="hljs-keyword">import</span> PushRosNamespace
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_launch_description</span>():</span>
+   turtlesim_world_1 = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/turtlesim_world_1.launch.py'</span>])
+      )
+   <span class="hljs-comment"># turtlesim_world_2 = IncludeLaunchDescription(</span>
+   <span class="hljs-comment">#    PythonLaunchDescriptionSource([os.path.join(</span>
+   <span class="hljs-comment">#       get_package_share_directory('launch_tutorial'), 'launch'),</span>
+   <span class="hljs-comment">#       '/turtlesim_world_2.launch.py'])</span>
+   <span class="hljs-comment">#    )</span>
+   
+   broadcaster_listener_nodes = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/broadcaster_listener.launch.py'</span>]),
+      launch_arguments={<span class="hljs-string">'target_frame'</span>: <span class="hljs-string">'carrot1'</span>}.items(),
+      )
+   mimic_node = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/mimic.launch.py'</span>])
+      )
+   fixed_frame_node = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/fixed_broadcaster.launch.py'</span>])
+      )
+   rviz_node = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/turtlesim_rviz.launch.py'</span>])
+      )
+
+   <span class="hljs-comment">#add</span>
+   turtlesim_world_2 = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory(<span class="hljs-string">'launch_tutorial'</span>), <span class="hljs-string">'launch'</span>),
+         <span class="hljs-string">'/turtlesim_world_2.launch.py'</span>])
+      )
+   turtlesim_world_2_with_namespace = GroupAction(
+     actions=[
+         PushRosNamespace(<span class="hljs-string">'turtlesim2'</span>),
+         turtlesim_world_2,
+      ]
+   )
+
+   <span class="hljs-keyword">return</span> LaunchDescription([
+      turtlesim_world_1,
+      turtlesim_world_2_with_namespace,
+      broadcaster_listener_nodes,
+      mimic_node,
+      fixed_frame_node,
+      rviz_node
+   ])</code></pre></div>
+
+
+
+<p>其他见：<a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros_launch/tree/main/launch_tutorial/src">ros_launch/launch_tutorial/src at main · qianxunslimg/ros_launch (github.com)</a></p>
+<h2 id="TF2：坐标系变换"><a href="#TF2：坐标系变换" class="headerlink" title="TF2：坐标系变换"></a>TF2：坐标系变换</h2><h3 id="元问题"><a href="#元问题" class="headerlink" title="元问题"></a>元问题</h3><ol>
+<li>TF2的基本概念：了解TF2是什么，它在ROS 2中的作用是什么，以及它的核心概念和术语是什么。</li>
+<li>TF2的数据结构：了解TF2中使用的数据结构，例如Transform、TransformStamped等，以及它们的含义和用途。</li>
+<li>TF2的坐标系：了解TF2中坐标系的概念，如父坐标系和子坐标系的关系，如何表示坐标系之间的变换关系等。</li>
+<li>TF2的变换查询：了解如何使用TF2进行变换查询，如如何查询两个坐标系之间的变换关系，如何查询特定时刻的变换等。</li>
+<li>TF2的变换广播：了解如何使用TF2进行变换广播，如如何发布静态变换、动态变换等。</li>
+<li>TF2的使用案例：了解TF2在实际ROS 2应用中的使用场景和案例，如机器人导航中的坐标系变换、传感器数据融合等。</li>
+<li>TF2和其他ROS 2功能的结合：了解TF2如何与其他ROS 2功能进行结合，例如如何与机器人建模、导航、感知等功能进行集成。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Kalenee/article/details/107593033">ROS学习——tf2_tf2_ros::messagefilter_white_Learner的博客-CSDN博客</a></p>
+<h3 id="TF2的基本概念：了解TF2是什么，它在ROS-2中的作用是什么，以及它的核心概念和术语是什么。"><a href="#TF2的基本概念：了解TF2是什么，它在ROS-2中的作用是什么，以及它的核心概念和术语是什么。" class="headerlink" title="TF2的基本概念：了解TF2是什么，它在ROS 2中的作用是什么，以及它的核心概念和术语是什么。"></a>TF2的基本概念：了解TF2是什么，它在ROS 2中的作用是什么，以及它的核心概念和术语是什么。</h3><p>TF2（Transform Library 2）是ROS 2中用于处理坐标系变换的库。它的主要作用是提供一个灵活而强大的工具集，用于在机器人系统中管理和应用坐标系之间的变换关系。</p>
+<p>TF2的核心概念和术语包括：</p>
+<ol>
+<li>坐标系（Frame）：坐标系是三维空间中的一个参考框架，用于表示位置和方向。在TF2中，每个坐标系都有一个唯一的名称。</li>
+<li>变换（Transform）：变换指的是从一个坐标系到另一个坐标系的映射关系，包括平移和旋转。TF2使用Transform数据结构来表示变换。</li>
+<li>变换树（Transform Tree）：变换树是由多个坐标系和它们之间的变换组成的层次结构。在TF2中，变换树用于描述机器人系统中各个坐标系之间的关系。</li>
+<li>坐标系变换查询（Transform Lookup）：坐标系变换查询是指根据变换树中的关系，查询两个坐标系之间的变换关系。TF2提供了函数和工具来进行变换查询，以便获取坐标系之间的变换。</li>
+<li>变换广播（Transform Broadcasting）：变换广播是指将坐标系的变换信息发布出去，使其他节点可以订阅并获取变换信息。TF2提供了变换广播器（Transform Broadcaster）来实现这一功能。</li>
+</ol>
+<p>TF2的设计目标是提供一个灵活且易于使用的库，用于在机器人系统中管理坐标系的变换关系。它可以帮助实现机器人导航、感知、运动控制等功能，确保各个组件之间的坐标系一致性，并提供方便的接口进行坐标系变换查询和广播。</p>
+<h3 id="变换广播是面向全局的吗-一个变换广播所有的节点都可以订阅吗-他是一个主题吗-主题的名字是什么-提供简单的示例"><a href="#变换广播是面向全局的吗-一个变换广播所有的节点都可以订阅吗-他是一个主题吗-主题的名字是什么-提供简单的示例" class="headerlink" title="变换广播是面向全局的吗 一个变换广播所有的节点都可以订阅吗 他是一个主题吗 主题的名字是什么 提供简单的示例"></a>变换广播是面向全局的吗 一个变换广播所有的节点都可以订阅吗 他是一个主题吗 主题的名字是什么 提供简单的示例</h3><p>变换广播是面向全局的，它允许所有节点在ROS 2系统中订阅和接收变换信息。变换广播器是一个独立的节点，它将变换信息发布到TF2系统中，其他节点可以通过订阅TF2系统中的变换信息来获取坐标系之间的变换关系。</p>
+<p>在TF2中，变换广播器使用<code>tf2_ros::TransformBroadcaster</code>类来实现。它可以在ROS 2中创建一个发布者，将变换信息发布到<code>/tf</code>和<code>/tf_static</code>两个主题。</p>
+<ul>
+<li><code>/tf</code>主题是用于发布动态的坐标系变换信息，其中包含了时间戳信息，表示变换的实时性。其他节点可以通过订阅<code>/tf</code>主题来获取实时的坐标系变换信息。</li>
+<li><code>/tf_static</code>主题是用于发布静态的坐标系变换信息，其中不包含时间戳信息。这些静态的变换信息在整个运行过程中保持不变。其他节点可以通过订阅<code>/tf_static</code>主题来获取静态的坐标系变换信息。</li>
+</ul>
+<p>下面是一个简单的示例，演示了如何使用TF2广播器发布一个静态的坐标系变换：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"geometry_msgs/msg/transform_stamped.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tf2_ros/static_transform_broadcaster.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  <span class="hljs-keyword">auto</span> node = std::make_shared&lt;rclcpp::Node&gt;(<span class="hljs-string">"transform_broadcaster"</span>);
+
+  <span class="hljs-function">tf2_ros::StaticTransformBroadcaster <span class="hljs-title">broadcaster</span><span class="hljs-params">(node)</span></span>;
+
+  geometry_msgs::msg::TransformStamped transformStamped;
+  transformStamped.header.frame_id = <span class="hljs-string">"parent_frame"</span>;
+  transformStamped.child_frame_id = <span class="hljs-string">"child_frame"</span>;
+  transformStamped.transform.translation.x = <span class="hljs-number">1.0</span>;
+  transformStamped.transform.translation.y = <span class="hljs-number">0.0</span>;
+  transformStamped.transform.translation.z = <span class="hljs-number">0.0</span>;
+  transformStamped.transform.rotation.x = <span class="hljs-number">0.0</span>;
+  transformStamped.transform.rotation.y = <span class="hljs-number">0.0</span>;
+  transformStamped.transform.rotation.z = <span class="hljs-number">0.0</span>;
+  transformStamped.transform.rotation.w = <span class="hljs-number">1.0</span>;
+
+  broadcaster.<span class="hljs-built_in">sendTransform</span>(transformStamped);
+
+  rclcpp::<span class="hljs-built_in">spin</span>(node);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>在上述示例中，我们创建了一个静态变换广播器<code>tf2_ros::StaticTransformBroadcaster</code>，然后定义了一个<code>geometry_msgs::msg::TransformStamped</code>类型的变换消息，并设置了相应的变换关系。最后，通过调用广播器的<code>sendTransform()</code>函数来将变换信息发布出去。其他节点可以订阅<code>/tf_static</code>主题来获取这个静态的坐标系变换信息。</p>
+<h3 id="什么是静态坐标系-变换-什么是动态坐标系变换-有什么区别"><a href="#什么是静态坐标系-变换-什么是动态坐标系变换-有什么区别" class="headerlink" title="什么是静态坐标系 变换 什么是动态坐标系变换 有什么区别"></a>什么是静态坐标系 变换 什么是动态坐标系变换 有什么区别</h3><p>在TF2中，静态坐标系变换和动态坐标系变换是两种不同的方式来描述坐标系之间的变换关系。</p>
+<ol>
+<li>静态坐标系变换（Static Transform）：<ul>
+<li>静态坐标系变换是指坐标系之间的关系在运行时保持不变的变换。</li>
+<li>静态坐标系变换通常用于描述固定的坐标系关系，例如两个传感器之间的固定相对位置，或者地图中的固定地标的位置关系。</li>
+<li>静态变换通过发布静态变换信息到<code>/tf_static</code>主题来进行广播，这些变换在整个运行过程中保持不变。</li>
+</ul>
+</li>
+<li>动态坐标系变换（Dynamic Transform）：<ul>
+<li>动态坐标系变换是指坐标系之间的关系在运行时可能会发生改变的变换。</li>
+<li>动态坐标系变换通常用于描述移动的物体或者动态的传感器位置关系，例如机器人的位姿变化。</li>
+<li>动态变换通过发布动态变换信息到<code>/tf</code>主题来进行广播，这些变换包含了时间戳信息，表示变换的实时性。</li>
+</ul>
+</li>
+</ol>
+<p>区别：</p>
+<ul>
+<li>静态坐标系变换是固定不变的，一旦发布了静态变换信息，其关系将保持不变。</li>
+<li>动态坐标系变换是实时的，随着时间的推移，坐标系之间的关系可能会发生变化。</li>
+</ul>
+<p>在TF2中，静态变换通过<code>/tf_static</code>主题进行广播，而动态变换通过<code>/tf</code>主题进行广播。这两种变换方式提供了灵活性和实时性，使得节点可以根据需要订阅相应的主题来获取坐标系变换信息。</p>
+<h3 id="详细讲解一下坐标变换广播信息的组成吧"><a href="#详细讲解一下坐标变换广播信息的组成吧" class="headerlink" title="详细讲解一下坐标变换广播信息的组成吧"></a>详细讲解一下坐标变换广播信息的组成吧</h3><p>坐标变换广播信息通常由以下几个组成部分构成：</p>
+<ol>
+<li>Header（头部信息）：包含了时间戳和坐标系的信息。常见的字段有：<ul>
+<li><code>stamp</code>：时间戳，表示变换信息的时间戳。</li>
+<li><code>frame_id</code>：父坐标系的名称，即变换的起始坐标系。</li>
+<li><code>child_frame_id</code>：子坐标系的名称，即变换的目标坐标系。</li>
+</ul>
+</li>
+<li>Transform（变换信息）：描述了从父坐标系到子坐标系的变换关系。包含了平移和旋转信息。常见的字段有：<ul>
+<li><code>translation</code>：平移信息，包含x、y和z三个分量，表示在父坐标系中子坐标系的平移位置。</li>
+<li><code>rotation</code>：旋转信息，通常使用四元数表示，包含x、y、z和w四个分量，表示在父坐标系中子坐标系的旋转姿态。</li>
+</ul>
+</li>
+</ol>
+<p>综合起来，坐标变换广播信息的结构可以表示为：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">Header:
+  stamp: time
+  frame_id: parent_frame
+  child_frame_id: child_frame
+
+Transform:
+  translation:
+    x: translation_x
+    y: translation_y
+    z: translation_z
+  rotation:
+    x: rotation_x
+    y: rotation_y
+    z: rotation_z
+    w: rotation_w</code></pre></div>
+
+<p>其中，<code>parent_frame</code>表示父坐标系的名称，<code>child_frame</code>表示子坐标系的名称，<code>time</code>表示时间戳，<code>translation_x</code>、<code>translation_y</code>、<code>translation_z</code>表示平移分量，<code>rotation_x</code>、<code>rotation_y</code>、<code>rotation_z</code>、<code>rotation_w</code>表示旋转四元数的分量。</p>
+<p>通过发布这样的坐标变换广播信息，其他节点可以订阅并获取相应的坐标变换关系，从而实现坐标系之间的转换和计算。</p>
+<h3 id="TF2的数据结构：了解TF2中使用的数据结构，例如Transform、TransformStamped等，以及它们的含义和用途。"><a href="#TF2的数据结构：了解TF2中使用的数据结构，例如Transform、TransformStamped等，以及它们的含义和用途。" class="headerlink" title="TF2的数据结构：了解TF2中使用的数据结构，例如Transform、TransformStamped等，以及它们的含义和用途。"></a>TF2的数据结构：了解TF2中使用的数据结构，例如Transform、TransformStamped等，以及它们的含义和用途。</h3><ol>
+<li>Transform（变换）：表示从一个坐标系到另一个坐标系的变换关系。它包含了平移和旋转信息。<ul>
+<li>平移信息通过<code>Vector3</code>数据结构表示，包含了x、y和z三个分量。</li>
+<li>旋转信息通常使用四元数（Quaternion）表示，包含了x、y、z和w四个分量。</li>
+</ul>
+</li>
+<li>TransformStamped（时间戳的变换）：是对Transform的扩展，除了包含变换信息外，还包含了时间戳和坐标系的信息。<ul>
+<li>时间戳表示变换信息的时间。</li>
+<li>坐标系信息包括父坐标系的名称和子坐标系的名称。</li>
+</ul>
+</li>
+<li>Quaternion（四元数）：一种表示旋转的数据结构，用于描述三维空间中的旋转姿态。它包含了x、y、z和w四个分量，可以用于旋转变换的计算。</li>
+<li>Vector3（三维向量）：表示三维空间中的向量，用于表示平移的分量。它包含了x、y和z三个分量。</li>
+</ol>
+<p>这些数据结构在TF2中用于表示坐标变换信息，并在广播和接收坐标变换时使用。TransformStamped结构通常用于广播坐标变换信息，而Transform结构用于执行具体的坐标变换计算。Quaternion和Vector3则用于描述旋转和平移的分量。</p>
+<p>通过使用这些数据结构，TF2提供了方便的接口和功能，使得在ROS 2中进行坐标变换的处理变得更加简单和灵活。</p>
+<h3 id="TF2的坐标系：了解TF2中坐标系的概念，如父坐标系和子坐标系的关系，如何表示坐标系之间的变换关系等。"><a href="#TF2的坐标系：了解TF2中坐标系的概念，如父坐标系和子坐标系的关系，如何表示坐标系之间的变换关系等。" class="headerlink" title="TF2的坐标系：了解TF2中坐标系的概念，如父坐标系和子坐标系的关系，如何表示坐标系之间的变换关系等。"></a>TF2的坐标系：了解TF2中坐标系的概念，如父坐标系和子坐标系的关系，如何表示坐标系之间的变换关系等。</h3><p>在TF2中，坐标系是一种表示物体位置和姿态的概念，用于描述物体在空间中的位置和方向。TF2使用父坐标系和子坐标系的概念来表示坐标系之间的关系。</p>
+<ul>
+<li>父坐标系（Parent Frame）：父坐标系是一个相对于其他坐标系而言的参考坐标系，它为子坐标系提供了位置和方向的参考点。父坐标系通常被认为是固定的或静态的，其他坐标系相对于父坐标系进行变换。</li>
+<li>子坐标系（Child Frame）：子坐标系是相对于父坐标系而言的，它的位置和方向是相对于父坐标系的。子坐标系可以通过平移和旋转相对于父坐标系进行变换。</li>
+</ul>
+<p>TF2使用变换关系来表示父坐标系和子坐标系之间的关系。变换关系包括平移和旋转信息，表示子坐标系相对于父坐标系的位置和方向。变换关系通过Transform数据结构来表示，其中包含了平移信息（Vector3）和旋转信息（Quaternion）。</p>
+<p>TF2中的广播和接收机制允许节点发布和接收坐标变换信息，从而建立坐标系之间的关系。通过广播变换关系，其他节点可以订阅并获得坐标系之间的变换信息。这样，节点可以根据接收到的变换信息，将一个坐标系中的数据转换到另一个坐标系中，实现坐标变换的功能。</p>
+<p>总结起来，TF2通过父坐标系和子坐标系的关系以及变换关系来描述坐标系之间的关系。这种机制使得在ROS 2中进行坐标变换的处理变得更加简单和灵活。</p>
+<h3 id="TF2的变换查询：了解如何使用TF2进行变换查询，如如何查询两个坐标系之间的变换关系，如何查询特定时刻的变换等。"><a href="#TF2的变换查询：了解如何使用TF2进行变换查询，如如何查询两个坐标系之间的变换关系，如何查询特定时刻的变换等。" class="headerlink" title="TF2的变换查询：了解如何使用TF2进行变换查询，如如何查询两个坐标系之间的变换关系，如何查询特定时刻的变换等。"></a>TF2的变换查询：了解如何使用TF2进行变换查询，如如何查询两个坐标系之间的变换关系，如何查询特定时刻的变换等。</h3><p>在TF2中，可以使用tf2_ros库中提供的工具函数和类来进行变换查询。</p>
+<ol>
+<li><p>查询两个坐标系之间的变换关系： 使用tf2_ros::Buffer类中的<code>lookupTransform()</code>函数可以查询两个坐标系之间的变换关系。该函数需要指定目标坐标系和源坐标系的名称，以及查询的时间点。它会返回一个geometry_msgs::TransformStamped消息，其中包含了两个坐标系之间的变换关系。</p>
+</li>
+<li><p>查询特定时刻的变换： 使用tf2_ros::Buffer类中的<code>lookupTransform()</code>函数时，可以通过设置时间参数来指定查询的时间点。例如，可以使用当前时间点<code>ros::Time::now()</code>作为查询时间，也可以使用特定的时间戳。</p>
+<p>另外，可以使用<code>tf2_ros::Buffer</code>类中的<code>setTransform()</code>函数来手动设置特定时间点的变换关系。这样，之后的查询就可以获取到这个特定时间点的变换信息。</p>
+</li>
+</ol>
+<p>TF2还提供了一些其他的查询函数和工具，例如计算两个坐标系之间的偏移量、获取坐标系的关系树等。你可以根据具体的需求，使用TF2提供的函数和类进行变换查询操作。</p>
+<p>需要注意的是，为了进行变换查询，需要创建一个tf2_ros::Buffer对象，并且在查询之前确保已经接收到了所需的变换信息。可以通过订阅变换广播的消息，将变换信息缓存到tf2_ros::Buffer中，以便后续的查询操作。</p>
+<p>总结起来，TF2提供了丰富的工具和函数用于进行变换查询，包括查询两个坐标系之间的变换关系、查询特定时刻的变换等。这些查询操作可以帮助你在ROS 2中进行坐标变换的处理和计算。</p>
+<p>当使用TF2进行变换查询时，需要创建一个tf2_ros::Buffer对象，并且确保已经接收到了所需的变换信息。下面是使用TF2进行变换查询的示例代码：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;tf2/transform_datatypes.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;tf2_ros/transform_listener.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+  <span class="hljs-comment">// 初始化ROS节点</span>
+  ros::<span class="hljs-built_in">init</span>(argc, argv, <span class="hljs-string">"transform_listener"</span>);
+  ros::NodeHandle node;
+
+  <span class="hljs-comment">// 创建tf2_ros::Buffer对象和tf2_ros::TransformListener对象</span>
+  tf2_ros::Buffer tfBuffer;
+  <span class="hljs-function">tf2_ros::TransformListener <span class="hljs-title">tfListener</span><span class="hljs-params">(tfBuffer)</span></span>;
+
+  <span class="hljs-comment">// 等待变换信息可用</span>
+  ros::<span class="hljs-built_in">Duration</span>(<span class="hljs-number">1.0</span>).<span class="hljs-built_in">sleep</span>();
+
+  <span class="hljs-comment">// 查询两个坐标系之间的变换关系</span>
+  std::string targetFrame = <span class="hljs-string">"target_frame"</span>;
+  std::string sourceFrame = <span class="hljs-string">"source_frame"</span>;
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// 查询source_frame到target_frame的变换关系</span>
+    geometry_msgs::TransformStamped transformStamped = tfBuffer.<span class="hljs-built_in">lookupTransform</span>(
+        targetFrame, sourceFrame, ros::<span class="hljs-built_in">Time</span>(<span class="hljs-number">0</span>), ros::<span class="hljs-built_in">Duration</span>(<span class="hljs-number">1.0</span>));
+
+    <span class="hljs-comment">// 打印变换关系</span>
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Transform from %s to %s:"</span>, sourceFrame.<span class="hljs-built_in">c_str</span>(), targetFrame.<span class="hljs-built_in">c_str</span>());
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Translation: [%f, %f, %f]"</span>, transformStamped.transform.translation.x,
+             transformStamped.transform.translation.y, transformStamped.transform.translation.z);
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Rotation: [%f, %f, %f, %f]"</span>, transformStamped.transform.rotation.x,
+             transformStamped.transform.rotation.y, transformStamped.transform.rotation.z,
+             transformStamped.transform.rotation.w);
+  } <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (tf2::TransformException&amp; ex) {
+    <span class="hljs-built_in">ROS_WARN</span>(<span class="hljs-string">"Failed to lookup transform: %s"</span>, ex.<span class="hljs-built_in">what</span>());
+  }
+
+  <span class="hljs-comment">// 查询特定时刻的变换</span>
+  std::string frame = <span class="hljs-string">"my_frame"</span>;
+  ros::Time queryTime = ros::<span class="hljs-built_in">Time</span>(<span class="hljs-number">1634100000</span>);  <span class="hljs-comment">// 假设查询时间为1634100000</span>
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// 查询frame在特定时刻的变换关系</span>
+    geometry_msgs::TransformStamped transformStamped = tfBuffer.<span class="hljs-built_in">lookupTransform</span>(
+        <span class="hljs-string">"world"</span>, frame, queryTime, ros::<span class="hljs-built_in">Duration</span>(<span class="hljs-number">1.0</span>));
+
+    <span class="hljs-comment">// 打印变换关系</span>
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Transform of frame %s at time %f:"</span>, frame.<span class="hljs-built_in">c_str</span>(), queryTime.<span class="hljs-built_in">toSec</span>());
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Translation: [%f, %f, %f]"</span>, transformStamped.transform.translation.x,
+             transformStamped.transform.translation.y, transformStamped.transform.translation.z);
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"Rotation: [%f, %f, %f, %f]"</span>, transformStamped.transform.rotation.x,
+             transformStamped.transform.rotation.y, transformStamped.transform.rotation.z,
+             transformStamped.transform.rotation.w);
+  } <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (tf2::TransformException&amp; ex) {
+    <span class="hljs-built_in">ROS_WARN</span>(<span class="hljs-string">"Failed to lookup transform: %s"</span>, ex.<span class="hljs-built_in">what</span>());
+  }
+
+  ros::<span class="hljs-built_in">spin</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>在上述示例中，首先创建了tf2_ros::Buffer对象和tf2_ros::TransformListener对象。然后，使用tfBuffer对象的lookupTransform()函数进行变换查询。通过指定目标坐标系和源坐标系的名称，以及查询的时间点，可以获取到两个坐标系之间的变换关系。获取到的变换关系存储在geometry_msgs::TransformStamped消息中，可以从中提取出平移和旋转信息。</p>
+<p>在第一个查询中，查询了source_frame到target_frame的变换关系，并将结果打印出来。在第二个查询中，查询了frame在特定时刻queryTime的变换关系，并将结果打印出来。</p>
+<p>需要注意的是，在实际使用TF2进行变换查询时，应该进行错误处理，以处理查询失败的情况。</p>
+<p>这个示例演示了如何使用TF2进行坐标系变换的查询操作，包括查询两个坐标系之间的变换关系和查询特定时刻的变换。根据具体的需求，你可以根据示例代码进行修改和扩展。</p>
+<h3 id="TF2的变换广播：了解如何使用TF2进行变换广播，如如何发布静态变换、动态变换等。"><a href="#TF2的变换广播：了解如何使用TF2进行变换广播，如如何发布静态变换、动态变换等。" class="headerlink" title="TF2的变换广播：了解如何使用TF2进行变换广播，如如何发布静态变换、动态变换等。"></a>TF2的变换广播：了解如何使用TF2进行变换广播，如如何发布静态变换、动态变换等。</h3><p>使用TF2进行变换广播需要使用tf2_ros::TransformBroadcaster类。下面是使用TF2进行变换广播的示例代码：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;tf2/LinearMath/Quaternion.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;tf2_ros/transform_broadcaster.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
+  <span class="hljs-comment">// 初始化ROS节点</span>
+  ros::<span class="hljs-built_in">init</span>(argc, argv, <span class="hljs-string">"transform_broadcaster"</span>);
+  ros::NodeHandle node;
+
+  <span class="hljs-comment">// 创建tf2_ros::TransformBroadcaster对象</span>
+  tf2_ros::TransformBroadcaster broadcaster;
+
+  <span class="hljs-comment">// 发布静态变换</span>
+  geometry_msgs::TransformStamped staticTransformStamped;
+  staticTransformStamped.header.stamp = ros::Time::<span class="hljs-built_in">now</span>();
+  staticTransformStamped.header.frame_id = <span class="hljs-string">"parent_frame"</span>;
+  staticTransformStamped.child_frame_id = <span class="hljs-string">"child_frame"</span>;
+
+  staticTransformStamped.transform.translation.x = <span class="hljs-number">1.0</span>;
+  staticTransformStamped.transform.translation.y = <span class="hljs-number">0.0</span>;
+  staticTransformStamped.transform.translation.z = <span class="hljs-number">0.0</span>;
+
+  tf2::Quaternion staticQuaternion;
+  staticQuaternion.<span class="hljs-built_in">setRPY</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1.5708</span>);  <span class="hljs-comment">// 旋转90度</span>
+  staticTransformStamped.transform.rotation.x = staticQuaternion.<span class="hljs-built_in">x</span>();
+  staticTransformStamped.transform.rotation.y = staticQuaternion.<span class="hljs-built_in">y</span>();
+  staticTransformStamped.transform.rotation.z = staticQuaternion.<span class="hljs-built_in">z</span>();
+  staticTransformStamped.transform.rotation.w = staticQuaternion.<span class="hljs-built_in">w</span>();
+
+  broadcaster.<span class="hljs-built_in">sendTransform</span>(staticTransformStamped);
+
+  <span class="hljs-comment">// 发布动态变换</span>
+  <span class="hljs-function">ros::Rate <span class="hljs-title">rate</span><span class="hljs-params">(<span class="hljs-number">10.0</span>)</span></span>;
+  <span class="hljs-keyword">while</span> (ros::<span class="hljs-built_in">ok</span>()) {
+    geometry_msgs::TransformStamped dynamicTransformStamped;
+    dynamicTransformStamped.header.stamp = ros::Time::<span class="hljs-built_in">now</span>();
+    dynamicTransformStamped.header.frame_id = <span class="hljs-string">"parent_frame"</span>;
+    dynamicTransformStamped.child_frame_id = <span class="hljs-string">"dynamic_child_frame"</span>;
+
+    dynamicTransformStamped.transform.translation.x = <span class="hljs-number">0.0</span>;
+    dynamicTransformStamped.transform.translation.y = <span class="hljs-number">1.0</span>;
+    dynamicTransformStamped.transform.translation.z = <span class="hljs-number">0.0</span>;
+
+    tf2::Quaternion dynamicQuaternion;
+    dynamicQuaternion.<span class="hljs-built_in">setRPY</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.7854</span>);  <span class="hljs-comment">// 旋转45度</span>
+    dynamicTransformStamped.transform.rotation.x = dynamicQuaternion.<span class="hljs-built_in">x</span>();
+    dynamicTransformStamped.transform.rotation.y = dynamicQuaternion.<span class="hljs-built_in">y</span>();
+    dynamicTransformStamped.transform.rotation.z = dynamicQuaternion.<span class="hljs-built_in">z</span>();
+    dynamicTransformStamped.transform.rotation.w = dynamicQuaternion.<span class="hljs-built_in">w</span>();
+
+    broadcaster.<span class="hljs-built_in">sendTransform</span>(dynamicTransformStamped);
+
+    rate.<span class="hljs-built_in">sleep</span>();
+  }
+
+  ros::<span class="hljs-built_in">spin</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>在上述示例中，首先创建了tf2_ros::TransformBroadcaster对象。然后，使用sendTransform()函数分别发布了静态变换和动态变换。</p>
+<p>对于静态变换，创建一个geometry_msgs::TransformStamped消息，并设置其header、parent_frame_id、child_frame_id以及平移和旋转信息。然后使用sendTransform()函数发布静态变换。</p>
+<p>对于动态变换，在一个循环中不断发布变换，创建一个geometry_msgs::TransformStamped消息，并设置其header、parent_frame_id、child_frame_id以及平移和旋转信息。然后使用sendTransform()函数发布动态变换。在示例中，设置了一个10Hz的发布频率。</p>
+<p>需要注意的是，在实际使用TF2进行变换广播时，应根据具体的需求设置变换信息的各个字段，并根据实际情况调整发布的频率。</p>
+<p>这个示例演示了如何使用TF2进行变换广播，包括发布静态变换和动态变换。根据具体的需求，你可以根据示例代码进行修改和扩展。</p>
+<h3 id="旋转设置"><a href="#旋转设置" class="headerlink" title="旋转设置"></a>旋转设置</h3><div class="code-wrapper"><pre><code class="hljs cpp">tf2::Quaternion staticQuaternion;
+staticQuaternion.<span class="hljs-built_in">setRPY</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1.5708</span>);  <span class="hljs-comment">// 旋转90度</span></code></pre></div>
+
+<p>staticQuaternion.setRPY(0, 0, 1.5708);  // 旋转90度</p>
+<p>当使用<code>staticQuaternion.setRPY(0, 0, 1.5708)</code>时，表示在静态变换中对应的旋转分量将进行一个绕Z轴的旋转，旋转角度为1.5708弧度，即90度。</p>
+<p>在TF2中，旋转可以用多种方式表示，包括欧拉角（Euler angles）、旋转矩阵（Rotation matrix）和四元数（Quaternion）。其中，欧拉角使用三个角度分量（roll、pitch、yaw）来表示旋转，而四元数使用四个分量（x、y、z、w）来表示旋转。</p>
+<p>在示例代码中，<code>staticQuaternion.setRPY(0, 0, 1.5708)</code>使用欧拉角形式设置旋转分量，表示对应的静态变换将绕Z轴旋转90度。具体来说，(0, 0, 1.5708)表示绕X轴旋转0度，绕Y轴旋转0度，绕Z轴旋转1.5708弧度（约90度）。</p>
+<p>通过这种设置，我们可以将静态变换中的旋转分量应用于相应的坐标系变换，从而实现旋转效果。</p>
+<p>==如果使用四元数：==</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">tf2::Quaternion staticQuaternion;
+staticQuaternion.<span class="hljs-built_in">setRotation</span>(tf2::<span class="hljs-built_in">Vector3</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1.5708</span>);  <span class="hljs-comment">// 绕Z轴旋转90度</span></code></pre></div>
+
+<p>在这个示例中，<code>staticQuaternion</code>是一个<code>tf2::Quaternion</code>对象，通过调用<code>setRotation()</code>函数设置旋转。函数的第一个参数是旋转轴的向量表示，这里表示绕Z轴旋转。第二个参数是旋转的角度，单位为弧度，这里设置为1.5708弧度（约90度）。</p>
+<p>请注意，使用四元数进行旋转设置更加灵活和精确，因为它可以避免欧拉角的万向节锁问题，并且可以表示任意旋转。</p>
+<h3 id="TF2的使用案例：了解TF2在实际ROS-2应用中的使用场景和案例，如机器人导航中的坐标系变换、传感器数据融合等。"><a href="#TF2的使用案例：了解TF2在实际ROS-2应用中的使用场景和案例，如机器人导航中的坐标系变换、传感器数据融合等。" class="headerlink" title="TF2的使用案例：了解TF2在实际ROS 2应用中的使用场景和案例，如机器人导航中的坐标系变换、传感器数据融合等。"></a>TF2的使用案例：了解TF2在实际ROS 2应用中的使用场景和案例，如机器人导航中的坐标系变换、传感器数据融合等。</h3><p>TF2在ROS 2应用中有广泛的使用场景，特别是在机器人导航和传感器数据融合方面。下面是两个使用TF2的实际案例示例：</p>
+<ol>
+<li>机器人导航中的坐标系变换：</li>
+</ol>
+<p>在机器人导航中，通常涉及多个坐标系之间的变换，例如机器人的基座坐标系、地图坐标系、目标点坐标系等。TF2提供了方便的坐标系变换功能，可以帮助机器人在不同坐标系下进行导航。</p>
+<p>例如，在一个机器人导航系统中，假设有一个机器人基座坐标系<code>base_link</code>和一个目标点坐标系<code>goal</code>，我们需要将目标点坐标系的坐标转换到机器人基座坐标系下，以便机器人能够导航到目标点。使用TF2，我们可以轻松地完成这个坐标系变换操作。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tf2_ros/transform_listener.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tf2_geometry_msgs/tf2_geometry_msgs.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"geometry_msgs/msg/pose_stamped.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RobotNavigationNode</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">RobotNavigationNode</span>() : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"robot_navigation_node"</span>)
+  {
+    <span class="hljs-comment">// 创建一个TF2的监听器</span>
+    tfBuffer_ = std::make_shared&lt;tf2_ros::Buffer&gt;(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_clock</span>());
+    tfListener_ = std::make_shared&lt;tf2_ros::TransformListener&gt;(*tfBuffer_);
+
+    <span class="hljs-comment">// 创建一个定时器，每秒钟进行一次坐标系变换和输出</span>
+    timer_ = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">create_wall_timer</span>(
+        std::chrono::<span class="hljs-built_in">seconds</span>(<span class="hljs-number">1</span>),
+        std::<span class="hljs-built_in">bind</span>(&amp;RobotNavigationNode::performCoordinateTransform, <span class="hljs-keyword">this</span>));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">performCoordinateTransform</span><span class="hljs-params">()</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-comment">// 坐标系变换</span>
+    geometry_msgs::msg::PoseStamped goal_pose; <span class="hljs-comment">// 目标点在目标点坐标系下的位姿</span>
+    geometry_msgs::msg::PoseStamped base_link_pose; <span class="hljs-comment">// 目标点在机器人基座坐标系下的位姿</span>
+
+    <span class="hljs-comment">// 获取当前时间</span>
+    rclcpp::Time now = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_clock</span>()-&gt;<span class="hljs-built_in">now</span>();
+
+    <span class="hljs-comment">// 设置目标点在目标坐标系下的位姿</span>
+    goal_pose.header.frame_id = <span class="hljs-string">"goal"</span>;
+    goal_pose.header.stamp = now;
+    goal_pose.pose.position.x = <span class="hljs-number">2.0</span>;
+    goal_pose.pose.position.y = <span class="hljs-number">3.0</span>;
+    goal_pose.pose.position.z = <span class="hljs-number">0.0</span>;  <span class="hljs-comment">// 在2D平面上，Z轴位置为0</span>
+    goal_pose.pose.orientation.x = <span class="hljs-number">0.0</span>;
+    goal_pose.pose.orientation.y = <span class="hljs-number">0.0</span>;
+    goal_pose.pose.orientation.z = <span class="hljs-number">0.0</span>;
+    goal_pose.pose.orientation.w = <span class="hljs-number">1.0</span>;  <span class="hljs-comment">// 无旋转，四元数的W分量为1</span>
+    
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-comment">// 进行坐标系变换</span>
+      tfBuffer_-&gt;<span class="hljs-built_in">transform</span>(goal_pose, base_link_pose, <span class="hljs-string">"base_link"</span>, tf2::<span class="hljs-built_in">durationFromSec</span>(<span class="hljs-number">1.0</span>));
+    } <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (tf2::TransformException &amp;ex) {
+      <span class="hljs-built_in">RCLCPP_ERROR</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Failed to transform goal pose: %s"</span>, ex.<span class="hljs-built_in">what</span>());
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// 输出目标点在机器人基座坐标系下的位姿</span>
+    <span class="hljs-built_in">RCLCPP_INFO</span>(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_logger</span>(), <span class="hljs-string">"Goal pose in base_link frame: x = %f, y = %f"</span>,
+                base_link_pose.pose.position.x, base_link_pose.pose.position.y);
+  }
+
+  std::shared_ptr&lt;tf2_ros::Buffer&gt; tfBuffer_;
+  std::shared_ptr&lt;tf2_ros::TransformListener&gt; tfListener_;
+  rclcpp::TimerBase::SharedPtr timer_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  <span class="hljs-keyword">auto</span> node = std::make_shared&lt;RobotNavigationNode&gt;();
+  rclcpp::<span class="hljs-built_in">spin</span>(node);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>在上述示例中，我们使用TF2的<code>TransformListener</code>来监听坐标系变换，并通过<code>transform()</code>函数将目标点的位姿从目标点坐标系转换到机器人基座坐标系下。最后，我们输出了目标点在机器人基座坐标系下的位姿。</p>
+<ol start="2">
+<li>传感器数据融合：</li>
+</ol>
+<p>在机器人感知中，常常需要将来自不同传感器的数据进行融合，以获取更准确和完整的环境信息。TF2可以帮助我们进行传感器数据的坐标系变换和数据融合。</p>
+<p>例如，在一个机器人感知系统中，假设有一个激光雷达传感器和一个摄像头传感器，它们分别位于机器人基座坐标系下的不同位置。我们需要将激光雷达和摄像头传感器的数据转换到同一个参考坐标系下进行数据融合。使用TF2，我们可以方便地进行传感器数据的坐标系变换和数据融合。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"rclcpp/rclcpp.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tf2_ros/transform_listener.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"sensor_msgs/msg/laser_scan.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"sensor_msgs/msg/image.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tf2_sensor_msgs/tf2_sensor_msgs.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SensorDataFusionNode</span> :</span> <span class="hljs-keyword">public</span> rclcpp::Node
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">SensorDataFusionNode</span>() : <span class="hljs-built_in">Node</span>(<span class="hljs-string">"sensor_data_fusion_node"</span>)
+  {
+    tfBuffer_ = std::make_shared&lt;tf2_ros::Buffer&gt;(<span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">get_clock</span>());
+    tfListener_ = std::make_shared&lt;tf2_ros::TransformListener&gt;(*tfBuffer_);
+
+    <span class="hljs-comment">// 创建激光雷达数据的订阅者</span>
+    laserScanSubscriber_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;sensor_msgs::msg::LaserScan&gt;(
+        <span class="hljs-string">"/laser_scan"</span>, <span class="hljs-number">10</span>, std::<span class="hljs-built_in">bind</span>(&amp;SensorDataFusionNode::laserScanCallback, <span class="hljs-keyword">this</span>, std::placeholders::_1));
+
+    <span class="hljs-comment">// 创建摄像头图像数据的订阅者</span>
+    imageSubscriber_ = <span class="hljs-keyword">this</span>-&gt;create_subscription&lt;sensor_msgs::msg::Image&gt;(
+        <span class="hljs-string">"/camera_image"</span>, <span class="hljs-number">10</span>, std::<span class="hljs-built_in">bind</span>(&amp;SensorDataFusionNode::imageCallback, <span class="hljs-keyword">this</span>, std::placeholders::_1));
+  }
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">laserScanCallback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> sensor_msgs::msg::LaserScan::SharedPtr msg)</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-comment">// 进行坐标系变换</span>
+    sensor_msgs::msg::LaserScan transformed_scan;
+    tf2::<span class="hljs-built_in">doTransform</span>(*msg, transformed_scan, *tfBuffer_);
+
+    <span class="hljs-comment">// 在这里进行激光雷达数据和其他传感器数据的融合操作</span>
+    <span class="hljs-comment">// ...</span>
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">imageCallback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> sensor_msgs::msg::Image::SharedPtr msg)</span></span>
+<span class="hljs-function">  </span>{
+    <span class="hljs-comment">// 进行坐标系变换</span>
+    sensor_msgs::msg::Image transformed_image;
+    tf2::<span class="hljs-built_in">doTransform</span>(*msg, transformed_image, *tfBuffer_);
+
+    <span class="hljs-comment">// 在这里进行摄像头图像数据和其他传感器数据的融合操作</span>
+    <span class="hljs-comment">// ...</span>
+  }
+
+  std::shared_ptr&lt;tf2_ros::Buffer&gt; tfBuffer_;
+  std::shared_ptr&lt;tf2_ros::TransformListener&gt; tfListener_;
+  rclcpp::Subscription&lt;sensor_msgs::msg::LaserScan&gt;::SharedPtr laserScanSubscriber_;
+  rclcpp::Subscription&lt;sensor_msgs::msg::Image&gt;::SharedPtr imageSubscriber_;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span></span>
+<span class="hljs-function"></span>{
+  rclcpp::<span class="hljs-built_in">init</span>(argc, argv);
+  <span class="hljs-keyword">auto</span> node = std::make_shared&lt;SensorDataFusionNode&gt;();
+  rclcpp::<span class="hljs-built_in">spin</span>(node);
+  rclcpp::<span class="hljs-built_in">shutdown</span>();
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
+
+<p>在上述示例中，我们使用TF2的<code>TransformListener</code>来监听坐标系变换，并使用<code>doTransform()</code>函数将激光雷达数据和摄像头图像数据从各自传感器坐标系转换到同一个参考坐标系下。然后，我们可以在数据回调函数中进行传感器数据的融合操作。</p>
+<p>这些示例展示了TF2在实际ROS 2应用中的使用场景，包括机器人导航中的坐标系变换和传感器数据融合。TF2提供了强大的工具和接口，简化了坐标系变换和数据融合的操作，帮助开发者更轻松地处理复杂的机器人应用场景。</p>
+<h3 id="详细解释下transform和doTransform函数"><a href="#详细解释下transform和doTransform函数" class="headerlink" title="详细解释下transform和doTransform函数"></a>详细解释下transform和doTransform函数</h3><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;geometry_msgs/PointStamped.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;geometry_msgs/Pose.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ros/ros.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;tf2_ros/transform_listener.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">transformPoint</span><span class="hljs-params">(<span class="hljs-keyword">const</span> tf2_ros::Buffer &amp;buffer)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-comment">//设置原本坐标</span>
+  geometry_msgs::PointStamped base_point;
+  base_point.header.frame_id = <span class="hljs-string">"base"</span>;
+  base_point.header.stamp = ros::Time::<span class="hljs-built_in">now</span>();
+  base_point.point.x = <span class="hljs-number">0.0</span>;
+  base_point.point.y = <span class="hljs-number">0.0</span>;
+  base_point.point.z = <span class="hljs-number">0.0</span>;
+
+  <span class="hljs-comment">//坐标转换，显示转换后的坐标</span>
+  <span class="hljs-keyword">try</span>
+  {
+    geometry_msgs::PointStamped world_point;
+    
+    <span class="hljs-comment">// 方式一：坐标变换关系后，再调用doTransform变换</span>
+    <span class="hljs-comment">// geometry_msgs::TransformStamped base_to_world;</span>
+    <span class="hljs-comment">// base_to_world = buffer.lookupTransform("world", "base", past, ros::Duration(1.0));</span>
+    <span class="hljs-comment">// tf2::doTransform(base_point, world_point, base_to_world);</span>
+
+    <span class="hljs-comment">// 方式二：直接变换</span>
+    buffer.<span class="hljs-built_in">transform</span>(base_point, world_point, <span class="hljs-string">"world"</span>);
+
+    <span class="hljs-built_in">ROS_INFO</span>(<span class="hljs-string">"base_point: (%.2f, %.2f. %.2f) -----&gt; world_point: (%.2f, %.2f, "</span>
+             <span class="hljs-string">"%.2f) at time %.2f"</span>,
+             base_point.point.x, base_point.point.y, base_point.point.z, world_point.point.x, world_point.point.y,
+             world_point.point.z, world_point.header.stamp.<span class="hljs-built_in">toSec</span>());
+  }
+  <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (tf2::TransformException &amp;ex)
+  {
+    <span class="hljs-built_in">ROS_ERROR</span>(<span class="hljs-string">"Received an exception trying to transform a point from "</span>
+              <span class="hljs-string">"\"base_point\" to \"world_point\": %s"</span>,
+              ex.<span class="hljs-built_in">what</span>());
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>
+<span class="hljs-function"></span>{
+  ros::<span class="hljs-built_in">init</span>(argc, argv, <span class="hljs-string">"tf_listener"</span>);
+  ros::NodeHandle n;
+
+  <span class="hljs-comment">// 设置接收器</span>
+  tf2_ros::Buffer tfBuffer;
+  <span class="hljs-function">tf2_ros::TransformListener <span class="hljs-title">tfListener</span><span class="hljs-params">(tfBuffer)</span></span>;
+
+  <span class="hljs-comment">// 定时获取坐标变换</span>
+  ros::Timer timer = n.<span class="hljs-built_in">createTimer</span>(ros::<span class="hljs-built_in">Duration</span>(<span class="hljs-number">1.0</span>), boost::<span class="hljs-built_in">bind</span>(&amp;transformPoint, boost::<span class="hljs-built_in">ref</span>(tfBuffer)));
+  ros::<span class="hljs-built_in">spin</span>();
+}
+</code></pre></div>
+
+<p>方式一使用了两步操作来实现坐标变换：</p>
+<ol>
+<li>首先，使用<code>buffer.lookupTransform()</code>函数获取从”world”坐标系到”base”坐标系的变换关系<code>base_to_world</code>。这个变换关系表示了如何将点从”base”坐标系变换到”world”坐标系。</li>
+<li>然后，使用<code>tf2::doTransform()</code>函数将<code>base_point</code>在变换关系<code>base_to_world</code>下进行坐标变换，将结果保存在<code>world_point</code>中。这样就得到了在”world”坐标系下的坐标。</li>
+</ol>
+<p>方式二直接使用了<code>buffer.transform()</code>函数进行坐标变换：</p>
+<ol>
+<li><code>buffer.transform()</code>函数接受三个参数：待变换的点<code>base_point</code>、目标坐标系的消息类型<code>world_point</code>以及目标坐标系的名称”world”。</li>
+<li><code>buffer.transform()</code>函数在内部自动获取从<code>base_point</code>所在的坐标系到”world”坐标系的变换关系，并将<code>base_point</code>在该变换关系下进行坐标变换，将结果保存在<code>world_point</code>中。这样就得到了在”world”坐标系下的坐标。</li>
+</ol>
+<p>总结起来，方式一通过显式地获取变换关系，再使用<code>doTransform()</code>函数进行坐标变换；方式二则是直接使用<code>transform()</code>函数进行坐标变换，函数内部会自动获取变换关系。两种方式最终都实现了将<code>base_point</code>从”base”坐标系转换到”world”坐标系，并输出转换后的坐标<code>world_point</code></p>
 
               
             </div>
@@ -2402,7 +3718,7 @@ rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
   <div class="license-box my-3">
     <div class="license-title">
       <div>ROS2入门</div>
-      <div>https://qianxunslimg.github.io/2023/01/06/ros-xue-xi/</div>
+      <div>https://qianxunslimg.github.io/2023/05/25/ros-xue-xi/</div>
     </div>
     <div class="license-meta">
       
@@ -2414,7 +3730,7 @@ rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月6日</div>
+          <div>2023年5月25日</div>
         </div>
       
       
@@ -2444,18 +3760,12 @@ rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/06/docker-ru-men/" title="docker入门">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">docker入门</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/14/zao-sheng-gan-she-ce-liang-fa-de-li-lun-ji-chu/" title="geo术语">
-                        <span class="hidden-mobile">geo术语</span>
+                      <a href="/2023/05/17/pendulum-xue-xi/" title="pendulum学习">
+                        <span class="hidden-mobile">pendulum学习</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
