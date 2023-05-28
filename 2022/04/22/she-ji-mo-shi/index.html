@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg">
 <meta property="article:published_time" content="2022-04-22T01:46:00.000Z">
-<meta property="article:modified_time" content="2022-08-22T14:42:29.694Z">
+<meta property="article:modified_time" content="2023-05-27T14:34:26.549Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary_large_image">
@@ -89,9 +89,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -318,12 +318,160 @@
 <li><strong>具体产品（ConcreteProduct）</strong>：抽象产品的派生类，包含具体产品特有的实现方法，是简单工厂模式的创建目标。</li>
 </ul>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105125245.png" srcset="/img/loading.gif" lazyload alt="image-20220422105125245"></p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设计模式</span></span><br><span class="line"><span class="comment">//定义产品类型信息</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> {</span> Tank_Type_56, Tank_Type_96, Tank_Type_Num } Tank_Type;</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank56</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank56"</span>) {}</span><br><span class="line">  <span class="comment">// 在派生类的成员函数中使用override时，如果基类中无此函数，或基类中的函数并不是虚函数，编译器会给出相关错误信息。</span></span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank96</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank96"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//工厂类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TankFactory</span> {</span>   <span class="comment">//产品量较大，会使得工厂类变的非常臃肿</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//根据产品信息创建具体的产品类实例，返回一个抽象产品类</span></span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">(Tank_Type type)</span> </span>{</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span> (type) {</span><br><span class="line">    <span class="keyword">case</span> Tank_Type_56:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank56</span>();</span><br><span class="line">    <span class="keyword">case</span> Tank_Type_96:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank96</span>();</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  TankFactory *factory = <span class="keyword">new</span> <span class="built_in">TankFactory</span>();</span><br><span class="line">  Tank *tank56 = factory-&gt;<span class="built_in">createTank</span>(Tank_Type_56);</span><br><span class="line">  tank56-&gt;<span class="built_in">type</span>();    <span class="comment">// output: Tank56</span></span><br><span class="line">  Tank *tank96 = factory-&gt;<span class="built_in">createTank</span>(Tank_Type_96);</span><br><span class="line">  tank96-&gt;<span class="built_in">type</span>();		<span class="comment">// output: Tank96</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank96;</span><br><span class="line">  tank96 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> tank56;</span><br><span class="line">  tank56 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory;</span><br><span class="line">  factory = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">//设计模式</span>
+<span class="hljs-comment">//定义产品类型信息</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> {</span> Tank_Type_56, Tank_Type_96, Tank_Type_Num } Tank_Type;
+
+<span class="hljs-comment">//抽象产品类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//具体的产品类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank56</span> :</span> <span class="hljs-keyword">public</span> Tank {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Tank56</span>() : <span class="hljs-built_in">Tank</span>(), <span class="hljs-built_in">m_strType</span>(<span class="hljs-string">"Tank56"</span>) {}
+  <span class="hljs-comment">// 在派生类的成员函数中使用override时，如果基类中无此函数，或基类中的函数并不是虚函数，编译器会给出相关错误信息。</span>
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strType.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strType;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strType;
+};
+
+<span class="hljs-comment">//具体的产品类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank96</span> :</span> <span class="hljs-keyword">public</span> Tank {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Tank96</span>() : <span class="hljs-built_in">Tank</span>(), <span class="hljs-built_in">m_strType</span>(<span class="hljs-string">"Tank96"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strType.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strType;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strType;
+};
+
+<span class="hljs-comment">//工厂类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TankFactory</span> {</span>   <span class="hljs-comment">//产品量较大，会使得工厂类变的非常臃肿</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">//根据产品信息创建具体的产品类实例，返回一个抽象产品类</span>
+  <span class="hljs-function">Tank *<span class="hljs-title">createTank</span><span class="hljs-params">(Tank_Type type)</span> </span>{
+    <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span> (type) {
+    <span class="hljs-keyword">case</span> Tank_Type_56:
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank56</span>();
+    <span class="hljs-keyword">case</span> Tank_Type_96:
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank96</span>();
+    <span class="hljs-keyword">default</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+    }
+  }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  TankFactory *factory = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TankFactory</span>();
+  Tank *tank56 = factory-&gt;<span class="hljs-built_in">createTank</span>(Tank_Type_56);
+  tank56-&gt;<span class="hljs-built_in">type</span>();    <span class="hljs-comment">// output: Tank56</span>
+  Tank *tank96 = factory-&gt;<span class="hljs-built_in">createTank</span>(Tank_Type_96);
+  tank96-&gt;<span class="hljs-built_in">type</span>();		<span class="hljs-comment">// output: Tank96</span>
+
+  <span class="hljs-keyword">delete</span> tank96;
+  tank96 = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">delete</span> tank56;
+  tank56 = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">delete</span> factory;
+  factory = <span class="hljs-literal">nullptr</span>;
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <h3 id="1-2、工厂方法模式"><a href="#1-2、工厂方法模式" class="headerlink" title="1.2、工厂方法模式"></a>1.2、工厂方法模式</h3><p>定义一个创建对象的接口，其子类去具体现实这个接口以完成具体的创建工作。如果需要增加新的产品类，只需要扩展一个相应的工厂类即可。</p>
 <p>缺点：产品类数据较多时，需要实现大量的工厂类，这无疑增加了代码量</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105539020.png" srcset="/img/loading.gif" lazyload alt="image-20220422105539020"></p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//产品抽象类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank56</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank56"</span>) {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96</span> :</span> <span class="keyword">public</span> Tank {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Tank96</span>() : <span class="built_in">Tank</span>(), <span class="built_in">m_strType</span>(<span class="string">"Tank96"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">type</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strType.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strType;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strType;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象工厂类，提供一个创建接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TankFactory</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//提供创建产品实例的接口，返回抽象产品类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Tank *<span class="title">createTank</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank56Factory</span> :</span> <span class="keyword">public</span> TankFactory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank56</span>(); }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tank96Factory</span> :</span> <span class="keyword">public</span> TankFactory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Tank *<span class="title">createTank</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Tank96</span>(); }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  TankFactory *factory56 = <span class="keyword">new</span> <span class="built_in">Tank56Factory</span>();</span><br><span class="line">  Tank *tank56 = factory56-&gt;<span class="built_in">createTank</span>();</span><br><span class="line">  tank56-&gt;<span class="built_in">type</span>();</span><br><span class="line"></span><br><span class="line">  TankFactory *factory96 = <span class="keyword">new</span> <span class="built_in">Tank96Factory</span>();</span><br><span class="line">  Tank *tank96 = factory96-&gt;<span class="built_in">createTank</span>();</span><br><span class="line">  tank96-&gt;<span class="built_in">type</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank96;</span><br><span class="line">  tank96 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory96;</span><br><span class="line">  factory96 = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> tank56;</span><br><span class="line">  tank56 = <span class="literal">nullptr</span>;</span><br><span class="line">  <span class="keyword">delete</span> factory56;</span><br><span class="line">  factory56 = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-comment">//产品抽象类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//具体的产品类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank56</span> :</span> <span class="hljs-keyword">public</span> Tank {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Tank56</span>() : <span class="hljs-built_in">Tank</span>(), <span class="hljs-built_in">m_strType</span>(<span class="hljs-string">"Tank56"</span>) {}
+
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strType.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strType;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strType;
+};
+
+<span class="hljs-comment">//具体的产品类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank96</span> :</span> <span class="hljs-keyword">public</span> Tank {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Tank96</span>() : <span class="hljs-built_in">Tank</span>(), <span class="hljs-built_in">m_strType</span>(<span class="hljs-string">"Tank96"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">type</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strType.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strType;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strType;
+};
+
+<span class="hljs-comment">//抽象工厂类，提供一个创建接口</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TankFactory</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">//提供创建产品实例的接口，返回抽象产品类</span>
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> Tank *<span class="hljs-title">createTank</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank56Factory</span> :</span> <span class="hljs-keyword">public</span> TankFactory {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">Tank *<span class="hljs-title">createTank</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank56</span>(); }
+};
+
+<span class="hljs-comment">//具体的创建工厂类，使用抽象工厂类提供的接口，去创建具体的产品实例</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tank96Factory</span> :</span> <span class="hljs-keyword">public</span> TankFactory {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">Tank *<span class="hljs-title">createTank</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank96</span>(); }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  TankFactory *factory56 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank56Factory</span>();
+  Tank *tank56 = factory56-&gt;<span class="hljs-built_in">createTank</span>();
+  tank56-&gt;<span class="hljs-built_in">type</span>();
+
+  TankFactory *factory96 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Tank96Factory</span>();
+  Tank *tank96 = factory96-&gt;<span class="hljs-built_in">createTank</span>();
+  tank96-&gt;<span class="hljs-built_in">type</span>();
+
+  <span class="hljs-keyword">delete</span> tank96;
+  tank96 = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">delete</span> factory96;
+  factory96 = <span class="hljs-literal">nullptr</span>;
+
+  <span class="hljs-keyword">delete</span> tank56;
+  tank56 = <span class="hljs-literal">nullptr</span>;
+  <span class="hljs-keyword">delete</span> factory56;
+  factory56 = <span class="hljs-literal">nullptr</span>;
+
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <h3 id="1-3、抽象工厂模式"><a href="#1-3、抽象工厂模式" class="headerlink" title="1.3、抽象工厂模式"></a>1.3、<code>抽象工厂模式</code></h3><p>一个工厂可以提供创建多种相关产品的接口，而无需像工厂方法一样，为每一个产品都提供一个具体工厂。</p>
 <p><u>抽象工厂模式结构与工厂方法模式结构类似，不同之处在于，一个具体工厂可以生产多种<code>同类相关</code>的产品：</u></p>
@@ -336,100 +484,278 @@
 </ul>
 <img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422105924780.png" srcset="/img/loading.gif" lazyload alt="image-20220422105924780" style="zoom:150%;">
 
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//抽象上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Coat</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//黑色上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackCoat</span> :</span> <span class="keyword">public</span> Coat {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">BlackCoat</span>() : <span class="built_in">Coat</span>(), <span class="built_in">m_strColor</span>(<span class="string">"Black Coat"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//白色上衣类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhiteCoat</span> :</span> <span class="keyword">public</span> Coat {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">WhiteCoat</span>() : <span class="built_in">Coat</span>(), <span class="built_in">m_strColor</span>(<span class="string">"White Coat"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pants</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//黑色裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackPants</span> :</span> <span class="keyword">public</span> Pants {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">BlackPants</span>() : <span class="built_in">Pants</span>(), <span class="built_in">m_strColor</span>(<span class="string">"Black Pants"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//白色裤子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhitePants</span> :</span> <span class="keyword">public</span> Pants {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">WhitePants</span>() : <span class="built_in">Pants</span>(), <span class="built_in">m_strColor</span>(<span class="string">"White Pants"</span>) {}</span><br><span class="line">  <span class="function"><span class="keyword">const</span> string &amp;<span class="title">color</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">    cout &lt;&lt; m_strColor.<span class="built_in">data</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> m_strColor;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  string m_strColor;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//抽象工厂类，提供衣服创建接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Factory</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//上衣创建接口，返回抽象上衣类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Coat *<span class="title">createCoat</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//裤子创建接口，返回抽象裤子类</span></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> Pants *<span class="title">createPants</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建白色衣服的工厂类，具体实现创建白色上衣和白色裤子的接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhiteFactory</span> :</span> <span class="keyword">public</span> Factory {</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">Coat *<span class="title">createCoat</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">WhiteCoat</span>(); }</span><br><span class="line">  <span class="function">Pants *<span class="title">createPants</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">WhitePants</span>(); }</span><br><span class="line">};</span><br><span class="line"><span class="comment">//创建黑色衣服的工厂类，具体实现创建黑色上衣和白色裤子的接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlackFactory</span> :</span> <span class="keyword">public</span> Factory {</span><br><span class="line">  <span class="function">Coat *<span class="title">createCoat</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">BlackCoat</span>(); }</span><br><span class="line">  <span class="function">Pants *<span class="title">createPants</span><span class="params">()</span> <span class="keyword">override</span> </span>{ <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">BlackPants</span>(); }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//抽象上衣类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coat</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//黑色上衣类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlackCoat</span> :</span> <span class="hljs-keyword">public</span> Coat {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">BlackCoat</span>() : <span class="hljs-built_in">Coat</span>(), <span class="hljs-built_in">m_strColor</span>(<span class="hljs-string">"Black Coat"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strColor.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strColor;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strColor;
+};
+
+<span class="hljs-comment">//白色上衣类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WhiteCoat</span> :</span> <span class="hljs-keyword">public</span> Coat {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">WhiteCoat</span>() : <span class="hljs-built_in">Coat</span>(), <span class="hljs-built_in">m_strColor</span>(<span class="hljs-string">"White Coat"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strColor.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strColor;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strColor;
+};
+
+<span class="hljs-comment">//抽象裤子类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pants</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//黑色裤子类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlackPants</span> :</span> <span class="hljs-keyword">public</span> Pants {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">BlackPants</span>() : <span class="hljs-built_in">Pants</span>(), <span class="hljs-built_in">m_strColor</span>(<span class="hljs-string">"Black Pants"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strColor.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strColor;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strColor;
+};
+
+<span class="hljs-comment">//白色裤子类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WhitePants</span> :</span> <span class="hljs-keyword">public</span> Pants {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">WhitePants</span>() : <span class="hljs-built_in">Pants</span>(), <span class="hljs-built_in">m_strColor</span>(<span class="hljs-string">"White Pants"</span>) {}
+  <span class="hljs-function"><span class="hljs-keyword">const</span> string &amp;<span class="hljs-title">color</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{
+    cout &lt;&lt; m_strColor.<span class="hljs-built_in">data</span>() &lt;&lt; endl;
+    <span class="hljs-keyword">return</span> m_strColor;
+  }
+
+<span class="hljs-keyword">private</span>:
+  string m_strColor;
+};
+
+<span class="hljs-comment">//抽象工厂类，提供衣服创建接口</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Factory</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">//上衣创建接口，返回抽象上衣类</span>
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> Coat *<span class="hljs-title">createCoat</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+  <span class="hljs-comment">//裤子创建接口，返回抽象裤子类</span>
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> Pants *<span class="hljs-title">createPants</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-comment">//创建白色衣服的工厂类，具体实现创建白色上衣和白色裤子的接口</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WhiteFactory</span> :</span> <span class="hljs-keyword">public</span> Factory {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">Coat *<span class="hljs-title">createCoat</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">WhiteCoat</span>(); }
+  <span class="hljs-function">Pants *<span class="hljs-title">createPants</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">WhitePants</span>(); }
+};
+<span class="hljs-comment">//创建黑色衣服的工厂类，具体实现创建黑色上衣和白色裤子的接口</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlackFactory</span> :</span> <span class="hljs-keyword">public</span> Factory {
+  <span class="hljs-function">Coat *<span class="hljs-title">createCoat</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">BlackCoat</span>(); }
+  <span class="hljs-function">Pants *<span class="hljs-title">createPants</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">BlackPants</span>(); }
+};</code></pre></div>
 
 <h2 id="2-策略模式"><a href="#2-策略模式" class="headerlink" title="2. 策略模式"></a>2. <code>策略</code>模式</h2><p>策略模式是指定义一系列的算法，把它们单独封装起来，并且使它们可以互相替换，使得算法可以独立于使用它的客户端而变化，也是说这些算法所完成的功能类型是一样的，对外接口也是一样的，只是不同的策略为引起环境角色环境角色表现出不同的行为。</p>
 <p>相比于使用大量的if…else，使用策略模式可以降低复杂度，使得代码更容易维护。</p>
 <p>缺点：可能需要定义大量的策略类，并且这些策略类都要提供给客户端。</p>
 <p>[环境角色] 持有一个策略类的引用，最终给客户端调用。</p>
 <p><code>在运行时根据需要透明地更改对象的算法？将算法与对象本身解耦</code></p>
-<h3 id="传统的策略模式利用多态实现"><a href="#传统的策略模式利用多态实现" class="headerlink" title="传统的策略模式利用多态实现"></a>传统的策略模式利用多态实现</h3><h3 id="除了多态-还可以利用std-function闭包实现-略"><a href="#除了多态-还可以利用std-function闭包实现-略" class="headerlink" title="除了多态 还可以利用std::function闭包实现 略"></a>除了多态 <code>还可以利用std::function闭包实现</code> 略</h3><blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="除了多态-还可以利用std-function闭包实现-略"><a href="#除了多态-还可以利用std-function闭包实现-略" class="headerlink" title="除了多态 还可以利用std::function闭包实现 略"></a>除了多态 <code>还可以利用std::function闭包实现</code> 略</h3><blockquote>
 <p>==function闭包指向lamda, lamda捕获this指针==</p>
 </blockquote>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20220422111042179.png" srcset="/img/loading.gif" lazyload alt="image-20220422111042179"></p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TaxStrategy</span> {</span></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">TaxStrategy</span>() {}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNTax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"CNTax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">USTax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"USTax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DETax</span> :</span> <span class="keyword">public</span> TaxStrategy {</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Calculate</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"DETax Calculate\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SalesOrder</span> {</span></span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">  TaxStrategy *strategy;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">/*SalesOrder(StrategyFactory* strategyFactory)</span></span><br><span class="line"><span class="comment">{//使用工厂方法</span></span><br><span class="line"><span class="comment">      this-&gt;strategy = strategyFactory-&gt;NewStrategy();</span></span><br><span class="line"><span class="comment">  }*/</span></span><br><span class="line">  <span class="built_in">SalesOrder</span>(TaxStrategy *strategy) { <span class="keyword">this</span>-&gt;strategy = strategy; }</span><br><span class="line">  ~<span class="built_in">SalesOrder</span>() {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">CalculateTax</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">double</span> val = strategy-&gt;<span class="built_in">Calculate</span>();  <span class="comment">//多态调用</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, _TCHAR *argv[])</span> </span>{</span><br><span class="line">  <span class="comment">// TaxStrategy* strategy = new DETax();</span></span><br><span class="line">  TaxStrategy *strategy = <span class="keyword">new</span> <span class="built_in">CNTax</span>();</span><br><span class="line">  <span class="function">SalesOrder <span class="title">order</span><span class="params">(strategy)</span></span>;</span><br><span class="line">  order.<span class="built_in">CalculateTax</span>();</span><br><span class="line">  <span class="keyword">delete</span> strategy;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaxStrategy</span> {</span>
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">TaxStrategy</span>() {}
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CNTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"CNTax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">USTax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"USTax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DETax</span> :</span> <span class="hljs-keyword">public</span> TaxStrategy {
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Calculate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"DETax Calculate\n"</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SalesOrder</span> {</span>
+ <span class="hljs-keyword">private</span>:
+  TaxStrategy *strategy;
+
+ <span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">/*SalesOrder(StrategyFactory* strategyFactory)</span>
+<span class="hljs-comment">{//使用工厂方法</span>
+<span class="hljs-comment">      this-&gt;strategy = strategyFactory-&gt;NewStrategy();</span>
+<span class="hljs-comment">  }*/</span>
+  <span class="hljs-built_in">SalesOrder</span>(TaxStrategy *strategy) { <span class="hljs-keyword">this</span>-&gt;strategy = strategy; }
+  ~<span class="hljs-built_in">SalesOrder</span>() {}
+
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">CalculateTax</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">//...</span>
+    <span class="hljs-keyword">double</span> val = strategy-&gt;<span class="hljs-built_in">Calculate</span>();  <span class="hljs-comment">//多态调用</span>
+    <span class="hljs-comment">//...</span>
+    <span class="hljs-keyword">return</span> val;
+  }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, _TCHAR *argv[])</span> </span>{
+  <span class="hljs-comment">// TaxStrategy* strategy = new DETax();</span>
+  TaxStrategy *strategy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">CNTax</span>();
+  <span class="hljs-function">SalesOrder <span class="hljs-title">order</span><span class="hljs-params">(strategy)</span></span>;
+  order.<span class="hljs-built_in">CalculateTax</span>();
+  <span class="hljs-keyword">delete</span> strategy;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <h3 id="我项目中用到的策略模式"><a href="#我项目中用到的策略模式" class="headerlink" title="我项目中用到的策略模式"></a>我项目中用到的策略模式</h3><ol>
 <li><p>SubPoolWindow继承QWidget </p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SubSignalPool.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubPoolWindow</span> :</span> <span class="keyword">public</span> QWidget {</span><br><span class="line">  Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">SubPoolWindow</span>(QWidget *parent = <span class="literal">nullptr</span>);</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">SubPoolWindow</span>();</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setSubPool</span><span class="params">(<span class="keyword">const</span> SubSignalPool &amp;subPool)</span></span>;</span><br><span class="line">  <span class="function">SubSignalPool &amp;<span class="title">subPool</span><span class="params">()</span> </span>{ <span class="keyword">return</span> _subPool; }</span><br><span class="line">  <span class="function"><span class="keyword">const</span> SubSignalPool &amp;<span class="title">subPool</span><span class="params">()</span> <span class="keyword">const</span> </span>{ <span class="keyword">return</span> _subPool; }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setSubPoolDataType</span><span class="params">(<span class="keyword">bool</span> b)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">getSubPoolDataType</span><span class="params">()</span> </span>{ <span class="keyword">return</span> _isIntermediateData; }</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setWindowTitle</span><span class="params">(QString title)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">subPoolUpdate</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">  <span class="comment">// virtual void closeEvent(QCloseEvent * e);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  SubSignalPool _subPool;</span><br><span class="line">  <span class="keyword">bool</span> _isIntermediateData; <span class="comment">// 是否为中间数据，中间数据在析构时，要释放内存</span></span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"SubSignalPool.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;QWidget&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubPoolWindow</span> :</span> <span class="hljs-keyword">public</span> QWidget {
+  Q_OBJECT
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">SubPoolWindow</span>(QWidget *parent = <span class="hljs-literal">nullptr</span>);
+  <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">SubPoolWindow</span>();
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSubPool</span><span class="hljs-params">(<span class="hljs-keyword">const</span> SubSignalPool &amp;subPool)</span></span>;
+  <span class="hljs-function">SubSignalPool &amp;<span class="hljs-title">subPool</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> _subPool; }
+  <span class="hljs-function"><span class="hljs-keyword">const</span> SubSignalPool &amp;<span class="hljs-title">subPool</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _subPool; }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setSubPoolDataType</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> b)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">getSubPoolDataType</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> _isIntermediateData; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWindowTitle</span><span class="hljs-params">(QString title)</span></span>;
+
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subPoolUpdate</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-comment">// virtual void closeEvent(QCloseEvent * e);</span>
+
+<span class="hljs-keyword">private</span>:
+  SubSignalPool _subPool;
+  <span class="hljs-keyword">bool</span> _isIntermediateData; <span class="hljs-comment">// 是否为中间数据，中间数据在析构时，要释放内存</span>
+};</code></pre></div>
 </li>
 <li><p>MapWindow GraphWindow TableWindow继承自SubPoolWindow并重写设置信号池等方法</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"SubPoolWindow.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QCustomPlot</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MapWindow</span> :</span> <span class="keyword">public</span> SubPoolWindow {</span><br><span class="line">  Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">MapWindow</span>(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">  ~<span class="built_in">MapWindow</span>() {}</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">setWindowTitle</span><span class="params">(QString title)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">subPoolUpdate</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">myMoveEvent</span><span class="params">(QMouseEvent *e)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  QCustomPlot *_qcustom;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"SubPoolWindow.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QCustomPlot</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MapWindow</span> :</span> <span class="hljs-keyword">public</span> SubPoolWindow {
+  Q_OBJECT
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MapWindow</span>(QWidget *parent = <span class="hljs-number">0</span>);
+  ~<span class="hljs-built_in">MapWindow</span>() {}
+
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setWindowTitle</span><span class="hljs-params">(QString title)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">subPoolUpdate</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myMoveEvent</span><span class="hljs-params">(QMouseEvent *e)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+  QCustomPlot *_qcustom;
+};</code></pre></div>
 </li>
 <li><p>多态调用</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CMainWindow::OnActionMap</span><span class="params">()</span> </span>{</span><br><span class="line">  SubSignalPool subPool = <span class="built_in">getSubPool</span>();</span><br><span class="line">  SubPoolWindow *mapWin = <span class="keyword">new</span> <span class="built_in">MapWindow</span>(<span class="keyword">this</span>);</span><br><span class="line">  mapWin-&gt;<span class="built_in">setSubPool</span>(subPool);</span><br><span class="line">  mapWin-&gt;<span class="built_in">setWindowTitle</span>(subPool.<span class="built_in">name</span>());</span><br><span class="line">  ui.mdiArea-&gt;<span class="built_in">addSubWindow</span>(mapWin);</span><br><span class="line">  mapWin-&gt;<span class="built_in">show</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CMainWindow::OnActionMap</span><span class="hljs-params">()</span> </span>{
+  SubSignalPool subPool = <span class="hljs-built_in">getSubPool</span>();
+  SubPoolWindow *mapWin = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MapWindow</span>(<span class="hljs-keyword">this</span>);
+  mapWin-&gt;<span class="hljs-built_in">setSubPool</span>(subPool);
+  mapWin-&gt;<span class="hljs-built_in">setWindowTitle</span>(subPool.<span class="hljs-built_in">name</span>());
+  ui.mdiArea-&gt;<span class="hljs-built_in">addSubWindow</span>(mapWin);
+  mapWin-&gt;<span class="hljs-built_in">show</span>();
+}</code></pre></div></li>
 </ol>
-<h2 id="3-观察者模式"><a href="#3-观察者模式" class="headerlink" title="3. 观察者模式"></a>3. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/119308881">观察者模式</a></h2><h3 id="观察者模式的核心思想是-1对多"><a href="#观察者模式的核心思想是-1对多" class="headerlink" title="观察者模式的核心思想是 1对多"></a>观察者模式的核心思想是 <strong>1对多</strong></h3><p>以自己为例，我下班的时候会告诉孩子和他妈，我开车要往回走了</p>
-<ul>
-<li>孩子妈收到消息后开始做饭</li>
-<li>孩子收到消息后，就赶紧收起手机，怕挨揍</li>
-</ul>
-<p>传统写法：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸回来了，赶紧去写作业"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DoSomething</span><span class="params">()</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公回来了，去做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Gohome</span><span class="params">()</span></span>{</span><br><span class="line">        wife.<span class="built_in">DoSomething</span>();</span><br><span class="line">        son.<span class="built_in">DoSomething</span>();</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Wife wife;</span><br><span class="line">    Son son;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    me.<span class="built_in">Gohome</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这样写的不足如下：</p>
+<h2 id="3-观察者模式"><a href="#3-观察者模式" class="headerlink" title="3. 观察者模式"></a>3. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/119308881">观察者模式</a></h2><p>观察者模式（Observer Pattern）是一种行为型设计模式，用于建立对象之间的一对多依赖关系，当一个对象的状态发生变化时，其相关的依赖对象都会收到通知并自动更新。</p>
+<p>观察者模式的主要参与角色包括：</p>
 <ol>
-<li>如果关心我的人变多了，比如我又加了我老妈、老爸 ，这时候我们<code>不得不去修改Me的类</code></li>
+<li><strong>主题（Subject）：</strong> 也称为被观察者或可观察对象，它维护了一组观察者对象，并提供了注册、删除和通知观察者的方法。</li>
+<li><strong>观察者（Observer）：</strong> 定义了观察者的接口，当主题状态发生变化时，观察者对象会收到通知，并执行相应的更新操作。</li>
 </ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Gohome</span><span class="params">()</span></span>{</span><br><span class="line">        wife.<span class="built_in">DoSomething</span>();</span><br><span class="line">        son.<span class="built_in">DoSomething</span>();</span><br><span class="line">        mom.<span class="built_in">DoSomething</span>();</span><br><span class="line">        ba.<span class="built_in">DoSomething</span>();</span><br><span class="line">    }</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Wife wife;</span><br><span class="line">    Son son;</span><br><span class="line">    Mother mom;</span><br><span class="line">    Father ba;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>下面以一个简单的天气监测系统为例来说明观察者模式的应用：</p>
+<p>假设我们有一个天气监测系统，包含一个气象站（WeatherStation）和多个显示器（Display）作为观察者。气象站收集实时的天气数据，并在数据发生变化时通知所有的显示器更新显示。</p>
+<p>首先，我们定义一个观察者接口（<code>Observer</code>），其中包含一个更新方法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temperature, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> </span>= <span class="hljs-number">0</span>;
+};</code></pre></div>
 
-<ol start="2">
-<li>人数少的时候，还可以应付，假如关心我的人有1000人，那这时候我们该怎么办</li>
-<li>本身这样写就不科学 大家都是独立的人 不应该相互包含</li>
-</ol>
-<h4 id="1-开始重构，简单观察者模式，面向抽象编程"><a href="#1-开始重构，简单观察者模式，面向抽象编程" class="headerlink" title="1. 开始重构，简单观察者模式，面向抽象编程"></a>1. 开始重构，简单观察者模式，面向抽象编程</h4><ol>
-<li>观察者接口</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">ObserverInterface</span>(){}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>然后，我们创建具体的显示器类，实现观察者接口：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Display</span> :</span> <span class="hljs-keyword">public</span> Observer {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temperature, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-comment">// 更新显示器的内容</span>
+        <span class="hljs-comment">// 根据温度、湿度、气压等数据更新显示内容</span>
+    }
+};</code></pre></div>
 
-<ol start="2">
-<li>被观察者接口</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(ObserverInterface* obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(ObserverInterface* obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">SubjectInterface</span>(){}</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>接下来，我们创建主题类（<code>Subject</code>），它维护了一个观察者列表，并提供注册、删除和通知观察者的方法：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subject</span> {</span>
+<span class="hljs-keyword">private</span>:
+    std::vector&lt;Observer*&gt; observers;
 
-<ol start="3">
-<li>我自己</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(ObserverInterface* obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(obr);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(ObserverInterface* obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">auto</span> pos=std::<span class="built_in">find</span>(observers.<span class="built_in">begin</span>(),observers.<span class="built_in">end</span>(),obr);</span><br><span class="line">        <span class="keyword">if</span>(pos!=observers.<span class="built_in">end</span>()){</span><br><span class="line">            observers.<span class="built_in">erase</span>(pos);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;ObserverInterface*&gt; observers;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">attach</span><span class="hljs-params">(Observer* observer)</span> </span>{
+        observers.<span class="hljs-built_in">push_back</span>(observer);
+    }
 
-<ol start="4">
-<li>孩子妈</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">detach</span><span class="hljs-params">(Observer* observer)</span> </span>{
+        <span class="hljs-comment">// 从观察者列表中删除观察者</span>
+    }
 
-<ol start="5">
-<li>孩子</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">notify</span><span class="hljs-params">(<span class="hljs-keyword">float</span> temperature, <span class="hljs-keyword">float</span> humidity, <span class="hljs-keyword">float</span> pressure)</span> </span>{
+        <span class="hljs-keyword">for</span> (Observer* observer : observers) {
+            observer-&gt;<span class="hljs-built_in">update</span>(temperature, humidity, pressure);
+        }
+    }
+};</code></pre></div>
 
-<ol start="6">
-<li>main函数</li>
-</ol>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    ObserverInterface* wife=<span class="keyword">new</span> Wife;</span><br><span class="line">    ObserverInterface* son=<span class="keyword">new</span> Son;</span><br><span class="line">    me.<span class="built_in">Add</span>(wife);</span><br><span class="line">    me.<span class="built_in">Add</span>(son);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> wife;</span><br><span class="line">    <span class="keyword">delete</span> son;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>最后，我们创建一个天气站对象，并将显示器对象注册为观察者：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">WeatherStation weatherStation;
+Display display1;
+Display display2;
 
-<p>这样的好处是：</p>
-<ul>
-<li>再增加新的观察者，我们就不用修改Me的类了，只需要添加到vector中就可以</li>
-</ul>
-<p>不足是：</p>
-<ul>
-<li><code>需要自己做内存管理</code>去 delete <u><code>感觉也不是什么不足吧</code></u></li>
-</ul>
-<h4 id="2-优化，使用智能指针shared-ptr代替"><a href="#2-优化，使用智能指针shared-ptr代替" class="headerlink" title="2. 优化，使用智能指针shared_ptr代替*"></a>2. 优化，使用智能指针shared_ptr代替*</h4><figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 刘春雷 on 2020/3/28.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//virtual ~ObserverInterface(){}</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> pObserverInterface=std::shared_ptr&lt;ObserverInterface&gt;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//virtual ~SubjectInterface(){}</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(obr);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">auto</span> pos=std::<span class="built_in">find</span>(observers.<span class="built_in">begin</span>(),observers.<span class="built_in">end</span>(),obr);</span><br><span class="line">        <span class="keyword">if</span>(pos!=observers.<span class="built_in">end</span>()){</span><br><span class="line">            observers.<span class="built_in">erase</span>(pos);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;pObserverInterface&gt; observers;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    <span class="keyword">auto</span> wife=std::make_shared&lt;Wife&gt;();</span><br><span class="line">    <span class="keyword">auto</span> son=std::make_shared&lt;Son&gt;();</span><br><span class="line">    me.<span class="built_in">Add</span>(wife);</span><br><span class="line">    me.<span class="built_in">Add</span>(son);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+weatherStation.<span class="hljs-built_in">attach</span>(&amp;display1);
+weatherStation.<span class="hljs-built_in">attach</span>(&amp;display2);</code></pre></div>
 
-<h4 id="3-使用智能指针-unique-ptr"><a href="#3-使用智能指针-unique-ptr" class="headerlink" title="3. 使用智能指针 unique_ptr"></a>3. 使用智能指针 unique_ptr</h4><p>unique_ptr有两个比较注意的地方</p>
-<ul>
-<li>所有权的转移</li>
-<li>基类析构函数要virtual（跟shared_ptr不一样）</li>
-</ul>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Created by 刘春雷 on 2020/3/28.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObserverInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">ObserverInterface</span>(){}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> pObserverInterface=std::unique_ptr&lt;ObserverInterface&gt;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubjectInterface</span>{</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">( pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">SubjectInterface</span>(){}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Me</span>:</span><span class="keyword">public</span> SubjectInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        observers.<span class="built_in">push_back</span>(std::<span class="built_in">move</span>(obr));</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Remove</span><span class="params">(pObserverInterface obr)</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="comment">//TODO</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Notify</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; obs:observers){</span><br><span class="line">            obs-&gt;<span class="built_in">dosomething</span>();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;pObserverInterface&gt; observers;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Wife</span>:</span><span class="keyword">public</span> ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span></span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"老公快回来了，开始做饭"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Wife</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"wife is created"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    ~<span class="built_in">Wife</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"wife is destroyed"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span>:</span><span class="keyword">public</span>  ObserverInterface{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dosomething</span><span class="params">()</span> <span class="keyword">override</span> </span>{</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"爸爸快回来了，不能玩游戏了"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    <span class="built_in">Son</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"son is created"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">    ~<span class="built_in">Son</span>(){</span><br><span class="line">        std::cout&lt;&lt;<span class="string">"son is destroyed"</span>&lt;&lt;std::endl;</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">    Me me;</span><br><span class="line">    pObserverInterface wife=std::make_unique&lt;Wife&gt;();</span><br><span class="line">    pObserverInterface son=std::make_unique&lt;Son&gt;();</span><br><span class="line">    me.<span class="built_in">Add</span>(std::<span class="built_in">move</span>(wife));</span><br><span class="line">    </span><br><span class="line">    me.<span class="built_in">Add</span>(std::<span class="built_in">move</span>(son));</span><br><span class="line">    <span class="comment">//下班了 发消息</span></span><br><span class="line">    me.<span class="built_in">Notify</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>当天气站收集到新的天气数据时，调用通知方法通知所有的观察者进行更新：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">weatherStation.<span class="hljs-built_in">notify</span>(<span class="hljs-number">25.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">1013.0</span>);</code></pre></div>
 
-<p>输出结果：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">wife is created</span><br><span class="line">son is created</span><br><span class="line">老公快回来了，开始做饭</span><br><span class="line">爸爸快回来了，不能玩游戏了</span><br><span class="line">调用son析构函数</span><br><span class="line">调用wife析构函数</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如果把基类析构函数的virtual去掉，输出结果，基类的析构函数没有调用</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">wife is created</span><br><span class="line">son is created</span><br><span class="line">老公快回来了，开始做饭</span><br><span class="line">爸爸快回来了，不能玩游戏了</span><br></pre></td></tr></tbody></table></figure>
-
+<p>这样，所有注册的显示器对象会收到通知，并根据新的天气数据进行更新显示。</p>
+<p>通过观察者模式，天气站和显示器之间实现了解耦，天气站不需要直接了解每个显示器的具体实现细节，只需要通过通知方法进行统一的通知。同时，当需要新增或删除显示器时，只需进行相应的注册或注销操作，而无需修改主题类的代码，符合开闭原则。</p>
 <h2 id="4-单例模式"><a href="#4-单例模式" class="headerlink" title="4. 单例模式"></a>4. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37469260">单例模式</a></h2><h3 id="1-什么是单例模式"><a href="#1-什么是单例模式" class="headerlink" title="1. 什么是单例模式"></a><strong>1. 什么是单例模式</strong></h3><p>单例模式(Singleton Pattern，也称为单件模式)，使用最广泛的设计模式之一。其意图是保证一个类仅有一个实例，并提供一个访问它的全局访问点，该实例被所有程序模块共享。</p>
 <p>定义一个单例类：</p>
 <ol>
@@ -439,7 +765,27 @@
 </ol>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/v2-640718052608464f0cc6a8ac1d8c1886_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
 <h3 id="2-懒汉版（Lazy-Singleton）"><a href="#2-懒汉版（Lazy-Singleton）" class="headerlink" title="2. 懒汉版（Lazy Singleton）"></a><strong>2. 懒汉版（Lazy Singleton）</strong></h3><p>教学版，即懒汉版（Lazy Singleton）：<code>单例实例在第一次被使用时才进行初始化</code>，这叫做延迟初始化。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.0</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton *instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton *<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="literal">NULL</span>)</span><br><span class="line">      instance = <span class="keyword">new</span> <span class="built_in">Singleton</span>();</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// init static member</span></span><br><span class="line">Singleton *Singleton::instance = <span class="literal">NULL</span>;</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.0</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Singleton *instance;
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton *<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">NULL</span>)
+      instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+    <span class="hljs-keyword">return</span> instance;
+  }
+};
+
+<span class="hljs-comment">// init static member</span>
+Singleton *Singleton::instance = <span class="hljs-literal">NULL</span>;</code></pre></div>
 
 <p><strong>问题1：</strong>Lazy Singleton存在<code>内存泄露</code>的问题，有两种解决方法：</p>
 <blockquote>
@@ -450,7 +796,39 @@
 <li>使用<code>静态的嵌套类对象</code></li>
 </ol>
 <p>对于第二种解决方法，代码如下：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton *instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Deletor</span> {</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    ~<span class="built_in">Deletor</span>() {</span><br><span class="line">      <span class="keyword">if</span> (Singleton::instance != <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">delete</span> Singleton::instance;</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line">  <span class="keyword">static</span> Deletor deletor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton *<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (instance == <span class="literal">NULL</span>) {</span><br><span class="line">      instance = <span class="keyword">new</span> <span class="built_in">Singleton</span>();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// init static member</span></span><br><span class="line">Singleton *Singleton::instance = <span class="literal">NULL</span>;</span><br><span class="line">Singleton::Deletor Singleton::deletor; </span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.1</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Singleton *instance;
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Deletor</span> {</span>
+  <span class="hljs-keyword">public</span>:
+    ~<span class="hljs-built_in">Deletor</span>() {
+      <span class="hljs-keyword">if</span> (Singleton::instance != <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">delete</span> Singleton::instance;
+    }
+  };
+  <span class="hljs-keyword">static</span> Deletor deletor;
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton *<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">NULL</span>) {
+      instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+    }
+    <span class="hljs-keyword">return</span> instance;
+  }
+};
+
+<span class="hljs-comment">// init static member</span>
+Singleton *Singleton::instance = <span class="hljs-literal">NULL</span>;
+Singleton::Deletor Singleton::deletor;</code></pre></div>
 
 <p>在程序运行结束时，系统会调用静态成员<code>deletor</code>的析构函数，该析构函数会删除单例的唯一实例。使用这种方法释放单例对象有以下特征：</p>
 <ul>
@@ -463,14 +841,80 @@
 <blockquote>
 <p>单例的初始化是不安全的 </p>
 </blockquote>
+<h4 id="三种解决方法"><a href="#三种解决方法" class="headerlink" title="三种解决方法"></a>三种解决方法</h4><ol>
+<li><p>使用互斥锁（Mutex）：在 <code>getInstance()</code> 方法中使用互斥锁来确保只有一个线程能够创建单例对象。具体做法是在创建单例对象之前加锁，在创建完成后释放锁。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(mutex)</span></span>;  <span class="hljs-comment">// 加锁</span>
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>) {
+        instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+    }
+    <span class="hljs-keyword">return</span> instance;
+}</code></pre></div>
+
+<p>这种方式通过互斥锁确保了在多线程环境下只有一个线程能够创建单例对象，但会引入一定的性能开销。</p>
+</li>
+<li><p>使用双重检查锁定（Double-Checked Locking）：在 <code>getInstance()</code> 方法中使用双重检查锁定来减少锁的使用次数，提高性能。具体做法是先进行一次快速检查，如果单例对象已经被创建，则直接返回，否则再进行加锁和创建对象的操作。</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>) {
+        <span class="hljs-function">std::lock_guard&lt;std::mutex&gt; <span class="hljs-title">lock</span><span class="hljs-params">(mutex)</span></span>;  <span class="hljs-comment">// 加锁</span>
+        <span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>) {
+            instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();
+        }
+    }
+    <span class="hljs-keyword">return</span> instance;
+}</code></pre></div>
+
+<p>双重检查锁定方式在多线程环境下能够保证只有一个线程创建单例对象，并且在单例对象创建完成后无需再加锁，减少了性能开销</p>
+</li>
+<li></li>
+</ol>
 <p>C++11规定了local static在多线程条件下的初始化行为，要求编译器保证了内部静态变量的线程安全性。在C++11标准下，《Effective C++》提出了一种更优雅的单例模式实现，使用函数内的 local static 对象。这样，只有当第一次访问<code>getInstance()</code>方法时才创建实例。这种方法也被称为==Meyers’ Singleton==。C++0x之后该实现是线程安全的，C++0x之前仍需加锁。</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>(){};</span><br><span class="line">  ~<span class="built_in">Singleton</span>(){};</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//这种</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">static</span> Singleton instance;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 或者</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> shared_ptr&lt;Singleton&gt; &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">static</span> shared_ptr&lt;Singleton&gt; <span class="title">instance</span><span class="params">(<span class="keyword">new</span> Singleton)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">  }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// version 1.2</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-built_in">Singleton</span>(){};
+  ~<span class="hljs-built_in">Singleton</span>(){};
+  <span class="hljs-built_in">Singleton</span>(<span class="hljs-keyword">const</span> Singleton &amp;);
+  Singleton &amp;<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Singleton &amp;);
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">//这种</span>
+  <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">static</span> Singleton instance;
+    <span class="hljs-keyword">return</span> instance;
+  }
+  
+  <span class="hljs-comment">// 或者</span>
+  <span class="hljs-function"><span class="hljs-keyword">static</span> shared_ptr&lt;Singleton&gt; &amp;<span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> shared_ptr&lt;Singleton&gt; <span class="hljs-title">instance</span><span class="hljs-params">(<span class="hljs-keyword">new</span> Singleton)</span></span>;
+    <span class="hljs-keyword">return</span> instance;
+  }
+};</code></pre></div>
 
 <blockquote>
 <p>局部静态变量可以保证线程安全</p>
 </blockquote>
 <h3 id="3-饿汉版（Eager-Singleton）"><a href="#3-饿汉版（Eager-Singleton）" class="headerlink" title="3. 饿汉版（Eager Singleton）"></a><strong>3. 饿汉版（Eager Singleton）</strong></h3><p>饿汉版（Eager Singleton）：<code>指单例实例在程序运行时被立即执行初始化</code></p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// version 1.3</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> {</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="keyword">static</span> Singleton instance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="built_in">Singleton</span>();</span><br><span class="line">  ~<span class="built_in">Singleton</span>();</span><br><span class="line">  <span class="built_in">Singleton</span>(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line">  Singleton &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Singleton &amp;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Singleton &amp;<span class="title">getInstance</span><span class="params">()</span> </span>{ <span class="keyword">return</span> instance; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// initialize defaultly</span></span><br><span class="line">Singleton Singleton::instance;</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span> {</span>
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">static</span> Singleton* instance;
+
+    <span class="hljs-comment">// 将构造函数和析构函数声明为私有，禁止通过构造函数创建对象</span>
+    <span class="hljs-built_in">Singleton</span>() {}
+    ~<span class="hljs-built_in">Singleton</span>() {}
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// 获取单例对象的静态方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-comment">// 其他成员函数</span>
+    <span class="hljs-comment">// ...</span>
+};
+
+<span class="hljs-comment">// 在全局作用域内初始化单例对象</span>
+Singleton* Singleton::instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();</code></pre></div>
 
 <p>由于在main函数之前初始化，所以没有线程安全的问题。但是<u>潜在问题在于no-local static对象（函数外的static对象）在不同编译单元中的初始化顺序是未定义的</u>。也即，static Singleton instance;和static Singleton&amp; getInstance()二者的初始化顺序不确定，如果在初始化完成之前调用 getInstance() 方法会返回一个未定义的实例。</p>
 <p>总结：</p>
@@ -482,8 +926,150 @@
 <h2 id="5-装饰器模式"><a href="#5-装饰器模式" class="headerlink" title="5. 装饰器模式"></a>5. 装饰器模式</h2><p>装饰器模式是比较常用的一种设计模式，Python中就内置了对于装饰器的支持。</p>
 <p>具体来说，装饰器模式是用来给对象增加某些特性或者对被装饰对象进行某些修改。</p>
 <p>下面的代码是一个买煎饼的例子，如我们生活中所见，可以选基础煎饼（鸡蛋煎饼，肉煎饼等），然后再额外加别的东西：</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pancake</span> {</span> <span class="comment">//基类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  string description = <span class="string">"Basic Pancake"</span>;</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> description; }</span><br><span class="line">  <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CondimentDecorator</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//装饰器基类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function">string <span class="title">getDescrition</span><span class="params">()</span></span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MeatPancake</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//肉煎饼</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">MeatPancake</span>() { description = <span class="string">"MeatPancake"</span>; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="number">6</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EggPancake</span> :</span> <span class="keyword">public</span> Pancake { <span class="comment">//鸡蛋煎饼</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">EggPancake</span>() { description = <span class="string">"EggPancake"</span>; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> <span class="number">5</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Egg</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加鸡蛋</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Egg"</span>; }</span><br><span class="line">  <span class="built_in">Egg</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">1.5</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Potato</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加土豆</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Potato"</span>; }</span><br><span class="line">  <span class="built_in">Potato</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">1</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bacon</span> :</span> <span class="keyword">public</span> CondimentDecorator { <span class="comment">//额外加培根</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Pancake *base;</span><br><span class="line">  <span class="function">string <span class="title">getDescription</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">getDescription</span>() + <span class="string">", Bacon"</span>; }</span><br><span class="line">  <span class="built_in">Bacon</span>(Pancake *d) { base = d; }</span><br><span class="line">  <span class="function"><span class="keyword">double</span> <span class="title">cost</span><span class="params">()</span> </span>{ <span class="keyword">return</span> base-&gt;<span class="built_in">cost</span>() + <span class="number">2</span>; }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  Pancake *pan = <span class="keyword">new</span> <span class="built_in">EggPancake</span>();</span><br><span class="line">  pan = &amp;<span class="built_in">Potato</span>(pan); <span class="comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span></span><br><span class="line">  pan = &amp;<span class="built_in">Bacon</span>(pan); <span class="comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span></span><br><span class="line">  cout &lt;&lt; pan-&gt;<span class="built_in">getDescription</span>() &lt;&lt; <span class="string">"  $ : "</span> &lt;&lt; pan-&gt;<span class="built_in">cost</span>() &lt;&lt; endl;</span><br><span class="line">  <span class="built_in">system</span>(<span class="string">"pause"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pancake</span> {</span> <span class="hljs-comment">//基类</span>
+<span class="hljs-keyword">public</span>:
+  string description = <span class="hljs-string">"Basic Pancake"</span>;
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> description; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CondimentDecorator</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//装饰器基类</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function">string <span class="hljs-title">getDescrition</span><span class="hljs-params">()</span></span>;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MeatPancake</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//肉煎饼</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">MeatPancake</span>() { description = <span class="hljs-string">"MeatPancake"</span>; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">6</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EggPancake</span> :</span> <span class="hljs-keyword">public</span> Pancake { <span class="hljs-comment">//鸡蛋煎饼</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">EggPancake</span>() { description = <span class="hljs-string">"EggPancake"</span>; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Egg</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加鸡蛋</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Egg"</span>; }
+  <span class="hljs-built_in">Egg</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">1.5</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Potato</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加土豆</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Potato"</span>; }
+  <span class="hljs-built_in">Potato</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">1</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bacon</span> :</span> <span class="hljs-keyword">public</span> CondimentDecorator { <span class="hljs-comment">//额外加培根</span>
+<span class="hljs-keyword">public</span>:
+  Pancake *base;
+  <span class="hljs-function">string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Bacon"</span>; }
+  <span class="hljs-built_in">Bacon</span>(Pancake *d) { base = d; }
+  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> base-&gt;<span class="hljs-built_in">cost</span>() + <span class="hljs-number">2</span>; }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  Pancake *pan = <span class="hljs-keyword">new</span> <span class="hljs-built_in">EggPancake</span>();
+  pan = &amp;<span class="hljs-built_in">Potato</span>(pan); <span class="hljs-comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span>
+  pan = &amp;<span class="hljs-built_in">Bacon</span>(pan); <span class="hljs-comment">//将pan的描述和花费更新了一下 并指向更新后的Potato</span>
+  cout &lt;&lt; pan-&gt;<span class="hljs-built_in">getDescription</span>() &lt;&lt; <span class="hljs-string">"  $ : "</span> &lt;&lt; pan-&gt;<span class="hljs-built_in">cost</span>() &lt;&lt; endl;
+  <span class="hljs-built_in">system</span>(<span class="hljs-string">"pause"</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
+
+
+
+<p>装饰器模式（Decorator Pattern）是一种结构型设计模式，用于动态地给一个对象添加额外的功能，而无需修改其原始类的结构。它通过创建一个包装器（Wrapper）来包裹原始对象，并在包装器中添加新的行为或修改原始对象的行为。</p>
+<p>装饰器模式的核心思想是通过组合而非继承来实现功能的扩展。它使得可以在运行时动态地添加、删除或修改对象的行为，而不会影响其他使用该对象的代码。</p>
+<p>下面是一个简单的示例，以咖啡和调料为例，说明装饰器模式的应用：</p>
+<p>首先，定义一个咖啡接口（Component），表示原始的咖啡对象：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coffee</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getCost</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> std::string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>= <span class="hljs-number">0</span>;
+};</code></pre></div>
+
+<p>然后，实现具体的咖啡类（Concrete Component）：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Espresso</span> :</span> <span class="hljs-keyword">public</span> Coffee {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getCost</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1.99</span>;
+    }
+
+    <span class="hljs-function">std::string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Espresso"</span>;
+    }
+};</code></pre></div>
+
+<p>接下来，创建装饰器基类（Decorator），用于包装咖啡对象：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CoffeeDecorator</span> :</span> <span class="hljs-keyword">public</span> Coffee {
+<span class="hljs-keyword">protected</span>:
+    Coffee* coffee;
+
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">CoffeeDecorator</span>(Coffee* coffee) : <span class="hljs-built_in">coffee</span>(coffee) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getCost</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getCost</span>();
+    }
+
+    <span class="hljs-function">std::string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getDescription</span>();
+    }
+};</code></pre></div>
+
+<p>最后，创建具体的装饰器类（Concrete Decorators），用于添加额外的调料功能：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MilkDecorator</span> :</span> <span class="hljs-keyword">public</span> CoffeeDecorator {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MilkDecorator</span>(Coffee* coffee) : <span class="hljs-built_in">CoffeeDecorator</span>(coffee) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getCost</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getCost</span>() + <span class="hljs-number">0.5</span>;
+    }
+
+    <span class="hljs-function">std::string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Milk"</span>;
+    }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SugarDecorator</span> :</span> <span class="hljs-keyword">public</span> CoffeeDecorator {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">SugarDecorator</span>(Coffee* coffee) : <span class="hljs-built_in">CoffeeDecorator</span>(coffee) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getCost</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getCost</span>() + <span class="hljs-number">0.3</span>;
+    }
+
+    <span class="hljs-function">std::string <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">override</span> </span>{
+        <span class="hljs-keyword">return</span> coffee-&gt;<span class="hljs-built_in">getDescription</span>() + <span class="hljs-string">", Sugar"</span>;
+    }
+};</code></pre></div>
+
+<p>现在，我们可以使用装饰器模式来创建各种不同调料的咖啡组合：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">Coffee* espresso = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Espresso</span>();
+Coffee* espressoWithMilk = <span class="hljs-keyword">new</span> <span class="hljs-built_in">MilkDecorator</span>(espresso);
+Coffee* espressoWithMilkAndSugar = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SugarDecorator</span>(espressoWithMilk);
+
+std::cout &lt;&lt; <span class="hljs-string">"Description: "</span> &lt;&lt; espressoWithMilkAndSugar-&gt;<span class="hljs-built_in">getDescription</span>() &lt;&lt; std::endl;
+std::cout &lt;&lt; <span class="hljs-string">"Cost: $"</span> &lt;&lt; espressoWithMilkAndSugar-&gt;<span class="hljs-built_in">getCost</span>() &lt;&lt; std::endl;</code></pre></div>
+
+<p>输出结果：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">Description: Espresso, Milk, Sugar
+Cost: $<span class="hljs-number">2.79</span></code></pre></div>
+
+<p>在上述示例中，<code>Coffee</code> 是咖啡接口，<code>Espresso</code> 是具体的咖啡类。<code>CoffeeDecorator</code> 是装饰器基类，<code>MilkDecorator</code> 和 <code>SugarDecorator</code> 是具体的装饰器类。通过组合不同的装饰器，可以动态地给咖啡对象添加调料功能，同时保持了咖啡接口的一致性。</p>
+<p>装饰器模式的优点是灵活性高，可以动态地添加或删除功能，避免了类爆炸的问题。同时，它遵循开闭原则，对原始对象的修改只发生在装饰器类中，不需要修改原始类的代码。这样可以更好地维护和扩展代码。</p>
 
               
             </div>

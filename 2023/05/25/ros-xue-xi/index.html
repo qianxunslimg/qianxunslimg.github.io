@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230523210117583.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230524152514908.png">
 <meta property="article:published_time" content="2023-05-24T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-05-24T17:54:20.967Z">
+<meta property="article:modified_time" content="2023-05-26T09:11:17.112Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -94,9 +94,9 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="qianxunslimgのblog" type="application/atom+xml">
 </head>
 
 
@@ -3694,6 +3694,61 @@ staticQuaternion.<span class="hljs-built_in">setRotation</span>(tf2::<span class
 <li><code>buffer.transform()</code>函数在内部自动获取从<code>base_point</code>所在的坐标系到”world”坐标系的变换关系，并将<code>base_point</code>在该变换关系下进行坐标变换，将结果保存在<code>world_point</code>中。这样就得到了在”world”坐标系下的坐标。</li>
 </ol>
 <p>总结起来，方式一通过显式地获取变换关系，再使用<code>doTransform()</code>函数进行坐标变换；方式二则是直接使用<code>transform()</code>函数进行坐标变换，函数内部会自动获取变换关系。两种方式最终都实现了将<code>base_point</code>从”base”坐标系转换到”world”坐标系，并输出转换后的坐标<code>world_point</code></p>
+<h1 id="docker模拟局域网"><a href="#docker模拟局域网" class="headerlink" title="docker模拟局域网"></a>docker模拟局域网</h1><h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>将sub节点挂在到虚拟环境</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>因为默认是docker的网络是桥接模式 所以可以通信</p>
+<p>同一局域网ip挂载</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#sub</span>
+docker run -it --rm --net=mynetwork --ip=192.168.31.200 -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash
+
+<span class="hljs-comment">#pub</span>
+docker run -it --rm --net=mynetwork --ip=192.168.31.201 -v /home/qianxunslimg/Desktop/study/ros_study/ros2_pub:/ros_ws/src/pub_demo -w /ros_ws ros:foxy bash
+
+
+ros2 run sub_demo sub_demo
+ros2 run pub_demo pub_demo</code></pre></div>
+
+
+
+<h2 id="通信隔离"><a href="#通信隔离" class="headerlink" title="通信隔离"></a>通信隔离</h2><h3 id="默认情况-可以通信"><a href="#默认情况-可以通信" class="headerlink" title="默认情况 可以通信"></a>默认情况 可以通信</h3><h3 id="ROS-2-域（Domain-ID）隔离"><a href="#ROS-2-域（Domain-ID）隔离" class="headerlink" title="ROS 2 域（Domain ID）隔离"></a>ROS 2 域（Domain ID）隔离</h3><p>sub</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ROS_DOMAIN_ID=1</code></pre></div>
+
+<p>pub</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ROS_DOMAIN_ID=1</code></pre></div>
+
+<p>可以通信</p>
+<p>sub</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ROS_DOMAIN_ID=2</code></pre></div>
+
+<p>pub</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ROS_DOMAIN_ID=1</code></pre></div>
+
+<p>不可通信</p>
+<h3 id="ROS-2-的命名空间（Namespace）"><a href="#ROS-2-的命名空间（Namespace）" class="headerlink" title="ROS 2 的命名空间（Namespace）"></a>ROS 2 的命名空间（Namespace）</h3><div class="code-wrapper"><pre><code class="hljs bash">ros2 run sub_demo sub_demo --namespace=sub_namespace
+
+ros2 run pub_demo pub_demo --namespace=pub_namespace</code></pre></div>
+
+<p>在ROS 2中，使用命名空间（namespace）来隔离节点不会直接阻止节点之间的通信。命名空间==主要用于区分节点的名称==，以防止命名冲突。节点之间的通信仍然可以在不同的命名空间中进行。</p>
+<p>在ROS 2中，域（Domain）和命名空间（Namespace）是两个概念，用于管理节点之间的通信和数据交换。</p>
+<ol>
+<li>域（Domain）：<ul>
+<li>在ROS 2中，域是一组节点的<code>逻辑分组</code>。它定义了一组节点可以相互通信的范围。</li>
+<li>每个域都有一个唯一的标识符（Domain ID），用于区分不同的域。</li>
+<li>节点只能在同一个域中进行通信，即节点只能与同一域中的其他节点进行交互。</li>
+<li>域的作用是将节点分组，使得节点可以按照功能、位置或其他因素进行组织，并限制节点之间的通信范围。</li>
+</ul>
+</li>
+<li>命名空间（Namespace）：<ul>
+<li>命名空间是ROS 2中的一种机制，用于在节点之间创建逻辑上的隔离。</li>
+<li>命名空间提供了节点名称的层次结构，将节点名称分成多个部分。</li>
+<li>命名空间可以通过添加前缀来创建节点名称的层次结构，例如，”robot1/sensor”和”robot2/sensor”就是具有不同命名空间的两个节点。</li>
+<li>命名空间的作用是允许节点具有相同名称但属于不同命名空间的不同实例，从而<code>避免节点名称冲突</code>。</li>
+<li>命名空间还可以用于将节点分组，并为节点提供更好的组织结构和管理。</li>
+</ul>
+</li>
+</ol>
+<p>总结：域用于将节点分组，定义了一组节点可以相互通信的范围；命名空间用于在节点之间创建逻辑上的隔离，允许节点具有相同名称但属于不同命名空间的不同实例，并提供更好的组织结构和管理。</p>
 
               
             </div>
@@ -3759,6 +3814,12 @@ staticQuaternion.<span class="hljs-built_in">setRotation</span>(tf2::<span class
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/05/28/linux/" title="Linux">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
