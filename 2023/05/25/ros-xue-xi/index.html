@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230523210117583.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230524152514908.png">
 <meta property="article:published_time" content="2023-05-24T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-05-29T13:31:59.861Z">
+<meta property="article:modified_time" content="2023-06-13T02:25:06.648Z">
 <meta property="article:author" content="qianxunslimg">
 <meta property="article:tag" content="工具学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -506,7 +506,7 @@ ros2 run example_cpp node_01</code></pre></div>
 </ul>
 <p>举个例子，假设我们有两个节点：Node A和Node B。Node A想要向Node B请求某个服务，那么它会向Node B发送一个请求消息。Node B接收到请求消息后，会执行相应的操作，并将结果作为响应消息发送回给Node A。</p>
 <blockquote>
-<p>这个例子中的功能同样可以用话题实现，但是可能会导致网络阻塞，并且可能会影响其他节点的性能</p>
+<p>这个例子中的功能同样可以用话题实现，但是<code>可能会导致网络阻塞</code>，并且可能会影响其他节点的性能</p>
 </blockquote>
 <h3 id="话题的发布和订阅"><a href="#话题的发布和订阅" class="headerlink" title="话题的发布和订阅"></a>话题的发布和订阅</h3><p>构建工程</p>
 <div class="code-wrapper"><pre><code class="hljs bash">ros2 pkg create example_topic_cpp --build-type ament_cmake --dependencies rclcpp</code></pre></div>
@@ -2435,6 +2435,7 @@ rclcpp::Node::SharedPtr g_node = <span class="hljs-literal">nullptr</span>;
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os
 <span class="hljs-keyword">from</span> launch <span class="hljs-keyword">import</span> LaunchDescription
 <span class="hljs-keyword">from</span> launch.actions <span class="hljs-keyword">import</span> Node
+<span class="hljs-comment">#from launch_ros.actions import Node  #foxy</span>
 <span class="hljs-keyword">from</span> launch.substitutions <span class="hljs-keyword">import</span> LaunchConfiguration
 
 
@@ -3932,15 +3933,109 @@ staticQuaternion.<span class="hljs-built_in">setRotation</span>(tf2::<span class
 
 
 
-
-
-
-
-
-
-
-
-<h1 id="docker模拟局域网"><a href="#docker模拟局域网" class="headerlink" title="docker模拟局域网"></a>docker模拟局域网</h1><h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>将sub节点挂在到虚拟环境</p>
+<h2 id="ROS-CONTROL"><a href="#ROS-CONTROL" class="headerlink" title="ROS CONTROL"></a>ROS CONTROL</h2><p>很好的课程 比官方的好多了 <a target="_blank" rel="noopener" href="https://app.theconstructsim.com/Desktop">Course Simulation - ROS2 Control Framework - Robotics &amp; ROS Online Courses | The Construct (theconstructsim.com)</a></p>
+<p>ROS Control是一个针对机器人控制的软件框架，旨在提供一种通用的机器人控制架构和工具集，使机器人控制变得更加模块化、可配置和可重用。它提供了一种结构化的方式来管理机器人的硬件接口、控制器和调度器之间的通信和交互。</p>
+<p>ROS Control的应用场景包括但不限于以下情况：</p>
+<ol>
+<li>机器人控制：ROS Control适用于各种类型的机器人控制，包括工业机械臂、移动机器人、无人机等。它提供了一个统一的框架，可以轻松地集成不同类型的硬件接口和控制器，并实现对机器人的高级控制。</li>
+<li>多模态控制：ROS Control支持多种控制模态，例如位置控制、速度控制、力/扭矩控制等。通过定义不同的控制器和硬件接口，可以在不同的应用场景中灵活地切换控制模态。</li>
+<li>软实时控制：ROS Control提供了软实时（soft real-time）的控制能力，使得在普通计算机上进行实时机器人控制成为可能。它使用了基于时间的调度器来确保控制循环的实时性，并提供了灵活的配置选项来满足不同硬件的实时需求。</li>
+<li>控制算法开发和测试：ROS Control提供了一个模拟器接口，可以方便地进行控制算法的开发和测试。通过在模拟器中运行机器人模型，并与控制器和硬件接口进行交互，可以快速迭代和验证控制算法的性能。</li>
+</ol>
+<p>需要注意的是，ROS Control并不是所有机器人控制的必需工具，特别是对于简单的机器人应用或者不需要实时控制的场景。它更适用于需要灵活、可配置和模块化控制架构的复杂机器人系统。在选择是否使用ROS Control时，需要根据具体的机器人需求和控制要求来评估其适用性。</p>
+<ol>
+<li><p>ROS Control 是什么？它的作用是什么？</p>
+<blockquote>
+<p>ROS Control是ROS（Robot Operating System）中的一个软件包，用于<code>机器人的运动控制和硬件接口</code>。它提供了一个灵活的框架，使开发人员能够轻松地设计、实现和管理机器人的控制系统。</p>
+<p>ROS Control的主要作用是实现机器人的运动控制，包括<code>位置控制</code>、<code>速度控制</code>和<code>力/力矩控制</code>等。它提供了一种统一的方式来定义和管理机器人的硬件接口、控制器和控制器管理器，使得开发人员可以<u>集中精力于控制算法的开发，而不用过多关注硬件细节</u>。</p>
+<p>通过ROS Control，开发人员可以轻松地编写控制器、配置控制器管理器，并与机器人的硬件接口进行交互。它提供了一套标准化的接口和工具，使得控制器的开发、测试和部署变得更加容易和可靠。</p>
+<p>总而言之，ROS Control的作用是简化机器人的运动控制开发，提供了一个模块化、可扩展和易于集成的框架，帮助开发人员实现高效、稳定和可靠的机器人控制系统。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 的架构是什么样的？它包含哪些核心组件？</p>
+<blockquote>
+<p>ROS Control的架构采用了模块化设计，由多个核心组件组成，每个组件负责不同的功能。以下是ROS Control的核心组件：</p>
+<ol>
+<li>==硬件接口==（Hardware Interface）：硬件接口是机器人与控制系统之间的接口，负责读取传感器数据和发送执行器指令。它定义了机器人的状态接口和命令接口，将硬件抽象为一组标准化的接口类型，如位置接口、速度接口或力接口。</li>
+<li>控制器（Controller）：控制器是实现机器人运动控制算法的模块，负责根据传感器数据计算控制指令，并将指令发送给硬件接口。控制器可以是位置控制器、速度控制器、力/力矩控制器等，根据机器人的运动需求选择合适的控制器。</li>
+<li>控制器管理器（Controller Manager）：控制器管理器负责管理和调度控制器的执行。它根据配置文件中的指令，加载和实例化控制器，并控制它们的启动、停止和切换。控制器管理器还处理控制器的优先级、时间同步和错误处理等任务。</li>
+<li>硬件接口管理器（Hardware Interface Manager）：硬件接口管理器负责管理和调度硬件接口的读取和写入。它根据配置文件中定义的硬件接口类型，加载和实例化相应的硬件接口，并协调硬件接口的数据读取和写入。</li>
+<li>控制节点（Control Node）：控制节点是ROS系统中的一个节点，负责协调控制器管理器和硬件接口管理器的工作。它接收来自硬件接口的传感器数据，将其传递给控制器进行处理，并将控制器计算得到的指令发送给硬件接口。</li>
+<li>URDF（Unified Robot Description Format）：URDF是一种用于描述机器人模型的XML格式文件，包含机器人的关节、链式结构和传感器信息。ROS Control使用URDF来获取机器人的模型信息，并根据模型来配置控制器和硬件接口。</li>
+</ol>
+<p>这些核心组件共同工作，形成了ROS Control的架构，使得开发人员能够轻松地定义机器人的控制系统，并实现运动控制的功能。通过模块化的设计，ROS Control具有良好的扩展性和灵活性，适用于各种类型的机器人和控制需求。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 中的硬件接口是什么？如何定义和实现一个硬件接口？</p>
+<blockquote>
+<p>在ROS Control中，硬件接口（Hardware Interface）是机器人与控制系统之间的接口，负责读取传感器数据和发送执行器指令。它将机器人的硬件抽象为一组标准化的接口类型，如位置接口、速度接口或力接口。通过硬件接口，控制器可以获取机器人的状态信息，并向机器人发送控制指令。</p>
+<p>要定义和实现一个硬件接口，可以按照以下步骤进行操作：</p>
+<ol>
+<li>创建一个新的ROS包：首先，在ROS工作空间中创建一个新的ROS包，用于存放硬件接口相关的文件。</li>
+<li>定义硬件接口类型：在包的目录结构中创建一个<code>hardware_interface</code>文件夹，然后在该文件夹中创建一个新的头文件，用于定义硬件接口类型。硬件接口类型应该继承自ROS Control提供的基础接口类型，如<code>hardware_interface::RobotHW</code>。在接口类型中，需要定义机器人的状态接口和命令接口，以及相应的读取和写入方法。</li>
+<li>实现硬件接口：在<code>hardware_interface</code>文件夹中创建一个新的源文件，用于实现硬件接口。在该文件中，需要实现硬件接口类型中定义的读取和写入方法，以与实际的机器人硬件进行交互。读取方法用于从机器人硬件读取传感器数据，写入方法用于向机器人硬件发送执行器指令。</li>
+<li>配置硬件接口：在ROS控制系统的配置文件中，需要将新定义的硬件接口添加到硬件接口管理器中。这可以通过配置文件（如URDF或YAML文件）进行完成，指定硬件接口的类型和相关参数。</li>
+<li>编译和测试：完成硬件接口的定义和实现后，可以进行编译和测试。确保硬件接口编译成功，并能够与机器人硬件进行正确的数据交换。</li>
+</ol>
+<p>通过以上步骤，就可以定义和实现一个硬件接口，并将其集成到ROS Control的控制系统中。这样，控制器就可以通过硬件接口与机器人硬件进行通信，实现运动控制的功能。请注意，具体的实现细节可能会根据机器人的硬件和控制要求而有所不同，可以根据具体情况进行调整和扩展。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 中的控制器是什么？如何定义和实现一个控制器？</p>
+<blockquote>
+<p>在ROS Control中，控制器（Controller）是用于实现机器人运动控制功能的模块。控制器接收传感器数据和目标指令，并计算控制命令来驱动机器人执行特定的运动任务，如位置控制、速度控制或力控制等。</p>
+<p>要定义和实现一个控制器，可以按照以下步骤进行操作：</p>
+<ol>
+<li>创建一个新的ROS包：在ROS工作空间中创建一个新的ROS包，用于存放控制器相关的文件。</li>
+<li>定义控制器类型：在包的目录结构中创建一个<code>controller_interface</code>文件夹，然后在该文件夹中创建一个新的头文件，用于定义控制器类型。控制器类型应该继承自ROS Control提供的基础接口类型，如<code>controller_interface::ControllerBase</code>。在控制器类型中，需要定义控制器的初始化方法、启动方法和更新方法，以及相应的控制逻辑。</li>
+<li>实现控制器：在<code>controller_interface</code>文件夹中创建一个新的源文件，用于实现控制器。在该文件中，需要实现控制器类型中定义的初始化方法、启动方法和更新方法，以及控制逻辑。初始化方法用于初始化控制器的参数和状态，启动方法用于启动控制器的执行，更新方法用于周期性地更新控制器的状态和计算控制命令。</li>
+<li>配置控制器：在ROS控制系统的配置文件中，需要将新定义的控制器添加到控制器管理器中。这可以通过配置文件（如URDF或YAML文件）进行完成，指定控制器的类型、相关参数和控制接口。</li>
+<li>编译和测试：完成控制器的定义和实现后，可以进行编译和测试。确保控制器编译成功，并能够在ROS控制系统中正确加载和执行。</li>
+</ol>
+<p>通过以上步骤，就可以定义和实现一个控制器，并将其集成到ROS Control的控制系统中。控制器可以根据机器人的传感器数据和目标指令，计算出相应的控制命令，以实现机器人的运动控制。请注意，具体的控制逻辑和实现细节可能会根据机器人的控制需求而有所不同，可以根据具体情况进行调整和扩展。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 中的控制器管理器是什么？它的作用是什么？如何配置和使用控制器管理器？</p>
+<blockquote>
+<p>在ROS Control中，控制器管理器（Controller Manager）是一个核心组件，用于加载、配置和执行控制器。它负责管理不同类型的控制器，并与硬件接口和传感器接口进行交互，实现机器人的运动控制功能。</p>
+<p>控制器管理器的主要作用包括：</p>
+<ol>
+<li>控制器加载和卸载：控制器管理器能够根据配置文件中的指令加载指定类型的控制器，并在不需要时进行卸载。它可以动态地加载和卸载控制器，以适应不同的控制需求。</li>
+<li>控制器配置和参数传递：控制器管理器可以从配置文件中读取控制器的参数，并将这些参数传递给相应的控制器。它负责将控制器的配置信息传递给控制器实例，以便正确初始化和执行控制器。</li>
+<li>控制器状态监测和更新：控制器管理器定期更新控制器的状态，包括检查控制器是否处于正常运行状态、获取控制器的执行时间、更新控制器的内部状态等。它负责协调控制器的周期性更新，以确保控制器按照预定的频率执行。</li>
+<li>控制器交互和切换：控制器管理器提供了一些接口，用于与控制器进行交互和切换。它可以接收来自外部的控制指令，将指令传递给相应的控制器，并在需要时切换不同的控制器，以实现不同的运动控制模式。</li>
+</ol>
+<p>配置和使用控制器管理器需要以下步骤：</p>
+<ol>
+<li>配置控制器：在ROS控制系统的配置文件中，定义控制器的类型、参数和控制接口。可以使用URDF（Unified Robot Description Format）或YAML文件进行配置。</li>
+<li>加载控制器管理器：在ROS程序中加载控制器管理器，并提供配置文件的路径。控制器管理器会根据配置文件中的信息加载相应的控制器。</li>
+<li>初始化和启动控制器管理器：在ROS程序中初始化控制器管理器，并启动它的执行。控制器管理器会加载配置文件中指定的控制器，并根据需要进行初始化。</li>
+<li>控制器交互和切换：可以通过ROS的服务或话题与控制器管理器进行交互，发送控制指令或请求控制器切换。控制器管理器会根据接收到的指令，将其传递给相应的控制器，并执行相应的动作。</li>
+<li>监测和更新控制器状态：控制器管理器会定期监测和更新控制器的状态，确保控制器按照预定的频率执行。它会检查控制器是否处于正常运行状态，并根据需要进行状态更新和调整。</li>
+</ol>
+<p>通过以上步骤，可以配置和使用控制器管理器，实现机器人的运动控制功能。控制器管理器可以根据控制器配置文件中的信息加载和执行不同类型的控制器，并与硬件接口和传感器接口进行交互，实现机器人的运动控制。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 中的硬件接口和控制器之间是如何通信的？</p>
+<blockquote>
+<p>在ROS Control中，硬件接口和控制器之间通过ROS主题（topics）、服务（services）和参数服务器（parameter server）进行通信。</p>
+<ol>
+<li>主题（Topics）：硬件接口和控制器可以使用ROS主题进行数据交换。硬件接口将传感器数据（如关节位置、速度等）发布到特定的主题上，而控制器订阅这些主题以获取传感器数据。控制器计算出控制指令后，发布到另一个主题上，然后硬件接口订阅该主题以接收控制指令。</li>
+<li>服务（Services）：硬件接口和控制器可以使用ROS服务进行通信。例如，控制器可以通过调用硬件接口的服务来读取传感器数据或发送控制指令。硬件接口接收到服务请求后执行相应的操作，并返回结果给控制器。</li>
+<li>参数服务器（Parameter Server）：硬件接口和控制器可以使用ROS参数服务器来共享参数和配置信息。例如，控制器可以从参数服务器获取控制参数，而硬件接口可以将硬件配置信息存储在参数服务器中，供其他节点读取。</li>
+</ol>
+<p>通过这些通信机制，硬件接口和控制器可以实现实时数据交换和控制指令传递，从而实现对机器人硬件的控制。这种松耦合的通信方式使得可以更容易地切换和替换不同的硬件接口和控制器，提高了ROS Control的灵活性和可扩展性。</p>
+</blockquote>
+</li>
+<li><p>ROS Control 中的动力学模型是什么？如何使用动力学模型进行仿真和控制？</p>
+</li>
+<li><p>ROS Control 中的调试和故障排除方法有哪些？</p>
+</li>
+<li><p>ROS Control 中的常见工具和库有哪些？如何使用它们来加速开发和测试？</p>
+</li>
+<li><p>ROS Control 中有哪些实际应用示例和案例？</p>
+</li>
+</ol>
+<h1 id="docker模拟"><a href="#docker模拟" class="headerlink" title="docker模拟"></a>docker模拟</h1><h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><p>将sub节点挂在到虚拟环境</p>
 <div class="code-wrapper"><pre><code class="hljs bash">docker run -it -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</code></pre></div>
 
 <p>因为默认是docker的网络是桥接模式 所以可以通信</p>
@@ -3955,8 +4050,17 @@ docker run -it --rm --net=mynetwork --ip=192.168.31.201 -v /home/qianxunslimg/De
 ros2 run sub_demo sub_demo
 ros2 run pub_demo pub_demo</code></pre></div>
 
-
-
+<h3 id="x3D-x3D-图形化-x3D-x3D"><a href="#x3D-x3D-图形化-x3D-x3D" class="headerlink" title="==图形化=="></a>==图形化==</h3><blockquote>
+<p>前提：xhost +local:docker</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm \
+-e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $(<span class="hljs-built_in">pwd</span>):/row_ws/src \
+--privileged \
+-w /row_ws \
+qianxunslimg/my_rolling:v1.1 \
+bash</code></pre></div>
+</blockquote>
 <h2 id="通信隔离"><a href="#通信隔离" class="headerlink" title="通信隔离"></a>通信隔离</h2><h3 id="默认情况-可以通信"><a href="#默认情况-可以通信" class="headerlink" title="默认情况 可以通信"></a>默认情况 可以通信</h3><h3 id="ROS-2-域（Domain-ID）隔离"><a href="#ROS-2-域（Domain-ID）隔离" class="headerlink" title="ROS 2 域（Domain ID）隔离"></a>ROS 2 域（Domain ID）隔离</h3><p>sub</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> ROS_DOMAIN_ID=1</code></pre></div>
 
@@ -3995,6 +4099,125 @@ ros2 run pub_demo pub_demo --namespace=pub_namespace</code></pre></div>
 </li>
 </ol>
 <p>总结：域用于将节点分组，定义了一组节点可以相互通信的范围；命名空间用于在节点之间创建逻辑上的隔离，允许节点具有相同名称但属于不同命名空间的不同实例，并提供更好的组织结构和管理。</p>
+<h1 id="ROS2编译"><a href="#ROS2编译" class="headerlink" title="ROS2编译"></a>ROS2编译</h1><p>ament_cmake不同于cmake，会构建更适合ros2的install目录</p>
+<h2 id="三种编译ros2代码的方法"><a href="#三种编译ros2代码的方法" class="headerlink" title="三种编译ros2代码的方法"></a>三种编译ros2代码的方法</h2><h3 id="colcon-build"><a href="#colcon-build" class="headerlink" title="colcon build"></a>colcon build</h3><p>对于ros2 pkg create得到的源码 进行修改补充后，直接使用colcon build进行编译，这应该是 最直观 最简单 最方便的一种编译方法了</p>
+<h3 id="cmake-package-xml"><a href="#cmake-package-xml" class="headerlink" title="cmake + package.xml"></a>cmake + package.xml</h3><p>仍然是使用ros2 pkg create进行项目构建，在学习ros2的时候就发现 是可以直接运行cmake进行编译以及调试的，但是要注意一个问题，ament构建系统是依赖package.xml的 若删除则直接编译失败</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.5</span>)
+<span class="hljs-keyword">project</span>(colcon_cmake)
+
+<span class="hljs-comment"># Default to C99</span>
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> CMAKE_C_STANDARD)
+  <span class="hljs-keyword">set</span>(CMAKE_C_STANDARD <span class="hljs-number">99</span>)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-comment"># Default to C++14</span>
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">NOT</span> CMAKE_CXX_STANDARD)
+  <span class="hljs-keyword">set</span>(CMAKE_CXX_STANDARD <span class="hljs-number">14</span>)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-keyword">if</span>(CMAKE_COMPILER_IS_GNUCXX <span class="hljs-keyword">OR</span> CMAKE_CXX_COMPILER_ID <span class="hljs-keyword">MATCHES</span> <span class="hljs-string">"Clang"</span>)
+  <span class="hljs-keyword">add_compile_options</span>(-Wall -Wextra -Wpedantic)
+<span class="hljs-keyword">endif</span>()
+
+<span class="hljs-comment"># find dependencies</span>
+<span class="hljs-keyword">find_package</span>(ament_cmake REQUIRED)
+<span class="hljs-comment"># uncomment the following section in order to fill in</span>
+<span class="hljs-comment"># further dependencies manually.</span>
+<span class="hljs-comment"># find_package(&lt;dependency&gt; REQUIRED)</span>
+<span class="hljs-keyword">find_package</span>(rclcpp REQUIRED)
+
+<span class="hljs-comment"># 自己制作的动态库路径</span>
+<span class="hljs-keyword">link_directories</span>(/home/qianxunslimg/Desktop/study/ros_study/ros2_examples/<span class="hljs-keyword">install</span>/examples_rclcpp_minimal_composition/lib)
+
+<span class="hljs-keyword">include_directories</span>(<span class="hljs-keyword">include</span>)
+
+<span class="hljs-keyword">add_executable</span>(colcon_cmake.out main.cpp)
+
+<span class="hljs-comment"># 自己制作的动态库</span>
+<span class="hljs-keyword">target_link_libraries</span>(colcon_cmake.out composition_nodes)
+
+<span class="hljs-comment"># find_package的rclcpp 直接ament</span>
+<span class="hljs-comment"># ament_target_dependencies 简化了与软件包的依赖项管理相关的 CMake 步骤，并自动处理包含目录和链接库的设置。</span>
+ament_target_dependencies(colcon_cmake.out rclcpp)
+
+
+<span class="hljs-keyword">if</span>(BUILD_TESTING)
+  <span class="hljs-keyword">find_package</span>(ament_lint_auto REQUIRED)
+  <span class="hljs-comment"># the following line skips the linter which checks for copyrights</span>
+  <span class="hljs-comment"># uncomment the line when a copyright and license is not present in all source files</span>
+  <span class="hljs-comment">#set(ament_cmake_copyright_FOUND TRUE)</span>
+  <span class="hljs-comment"># the following line skips cpplint (only works in a git repo)</span>
+  <span class="hljs-comment"># uncomment the line when this package is not in a git repo</span>
+  <span class="hljs-comment">#set(ament_cmake_cpplint_FOUND TRUE)</span>
+  ament_lint_auto_find_test_dependencies()
+<span class="hljs-keyword">endif</span>()
+
+ament_package()
+</code></pre></div>
+
+
+
+<h3 id="直接cmake"><a href="#直接cmake" class="headerlink" title="直接cmake"></a>直接cmake</h3><p>这里的cmake是不依赖package.xml，而是直接使用cmake构建 和ament没关系，一个示例如下：</p>
+<div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-comment"># style 1</span>
+<span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.10</span>)
+
+<span class="hljs-keyword">project</span>(use_sharelib)
+
+<span class="hljs-comment"># 不但要有自己制作的动态库路径 还要有ros2的动态库/软件包路径用来find_package</span>
+<span class="hljs-keyword">link_directories</span>(/home/qianxunslimg/Desktop/study/ros_study/ros2_examples/<span class="hljs-keyword">install</span>/examples_rclcpp_minimal_composition/lib)
+<span class="hljs-keyword">link_directories</span>(/opt/ros/foxy/lib)
+
+<span class="hljs-keyword">include_directories</span>(<span class="hljs-keyword">include</span>)
+
+<span class="hljs-comment"># find_package(rclcpp REQUIRED) # find package will load ${rclcpp_INCLUDE_DIRS}</span>
+
+<span class="hljs-comment"># 当使用find_package(rclcpp REQUIRED)命令后，</span>
+<span class="hljs-comment"># CMake会自动设置${rclcpp_INCLUDE_DIRS}变量，以便在后续的编译过程中使用。</span>
+<span class="hljs-comment">#include_directories(${rclcpp_INCLUDE_DIRS}) #包含rclcpp头文件 /opt/ros/foxy/include</span>
+
+<span class="hljs-keyword">include_directories</span>(/opt/ros/foxy/<span class="hljs-keyword">include</span>) <span class="hljs-comment">#包含rclcpp头文件 /opt/ros/foxy/include</span>
+
+<span class="hljs-keyword">add_executable</span>(my_executable main.cpp)
+
+<span class="hljs-keyword">target_link_libraries</span>(my_executable composition_nodes rclcpp rcutils)
+
+
+
+<span class="hljs-comment"># # style 2</span>
+<span class="hljs-comment"># cmake_minimum_required(VERSION 3.10)</span>
+
+<span class="hljs-comment"># project(use_sharelib)</span>
+
+<span class="hljs-comment"># # 不但要有自己制作的动态库路径 还要有ros2的动态库/软件包路径用来find_package</span>
+<span class="hljs-comment"># link_directories(/home/qianxunslimg/Desktop/study/ros_study/ros2_examples/install/examples_rclcpp_minimal_composition/lib)</span>
+
+<span class="hljs-comment"># include_directories(include)</span>
+
+<span class="hljs-comment"># #find_package(ament_cmake REQUIRED)</span>
+<span class="hljs-comment"># find_package(rclcpp REQUIRED)</span>
+<span class="hljs-comment"># find_package(rcutils REQUIRED) #也是需要的</span>
+
+<span class="hljs-comment"># add_executable(my_executable main.cpp)</span>
+
+<span class="hljs-comment"># target_link_libraries(my_executable composition_nodes)</span>
+
+<span class="hljs-comment"># ament_target_dependencies(my_executable rclcpp rcutils)</span></code></pre></div>
+
+<p>知识点：</p>
+<ol>
+<li>ament_target_dependencies搭配find_package使用，并且会自动的导入include头文件</li>
+<li>target_link_libraries搭配link_directories使用，需要手动include头文件<code>include_directories(/opt/ros/foxy/include)</code></li>
+<li>find_package会自动导入找到包的环境include变量 写法可以改变为<code>include_directories(${rclcpp_INCLUDE_DIRS})</code></li>
+</ol>
+<p>灵活使用</p>
+<h1 id="我的学习仓库"><a href="#我的学习仓库" class="headerlink" title="我的学习仓库"></a>我的学习仓库</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros2_learn_fish">qianxunslimg/ros2_learn_fish: my learn of fish ros (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros2_examples">qianxunslimg/ros2_examples: Example packages for ROS 2 (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros2_control_demos">qianxunslimg/ros2_control_demos: This repository aims at providing examples to illustrate ros2_control and ros2_controllers (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/self-driving-vehicle-101">qianxunslimg/self-driving-vehicle-101: This repository contains the source code for the self driving car tutorial https://www.bilibili.com/video/av81355069 (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros2_kitti_publishers">qianxunslimg/ros2_kitti_publishers: Sample ROS2 publisher application that transforms and publishes the Kitti dataset into the ROS2 messages. (github.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros_launch">qianxunslimg/ros_launch: launch test (github.com)</a></li>
+</ol>
 
               
             </div>
