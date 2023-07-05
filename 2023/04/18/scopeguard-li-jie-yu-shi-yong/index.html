@@ -24,9 +24,9 @@
 <meta property="og:description" content="对看了下大佬的博客：C++11（及现代C++风格）和快速迭代式开发 – 刘未鹏 | Mind Hacks中 提到了ScopeGuard的使用 ScopeGuardScopeGuard，作用是在C++中实现资源管理。其实现基于RAII（Resource Acquisition Is Initialization）技术，即在对象的构造函数中获取资源，在对象的析构函数中释放资源。这种技术可以确保资源在任">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-17T16:24:00.000Z">
-<meta property="article:modified_time" content="2023-04-17T16:34:34.219Z">
+<meta property="article:modified_time" content="2023-07-05T14:31:28.210Z">
 <meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="开发随笔">
+<meta property="article:tag" content="自驾相关">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -286,10 +286,66 @@
 <li>线程同步：获取锁后需要释放锁。</li>
 </ul>
 <h3 id="源码及使用"><a href="#源码及使用" class="headerlink" title="源码及使用"></a>源码及使用</h3><p>ScopeGuard.h</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScopeGuard</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">ScopeGuard</span><span class="params">(std::function&lt;<span class="keyword">void</span>()&gt; onExitScope)</span></span></span><br><span class="line"><span class="function">      : onExitScope_(onExitScope), dismissed_(false) {</span>}</span><br><span class="line"></span><br><span class="line">  ~<span class="built_in">ScopeGuard</span>() {  <span class="comment">//析构函数中释放</span></span><br><span class="line">    <span class="keyword">if</span> (!dismissed_) {</span><br><span class="line">      <span class="built_in">onExitScope_</span>();</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Dismiss</span><span class="params">()</span> </span>{ dismissed_ = <span class="literal">true</span>; }</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  std::function&lt;<span class="built_in"><span class="keyword">void</span></span>()&gt; onExitScope_;</span><br><span class="line">  <span class="keyword">bool</span> dismissed_;  <span class="comment">//是否取消释放</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>: <span class="comment">// noncopyable</span></span><br><span class="line">  <span class="built_in">ScopeGuard</span>(ScopeGuard <span class="keyword">const</span> &amp;);</span><br><span class="line">  ScopeGuard &amp;<span class="keyword">operator</span>=(ScopeGuard <span class="keyword">const</span> &amp;);</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;functional&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScopeGuard</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">ScopeGuard</span><span class="hljs-params">(std::function&lt;<span class="hljs-keyword">void</span>()&gt; onExitScope)</span></span>
+<span class="hljs-function">      : onExitScope_(onExitScope), dismissed_(false) {</span>}
+
+  ~<span class="hljs-built_in">ScopeGuard</span>() {  <span class="hljs-comment">//析构函数中释放</span>
+    <span class="hljs-keyword">if</span> (!dismissed_) {
+      <span class="hljs-built_in">onExitScope_</span>();
+    }
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Dismiss</span><span class="hljs-params">()</span> </span>{ dismissed_ = <span class="hljs-literal">true</span>; }
+
+<span class="hljs-keyword">private</span>:
+  std::function&lt;<span class="hljs-built_in"><span class="hljs-keyword">void</span></span>()&gt; onExitScope_;
+  <span class="hljs-keyword">bool</span> dismissed_;  <span class="hljs-comment">//是否取消释放</span>
+
+<span class="hljs-keyword">private</span>: <span class="hljs-comment">// noncopyable</span>
+  <span class="hljs-built_in">ScopeGuard</span>(ScopeGuard <span class="hljs-keyword">const</span> &amp;);
+  ScopeGuard &amp;<span class="hljs-keyword">operator</span>=(ScopeGuard <span class="hljs-keyword">const</span> &amp;);
+};
+</code></pre></div>
 
 <p>ScopeGuard_test.cpp</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ScopeGuard.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="comment">// 打开一个文件</span></span><br><span class="line">  <span class="function">std::ofstream <span class="title">file</span><span class="params">(<span class="string">"test.txt"</span>)</span></span>;</span><br><span class="line">  <span class="keyword">if</span> (!file.<span class="built_in">is_open</span>()) {</span><br><span class="line">    std::cerr &lt;&lt; <span class="string">"Failed to open file\n"</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// 创建一个ScopeGuard对象，传入一个关闭文件的操作</span></span><br><span class="line">  <span class="function">ScopeGuard <span class="title">guard</span><span class="params">([&amp;file] { file.close(); })</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 在文件中写入一些内容</span></span><br><span class="line">  file &lt;&lt; <span class="string">"Hello world\n"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可能发生异常的代码</span></span><br><span class="line">  <span class="comment">// throw std::runtime_error("Something bad happened");</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 退出函数时，无论是否发生异常，都会自动执行关闭文件的操作</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">  <span class="keyword">try</span> {</span><br><span class="line">    <span class="built_in">foo</span>();</span><br><span class="line">  } <span class="built_in"><span class="keyword">catch</span></span> (<span class="keyword">const</span> std::exception &amp;e) {</span><br><span class="line">    std::cerr &lt;&lt; e.<span class="built_in">what</span>() &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ScopeGuard.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// 打开一个文件</span>
+  <span class="hljs-function">std::ofstream <span class="hljs-title">file</span><span class="hljs-params">(<span class="hljs-string">"test.txt"</span>)</span></span>;
+  <span class="hljs-keyword">if</span> (!file.<span class="hljs-built_in">is_open</span>()) {
+    std::cerr &lt;&lt; <span class="hljs-string">"Failed to open file\n"</span>;
+    <span class="hljs-keyword">return</span>;
+  }
+  <span class="hljs-comment">// 创建一个ScopeGuard对象，传入一个关闭文件的操作</span>
+  <span class="hljs-function">ScopeGuard <span class="hljs-title">guard</span><span class="hljs-params">([&amp;file] { file.close(); })</span></span>;
+
+  <span class="hljs-comment">// 在文件中写入一些内容</span>
+  file &lt;&lt; <span class="hljs-string">"Hello world\n"</span>;
+
+  <span class="hljs-comment">// 可能发生异常的代码</span>
+  <span class="hljs-comment">// throw std::runtime_error("Something bad happened");</span>
+
+  <span class="hljs-comment">// 退出函数时，无论是否发生异常，都会自动执行关闭文件的操作</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-built_in">foo</span>();
+  } <span class="hljs-built_in"><span class="hljs-keyword">catch</span></span> (<span class="hljs-keyword">const</span> std::exception &amp;e) {
+    std::cerr &lt;&lt; e.<span class="hljs-built_in">what</span>() &lt;&lt; <span class="hljs-string">'\n'</span>;
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></div>
               
             </div>
             <hr/>
@@ -300,7 +356,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+        <a href="/tags/%E8%87%AA%E9%A9%BE%E7%9B%B8%E5%85%B3/">#自驾相关</a>
       
     </div>
   

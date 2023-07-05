@@ -35,9 +35,9 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230523210117583.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230524152514908.png">
 <meta property="article:published_time" content="2023-05-24T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-06-13T02:25:06.648Z">
+<meta property="article:modified_time" content="2023-07-05T14:31:17.696Z">
 <meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="工具学习">
+<meta property="article:tag" content="自驾相关">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230419104808030.png">
   
@@ -353,7 +353,7 @@ ros2 run turtlesim turtlesim_node</code></pre></div>
 
 <h4 id="查看节点信息"><a href="#查看节点信息" class="headerlink" title="查看节点信息"></a>查看节点信息</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 node info &lt;node_name&gt;</code></pre></div>
 
-<h4 id="重映射节点名称"><a href="#重映射节点名称" class="headerlink" title="重映射节点名称"></a>重映射节点名称</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtleCopy to clipboardErrorCopied</code></pre></div>
+<h4 id="重映射节点名称"><a href="#重映射节点名称" class="headerlink" title="重映射节点名称"></a>重映射节点名称</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle</code></pre></div>
 
 <h4 id="运行节点时设置参数"><a href="#运行节点时设置参数" class="headerlink" title="运行节点时设置参数"></a>运行节点时设置参数</h4><div class="code-wrapper"><pre><code class="hljs bash">ros2 run example_parameters_rclcpp parameters_basic --ros-args -p rcl_log_level:=10</code></pre></div>
 
@@ -4099,6 +4099,147 @@ ros2 run pub_demo pub_demo --namespace=pub_namespace</code></pre></div>
 </li>
 </ol>
 <p>总结：域用于将节点分组，定义了一组节点可以相互通信的范围；命名空间用于在节点之间创建逻辑上的隔离，允许节点具有相同名称但属于不同命名空间的不同实例，并提供更好的组织结构和管理。</p>
+<h2 id="ros2挂载到虚拟环境"><a href="#ros2挂载到虚拟环境" class="headerlink" title="ros2挂载到虚拟环境"></a>ros2挂载到虚拟环境</h2><p>如果你本地没有安装ROS 2环境，但想运行本地的ROS 2代码，你可以考虑使用Docker容器来创建一个包含ROS 2环境的运行环境。以下是一般步骤：</p>
+<ol>
+<li><p>安装Docker：首先，在你的本地系统上安装Docker。你可以按照Docker官方文档的说明进行安装。</p>
+</li>
+<li><p>获取ROS 2镜像：从Docker Hub上获取一个包含ROS 2环境的镜像。ROS官方提供了官方的ROS 2镜像，你可以选择适合你需要的版本和发行版。例如，你可以使用以下命令拉取ROS 2 Foxy版本的镜像：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker pull ros:foxy</code></pre></div>
+</li>
+<li><p>运行容器：使用<code>docker run</code>命令来创建并运行一个容器，并在容器内部执行你的ROS 2代码。以下是一个示例命令：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm -v /path/to/your/code:/ros_ws/src/ros_package_name -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>解释一下上述命令中的参数：</p>
+<ul>
+<li><code>-it</code>：在交互模式下运行容器。</li>
+<li><code>--rm</code>：容器退出后自动删除。</li>
+<li><code>-v /path/to/your/code:/ros_ws/src/ros_package_name</code>：将你的本地ROS 2代码所在的路径挂载到容器内部的ROS工作空间路径。</li>
+<li><code>-w /ros_ws</code>：设置容器的工作目录为ROS工作空间。</li>
+</ul>
+</li>
+<li><p>在容器中运行ROS 2代码：容器启动后，你可以在容器内部执行ROS 2相关的命令，例如构建、编译和运行你的ROS 2代码。</p>
+<div class="code-wrapper"><pre><code class="hljs bash">colcon build
+<span class="hljs-built_in">source</span> install/setup.bash
+ros2 run ros_package_name node_name</code></pre></div>
+
+<p>这些命令将在容器内部进行ROS 2代码的构建和运行。</p>
+</li>
+</ol>
+<p>通过这种方式，你可以在没有本地ROS 2环境的情况下，使用Docker容器来运行你的ROS 2代码，并且可以将本地的ROS 2代码目录挂载到容器内部，以便在容器中进行开发和调试。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="挂载-1"><a href="#挂载-1" class="headerlink" title="挂载"></a>挂载</h4><div class="code-wrapper"><pre><code class="hljs bash">qianxunslimg@ubuntu:~/Desktop/suudy/ros_study/node_test$ docker run -it -v /home/qianxunslimg/Desktop/suudy/ros_study/node_test:/ros_ws/src/ros_package_name -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>这个Docker命令用于创建并运行一个基于<code>ros:foxy</code>镜像的Docker容器。让我们逐步解释每个参数的含义：</p>
+<ul>
+<li><code>docker run</code>: 运行一个Docker容器。</li>
+<li><code>-it</code>: 创建一个交互式终端，允许用户与容器进行交互。</li>
+<li><code>-v /home/qianxunslimg/Desktop/suudy/ros_study/node_test:/ros_ws/src/ros_package_name</code>: 这是一个挂载命令，将本地的<code>/home/qianxunslimg/Desktop/suudy/ros_study/node_test</code>路径挂载到容器中的<code>/ros_ws/src/ros_package_name</code>路径。这样可以将本地的文件或目录与容器内的目录进行共享。</li>
+<li><code>-w /ros_ws</code>: 设置容器的工作目录为<code>/ros_ws</code>，即容器启动后默认所在的路径。</li>
+<li><code>ros:foxy</code>: 指定要使用的Docker镜像，这里使用的是名为<code>ros:foxy</code>的镜像。该镜像是基于ROS 2 Foxy Fitzroy版本构建的。</li>
+<li><code>bash</code>: 在容器中启动一个bash终端。</li>
+</ul>
+<p>通过以上命令，你将在一个交互式的终端中进入到一个基于<code>ros:foxy</code>镜像的Docker容器中。同时，将本地的<code>/home/qianxunslimg/Desktop/suudy/ros_study/node_test</code>路径挂载到容器内的<code>/ros_ws/src/ros_package_name</code>路径，以便在容器中访问和操作本地的文件。</p>
+<p>你可以在容器内执行ROS 2相关的命令和操作，并可以通过共享的挂载路径访问和修改本地的文件。</p>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><p>运行是可能当前控制台会打印log 无法执行其他的指令</p>
+<ol>
+<li>如果外部由ros环境 可以直接在外部的控制台中 ros2 node list等</li>
+<li>如果外部没有 在外部新开控制台，<code>docker exec -it &lt;container_name&gt; bash</code>   本示例中就是<code>docker exec -it 174</code></li>
+</ol>
+<h3 id="ros2挂在通信示例"><a href="#ros2挂在通信示例" class="headerlink" title="ros2挂在通信示例"></a>ros2挂在通信示例</h3><p>将sub节点挂在到虚拟环境</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</code></pre></div>
+
+<p>因为默认是docker的网络是桥接模式 所以可以通信</p>
+<p>同一局域网ip挂载</p>
+<p>docker run -it –rm –net=mynetwork –ip=192.168.31.200 -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</p>
+<h3 id="挂载和启动图像界面"><a href="#挂载和启动图像界面" class="headerlink" title="挂载和启动图像界面"></a>挂载和启动图像界面</h3><blockquote>
+<p>前提：xhost +local:docker</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm \
+-e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $(<span class="hljs-built_in">pwd</span>):/row_ws/src \
+--privileged \
+-w /row_ws \
+qianxunslimg/my_rolling:v1.1 \
+bash</code></pre></div>
+</blockquote>
+<p>但是若是想启动图像化的rqt和rviz2 还需要其他操作</p>
+<p>例如对于这个项目：<a target="_blank" rel="noopener" href="https://github.com/qianxunslimg/ros2_kitti_publishers">qianxunslimg/ros2_kitti_publishers: Sample ROS2 publisher application that transforms and publishes the Kitti dataset into the ROS2 messages. (github.com)</a></p>
+<p>通过rviz2和rqt显示点云和相机数据，需要图像化界面的支持，此时需要如下的挂载命令</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm \
+-e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $(<span class="hljs-built_in">pwd</span>):/row_ws/src \
+--privileged \
+-w /row_ws \
+osrf/ros:foxy-desktop \
+bash</code></pre></div>
+
+<blockquote>
+<p>官方容器缺少环境 制作自己的镜像</p>
+<ol>
+<li><p>启动容器： docker run -it –rm osrf/ros:rolling-desktop bash</p>
+</li>
+<li><p>安装所需的环境：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo apt update
+sudo apt install ros-rolling-hardware-interface ros-rolling-xacro ros-rolling-ros2-controllers-test-nodes ros-rolling-joint-state-broadcaster ros-rolling-diff-drive-controller ros-rolling-ros2controlcli ros-rolling-controller-manager ros-rolling-forward-command-controller ros-rolling-joint-trajectory-controller ros-rolling-transmission-interface</code></pre></div>
+</li>
+<li><p>新终端<code>docker commit &lt;container_id&gt; &lt;image_name&gt;:&lt;tag&gt;</code></p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker commit 15f my_rolling:v1.0</code></pre></div>
+</li>
+<li><p>新镜像挂载</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm \
+-e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $(<span class="hljs-built_in">pwd</span>):/row_ws \
+--privileged \
+-w /row_ws \
+my_rolling:v1.0 \
+bash
+
+
+docker run -it --rm \
+-e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $(<span class="hljs-built_in">pwd</span>):/row_ws/src \
+--privileged \
+-w /row_ws \
+qianxunslimg/my_rolling:v1.1 \
+bash</code></pre></div></li>
+</ol>
+</blockquote>
+<p>当运行Docker容器时，我们需要设置一些参数和挂载一些目录，以便实现图形界面的显示和文件系统的共享。下面是每个参数的解释：</p>
+<ul>
+<li><p><code>-it</code>：以交互模式运行容器，可以与容器进行交互。</p>
+</li>
+<li><p><code>--rm</code>：在容器退出后自动删除容器，避免容器占用过多的磁盘空间。</p>
+</li>
+<li><p><code>-e DISPLAY=$DISPLAY</code>：设置环境变量<code>DISPLAY</code>，指定容器中的应用程序将使用的X服务器。</p>
+</li>
+<li><p><code>-v /tmp/.X11-unix:/tmp/.X11-unix</code>：将主机的X服务器套接字目录<code>/tmp/.X11-unix</code> 挂载到容器的相同目录，以便容器可以访问X服务器。</p>
+<blockquote>
+<p>X服务器是一个软件，也称为X11或X Window System，<code>用于提供图形用户界面 (GUI) 的基本框架</code>。它允许应用程序在计算机上绘制图形和显示图像。</p>
+<p>rqt和rviz2是ROS（机器人操作系统）中的两个常用工具，用于开发和调试ROS应用程序。它们都是基于Qt库构建的<code>图形界面</code>工具。</p>
+<p>在使用rqt和rviz2时，它们需要与X服务器进行通信以显示图形界面。通过与X服务器交互，这些工具可以创建窗口、渲染图形元素和接收用户交互。</p>
+<p>因此，为了在Docker容器中运行rqt和rviz2，并显示图形界面，需要将主机上的X服务器的套接字目录挂载到容器中，以便容器内的应用程序可以与主机的X服务器进行通信并显示图形界面。这样，rqt和rviz2就能够利用X服务器来创建窗口和显示图形界面。</p>
+</blockquote>
+</li>
+<li><p><code>-v $(pwd):/row_ws</code>：将当前工作目录（主机）挂载到容器中的<code>/row_ws</code> 目录，以便容器可以访问主机的文件系统。</p>
+<blockquote>
+<p>挂载当前目录的写法 很不错 比写一大串的绝对路径强多了</p>
+</blockquote>
+</li>
+<li><p><code>-w /row_ws</code>：将容器的工作目录设置为<code>/row_ws</code>，这是挂载的主机目录在容器内的路径。</p>
+</li>
+<li><p><code>--privileged</code>：赋予容器特权，以便容器可以执行某些需要特权的操作，例如访问主机的硬件资源。</p>
+<blockquote>
+<p><code>--privileged</code>选项在Docker中赋予容器特权访问主机的设备和功能。它允许容器在主机级别执行一些操作，如加载内核模块、访问设备节点等。使用<code>--privileged</code>选项可以解决一些与权限相关的问题，例如访问硬件设备或执行某些特权操作。</p>
+</blockquote>
+</li>
+</ul>
+<p>最后一行是指定要运行的Docker镜像和命令。在这个例子中，我们使用了OSRF提供的ROS Foxy桌面镜像<code>osrf/ros:foxy-desktop</code>，并且我们指定容器的入口点命令为<code>bash</code>，这将在容器中启动一个交互式bash终端。</p>
+<p>通过使用这些参数和挂载，我们能够在容器中运行图形界面应用程序，并且可以与主机文件系统进行交互。请注意，这种配置仅适用于在主机上运行X服务器的情况下。如果使用的是Windows操作系统，可能需要配置额外的X服务器软件，如Xming或VcXsrv，并相应地调整参数和挂载。</p>
+<blockquote>
+<p>就算外部环境没有rqt和rviz2 也能显示图形化界面</p>
+</blockquote>
 <h1 id="ROS2编译"><a href="#ROS2编译" class="headerlink" title="ROS2编译"></a>ROS2编译</h1><p>ament_cmake不同于cmake，会构建更适合ros2的install目录</p>
 <h2 id="三种编译ros2代码的方法"><a href="#三种编译ros2代码的方法" class="headerlink" title="三种编译ros2代码的方法"></a>三种编译ros2代码的方法</h2><h3 id="colcon-build"><a href="#colcon-build" class="headerlink" title="colcon build"></a>colcon build</h3><p>对于ros2 pkg create得到的源码 进行修改补充后，直接使用colcon build进行编译，这应该是 最直观 最简单 最方便的一种编译方法了</p>
 <h3 id="cmake-package-xml"><a href="#cmake-package-xml" class="headerlink" title="cmake + package.xml"></a>cmake + package.xml</h3><p>仍然是使用ros2 pkg create进行项目构建，在学习ros2的时候就发现 是可以直接运行cmake进行编译以及调试的，但是要注意一个问题，ament构建系统是依赖package.xml的 若删除则直接编译失败</p>
@@ -4229,7 +4370,7 @@ ament_package()
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/">#工具学习</a>
+        <a href="/tags/%E8%87%AA%E9%A9%BE%E7%9B%B8%E5%85%B3/">#自驾相关</a>
       
     </div>
   

@@ -16,18 +16,18 @@
   <meta name="author" content="qianxunslimg">
   <meta name="keywords" content="">
   
-    <meta name="description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt;#include &quot;person.h&quot;int main(int argc, char **argv){    Person person;    int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告    int age &#x3D; 0;    std::cout &lt;&lt; &quot;in">
+    <meta name="description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt; #include &quot;person.h&quot;  int main(int argc, char **argv) {     Person person;     int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告     int age &#x3D; 0;     std::cout &lt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="make-cmake-vscode_roject">
 <meta property="og:url" content="https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/index.html">
 <meta property="og:site_name" content="qianxunslimgのblog">
-<meta property="og:description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt;#include &quot;person.h&quot;int main(int argc, char **argv){    Person person;    int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告    int age &#x3D; 0;    std::cout &lt;&lt; &quot;in">
+<meta property="og:description" content="对如下简单代码进行测试 目录结构如下  main.cpp #include &lt;iostream&gt; #include &quot;person.h&quot;  int main(int argc, char **argv) {     Person person;     int a &#x3D; 10;  &#x2F;&#x2F;编译选项开启Wall时 会有警告     int age &#x3D; 0;     std::cout &lt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png">
 <meta property="article:published_time" content="2023-04-17T07:53:00.000Z">
-<meta property="article:modified_time" content="2023-04-17T09:02:00.052Z">
+<meta property="article:modified_time" content="2023-07-05T14:31:08.001Z">
 <meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="开发随笔">
+<meta property="article:tag" content="自驾相关">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png">
   
@@ -283,15 +283,73 @@
 <p>目录结构如下</p>
 <p><img src="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230417155857923.png" srcset="/img/loading.gif" lazyload alt="image-20230417155857923"></p>
 <p>main.cpp</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"person.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    Person person;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">10</span>;  <span class="comment">//编译选项开启Wall时 会有警告</span></span><br><span class="line">    <span class="keyword">int</span> age = <span class="number">0</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"input the age plz"</span> &lt;&lt; std::endl;</span><br><span class="line">    std::cin &gt;&gt; age;</span><br><span class="line">    person.<span class="built_in">setAge</span>(age);</span><br><span class="line">    person.<span class="built_in">showInfo</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"person.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>
+<span class="hljs-function"></span>{
+    Person person;
+    <span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;  <span class="hljs-comment">//编译选项开启Wall时 会有警告</span>
+    <span class="hljs-keyword">int</span> age = <span class="hljs-number">0</span>;
+    std::cout &lt;&lt; <span class="hljs-string">"input the age plz"</span> &lt;&lt; std::endl;
+    std::cin &gt;&gt; age;
+    person.<span class="hljs-built_in">setAge</span>(age);
+    person.<span class="hljs-built_in">showInfo</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div>
 
 <p>person.h</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> {</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Person</span>();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">showInfo</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> _age;</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Person</span>();
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showInfo</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>;
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">int</span> _age;
+};</code></pre></div>
 
 <p>person.cpp</p>
-<figure class="highlight c++"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"person.h"</span></span></span><br><span class="line"></span><br><span class="line">Person::<span class="built_in">Person</span>(){</span><br><span class="line">    _age = <span class="number">18</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Person::setAge</span><span class="params">(<span class="keyword">int</span> a)</span></span>{</span><br><span class="line">    _age = a;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Person::showInfo</span><span class="params">()</span></span>{</span><br><span class="line">    std::cout &lt;&lt; <span class="string">"Bob's age is "</span>  &lt;&lt; _age&lt;&lt; std::endl;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"person.h"</span></span>
 
-<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><h4 id="makefile写法"><a href="#makefile写法" class="headerlink" title="makefile写法"></a>makefile写法</h4><figure class="highlight makefile"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># 定义编译器和编译选项</span></span><br><span class="line">CXX = g++</span><br><span class="line">CXXFLAGS = -Wall -g -Iinclude</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义目标文件和依赖文件</span></span><br><span class="line">TARGET = make.out</span><br><span class="line">OBJS = main.o src/person.o</span><br><span class="line">DEPS = <span class="keyword">include</span>/person.h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生成目标文件的规则</span></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义生成.o文件的规则</span></span><br><span class="line"><span class="section">%.o: %.cpp <span class="variable">$(DEPS)</span></span></span><br><span class="line">	<span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> -c -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义清理文件的规则</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(TARGET)</span> <span class="variable">$(OBJS)</span></span><br></pre></td></tr></tbody></table></figure>
+Person::<span class="hljs-built_in">Person</span>(){
+    _age = <span class="hljs-number">18</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person::setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+    _age = a;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person::showInfo</span><span class="hljs-params">()</span></span>{
+    std::cout &lt;&lt; <span class="hljs-string">"Bob's age is "</span>  &lt;&lt; _age&lt;&lt; std::endl;
+}</code></pre></div>
+
+<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><h4 id="makefile写法"><a href="#makefile写法" class="headerlink" title="makefile写法"></a>makefile写法</h4><div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-comment"># 定义编译器和编译选项</span>
+CXX = g++
+CXXFLAGS = -Wall -g -Iinclude
+
+<span class="hljs-comment"># 定义目标文件和依赖文件</span>
+TARGET = make.out
+OBJS = main.o src/person.o
+DEPS = <span class="hljs-keyword">include</span>/person.h
+
+<span class="hljs-comment"># 定义生成目标文件的规则</span>
+<span class="hljs-variable">$(TARGET)</span>: <span class="hljs-variable">$(OBJS)</span>
+	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$^</span>
+
+<span class="hljs-comment"># 定义生成.o文件的规则</span>
+<span class="hljs-section">%.o: %.cpp <span class="hljs-variable">$(DEPS)</span></span>
+	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> -c -o <span class="hljs-variable">$@</span> <span class="hljs-variable">$&lt;</span>
+
+<span class="hljs-comment"># 定义清理文件的规则</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">.PHONY</span>: clean</span>
+<span class="hljs-section">clean:</span>
+	rm -f <span class="hljs-variable">$(TARGET)</span> <span class="hljs-variable">$(OBJS)</span></code></pre></div>
 
 <h4 id="逐行解释"><a href="#逐行解释" class="headerlink" title="逐行解释"></a>逐行解释</h4><ol>
 <li><code>CXX = g++</code>：表示使用g++作为C++编译器，并把它赋值给一个变量CXX，方便后面使用</li>
@@ -320,7 +378,16 @@
 </li>
 </ol>
 <h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><p>直接makefile目录下 执行命令<code>make</code></p>
-<h3 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h3><h4 id="cmake写法"><a href="#cmake写法" class="headerlink" title="cmake写法"></a>cmake写法</h4><figure class="highlight cmake"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">project</span>(HELLO)</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(CMAKE_CXX_FLAGS <span class="string">"${CMAKE_CXX_FLAGS} -g -O2 -Wall"</span>) <span class="comment">#compile options couldnt break at bearkpoint if without -g</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include_directories</span>(<span class="keyword">include</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(cmake.out main.cpp src/person.cpp)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="cmake"><a href="#cmake" class="headerlink" title="cmake"></a>cmake</h3><h4 id="cmake写法"><a href="#cmake写法" class="headerlink" title="cmake写法"></a>cmake写法</h4><div class="code-wrapper"><pre><code class="hljs cmake"><span class="hljs-keyword">cmake_minimum_required</span>(VERSION <span class="hljs-number">3.0</span>)
+
+<span class="hljs-keyword">project</span>(HELLO)
+
+<span class="hljs-keyword">set</span>(CMAKE_CXX_FLAGS <span class="hljs-string">"${CMAKE_CXX_FLAGS} -g -O2 -Wall"</span>) <span class="hljs-comment">#compile options couldnt break at bearkpoint if without -g</span>
+
+<span class="hljs-keyword">include_directories</span>(<span class="hljs-keyword">include</span>)
+
+<span class="hljs-keyword">add_executable</span>(cmake.out main.cpp src/person.cpp)
+</code></pre></div>
 
 <h4 id="逐行解释-1"><a href="#逐行解释-1" class="headerlink" title="逐行解释"></a>逐行解释</h4><ol>
 <li><p><code>cmake_minimum_required(VERSION 3.0)</code> ：表示要求CMake的最低版本是3.0，如果当前的CMake版本低于这个要求，会报错</p>
@@ -335,16 +402,87 @@
 </li>
 </ol>
 <h4 id="执行-1"><a href="#执行-1" class="headerlink" title="执行"></a>执行</h4><p>cmake的本质是生成makefile 然后使用make命令编译，会产生较多的中间文件，因此 一般采用外部编译的方式 执行过程如下</p>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">mkdir build </span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..  <span class="comment">#当前目录的话是cmake .由于此时CMakeLists位于上层目录，因此..</span></span><br><span class="line">make</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs sh">mkdir build 
+<span class="hljs-built_in">cd</span> build
+cmake ..  <span class="hljs-comment">#当前目录的话是cmake .由于此时CMakeLists位于上层目录，因此..</span>
+make</code></pre></div>
 
 <h3 id="vscode-project"><a href="#vscode-project" class="headerlink" title="vscode_project"></a>vscode_project</h3><p>搭配cmake使用，主要是配置两个json文件</p>
 <h4 id="写法与逐行解释"><a href="#写法与逐行解释" class="headerlink" title="写法与逐行解释"></a>写法与逐行解释</h4><p>launch.json</p>
-<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>, <span class="comment">// 文件的版本号，用来标识文件的格式</span></span><br><span class="line">    <span class="attr">"configurations"</span>: [ <span class="comment">// 表示这个文件包含一个或多个调试配置，每个配置是一个对象，用花括号括起来</span></span><br><span class="line">        {</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"g++ make and debug"</span>, <span class="comment">// 表示这个调试配置的名字，会在VS Code的调试菜单中显示，方便用户选择</span></span><br><span class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"Build"</span>, <span class="comment">// 表示在启动调试之前要执行的任务名，这个名字要跟tasks.json中的任务名字大小写一致</span></span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>, <span class="comment">// 表示这个调试配置的类型，用来指定使用哪种调试器，这里是cppdbg，表示使用C/C++扩展提供的调试器</span></span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>, <span class="comment">// 表示这个调试配置的请求类型，有两种选择：launch和attach，launch表示启动一个新的程序进行调试，attach表示附加到一个已经运行的程序进行调试，这里是launch</span></span><br><span class="line">            <span class="attr">"program"</span>: <span class="string">"${workspaceFolder}/build/vscode_project.out"</span>, <span class="comment">// 表示要调试的程序的路径，可以使用一些变量来代替绝对路径，这里是${workspaceFolder}/build/vscode_project.out，表示工作空间目录下的build子目录中的vscode_project.out文件</span></span><br><span class="line">            <span class="attr">"args"</span>: [], <span class="comment">// 表示要传递给程序的参数列表，用数组形式表示，每个参数是一个字符串，这里是空数组，表示没有参数</span></span><br><span class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>, <span class="comment">// 表示是否在程序入口处停止调试器，如果为true，则会在main函数开始处暂停执行，如果为false，则会直接运行程序，这里是false</span></span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"${workspaceFolder}"</span>, <span class="comment">// 表示程序运行时的当前工作目录，也可以使用变量来代替绝对路径，这里是${workspaceFolder}，表示工作空间目录</span></span><br><span class="line">            <span class="attr">"environment"</span>: [], <span class="comment">// 表示程序运行时的环境变量列表，用数组形式表示，每个环境变量是一个对象，包含name和value两个属性，这里是空数组，表示没有额外的环境变量</span></span><br><span class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">false</span>, <span class="comment">// 表示是否使用外部控制台来显示程序的输入和输出，如果为true，则会打开一个新的控制台窗口来运行程序，如果为false，则会在VS Code内置的终端中运行程序</span></span><br><span class="line">            <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>, <span class="comment">// 表示要使用哪种MI（机器接口）模式来与调试器通信，有三种选择：gdb、lldb和clrdbg</span></span><br><span class="line">            <span class="attr">"miDebuggerPath"</span>: <span class="string">"/usr/bin/gdb"</span>, <span class="comment">// 表示MI调试器（如gdb）的路径，可以使用绝对路径或相对路径（相对于cwd）</span></span><br><span class="line">            <span class="attr">"setupCommands"</span>: [ <span class="comment">// 表示要在启动调试器之后执行的命令列表，用数组形式表示，每个命令是一个对象</span></span><br><span class="line">                {</span><br><span class="line">                    <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>, <span class="comment">// 表示命令的描述信息，用来帮助用户理解命令的作用</span></span><br><span class="line">                    <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,<span class="comment">//表示命令的文本内容，就是要发送给调试器的字符串</span></span><br><span class="line">                    <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span> <span class="comment">// 表示是否忽略命令执行失败的情况，如果为true，则即使命令执行失败，也不会影响调试器的启动，如果为false，则会报错并终止调试器的启动</span></span><br><span class="line">                }</span><br><span class="line">            ]</span><br><span class="line">        }</span><br><span class="line">    ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs json">{
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.2.0"</span>, <span class="hljs-comment">// 文件的版本号，用来标识文件的格式</span>
+    <span class="hljs-attr">"configurations"</span>: [ <span class="hljs-comment">// 表示这个文件包含一个或多个调试配置，每个配置是一个对象，用花括号括起来</span>
+        {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"g++ make and debug"</span>, <span class="hljs-comment">// 表示这个调试配置的名字，会在VS Code的调试菜单中显示，方便用户选择</span>
+            <span class="hljs-attr">"preLaunchTask"</span>: <span class="hljs-string">"Build"</span>, <span class="hljs-comment">// 表示在启动调试之前要执行的任务名，这个名字要跟tasks.json中的任务名字大小写一致</span>
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"cppdbg"</span>, <span class="hljs-comment">// 表示这个调试配置的类型，用来指定使用哪种调试器，这里是cppdbg，表示使用C/C++扩展提供的调试器</span>
+            <span class="hljs-attr">"request"</span>: <span class="hljs-string">"launch"</span>, <span class="hljs-comment">// 表示这个调试配置的请求类型，有两种选择：launch和attach，launch表示启动一个新的程序进行调试，attach表示附加到一个已经运行的程序进行调试，这里是launch</span>
+            <span class="hljs-attr">"program"</span>: <span class="hljs-string">"${workspaceFolder}/build/vscode_project.out"</span>, <span class="hljs-comment">// 表示要调试的程序的路径，可以使用一些变量来代替绝对路径，这里是${workspaceFolder}/build/vscode_project.out，表示工作空间目录下的build子目录中的vscode_project.out文件</span>
+            <span class="hljs-attr">"args"</span>: [], <span class="hljs-comment">// 表示要传递给程序的参数列表，用数组形式表示，每个参数是一个字符串，这里是空数组，表示没有参数</span>
+            <span class="hljs-attr">"stopAtEntry"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 表示是否在程序入口处停止调试器，如果为true，则会在main函数开始处暂停执行，如果为false，则会直接运行程序，这里是false</span>
+            <span class="hljs-attr">"cwd"</span>: <span class="hljs-string">"${workspaceFolder}"</span>, <span class="hljs-comment">// 表示程序运行时的当前工作目录，也可以使用变量来代替绝对路径，这里是${workspaceFolder}，表示工作空间目录</span>
+            <span class="hljs-attr">"environment"</span>: [], <span class="hljs-comment">// 表示程序运行时的环境变量列表，用数组形式表示，每个环境变量是一个对象，包含name和value两个属性，这里是空数组，表示没有额外的环境变量</span>
+            <span class="hljs-attr">"externalConsole"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 表示是否使用外部控制台来显示程序的输入和输出，如果为true，则会打开一个新的控制台窗口来运行程序，如果为false，则会在VS Code内置的终端中运行程序</span>
+            <span class="hljs-attr">"MIMode"</span>: <span class="hljs-string">"gdb"</span>, <span class="hljs-comment">// 表示要使用哪种MI（机器接口）模式来与调试器通信，有三种选择：gdb、lldb和clrdbg</span>
+            <span class="hljs-attr">"miDebuggerPath"</span>: <span class="hljs-string">"/usr/bin/gdb"</span>, <span class="hljs-comment">// 表示MI调试器（如gdb）的路径，可以使用绝对路径或相对路径（相对于cwd）</span>
+            <span class="hljs-attr">"setupCommands"</span>: [ <span class="hljs-comment">// 表示要在启动调试器之后执行的命令列表，用数组形式表示，每个命令是一个对象</span>
+                {
+                    <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Enable pretty-printing for gdb"</span>, <span class="hljs-comment">// 表示命令的描述信息，用来帮助用户理解命令的作用</span>
+                    <span class="hljs-attr">"text"</span>: <span class="hljs-string">"-enable-pretty-printing"</span>,<span class="hljs-comment">//表示命令的文本内容，就是要发送给调试器的字符串</span>
+                    <span class="hljs-attr">"ignoreFailures"</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 表示是否忽略命令执行失败的情况，如果为true，则即使命令执行失败，也不会影响调试器的启动，如果为false，则会报错并终止调试器的启动</span>
+                }
+            ]
+        }
+    ]
+}</code></pre></div>
 
 <p>tasks.json</p>
-<figure class="highlight json"><table><tbody><tr><td class="code"><pre><span class="line">{</span><br><span class="line">	<span class="attr">"version"</span>: <span class="string">"2.0.0"</span>, <span class="comment">// 表示这个文件的版本号，用来标识文件的格式</span></span><br><span class="line">	<span class="attr">"options"</span>: { <span class="comment">// 表示这个文件中所有任务的默认选项，可以用一个对象来表示</span></span><br><span class="line">		<span class="attr">"cwd"</span>: <span class="string">"${workspaceFolder}/build"</span> <span class="comment">// 表示所有任务的默认工作目录，也就是执行命令时的当前目录，这里是工作空间目录下的build子目录</span></span><br><span class="line">	},</span><br><span class="line">	<span class="attr">"tasks"</span>: [ <span class="comment">// 表示这个文件包含一个或多个任务，每个任务是一个对象，用花括号括起来</span></span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"type"</span>: <span class="string">"shell"</span>, <span class="comment">// 表示这个任务的类型，有两种选择：shell和process，shell表示在一个shell中执行命令，process表示直接执行一个可执行文件，这里是shell</span></span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"cmake"</span>, <span class="comment">// 表示这个任务的标签，用来在VS Code中唯一标识这个任务，方便用户选择</span></span><br><span class="line">			<span class="attr">"command"</span>: <span class="string">"cmake"</span>, <span class="comment">// 表示这个任务要执行的命令，可以是一个可执行文件的名字或路径，也可以是一个shell命令</span></span><br><span class="line">			<span class="attr">"args"</span>: [ <span class="comment">// 表示要传递给命令的参数列表，用数组形式表示，每个参数是一个字符串</span></span><br><span class="line">				<span class="string">".."</span></span><br><span class="line">			]</span><br><span class="line">		},</span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"make"</span>,</span><br><span class="line">			<span class="attr">"group"</span>: { <span class="comment">// 表示这个任务所属的组，用一个对象来表示</span></span><br><span class="line">				<span class="attr">"kind"</span>: <span class="string">"build"</span>, <span class="comment">// 表示组的类型，有两种选择：build和test，build表示这个任务是用来构建项目的，test表示这个任务是用来测试项目的，这里是build</span></span><br><span class="line">				<span class="attr">"isDefault"</span>: <span class="literal">true</span> <span class="comment">// 表示是否把这个任务设为默认任务，如果为true，则当用户执行Run Build Task命令时，会自动执行这个任务，如果为false，则会让用户选择要执行哪个任务，这里是true</span></span><br><span class="line">			},</span><br><span class="line">			<span class="attr">"command"</span>: <span class="string">"make"</span>,</span><br><span class="line">			<span class="attr">"args"</span>: []</span><br><span class="line">		},</span><br><span class="line">		{</span><br><span class="line">			<span class="attr">"label"</span>: <span class="string">"Build"</span>,</span><br><span class="line">			<span class="attr">"dependsOrder"</span>: <span class="string">"sequence"</span>, <span class="comment">// 表示当这个任务有依赖其他任务时，依赖任务的执行顺序，有两种选择：sequence和parallel，sequence表示按列出的顺序依次执行依赖任务，parallel表示同时执行所有依赖任务，这里是sequence</span></span><br><span class="line">			<span class="attr">"dependsOn"</span>: [ <span class="comment">// 表示这个任务依赖于哪些其他任务，在执行这个任务之前要先执行它们，用数组形式表示，每个元素是一个依赖任务的标签名字</span></span><br><span class="line">				<span class="string">"cmake"</span>,</span><br><span class="line">				<span class="string">"make"</span></span><br><span class="line">			]</span><br><span class="line">		}</span><br><span class="line">	]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<div class="code-wrapper"><pre><code class="hljs json">{
+	<span class="hljs-attr">"version"</span>: <span class="hljs-string">"2.0.0"</span>, <span class="hljs-comment">// 表示这个文件的版本号，用来标识文件的格式</span>
+	<span class="hljs-attr">"options"</span>: { <span class="hljs-comment">// 表示这个文件中所有任务的默认选项，可以用一个对象来表示</span>
+		<span class="hljs-attr">"cwd"</span>: <span class="hljs-string">"${workspaceFolder}/build"</span> <span class="hljs-comment">// 表示所有任务的默认工作目录，也就是执行命令时的当前目录，这里是工作空间目录下的build子目录</span>
+	},
+	<span class="hljs-attr">"tasks"</span>: [ <span class="hljs-comment">// 表示这个文件包含一个或多个任务，每个任务是一个对象，用花括号括起来</span>
+		{
+			<span class="hljs-attr">"type"</span>: <span class="hljs-string">"shell"</span>, <span class="hljs-comment">// 表示这个任务的类型，有两种选择：shell和process，shell表示在一个shell中执行命令，process表示直接执行一个可执行文件，这里是shell</span>
+			<span class="hljs-attr">"label"</span>: <span class="hljs-string">"cmake"</span>, <span class="hljs-comment">// 表示这个任务的标签，用来在VS Code中唯一标识这个任务，方便用户选择</span>
+			<span class="hljs-attr">"command"</span>: <span class="hljs-string">"cmake"</span>, <span class="hljs-comment">// 表示这个任务要执行的命令，可以是一个可执行文件的名字或路径，也可以是一个shell命令</span>
+			<span class="hljs-attr">"args"</span>: [ <span class="hljs-comment">// 表示要传递给命令的参数列表，用数组形式表示，每个参数是一个字符串</span>
+				<span class="hljs-string">".."</span>
+			]
+		},
+		{
+			<span class="hljs-attr">"label"</span>: <span class="hljs-string">"make"</span>,
+			<span class="hljs-attr">"group"</span>: { <span class="hljs-comment">// 表示这个任务所属的组，用一个对象来表示</span>
+				<span class="hljs-attr">"kind"</span>: <span class="hljs-string">"build"</span>, <span class="hljs-comment">// 表示组的类型，有两种选择：build和test，build表示这个任务是用来构建项目的，test表示这个任务是用来测试项目的，这里是build</span>
+				<span class="hljs-attr">"isDefault"</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 表示是否把这个任务设为默认任务，如果为true，则当用户执行Run Build Task命令时，会自动执行这个任务，如果为false，则会让用户选择要执行哪个任务，这里是true</span>
+			},
+			<span class="hljs-attr">"command"</span>: <span class="hljs-string">"make"</span>,
+			<span class="hljs-attr">"args"</span>: []
+		},
+		{
+			<span class="hljs-attr">"label"</span>: <span class="hljs-string">"Build"</span>,
+			<span class="hljs-attr">"dependsOrder"</span>: <span class="hljs-string">"sequence"</span>, <span class="hljs-comment">// 表示当这个任务有依赖其他任务时，依赖任务的执行顺序，有两种选择：sequence和parallel，sequence表示按列出的顺序依次执行依赖任务，parallel表示同时执行所有依赖任务，这里是sequence</span>
+			<span class="hljs-attr">"dependsOn"</span>: [ <span class="hljs-comment">// 表示这个任务依赖于哪些其他任务，在执行这个任务之前要先执行它们，用数组形式表示，每个元素是一个依赖任务的标签名字</span>
+				<span class="hljs-string">"cmake"</span>,
+				<span class="hljs-string">"make"</span>
+			]
+		}
+	]
+}</code></pre></div>
 
 <h4 id="执行-2"><a href="#执行-2" class="headerlink" title="执行"></a>执行</h4><p>直接vscode调试界面，选择要调试的配置 点击调试</p>
+<h4 id="更简单的"><a href="#更简单的" class="headerlink" title="更简单的"></a>更简单的</h4><p>安装cmake插件 直接使用cmake编译工程 比vscode的工程组织和编译方式好用多了</p>
+<h4 id="clang-format"><a href="#clang-format" class="headerlink" title="clang_format"></a>clang_format</h4><p>virtual studio中有个很好用的clang_format插件</p>
+<p>在vscode中也可以使用clang_format进行代码的格式化，默认的代码格式和google差异有点大</p>
+<p>配置：增加一个.clang-format文件，简单的内容如下：</p>
+<div class="code-wrapper"><pre><code class="hljs cpp">---
+Language:        Cpp
+BasedOnStyle:  Google
+...</code></pre></div>
+
+
+
 
               
             </div>
@@ -356,7 +494,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/">#开发随笔</a>
+        <a href="/tags/%E8%87%AA%E9%A9%BE%E7%9B%B8%E5%85%B3/">#自驾相关</a>
       
     </div>
   

@@ -28,9 +28,9 @@
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415000909382.png">
 <meta property="og:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230415001742100.png">
 <meta property="article:published_time" content="2023-01-05T17:59:00.000Z">
-<meta property="article:modified_time" content="2023-06-06T07:08:16.107Z">
+<meta property="article:modified_time" content="2023-07-05T14:31:03.642Z">
 <meta property="article:author" content="qianxunslimg">
-<meta property="article:tag" content="工具学习">
+<meta property="article:tag" content="自驾相关">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://qianxunslimg.oss-cn-beijing.aliyuncs.com/img/image-20230106010045452.png">
   
@@ -328,10 +328,15 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 </li>
 </ol>
 <h4 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h4><p>在使用 <code>-d</code> 参数时，容器启动后会进入后台。</p>
+<p>无脑使用exec</p>
 <ol>
 <li><p>attach 不好</p>
 <div class="code-wrapper"><pre><code class="hljs shell">C:\Users\qianxunslimg&gt;docker run -dit ubuntu
 adc05673f248b715ab90be0508fc45a86ce5ac44e1b7f492c0a5a70035761075
+<span class="hljs-meta"></span>
+<span class="hljs-meta">#</span><span class="bash"> -d 或 --detach: 在后台运行容器，即以守护进程方式运行。</span>
+<span class="hljs-meta">#</span><span class="bash"> -i 或 --interactive: 保持标准输入 (stdin) 打开，允许用户与容器进行交互。</span>
+<span class="hljs-meta">#</span><span class="bash"> -t 或 --tty: 分配一个伪终端 (pseudo-TTY)，为容器提供一个终端界面。</span>
 
 C:\Users\qianxunslimg&gt;docker container ls
 CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
@@ -383,7 +388,7 @@ ubuntu                   latest        6b7dfa7e8fdb   3 weeks ago      77.8MB
 hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</code></pre></div>
 
 <blockquote>
-<p><em>注：用户既可以使用</em> <code>docker load</code> <em>来导入镜像存储文件到本地镜像库，也可以使用</em> <code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
+<p>注：用户既可以使用 <code>docker load</code> 来导入镜像存储文件到本地镜像库，也可以使用<code>docker import</code> 来导入一个容器快照到本地镜像库。这两者的区别在于<code>容器快照文件将丢弃所有的历史记录和元数据信息</code>（即仅保存容器当时的快照状态），而<code>镜像存储文件将保存完整记录，体积也要大</code>。此外，从容器快照文件导入时可以重新指定标签等元数据信息。</p>
 </blockquote>
 </li>
 </ol>
@@ -413,6 +418,8 @@ hello-world              latest        feb5d9fea6a5   15 months ago    13.3kB</c
 
 <span class="hljs-comment"># 运行程序</span>
 <span class="hljs-keyword">CMD</span><span class="bash"> [<span class="hljs-string">"./hello_world"</span>]</span>
+
+
 
 <span class="hljs-comment">###########################逐行解释#############################</span>
 <span class="hljs-comment"># 基础镜像</span>
@@ -512,8 +519,8 @@ ros2 run ros_package_name node_name</code></pre></div>
 <li>如果外部由ros环境 可以直接在外部的控制台中 ros2 node list等</li>
 <li>如果外部没有 在外部新开控制台，<code>docker exec -it &lt;container_name&gt; bash</code>   本示例中就是<code>docker exec -it 174</code></li>
 </ol>
-<h3 id="ros2挂在通信示例"><a href="#ros2挂在通信示例" class="headerlink" title="ros2挂在通信示例"></a>ros2挂在通信示例</h3><p>将sub节点挂在到虚拟环境</p>
-<div class="code-wrapper"><pre><code class="hljs bash">docker run -it -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</code></pre></div>
+<h3 id="ros2挂载通信示例"><a href="#ros2挂载通信示例" class="headerlink" title="ros2挂载通信示例"></a>ros2挂载通信示例</h3><p>将sub节点挂在到虚拟环境</p>
+<div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm -v /home/qianxunslimg/Desktop/study/ros_study/ros2_sub:/ros_ws/src/sub_demo -w /ros_ws ros:foxy bash</code></pre></div>
 
 <p>因为默认是docker的网络是桥接模式 所以可以通信</p>
 <p>同一局域网ip挂载</p>
@@ -557,16 +564,6 @@ sudo apt install ros-rolling-hardware-interface ros-rolling-xacro ros-rolling-ro
 <div class="code-wrapper"><pre><code class="hljs bash">docker run -it --rm \
 -e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
 -v /tmp/.X11-unix:/tmp/.X11-unix \
--v $(<span class="hljs-built_in">pwd</span>):/row_ws \
---privileged \
--w /row_ws \
-my_rolling:v1.0 \
-bash
-
-
-docker run -it --rm \
--e DISPLAY=<span class="hljs-variable">$DISPLAY</span> \
--v /tmp/.X11-unix:/tmp/.X11-unix \
 -v $(<span class="hljs-built_in">pwd</span>):/row_ws/src \
 --privileged \
 -w /row_ws \
@@ -606,7 +603,7 @@ bash</code></pre></div></li>
 <p>最后一行是指定要运行的Docker镜像和命令。在这个例子中，我们使用了OSRF提供的ROS Foxy桌面镜像<code>osrf/ros:foxy-desktop</code>，并且我们指定容器的入口点命令为<code>bash</code>，这将在容器中启动一个交互式bash终端。</p>
 <p>通过使用这些参数和挂载，我们能够在容器中运行图形界面应用程序，并且可以与主机文件系统进行交互。请注意，这种配置仅适用于在主机上运行X服务器的情况下。如果使用的是Windows操作系统，可能需要配置额外的X服务器软件，如Xming或VcXsrv，并相应地调整参数和挂载。</p>
 <blockquote>
-<p>就算外部环境没有rqt和rviz2 也能显示图形化界面</p>
+<p>==就算外部环境没有rqt和rviz2 也能显示图形化界面==</p>
 </blockquote>
 <h2 id="6-docker-vscode"><a href="#6-docker-vscode" class="headerlink" title="6. docker-vscode"></a>6. docker-vscode</h2><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>vscode的docker插件很强大, 可以直接在vscode中修改文件 然后同步到容器</p>
 <p>相当于图像化了</p>
@@ -626,7 +623,7 @@ bash</code></pre></div></li>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E5%AD%A6%E4%B9%A0/">#工具学习</a>
+        <a href="/tags/%E8%87%AA%E9%A9%BE%E7%9B%B8%E5%85%B3/">#自驾相关</a>
       
     </div>
   
