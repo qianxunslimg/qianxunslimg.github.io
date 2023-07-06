@@ -182,6 +182,31 @@
   </entry>
   
   <entry>
+    <title>日志使用</title>
+    <link href="https://qianxunslimg.github.io/2023/04/18/ri-zhi/"/>
+    <id>https://qianxunslimg.github.io/2023/04/18/ri-zhi/</id>
+    <published>2023-04-17T16:24:00.000Z</published>
+    <updated>2023-07-06T06:47:06.783Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;简单日志记录&quot;&gt;&lt;a href=&quot;#简单日志记录&quot; class=&quot;headerlink&quot; title=&quot;简单日志记录&quot;&gt;&lt;/a&gt;简单日志记录&lt;/h2&gt;&lt;p&gt;可以使用进程的文件描述符简单的记录下输出和错误信息&lt;/p&gt;
+&lt;p&gt;有如下代码：&lt;/p&gt;
+&lt;div</summary>
+        
+      
+    
+    
+    
+    
+    <category term="自驾相关" scheme="https://qianxunslimg.github.io/tags/%E8%87%AA%E9%A9%BE%E7%9B%B8%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
     <title>make-cmake-vscode_roject</title>
     <link href="https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/"/>
     <id>https://qianxunslimg.github.io/2023/04/17/make-cmake-vscode/</id>
@@ -429,30 +454,6 @@
     <summary type="html">&lt;p&gt;好久没更新博客, 突然发现github部署失败了&lt;/p&gt;
 &lt;p&gt;重新配置了下ssh密钥还是不对 clone的时候总是提醒输入&lt;a href=&quot;mailto:git@github.co&quot;&gt;git@github.co&lt;/a&gt;的密码, 问题是 根本没有这个密码&lt;/p&gt;
 &lt;h3</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js脚本尝试</title>
-    <link href="https://qianxunslimg.github.io/2022/08/12/js-jiao-ben-chang-shi/"/>
-    <id>https://qianxunslimg.github.io/2022/08/12/js-jiao-ben-chang-shi/</id>
-    <published>2022-08-12T15:43:00.000Z</published>
-    <updated>2022-08-14T04:04:59.550Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;帮看作业 每次都要点击到input输入数字再提交 枯燥且浪费事件&lt;/p&gt;
-&lt;p&gt;测试尝试学着写了下油猴脚本</summary>
         
       
     
