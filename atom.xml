@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-05-28T16:49:11.721Z</updated>
+  <updated>2023-07-08T14:34:30.562Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++软件架构</title>
+    <link href="https://qianxunslimg.github.io/2023/07/07/c-ruan-jian-jia-gou/"/>
+    <id>https://qianxunslimg.github.io/2023/07/07/c-ruan-jian-jia-gou/</id>
+    <published>2023-07-06T16:24:00.000Z</published>
+    <updated>2023-07-08T14:34:30.562Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;元问题&quot;&gt;&lt;a href=&quot;#元问题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="C++软件架构" scheme="https://qianxunslimg.github.io/tags/C-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>Linux</title>
@@ -186,7 +209,7 @@
     <link href="https://qianxunslimg.github.io/2023/04/18/ri-zhi/"/>
     <id>https://qianxunslimg.github.io/2023/04/18/ri-zhi/</id>
     <published>2023-04-17T16:24:00.000Z</published>
-    <updated>2023-07-06T06:47:06.783Z</updated>
+    <updated>2023-07-06T09:44:47.096Z</updated>
     
     
       
@@ -436,31 +459,6 @@
     
     
     <category term="地质算法" scheme="https://qianxunslimg.github.io/tags/%E5%9C%B0%E8%B4%A8%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git ssh的问题</title>
-    <link href="https://qianxunslimg.github.io/2022/09/25/git-ssh-de-wen-ti/"/>
-    <id>https://qianxunslimg.github.io/2022/09/25/git-ssh-de-wen-ti/</id>
-    <published>2022-09-25T09:03:00.000Z</published>
-    <updated>2022-09-25T09:03:58.356Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;好久没更新博客, 突然发现github部署失败了&lt;/p&gt;
-&lt;p&gt;重新配置了下ssh密钥还是不对 clone的时候总是提醒输入&lt;a href=&quot;mailto:git@github.co&quot;&gt;git@github.co&lt;/a&gt;的密码, 问题是 根本没有这个密码&lt;/p&gt;
-&lt;h3</summary>
-        
-      
-    
-    
-    
-    
-    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
