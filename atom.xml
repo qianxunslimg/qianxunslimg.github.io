@@ -6,7 +6,7 @@
   <link href="https://qianxunslimg.github.io/atom.xml" rel="self"/>
   
   <link href="https://qianxunslimg.github.io/"/>
-  <updated>2023-07-09T09:56:12.917Z</updated>
+  <updated>2025-08-31T08:34:49.748Z</updated>
   <id>https://qianxunslimg.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu科学</title>
+    <link href="https://qianxunslimg.github.io/2025/08/21/ubuntu-ke-xue/"/>
+    <id>https://qianxunslimg.github.io/2025/08/21/ubuntu-ke-xue/</id>
+    <published>2025-08-21T08:28:00.000Z</published>
+    <updated>2025-08-31T08:34:49.748Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-代理配置&quot;&gt;&lt;a href=&quot;#1-代理配置&quot; class=&quot;headerlink&quot; title=&quot;1. 代理配置&quot;&gt;&lt;/a&gt;1. 代理配置&lt;/h3&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="开发随笔" scheme="https://qianxunslimg.github.io/tags/%E5%BC%80%E5%8F%91%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>C++软件架构</title>
@@ -430,25 +453,6 @@
     <id>https://qianxunslimg.github.io/2022/10/24/bido-spac/</id>
     <published>2022-10-24T15:04:00.000Z</published>
     <updated>2022-10-28T09:16:24.361Z</updated>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    <category term="地质算法" scheme="https://qianxunslimg.github.io/categories/%E5%9C%B0%E8%B4%A8%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="地质算法" scheme="https://qianxunslimg.github.io/tags/%E5%9C%B0%E8%B4%A8%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>geo术语</title>
-    <link href="https://qianxunslimg.github.io/2022/10/20/di-zhi-wei-dong-zhu-yu/"/>
-    <id>https://qianxunslimg.github.io/2022/10/20/di-zhi-wei-dong-zhu-yu/</id>
-    <published>2022-10-20T15:05:00.000Z</published>
-    <updated>2022-11-03T14:00:06.564Z</updated>
     
     
     <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
